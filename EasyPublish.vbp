@@ -165,6 +165,7 @@ Form=Form\PrintDlg.frm
 Form=Form\MachineMaster.frm
 Module=Module2; Module\Module2.bas
 Module=Module1; Module\SSOCX.BAS
+Form=Form\emailing.frm
 IconForm="MdiMainMenu"
 Startup="MdiMainMenu"
 HelpFile=""

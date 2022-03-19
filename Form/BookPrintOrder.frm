@@ -32,7 +32,7 @@ Begin VB.Form FrmBookPrintOrder
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   7715
       Left            =   15
-      TabIndex        =   28
+      TabIndex        =   30
       TabStop         =   0   'False
       Top             =   0
       Width           =   17580
@@ -61,7 +61,7 @@ Begin VB.Form FrmBookPrintOrder
       Begin TabDlg.SSTab SSTab1 
          Height          =   7485
          Left            =   120
-         TabIndex        =   30
+         TabIndex        =   32
          TabStop         =   0   'False
          Top             =   120
          Width           =   17370
@@ -125,7 +125,7 @@ Begin VB.Form FrmBookPrintOrder
             Height          =   330
             Left            =   14745
             Style           =   1  'Graphical
-            TabIndex        =   97
+            TabIndex        =   98
             ToolTipText     =   "Save"
             Top             =   7020
             Width           =   2520
@@ -133,9 +133,9 @@ Begin VB.Form FrmBookPrintOrder
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame6 
             Height          =   855
             Left            =   -74880
-            TabIndex        =   53
+            TabIndex        =   55
             TabStop         =   0   'False
-            Top             =   5145
+            Top             =   5025
             Width           =   9675
             _Version        =   65536
             _ExtentX        =   17066
@@ -163,7 +163,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput14 
                Height          =   330
                Left            =   2040
-               TabIndex        =   61
+               TabIndex        =   63
                TabStop         =   0   'False
                Top             =   420
                Width           =   970
@@ -214,7 +214,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   178454533
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -222,7 +222,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput9 
                Height          =   330
                Left            =   2040
-               TabIndex        =   55
+               TabIndex        =   57
                TabStop         =   0   'False
                Top             =   105
                Width           =   970
@@ -273,7 +273,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   178454533
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -281,7 +281,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
                Left            =   120
-               TabIndex        =   54
+               TabIndex        =   56
                Top             =   105
                Width           =   1935
                _Version        =   65536
@@ -308,7 +308,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
                Left            =   3005
-               TabIndex        =   56
+               TabIndex        =   58
                TabStop         =   0   'False
                Top             =   105
                Width           =   975
@@ -359,7 +359,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   178454533
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -367,7 +367,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput11 
                Height          =   330
                Left            =   3960
-               TabIndex        =   57
+               TabIndex        =   59
                TabStop         =   0   'False
                Top             =   105
                Width           =   970
@@ -418,7 +418,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   178454533
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -426,7 +426,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   330
                Left            =   4920
-               TabIndex        =   58
+               TabIndex        =   60
                TabStop         =   0   'False
                Top             =   105
                Width           =   970
@@ -477,7 +477,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   178454533
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -485,7 +485,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
                Left            =   120
-               TabIndex        =   60
+               TabIndex        =   62
                Top             =   420
                Width           =   1935
                _Version        =   65536
@@ -512,7 +512,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput15 
                Height          =   330
                Left            =   3005
-               TabIndex        =   62
+               TabIndex        =   64
                TabStop         =   0   'False
                Top             =   420
                Width           =   975
@@ -563,7 +563,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   178454533
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -571,7 +571,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput16 
                Height          =   330
                Left            =   3960
-               TabIndex        =   63
+               TabIndex        =   65
                TabStop         =   0   'False
                Top             =   420
                Width           =   970
@@ -622,7 +622,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   173998085
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -630,7 +630,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput17 
                Height          =   330
                Left            =   4920
-               TabIndex        =   64
+               TabIndex        =   66
                TabStop         =   0   'False
                Top             =   420
                Width           =   970
@@ -681,7 +681,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   173998085
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -689,7 +689,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput13 
                Height          =   330
                Left            =   5880
-               TabIndex        =   59
+               TabIndex        =   61
                TabStop         =   0   'False
                Top             =   105
                Width           =   970
@@ -740,7 +740,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   173998085
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -748,7 +748,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput18 
                Height          =   330
                Left            =   5880
-               TabIndex        =   65
+               TabIndex        =   67
                TabStop         =   0   'False
                Top             =   420
                Width           =   970
@@ -799,7 +799,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   173998085
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -807,7 +807,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel25 
                Height          =   645
                Left            =   7785
-               TabIndex        =   85
+               TabIndex        =   87
                Top             =   105
                Width           =   1785
                _Version        =   65536
@@ -833,7 +833,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput29 
                Height          =   330
                Left            =   6840
-               TabIndex        =   89
+               TabIndex        =   90
                TabStop         =   0   'False
                Top             =   105
                Width           =   960
@@ -884,7 +884,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   173998085
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -892,7 +892,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput30 
                Height          =   330
                Left            =   6840
-               TabIndex        =   90
+               TabIndex        =   91
                TabStop         =   0   'False
                Top             =   420
                Width           =   960
@@ -943,7 +943,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   173998085
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -952,7 +952,7 @@ Begin VB.Form FrmBookPrintOrder
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   6495
             Left            =   120
-            TabIndex        =   31
+            TabIndex        =   33
             TabStop         =   0   'False
             Top             =   450
             Width           =   17145
@@ -1268,20 +1268,20 @@ Begin VB.Form FrmBookPrintOrder
             EndProperty
             Height          =   330
             Left            =   600
-            TabIndex        =   32
+            TabIndex        =   34
             Top             =   7020
             Width           =   9945
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   3645
+            Height          =   3560
             Left            =   -74880
-            TabIndex        =   34
+            TabIndex        =   36
             TabStop         =   0   'False
             Top             =   480
             Width           =   9675
             _Version        =   65536
             _ExtentX        =   17066
-            _ExtentY        =   6429
+            _ExtentY        =   6271
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -1302,46 +1302,6 @@ Begin VB.Form FrmBookPrintOrder
             FormatString    =   ""
             Caption         =   ""
             Picture         =   "BookPrintOrder.frx":0E68
-            Begin VB.CommandButton Command6 
-               Caption         =   "BOM"
-               BeginProperty Font 
-                  Name            =   "Calibri"
-                  Size            =   8.25
-                  Charset         =   0
-                  Weight          =   700
-                  Underline       =   0   'False
-                  Italic          =   0   'False
-                  Strikethrough   =   0   'False
-               EndProperty
-               Height          =   320
-               Left            =   9000
-               TabIndex        =   99
-               ToolTipText     =   "Binding Process Order"
-               Top             =   2850
-               Width           =   570
-            End
-            Begin VB.TextBox Text12 
-               Appearance      =   0  'Flat
-               BackColor       =   &H00FFFFFF&
-               DataSource      =   "Adodc1"
-               BeginProperty Font 
-                  Name            =   "Calibri"
-                  Size            =   9.75
-                  Charset         =   0
-                  Weight          =   400
-                  Underline       =   0   'False
-                  Italic          =   0   'False
-                  Strikethrough   =   0   'False
-               EndProperty
-               Height          =   330
-               Left            =   2040
-               Locked          =   -1  'True
-               MaxLength       =   40
-               TabIndex        =   98
-               ToolTipText     =   " Binding Process Party"
-               Top             =   2840
-               Width           =   6960
-            End
             Begin VB.TextBox Text11 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -1359,10 +1319,28 @@ Begin VB.Form FrmBookPrintOrder
                Left            =   2040
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   18
+               TabIndex        =   19
                ToolTipText     =   "Multi Form Format Party"
                Top             =   3140
                Width           =   7530
+            End
+            Begin VB.CommandButton Command6 
+               Caption         =   "BOM"
+               BeginProperty Font 
+                  Name            =   "Calibri"
+                  Size            =   8.25
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   320
+               Left            =   2060
+               TabIndex        =   18
+               ToolTipText     =   "Binding Process Order"
+               Top             =   2845
+               Width           =   7510
             End
             Begin VB.TextBox Text6 
                Appearance      =   0  'Flat
@@ -1661,7 +1639,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
                Left            =   120
-               TabIndex        =   35
+               TabIndex        =   37
                Top             =   105
                Width           =   1935
                _Version        =   65536
@@ -1689,7 +1667,7 @@ Begin VB.Form FrmBookPrintOrder
                Height          =   330
                Index           =   0
                Left            =   6435
-               TabIndex        =   36
+               TabIndex        =   38
                Top             =   105
                Width           =   1575
                _Version        =   65536
@@ -1716,7 +1694,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
                Left            =   120
-               TabIndex        =   37
+               TabIndex        =   39
                Top             =   630
                Width           =   1935
                _Version        =   65536
@@ -1743,7 +1721,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
                Left            =   120
-               TabIndex        =   42
+               TabIndex        =   44
                Top             =   950
                Width           =   1935
                _Version        =   65536
@@ -1770,7 +1748,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
                Left            =   6435
-               TabIndex        =   43
+               TabIndex        =   45
                Top             =   945
                Width           =   1575
                _Version        =   65536
@@ -1827,7 +1805,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   330
                Left            =   4275
-               TabIndex        =   44
+               TabIndex        =   46
                Top             =   945
                Width           =   1020
                _Version        =   65536
@@ -1854,7 +1832,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
                Left            =   6435
-               TabIndex        =   45
+               TabIndex        =   47
                Top             =   630
                Width           =   1575
                _Version        =   65536
@@ -1943,7 +1921,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
                Left            =   120
-               TabIndex        =   38
+               TabIndex        =   40
                Top             =   1260
                Width           =   1935
                _Version        =   65536
@@ -1970,7 +1948,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
                Left            =   120
-               TabIndex        =   39
+               TabIndex        =   41
                Top             =   1575
                Width           =   1935
                _Version        =   65536
@@ -1997,7 +1975,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
                Left            =   120
-               TabIndex        =   40
+               TabIndex        =   42
                Top             =   2205
                Width           =   2055
                _Version        =   65536
@@ -2024,7 +2002,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   330
                Left            =   120
-               TabIndex        =   41
+               TabIndex        =   43
                Top             =   2520
                Width           =   1935
                _Version        =   65536
@@ -2051,7 +2029,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
                Height          =   330
                Left            =   120
-               TabIndex        =   87
+               TabIndex        =   89
                Top             =   1890
                Width           =   1935
                _Version        =   65536
@@ -2100,7 +2078,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel29 
                Height          =   330
                Left            =   120
-               TabIndex        =   95
+               TabIndex        =   96
                Top             =   3140
                Width           =   1935
                _Version        =   65536
@@ -2127,7 +2105,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel30 
                Height          =   330
                Left            =   120
-               TabIndex        =   100
+               TabIndex        =   99
                Top             =   2840
                Width           =   1935
                _Version        =   65536
@@ -2144,7 +2122,7 @@ Begin VB.Form FrmBookPrintOrder
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " BOM"
+               Caption         =   "Bill of Materials(BOM)"
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
@@ -2161,9 +2139,9 @@ Begin VB.Form FrmBookPrintOrder
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
             Height          =   525
             Left            =   -74880
-            TabIndex        =   46
+            TabIndex        =   48
             TabStop         =   0   'False
-            Top             =   4110
+            Top             =   3990
             Width           =   9675
             _Version        =   65536
             _ExtentX        =   17066
@@ -2191,7 +2169,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
                Left            =   120
-               TabIndex        =   47
+               TabIndex        =   49
                Top             =   105
                Width           =   1935
                _Version        =   65536
@@ -2218,7 +2196,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
                Left            =   2040
-               TabIndex        =   48
+               TabIndex        =   50
                TabStop         =   0   'False
                Top             =   105
                Width           =   7530
@@ -2258,7 +2236,7 @@ Begin VB.Form FrmBookPrintOrder
                   EndProperty
                   Height          =   225
                   Left            =   3240
-                  TabIndex        =   88
+                  TabIndex        =   22
                   Top             =   60
                   Width           =   1260
                End
@@ -2276,7 +2254,7 @@ Begin VB.Form FrmBookPrintOrder
                   EndProperty
                   Height          =   225
                   Left            =   465
-                  TabIndex        =   19
+                  TabIndex        =   20
                   Top             =   60
                   Width           =   1260
                End
@@ -2294,7 +2272,7 @@ Begin VB.Form FrmBookPrintOrder
                   EndProperty
                   Height          =   225
                   Left            =   1815
-                  TabIndex        =   20
+                  TabIndex        =   21
                   Top             =   60
                   Width           =   1260
                End
@@ -2312,7 +2290,7 @@ Begin VB.Form FrmBookPrintOrder
                   EndProperty
                   Height          =   225
                   Left            =   4635
-                  TabIndex        =   21
+                  TabIndex        =   23
                   Top             =   60
                   Width           =   1140
                End
@@ -2330,7 +2308,7 @@ Begin VB.Form FrmBookPrintOrder
                   EndProperty
                   Height          =   225
                   Left            =   6150
-                  TabIndex        =   22
+                  TabIndex        =   24
                   Top             =   60
                   Width           =   1140
                End
@@ -2339,9 +2317,9 @@ Begin VB.Form FrmBookPrintOrder
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
             Height          =   540
             Left            =   -74880
-            TabIndex        =   49
+            TabIndex        =   51
             TabStop         =   0   'False
-            Top             =   4620
+            Top             =   4500
             Width           =   9675
             _Version        =   65536
             _ExtentX        =   17066
@@ -2369,7 +2347,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
                Left            =   120
-               TabIndex        =   50
+               TabIndex        =   52
                Top             =   105
                Width           =   1935
                _Version        =   65536
@@ -2454,7 +2432,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput4 
                Height          =   330
                Left            =   3005
-               TabIndex        =   23
+               TabIndex        =   25
                Top             =   105
                Width           =   970
                _Version        =   65536
@@ -2504,7 +2482,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174063621
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2512,7 +2490,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput5 
                Height          =   330
                Left            =   3960
-               TabIndex        =   24
+               TabIndex        =   26
                Top             =   105
                Width           =   970
                _Version        =   65536
@@ -2562,7 +2540,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174063621
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2570,7 +2548,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput6 
                Height          =   330
                Left            =   4920
-               TabIndex        =   25
+               TabIndex        =   27
                Top             =   105
                Width           =   970
                _Version        =   65536
@@ -2620,7 +2598,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174063621
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2628,7 +2606,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput7 
                Height          =   330
                Left            =   5880
-               TabIndex        =   26
+               TabIndex        =   28
                Top             =   105
                Width           =   970
                _Version        =   65536
@@ -2678,7 +2656,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174063621
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2686,7 +2664,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput8 
                Height          =   330
                Left            =   8640
-               TabIndex        =   51
+               TabIndex        =   53
                ToolTipText     =   "Profit Margin %"
                Top             =   105
                Width           =   930
@@ -2737,7 +2715,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1922891781
+               ValueVT         =   174063621
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2745,7 +2723,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
                Left            =   7785
-               TabIndex        =   52
+               TabIndex        =   54
                Top             =   105
                Width           =   870
                _Version        =   65536
@@ -2772,7 +2750,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput33 
                Height          =   330
                Left            =   6840
-               TabIndex        =   27
+               TabIndex        =   29
                Top             =   105
                Width           =   960
                _Version        =   65536
@@ -2822,7 +2800,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174063621
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2831,9 +2809,9 @@ Begin VB.Form FrmBookPrintOrder
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame7 
             Height          =   1200
             Left            =   -74880
-            TabIndex        =   66
+            TabIndex        =   68
             TabStop         =   0   'False
-            Top             =   5985
+            Top             =   5865
             Width           =   9675
             _Version        =   65536
             _ExtentX        =   17066
@@ -2861,7 +2839,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel22 
                Height          =   330
                Left            =   5880
-               TabIndex        =   82
+               TabIndex        =   84
                Top             =   120
                Width           =   970
                _Version        =   65536
@@ -2888,7 +2866,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
                Height          =   330
                Left            =   4920
-               TabIndex        =   83
+               TabIndex        =   85
                Top             =   120
                Width           =   970
                _Version        =   65536
@@ -2915,7 +2893,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
                Height          =   330
                Left            =   120
-               TabIndex        =   67
+               TabIndex        =   69
                Top             =   440
                Width           =   1935
                _Version        =   65536
@@ -2942,7 +2920,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput19 
                Height          =   330
                Left            =   2040
-               TabIndex        =   68
+               TabIndex        =   70
                TabStop         =   0   'False
                Top             =   440
                Width           =   970
@@ -2993,7 +2971,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3001,7 +2979,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput21 
                Height          =   330
                Left            =   3005
-               TabIndex        =   69
+               TabIndex        =   71
                TabStop         =   0   'False
                Top             =   440
                Width           =   975
@@ -3052,7 +3030,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3060,7 +3038,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput23 
                Height          =   330
                Left            =   3960
-               TabIndex        =   70
+               TabIndex        =   72
                TabStop         =   0   'False
                Top             =   440
                Width           =   970
@@ -3111,7 +3089,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3119,7 +3097,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput25 
                Height          =   330
                Left            =   4920
-               TabIndex        =   71
+               TabIndex        =   73
                TabStop         =   0   'False
                Top             =   440
                Width           =   970
@@ -3170,7 +3148,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3178,7 +3156,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput27 
                Height          =   330
                Left            =   5880
-               TabIndex        =   72
+               TabIndex        =   74
                TabStop         =   0   'False
                Top             =   440
                Width           =   970
@@ -3229,7 +3207,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3237,7 +3215,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
                Height          =   330
                Left            =   120
-               TabIndex        =   73
+               TabIndex        =   75
                Top             =   750
                Width           =   1935
                _Version        =   65536
@@ -3264,7 +3242,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput20 
                Height          =   330
                Left            =   2040
-               TabIndex        =   74
+               TabIndex        =   76
                TabStop         =   0   'False
                Top             =   750
                Width           =   970
@@ -3315,7 +3293,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3323,7 +3301,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput22 
                Height          =   330
                Left            =   3005
-               TabIndex        =   75
+               TabIndex        =   77
                TabStop         =   0   'False
                Top             =   750
                Width           =   975
@@ -3374,7 +3352,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3382,7 +3360,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput24 
                Height          =   330
                Left            =   3960
-               TabIndex        =   76
+               TabIndex        =   78
                TabStop         =   0   'False
                Top             =   750
                Width           =   970
@@ -3433,7 +3411,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3441,7 +3419,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput26 
                Height          =   330
                Left            =   4920
-               TabIndex        =   77
+               TabIndex        =   79
                TabStop         =   0   'False
                Top             =   750
                Width           =   970
@@ -3492,7 +3470,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174194693
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3500,7 +3478,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput28 
                Height          =   330
                Left            =   5880
-               TabIndex        =   78
+               TabIndex        =   80
                TabStop         =   0   'False
                Top             =   750
                Width           =   970
@@ -3551,7 +3529,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174325765
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3559,7 +3537,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
                Left            =   2040
-               TabIndex        =   79
+               TabIndex        =   81
                Top             =   120
                Width           =   970
                _Version        =   65536
@@ -3586,7 +3564,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
                Height          =   330
                Left            =   3005
-               TabIndex        =   80
+               TabIndex        =   82
                Top             =   120
                Width           =   975
                _Version        =   65536
@@ -3613,7 +3591,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
                Height          =   330
                Left            =   3960
-               TabIndex        =   81
+               TabIndex        =   83
                Top             =   120
                Width           =   970
                _Version        =   65536
@@ -3640,7 +3618,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
                Left            =   120
-               TabIndex        =   84
+               TabIndex        =   86
                Top             =   120
                Width           =   1935
                _Version        =   65536
@@ -3666,7 +3644,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel26 
                Height          =   960
                Left            =   7785
-               TabIndex        =   86
+               TabIndex        =   88
                Top             =   120
                Width           =   1785
                _Version        =   65536
@@ -3692,7 +3670,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput31 
                Height          =   330
                Left            =   6840
-               TabIndex        =   91
+               TabIndex        =   92
                TabStop         =   0   'False
                Top             =   440
                Width           =   960
@@ -3743,7 +3721,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174325765
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3751,7 +3729,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel28 
                Height          =   330
                Left            =   6840
-               TabIndex        =   92
+               TabIndex        =   93
                Top             =   120
                Width           =   975
                _Version        =   65536
@@ -3778,7 +3756,7 @@ Begin VB.Form FrmBookPrintOrder
             Begin TDBNumber6Ctl.TDBNumber MhRealInput32 
                Height          =   330
                Left            =   6840
-               TabIndex        =   93
+               TabIndex        =   94
                TabStop         =   0   'False
                Top             =   750
                Width           =   975
@@ -3829,7 +3807,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   174325765
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3839,7 +3817,7 @@ Begin VB.Form FrmBookPrintOrder
             Height          =   330
             Index           =   2
             Left            =   10530
-            TabIndex        =   94
+            TabIndex        =   95
             Top             =   7020
             Width           =   4215
             _Version        =   65536
@@ -3867,7 +3845,7 @@ Begin VB.Form FrmBookPrintOrder
             Height          =   330
             Index           =   1
             Left            =   13440
-            TabIndex        =   96
+            TabIndex        =   97
             Top             =   0
             Width           =   3975
             _Version        =   65536
@@ -3908,7 +3886,7 @@ Begin VB.Form FrmBookPrintOrder
             ForeColor       =   &H00000000&
             Height          =   330
             Left            =   120
-            TabIndex        =   33
+            TabIndex        =   35
             Top             =   7020
             Width           =   495
          End
@@ -3918,7 +3896,7 @@ Begin VB.Form FrmBookPrintOrder
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   29
+      TabIndex        =   31
       Top             =   0
       Width           =   17610
       _ExtentX        =   31062
@@ -4030,7 +4008,8 @@ Private Sub Form_Load()
     CenterForm Me
     WheelHook DataGrid1
     Me.Caption = IIf(BookPOType = "DS", "Sales Order [Digital Printing]", IIf(BookPOType = "DP", "Purchase Order [Digital Printing]", IIf(BookPOType = "FP", "Purchase Order [Finished Goods]", IIf(BookPOType = "RP", "Purchase Order [Unfinished Goods]", IIf(BookPOType = "OP", "Cost Sheet", IIf(BookPOType = "FS", "Sales Order [Finished Goods]", "Sales Order [Unfinished Goods]"))))))
-    If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 3750: Mh3dFrame6.Top = 4280: Mh3dFrame7.Top = 5120 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
+    'If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 3750: Mh3dFrame6.Top = 4280: Mh3dFrame7.Top = 5120 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
+    If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 4000: Mh3dFrame6.Top = 4500: Mh3dFrame7.Top = 5400 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
     cnBookPrintOrder.CursorLocation = adUseClient
     cnBookPrintOrder.Open cnDatabase.ConnectionString
     rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website From CompanyMaster", cnBookPrintOrder, adOpenKeyset, adLockReadOnly
@@ -4331,14 +4310,14 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         HiLiteRecord = True
     ElseIf Button.Index = 4 Then
         'If blnRecordExist Then If chkBilled Then DisplayError ("Updation failed due to bill generation"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): Exit Sub
-        If CheckMandatoryFields Then Exit Sub
-        Set FrmBookPOChild0801.rstBookPOChild0801 = rstBookPOChild0801  'Outsource Material
-        FrmBookPOChild0801.BinderCode = BinderCode
-        FrmBookPOChild0801.BookCode = ItemCode
-        FrmBookPOChild0801.OrderCode = CheckNull(rstBookPOParent.Fields("Code").Value)
-        Load FrmBookPOChild0801
-        FrmBookPOChild0801.Show vbModal
-        MhRealInput8_Validate False
+''''''        If CheckMandatoryFields Then Exit Sub
+''''''        Set FrmBookPOChild0801.rstBookPOChild0801 = rstBookPOChild0801  'Outsource Material
+''''''        FrmBookPOChild0801.BinderCode = BinderCode
+''''''        FrmBookPOChild0801.BookCode = ItemCode
+''''''        FrmBookPOChild0801.OrderCode = CheckNull(rstBookPOParent.Fields("Code").Value)
+''''''        Load FrmBookPOChild0801
+''''''        FrmBookPOChild0801.Show vbModal
+''''''        MhRealInput8_Validate False
         SaveFields
         UpdateFlag = 0
         If UpdateRecord(rstBookPOParent) Then
@@ -5427,7 +5406,7 @@ Private Sub Command4_Click()
     On Error Resume Next
     Load FrmBookPOChild08
     If Err.Number <> 364 Then
-        If rstBookPOParent.Fields("Laminator").Value <> "" Then
+        If rstBookPOParent.Fields("Binder").Value <> "" Then
             If Left(BookPOType, 1) <> "O" Then
                 If blnRecordExist And AllowTransactionsModification = 0 Then
                     If Not CheckEmpty(FrmBookPOChild08.Text8.Text, False) Then
@@ -5482,6 +5461,17 @@ Private Sub Command4_Click()
 '    End If
 '    On Error GoTo 0
 '    If AbortPO Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
+End Sub
+Private Sub Command6_Click()
+On Error Resume Next
+        If CheckMandatoryFields Then Exit Sub
+        Set FrmBookPOChild0801.rstBookPOChild0801 = rstBookPOChild0801  'Outsource Material
+        FrmBookPOChild0801.BinderCode = BinderCode
+        FrmBookPOChild0801.BookCode = ItemCode
+        FrmBookPOChild0801.OrderCode = CheckNull(rstBookPOParent.Fields("Code").Value)
+        Load FrmBookPOChild0801
+        FrmBookPOChild0801.Show vbModal
+        MhRealInput8_Validate False
 End Sub
 Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, Optional ByVal OutputType As String, Optional ByVal OrderType As String, Optional ByVal BookPOType As String)
     Dim oOutlookMsg As Outlook.MailItem, HeaderPrinted As Boolean, OrderNo As String, ItemName As String, TotalTax As Double, TotalAmount As Double, BillAmount As Double
