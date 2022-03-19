@@ -1,0 +1,262 @@
+---AccountChild04
+---***************
+EXEC sp_rename 'AccountChild04', 'AccountChild04T'
+CREATE TABLE [AccountChild04](
+	[Code] [nvarchar](6) NOT NULL,
+	[NegativeOnePcRate] [decimal](12, 2) NOT NULL,
+	[NegativeCutPcRate] [decimal](12, 2) NOT NULL,
+	[NegativePastingRate] [decimal](12, 2) NOT NULL,
+	[PositiveOnePcRate] [decimal](12, 2) NOT NULL,
+	[PositiveCutPcRate] [decimal](12, 2) NOT NULL,
+	[PositivePastingRate] [decimal](12, 2) NOT NULL,
+	[WEF] [date] NOT NULL DEFAULT '01-APR-2021',
+	[Type] [char](1) NOT NULL DEFAULT 'S'
+	CONSTRAINT [FK_AccountChild04_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE
+) ON [PRIMARY]
+INSERT INTO AccountChild04 
+SELECT [Code],[NegativeOnePcRate],[NegativeCutPcRate],[NegativePastingRate],[PositiveOnePcRate],[PositiveCutPcRate],[PositivePastingRate],'01-APR-2021','S' FROM [AccountChild04T]
+DROP TABLE AccountChild04T
+
+AccountChild05
+***************
+IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='GeneralMaster' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE GeneralMaster ADD PRIMARY KEY (Code)
+EXEC sp_rename 'AccountChild05', 'AccountChild05T'
+CREATE TABLE [AccountChild05](
+	[Code] [nvarchar](6) NOT NULL,
+	[SizeGroup] [nvarchar](6) NOT NULL,
+	[Range] [decimal](6, 0) NOT NULL,
+	[PrintingRate] [decimal](12, 2) NOT NULL,
+	[PaperWastageRate] [decimal](5, 2) NOT NULL,
+	[PaperWastageMin] [decimal](6, 0) NOT NULL,
+	[PaperWastageMax] [decimal](6, 0) NOT NULL,
+	[Color] [nvarchar](6) NOT NULL,
+	[WEF] [date] NOT NULL DEFAULT '01-APR-2021',
+	[Type] [char](1) NOT NULL DEFAULT 'S'
+	CONSTRAINT [FK_AccountChild05_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT [FK_AccountChild05_AccountMaster_II] FOREIGN KEY([SizeGroup]) REFERENCES [GeneralMaster] ([Code]),
+	CONSTRAINT [FK_AccountChild05_AccountMaster_III] FOREIGN KEY([Color]) REFERENCES [GeneralMaster] ([Code])
+) ON [PRIMARY]
+INSERT INTO GeneralMaster VALUES ('*23001','01-CMYK','01-CMYK','23',1,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*23002','02-CMYK','02-CMYK','23',2,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*23003','04-CMYK','04-CMYK','23',4,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*23004','06-CMYK','06-CMYK','23',6,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO AccountChild05
+SELECT [Code],[Size],[Range1],[PrintRate1],[PaperWastageRate1],[PaperWastageMin1],999999,'*00048','01-APR-2021','S' FROM [AccountChild05T] WHERE [PrintRate1]>0 OR [PaperWastageRate1]>0 OR [PaperWastageMin1]>0 
+UNION 
+SELECT [Code],[Size],[Range2],[PrintRate2],[PaperWastageRate2],[PaperWastageMin2],999999,'*00049','01-APR-2021','S' FROM [AccountChild05T] WHERE [PrintRate2]>0 OR [PaperWastageRate2]>0 OR [PaperWastageMin2]>0 
+UNION 
+SELECT [Code],[Size],[Range4],[PrintRate4],[PaperWastageRate4],[PaperWastageMin4],999999,'*00050','01-APR-2021','S' FROM [AccountChild05T] WHERE [PrintRate4]>0 OR [PaperWastageRate4]>0 OR [PaperWastageMin4]>0 
+UNION 
+SELECT [Code],[Size],[Range6],[PrintRate6],[PaperWastageRate6],[PaperWastageMin6],999999,'*00051','01-APR-2021','S' FROM [AccountChild05T] WHERE [PrintRate6]>0 OR [PaperWastageRate6]>0 OR [PaperWastageMin6]>0 
+
+AccountChild06
+***************
+IF EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE  TABLE_NAME = 'AccountChild06') DROP TABLE AccountChild06
+CREATE TABLE [AccountChild06](
+	[Code] [nvarchar](6) NOT NULL,
+	[SizeGroup] [nvarchar](6) NOT NULL,
+	[Rate] [decimal](12, 2) NOT NULL,
+	[Plate] [nvarchar](6) NOT NULL,
+	[WEF] [date] NOT NULL DEFAULT '01-APR-2021',
+	[Type] [char](1) NOT NULL DEFAULT 'S'
+	CONSTRAINT [FK_AccountChild06_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT [FK_AccountChild06_AccountMaster_II] FOREIGN KEY([SizeGroup]) REFERENCES [GeneralMaster] ([Code]),
+	CONSTRAINT [FK_AccountChild06_AccountMaster_III] FOREIGN KEY([Plate]) REFERENCES [GeneralMaster] ([Code])
+) ON [PRIMARY]
+INSERT INTO GeneralMaster VALUES ('*24001','Deep-etch','Deep-etch','24',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*24002','Wipe-on','Wipe-on','24',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*24003','PS','PS','24',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*24004','CTP','CTP','24',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO AccountChild06
+SELECT DISTINCT [Code],[Size],[PSPlateRate1],'*24003','01-APR-2021','S' FROM [AccountChild05T] WHERE [PSPlateRate1]>0 UNION SELECT DISTINCT [Code],[Size],[DeepatchPlateRate1],'*24001','01-APR-2021','S' FROM [AccountChild05T] WHERE [DeepatchPlateRate1]>0 UNION SELECT DISTINCT [Code],[Size],[WipeonPlateRate1],'*24002','01-APR-2021','S' FROM [AccountChild05T] WHERE [WipeonPlateRate1]>0 UNION SELECT DISTINCT [Code],[Size],[CTPPlateRate1],'*24004','01-APR-2021','S' FROM [AccountChild05T] WHERE [CTPPlateRate1]>0 UNION 
+SELECT DISTINCT [Code],[Size],[PSPlateRate2],'*24003','01-APR-2021','S' FROM [AccountChild05T] WHERE [PSPlateRate2]>0 UNION SELECT DISTINCT [Code],[Size],[DeepatchPlateRate2],'*24001','01-APR-2021','S' FROM [AccountChild05T] WHERE [DeepatchPlateRate2]>0 UNION SELECT DISTINCT [Code],[Size],[WipeonPlateRate2],'*24002','01-APR-2021','S' FROM [AccountChild05T] WHERE [WipeonPlateRate2]>0 UNION SELECT DISTINCT [Code],[Size],[CTPPlateRate2],'*24004','01-APR-2021','S' FROM [AccountChild05T] WHERE [CTPPlateRate2]>0 UNION 
+SELECT DISTINCT [Code],[Size],[PSPlateRate4],'*24003','01-APR-2021','S' FROM [AccountChild05T] WHERE [PSPlateRate4]>0 UNION SELECT DISTINCT [Code],[Size],[DeepatchPlateRate4],'*24001','01-APR-2021','S' FROM [AccountChild05T] WHERE [DeepatchPlateRate4]>0 UNION SELECT DISTINCT [Code],[Size],[WipeonPlateRate4],'*24002','01-APR-2021','S' FROM [AccountChild05T] WHERE [WipeonPlateRate4]>0 UNION SELECT DISTINCT [Code],[Size],[CTPPlateRate4],'*24004','01-APR-2021','S' FROM [AccountChild05T] WHERE [CTPPlateRate4]>0 UNION 
+SELECT DISTINCT [Code],[Size],[PSPlateRate6],'*24003','01-APR-2021','S' FROM [AccountChild05T] WHERE [PSPlateRate6]>0 UNION SELECT DISTINCT [Code],[Size],[DeepatchPlateRate6],'*24001','01-APR-2021','S' FROM [AccountChild05T] WHERE [DeepatchPlateRate6]>0 UNION SELECT DISTINCT [Code],[Size],[WipeonPlateRate6],'*24002','01-APR-2021','S' FROM [AccountChild05T] WHERE [WipeonPlateRate6]>0 UNION SELECT DISTINCT [Code],[Size],[CTPPlateRate6],'*24004','01-APR-2021','S' FROM [AccountChild05T] WHERE [CTPPlateRate6]>0
+DROP TABLE AccountChild05T
+
+AccountChild07
+***************
+IF NOT EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='AccountChild07' AND COLUMN_NAME='Type') ALTER TABLE AccountChild07 ADD [WEF] [date] NOT NULL DEFAULT ('01-APR-2021') WITH VALUES,[Type] [char](1) NOT NULL DEFAULT ('S') WITH VALUES
+
+AccountChild08
+***************
+EXEC sp_rename 'AccountChild08', 'AccountChild08T'
+CREATE TABLE [AccountChild08](
+	[Code] [nvarchar](6) NOT NULL,
+	[BindingType] [nvarchar](6) NOT NULL,
+	[BinderyProcess] [nvarchar](6) NOT NULL,
+	[CalcMode] [nvarchar](6) NOT NULL,
+	[SizeGroup] [nvarchar](6) NOT NULL,
+	[Fraction] [tinyint] NOT NULL,
+	[Range] [decimal](12, 0) NOT NULL,
+	[Rate] [decimal](12, 2) NOT NULL,
+	[AddOnRate] [decimal](12, 2) NOT NULL DEFAULT (0),
+	[WEF] [date] NOT NULL DEFAULT '01-APR-2021',
+	[Type] [char](1) NOT NULL DEFAULT 'S'
+	CONSTRAINT [FK_AccountChild08_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT [FK_AccountChild08_AccountMaster_II] FOREIGN KEY([BindingType]) REFERENCES [GeneralMaster] ([Code]),
+	CONSTRAINT [FK_AccountChild08_AccountMaster_III] FOREIGN KEY([BinderyProcess]) REFERENCES [GeneralMaster] ([Code]),
+	CONSTRAINT [FK_AccountChild08_AccountMaster_IV] FOREIGN KEY([CalcMode]) REFERENCES [GeneralMaster] ([Code]),
+	CONSTRAINT [FK_AccountChild08_AccountMaster_V] FOREIGN KEY([SizeGroup]) REFERENCES [GeneralMaster] ([Code])
+) ON [PRIMARY]
+INSERT INTO GeneralMaster VALUES ('*07036','BP-Unit Cost','BP-Unit Cost','7',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*07037','BP-Stitching','BP-Stitching','7',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*07038','BP-Binding','BP-Binding','7',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*07039','BP-Folding','BP-Folding','7',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+
+INSERT INTO GeneralMaster VALUES ('*20001','Per Unit','Per Unit','20',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*20002','Per Inch²','Per Inch²','20',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*20003','100 Inch²','100 Inch²','20',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*20004','1000 Inch²','1000 Inch²','20',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+INSERT INTO GeneralMaster VALUES ('*20005','Per 1000','Per 1000','20',0,'000001',GETDATE(),NULL,NULL,'N','N',NULL)
+
+INSERT INTO AccountChild08
+SELECT [Code],[BindingType],'*07036','*20001',[Size],4,[Range04],[Rate/Book04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book04]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],6,[Range06],[Rate/Book06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book06]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],8,[Range08],[Rate/Book08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book08]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],12,[Range12],[Rate/Book12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book12]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],16,[Range16],[Rate/Book16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book16]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],24,[Range24],[Rate/Book24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book24]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],32,[Range32],[Rate/Book32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book32]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07036','*20001',[Size],64,[Range64],[Rate/Book64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book64]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],4,[Range04],[FormStitchRate04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate04]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],6,[Range06],[FormStitchRate06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate06]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],8,[Range08],[FormStitchRate08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate08]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],12,[Range12],[FormStitchRate12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate12]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],16,[Range16],[FormStitchRate16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate16]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],24,[Range24],[FormStitchRate24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate24]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],32,[Range32],[FormStitchRate32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate32]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07037','*20005',[Size],64,[Range64],[FormStitchRate64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate64]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],4,[Range04],[FormFoldRate04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate04]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],6,[Range06],[FormFoldRate06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate06]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],8,[Range08],[FormFoldRate08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate08]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],12,[Range12],[FormFoldRate12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate12]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],16,[Range16],[FormFoldRate16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate16]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],24,[Range24],[FormFoldRate24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate24]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],32,[Range32],[FormFoldRate32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate32]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07039','*20005',[Size],64,[Range64],[FormFoldRate64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate64]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],4,[Range04],[FormPasteRate04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate04]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],6,[Range06],[FormPasteRate06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate06]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],8,[Range08],[FormPasteRate08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate08]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],12,[Range12],[FormPasteRate12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate12]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],16,[Range16],[FormPasteRate16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate16]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],24,[Range24],[FormPasteRate24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate24]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],32,[Range32],[FormPasteRate32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate32]>0
+UNION ALL 
+SELECT [Code],[BindingType],'*07038','*20005',[Size],64,[Range64],[FormPasteRate64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate64]>0
+DROP TABLE AccountChild08T
+
+BindingTypeChild
+****************
+CREATE TABLE [BindingTypeChild](
+[Code] [nvarchar](6) NOT NULL,[BinderyProcess] [nvarchar](6) NOT NULL
+	CONSTRAINT [FK_BindingTypeChild_GeneralMaster_I] FOREIGN KEY([Code]) REFERENCES [GeneralMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE
+) ON [PRIMARY]
+
+AccountChild0801
+*****************
+IF NOT EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='AccountChild0801' AND COLUMN_NAME='SubItem') ALTER TABLE AccountChild0801 ADD [SubItem] [nvarchar](6) NULL
+
+BookMaster
+***********
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SaleLY1003') ALTER TABLE BookMaster DROP COLUMN SaleLY1003
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SaleTY0409') ALTER TABLE BookMaster DROP COLUMN SaleTY0409
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='StockTransferLY1003') ALTER TABLE BookMaster DROP COLUMN StockTransferLY1003
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='StockTransferTY0409') ALTER TABLE BookMaster DROP COLUMN StockTransferTY0409
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SpecimenLY1003') ALTER TABLE BookMaster DROP COLUMN SpecimenLY1003
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SpecimenTY0409') ALTER TABLE BookMaster DROP COLUMN SpecimenTY0409
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PendingSO') ALTER TABLE BookMaster DROP COLUMN PendingSO
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SaleableStock') ALTER TABLE BookMaster DROP COLUMN SaleableStock
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='RepairableStock') ALTER TABLE BookMaster DROP COLUMN RepairableStock
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POLTLY1003') ALTER TABLE BookMaster DROP COLUMN POLTLY1003
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POLY0409') ALTER TABLE BookMaster DROP COLUMN POLY0409
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POLY1003') ALTER TABLE BookMaster DROP COLUMN POLY1003
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POTY0409') ALTER TABLE BookMaster DROP COLUMN POTY0409
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PendingPO') ALTER TABLE BookMaster DROP COLUMN PendingPO
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO30') ALTER TABLE BookMaster DROP COLUMN ESO30
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO60') ALTER TABLE BookMaster DROP COLUMN ESO60
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO90') ALTER TABLE BookMaster DROP COLUMN ESO90
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO150') ALTER TABLE BookMaster DROP COLUMN ESO150
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PSO15') ALTER TABLE BookMaster DROP COLUMN PSO15
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PSO30') ALTER TABLE BookMaster DROP COLUMN PSO30
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='Royalty') ALTER TABLE BookMaster DROP COLUMN Royalty
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='Qty/Pkt') ALTER TABLE BookMaster DROP COLUMN Qty/Pkt
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='LooseQty/Box') ALTER TABLE BookMaster DROP COLUMN LooseQty/Box
+IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='Pkt/Box') ALTER TABLE BookMaster DROP COLUMN Pkt/Box
+
+
+				,[Board]
+      						,[Size]-Size 
+      				,[TitleSize]
+      						,[AddOnRate01]
+      						,[AddOnRate02]
+      ,[FormType]
+      				,[Pages]
+      				,[Forms]
+      				,[BindingForms01]
+      				,[BindingForms02]
+
+	      ,[OneColorPlateType]		
+      ,[OneColorPages]
+      ,[OneColor¼Forms]
+      ,[OneColor½Forms]
+      ,[OneColor1F/BForms]
+      ,[OneColor1W/TForms]
+      ,[OneColorForms]
+	      ,[TwoColorPlateType]
+      ,[TwoColorPages]
+      ,[TwoColor¼Forms]
+      ,[TwoColor½Forms]
+      ,[TwoColor1F/BForms]
+      ,[TwoColor1W/TForms]
+      ,[TwoColorForms]
+	      ,[FourColorPlateType]
+      ,[FourColorPages]
+      ,[FourColor¼Forms]
+      ,[FourColor½Forms]
+      ,[FourColor1F/BForms]
+      ,[FourColor1W/TForms]
+      ,[FourColorForms]
+
+      ,[TitleFrontColor]
+      ,[TitleBackColor]
+      ,[TitlePlateType]
+	      ,[LaminationType]
+      ,[DuplexPrinting]
+
+      ,[BookPrinter]		[MFFPrinter]
+      ,[TitlePrinter]		[SFPrinter]
+      ,[Laminator]		[Operator]
+      ,[BinderFresh]		[Binder]
+      				,[BinderRepair]
+      ,[Narration]

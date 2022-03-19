@@ -1,0 +1,140 @@
+Private Function Save2Master() As Boolean
+    cnBookPrintOrder.Execute "INSERT INTO BookChild05 SELECT Book,Element,[FinishSize],[Size],DuplexPrinting,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms, [Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[Forms/Sheet1],0,P.Type FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element NOT IN (SELECT Element FROM BookChild05 WHERE Code=P.Book)"
+    cnBookPrintOrder.Execute "INSERT INTO BookChild06 SELECT Book,Element,Pages,[FinishSize],[Size],Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,[Titles/sheet1],Sets,0,P.Type FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element NOT IN (SELECT Element FROM BookChild06 WHERE Code=P.Book)"
+    cnBookPrintOrder.Execute "INSERT INTO BookChild07 SELECT Book As Code,Element,Operation,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element+Operation+Type NOT IN (SELECT Element+Operation+Type FROM BookChild07 WHERE Code=P.Book)
+    cnBookPrintOrder.Execute "INSERT INTO BookChild08 SELECT Book As Code,ElementGroup,BinderyProcess,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND ElementGroup+BinderyProcess+Type NOT IN (SELECT ElementGroup+BinderyProcess+Type FROM BookChild08 WHERE Code=P.Book)
+End Function
+
+Private Sub MhRealInput8_Validate(Cancel As Boolean)
+    With rstBookPOChild05
+        If .RecordCount <> 0 Then
+            .MoveFirst
+            Do While Not .EOF
+                Amount = Val(.Fields("PlateAmount").Value) + Val(.Fields("PAdjustment").Value) 'Plate Amount
+                PlateAmount = PlateAmount + Amount
+                MhRealInput20.Value = MhRealInput20.Value + Amount
+                Amount = Val(.Fields("PaperAmount").Value) + Val(.Fields("RAdjustment").Value) 'Paper Amount
+                OthersAmount = OthersAmount + Amount
+                MhRealInput20.Value = MhRealInput20.Value + Amount
+                Amount = Val(.Fields("PrintAmount").Value) + Val(.Fields("Adjustment").Value) 'Print Amount
+                OthersAmount = OthersAmount + Amount
+                MhRealInput20.Value = MhRealInput20.Value + Amount
+                .MoveNext
+            Loop
+            MhRealInput19.Value = MhRealInput20.Value / MhRealInput3.Value
+            .MoveFirst
+        End If
+    End With
+End Sub
+            With rstBookPOChild05
+                cnBookPrintOrder.Execute "INSERT INTO BookPOChild05 VALUES ('" & rstBookPOParent.Fields("Code").Value & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("Element").Value & "','" & .Fields("ElementPrintName").Value & "','" & .Fields("FinishSize").Value & "','" & .Fields("Size").Value & "'," & IIf(.Fields("DuplexPrinting").Value, 1, 0) & ",'" & .Fields("Processing").Value & "','" & .Fields("Ref").Value & "','" & .Fields("PlateMaker").Value & "'," & Val(.Fields("ActualQuantity").Value) & "," & Val(.Fields("BillingQuantity").Value) & "," & Val(.Fields("Pages/PrintingForm").Value) & "," & Val(.Fields("Pages/Form").Value) & ",'" & .Fields("Color").Value & "'," & Val(.Fields("Pages").Value) & "," & _
+                                                                        Val(.Fields("Forms").Value) & "," & Val(.Fields("Forms-¼").Value) & "," & Val(.Fields("Forms-½").Value) & "," & Val(.Fields("Forms-1-F&B").Value) & "," & Val(.Fields("Forms-1-W&T").Value) & ",'" & .Fields("PlateType").Value & "'," & Val(.Fields("TotalForms-¼").Value) & "," & Val(.Fields("TotalForms-½").Value) & "," & Val(.Fields("TotalForms-1-F&B").Value) & "," & Val(.Fields("TotalForms-1-W&T").Value) & "," & Val(.Fields("TotalPlates-¼").Value) & "," & Val(.Fields("TotalPlates-½").Value) & "," & Val(.Fields("TotalPlates-1-F&B").Value) & "," & Val(.Fields("TotalPlates-1-W&T").Value) & "," & Val(.Fields("RevisedPlates").Value) & "," & Val(.Fields("PrintRate").Value) & "," & Val(.Fields("PrintAmount").Value) & "," & _
+                                                                        Val(.Fields("PlateRate").Value) & "," & Val(.Fields("PlateAmount").Value) & "," & IIf(.Fields("PaperByParty").Value, 1, 0) & ",'" & .Fields("Paper").Value & "','" & IIf(.Fields("PaperByParty").Value, BookPrinterCode, "000000") & "'," & Val(.Fields("CutOffSize").Value) & "," & Val(.Fields("PaperWastage%").Value) & "," & Val(.Fields("PaperWastageMin").Value) & "," & Val(.Fields("PaperWastageFinal").Value) & "," & Val(.Fields("PaperConsumptionOther").Value) & "," & Val(.Fields("PaperConsumptionSheets").Value) & "," & Val(.Fields("PaperConsumptionKg").Value) & "," & Val(.Fields("PaperRate").Value) & "," & Val(.Fields("PaperAmount").Value) & "," & Val(.Fields("Forms/Sheet1").Value) & "," & Val(.Fields("Forms/Sheet2").Value) & ",'" & .Fields("Remarks").Value & "','" & _
+                                                                        .Fields("BillNo").Value & "'," & IIf(IsNull(.Fields("BillDate").Value), "Null", "'" & Format(.Fields("BillDate").Value, "dd-MMM-yyyy") & "'") & ",'" & .Fields("PBillNo").Value & "'," & IIf(IsNull(.Fields("PBillDate").Value), "Null", "'" & Format(.Fields("PBillDate").Value, "dd-MMM-yyyy") & "'") & "," & Val(.Fields("Adjustment").Value) & "," & Val(.Fields("PAdjustment").Value) & "," & Val(.Fields("RAdjustment").Value) & "," & Val(.Fields("VAT%").Value) & "," & Val(.Fields("VAT").Value) & "," & Val(.Fields("PVAT%").Value) & "," & Val(.Fields("PVAT").Value) & "," & Val(.Fields("RVAT%").Value) & "," & Val(.Fields("RVAT").Value) & "," & Val(.Fields("BillAmount").Value) & "," & Val(.Fields("PBillAmount").Value) & "," & _
+                                                                        Val(.Fields("RBillAmount").Value) & "," & Val(.Fields("PaidAmount").Value) & "," & Val(.Fields("PPaidAmount").Value) & ",'" & .Fields("Status").Value & "','" & .Fields("Narration").Value & "','" & .Fields("AdjustmentRemarks").Value & "'," & Val(.Fields("DeliveredQuantityC").Value) & "," & Val(.Fields("DeliveredQuantityB").Value) & "," & Val(.Fields("BilledMFC").Value) & "," & Val(.Fields("BilledMFB").Value) & ")"
+                Amount = Amount + Val(.Fields("PrintAmount").Value) + Val(.Fields("PlateAmount").Value) + Val(.Fields("PaperAmount").Value) + Val(.Fields("Adjustment").Value) + Val(.Fields("PAdjustment").Value) + Val(.Fields("RAdjustment").Value)
+            End With
+            With rstBookPOChild06
+                cnBookPrintOrder.Execute "INSERT INTO BookPOChild06 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("Element").Value & "'," & .Fields("Pages").Value & ",'" & .Fields("FinishSize").Value & "','" & .Fields("Size").Value & "','" & .Fields("Processing").Value & "','" & .Fields("ProcessingBack").Value & "','" & .Fields("Imposition").Value & "','" & .Fields("Ref").Value & "','" & .Fields("PlateMaker").Value & "','" & .Fields("FrontPrintingType").Value & "','" & .Fields("BackPrintingType").Value & "','" & .Fields("PlateType").Value & "','" & .Fields("PlateTypeBack").Value & "'," & _
+                                                                        Val(.Fields("ActualQuantity").Value) & "," & Val(.Fields("BillingQuantity").Value) & "," & Val(.Fields("Titles/Sheet1").Value) & "," & Val(.Fields("Sets").Value) & "," & Val(.Fields("TotalForms").Value) & "," & Val(.Fields("TotalPlates").Value) & "," & Val(.Fields("TotalPlatesBack").Value) & "," & Val(.Fields("PrintRate").Value) & "," & Val(.Fields("PrintRateBack").Value) & "," & Val(.Fields("PrintAmount").Value) & "," & Val(.Fields("PlateRate").Value) & "," & Val(.Fields("PlateRateBack").Value) & "," & Val(.Fields("PlateAmount").Value) & "," & IIf(.Fields("PaperByParty").Value, 1, 0) & ",'" & .Fields("Paper").Value & "','" & IIf(.Fields("PaperByParty").Value, TitlePrinterCode, "000000") & "'," & _
+                                                                        Val(.Fields("CutOffSize").Value) & "," & Val(.Fields("Titles/Sheet2").Value) & "," & Val(.Fields("PaperWastage%").Value) & "," & Val(.Fields("PaperWastage%Back").Value) & "," & Val(.Fields("PaperWastageMin").Value) & "," & Val(.Fields("PaperWastageMinBack").Value) & "," & Val(.Fields("PaperWastageFinal").Value) & "," & Val(.Fields("PaperConsumptionOther").Value) & "," & Val(.Fields("PaperConsumptionSheets").Value) & "," & Val(.Fields("PaperConsumptionKg").Value) & "," & Val(.Fields("PaperRate").Value) & "," & Val(.Fields("PaperAmount").Value) & ",'" & .Fields("Remarks").Value & "','" & .Fields("BillNo").Value & "'," & IIf(IsNull(.Fields("BillDate").Value), "Null", "'" & Format(.Fields("BillDate").Value, "dd-MMM-yyyy") & "'") & ",'" & .Fields("PBillNo").Value & "'," & IIf(IsNull(.Fields("PBillDate").Value), "Null", "'" & Format(.Fields("PBillDate").Value, "dd-MMM-yyyy") & "'") & "," & _
+                                                                        Val(.Fields("Adjustment").Value) & "," & Val(.Fields("PAdjustment").Value) & "," & Val(.Fields("RAdjustment").Value) & "," & Val(.Fields("VAT%").Value) & "," & Val(.Fields("VAT").Value) & "," & Val(.Fields("PVAT%").Value) & "," & Val(.Fields("PVAT").Value) & "," & Val(.Fields("RVAT%").Value) & "," & Val(.Fields("RVAT").Value) & "," & Val(.Fields("BillAmount").Value) & "," & Val(.Fields("PBillAmount").Value) & "," & Val(.Fields("RBillAmount").Value) & "," & Val(.Fields("PaidAmount").Value) & "," & Val(.Fields("PPaidAmount").Value) & ",'" & _
+                                                                        .Fields("Status").Value & "','" & .Fields("Narration").Value & "','" & .Fields("AdjustmentRemarks").Value & "'," & IIf(IsNull(.Fields("ComputerName").Value), "Null", "'" & .Fields("ComputerName").Value & "'") & "," & Val(.Fields("DeliveredQuantityC").Value) & "," & Val(.Fields("DeliveredQuantityB").Value) & "," & Val(.Fields("BilledMEC").Value) & "," & Val(.Fields("BilledMEB").Value) & ",'" & .Fields("ElementPrintName").Value & "')"
+                Amount = Amount + Val(.Fields("PrintAmount").Value) + Val(.Fields("PlateAmount").Value) + Val(.Fields("PaperAmount").Value) + Val(.Fields("Adjustment").Value) + Val(.Fields("PAdjustment").Value) + Val(.Fields("RAdjustment").Value)
+            End With
+
+Private Sub Command1_Click() 'Multi form format
+    If CheckEmpty(Text5.Text, False) Then Exit Sub
+    With FrmBookPOChild05
+        .VchCode = CheckNull(rstBookPOParent.Fields("Code").Value)
+        .VchType = BookPOType
+        .PartyCode = BookPrinterCode
+        Set .rstBookPOChild05 = rstBookPOChild05
+        .Mh3dLabel51.Caption = IIf(Right(BookPOType, 1) = "P", " Paper Supplied", " Paper by Party")
+        On Error Resume Next
+        Load FrmBookPOChild05
+        If Err.Number <> 364 Then .Show vbModal: MhRealInput8_Validate False
+    End With
+End Sub
+Private Sub Command5_Click() 'Multi Element Format
+    If CheckEmpty(Text6.Text, False) Then Exit Sub
+    With FrmBookPOChild06
+        .VchCode = CheckNull(rstBookPOParent.Fields("Code").Value)
+        .VchType = BookPOType
+        .PartyCode = TitlePrinterCode
+        With rstAccountList
+            .MoveFirst
+            .Find "[Code]='" & TitlePrinterCode & "'"
+            FrmBookPOChild06.RoundOffQty = .Fields("RoundOffQty").Value
+        End With
+        Set .rstBookPOChild06 = rstBookPOChild06
+        .Mh3dLabel50.Caption = IIf(Right(BookPOType, 1) = "P", " Paper Supplied", " Paper by Party")
+        On Error Resume Next
+        Load FrmBookPOChild06
+        If Err.Number <> 364 Then .Show vbModal: MhRealInput8_Validate False
+    End With
+End Sub
+
+IF NOT EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookPOChild06' AND COLUMN_NAME='ElementPrintName') ALTER TABLE BookPOChild06 ADD [ElementPrintName] [nvarchar](60) NOT NULL DEFAULT ('') WITH VALUES
+
+ALTER FUNCTION [dbo].[ufnGetPaperStock](@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE) 
+RETURNS DECIMAL(12,3)
+AS   
+BEGIN  
+	DECLARE @CurStk DECIMAL(12,3);
+	SELECT @CurStk=
+	(
+	(ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0)+
+	ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0))-
+	(ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)
+	)
+	)/U.Value1
+	FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper
+	RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2;
+End
+
+
+
+
+
+
+
+
+
+OLD Paper Function
+
+cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetPaperStock](@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE) " & _
+"RETURNS Decimal(12, 3) AS " & _
+"BEGIN " & _
+    "DECLARE @CurStk DECIMAL(12,3); " & _
+    "SELECT @CurStk= " & _
+    "((ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0)+ " & _
+    "ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0)+ " & _
+    "ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account  AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0))- " & _
+    "(ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account  AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PaperConsumptionSheets1) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper1=I.Code AND RAccount1=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PaperConsumptionSheets2) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper2=I.Code AND RAccount2=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PaperConsumptionSheets4) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper4=I.Code AND RAccount4=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+    "ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account  AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)))/U.Value1 " & _
+    "FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper " & _
+    "RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2; " & _
+"End"
+
+
+
+

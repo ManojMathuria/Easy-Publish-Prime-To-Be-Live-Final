@@ -1,0 +1,175 @@
+NSHIPL
+AccountChild06 Delete Table
+
+AccountChild07
+Add Field Range After Rate
+Update AccountChild07 set Range = 999999999.999
+
+BookChild02
+Change Field Code Properties Indexed-----No
+Change Field SNo Properties Data Type Text Field Size 6,
+Move Field ArrivedOn After SNo
+Add Field Status After ArrivedOn
+Move Field Member After Correction Properties Required-- Yes Allow Zero Length-- No.
+Change Field Correction Properties Required-- Yes Allow Zero Length-- No.
+Change Field Member Properties Required-- Yes Allow Zero Length-- No.
+Change Field TargetDate Data Type Date/Time
+Change Field StartDate Data Type Date/Time Required-- Yes
+Change Field RectifiedOn Data Type Date/Time
+Change Field Department Properties Field Size 6, Default Value Null
+
+Add Table  
+BookChild03
+BookChild05
+BookChild06
+BookChild07
+ElementMaster
+
+Code For BookChild05 Update
+
+
+"One Color
+INSERT INTO BookChild05 ( Code, Element, FinishSize, [Size], DuplexPrinting1, [Pages/PrintingForm], [Pages/Form], Color, pages, Forms, [Forms-¼], [Forms-½], [Forms-1-F&B], [Forms-1-W&T], PlateType, Ups )
+SELECT BOOKMASTER.Code, '*00027' AS Element, BOOKMASTER.FinishSize, BOOKMASTER.Size, IIf([DuplexPrinting]='Y',Yes,No) AS DuplexPrinting1, IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0)))))))) AS [Pages/PrintingForm], IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0)))))))) AS [Pages/Form], '1' AS Color, BOOKMASTER.OneColorPages AS pages, BOOKMASTER.OneColorForms AS Forms, BOOKMASTER.OneColor¼Forms AS [Forms-¼], BOOKMASTER.OneColor½Forms AS [Forms-½], BOOKMASTER.[OneColor1F/BForms] AS [Forms-1-F&B], BOOKMASTER.[OneColor1W/TForms] AS [Forms-1-W&T], BOOKMASTER.OneColorPlateType AS PlateType, '1' AS Ups
+FROM BOOKMASTER
+WHERE (((BOOKMASTER.OneColorPages)>0));
+
+"Two Color
+INSERT INTO BookChild05 ( Code, Element, FinishSize, [Size], DuplexPrinting1, [Pages/PrintingForm], [Pages/Form], Color, pages, Forms, [Forms-¼], [Forms-½], [Forms-1-F&B], [Forms-1-W&T], PlateType, Ups )
+SELECT BOOKMASTER.Code, '*00012' AS Element, BOOKMASTER.FinishSize, BOOKMASTER.Size, IIf([DuplexPrinting]='Y',Yes,No) AS DuplexPrinting1, IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0)))))))) AS [Pages/PrintingForm], IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0)))))))) AS [Pages/Form], '2' AS Color, BOOKMASTER.TwoColorPages AS pages, BOOKMASTER.TwoColorForms AS Forms, BOOKMASTER.TwoColor¼Forms AS [Forms-¼], BOOKMASTER.TwoColor½Forms AS [Forms-½], BOOKMASTER.[TwoColor1F/BForms] AS [Forms-1-F&B], BOOKMASTER.[TwoColor1W/TForms] AS [Forms-1-W&T], BOOKMASTER.TwoColorPlateType AS PlateType, '1' AS Ups
+FROM BOOKMASTER
+WHERE (((BOOKMASTER.TwoColorPages)>0));
+
+
+"Four Color
+INSERT INTO BookChild05 ( Code, Element, FinishSize, [Size], DuplexPrinting1, [Pages/PrintingForm], [Pages/Form], Color, pages, Forms, [Forms-¼], [Forms-½], [Forms-1-F&B], [Forms-1-W&T], PlateType, Ups )
+SELECT BOOKMASTER.Code, '*00013' AS Element, BOOKMASTER.FinishSize, BOOKMASTER.Size, IIf([DuplexPrinting]='Y',Yes,No) AS DuplexPrinting1, IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0)))))))) AS [Pages/PrintingForm], IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0)))))))) AS [Pages/Form], '4' AS Color, BOOKMASTER.FourColorPages AS pages, BOOKMASTER.FourColorForms AS Forms, BOOKMASTER.FourColor¼Forms AS [Forms-¼], BOOKMASTER.FourColor½Forms AS [Forms-½], BOOKMASTER.[FourColor1F/BForms] AS [Forms-1-F&B], BOOKMASTER.[FourColor1W/TForms] AS [Forms-1-W&T], BOOKMASTER.FourColorPlateType AS PlateType, '1' AS Ups
+FROM BOOKMASTER
+WHERE (((BOOKMASTER.FourColorPages)>0));
+
+
+"BookPOChild05
+Add New 19 Fields
+Element
+FinishSize
+Size
+DuplexPrinting
+ 
+BillingQuantity
+[Pages/PrintingForm]
+Pages/Form
+Color
+Pages
+Forms
+Forms-¼
+Forms-½
+Forms-1-F&B
+Forms-1-W&T
+PlateType
+TotalForms-¼
+TotalForms-½
+TotalForms-1-F&B
+TotalForms-1-W&T
+TotalPlates-¼
+TotalPlates-½
+TotalPlates-1-F&B
+TotalPlates-1-W&T
+RevisedPlates
+PrintRate
+PrintAmount
+PlateRate
+PlateAmount
+PaperByParty
+Paper
+CutOffSize
+PaperWastage%
+PaperWastageMin
+PaperWastageFinal
+PaperConsumptionOther
+PaperConsumptionsheets
+PaperConsumptionKg
+PaperRate
+PaperAmount
+Forms/Sheet1
+Forms/Sheet2
+
+BillFeedDate To be Delete
+ComputerName To be Delete
+
+
+			SELECT M.FinishSize From (BookPOChild05 C INNER JOIN BookPOParent P ON P.Code=C.Code) INNER JOIN BookMaster M ON P.Book=M.Code
+
+UPDATE (BookPOChild05 C INNER JOIN BookPOParent P ON C.Code=P.Code) INNER JOIN BookMaster M ON P.Book=M.Code
+SET C.[FinishSize]=M.[FinishSize]
+
+UPDATE (BookPOChild05 C INNER JOIN BookPOParent P ON P.Code=C.Code) INNER JOIN BookMaster M ON P.Book=M.Code
+SET C.[DuplexPrinting]=(IIf(M.DuplexPrinting='Y',Yes,No))
+
+UPDATE BookPOChild05 SET BookPOChild05.PaperByParty=True
+
+UPDATE (BookPOChild05 C INNER JOIN BookPOParent P ON P.Code=C.Code) INNER JOIN BookMaster M ON P.Book=M.Code
+SET C.[Pages/PrintingForm]=IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0))))))))
+
+UPDATE (BookPOChild05 C INNER JOIN BookPOParent P ON P.Code=C.Code) INNER JOIN BookMaster M ON P.Book=M.Code
+SET C.[Pages/Form]=IIf(FormType='1',8,IIf(FormType='2',16,IIf(FormType='3',4,IIf(FormType='4',12,IIf(FormType='5',24,IIf(FormType='6',32,IIf(FormType='7',64,IIf(FormType='8',6,0))))))))
+
+
+	SELECT INT([Forms1-1]/2)*2,[Forms1-1]-INT([Forms1-1]/2)*2,[Forms1-1]
+	From BookPOChild05
+			Update BookPOChild05 Set [Forms/Sheet1-1]=1
+		Update BookPOChild05 Set [Forms/Sheet2-1]=1
+
+		SELECT Round(IIF(DuplexPrinting=Yes,INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/1,INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/2),.5)
+		From BookPOChild05
+Forms1-1
+
+Forms1-1-W&T
+Update BookPOChild05 Set [Forms1-1-W&T]=[Forms1-1]-INT([Forms1-1]/2)*2
+TotalPlates1-1
+Update BookPOChild05 Set [Forms1-1-W&T]=[Forms1-1]-INT([Forms1-1]/2)*2*1
+TotalPlates1-1-W&T
+Forms2-1
+Forms2-1-W&T
+TotalPlates2-1
+TotalPlates2-1-W&T
+Forms4-1
+Forms4-1-W&T
+TotalPlates4-1
+TotalPlates4-1-W&T
+
+
+SELECT Round(IIF(DuplexPrinting=Yes,[Forms1-1]-INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/1,[Forms1-1]-INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/2),.5)
+From BookPOChild05
+WHERE (((BookPOChild05.Pages1)>0));
+
+SELECT Round(IIF(DuplexPrinting=Yes,INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/1,INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/2),.5)*1,Round(IIF(DuplexPrinting=Yes,INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/1,INT([Forms1-1]/2)*2/[Forms/Sheet1-1]/2),.5)*1
+From BookPOChild05
+WHERE (((BookPOChild05.Pages1)>0));
+
+
+				INSERT INTO BookPOChild05 (Code,OrderDate,TargetDate,Element,FinishSize,Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[TotalForms-¼],[TotalForms-½],[TotalForms-1-F&B],[TotalForms-1-W&T],[TotalPlates-¼],[TotalPlates-½],[TotalPlates-1-F&B],[TotalPlates-1-W&T],RevisedPlates,PrintRate,PrintAmount,PlateRate,PlateAmount,PaperByParty,Paper,CutOffSize,[PaperWastage%],PaperWastageMin,PaperWastageFinal,PaperConsumptionOther,PaperConsumptionsheets,PaperConsumptionKg,PaperRate,PaperAmount,[Forms/Sheet1],[Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued)
+				SELECT Code,OrderDate,TargetDate, '*00027' AS Element,FinishSize,Size1 as Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity01 as BillingQuantity,[Pages/PrintingForm],[Pages/Form],'1' as Color,Pages1 as Pages,Forms1 as Forms,[Forms1-¼] as [Forms-¼],[Forms1-½] as [Forms-½],INT([Forms1-1]/2)*2 as [Forms-1-F&B],[Forms1-1]-INT([Forms1-1]/2)*2 As [Forms-1-W&T] ,PlateType1 AS PlateType,[TotalForms1-¼] As [TotalForms-¼],[TotalForms1-½] As [TotalForms-½],[TotalForms1-1] As [TotalForms-1-F&B],[TotalForms1-1] As [TotalForms-1-W&T],[TotalPlates1-¼] As [TotalPlates-¼],[TotalPlates1-½] As [TotalPlates-½], [TotalPlates1-1] As [TotalPlates-1-F&B],[TotalPlates1-1] As [TotalPlates-1-W&T],RevisedPlates1 As RevisedPlates,PrintRate1 As PrintRate,PrintAmount1 As PrintAmount,PlateRate1 As PlateRate,PlateAmount1 As PlateAmount,PaperByParty,Paper1 As Paper,'0' As CutOffSize,[PaperWastage1%] As [PaperWastage%],PaperWastageMin1 AS PaperWastageMin,PaperWastageFinal1 As PaperWastageFinal,PaperConsumptionOther1 As PaperConsumptionOther,PaperConsumptionsheets1 As PaperConsumptionsheets,'0' As PaperConsumptionKg,PaperRate1 As PaperRate,PaperAmount1 As PaperAmount,[Forms/Sheet1-1] As [Forms/Sheet1],[Forms/Sheet2-1] As[Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued
+				From BookPOChild05
+				WHERE (((BookPOChild05.Pages1)>0));
+
+
+INSERT INTO BookPOChild05_1Col
+
+INSERT INTO BookPOChild05 (Code,OrderDate,TargetDate,Element,FinishSize,Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[TotalForms-¼],[TotalForms-½],[TotalForms-1-F&B],[TotalForms-1-W&T],[TotalPlates-¼],[TotalPlates-½],[TotalPlates-1-F&B],[TotalPlates-1-W&T],RevisedPlates,PrintRate,PrintAmount,PlateRate,PlateAmount,PaperByParty,Paper,CutOffSize,[PaperWastage%],PaperWastageMin,PaperWastageFinal,PaperConsumptionOther,PaperConsumptionsheets,PaperConsumptionKg,PaperRate,PaperAmount,[Forms/Sheet1],[Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued)
+SELECT Code,OrderDate,TargetDate, '*00027' AS Element,FinishSize,Size1 as Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity01 as BillingQuantity,[Pages/PrintingForm],[Pages/Form],'1' as Color,Pages1 as Pages,Forms1 as Forms,[Forms1-¼] as [Forms-¼],[Forms1-½] as [Forms-½],(INT([Forms1-1]/2))*2 as [Forms-1-F&B],[Forms1-1]-((INT([Forms1-1]/2))*2) As [Forms-1-W&T] ,PlateType1 AS PlateType,[TotalForms1-¼] As [TotalForms-¼],[TotalForms1-½] As [TotalForms-½], INT([Forms1-1]/2)*2* BillingQuantity01/1000  As [TotalForms-1-F&B], (([Forms1-1]-(INT([Forms1-1]/2)*2))* BillingQuantity01)/1000 As [TotalForms-1-W&T],[TotalPlates1-¼] As [TotalPlates-¼],[TotalPlates1-½] As [TotalPlates-½], INT([TotalPlates1-1]/1/2)*2*1 As [TotalPlates-1-F&B],[TotalPlates1-1]- INT([TotalPlates1-1]/1/2)*2*1 As [TotalPlates-1-W&T],RevisedPlates1 As RevisedPlates,PrintRate1 As PrintRate,PrintAmount1 As PrintAmount,PlateRate1 As PlateRate,PlateAmount1 As PlateAmount,PaperByParty,Paper1 As Paper,'0' As CutOffSize,[PaperWastage1%] As [PaperWastage%],PaperWastageMin1 AS PaperWastageMin,PaperWastageFinal1 As PaperWastageFinal,PaperConsumptionOther1 As PaperConsumptionOther,PaperConsumptionsheets1 As PaperConsumptionsheets,'0' As PaperConsumptionKg,PaperRate1 As PaperRate,PaperAmount1 As PaperAmount,[Forms/Sheet1-1] As [Forms/Sheet1],[Forms/Sheet2-1] As [Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued
+From BookPOChild05_Old
+WHERE (((BookPOChild05_Old.Pages1)>0));
+
+INSERT INTO BookPOChild05_2Col
+
+INSERT INTO BookPOChild05 (Code,OrderDate,TargetDate,Element,FinishSize,Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[TotalForms-¼],[TotalForms-½],[TotalForms-1-F&B],[TotalForms-1-W&T],[TotalPlates-¼],[TotalPlates-½],[TotalPlates-1-F&B],[TotalPlates-1-W&T],RevisedPlates,PrintRate,PrintAmount,PlateRate,PlateAmount,PaperByParty,Paper,CutOffSize,[PaperWastage%],PaperWastageMin,PaperWastageFinal,PaperConsumptionOther,PaperConsumptionsheets,PaperConsumptionKg,PaperRate,PaperAmount,[Forms/Sheet1],[Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued)
+SELECT Code,OrderDate,TargetDate, '*00012' AS Element,FinishSize,Size2 as Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity02 as BillingQuantity,[Pages/PrintingForm],[Pages/Form],'2' as Color,Pages2 as Pages,Forms2 as Forms,[Forms2-¼] as [Forms-¼],[Forms2-½] as [Forms-½],(INT([Forms2-1]/2))*2 as [Forms-1-F&B],[Forms2-1]-((INT([Forms2-1]/2))*2) As [Forms-1-W&T] ,PlateType2 AS PlateType,[TotalForms2-¼] As [TotalForms-¼],[TotalForms2-½] As [TotalForms-½], INT([Forms2-1]/2)*2* BillingQuantity02/1000  As [TotalForms-1-F&B], (([Forms2-1]-(INT([Forms2-1]/2)*2))* BillingQuantity02)/1000 As [TotalForms-1-W&T],[TotalPlates2-¼] As [TotalPlates-¼],[TotalPlates2-½] As [TotalPlates-½], INT([TotalPlates1-1]/2/2)*2*2 As [TotalPlates-1-F&B],[TotalPlates2-1]- INT([TotalPlates2-1]/2/2)*2*2 As [TotalPlates-1-W&T],RevisedPlates2 As RevisedPlates,PrintRate2 As PrintRate,PrintAmount2 As PrintAmount,PlateRate2 As PlateRate,PlateAmount2 As PlateAmount,PaperByParty,Paper2 As Paper,'0' As CutOffSize,[PaperWastage2%] As [PaperWastage%],PaperWastageMin2 AS PaperWastageMin,PaperWastageFinal2 As PaperWastageFinal,PaperConsumptionOther2 As PaperConsumptionOther,PaperConsumptionsheets2 As PaperConsumptionsheets,'0' As PaperConsumptionKg,PaperRate2 As PaperRate,PaperAmount2 As PaperAmount,[Forms/Sheet1-2] As [Forms/Sheet1],[Forms/Sheet2-2] As [Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued
+From BookPOChild05_Old
+WHERE (((BookPOChild05_Old.Pages2)>0));
+
+INSERT INTO BookPOChild05_4Col
+
+INSERT INTO BookPOChild05 (Code,OrderDate,TargetDate,Element,FinishSize,Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[TotalForms-¼],[TotalForms-½],[TotalForms-1-F&B],[TotalForms-1-W&T],[TotalPlates-¼],[TotalPlates-½],[TotalPlates-1-F&B],[TotalPlates-1-W&T],RevisedPlates,PrintRate,PrintAmount,PlateRate,PlateAmount,PaperByParty,Paper,CutOffSize,[PaperWastage%],PaperWastageMin,PaperWastageFinal,PaperConsumptionOther,PaperConsumptionsheets,PaperConsumptionKg,PaperRate,PaperAmount,[Forms/Sheet1],[Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued)
+SELECT Code,OrderDate,TargetDate, '*00013' AS Element,FinishSize,Size4 as Size,DuplexPrinting,Processing,Ref,PlateMaker,ActualQuantity,BillingQuantity02 as BillingQuantity,[Pages/PrintingForm],[Pages/Form],'4' as Color,Pages4 as Pages,Forms4 as Forms,[Forms4-¼] as [Forms-¼],[Forms4-½] as [Forms-½],(INT([Forms4-1]/2))*2 as [Forms-1-F&B],[Forms4-1]-((INT([Forms4-1]/2))*2) As [Forms-1-W&T] ,PlateType4 AS PlateType,[TotalForms4-¼] As [TotalForms-¼],[TotalForms4-½] As [TotalForms-½], INT([Forms4-1]/2)*2* BillingQuantity02/1000  As [TotalForms-1-F&B], (([Forms4-1]-(INT([Forms4-1]/2)*2))* BillingQuantity02)/1000 As [TotalForms-1-W&T],[TotalPlates4-¼] As [TotalPlates-¼],[TotalPlates4-½] As [TotalPlates-½], INT([TotalPlates1-1]/4/2)*2*4 As [TotalPlates-1-F&B],[TotalPlates4-1]- INT([TotalPlates4-1]/4/2)*2*4 As [TotalPlates-1-W&T],RevisedPlates4 As RevisedPlates,PrintRate4 As PrintRate,PrintAmount4 As PrintAmount,PlateRate4 As PlateRate,PlateAmount4 As PlateAmount,PaperByParty,Paper4 As Paper,'0' As CutOffSize,[PaperWastage4%] As [PaperWastage%],PaperWastageMin4 AS PaperWastageMin,PaperWastageFinal4 As PaperWastageFinal,PaperConsumptionOther4 As PaperConsumptionOther,PaperConsumptionsheets4 As PaperConsumptionsheets,'0' As PaperConsumptionKg,PaperRate4 As PaperRate,PaperAmount4 As PaperAmount,[Forms/Sheet1-4] As [Forms/Sheet1],[Forms/Sheet2-4] As [Forms/Sheet2],Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,QuantityReceived,QuantityIssued
+From BookPOChild05_Old
+WHERE (((BookPOChild05_Old.Pages4)>0));

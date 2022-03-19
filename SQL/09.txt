@@ -1,0 +1,15 @@
+ALTER TABLE [BookPOChild0901] ALTER COLUMN [FrontPrintingColor] NVARCHAR(6)
+ALTER TABLE [BookPOChild0901] ALTER COLUMN [BackPrintingColor] NVARCHAR(6)
+UPDATE [BookPOChild0901] SET [FrontPrintingColor]='*23001' WHERE [FrontPrintingColor]='1'
+UPDATE [BookPOChild0901] SET [FrontPrintingColor]='*23002' WHERE [FrontPrintingColor]='2'
+UPDATE [BookPOChild0901] SET [FrontPrintingColor]='*23003' WHERE [FrontPrintingColor]='4'
+UPDATE [BookPOChild0901] SET [FrontPrintingColor]='*23004' WHERE [FrontPrintingColor]='6'
+UPDATE [BookPOChild0901] SET [BackPrintingColor]='*23001' WHERE [BackPrintingColor]='1'
+UPDATE [BookPOChild0901] SET [BackPrintingColor]='*23002' WHERE [BackPrintingColor]='2'
+UPDATE [BookPOChild0901] SET [BackPrintingColor]='*23003' WHERE [BackPrintingColor]='4'
+UPDATE [BookPOChild0901] SET [BackPrintingColor]='*23004' WHERE [BackPrintingColor]='6'
+ALTER TABLE [BookPOChild0901] ADD CONSTRAINT [FK_BookPOChild0901_GeneralMaster_I] FOREIGN KEY([FrontPrintingColor]) REFERENCES [GeneralMaster] ([Code]),CONSTRAINT [FK_BookPOChild0901_GeneralMaster_II] FOREIGN KEY([BackPrintingColor]) REFERENCES [GeneralMaster] ([Code])
+ALTER TABLE [BookPOChild09] DROP COLUMN [BillFeedDate],[ComputerName]
+ALTER TABLE [BookPOChild09] ADD [PlateBack] NVARCHAR(6) NULL,[PlateTypeBack] NVARCHAR(1) NULL,[PaperWastage%Back] DECIMAL(4, 2) NOT NULL DEFAULT(0),[PlateRateBack] DECIMAL(12, 2) NOT NULL DEFAULT(0)
+
+[PaperWastageMinBack] DECIMAL(6, 0)

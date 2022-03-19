@@ -1,0 +1,73 @@
+ALTER TABLE CompanyMaster ADD TallyIntegration BIT NOT NULL DEFAULT 1
+ALTER TABLE CompanyMaster ADD BusyIntegration BIT NOT NULL DEFAULT 0
+
+DROP FUNCTION ufnGetPaperStock
+CREATE FUNCTION ufnGetPaperStock(@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6))
+RETURNS DECIMAL(12,3)
+AS   
+BEGIN  
+	DECLARE @CurStk DECIMAL(12,3);
+	SELECT @CurStk=
+	(
+	(ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0)+
+	ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)
+	)-
+	(ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets1) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper1=I.Code AND RAccount1=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets2) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper2=I.Code AND RAccount2=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets4) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper4=I.Code AND RAccount4=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)
+	)
+	)/U.Value1
+	FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper
+	RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2;
+END
+GO
+
+DROP FUNCTION ufnGetItemStock
+CREATE FUNCTION ufnGetItemStock(@MatCentre CHAR(6),@Item CHAR(6),@VchType CHAR(2),@VchCode CHAR(2))
+RETURNS INTEGER
+AS   
+BEGIN  
+	DECLARE @CurStk INTEGER;
+	SELECT @CurStk=
+	(ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='05',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='08',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='01',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='03',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND Party=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0)
+	)-
+	(ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='06',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='07',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='02',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='04',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND Party=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0)
+	)
+	RETURN @CurStk;
+END
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[DelIssueOrder]
+   ON  [dbo].[OutsourceItemPOParent]
+   AFTER DELETE
+AS 
+   DECLARE @VchCode NVARCHAR(6)
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from  interfering with SELECT statements.
+	SET NOCOUNT ON;
+    SELECT @VchCode = (SELECT IssueOrder FROM Deleted)
+    IF @VchCode<>''
+         DELETE FROM MaterialIOParent WHERE Code=@VchCode
+END

@@ -1,0 +1,118 @@
+ALTER TABLE BookPOChild05 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild05 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild05 ADD BilledMFC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild05 ADD BilledMFB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+--
+ALTER TABLE BookPOChild06 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild06 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild06 ADD BilledMEC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild06 ADD BilledMEB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+--
+ALTER TABLE BookPOChild07 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild07 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild07 ADD BilledMOC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild07 ADD BilledMOB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+--
+ALTER TABLE BookPOChild0801 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild0801 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild0801 ADD BilledBMC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild0801 ADD BilledBMB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+--
+ALTER TABLE BookPOChild08 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild08 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild08 ADD BilledBNC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild08 ADD BilledBNB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+--
+ALTER TABLE BookPOChild0901 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild0901 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild0901 ADD BilledCFC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOChild0901 ADD BilledCFB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+--
+ALTER TABLE BookPOParent ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+ALTER TABLE BookPOParent ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES
+----
+UPDATE BookPOParent SET DeliveredQuantityC=QuantityIssuedC+QuantityReceivedC WHERE QuantityIssuedC+QuantityReceivedC>0
+UPDATE BookPOParent SET DeliveredQuantityB=QuantityIssuedB+QuantityReceivedB WHERE QuantityIssuedB+QuantityReceivedB>0
+UPDATE BookPOChild05 SET DeliveredQuantityC=P.QuantityIssuedC+P.QuantityReceivedC FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.QuantityIssuedC+P.QuantityReceivedC>0
+UPDATE BookPOChild05 SET DeliveredQuantityB=P.QuantityIssuedB+P.QuantityReceivedB FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.QuantityIssuedB+P.QuantityReceivedB>0
+UPDATE BookPOChild06 SET DeliveredQuantityC=P.QuantityIssuedC+P.QuantityReceivedC FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.QuantityIssuedC+P.QuantityReceivedC>0
+UPDATE BookPOChild06 SET DeliveredQuantityB=P.QuantityIssuedB+P.QuantityReceivedB FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.QuantityIssuedB+P.QuantityReceivedB>0
+UPDATE BookPOChild07 SET DeliveredQuantityC=P.QuantityIssuedC+P.QuantityReceivedC FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.QuantityIssuedC+P.QuantityReceivedC>0
+UPDATE BookPOChild07 SET DeliveredQuantityB=P.QuantityIssuedB+P.QuantityReceivedB FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.QuantityIssuedB+P.QuantityReceivedB>0
+UPDATE BookPOChild08 SET DeliveredQuantityC=P.QuantityIssuedC+P.QuantityReceivedC FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.QuantityIssuedC+P.QuantityReceivedC>0
+UPDATE BookPOChild08 SET DeliveredQuantityB=P.QuantityIssuedB+P.QuantityReceivedB FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.QuantityIssuedB+P.QuantityReceivedB>0
+UPDATE BookPOChild0801 SET DeliveredQuantityC=P.QuantityIssuedC+P.QuantityReceivedC FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE P.QuantityIssuedC+P.QuantityReceivedC>0
+UPDATE BookPOChild0801 SET DeliveredQuantityB=P.QuantityIssuedB+P.QuantityReceivedB FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE P.QuantityIssuedB+P.QuantityReceivedB>0
+UPDATE BookPOChild0901 SET DeliveredQuantityC=P.QuantityIssuedC+P.QuantityReceivedC FROM BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code WHERE P.QuantityIssuedC+P.QuantityReceivedC>0
+UPDATE BookPOChild0901 SET DeliveredQuantityB=P.QuantityIssuedB+P.QuantityReceivedB FROM BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code WHERE P.QuantityIssuedB+P.QuantityReceivedB>0
+---
+UPDATE BookPOChild05 SET BilledMFB=P.BilledAllB FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.BilledAllB>0
+UPDATE BookPOChild05 SET BilledMFC=P.BilledAllC FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.BilledAllC>0
+UPDATE BookPOChild06 SET BilledMEB=P.BilledAllB FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.BilledAllB>0
+UPDATE BookPOChild06 SET BilledMEC=P.BilledAllC FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.BilledAllC>0
+UPDATE BookPOChild07 SET BilledMOB=P.BilledAllB FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.BilledAllB>0
+UPDATE BookPOChild07 SET BilledMOC=P.BilledAllC FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.BilledAllC>0
+UPDATE BookPOChild08 SET BilledBNB=P.BilledAllB FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.BilledAllB>0
+UPDATE BookPOChild08 SET BilledBNC=P.BilledAllC FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.BilledAllC>0
+UPDATE BookPOChild0801 SET BilledBMB=P.BilledAllB FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE P.BilledAllB>0
+UPDATE BookPOChild0801 SET BilledBMC=P.BilledAllC FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE P.BilledAllC>0
+UPDATE BookPOChild0901 SET BilledCFB=P.BilledAllB FROM BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code WHERE P.BilledAllB>0
+UPDATE BookPOChild0901 SET BilledCFC=P.BilledAllC FROM BookPOParent P INNER JOIN BookPOChild0901 C ON P.Code=C.Code WHERE P.BilledAllC>0
+---
+DECLARE @sql NVARCHAR(255), @table NVARCHAR(50)
+SET @table='BookPOChild05'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+SET @table='BookPOChild06'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+SET @table='BookPOChild07'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+SET @table='BookPOChild08'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+SET @table='BookPOChild0801'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+SET @table='BookPOChild09'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+SET @table='BookPOChild0901'
+WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+BEGIN
+	SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID)))
+	EXEC sp_executesql @sql
+END
+ALTER TABLE BookPOParent DROP CONSTRAINT df_QuantityIssuedC,df_QuantityReceivedC,df_QuantityIssuedB,df_QuantityReceivedB,df_QuantityIssued07C,df_QuantityReceived07C,df_QuantityIssued07B,df_QuantityReceived07B,df_QuantityIssued0801C,df_QuantityReceived0801C,df_QuantityIssued0801B,df_QuantityReceived0801B,df_BilledTextC,df_BilledTextB,df_BilledTitleC,df_BilledTitleB,df_BilledComboTitleC,df_BilledComboTitleB,df_BilledLaminationC,df_BilledLaminationB,df_BilledBOMC,df_BilledBOMB
+ALTER TABLE BookPOParent DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB,QuantityIssued07C,QuantityReceived07C,QuantityIssued07B,QuantityReceived07B,QuantityIssued0801C,QuantityReceived0801C,QuantityIssued0801B,QuantityReceived0801B,BilledTextC,BilledTextB,BilledTitleC,BilledTitleB,BilledComboTitleC,BilledComboTitleB,BilledLaminationC,BilledLaminationB,BilledBOMC,BilledBOMB
+ALTER TABLE BookPOChild05 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+ALTER TABLE BookPOChild06 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+ALTER TABLE BookPOChild07 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+ALTER TABLE BookPOChild08 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+ALTER TABLE BookPOChild0801 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+ALTER TABLE BookPOChild09 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+ALTER TABLE BookPOChild0901 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB
+---
+ALTER TABLE JobworkBVChild ALTER COLUMN BOM NVARCHAR(18) NOT NULL
+---
+UPDATE JobworkBVChild SET BOM=LEFT(BOM,4)+'XXXXXXXXXXXX'+RIGHT(BOM,2) WHERE LEFT(BOM,2)='08'		
+UPDATE JobworkBVChild SET BOM=LEFT(BOM,4)+'XXXXXXXXXXXX'+RIGHT(BOM,2) WHERE LEFT(BOM,2)='05'

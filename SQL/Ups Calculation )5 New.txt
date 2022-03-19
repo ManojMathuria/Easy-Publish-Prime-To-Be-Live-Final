@@ -1,0 +1,32 @@
+FL = Val(Left(Text4.Text, InStr(1, Text4.Text, "X") - 1))
+FR = Val(Mid(Text4.Text, InStr(1, Text4.Text, "X") + 1, 5)) 
+PL = IIf(PaperForm = "R", MhRealInput52.Value / 25.4, inLength)
+PW = inWidth 'Printing Size Left & Right + Paper Length & Width
+
+If Abs(FL - PL) <= 1 Then PL = FL
+If Abs(FR - PL) <= 1 Then PL = FR
+
+If Abs(FL - PW) <= 1 Then PW = FL
+If Abs(FR - PW) <= 1 Then PW = FR
+
+Ups01 = Int(IIf(PW > PL, PW, PL) / IIf(FL > FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL < FR, FL, FR))
+Ups02 = Int(IIf(PW > PL, PW, PL) / IIf(FL < FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL > FR, FL, FR))
+Ups03 = Int((PW * PL) / (FL * FR))
+MaxUps = IIf(Ups03 > IIf(Ups01 > Ups02, Ups01, Ups02), Ups03, IIf(Ups01 > Ups02, Ups01, Ups02))
+
+FL = Val(Left(Text4.Text, InStr(1, Text4.Text, "X") - 1))
+FR = Val(Mid(Text4.Text, InStr(1, Text4.Text, "X") + 1, 5))
+PL = IIf(PaperForm = "R", MhRealInput52.Value / 25.4, Val(rstPaperList.Fields("inLength").Value))
+PW = Val(rstPaperList.Fields("inWidth").Value)
+Ups01 = Int(IIf(PW > PL, PW, PL) / IIf(FL > FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL < FR, FL, FR))
+Ups02 = Int(IIf(PW > PL, PW, PL) / IIf(FL < FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL > FR, FL, FR))
+Ups03 = Int((PW * PL) / (FL * FR))
+
+Dependency : 
+Per Plate
+Area (Sq. Inch)
+Press Sheet Area (sq.cm()
+
+Rate : 1
+Rate For : 1000
+Dependency : 

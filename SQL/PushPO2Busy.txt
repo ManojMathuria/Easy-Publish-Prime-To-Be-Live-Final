@@ -1,0 +1,44 @@
+
+
+            Call MsgBox("Record updated !!!", vbInformation, App.Title)
+            If Left(VchType, 1) = "S" Then
+                If BusyIntegration Or TallyIntegration Then
+                    If MsgBox("Are you sure to export the Voucher?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then PushVch
+                End If
+            End If
+            SSTab1.Tab = 0
+
+
+Dim FI As Object
+Private Sub Form_Load()
+    Set FI = CreateObject("Busy2L21.CFixedInterface")
+
+
+Private Sub PushPO2Busy()
+
+
+
+    Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
+    Dim ItemCode, ItemName, Qty, Price
+    AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
+    If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
+    VchSeriesName = IIf(BookPOType = "F", "Main", "Repair"): MCName = "Noida Godown": VchNo = Trim(Text2.Text): VchDate = FI.FormatDate(rstBookPOChild08.Fields("OrderDate").Value): Qty = Val(rstBookPOChild08.Fields("ActualQuantity").Value)
+    Set rstSaral = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
+    AccountName = Replace(rstSaral.Fields("Name").Value, "&", "&amp;", 1)
+    STName = IIf(Left(rstSaral.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
+    ItemCode = Mid(BookCode, 2, 6)
+    Set rstSaral = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
+    ItemName = Replace(rstSaral.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstSaral.Fields("Price").Value)
+    XMLStr = "<PurchaseOrder>"
+        XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+        XMLStr = XMLStr & "<ItemEntries>"
+        XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+        XMLStr = XMLStr & "</ItemEntries>"
+        XMLStr = XMLStr & "<PendingOrders>"
+            XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+            XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+            XMLStr = XMLStr & "</OrderDetail>"
+        XMLStr = XMLStr & "</PendingOrders>"
+    XMLStr = XMLStr & "</PurchaseOrder>"
+    If Not FI.SaveVchFromXML(13, XMLStr, ErrMsg, True, 2) Then DisplayError (ErrMsg)
+End Sub

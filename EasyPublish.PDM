@@ -1,0 +1,1213 @@
+[Root]
+Most Recent Package=Standard Setup Package
+
+
+[Package|Standard Setup Package 1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=F:\Final\PD\RSPL\Saral-U\Old\Package
+
+[Package|Standard Setup Package 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package 1|Files Found]
+pg32conv.dll=G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll
+
+[Package|Standard Setup Package 1|Files Released]
+
+[Package|Standard Setup Package 1|Missing Dependency Information]
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=
+
+[Package|Standard Setup Package 1|Out-of-Date Dependency Information]
+C:\Windows\System32\MSCOMCTL.OCX=
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\System32\msstdfmt.dll=
+C:\Windows\System32\scrrun.dll=
+
+[Package|Standard Setup Package 1|Files Added]
+
+[Package|Standard Setup Package 1|Files Removed]
+
+[Package|Standard Setup Package 1|Files In Project]
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=Yes
+C:\Windows\System32\msvbvm60.dll=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\mhfram32.ocx=Yes
+C:\Program Files\Common Files\System\ado\msado28.tlb=Yes
+C:\Windows\System32\scrrun.dll=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=Yes
+C:\Program Files\Seagate Software\Report Designer Component\craxddrt.dll=Yes
+C:\Windows\System32\IMPLODE.DLL=Yes
+C:\Windows\System32\Crpaig80.dll=Yes
+C:\Windows\System32\mfc42.dll=Yes
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\sscsdk80.dll=Yes
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=Yes
+C:\Windows\System32\P2smon.dll=Yes
+C:\Program Files\Seagate Software\Report Designer Component\craxdrt.dll=Yes
+C:\Program Files\Seagate Software\Viewers\ActiveXViewer\crviewer.dll=Yes
+C:\Windows\System32\tinumb8.ocx=Yes
+C:\Windows\System32\tishare8.dll=Yes
+C:\Windows\System32\tibase8.dll=Yes
+C:\Windows\System32\tidate8.ocx=Yes
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=Yes
+C:\Windows\System32\MBBrowse.ocx=Yes
+C:\Windows\System32\mhlabl32.ocx=Yes
+C:\Windows\System32\MSDATGRD.OCX=Yes
+C:\Windows\System32\msstdfmt.dll=Yes
+C:\Windows\System32\TABCTL32.OCX=Yes
+C:\Windows\System32\mhrinp32.ocx=Yes
+C:\Windows\System32\FM20.DLL=Yes
+C:\Windows\System32\MSMASK32.OCX=Yes
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=Yes
+C:\Windows\System32\MSCOMCTL.OCX=Yes
+C:\Windows\System32\COMDLG32.OCX=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+
+[Package|Standard Setup Package 1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package 1|Install Locations]
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\mhfram32.ocx=$(WinSysPath)
+C:\Program Files\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\System32\scrrun.dll=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Seagate Software\Report Designer Component\craxddrt.dll=$(WinSysPath)
+C:\Windows\System32\IMPLODE.DLL=$(WinSysPath)
+C:\Windows\System32\Crpaig80.dll=$(WinSysPath)
+C:\Windows\System32\mfc42.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\sscsdk80.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=$(AppPath)
+C:\Windows\System32\P2smon.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Report Designer Component\craxdrt.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Viewers\ActiveXViewer\crviewer.dll=$(WinSysPath)
+C:\Windows\System32\tinumb8.ocx=$(WinSysPath)
+C:\Windows\System32\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tidate8.ocx=$(WinSysPath)
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\System32\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\System32\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\System32\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\System32\msstdfmt.dll=$(WinSysPath)
+C:\Windows\System32\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\System32\mhrinp32.ocx=$(WinSysPath)
+C:\Windows\System32\FM20.DLL=$(WinSysPath)
+C:\Windows\System32\MSMASK32.OCX=$(WinSysPath)
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\System32\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\System32\COMDLG32.OCX=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+
+[Package|Standard Setup Package 1|Configure Shared Files]
+Applicable=Yes
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=No
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=No
+
+[Package|Standard Setup Package 1|Distribution]
+Type=single
+Size=
+Title=Easy Publish
+
+[Package|Standard Setup Package 1|IconGroups]
+Group0=Easy Publish
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Standard Setup Package 1|Easy Publish]
+Icon1=EasyPublish.exe
+Title1=Easy Publish
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Standard Setup Package 1|Package]
+PackageFolder=F:\Final\PD\RSPL\Saral-U\Old\Package
+ProjectFolder=F:\Final\PD\RSPL\Saral-U\Old
+ServerSideCab=
+File1=F:\Final\PD\RSPL\Saral-U\Old\Package\setup.exe
+File2=F:\Final\PD\RSPL\Saral-U\Old\Package\Setup.Lst
+File3=F:\Final\PD\RSPL\Saral-U\Old\Package\EasyPublish.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+
+[Package|Dep File 1|Root]
+SubWizProgID=PDWizard.DepPkgSubWiz
+BuildFolder=F:\Final\PD\RSPL\Saral-U\Old\Package
+
+[Package|Dep File 1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Dep File 1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Dep File 1|Files Found]
+pg32conv.dll=G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll
+
+[Package|Dep File 1|Files Released]
+
+[Package|Dep File 1|Missing Dependency Information]
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=
+C:\Windows\SysWOW64\mhrinp32.ocx=
+C:\Windows\SysWOW64\MSSTDFMT.DLL=
+C:\Windows\SysWOW64\mhlabl32.ocx=
+C:\Windows\SysWOW64\MBBrowse.ocx=
+C:\Program Files (x86)\Microsoft Office\Office12\MSOUTL.OLB=
+C:\Windows\SysWOW64\crviewer.dll=
+C:\Windows\SysWOW64\craxdrt.dll=
+C:\Windows\SysWOW64\craxddrt.dll=
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=
+C:\Windows\SysWOW64\mhfram32.ocx=
+
+[Package|Dep File 1|Out-of-Date Dependency Information]
+C:\Windows\System32\MSCOMCTL.OCX=
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\System32\msstdfmt.dll=
+C:\Windows\System32\scrrun.dll=
+C:\Windows\SysWOW64\COMDLG32.OCX=
+C:\Windows\SysWOW64\MSCOMCTL.OCX=
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\SysWOW64\MSMASK32.OCX=
+C:\Windows\SysWOW64\TABCTL32.OCX=
+C:\Windows\SysWOW64\MSDATGRD.OCX=
+C:\Windows\SysWOW64\scrrun.dll=
+
+[Package|Dep File 1|Files Added]
+
+[Package|Dep File 1|Files Removed]
+
+[Package|Dep File 1|Files In Project]
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\mfc42.dll=Yes
+F:\EP\EPM.exe=Yes
+C:\Windows\System32\oleaut32.dll=Yes
+C:\Windows\System32\olepro32.dll=Yes
+C:\Windows\System32\asycfilt.dll=Yes
+C:\Windows\System32\stdole2.tlb=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\SysWOW64\mhfram32.ocx=Yes
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=Yes
+C:\Windows\SysWOW64\scrrun.dll=Yes
+C:\Windows\SysWOW64\msvcrt.dll=Yes
+C:\Windows\SysWOW64\craxddrt.dll=Yes
+C:\Windows\SysWOW64\craxdrt.dll=Yes
+C:\Windows\SysWOW64\crviewer.dll=Yes
+C:\Windows\SysWOW64\tinumb8.ocx=Yes
+C:\Windows\SysWOW64\tishare8.dll=Yes
+C:\Windows\SysWOW64\tibase8.dll=Yes
+C:\Windows\SysWOW64\tidate8.ocx=Yes
+C:\Program Files (x86)\Microsoft Office\Office12\MSOUTL.OLB=Yes
+C:\Windows\SysWOW64\MBBrowse.ocx=Yes
+C:\Windows\SysWOW64\mhlabl32.ocx=Yes
+C:\Windows\SysWOW64\MSDATGRD.OCX=Yes
+C:\Windows\SysWOW64\MSSTDFMT.DLL=Yes
+C:\Windows\SysWOW64\TABCTL32.OCX=Yes
+C:\Windows\SysWOW64\mhrinp32.ocx=Yes
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=Yes
+C:\Windows\SysWOW64\MSMASK32.OCX=Yes
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=Yes
+C:\Windows\SysWOW64\MSCOMCTL.OCX=Yes
+C:\Windows\SysWOW64\COMDLG32.OCX=Yes
+
+[Package|Dep File 1|Configure Registry Files]
+Applicable=No
+
+[Package|Dep File 1|Configure Remote Servers]
+Applicable=No
+
+[Package|Dep File 1|Install Locations]
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\mhfram32.ocx=$(WinSysPath)
+C:\Program Files\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\System32\scrrun.dll=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Seagate Software\Report Designer Component\craxddrt.dll=$(WinSysPath)
+C:\Windows\System32\IMPLODE.DLL=$(WinSysPath)
+C:\Windows\System32\Crpaig80.dll=$(WinSysPath)
+C:\Windows\System32\mfc42.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\sscsdk80.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=$(AppPath)
+C:\Windows\System32\P2smon.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Report Designer Component\craxdrt.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Viewers\ActiveXViewer\crviewer.dll=$(WinSysPath)
+C:\Windows\System32\tinumb8.ocx=$(WinSysPath)
+C:\Windows\System32\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tidate8.ocx=$(WinSysPath)
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\System32\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\System32\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\System32\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\System32\msstdfmt.dll=$(WinSysPath)
+C:\Windows\System32\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\System32\mhrinp32.ocx=$(WinSysPath)
+C:\Windows\System32\FM20.DLL=$(WinSysPath)
+C:\Windows\System32\MSMASK32.OCX=$(WinSysPath)
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\System32\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\System32\COMDLG32.OCX=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+F:\EP\EPM.exe=$(AppPath)
+C:\Windows\System32\oleaut32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\olepro32.dll=$(WinSysPathSysFile)
+C:\Windows\System32\asycfilt.dll=$(WinSysPathSysFile)
+C:\Windows\System32\stdole2.tlb=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\mhfram32.ocx=$(WinSysPath)
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\SysWOW64\scrrun.dll=$(WinSysPath)
+C:\Windows\SysWOW64\msvcrt.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\craxddrt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\craxdrt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\crviewer.dll=$(WinSysPath)
+C:\Windows\SysWOW64\tinumb8.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\tidate8.ocx=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\Office12\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\SysWOW64\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\MSSTDFMT.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\mhrinp32.ocx=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\MSMASK32.OCX=$(WinSysPath)
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\COMDLG32.OCX=$(WinSysPath)
+
+[Package|Dep File 1|Configure Shared Files]
+Applicable=Yes
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=No
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=No
+
+[Package|Dep File 1|Distribution]
+Type=single
+Size=
+Title=Easy Publish
+
+[Package|Dep File 1|IconGroups]
+Group0=Easy Publish
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Dep File 1|Easy Publish]
+Icon1=EasyPublish.exe
+Title1=Easy Publish
+StartIn1=$(AppPath)
+Key1=Icon1
+
+[Package|Dep File 1|DepFile]
+DepCabFile=EPM.CAB
+DepCabRun=EPM.INF
+
+[Package|Dep File 1|Package]
+PackageFolder=F:\Final\PD\RSPL\Saral-U\Old\Package
+ProjectFolder=F:\EP
+ServerSideCab=
+File1=F:\Final\PD\RSPL\Saral-U\Old\Package\EPM.DEP
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Standard Setup Package1|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=EasyPublishSetup
+
+[Package|Standard Setup Package1|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Standard Setup Package1|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package1|Files Found]
+pg32conv.dll=G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll
+
+[Package|Standard Setup Package1|Files Released]
+
+[Package|Standard Setup Package1|Missing Dependency Information]
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=
+C:\Windows\SysWOW64\mhrinp32.ocx=
+C:\Windows\SysWOW64\mhlabl32.ocx=
+C:\Windows\SysWOW64\MBBrowse.ocx=
+C:\Windows\SysWOW64\crviewer.dll=
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=
+C:\Windows\SysWOW64\mhfram32.ocx=
+C:\Windows\SysWOW64\Mhrun32.dll=
+
+[Package|Standard Setup Package1|Out-of-Date Dependency Information]
+C:\Windows\System32\MSCOMCTL.OCX=
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\System32\msstdfmt.dll=
+C:\Windows\System32\scrrun.dll=
+C:\Windows\SysWOW64\MSCOMCTL.OCX=
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\SysWOW64\msstdfmt.dll=
+C:\Windows\SysWOW64\scrrun.dll=
+
+[Package|Standard Setup Package1|Files Added]
+C:\Windows\SysWOW64\mhfram32.oca=
+C:\Windows\SysWOW64\crviewer.oca=
+C:\Windows\SysWOW64\MBBrowse.oca=
+C:\Windows\SysWOW64\mhlabl32.oca=
+C:\Windows\SysWOW64\mhrinp32.oca=
+C:\Windows\SysWOW64\Mhrun32.dll=
+C:\Windows\SysWOW64\MSSTDFMT.DEP=
+C:\Windows\SysWOW64\MSCOMCTL.oca=
+C:\Windows\SysWOW64\MSCOMCTL.DEP=
+C:\Windows\SysWOW64\MSCOMCTL.SRG=
+
+[Package|Standard Setup Package1|Files Removed]
+
+[Package|Standard Setup Package1|Files In Project]
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\IMPLODE.DLL=Yes
+C:\Windows\System32\Crpaig80.dll=Yes
+C:\Windows\System32\mfc42.dll=Yes
+C:\Windows\System32\P2smon.dll=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+E:\EP_Tally_Without 05_(10th-May-2021)DebitCredit - 3\EasyPublish.exe=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\shlwapi.dll=Yes
+C:\Windows\SysWOW64\mhfram32.ocx=Yes
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=Yes
+C:\Windows\SysWOW64\scrrun.dll=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=Yes
+C:\Program Files (x86)\Seagate Software\Report Designer Component\craxddrt.dll=Yes
+C:\Windows\System32\sscsdk80.dll=Yes
+C:\Windows\System32\PG32CONV.DLL=Yes
+C:\Program Files (x86)\Seagate Software\Report Designer Component\craxdrt.dll=Yes
+C:\Windows\SysWOW64\crviewer.dll=Yes
+C:\Windows\SysWOW64\tinumb8.ocx=Yes
+C:\Windows\SysWOW64\tishare8.dll=Yes
+C:\Windows\SysWOW64\tibase8.dll=Yes
+C:\Windows\SysWOW64\tidate8.ocx=Yes
+C:\Program Files (x86)\Microsoft Office\root\Office16\MSOUTL.OLB=Yes
+C:\Windows\SysWOW64\MBBrowse.ocx=Yes
+C:\Windows\SysWOW64\mhlabl32.ocx=Yes
+C:\Windows\SysWOW64\MSDATGRD.OCX=Yes
+C:\Windows\SysWOW64\msstdfmt.dll=Yes
+C:\Windows\SysWOW64\TABCTL32.OCX=Yes
+C:\Windows\SysWOW64\mhrinp32.ocx=Yes
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=Yes
+C:\Windows\SysWOW64\MSMASK32.OCX=Yes
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=Yes
+C:\Windows\SysWOW64\MSCOMCTL.OCX=Yes
+C:\Windows\SysWOW64\COMDLG32.OCX=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Windows\SysWOW64\mhfram32.oca=Yes
+C:\Windows\SysWOW64\crviewer.oca=Yes
+C:\Windows\SysWOW64\MBBrowse.oca=Yes
+C:\Windows\SysWOW64\mhlabl32.oca=Yes
+C:\Windows\SysWOW64\mhrinp32.oca=Yes
+C:\Windows\SysWOW64\Mhrun32.dll=Yes
+C:\Windows\SysWOW64\MSSTDFMT.DEP=Yes
+C:\Windows\SysWOW64\MSCOMCTL.oca=Yes
+C:\Windows\SysWOW64\MSCOMCTL.DEP=Yes
+C:\Windows\SysWOW64\MSCOMCTL.SRG=Yes
+
+[Package|Standard Setup Package1|Configure Registry Files]
+Applicable=No
+
+[Package|Standard Setup Package1|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package1|Install Locations]
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\mhfram32.ocx=$(WinSysPath)
+C:\Program Files\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\System32\scrrun.dll=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Seagate Software\Report Designer Component\craxddrt.dll=$(WinSysPath)
+C:\Windows\System32\IMPLODE.DLL=$(WinSysPath)
+C:\Windows\System32\Crpaig80.dll=$(WinSysPath)
+C:\Windows\System32\mfc42.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\sscsdk80.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=$(AppPath)
+C:\Windows\System32\P2smon.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Report Designer Component\craxdrt.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Viewers\ActiveXViewer\crviewer.dll=$(WinSysPath)
+C:\Windows\System32\tinumb8.ocx=$(WinSysPath)
+C:\Windows\System32\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tidate8.ocx=$(WinSysPath)
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\System32\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\System32\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\System32\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\System32\msstdfmt.dll=$(WinSysPath)
+C:\Windows\System32\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\System32\mhrinp32.ocx=$(WinSysPath)
+C:\Windows\System32\FM20.DLL=$(WinSysPath)
+C:\Windows\System32\MSMASK32.OCX=$(WinSysPath)
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\System32\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\System32\COMDLG32.OCX=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+E:\EP_Tally_Without 05_(10th-May-2021)DebitCredit - 3\EasyPublish.exe=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\shlwapi.dll=$(WinSysPath)
+C:\Windows\SysWOW64\mhfram32.ocx=$(WinSysPath)
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\SysWOW64\scrrun.dll=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Seagate Software\Report Designer Component\craxddrt.dll=$(WinSysPath)
+C:\Windows\System32\sscsdk80.dll=$(WinSysPath)
+C:\Windows\System32\PG32CONV.DLL=$(AppPath)
+C:\Program Files (x86)\Seagate Software\Report Designer Component\craxdrt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\crviewer.dll=$(WinSysPath)
+C:\Windows\SysWOW64\tinumb8.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\tidate8.ocx=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\root\Office16\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\SysWOW64\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\msstdfmt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\mhrinp32.ocx=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\MSMASK32.OCX=$(WinSysPath)
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\COMDLG32.OCX=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Windows\SysWOW64\mhfram32.oca=$(AppPath)
+C:\Windows\SysWOW64\crviewer.oca=$(AppPath)
+C:\Windows\SysWOW64\MBBrowse.oca=$(AppPath)
+C:\Windows\SysWOW64\mhlabl32.oca=$(AppPath)
+C:\Windows\SysWOW64\mhrinp32.oca=$(AppPath)
+C:\Windows\SysWOW64\Mhrun32.dll=$(WinSysPath)
+C:\Windows\SysWOW64\MSSTDFMT.DEP=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.oca=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.DEP=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.SRG=$(AppPath)
+
+[Package|Standard Setup Package1|Configure Shared Files]
+Applicable=Yes
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=No
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=No
+E:\EP_Tally_Without 05_(10th-May-2021)DebitCredit - 3\EasyPublish.exe=No
+C:\Windows\System32\PG32CONV.DLL=No
+C:\Windows\SysWOW64\mhfram32.oca=No
+C:\Windows\SysWOW64\crviewer.oca=No
+C:\Windows\SysWOW64\MBBrowse.oca=No
+C:\Windows\SysWOW64\mhlabl32.oca=No
+C:\Windows\SysWOW64\mhrinp32.oca=No
+C:\Windows\SysWOW64\MSSTDFMT.DEP=No
+C:\Windows\SysWOW64\MSCOMCTL.oca=No
+C:\Windows\SysWOW64\MSCOMCTL.DEP=No
+C:\Windows\SysWOW64\MSCOMCTL.SRG=No
+
+[Package|Standard Setup Package1|Distribution]
+Type=single
+Size=
+Title=Easy Publish Prime
+
+[Package|Standard Setup Package1|Package]
+PackageFolder=F:\Final\PD\RSPL\Saral-U\Old\Package
+ProjectFolder=F:\Final\PD\RSPL\Saral-U\Old
+ServerSideCab=
+File1=F:\Final\PD\RSPL\Saral-U\Old\Package\setup.exe
+File2=F:\Final\PD\RSPL\Saral-U\Old\Package\Setup.Lst
+File3=F:\Final\PD\RSPL\Saral-U\Old\Package\EasyPublish.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Standard Setup Package1|IconGroups]
+Group0=Easy Publish
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Standard Setup Package1|Easy Publish]
+Icon1=EasyPublish.exe
+Title1=Easy Publish
+StartIn1=$(AppPath)
+Key1=Icon1
+
+
+[Package|Standard Setup Package|Root]
+SubWizProgID=PDWizard.SetupPkgSubWiz
+BuildFolder=g:\Easy Publish Prime Setup
+
+[Package|Standard Setup Package|Configure DAO ISAMs]
+Applicable=No
+
+[Package|Standard Setup Package|Configure DAO ODBC]
+JetWorkspace=
+ODBCDirect=
+
+[Package|Standard Setup Package|Files Found]
+pg32conv.dll=G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll
+ICON.BMP=E:\Easy Publish Prime\Icon\ICON.BMP
+crtslv.dll=C:\Program Files (x86)\Seagate Software\Shared\crtslv.dll
+ExportModeller.dll=C:\Program Files (x86)\Seagate Software\Shared\ExportModeller.dll
+ICON1.ico=E:\Easy Publish Prime\Icon\ICON1.ico
+craxdrt9.dll=C:\Program Files (x86)\Crystal Decisions\Report Designer Component\craxdrt9.dll
+CR9Deploy.reg=C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\CR9Deploy.reg
+
+[Package|Standard Setup Package|Files Released]
+u2LBAR.DLL=
+u25TOTAL.DLL=
+u25STORE.DLL=
+p2BBND.DLL=
+Crystal=
+Unicows.dll=
+
+[Package|Standard Setup Package|Missing Dependency Information]
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=
+C:\Windows\SysWOW64\mhrinp32.ocx=
+C:\Windows\SysWOW64\mhlabl32.ocx=
+C:\Windows\SysWOW64\MBBrowse.ocx=
+C:\Windows\SysWOW64\crviewer.dll=
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=
+C:\Windows\SysWOW64\mhfram32.ocx=
+C:\Windows\SysWOW64\Mhrun32.dll=
+C:\Windows\SysWOW64\fpSPR80.OCX=
+C:\Windows\SysWOW64\FM20.DLL=
+C:\Windows\SysWOW64\craxdrt.dll=
+C:\Windows\SysWOW64\craxddrt.dll=
+E:\Easy Publish Prime\AnyDesk.exe=
+C:\Windows\Crystal\p2ssql.dll=
+C:\Windows\SysWOW64\cpeaut32.dll=
+C:\Windows\Crystal\p2ixbse.dll=
+C:\Windows\Crystal\p2lodbc.dll=
+C:\Windows\Crystal\P2lsql.dll=
+C:\Windows\Crystal\p2sfs.dll=
+C:\Windows\Crystal\u2fdif.dll=
+
+[Package|Standard Setup Package|Out-of-Date Dependency Information]
+C:\Windows\System32\MSCOMCTL.OCX=
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\System32\msstdfmt.dll=
+C:\Windows\System32\scrrun.dll=
+C:\Windows\SysWOW64\MSCOMCTL.OCX=
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=
+C:\Windows\SysWOW64\msstdfmt.dll=
+C:\Windows\SysWOW64\scrrun.dll=
+C:\Program Files (x86)\Crystal Decisions\Report Designer Component\craxdrt9.dll=
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\crystalreportviewers\ActiveXViewer\crviewer9.dll=
+
+[Package|Standard Setup Package|Files Added]
+c:\windows\syswow64\mhfram32.oca=
+c:\windows\syswow64\crviewer.oca=
+c:\windows\syswow64\mbbrowse.oca=
+c:\windows\syswow64\mhlabl32.oca=
+c:\windows\syswow64\mhrinp32.oca=
+c:\windows\syswow64\mhrun32.dll=
+c:\windows\syswow64\msstdfmt.dep=
+c:\windows\syswow64\mscomctl.oca=
+c:\windows\syswow64\mscomctl.dep=
+c:\windows\syswow64\mscomctl.srg=
+e:\easy publish prime\anydesk.exe=
+e:\easy publish prime\easypublish.ini=
+e:\easy publish prime\icon\cancel.bmp=
+e:\easy publish prime\icon\copy.bmp=
+e:\easy publish prime\icon\delete.bmp=
+e:\easy publish prime\icon\easypublish.jpeg=
+e:\easy publish prime\icon\excel.jpg=
+e:\easy publish prime\icon\exit.bmp=
+e:\easy publish prime\icon\filter.bmp=
+e:\easy publish prime\icon\filtercol.bmp=
+e:\easy publish prime\icon\first.bmp=
+e:\easy publish prime\icon\green.bmp=
+icon.bmp=
+e:\easy publish prime\icon\icon.ico=
+e:\easy publish prime\icon\icon.png=
+icon1.ico=
+e:\easy publish prime\icon\last.bmp=
+e:\easy publish prime\icon\logp541.jpg=
+e:\easy publish prime\icon\mail.bmp=
+e:\easy publish prime\icon\new.bmp=
+e:\easy publish prime\icon\next.bmp=
+e:\easy publish prime\icon\open.bmp=
+e:\easy publish prime\icon\pause.bmp=
+e:\easy publish prime\icon\preview.bmp=
+e:\easy publish prime\icon\print.bmp=
+e:\easy publish prime\icon\prior.bmp=
+e:\easy publish prime\icon\red.bmp=
+e:\easy publish prime\icon\refresh.ico=
+e:\easy publish prime\icon\run.bmp=
+e:\easy publish prime\icon\save.bmp=
+e:\easy publish prime\icon\search.bmp=
+e:\easy publish prime\icon\start.bmp=
+e:\easy publish prime\icon\stop.bmp=
+e:\easy publish prime\icon\upload.bmp=
+e:\easy publish prime\icon\yellow.bmp=
+e:\easy publish prime\template\box label.xls=
+e:\easy publish prime\template\budget report.xls=
+e:\easy publish prime\template\cost sheet.xlsm=
+e:\easy publish prime\template\imposition.xlsm=
+e:\easy publish prime\template\item list.xlsx=
+e:\easy publish prime\template\item weight.xlsm=
+e:\easy publish prime\template\manuscript status register.xlsx=
+e:\easy publish prime\template\opening balance.xlsx=
+e:\easy publish prime\template\paper confirmation letter.xlsx=
+e:\easy publish prime\template\paper issue register.xlsx=
+e:\easy publish prime\template\paper stock register.xlsx=
+e:\easy publish prime\template\pending payment register.xlsx=
+e:\easy publish prime\template\plate usage register.xlsx=
+e:\easy publish prime\template\print order status register.xlsx=
+e:\easy publish prime\template\production planning.xlsx=
+e:\easy publish prime\icon\logo000.jpg=
+c:\windows\crystal\p2ssql.dll=
+c:\windows\syswow64\cpeaut32.dll=
+c:\windows\syswow64\crpe32.dll=
+c:\program files (x86)\common files\crystal decisions\2.0\crystalreportviewers\activexviewer\crviewer9.dll=
+C:\Windows\Crystal\p2ixbse.dll=
+C:\Windows\Crystal\p2lodbc.dll=
+C:\Windows\Crystal\P2lsql.dll=
+C:\Windows\Crystal\p2sfs.dll=
+C:\Windows\SysWOW64\PG32CONV.DLL=
+C:\Windows\Crystal\u2fdif.dll=
+C:\Windows\Crystal\u2frdef.dll=
+E:\Easy Publish Prime\Icon\EasyPrint.JPEG=
+
+[Package|Standard Setup Package|Files Removed]
+e:\easy publish prime\icon\logp541.jpg=
+
+[Package|Standard Setup Package|Files In Project]
+C:\Windows\System32\msvbvm60.dll=Yes
+C:\Windows\System32\VB6STKIT.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=Yes
+C:\Windows\System32\shlwapi.dll=Yes
+C:\Windows\SysWOW64\mhfram32.ocx=Yes
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=Yes
+C:\Windows\SysWOW64\scrrun.dll=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=Yes
+C:\Windows\SysWOW64\crviewer.dll=Yes
+C:\Windows\SysWOW64\tinumb8.ocx=Yes
+C:\Windows\SysWOW64\tishare8.dll=Yes
+C:\Windows\SysWOW64\tibase8.dll=Yes
+C:\Windows\SysWOW64\tidate8.ocx=Yes
+C:\Program Files (x86)\Microsoft Office\root\Office16\MSOUTL.OLB=Yes
+C:\Windows\SysWOW64\MBBrowse.ocx=Yes
+C:\Windows\SysWOW64\mhlabl32.ocx=Yes
+C:\Windows\SysWOW64\MSDATGRD.OCX=Yes
+C:\Windows\SysWOW64\msstdfmt.dll=Yes
+C:\Windows\SysWOW64\TABCTL32.OCX=Yes
+C:\Windows\SysWOW64\mhrinp32.ocx=Yes
+C:\Windows\SysWOW64\MSMASK32.OCX=Yes
+C:\Windows\SysWOW64\MSCOMCTL.OCX=Yes
+C:\Windows\SysWOW64\COMDLG32.OCX=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=Yes
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=Yes
+C:\Windows\SysWOW64\mhfram32.oca=Yes
+C:\Windows\SysWOW64\crviewer.oca=Yes
+C:\Windows\SysWOW64\MBBrowse.oca=Yes
+C:\Windows\SysWOW64\mhlabl32.oca=Yes
+C:\Windows\SysWOW64\mhrinp32.oca=Yes
+C:\Windows\SysWOW64\Mhrun32.dll=Yes
+C:\Windows\SysWOW64\MSSTDFMT.DEP=Yes
+C:\Windows\SysWOW64\MSCOMCTL.oca=Yes
+C:\Windows\SysWOW64\MSCOMCTL.DEP=Yes
+C:\Windows\SysWOW64\MSCOMCTL.SRG=Yes
+E:\Easy Publish Prime\EasyPublish.exe=Yes
+C:\Windows\SysWOW64\craxddrt.dll=Yes
+C:\Windows\SysWOW64\craxdrt.dll=Yes
+C:\Windows\SysWOW64\fpSPR80.OCX=Yes
+E:\Easy Publish Prime\AnyDesk.exe=Yes
+E:\Easy Publish Prime\EasyPublish.ini=Yes
+E:\Easy Publish Prime\Icon\Cancel.BMP=Yes
+E:\Easy Publish Prime\Icon\Copy.BMP=Yes
+E:\Easy Publish Prime\Icon\Delete.BMP=Yes
+E:\Easy Publish Prime\Icon\EasyPublish.jpeg=Yes
+E:\Easy Publish Prime\Icon\Excel.jpg=Yes
+E:\Easy Publish Prime\Icon\Exit.bmp=Yes
+E:\Easy Publish Prime\Icon\Filter.Bmp=Yes
+E:\Easy Publish Prime\Icon\FilterCol.bmp=Yes
+E:\Easy Publish Prime\Icon\First.BMP=Yes
+E:\Easy Publish Prime\Icon\Green.BMP=Yes
+E:\Easy Publish Prime\Icon\ICON.BMP=Yes
+E:\Easy Publish Prime\Icon\ICON.ico=Yes
+E:\Easy Publish Prime\Icon\ICON.png=Yes
+E:\Easy Publish Prime\Icon\ICON1.ico=Yes
+E:\Easy Publish Prime\Icon\Last.BMP=Yes
+E:\Easy Publish Prime\Icon\LOGP541.jpg=No
+E:\Easy Publish Prime\Icon\Mail.bmp=Yes
+E:\Easy Publish Prime\Icon\New.BMP=Yes
+E:\Easy Publish Prime\Icon\Next.BMP=Yes
+E:\Easy Publish Prime\Icon\Open.BMP=Yes
+E:\Easy Publish Prime\Icon\Pause.bmp=Yes
+E:\Easy Publish Prime\Icon\Preview.BMP=Yes
+E:\Easy Publish Prime\Icon\Print.BMP=Yes
+E:\Easy Publish Prime\Icon\Prior.BMP=Yes
+E:\Easy Publish Prime\Icon\Red.BMP=Yes
+E:\Easy Publish Prime\Icon\Refresh.ICO=Yes
+E:\Easy Publish Prime\Icon\Run.BMP=Yes
+E:\Easy Publish Prime\Icon\Save.BMP=Yes
+E:\Easy Publish Prime\Icon\search.bmp=Yes
+E:\Easy Publish Prime\Icon\Start.bmp=Yes
+E:\Easy Publish Prime\Icon\Stop.bmp=Yes
+E:\Easy Publish Prime\Icon\Upload.bmp=Yes
+E:\Easy Publish Prime\Icon\Yellow.BMP=Yes
+E:\Easy Publish Prime\Template\Box Label.xls=Yes
+E:\Easy Publish Prime\Template\Budget Report.xls=Yes
+E:\Easy Publish Prime\Template\Cost Sheet.xlsm=Yes
+E:\Easy Publish Prime\Template\Imposition.xlsm=Yes
+E:\Easy Publish Prime\Template\Item List.xlsx=Yes
+E:\Easy Publish Prime\Template\Item Weight.xlsm=Yes
+E:\Easy Publish Prime\Template\Manuscript Status Register.xlsx=Yes
+E:\Easy Publish Prime\Template\Opening Balance.xlsx=Yes
+E:\Easy Publish Prime\Template\Paper Confirmation Letter.xlsx=Yes
+E:\Easy Publish Prime\Template\Paper Issue Register.xlsx=Yes
+E:\Easy Publish Prime\Template\Paper Stock Register.xlsx=Yes
+E:\Easy Publish Prime\Template\Pending Payment Register.xlsx=Yes
+E:\Easy Publish Prime\Template\Plate Usage Register.xlsx=Yes
+E:\Easy Publish Prime\Template\Print Order Status Register.xlsx=Yes
+E:\Easy Publish Prime\Template\Production Planning.xlsx=Yes
+E:\Easy Publish Prime\Icon\LOGO000.jpg=Yes
+C:\Windows\Crystal\p2ssql.dll=Yes
+C:\Windows\SysWOW64\cpeaut32.dll=Yes
+C:\Windows\SysWOW64\crpe32.dll=Yes
+C:\Windows\SysWOW64\IMPLODE.DLL=Yes
+C:\Windows\SysWOW64\Crpaig80.dll=Yes
+C:\Windows\SysWOW64\mfc42.dll=Yes
+C:\Windows\Crystal\Crxlat32.dll=Yes
+C:\Windows\Crystal\P2BBDE.DLL=Yes
+C:\Windows\SysWOW64\p2bdao.dll=Yes
+C:\Windows\Crystal\P2BXBSE.DLL=Yes
+C:\Windows\SysWOW64\p2ctdao.dll=Yes
+C:\Windows\SysWOW64\p2irdao.dll=Yes
+C:\Windows\Crystal\p2sifmx.dll=Yes
+C:\Windows\SysWOW64\P2smon.dll=Yes
+C:\Windows\SysWOW64\p2sodbc.dll=Yes
+C:\Windows\Crystal\p2sora7.dll=Yes
+C:\Windows\Crystal\p2ssyb10.dll=Yes
+C:\Windows\Crystal\p2soledb.dll=Yes
+C:\Windows\Crystal\u2ddisk.dll=Yes
+C:\Windows\Crystal\u2dmapi.dll=Yes
+C:\Windows\Crystal\u2dnotes.dll=Yes
+C:\Windows\Crystal\u2dpost.dll=Yes
+C:\Windows\Crystal\u2dvim.dll=Yes
+C:\Windows\Crystal\u2dapp.dll=Yes
+C:\Windows\Crystal\u2fcr.dll=Yes
+C:\Windows\Crystal\u2fhtml.dll=Yes
+C:\Windows\Crystal\u2fodbc.dll=Yes
+C:\Windows\Crystal\u2frec.dll=Yes
+C:\Windows\Crystal\crxf_rtf.dll=Yes
+C:\Windows\Crystal\u2fsepv.dll=Yes
+C:\Windows\Crystal\U2FTEXT.DLL=Yes
+C:\Windows\Crystal\u2fwks.dll=Yes
+C:\Windows\Crystal\u2fwordw.dll=Yes
+C:\Windows\Crystal\U2FXLS.DLL=Yes
+C:\Windows\Crystal\crxf_pdf.dll=Yes
+C:\Windows\Crystal\u25dts.dll=Yes
+C:\Windows\Crystal\u2l2000.dll=Yes
+C:\Windows\Crystal\u2lcom.dll=Yes
+C:\Windows\Crystal\u2ldts.dll=Yes
+C:\Windows\Crystal\u2lsamp1.dll=Yes
+C:\Windows\Crystal\u252000.dll=Yes
+C:\Windows\SysWOW64\sscsdk80.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\crystalreportviewers\ActiveXViewer\crviewer9.dll=Yes
+C:\Program Files (x86)\Crystal Decisions\Report Designer Component\craxdrt9.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crtowords_en.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\ufmanager.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u2lexch.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u2lfinra.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u25samp1.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crqe.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crdb_ado.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crdb_dao.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crdb_odbc.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\querybuilder.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\exlate32.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crxf_wordw.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crxf_xls.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u2fxml.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\keycode.dll=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\CR9Deploy.reg=Yes
+C:\Windows\SysWOW64\FM20.DLL=Yes
+C:\Windows\System32\crtslv.dll=Yes
+C:\Windows\System32\ExportModeller.dll=Yes
+C:\Windows\Crystal\p2ixbse.dll=Yes
+C:\Windows\Crystal\p2lodbc.dll=Yes
+C:\Windows\Crystal\P2lsql.dll=Yes
+C:\Windows\Crystal\p2sfs.dll=Yes
+C:\Windows\SysWOW64\PG32CONV.DLL=Yes
+C:\Windows\Crystal\u2fdif.dll=Yes
+C:\Windows\Crystal\u2frdef.dll=Yes
+E:\Easy Publish Prime\Icon\EasyPrint.JPEG=Yes
+
+[Package|Standard Setup Package|Configure Registry Files]
+Applicable=Yes
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\CR9Deploy.reg=Both
+
+[Package|Standard Setup Package|Configure Remote Servers]
+Applicable=No
+
+[Package|Standard Setup Package|Install Locations]
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=$(AppPath)
+C:\Windows\System32\msvbvm60.dll=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\mhfram32.ocx=$(WinSysPath)
+C:\Program Files\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\System32\scrrun.dll=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\Program Files\Seagate Software\Report Designer Component\craxddrt.dll=$(WinSysPath)
+C:\Windows\System32\IMPLODE.DLL=$(WinSysPath)
+C:\Windows\System32\Crpaig80.dll=$(WinSysPath)
+C:\Windows\System32\mfc42.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\sscsdk80.dll=$(WinSysPath)
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=$(AppPath)
+C:\Windows\System32\P2smon.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Report Designer Component\craxdrt.dll=$(WinSysPath)
+C:\Program Files\Seagate Software\Viewers\ActiveXViewer\crviewer.dll=$(WinSysPath)
+C:\Windows\System32\tinumb8.ocx=$(WinSysPath)
+C:\Windows\System32\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\System32\tidate8.ocx=$(WinSysPath)
+C:\Program Files\Microsoft Office\Office12\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\System32\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\System32\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\System32\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\System32\msstdfmt.dll=$(WinSysPath)
+C:\Windows\System32\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\System32\mhrinp32.ocx=$(WinSysPath)
+C:\Windows\System32\FM20.DLL=$(WinSysPath)
+C:\Windows\System32\MSMASK32.OCX=$(WinSysPath)
+D:\Program Files\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\System32\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\System32\COMDLG32.OCX=$(WinSysPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Windows\System32\VB6STKIT.DLL=$(WinSysPathSysFile)
+D:\Program Files\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+E:\EP_Tally_Without 05_(10th-May-2021)DebitCredit - 3\EasyPublish.exe=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEAUT32.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\OLEPRO32.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\ASYCFILT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\STDOLE2.TLB=$(WinSysPathSysFile)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\COMCAT.DLL=$(WinSysPathSysFile)
+C:\Windows\System32\shlwapi.dll=$(WinSysPath)
+C:\Windows\SysWOW64\mhfram32.ocx=$(WinSysPath)
+C:\Program Files (x86)\Common Files\System\ado\msado28.tlb=$(WinSysPath)
+C:\Windows\SysWOW64\scrrun.dll=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\Redist\MSVCRT.DLL=$(WinSysPathSysFile)
+C:\Program Files (x86)\Seagate Software\Report Designer Component\craxddrt.dll=$(WinSysPath)
+C:\Windows\System32\sscsdk80.dll=$(WinSysPath)
+C:\Windows\System32\PG32CONV.DLL=$(AppPath)
+C:\Program Files (x86)\Seagate Software\Report Designer Component\craxdrt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\crviewer.dll=$(WinSysPath)
+C:\Windows\SysWOW64\tinumb8.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\tishare8.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\tibase8.dll=$(WinSysPathSysFile)
+C:\Windows\SysWOW64\tidate8.ocx=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\root\Office16\MSOUTL.OLB=$(WinSysPath)
+C:\Windows\SysWOW64\MBBrowse.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\mhlabl32.ocx=$(WinSysPath)
+C:\Windows\SysWOW64\MSDATGRD.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\msstdfmt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\TABCTL32.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\mhrinp32.ocx=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Office\root\VFS\SystemX86\FM20.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\MSMASK32.OCX=$(WinSysPath)
+C:\Program Files (x86)\FarPoint Technologies\Spread 8\Bin\fpSPR80.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\MSCOMCTL.OCX=$(WinSysPath)
+C:\Windows\SysWOW64\COMDLG32.OCX=$(WinSysPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP.EXE=$(AppPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\SETUP1.EXE=$(WinPath)
+C:\Program Files (x86)\Microsoft Visual Studio\VB98\Wizards\PDWizard\ST6UNST.EXE=$(WinPath)
+C:\Windows\SysWOW64\mhfram32.oca=$(AppPath)
+C:\Windows\SysWOW64\crviewer.oca=$(AppPath)
+C:\Windows\SysWOW64\MBBrowse.oca=$(AppPath)
+C:\Windows\SysWOW64\mhlabl32.oca=$(AppPath)
+C:\Windows\SysWOW64\mhrinp32.oca=$(AppPath)
+C:\Windows\SysWOW64\Mhrun32.dll=$(WinSysPath)
+C:\Windows\SysWOW64\MSSTDFMT.DEP=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.oca=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.DEP=$(AppPath)
+C:\Windows\SysWOW64\MSCOMCTL.SRG=$(AppPath)
+E:\Easy Publish Prime\EasyPublish.exe=$(AppPath)
+C:\Windows\SysWOW64\craxddrt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\craxdrt.dll=$(WinSysPath)
+C:\Windows\SysWOW64\FM20.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\fpSPR80.OCX=$(WinSysPath)
+E:\Easy Publish Prime\AnyDesk.exe=$(AppPath)
+E:\Easy Publish Prime\EasyPublish.ini=$(AppPath)
+E:\Easy Publish Prime\Icon\Cancel.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Copy.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Delete.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\EasyPublish.jpeg=$(AppPath)
+E:\Easy Publish Prime\Icon\Excel.jpg=$(AppPath)
+E:\Easy Publish Prime\Icon\Exit.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\Filter.Bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\FilterCol.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\First.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Green.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\ICON.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\ICON.ico=$(AppPath)
+E:\Easy Publish Prime\Icon\ICON.png=$(AppPath)
+E:\Easy Publish Prime\Icon\ICON1.ico=$(AppPath)
+E:\Easy Publish Prime\Icon\Last.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\LOGP541.jpg=$(AppPath)
+E:\Easy Publish Prime\Icon\Mail.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\New.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Next.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Open.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Pause.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\Preview.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Print.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Prior.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Red.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Refresh.ICO=$(AppPath)
+E:\Easy Publish Prime\Icon\Run.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\Save.BMP=$(AppPath)
+E:\Easy Publish Prime\Icon\search.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\Start.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\Stop.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\Upload.bmp=$(AppPath)
+E:\Easy Publish Prime\Icon\Yellow.BMP=$(AppPath)
+E:\Easy Publish Prime\Template\Box Label.xls=$(AppPath)
+E:\Easy Publish Prime\Template\Budget Report.xls=$(AppPath)
+E:\Easy Publish Prime\Template\Cost Sheet.xlsm=$(AppPath)
+E:\Easy Publish Prime\Template\Imposition.xlsm=$(AppPath)
+E:\Easy Publish Prime\Template\Item List.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Item Weight.xlsm=$(AppPath)
+E:\Easy Publish Prime\Template\Manuscript Status Register.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Opening Balance.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Paper Confirmation Letter.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Paper Issue Register.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Paper Stock Register.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Pending Payment Register.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Plate Usage Register.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Print Order Status Register.xlsx=$(AppPath)
+E:\Easy Publish Prime\Template\Production Planning.xlsx=$(AppPath)
+E:\Easy Publish Prime\Icon\LOGO000.jpg=$(AppPath)
+C:\Windows\Crystal\p2ssql.dll=$(WinSysPath)
+C:\Windows\SysWOW64\cpeaut32.dll=$(WinSysPath)
+C:\Windows\SysWOW64\crpe32.dll=$(WinSysPath)
+C:\Windows\SysWOW64\IMPLODE.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\Crpaig80.dll=$(WinSysPath)
+C:\Windows\SysWOW64\mfc42.dll=$(WinSysPath)
+C:\Windows\Crystal\Crxlat32.dll=$(WinSysPath)
+C:\Windows\Crystal\P2BBDE.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\p2bdao.dll=$(WinSysPath)
+C:\Windows\Crystal\P2BXBSE.DLL=$(WinSysPath)
+C:\Windows\SysWOW64\p2ctdao.dll=$(WinSysPath)
+C:\Windows\SysWOW64\p2irdao.dll=$(WinSysPath)
+C:\Windows\Crystal\p2sifmx.dll=$(WinSysPath)
+C:\Windows\SysWOW64\P2smon.dll=$(WinSysPath)
+C:\Windows\SysWOW64\p2sodbc.dll=$(WinSysPath)
+C:\Windows\Crystal\p2sora7.dll=$(WinSysPath)
+C:\Windows\Crystal\p2ssyb10.dll=$(WinSysPath)
+C:\Windows\Crystal\p2soledb.dll=$(WinSysPath)
+C:\Windows\Crystal\u2ddisk.dll=$(WinSysPath)
+C:\Windows\Crystal\u2dmapi.dll=$(WinSysPath)
+C:\Windows\Crystal\u2dnotes.dll=$(WinSysPath)
+C:\Windows\Crystal\u2dpost.dll=$(WinSysPath)
+C:\Windows\Crystal\u2dvim.dll=$(WinSysPath)
+C:\Windows\Crystal\u2dapp.dll=$(WinSysPath)
+C:\Windows\Crystal\u2fcr.dll=$(WinSysPath)
+C:\Windows\Crystal\u2fhtml.dll=$(WinSysPath)
+C:\Windows\Crystal\u2fodbc.dll=$(WinSysPath)
+C:\Windows\Crystal\u2frec.dll=$(WinSysPath)
+C:\Windows\Crystal\crxf_rtf.dll=$(WinSysPath)
+C:\Program Files (x86)\Seagate Software\Shared\crtslv.dll=$(WinSysPath)
+C:\Program Files (x86)\Seagate Software\Shared\ExportModeller.dll=$(WinSysPath)
+C:\Windows\Crystal\u2fsepv.dll=$(WinSysPath)
+C:\Windows\Crystal\U2FTEXT.DLL=$(WinSysPath)
+C:\Windows\Crystal\u2fwks.dll=$(WinSysPath)
+C:\Windows\Crystal\u2fwordw.dll=$(WinSysPath)
+C:\Windows\Crystal\U2FXLS.DLL=$(WinSysPath)
+C:\Windows\Crystal\crxf_pdf.dll=$(WinSysPath)
+C:\Windows\Crystal\u25dts.dll=$(WinSysPath)
+C:\Windows\Crystal\u2l2000.dll=$(WinSysPath)
+C:\Windows\Crystal\u2lcom.dll=$(WinSysPath)
+C:\Windows\Crystal\u2ldts.dll=$(WinSysPath)
+C:\Windows\Crystal\u2lsamp1.dll=$(WinSysPath)
+C:\Windows\Crystal\u252000.dll=$(WinSysPath)
+C:\Windows\SysWOW64\sscsdk80.dll=$(WinSysPath)
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\crystalreportviewers\ActiveXViewer\crviewer9.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Crystal Decisions\Report Designer Component\craxdrt9.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crtowords_en.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\ufmanager.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u2lexch.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u2lfinra.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u25samp1.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crqe.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crdb_ado.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crdb_dao.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crdb_odbc.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\querybuilder.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\exlate32.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crxf_wordw.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\crxf_xls.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\u2fxml.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\keycode.dll=$(CommonFiles)\Crystal Decisions\2.0\bin
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\CR9Deploy.reg=$(AppPath)
+C:\Windows\System32\crtslv.dll=$(WinSysPath)
+C:\Windows\System32\ExportModeller.dll=$(WinSysPath)
+C:\Windows\Crystal\p2ixbse.dll=$(WinSysPath)
+C:\Windows\Crystal\p2lodbc.dll=$(WinSysPath)
+C:\Windows\Crystal\P2lsql.dll=$(WinSysPath)
+C:\Windows\Crystal\p2sfs.dll=$(WinSysPath)
+C:\Windows\SysWOW64\PG32CONV.DLL=$(AppPath)
+C:\Windows\Crystal\u2fdif.dll=$(WinSysPath)
+C:\Windows\Crystal\u2frdef.dll=$(AppPath)
+E:\Easy Publish Prime\Icon\EasyPrint.JPEG=$(AppPath)
+
+[Package|Standard Setup Package|Configure Shared Files]
+Applicable=Yes
+F:\Final\PD\RSPL\Saral-U\Old\EasyPublish.exe=No
+G:\Installed Software\VB 6.0\Tools\CR 8.5\ProgramF\SEAGAT~1\Shared\pg32conv.dll=No
+E:\EP_Tally_Without 05_(10th-May-2021)DebitCredit - 3\EasyPublish.exe=No
+C:\Windows\System32\PG32CONV.DLL=No
+C:\Windows\SysWOW64\mhfram32.oca=No
+C:\Windows\SysWOW64\crviewer.oca=No
+C:\Windows\SysWOW64\MBBrowse.oca=No
+C:\Windows\SysWOW64\mhlabl32.oca=No
+C:\Windows\SysWOW64\mhrinp32.oca=No
+C:\Windows\SysWOW64\MSSTDFMT.DEP=No
+C:\Windows\SysWOW64\MSCOMCTL.oca=No
+C:\Windows\SysWOW64\MSCOMCTL.DEP=No
+C:\Windows\SysWOW64\MSCOMCTL.SRG=No
+E:\Easy Publish Prime\EasyPublish.exe=No
+E:\Easy Publish Prime\AnyDesk.exe=No
+E:\Easy Publish Prime\EasyPublish.ini=No
+E:\Easy Publish Prime\Icon\Cancel.BMP=No
+E:\Easy Publish Prime\Icon\Copy.BMP=No
+E:\Easy Publish Prime\Icon\Delete.BMP=No
+E:\Easy Publish Prime\Icon\EasyPublish.jpeg=No
+E:\Easy Publish Prime\Icon\Excel.jpg=No
+E:\Easy Publish Prime\Icon\Exit.bmp=No
+E:\Easy Publish Prime\Icon\Filter.Bmp=No
+E:\Easy Publish Prime\Icon\FilterCol.bmp=No
+E:\Easy Publish Prime\Icon\First.BMP=No
+E:\Easy Publish Prime\Icon\Green.BMP=No
+E:\Easy Publish Prime\Icon\ICON.BMP=No
+E:\Easy Publish Prime\Icon\ICON.ico=No
+E:\Easy Publish Prime\Icon\ICON.png=No
+E:\Easy Publish Prime\Icon\ICON1.ico=No
+E:\Easy Publish Prime\Icon\Last.BMP=No
+E:\Easy Publish Prime\Icon\LOGP541.jpg=No
+E:\Easy Publish Prime\Icon\Mail.bmp=No
+E:\Easy Publish Prime\Icon\New.BMP=No
+E:\Easy Publish Prime\Icon\Next.BMP=No
+E:\Easy Publish Prime\Icon\Open.BMP=No
+E:\Easy Publish Prime\Icon\Pause.bmp=No
+E:\Easy Publish Prime\Icon\Preview.BMP=No
+E:\Easy Publish Prime\Icon\Print.BMP=No
+E:\Easy Publish Prime\Icon\Prior.BMP=No
+E:\Easy Publish Prime\Icon\Red.BMP=No
+E:\Easy Publish Prime\Icon\Refresh.ICO=No
+E:\Easy Publish Prime\Icon\Run.BMP=No
+E:\Easy Publish Prime\Icon\Save.BMP=No
+E:\Easy Publish Prime\Icon\search.bmp=No
+E:\Easy Publish Prime\Icon\Start.bmp=No
+E:\Easy Publish Prime\Icon\Stop.bmp=No
+E:\Easy Publish Prime\Icon\Upload.bmp=No
+E:\Easy Publish Prime\Icon\Yellow.BMP=No
+E:\Easy Publish Prime\Template\Box Label.xls=No
+E:\Easy Publish Prime\Template\Budget Report.xls=No
+E:\Easy Publish Prime\Template\Cost Sheet.xlsm=No
+E:\Easy Publish Prime\Template\Imposition.xlsm=No
+E:\Easy Publish Prime\Template\Item List.xlsx=No
+E:\Easy Publish Prime\Template\Item Weight.xlsm=No
+E:\Easy Publish Prime\Template\Manuscript Status Register.xlsx=No
+E:\Easy Publish Prime\Template\Opening Balance.xlsx=No
+E:\Easy Publish Prime\Template\Paper Confirmation Letter.xlsx=No
+E:\Easy Publish Prime\Template\Paper Issue Register.xlsx=No
+E:\Easy Publish Prime\Template\Paper Stock Register.xlsx=No
+E:\Easy Publish Prime\Template\Pending Payment Register.xlsx=No
+E:\Easy Publish Prime\Template\Plate Usage Register.xlsx=No
+E:\Easy Publish Prime\Template\Print Order Status Register.xlsx=No
+E:\Easy Publish Prime\Template\Production Planning.xlsx=No
+E:\Easy Publish Prime\Icon\LOGO000.jpg=No
+C:\Program Files (x86)\Common Files\Crystal Decisions\2.0\bin\CR9Deploy.reg=No
+C:\Windows\SysWOW64\PG32CONV.DLL=No
+C:\Windows\Crystal\u2frdef.dll=No
+E:\Easy Publish Prime\Icon\EasyPrint.JPEG=No
+
+[Package|Standard Setup Package|Distribution]
+Type=single
+Size=
+Title=Easy Publish Prime
+
+[Package|Standard Setup Package|Package]
+PackageFolder=g:\Easy Publish Prime Setup
+ProjectFolder=E:\Easy Publish Prime
+ServerSideCab=
+File1=g:\Easy Publish Prime Setup\setup.exe
+File2=g:\Easy Publish Prime Setup\Setup.Lst
+File3=g:\Easy Publish Prime Setup\EasyPublish.CAB
+Handler1=PDWizard.FolderDplySubWiz
+Handler2=PDWizard.WebPostDplySubWiz
+
+[Package|Standard Setup Package|IconGroups]
+Group0=Easy Publish
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Package|Standard Setup Package|Easy Publish]
+Icon1=EasyPublish.exe
+Title1=Easy Publish
+StartIn1=$(AppPath)
+Key1=Icon1

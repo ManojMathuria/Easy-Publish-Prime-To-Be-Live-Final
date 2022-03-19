@@ -1,0 +1,165 @@
+DROP FUNCTION ufnGetPaperStock
+CREATE FUNCTION ufnGetPaperStock(@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6))
+RETURNS DECIMAL(12,3)
+AS   
+BEGIN  
+	DECLARE @CurStk DECIMAL(12,3);
+	SELECT @CurStk=
+	(
+	(ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0)+
+	ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)
+	)-
+	(ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets1) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper1=I.Code AND RAccount1=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets2) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper2=I.Code AND RAccount2=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets4) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper4=I.Code AND RAccount4=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)
+	)
+	)/U.Value1
+	FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper
+	RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2;
+END
+GO
+
+DROP FUNCTION ufnGetItemStock
+CREATE FUNCTION ufnGetItemStock(@MatCentre CHAR(6),@Item CHAR(6),@VchType CHAR(2),@VchCode CHAR(2))
+RETURNS INTEGER
+AS   
+BEGIN  
+	DECLARE @CurStk INTEGER;
+	SELECT @CurStk=
+	(ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='05',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='08',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='01',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='03',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND Party=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0)
+	)-
+	(ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='06',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='07',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='02',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='04',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND Party=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+
+	ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0)
+	)
+	RETURN @CurStk;
+END
+
+Voucher Types
+*************
+Purchase Challan-05-RF	Sales Return Challan-07-RF
+Sales Challan-08-IF		Purchase Return Challan-06-IF
+Sales-04-SF
+Sales Return-03-TF
+Purchase-01-PF
+Purchase Return-02-OF
+Stock Transfer-19-ST
+Stock Journal-20-JR
+
+
+
+Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
+    If rstItemList.State = adStateOpen Then rstItemList.Close
+    If LoadSelected Then
+        rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstSalesOrderVoucherParent.Fields("Code").Value) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
+    Else
+        rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesOrderVoucher, adOpenKeyset, adLockReadOnly
+    End If
+    rstItemList.ActiveConnection = Nothing
+End Sub
+
+
+Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
+    Dim Item As Variant, i As Integer, x As Integer, cVal(1 To 6) As Variant
+    With fpSpread1
+        If Shift = 0 And KeyCode = vbKeyF9 Then
+            .GetText 9, .ActiveRow, Item  'Ref Code
+            If Not CheckEmpty(Item, False) Then
+                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesOrderVoucherParent.Fields("Code").Value & "'") Then DisplayError ("Failed to delete the record"): .SetFocus
+            ElseIf MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
+                .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+            End If
+        ElseIf KeyCode = vbKeyF3 Then
+            If .ActiveCol = 1 Then
+                .GetText 9, .ActiveRow, Item 'Ref Code
+                If Not CheckEmpty(Item, False) Then If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesOrderVoucherParent.Fields("Code").Value & "'") Then Exit Sub
+                .GetText 7, .ActiveRow, Item
+                On Error Resume Next
+                FrmBookMaster.SL = True
+                FrmBookMaster.BookType = "F"
+                FrmBookMaster.MasterCode = Item
+                Load FrmBookMaster
+                If Err.Number <> 364 Then FrmBookMaster.Show vbModal
+                On Error GoTo 0
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText 7, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then
+                    rstItemList.MoveFirst: rstItemList.Find "[Code] ='" & slCode & "'"
+                    .GetText 4, .ActiveRow, Item 'Price
+                    If Val(Item) = 0 Then
+                        .SetText 4, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                    ElseIf Val(Item) <> Val(rstItemList.Fields("Price").Value) Then
+                        If MsgBox("Variation in Current (" & Format(Item, "#0.00") & ") and Master (" & Format(rstItemList.Fields("Price").Value, "#0.00") & ") Rate ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 4, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                    End If
+                    .GetText 8, .ActiveRow, Item 'HSN Code
+                    If CheckEmpty(Item, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 8, .ActiveRow, rstItemList.Fields("HSNCode").Value
+                    LoadMasterList
+                    .SetFocus
+                    Sendkeys "{ENTER}"
+                End If
+            End If
+        ElseIf KeyCode = vbKeySpace Then
+            If .ActiveCol = 1 Then
+                LoadMasterList True
+                With FrmItemSearchList
+                    Set .rstItemSearchList = rstItemList
+                    Load FrmItemSearchList
+                    .Show vbModal
+                    If .LoadItems Then
+                        For i = 1 To .fpSpread1.DataRowCnt
+                            .fpSpread1.GetText 1, i, cVal(1) 'Item
+                            .fpSpread1.GetText 3, i, cVal(2) 'Quantity
+                            .fpSpread1.GetText 4, i, cVal(3) 'Price
+                            .fpSpread1.GetText 5, i, cVal(4) 'Item Code
+                            .fpSpread1.GetText 6, i, cVal(5) 'HSN Code
+                            .fpSpread1.GetText 7, i, cVal(6) 'HSN
+                            If Val(cVal(2)) > 0 Then
+                                x = fpSpread1.DataRowCnt + 1
+                                fpSpread1.SetText 1, x, cVal(1)
+                                fpSpread1.SetText 2, x, cVal(6)
+                                fpSpread1.SetText 3, x, Val(cVal(2))
+                                fpSpread1.SetText 4, x, Val(cVal(3))
+                                fpSpread1.SetText 5, x, 0
+                                fpSpread1.SetText 6, x, Val(cVal(2)) * Val(cVal(3))
+                                fpSpread1.SetText 7, x, cVal(4)
+                                fpSpread1.SetText 8, x, cVal(5)
+                            End If
+                        Next
+                        CalculateTotal
+                    End If
+                End With
+                Call CloseForm(FrmItemSearchList)
+                .SetFocus
+            ElseIf .ActiveCol = 2 Then
+                .GetText 7, .ActiveRow, Item 'Item Code
+                If CheckEmpty(Item, False) Then Exit Sub
+                .GetText 8, .ActiveRow, Item 'HSN Code
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "18"
+                FrmGeneralMaster.MasterCode = Item
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText 8, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then LoadMasterList: Sendkeys "{ENTER}"
+            End If
+        End If
+    End With
+End Sub
