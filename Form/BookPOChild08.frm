@@ -988,7 +988,7 @@ Private Sub LoadFields()
     MhDateInput3.Text = Format(rstBookPOChild08.Fields("TargetDate").Value, "dd-MM-yyyy")
     With fpSpread1
         If rstOrderList.State = adStateOpen Then rstOrderList.Close
-        rstOrderList.Open "SELECT OrderDate,TargetDate,I.Code As ICode,I.Name As IName,E.Code As ECode,E.Name As EName,O.Code As OCode,O.Name As OName,O.Value1 As oValue1,B.Code As BCode,B.Name As BName,T.OperationCountName As OCName,[Number],S.Code As SCode,S.Name As SName,S.Type As SType,Quantity,C.Code As CCode,C.Name As CName,T.CalcValue As CValue,Rate,Amount,Adjustment,[GST%],GST,BillAmount,Status,T.Narration FROM (((((BookPOChild08 T INNER JOIN BookMaster I ON T.SUBITEM=I.Code)INNER JOIN ElementMaster E ON T.Element=E.Code) INNER JOIN GeneralMaster O ON T.BinderyProcess=O.Code) INNER JOIN GeneralMaster B ON T.BindingType=B.Code)INNER JOIN GeneralMaster C ON T.CalcMode=C.Code) LEFT JOIN GeneralMaster S ON T.[Size]=S.Code WHERE T.Code='" & CheckNull(rstBookPOChild08.Fields("Code").Value) & "' ORDER BY E.Name,BinderyProcess,O.Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstOrderList.Open "SELECT OrderDate,TargetDate,I.Code As ICode,I.Name As IName,E.Code As ECode,E.Name As EName,O.Code As OCode,O.Name As OName,O.Value1 As oValue1,B.Code As BCode,B.Name As BName,T.OperationCountName As OCName,[Number],S.Code As SCode,S.Name As SName,S.Type As SType,Fraction,Quantity,C.Code As CCode,C.Name As CName,T.CalcValue As CValue,Rate,Amount,Adjustment,[GST%],GST,BillAmount,Status,T.Narration FROM (((((BookPOChild08 T INNER JOIN BookMaster I ON T.SUBITEM=I.Code)INNER JOIN ElementMaster E ON T.Element=E.Code) INNER JOIN GeneralMaster O ON T.BinderyProcess=O.Code) INNER JOIN GeneralMaster B ON T.BindingType=B.Code)INNER JOIN GeneralMaster C ON T.CalcMode=C.Code) LEFT JOIN GeneralMaster S ON T.[Size]=S.Code WHERE T.Code='" & CheckNull(rstBookPOChild08.Fields("Code").Value) & "' ORDER BY E.Name,BinderyProcess,O.Name", cnDatabase, adOpenKeyset, adLockReadOnly
         rstOrderList.ActiveConnection = Nothing
         If rstOrderList.RecordCount > 0 Then
             rstOrderList.MoveFirst
@@ -1003,7 +1003,11 @@ Private Sub LoadFields()
                 .SetText 5, i, Val(rstOrderList.Fields("Number").Value) 'Number
                 .SetText 6, i, CheckNull(rstOrderList.Fields("OCName").Value) 'Operation Count Name
                 .SetText 7, i, CheckNull(rstOrderList.Fields("SName").Value) 'Size Name
+            If Not IsNull(rstOrderList.Fields("Fraction").Value) Then
+                .SetText 8, i, Val(rstOrderList.Fields("Fraction").Value)
+            Else
                 .SetText 8, i, IIf(Val(rstOrderList.Fields("STYPE").Value) = 11, 1, 0)
+            End If
                 .SetText 9, i, Val(rstOrderList.Fields("Quantity").Value)
                 .SetText 10, i, CheckNull(rstOrderList.Fields("CName").Value) 'Calc Mode
                 .SetText 11, i, Val(rstOrderList.Fields("CValue").Value) 'Calc Value
@@ -1044,24 +1048,24 @@ Private Sub SaveFields()
     End With
     With fpSpread1
         For i = 1 To .DataRowCnt
-            .GetText 4, i, Number
-            .GetText 5, i, OperationCountName
-            .GetText 7, i, Quantity
-            .GetText 9, i, CalcValue
+            .GetText 5, i, Number
+            .GetText 6, i, OperationCountName
             .GetText 8, i, Fraction
-            .GetText 10, i, Rate
-            .GetText 11, i, Amount
-            .GetText 12, i, Adjustment
-            .GetText 13, i, GST
-            .GetText 14, i, GSTAmt
-            .GetText 15, i, BillAmount
-            .GetText 16, i, Element
-            .GetText 17, i, Operation
-            .GetText 18, i, Size
-            .GetText 19, i, CalcMode
-            .GetText 20, i, Status
-            .GetText 21, i, Narration
-            .GetText 22, i, Binding
+            .GetText 9, i, Quantity
+            .GetText 11, i, CalcValue
+            .GetText 12, i, Rate
+            .GetText 13, i, Amount
+            .GetText 14, i, Adjustment
+            .GetText 15, i, GST
+            .GetText 16, i, GSTAmt
+            .GetText 17, i, BillAmount
+            .GetText 18, i, Element
+            .GetText 19, i, Operation
+            .GetText 20, i, Size
+            .GetText 21, i, CalcMode
+            .GetText 22, i, Status
+            .GetText 23, i, Narration
+            .GetText 24, i, Binding
             .GetText 26, i, SubItem
             With rstBookPOChild08
                 .AddNew
