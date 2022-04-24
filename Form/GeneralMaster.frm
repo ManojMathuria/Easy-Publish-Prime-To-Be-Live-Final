@@ -475,7 +475,7 @@ Begin VB.Form FrmGeneralMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "GeneralMaster.frx":075D
+               Picture         =   "GeneralMaster.frx":07A5
                Begin VB.CheckBox cbValue 
                   Caption         =   "Check1"
                   Height          =   210
@@ -511,8 +511,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":0779
-            Picture         =   "GeneralMaster.frx":0795
+            Picture         =   "GeneralMaster.frx":07C1
+            Picture         =   "GeneralMaster.frx":07DD
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   300
@@ -539,8 +539,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":07B1
-            Picture         =   "GeneralMaster.frx":07CD
+            Picture         =   "GeneralMaster.frx":07F9
+            Picture         =   "GeneralMaster.frx":0815
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -682,6 +682,7 @@ Private Sub Form_Load()
         Mh3dLabel2.Caption = " Under Group ": Text4.Visible = True
     ElseIf MasterType = "7" Then 'Operation Master
         Mh3dLabel2.Caption = " Use Numb in Calc": Mh3dFrame4.Visible = True
+        Text4.Visible = True: Text4.Locked = False
     ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Then  'Paper Unit/Calc Mode/Color Master
         Mh3dLabel2.Caption = IIf(MasterType = "15", " Sheets/Unit", IIf(MasterType = "20", " Value (0 if varies)", " Color")): MhRealInput1.Visible = True
     Else
@@ -691,7 +692,8 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     If rstGeneralList.State Then rstGeneralList.Close
-    rstGeneralList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type IN ('" & IIf(MasterType = 12, "12" & "','" & "26", MasterType) & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    'rstGeneralList.Open "SELECT Name,Code,Value1,UnderGroup As UGroupName,(Select Name From GeneralMaster Where UnderGroup=Code) As UGroupName FROM GeneralMaster WHERE Type IN ('" & IIf(MasterType = 12, "12" & "','" & "26", MasterType) & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = 12, "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
     rstGeneralMaster.CursorLocation = adUseClient
     rstGeneralList.Filter = adFilterNone
     If rstGeneralList.RecordCount > 0 Then
@@ -761,7 +763,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
         If Toolbar1.Buttons.Item(1).Enabled Then
             If SL Then
-                If SSTab1.Tab = 0 Then Me.Tag = "S": slCode = rstGeneralList.Fields("Code").Value: slName = rstGeneralList.Fields("Name").Value: KeyCode = 0: Unload Me: Exit Sub
+                If SSTab1.Tab = 0 Then Me.Tag = "S": slCode = rstGeneralList.Fields("Code").Value: slName = rstGeneralList.Fields("Name").Value: slValue1 = rstGeneralList.Fields("Value1").Value: slUGroupName = rstGeneralList.Fields("UGroupName").Value: slUGroupCode = rstGeneralList.Fields("UGroupCode").Value: slUGroupValue1 = rstGeneralList.Fields("UGroupValue1").Value: KeyCode = 0: Unload Me: Exit Sub
             Else
                 SSTab1.Tab = 1
                 SSTab1.SetFocus
@@ -773,7 +775,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-    If Toolbar1.Buttons.Item(4).Enabled Then Call Form_KeyDown(vbKeyEscape, 0): Cancel = 1 Else If Me.Tag <> "S" Then slCode = "": slName = ""
+    If Toolbar1.Buttons.Item(4).Enabled Then Call Form_KeyDown(vbKeyEscape, 0): Cancel = 1 Else If Me.Tag <> "S" Then slCode = "": slName = "": slValue1 = 0: slUGroupName = "": slUGroupCode = "": slUGroupValue1 = 0
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstGeneralList)
@@ -1118,7 +1120,7 @@ ErrorHandler:
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Account Group
     Dim UnderGroup As Variant
-    If Shift = 0 And KeyCode = 144 Then
+    If Shift = 0 And KeyCode = vbKeyReturn Then
         With fpSpread1
             .GetText 1, .ActiveRow, UnderGroup: Text4.Text = UnderGroup
             .GetText 3, .ActiveRow, UnderGroupCode
@@ -1229,7 +1231,7 @@ Private Sub SetMenuOptions(bVal As Boolean)
 End Sub
 Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Account Group
     Dim i As Long, cndn As String
-    If Not (MasterType = 5 Or MasterType = 12) Then Exit Sub
+    If Not (MasterType = 5 Or MasterType = 7 Or MasterType = 12) Then Exit Sub
     If KeyCode = vbKeySpace Or KeyCode = vbKeyDown Or KeyCode = 144 Then
         On Error Resume Next
         Mh3dFrame2.Height = 4680
@@ -1239,6 +1241,8 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Accoun
             If .State = adStateOpen Then .Close
             If MasterType = "5" Then
                 cndn = "Type = '" & MasterType & "'"
+            ElseIf MasterType = "7" Then
+                cndn = "Type = 20"
             ElseIf MasterType = "12" Then
                 cndn = "Type IN ('" & MasterType & "','26') AND Code NOT IN ('" & slCode & "','*26001','*26002','*26003')"
             End If
@@ -1269,7 +1273,7 @@ Private Sub Text4_Change()
             If CheckEmpty(Text4.Text, False) Then
                 .SetActiveCell 1, 1
             ElseIf InStr(StrConv(cVal, vbUpperCase), StrConv(Text4.Text, vbUpperCase)) > 0 Then
-                .SetActiveCell 1, i
+                .SetActiveCell 1, i: Exit Sub
             End If
         Next
     End With

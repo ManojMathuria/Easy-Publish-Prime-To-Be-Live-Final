@@ -24,7 +24,6 @@ Begin VB.Form FrmTeamMemberMaster
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   5160
    ScaleWidth      =   6750
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -711,6 +710,8 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Public SL As Boolean 'Selection List
+Public MasterCode As String  'Master to Modify
 Dim rstTeamMemberList As New ADODB.Recordset, rstTeamMemberMaster As New ADODB.Recordset, rstDepartmentList As New ADODB.Recordset, rstDesignationList As New ADODB.Recordset, rstLoginIdList As New ADODB.Recordset, rstReportingToList As New ADODB.Recordset
 Dim DepartmentCode As String, DesignationCode As String, LoginIdCode As String, ReportingToCode As String
 Dim SortOrder, PrevStr As String, dblBookMark As Double, blnRecordExist As Boolean
@@ -817,11 +818,15 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
        KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
         If Toolbar1.Buttons.Item(1).Enabled Then
-           SSTab1.Tab = 1
-           SSTab1.SetFocus
-        Else
-            Sendkeys "{TAB}"
-        End If
+            If SL Then
+                If SSTab1.Tab = 0 Then Me.Tag = "S": slCode = rstTeamMemberList.Fields("Code").Value: slName = rstTeamMemberList.Fields("Name").Value: KeyCode = 0: Unload Me: Exit Sub
+                    Else
+                    SSTab1.Tab = 1
+                    SSTab1.SetFocus
+                End If
+            Else
+                Sendkeys "{TAB}"
+            End If
         KeyCode = 0
     End If
 End Sub

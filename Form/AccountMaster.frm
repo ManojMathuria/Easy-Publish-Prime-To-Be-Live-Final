@@ -105,9 +105,12 @@ Begin VB.Form FrmAccountMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "AccountMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "btnNotes"
+         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame2(0)"
-         Tab(1).Control(2)=   "txtNotes"
+         Tab(1).Control(1).Enabled=   0   'False
+         Tab(1).Control(2)=   "btnNotes"
+         Tab(1).Control(2).Enabled=   0   'False
          Tab(1).ControlCount=   3
          TabCaption(2)   =   "&Details"
          TabPicture(2)   =   "AccountMaster.frx":0054
@@ -121,26 +124,31 @@ Begin VB.Form FrmAccountMaster
          TabPicture(4)   =   "AccountMaster.frx":008C
          Tab(4).ControlEnabled=   0   'False
          Tab(4).Control(0)=   "Mh3dFrame2(3)"
+         Tab(4).Control(0).Enabled=   0   'False
          Tab(4).ControlCount=   1
          TabCaption(5)   =   "&Details"
          TabPicture(5)   =   "AccountMaster.frx":00A8
          Tab(5).ControlEnabled=   0   'False
          Tab(5).Control(0)=   "Mh3dFrame2(4)"
+         Tab(5).Control(0).Enabled=   0   'False
          Tab(5).ControlCount=   1
          TabCaption(6)   =   "&Details"
          TabPicture(6)   =   "AccountMaster.frx":00C4
          Tab(6).ControlEnabled=   0   'False
          Tab(6).Control(0)=   "Mh3dFrame2(5)"
+         Tab(6).Control(0).Enabled=   0   'False
          Tab(6).ControlCount=   1
          TabCaption(7)   =   "&Details"
          TabPicture(7)   =   "AccountMaster.frx":00E0
          Tab(7).ControlEnabled=   0   'False
          Tab(7).Control(0)=   "Mh3dFrame2(6)"
+         Tab(7).Control(0).Enabled=   0   'False
          Tab(7).ControlCount=   1
          TabCaption(8)   =   "&Details"
          TabPicture(8)   =   "AccountMaster.frx":00FC
          Tab(8).ControlEnabled=   0   'False
          Tab(8).Control(0)=   "Mh3dFrame2(7)"
+         Tab(8).Control(0).Enabled=   0   'False
          Tab(8).ControlCount=   1
          TabCaption(9)   =   "&Op.Bal."
          TabPicture(9)   =   "AccountMaster.frx":0118
@@ -1513,7 +1521,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                GridColor       =   4227327
                MaxCols         =   10
-               MaxRows         =   100
+               MaxRows         =   1000
                SpreadDesigner  =   "AccountMaster.frx":0A73
             End
             Begin VB.Line Line4 
@@ -1535,7 +1543,6 @@ Begin VB.Form FrmAccountMaster
             _ExtentX        =   24791
             _ExtentY        =   14684
             _StockProps     =   77
-            Enabled         =   0   'False
             TintColor       =   16711935
             Alignment       =   0
             AutoSize        =   0   'False
@@ -2055,7 +2062,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                GridColor       =   4227327
                MaxCols         =   14
-               MaxRows         =   100
+               MaxRows         =   1000
                SpreadDesigner  =   "AccountMaster.frx":1606
             End
             Begin VB.Line Line6 
@@ -2596,7 +2603,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                GridColor       =   4227327
                MaxCols         =   13
-               MaxRows         =   100
+               MaxRows         =   1000
                SpreadDesigner  =   "AccountMaster.frx":23CE
             End
             Begin VB.Line Line7 
@@ -3283,7 +3290,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                GridColor       =   4227327
                MaxCols         =   6
-               MaxRows         =   100
+               MaxRows         =   1000
                SpreadDesigner  =   "AccountMaster.frx":40FB
             End
             Begin VB.TextBox Text13 

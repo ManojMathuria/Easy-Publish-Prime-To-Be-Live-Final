@@ -22,7 +22,6 @@ Begin VB.Form FrmBookPOChild08
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "FrmLogin"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    ScaleHeight     =   7680
    ScaleWidth      =   20010
@@ -56,11 +55,65 @@ Begin VB.Form FrmBookPOChild08
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "BookPOChild08.frx":0000
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
+         Height          =   300
+         Left            =   120
+         TabIndex        =   27
+         Top             =   6030
+         Width           =   14805
+         _Version        =   65536
+         _ExtentX        =   26114
+         _ExtentY        =   529
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Amount : "
+         Alignment       =   1
+         FillColor       =   9164542
+         TextColor       =   0
+         Picture         =   "BookPOChild08.frx":001C
+         Picture         =   "BookPOChild08.frx":0038
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
+         Height          =   300
+         Left            =   15980
+         TabIndex        =   26
+         Top             =   6030
+         Width           =   2310
+         _Version        =   65536
+         _ExtentX        =   4075
+         _ExtentY        =   529
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Total Amount : "
+         Alignment       =   1
+         FillColor       =   9164542
+         TextColor       =   0
+         Picture         =   "BookPOChild08.frx":0054
+         Picture         =   "BookPOChild08.frx":0070
+      End
       Begin VB.CommandButton cmdProceed 
          BackColor       =   &H008BD6FE&
          Height          =   330
          Left            =   18360
-         Picture         =   "BookPOChild08.frx":001C
+         Picture         =   "BookPOChild08.frx":008C
          Style           =   1  'Graphical
          TabIndex        =   24
          ToolTipText     =   "Save"
@@ -71,7 +124,7 @@ Begin VB.Form FrmBookPOChild08
          BackColor       =   &H008BD6FE&
          Height          =   330
          Left            =   18720
-         Picture         =   "BookPOChild08.frx":011E
+         Picture         =   "BookPOChild08.frx":018E
          Style           =   1  'Graphical
          TabIndex        =   23
          ToolTipText     =   "Cancel"
@@ -96,7 +149,7 @@ Begin VB.Form FrmBookPOChild08
          MaxLength       =   40
          TabIndex        =   9
          Top             =   7015
-         Width           =   12750
+         Width           =   9270
       End
       Begin VB.TextBox Text5 
          Alignment       =   1  'Right Justify
@@ -209,8 +262,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":0220
-         Picture         =   "BookPOChild08.frx":023C
+         Picture         =   "BookPOChild08.frx":0290
+         Picture         =   "BookPOChild08.frx":02AC
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
@@ -237,8 +290,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":0258
-         Picture         =   "BookPOChild08.frx":0274
+         Picture         =   "BookPOChild08.frx":02C8
+         Picture         =   "BookPOChild08.frx":02E4
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
          Height          =   330
@@ -265,12 +318,12 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":0290
-         Picture         =   "BookPOChild08.frx":02AC
+         Picture         =   "BookPOChild08.frx":0300
+         Picture         =   "BookPOChild08.frx":031C
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
          Height          =   330
-         Left            =   16230
+         Left            =   16710
          TabIndex        =   14
          Top             =   6510
          Width           =   1575
@@ -292,8 +345,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":02C8
-         Picture         =   "BookPOChild08.frx":02E4
+         Picture         =   "BookPOChild08.frx":0338
+         Picture         =   "BookPOChild08.frx":0354
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
          Height          =   330
@@ -319,8 +372,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":0300
-         Picture         =   "BookPOChild08.frx":031C
+         Picture         =   "BookPOChild08.frx":0370
+         Picture         =   "BookPOChild08.frx":038C
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
          Height          =   330
@@ -346,8 +399,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":0338
-         Picture         =   "BookPOChild08.frx":0354
+         Picture         =   "BookPOChild08.frx":03A8
+         Picture         =   "BookPOChild08.frx":03C4
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel25 
          Height          =   330
@@ -373,8 +426,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":0370
-         Picture         =   "BookPOChild08.frx":038C
+         Picture         =   "BookPOChild08.frx":03E0
+         Picture         =   "BookPOChild08.frx":03FC
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
          Height          =   330
@@ -400,8 +453,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":03A8
-         Picture         =   "BookPOChild08.frx":03C4
+         Picture         =   "BookPOChild08.frx":0418
+         Picture         =   "BookPOChild08.frx":0434
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel28 
          Height          =   330
@@ -427,8 +480,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":03E0
-         Picture         =   "BookPOChild08.frx":03FC
+         Picture         =   "BookPOChild08.frx":0450
+         Picture         =   "BookPOChild08.frx":046C
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
@@ -439,8 +492,8 @@ Begin VB.Form FrmBookPOChild08
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "BookPOChild08.frx":0418
-         Caption         =   "BookPOChild08.frx":0530
+         Calendar        =   "BookPOChild08.frx":0488
+         Caption         =   "BookPOChild08.frx":05A0
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -450,9 +503,9 @@ Begin VB.Form FrmBookPOChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild08.frx":059C
-         Keys            =   "BookPOChild08.frx":05BA
-         Spin            =   "BookPOChild08.frx":0618
+         DropDown        =   "BookPOChild08.frx":060C
+         Keys            =   "BookPOChild08.frx":062A
+         Spin            =   "BookPOChild08.frx":0688
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -501,8 +554,8 @@ Begin VB.Form FrmBookPOChild08
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "BookPOChild08.frx":0640
-         Caption         =   "BookPOChild08.frx":0758
+         Calendar        =   "BookPOChild08.frx":06B0
+         Caption         =   "BookPOChild08.frx":07C8
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -512,9 +565,9 @@ Begin VB.Form FrmBookPOChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild08.frx":07C4
-         Keys            =   "BookPOChild08.frx":07E2
-         Spin            =   "BookPOChild08.frx":0840
+         DropDown        =   "BookPOChild08.frx":0834
+         Keys            =   "BookPOChild08.frx":0852
+         Spin            =   "BookPOChild08.frx":08B0
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -563,8 +616,8 @@ Begin VB.Form FrmBookPOChild08
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "BookPOChild08.frx":0868
-         Caption         =   "BookPOChild08.frx":0980
+         Calendar        =   "BookPOChild08.frx":08D8
+         Caption         =   "BookPOChild08.frx":09F0
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -574,9 +627,9 @@ Begin VB.Form FrmBookPOChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild08.frx":09EC
-         Keys            =   "BookPOChild08.frx":0A0A
-         Spin            =   "BookPOChild08.frx":0A68
+         DropDown        =   "BookPOChild08.frx":0A5C
+         Keys            =   "BookPOChild08.frx":0A7A
+         Spin            =   "BookPOChild08.frx":0AD8
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -618,15 +671,15 @@ Begin VB.Form FrmBookPOChild08
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput16 
          Height          =   330
-         Left            =   17790
+         Left            =   18270
          TabIndex        =   8
          Top             =   6510
          Width           =   1185
          _Version        =   65536
          _ExtentX        =   2090
          _ExtentY        =   582
-         Calculator      =   "BookPOChild08.frx":0A90
-         Caption         =   "BookPOChild08.frx":0AB0
+         Calculator      =   "BookPOChild08.frx":0B00
+         Caption         =   "BookPOChild08.frx":0B20
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -636,9 +689,9 @@ Begin VB.Form FrmBookPOChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild08.frx":0B1C
-         Keys            =   "BookPOChild08.frx":0B3A
-         Spin            =   "BookPOChild08.frx":0B84
+         DropDown        =   "BookPOChild08.frx":0B8C
+         Keys            =   "BookPOChild08.frx":0BAA
+         Spin            =   "BookPOChild08.frx":0BF4
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -696,24 +749,24 @@ Begin VB.Form FrmBookPOChild08
             Strikethrough   =   0   'False
          EndProperty
          GridColor       =   4227327
-         MaxCols         =   26
+         MaxCols         =   27
          MaxRows         =   100
          OperationMode   =   2
          ScrollBars      =   2
-         SpreadDesigner  =   "BookPOChild08.frx":0BAC
+         SpreadDesigner  =   "BookPOChild08.frx":0C1C
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput19 
-         Height          =   330
-         Left            =   18525
+         Height          =   300
+         Left            =   18275
          TabIndex        =   20
          TabStop         =   0   'False
-         Top             =   6000
+         Top             =   6030
          Width           =   1185
          _Version        =   65536
          _ExtentX        =   2090
-         _ExtentY        =   582
-         Calculator      =   "BookPOChild08.frx":1A38
-         Caption         =   "BookPOChild08.frx":1A58
+         _ExtentY        =   529
+         Calculator      =   "BookPOChild08.frx":1BCA
+         Caption         =   "BookPOChild08.frx":1BEA
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -723,9 +776,9 @@ Begin VB.Form FrmBookPOChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild08.frx":1AC4
-         Keys            =   "BookPOChild08.frx":1AE2
-         Spin            =   "BookPOChild08.frx":1B2C
+         DropDown        =   "BookPOChild08.frx":1C56
+         Keys            =   "BookPOChild08.frx":1C74
+         Spin            =   "BookPOChild08.frx":1CBE
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -756,7 +809,7 @@ Begin VB.Form FrmBookPOChild08
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   1638405
+         ValueVT         =   1909981189
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -785,20 +838,20 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":1B54
-         Picture         =   "BookPOChild08.frx":1B70
+         Picture         =   "BookPOChild08.frx":1CE6
+         Picture         =   "BookPOChild08.frx":1D02
          Begin TDBNumber6Ctl.TDBNumber MhRealInput18 
-            Height          =   330
-            Left            =   15405
+            Height          =   300
+            Left            =   14790
             TabIndex        =   25
             TabStop         =   0   'False
             Top             =   0
             Width           =   1080
             _Version        =   65536
-            _ExtentX        =   1896
-            _ExtentY        =   582
-            Calculator      =   "BookPOChild08.frx":1B8C
-            Caption         =   "BookPOChild08.frx":1BAC
+            _ExtentX        =   1905
+            _ExtentY        =   529
+            Calculator      =   "BookPOChild08.frx":1D1E
+            Caption         =   "BookPOChild08.frx":1D3E
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -808,9 +861,9 @@ Begin VB.Form FrmBookPOChild08
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "BookPOChild08.frx":1C18
-            Keys            =   "BookPOChild08.frx":1C36
-            Spin            =   "BookPOChild08.frx":1C80
+            DropDown        =   "BookPOChild08.frx":1DAA
+            Keys            =   "BookPOChild08.frx":1DC8
+            Spin            =   "BookPOChild08.frx":1E12
             AlignHorizontal =   1
             AlignVertical   =   0
             Appearance      =   0
@@ -841,7 +894,7 @@ Begin VB.Form FrmBookPOChild08
             ReadOnly        =   1
             Separator       =   ""
             ShowContextMenu =   1
-            ValueVT         =   5
+            ValueVT         =   1638405
             Value           =   0
             MaxValueVT      =   5
             MinValueVT      =   5
@@ -850,12 +903,12 @@ Begin VB.Form FrmBookPOChild08
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Index           =   2
-         Left            =   14520
+         Left            =   11040
          TabIndex        =   22
          Top             =   7020
-         Width           =   4440
+         Width           =   8640
          _Version        =   65536
-         _ExtentX        =   7832
+         _ExtentX        =   15240
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -868,38 +921,38 @@ Begin VB.Form FrmBookPOChild08
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   "  F2->Delete Row  Ctrl+D->Delete Row  Ctrl+S->Save"
+         Caption         =   " Ctrl+E->Edit Row  F2->Edit Row  F9->Delete Row  Ctrl+D->Delete Row  Ctrl+S->Save"
          AutoSize        =   -1  'True
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "BookPOChild08.frx":1CA8
+         Picture         =   "BookPOChild08.frx":1E3A
          Multiline       =   -1  'True
          GlobalMem       =   -1  'True
-         Picture         =   "BookPOChild08.frx":1CC4
+         Picture         =   "BookPOChild08.frx":1E56
       End
       Begin VB.Line Line1 
          X1              =   0
-         X2              =   19300
+         X2              =   19800
          Y1              =   1065
          Y2              =   1065
       End
       Begin VB.Line Line4 
          X1              =   0
-         X2              =   19300
-         Y1              =   6415
-         Y2              =   6415
+         X2              =   19800
+         Y1              =   6420
+         Y2              =   6420
       End
       Begin VB.Line Line2 
          X1              =   0
-         X2              =   19300
+         X2              =   19800
          Y1              =   540
          Y2              =   540
       End
       Begin VB.Line Line3 
          X1              =   0
-         X2              =   19300
-         Y1              =   6920
-         Y2              =   6920
+         X2              =   19800
+         Y1              =   6915
+         Y2              =   6915
       End
    End
 End
@@ -972,7 +1025,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstFetchOperationRate)
 End Sub
 Private Sub ClearFields()
-    MhDateInput1.Text = Format(Date, "dd-MM-yyyy")  'Order Date
+    MhDateInput1.Text = FrmBookPrintOrder.MhDateInput1.Text 'Format(Date, "dd-MM-yyyy")  'Order Date
     MhDateInput3.Text = Format(DateAdd("d", 2, CDate(GetDate(MhDateInput1.Text))), "dd-MM-yyyy")    'Target Date
     fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True
     MhRealInput18.Value = 0: MhRealInput19.Value = 0
@@ -988,7 +1041,7 @@ Private Sub LoadFields()
     MhDateInput3.Text = Format(rstBookPOChild08.Fields("TargetDate").Value, "dd-MM-yyyy")
     With fpSpread1
         If rstOrderList.State = adStateOpen Then rstOrderList.Close
-        rstOrderList.Open "SELECT OrderDate,TargetDate,I.Code As ICode,I.Name As IName,E.Code As ECode,E.Name As EName,O.Code As OCode,O.Name As OName,O.Value1 As oValue1,B.Code As BCode,B.Name As BName,T.OperationCountName As OCName,[Number],S.Code As SCode,S.Name As SName,S.Type As SType,Fraction,Quantity,C.Code As CCode,C.Name As CName,T.CalcValue As CValue,Rate,Amount,Adjustment,[GST%],GST,BillAmount,Status,T.Narration FROM (((((BookPOChild08 T INNER JOIN BookMaster I ON T.SUBITEM=I.Code)INNER JOIN ElementMaster E ON T.Element=E.Code) INNER JOIN GeneralMaster O ON T.BinderyProcess=O.Code) INNER JOIN GeneralMaster B ON T.BindingType=B.Code)INNER JOIN GeneralMaster C ON T.CalcMode=C.Code) LEFT JOIN GeneralMaster S ON T.[Size]=S.Code WHERE T.Code='" & CheckNull(rstBookPOChild08.Fields("Code").Value) & "' ORDER BY E.Name,BinderyProcess,O.Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstOrderList.Open "SELECT OrderDate,TargetDate,I.Code As ICode,I.Name As IName,E.Code As ECode,E.Name As EName,O.Code As OCode,O.Name As OName,O.Value1 As oValue1,B.Code As BCode,B.Name As BName,T.OperationCountName As OCName,[Number],S.Code As SCode,S.Name As SName,S.Type As SType,Fraction,Quantity,C.Code As CCode,C.Name As CName,T.CalcValue As CValue,Rate,Amount,Adjustment,[GST%],GST,BillAmount,Status,T.Narration FROM (((((BookPOChild08 T LEFT JOIN BookMaster I ON T.SUBITEM=I.Code)LEFT JOIN ElementMaster E ON '*00016'=E.Code) LEFT JOIN GeneralMaster O ON T.BinderyProcess=O.Code) LEFT JOIN GeneralMaster B ON T.BindingType=B.Code)LEFT JOIN GeneralMaster C ON T.CalcMode=C.Code) LEFT JOIN GeneralMaster S ON T.[Size]=S.Code WHERE T.Code='" & CheckNull(rstBookPOChild08.Fields("Code").Value) & "' ORDER BY E.Name,BinderyProcess,O.Name", cnDatabase, adOpenKeyset, adLockReadOnly
         rstOrderList.ActiveConnection = Nothing
         If rstOrderList.RecordCount > 0 Then
             rstOrderList.MoveFirst
@@ -1277,7 +1330,7 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
                         .SetText 11, .ActiveRow, Val(CalcVal)
                     ElseIf (rstCalcModeList.Fields("Code").Value) = "*20008" Then
                         CalcVal = InputBox("Please Confirm Input Value for" & Chr(13) & "Per Paisa Inch²", "Easy Publish Prime", Val(CalcVal))
-                        .SetText 11, .ActiveRow, CalcVal: .SetText 10, .ActiveRow, 0.01
+                        .SetText 11, .ActiveRow, CalcVal: .SetText 12, .ActiveRow, 0.01
                     End If
                 End If
             End If
@@ -1297,6 +1350,7 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
             .GetText 5, Row, Number
             .GetText 19, Row, Operation
             .GetText 7, Row, AreaRange: If AreaRange <> "" Then AreaRange = Left(AreaRange, 5) * Mid(AreaRange, 7, 5)
+            .GetText 8, Row, Fraction: AreaRange = (AreaRange / Fraction)
             .GetText 20, Row, Size
             If Not (CheckEmpty(Operation, False) And CheckEmpty(CalcMode, False)) And Val(Qty) > 0 Then .SetText 12, Row, FetchOperationRate(Operation, CalcMode, IIf(CalcType = "O", Size, ""), Val(AreaRange), Val(Number), Val(Qty))
         End If
@@ -1335,6 +1389,7 @@ Private Sub fpSpread1_EditMode(ByVal Col As Long, ByVal Row As Long, ByVal Mode 
     EditMode = IIf(Mode = 1, True, False)
 End Sub
 Private Sub RefreshDropDownList(ByVal xType As String)
+SubItem = "": Element = "": Operation = "": Binding = "": Size = "": CalcMode = ""
     If xType = "R" Then
         rstSubItemList.ActiveConnection = cnDatabase
         Do While Not RefreshRecord(rstSubItemList): Loop
@@ -1406,6 +1461,7 @@ Private Function FetchOperationRate(ByVal xBinderyProcess As String, ByVal xCalc
                                                                         "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & "  AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange " & _
                                                         "Else " & _
                                                                         "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND AreaRange>=" & xAreaRange & "  AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange ", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstFetchOperationRate.ActiveConnection = Nothing
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
         rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND AreaRange>=" & xAreaRange & "  AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange ", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -1417,66 +1473,78 @@ Private Function FetchOperationRate(ByVal xBinderyProcess As String, ByVal xCalc
                                                                         "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange " & _
                                                         "Else " & _
                                                                         "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND AreaRange>=" & xAreaRange & " AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstFetchOperationRate.ActiveConnection = Nothing
     End If
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
         rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND AreaRange>=" & xAreaRange & " AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstFetchOperationRate.ActiveConnection = Nothing
     End If
-    
-    If rstFetchOperationRate.RecordCount > 0 Then FetchOperationRate = Val(rstFetchOperationRate.Fields("Rate").Value)
+    If rstFetchOperationRate.RecordCount > 0 Then
+    FetchOperationRate = Val(rstFetchOperationRate.Fields("Rate").Value)
+    Else
+    FetchOperationRate = 0
+    End If
     Exit Function
 ErrorHandler:
     DisplayError (Err.Description)
 End Function
 Private Sub InsertOperation()
+    Dim i As Integer, SICode As String, ECode As String, BCode As String, ActiveCellVal As Variant
+    Dim CalcType As String, Number As Variant, Size As Variant, Qty As Variant, CalcMode As Variant, Rate As Variant, xPos As Integer, Amount As Double, Adjustment As Variant, GST As Variant, Operation As Variant, Binding As Variant, AreaRange As Variant, xCalcVal As Variant
     With rstOrderList
-        If .State = adStateOpen Then .Close
-        .Open "SELECT E.Code As ECode,E.Name As EName,B.Code As BCode,B.Name As BName,O.Code As OCode,O.Name As OName,O.Value1 As oValue1,T.OperationCountName As OCName,[Number],S.Code As SCode,S.Name As SName,C.Code As CCode,C.Name As CName,T.CalcValue As CalcVal FROM ((((BookChild08 T INNER JOIN ElementMaster E ON T.ElementGroup=E.Code) INNER JOIN GeneralMaster O ON T.BinderyProcess=O.Code) INNER JOIN GeneralMaster B ON T.BindingType=B.Code) INNER JOIN GeneralMaster C ON T.CalcMode=C.Code) LEFT JOIN GeneralMaster S ON T.[Size]=S.Code WHERE T.Code='" & ItemCode & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockReadOnly
-        .ActiveConnection = Nothing
-        If .RecordCount = 0 Then
-            Dim Operation, Binding, CalcMode, Size, CalcVal
-            With fpSpread1
-                .SetText 5, 1, 1 'Set Number
-                .SetText 9, 1, OrderQty 'Set Quantity
-                'Element
-                If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                rstFetchOperationRate.Open "SELECT Code,Name FROM ElementMaster WHERE Code='*00016'", cnDatabase, adOpenKeyset, adLockReadOnly
-                If rstFetchOperationRate.RecordCount > 0 Then .SetText 3, 1, rstFetchOperationRate.Fields("Name").Value: .SetText 18, 1, rstFetchOperationRate.Fields("Code").Value
-                'Operation,Size
-                If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                rstFetchOperationRate.Open "SELECT O.Code As OperationCode,O.Name As OperationName,S.Code As SizeCode,S.Name As SizeName FROM (BookMaster I LEFT JOIN GeneralMaster O ON I.LaminationType=O.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE I.Code='" & ItemCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
-                If rstFetchOperationRate.RecordCount > 0 Then .SetText 4, 1, rstFetchOperationRate.Fields("OperationName").Value: .SetText 19, 1, rstFetchOperationRate.Fields("OperationCode").Value: .SetText 25, 1, rstFetchOperationRate.Fields("oValue1").Value: .SetText 7, 1, rstFetchOperationRate.Fields("SizeName").Value: .SetText 20, 1, rstFetchOperationRate.Fields("SizeCode").Value: Operation = rstFetchOperationRate.Fields("OperationCode").Value: Size = rstFetchOperationRate.Fields("SizeCode").Value
-                If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                'CalcMode
-                rstFetchOperationRate.Open "SELECT Code,Name FROM GeneralMaster WHERE Code='*20005'", cnDatabase, adOpenKeyset, adLockReadOnly
-                If rstFetchOperationRate.RecordCount > 0 Then .SetText 10, 1, rstFetchOperationRate.Fields("Name").Value: .SetText 20, 1, rstFetchOperationRate.Fields("Code").Value: CalcMode = rstFetchOperationRate.Fields("Code").Value
-                If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                rstFetchOperationRate.Open "SELECT Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & Operation & "' AND CalcMode='" & CalcMode & "' AND [Size]='" & Size & "'", cnDatabase, adOpenKeyset, adLockReadOnly
-                'Rate
-                If rstFetchOperationRate.RecordCount > 0 Then .SetText 12, 1, Val(rstFetchOperationRate.Fields("Rate").Value): .SetText 13, 1, OrderQty * Val(rstFetchOperationRate.Fields("Rate").Value): .SetText 17, 1, OrderQty * Val(rstFetchOperationRate.Fields("Rate").Value)
-            End With
-        Else
-            Dim i As Integer, ECode As String, BCode As String
-            Do While Not .EOF
-                i = i + 1
-                If ECode = "" Or ECode <> rstOrderList.Fields("ECode").Value Then fpSpread1.SetText 1, i, rstOrderList.Fields("EName").Value
-                If BCode = "" Or (BCode + ECode) <> (rstOrderList.Fields("BCode").Value + rstOrderList.Fields("ECode").Value) Then fpSpread1.SetText 2, i, rstOrderList.Fields("BName").Value
-                fpSpread1.SetText 4, i, rstOrderList.Fields("OName").Value
-                fpSpread1.SetText 5, i, Val(rstOrderList.Fields("Number").Value)
-                fpSpread1.SetText 6, i, CheckNull(rstOrderList.Fields("OCName").Value)
-                fpSpread1.SetText 7, i, CheckNull(rstOrderList.Fields("SName").Value)
-                fpSpread1.SetText 9, i, FrmBookPrintOrder.MhRealInput3.Value 'Quantity
-                fpSpread1.SetText 10, i, CheckNull(rstOrderList.Fields("CName").Value)
-                fpSpread1.SetText 11, i, Val(rstOrderList.Fields("CalcVal").Value)
-                fpSpread1.SetText 18, i, rstOrderList.Fields("ECode").Value: ECode = rstOrderList.Fields("ECode").Value
-                fpSpread1.SetText 19, i, rstOrderList.Fields("OCode").Value
-                fpSpread1.SetText 20, i, rstOrderList.Fields("SCode").Value
-                fpSpread1.SetText 21, i, rstOrderList.Fields("CCode").Value
-                fpSpread1.SetText 24, i, rstOrderList.Fields("BCode").Value: BCode = rstOrderList.Fields("BCode").Value
-                fpSpread1.SetText 25, i, Val(rstOrderList.Fields("oValue1").Value)
-                fpSpread1.SetText 26, i, rstOrderList.Fields("ICode").Value
-                .MoveNext
-            Loop
+        If rstOrderList.State = adStateOpen Then rstOrderList.Close
+            rstOrderList.Open "SELECT SI.Name As SIName,SI.Code As SICode,B.Name As BName,B.Code As BCode,E.Name As ElementName,E.Code As ElementCode,O.Name As OperationName,O.Code As OperationCode,[Number],T.OperationCountName As Describe,S.Name As SizeName,S.Code As SizeCode,IIF(S.Type=11,1,0) As Fraction,0 As Quantity,C.Name As CalcModeName,C.Code As CalcModeCode,T.CalcValue As CalcModeValue,O.Value1 As oValue1,S.Type As SizeType FROM (((((BookChild08 T LEFT JOIN BookMaster SI ON T.SubItem=SI.Code) LEFT JOIN ElementMaster E ON '*00016'=E.Code) LEFT JOIN GeneralMaster O ON T.BinderyProcess=O.Code) LEFT JOIN GeneralMaster B ON T.BindingType=B.Code) LEFT JOIN GeneralMaster C ON T.CalcMode=C.Code) LEFT JOIN GeneralMaster S ON T.[Size]=S.Code WHERE T.Code='" & ItemCode & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockReadOnly
+            rstOrderList.ActiveConnection = Nothing
+        If rstOrderList.RecordCount = 0 Then
+        If rstOrderList.State = adStateOpen Then rstOrderList.Close
+            rstOrderList.Open "SELECT I.Name As SIName,I.Code As SICode,(Select Name From GeneralMaster Where Code=I.BindingType) As BName,I.BindingType As BCode,E.Name As ElementName,E.Code As ElementCode,O.Name As OperationName,O.Code As OperationCode,(I.BindingForms01+I.BindingForms02) As Number,'Nos' As Describe,S.Name As SizeName,S.Code As SizeCode,IIF(S.Type=11,1,0) As Fraction,0 As Quantity,(Select Name From GeneralMaster Where Code=O.UnderGroup) As CalcModeName,O.UnderGroup As CalcModeCode,(Select Value1 From GeneralMaster Where Code=O.UnderGroup) As CalcModeValue, O.Value1 As oValue1,S.Type As SizeType FROM (((BookMaster I Left JOIN BindingTypeChild B On I.BindingType=B.Code)Left JOIN ElementMaster E ON '*00016'=E.Code) LEFT JOIN GeneralMaster O ON B.BinderyProcess=O.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE I.Code='" & ItemCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+            rstOrderList.ActiveConnection = Nothing
         End If
-    End With
+                     i = 0
+            rstOrderList.MoveFirst
+            Do While Not rstOrderList.EOF
+                        i = i + 1
+                        If SICode = "" Or SICode <> rstOrderList.Fields("SICode").Value Then fpSpread1.SetText i, i, rstOrderList.Fields("SIName").Value
+                        If BCode = "" Or (BCode + SICode) <> (rstOrderList.Fields("BCode").Value + rstOrderList.Fields("SICode").Value) Then fpSpread1.SetText 2, i, rstOrderList.Fields("BName").Value
+                        fpSpread1.SetText 26, i, rstOrderList.Fields("SICode").Value: SICode = rstOrderList.Fields("SICode").Value
+                        fpSpread1.SetText 24, i, rstOrderList.Fields("BCode").Value: BCode = rstOrderList.Fields("BCode").Value
+                        fpSpread1.SetText 3, i, rstOrderList.Fields("ElementName").Value: fpSpread1.SetText 18, i, rstOrderList.Fields("ElementName").Value: ECode = rstOrderList.Fields("ElementName").Value
+                        fpSpread1.SetText 4, i, rstOrderList.Fields("OperationName").Value: fpSpread1.SetText 19, i, rstOrderList.Fields("OperationCode").Value: Operation = rstOrderList.Fields("OperationCode").Value:
+                        fpSpread1.SetText 5, i, Val(rstOrderList.Fields("Number").Value)
+                                            Number = Val(rstOrderList.Fields("Number").Value) 'Set Number
+                        fpSpread1.SetText 6, i, rstOrderList.Fields("Describe").Value
+                        fpSpread1.SetText 7, i, rstOrderList.Fields("SizeName").Value: fpSpread1.SetText 20, i, rstOrderList.Fields("SizeCode").Value:
+                        Size = rstOrderList.Fields("SizeName").Value
+                        If Size <> "" Then AreaRange = Left(Size, 5) * Mid(Size, 7, 5)
+                        Size = rstOrderList.Fields("SizeCode").Value
+                        fpSpread1.SetText 8, i, Val(rstOrderList.Fields("Fraction").Value) 'Set Number
+                        fpSpread1.SetText 9, i, FrmBookPrintOrder.MhRealInput3.Value: Qty = FrmBookPrintOrder.MhRealInput3.Value 'OrderQty
+                        fpSpread1.SetText 10, i, rstOrderList.Fields("CalcModeName").Value: fpSpread1.SetText 21, i, rstOrderList.Fields("CalcModeCode").Value: CalcMode = rstOrderList.Fields("CalcModeCode").Value
+                                            CalcType = IIf(InStr(1, rstOrderList.Fields("CalcModeName").Value, "Inch") > 0, "S", "O")
+                        fpSpread1.SetText 11, i, Val(rstOrderList.Fields("CalcModeValue").Value)
+                        fpSpread1.SetText 25, i, Val(rstOrderList.Fields("oValue1").Value)
+                        fpSpread1.SetText 27, i, rstOrderList.Fields("SizeType").Value
+                    If Not (CheckEmpty(Operation, False) And CheckEmpty(CalcMode, False)) And Val(Qty) > 0 Then
+                        fpSpread1.SetText 12, i, FetchOperationRate(Operation, CalcMode, IIf(CalcType = "O", Size, ""), Val(AreaRange), Val(Number), Val(Qty))
+                        If rstFetchOperationRate.RecordCount = 0 Then Rate = 0 Else Rate = Val(rstFetchOperationRate.Fields("Rate").Value)
+                        Adjustment = 0: GST = 0
+                        Size = rstOrderList.Fields("SizeName").Value
+                        If CalcType = "S" And (Not CheckEmpty(Size, False)) Then xPos = InStr(1, LCase(Size), "x"): Size = Val(Left(Size, xPos - 1)) * Val(Mid(Size, xPos + 1, 5)) Else Size = 1
+                        CalcVal = Val(rstOrderList.Fields("CalcModeValue").Value)
+                        If CalcVal = 0 Then CalcVal = 1
+                            ActiveCellVal = Val(rstOrderList.Fields("oValue1").Value)
+                        If ActiveCellVal = 1 Then
+                                    Amount = Round((Size * Val(Qty) * (Val(Rate)) / CalcVal), 2)
+                        ElseIf ActiveCellVal = 0 Then
+                                    Amount = Round((Number * Size * Val(Qty) * Val(Rate)) / CalcVal, 2)
+                        End If
+                        fpSpread1.SetText 13, i, Amount 'Amount
+                        fpSpread1.SetText 16, i, ((Amount + Val(Adjustment)) * Val(GST)) / 100 'GST
+                        fpSpread1.SetText 17, i, Round(Amount + Val(Adjustment) + (((Amount + Val(Adjustment)) * Val(GST)) / 100), 0) 'BillAmount
+                        CalculateAmount
+                    End If
+                    rstOrderList.MoveNext
+                Loop
+End With
 End Sub

@@ -78,6 +78,7 @@ Begin VB.Form FrmBookMaster
          _Version        =   393216
          Style           =   1
          Tabs            =   8
+         Tab             =   4
          TabsPerRow      =   8
          TabHeight       =   520
          ShowFocusRect   =   0   'False
@@ -92,23 +93,17 @@ Begin VB.Form FrmBookMaster
          EndProperty
          TabCaption(0)   =   "&List"
          TabPicture(0)   =   "BookMaster.frx":001C
-         Tab(0).ControlEnabled=   -1  'True
+         Tab(0).ControlEnabled=   0   'False
          Tab(0).Control(0)=   "Label1"
-         Tab(0).Control(0).Enabled=   0   'False
          Tab(0).Control(1)=   "DataGrid1"
-         Tab(0).Control(1).Enabled=   0   'False
          Tab(0).Control(2)=   "Text1"
-         Tab(0).Control(2).Enabled=   0   'False
          Tab(0).ControlCount=   3
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "btnNotes"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "txtNotes"
-         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).Control(2)=   "Mh3dFrame2"
-         Tab(1).Control(2).Enabled=   0   'False
          Tab(1).ControlCount=   3
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
@@ -122,8 +117,9 @@ Begin VB.Form FrmBookMaster
          Tab(3).ControlCount=   1
          TabCaption(4)   =   "Multi Form Format Element"
          TabPicture(4)   =   "BookMaster.frx":008C
-         Tab(4).ControlEnabled=   0   'False
+         Tab(4).ControlEnabled=   -1  'True
          Tab(4).Control(0)=   "Mh3dFrame7"
+         Tab(4).Control(0).Enabled=   0   'False
          Tab(4).ControlCount=   1
          TabCaption(5)   =   "Multi Element Format Element"
          TabPicture(5)   =   "BookMaster.frx":00A8
@@ -135,7 +131,7 @@ Begin VB.Form FrmBookMaster
          Tab(6).ControlEnabled=   0   'False
          Tab(6).Control(0)=   "Mh3dFrame8"
          Tab(6).ControlCount=   1
-         TabCaption(7)   =   "Binding Element"
+         TabCaption(7)   =   "Binding && Finishing"
          TabPicture(7)   =   "BookMaster.frx":00E0
          Tab(7).ControlEnabled=   0   'False
          Tab(7).Control(0)=   "Mh3dFrame9"
@@ -193,14 +189,14 @@ Begin VB.Form FrmBookMaster
                Strikethrough   =   0   'False
             EndProperty
             Height          =   330
-            Left            =   600
+            Left            =   -74400
             TabIndex        =   19
             Top             =   8445
             Width           =   15480
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   7915
-            Left            =   120
+            Left            =   -74880
             TabIndex        =   18
             TabStop         =   0   'False
             Top             =   450
@@ -508,7 +504,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   1638405
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1251,7 +1247,6 @@ Begin VB.Form FrmBookMaster
             _ExtentX        =   28152
             _ExtentY        =   14640
             _StockProps     =   77
-            Enabled         =   0   'False
             TintColor       =   16711935
             Alignment       =   0
             AutoSize        =   0   'False
@@ -1349,7 +1344,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":10F6
+            Picture         =   "BookMaster.frx":1104
             Begin FPSpreadADO.fpSpread fpSpread3 
                Height          =   8085
                Left            =   120
@@ -1372,14 +1367,14 @@ Begin VB.Form FrmBookMaster
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   4227327
-               MaxCols         =   3
+               MaxCols         =   7
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":1112
+               SpreadDesigner  =   "BookMaster.frx":1120
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame7 
             Height          =   8300
-            Left            =   -74880
+            Left            =   120
             TabIndex        =   34
             TabStop         =   0   'False
             Top             =   480
@@ -1406,7 +1401,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":1683
+            Picture         =   "BookMaster.frx":17DE
             Begin FPSpreadADO.fpSpread fpSpread4 
                Height          =   8085
                Left            =   120
@@ -1430,9 +1425,9 @@ Begin VB.Form FrmBookMaster
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   33023
-               MaxCols         =   24
+               MaxCols         =   25
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":169F
+               SpreadDesigner  =   "BookMaster.frx":17FA
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame8 
@@ -1464,7 +1459,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":26B7
+            Picture         =   "BookMaster.frx":2862
             Begin FPSpreadADO.fpSpread fpSpread5 
                Height          =   8085
                Left            =   120
@@ -1488,9 +1483,9 @@ Begin VB.Form FrmBookMaster
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   33023
-               MaxCols         =   10
+               MaxCols         =   12
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":26D3
+               SpreadDesigner  =   "BookMaster.frx":287E
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame9 
@@ -1522,7 +1517,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":2FBA
+            Picture         =   "BookMaster.frx":3253
             Begin VB.CommandButton cmdLoadElement 
                Caption         =   ".."
                BeginProperty Font 
@@ -1564,9 +1559,9 @@ Begin VB.Form FrmBookMaster
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   33023
-               MaxCols         =   11
+               MaxCols         =   13
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":2FD6
+               SpreadDesigner  =   "BookMaster.frx":326F
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
@@ -1598,7 +1593,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":3949
+            Picture         =   "BookMaster.frx":3C7F
             Begin FPSpreadADO.fpSpread fpSpread2 
                Height          =   8085
                Left            =   120
@@ -1622,9 +1617,9 @@ Begin VB.Form FrmBookMaster
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   33023
-               MaxCols         =   22
+               MaxCols         =   24
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":3965
+               SpreadDesigner  =   "BookMaster.frx":3C9B
             End
          End
          Begin VB.Label Label1 
@@ -1643,7 +1638,7 @@ Begin VB.Form FrmBookMaster
             EndProperty
             ForeColor       =   &H80000009&
             Height          =   330
-            Left            =   120
+            Left            =   -74880
             TabIndex        =   20
             Top             =   8445
             Width           =   495
@@ -1748,9 +1743,15 @@ Attribute VB_Exposed = False
 Option Explicit
 Public SL As Boolean, MasterCode As String, ItemType As String
 Dim cnItemMaster As New ADODB.Connection
-Dim rstItemList As New ADODB.Recordset, rstItemMaster As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstFinishSizeList As New ADODB.Recordset, rstBindingTypeList As New ADODB.Recordset, rstItemChild As New ADODB.Recordset, rstUnfinishedItemList As New ADODB.Recordset, rstElementList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset
+Dim rstBdgList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemMaster As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstFinishSizeList As New ADODB.Recordset, rstBindingTypeList As New ADODB.Recordset, rstItemChild As New ADODB.Recordset, rstUnfinishedItemList As New ADODB.Recordset, rstElementList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset
 Dim HSNCode As String, ItemGroupCode As String, FinishSizeCode1 As String, FinishSizeCode2 As Variant, BindingTypeCode As String, GeneralItemCode As Variant, PaperCode As Variant, UnfinishedItemCode As Variant, ElementCode As String, OperationCode As Variant, SizeCode As String, CalcModeCode As Variant, BinderyProcessCode As Variant, PrintingSizeCode As Variant, ColorCode As Variant, TextSizeCode As String, TitleSizeCode As String
 Dim PrevStr As String, blnRecordExist As Boolean, SortCol As String, SortOrder As String, EditMode As Boolean
+Private Sub btnNotes_Click()
+    frmNotes.NotesFlag = 2
+    frmNotes.Label1.Caption = "Notes : " & Text2.Text
+    frmNotes.Show (vbModal)
+    Text2.SetFocus
+End Sub
 Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     On Error GoTo ErrorHandler
@@ -1804,7 +1805,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(1): KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyE And Toolbar1.Buttons.Item(2).Enabled Then 'Edit
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(2): KeyCode = 0
-    ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF8)) And Toolbar1.Buttons.Item(3).Enabled Then 'Delete
+    ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF8)) And Toolbar1.Buttons.Item(3).Enabled Then  'Delete
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3): KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyF12 And Toolbar1.Buttons.Item(1).Enabled Then 'Duplicate
         If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then DuplicateRecord
@@ -1857,6 +1858,68 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstSizeList)
     Call CloseConnection(cnItemMaster)
     ShowProgressInStatusBar False
+End Sub
+Private Sub fpSpread1_ComboSelChange(ByVal Col As Long, ByVal Row As Long)
+Dim cVal As Variant
+fpSpread1.GetText 4, Row, cVal
+    If cVal <> "" Then
+        If fpSpread1.ActiveCol = 1 Then fpSpread1.SetText 4, Row, "": fpSpread1.SetText 2, Row, "": fpSpread1.SetText 3, Row, ""
+    Else
+    Sendkeys "{TAB}"
+   End If
+    Dim CurVal As Variant
+    With fpSpread1
+            .SetActiveCell 2, .ActiveRow
+            If .ActiveCol = 2 Then
+                .GetText 1, .ActiveRow, CurVal
+                If CheckEmpty(CurVal, False) Then Exit Sub
+                If CurVal = "BOM Item" Then
+                    .GetText .ActiveCol + 2, .ActiveRow, GeneralItemCode
+                    On Error Resume Next
+                    FrmOutsourceItemMaster.SL = True
+                    FrmOutsourceItemMaster.MasterCode = GeneralItemCode
+                    Load FrmOutsourceItemMaster
+                    If Err.Number <> 364 Then FrmOutsourceItemMaster.Show vbModal
+                    On Error GoTo 0
+                    .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 2, .ActiveRow, slCode
+                    If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+                ElseIf CurVal = "Paper" Then
+                    .GetText .ActiveCol + 2, .ActiveRow, PaperCode
+                    On Error Resume Next
+                    FrmPaperMaster.SL = True
+                    FrmPaperMaster.MasterCode = PaperCode
+                    Load FrmPaperMaster
+                    If Err.Number <> 364 Then FrmPaperMaster.Show vbModal
+                    On Error GoTo 0
+                    .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 2, .ActiveRow, slCode
+                    If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+                ElseIf CurVal = "Finished Item" Then
+                    .GetText .ActiveCol + 2, .ActiveRow, UnfinishedItemCode
+                    On Error Resume Next
+                    Dim frmItemMaster As New FrmBookMaster
+                    frmItemMaster.SL = True
+                    frmItemMaster.ItemType = "F"
+                    frmItemMaster.MasterCode = UnfinishedItemCode
+                    Load frmItemMaster
+                    If Err.Number <> 364 Then frmItemMaster.Show vbModal
+                    On Error GoTo 0
+                    .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 2, .ActiveRow, slCode
+                    If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+                ElseIf CurVal = "Unfinished Item" Then
+                    .GetText .ActiveCol + 2, .ActiveRow, UnfinishedItemCode
+                    On Error Resume Next
+                    'Dim frmItemMaster As New FrmBookMaster
+                    frmItemMaster.SL = True
+                    frmItemMaster.ItemType = "R"
+                    frmItemMaster.MasterCode = UnfinishedItemCode
+                    Load frmItemMaster
+                    If Err.Number <> 364 Then frmItemMaster.Show vbModal
+                    On Error GoTo 0
+                    .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 2, .ActiveRow, slCode
+                    If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+                End If
+            End If
+    End With
 End Sub
 Private Sub Text1_Change()
     If rstItemList.RecordCount = 0 Then Exit Sub
@@ -1972,6 +2035,7 @@ Private Sub SSTab1_Click(PreviousTab As Integer)
             Mh3dFrame2.Enabled = False: Mh3dFrame3.Enabled = False: Mh3dFrame4.Enabled = False: Mh3dFrame5.Enabled = False: Mh3dFrame7.Enabled = False: Mh3dFrame8.Enabled = True: Mh3dFrame9.Enabled = False: fpSpread5.SetFocus
         ElseIf SSTab1.Tab = 7 Then
             Mh3dFrame2.Enabled = False: Mh3dFrame3.Enabled = False: Mh3dFrame4.Enabled = False: Mh3dFrame5.Enabled = False: Mh3dFrame7.Enabled = False: Mh3dFrame8.Enabled = False: Mh3dFrame9.Enabled = True: fpSpread6.SetFocus
+            cmdLoadElement_Click
         End If
     End If
 End Sub
@@ -2083,10 +2147,10 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
                 With fpSpread6
                     For i = 1 To .DataRowCnt
                         .SetActiveCell 1, i
-                        .GetText 8, i, CellVal(1) 'Element
-                        .GetText 9, i, CellVal(2) 'Process
-                        .GetText 10, i, CellVal(3) 'Size Group
-                        .GetText 11, i, CellVal(4) 'Calc Mode
+                        .GetText 10, i, CellVal(1) 'Binding
+                        .GetText 11, i, CellVal(2) 'Process
+                        .GetText 12, i, CellVal(3) 'Size
+                        .GetText 13, i, CellVal(4) 'Calc Mode
                         If Not (CheckEmpty(CellVal(1), False) Or CheckEmpty(CellVal(2), False) Or CheckEmpty(CellVal(3), False) Or CheckEmpty(CellVal(4), False)) Then If Not UpdateItemList("I") Then UpdateFlag = 0: Exit For
                     Next
                 End With
@@ -2332,10 +2396,22 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer) 'BOM Item
                     On Error GoTo 0
                     .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 2, .ActiveRow, slCode
                     If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
-                ElseIf CurVal = "Unfinished Item" Then
+                ElseIf CurVal = "Finished Item" Then
                     .GetText .ActiveCol + 2, .ActiveRow, UnfinishedItemCode
                     On Error Resume Next
                     Dim frmItemMaster As New FrmBookMaster
+                    frmItemMaster.SL = True
+                    frmItemMaster.ItemType = "F"
+                    frmItemMaster.MasterCode = UnfinishedItemCode
+                    Load frmItemMaster
+                    If Err.Number <> 364 Then frmItemMaster.Show vbModal
+                    On Error GoTo 0
+                    .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 2, .ActiveRow, slCode
+                    If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+                ElseIf CurVal = "Unfinished Item" Then
+                    .GetText .ActiveCol + 2, .ActiveRow, UnfinishedItemCode
+                    On Error Resume Next
+                    'Dim frmItemMaster As New FrmBookMaster
                     frmItemMaster.SL = True
                     frmItemMaster.ItemType = "R"
                     frmItemMaster.MasterCode = UnfinishedItemCode
@@ -2350,10 +2426,23 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer) 'BOM Item
     End With
 End Sub
 Private Sub fpSpread3_KeyDown(KeyCode As Integer, Shift As Integer) 'Editorial Component
+    Dim CurVal(1 To 2) As Variant
     With fpSpread3
         If .EditMode Then Exit Sub
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
             If MsgBox("Are you sure to Delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus
+        ElseIf KeyCode = vbKeySpace Then
+            If .ActiveCol = 5 Then 'Team Member
+                .GetText 7, .ActiveRow, CurVal(1)
+                On Error Resume Next
+                FrmTeamMemberMaster.SL = True
+                FrmTeamMemberMaster.MasterCode = CurVal(1)
+                Load FrmTeamMemberMaster
+                If Err.Number <> 364 Then FrmTeamMemberMaster.Show vbModal
+                On Error GoTo 0
+                .SetText 5, .ActiveRow, slName: .SetText 7, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then .SetActiveCell 6, .ActiveRow Else Sendkeys "{ENTER}" 'Sendkeys "{ENTER}"
+            End If
         End If
     End With
 End Sub
@@ -2434,6 +2523,17 @@ Private Sub fpSpread4_KeyDown(KeyCode As Integer, Shift As Integer)
                 On Error GoTo 0
                 .SetText 7, .ActiveRow, slName: .SetText 21, .ActiveRow, slCode
                 If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+            ElseIf .ActiveCol = 14 Then 'Plate
+                .GetText 25, .ActiveRow, CurVal(1)
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "24"
+                FrmGeneralMaster.MasterCode = CurVal(1)
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText 14, .ActiveRow, slName: .SetText 25, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
             End If
         ElseIf KeyCode = vbKeyReturn Then
             If .ActiveCol = 3 Then 'Printing Size
@@ -2464,26 +2564,46 @@ Private Sub fpSpread4_KeyDown(KeyCode As Integer, Shift As Integer)
             ElseIf .ActiveCol = 10 Then '¼F
                 .GetText 10, .ActiveRow, CurVal(1)
                 CurVal(2) = CalculateForms("Q", .ActiveRow)
-                If Val(CurVal(1)) <> Val(CurVal(2)) Then
+                If CurVal(1) = "" Then
+                    .SetText 10, .ActiveRow, Val(CurVal(2))
+                ElseIf Val(CurVal(1)) <> Val(CurVal(2)) Then
                     If MsgBox("Variation in Calculated [" & Trim(CurVal(2)) & "] and Existing [" & Trim(CurVal(1)) & "] ¼ Forms ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 10, .ActiveRow, Val(CurVal(2))
                 End If
             ElseIf .ActiveCol = 11 Then '½F
                 .GetText 11, .ActiveRow, CurVal(1)
                 CurVal(2) = CalculateForms("H", .ActiveRow)
-                If Val(CurVal(1)) <> Val(CurVal(2)) Then
+                If CurVal(1) = "" Then
+                    .SetText 11, .ActiveRow, Val(CurVal(2))
+                ElseIf Val(CurVal(1)) <> Val(CurVal(2)) Then
                     If MsgBox("Variation in Calculated [" & Trim(CurVal(2)) & "] and Existing [" & Trim(CurVal(1)) & "] ½ Forms ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 11, .ActiveRow, Val(CurVal(2))
                 End If
             ElseIf .ActiveCol = 12 Then '1F-F&B
                 .GetText 12, .ActiveRow, CurVal(1)
                 CurVal(2) = CalculateForms("F", .ActiveRow)
-                If Val(CurVal(1)) <> Val(CurVal(2)) Then
+                If CurVal(1) = "" Then
+                    .SetText 12, .ActiveRow, Val(CurVal(2))
+                ElseIf Val(CurVal(1)) <> Val(CurVal(2)) Then
                     If MsgBox("Variation in Calculated [" & Trim(CurVal(2)) & "] and Existing [" & Trim(CurVal(1)) & "] 1 Forms-F&B ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 12, .ActiveRow, Val(CurVal(2))
                 End If
             ElseIf .ActiveCol = 13 Then '1F-W&T
                 .GetText 13, .ActiveRow, CurVal(1)
                 CurVal(2) = CalculateForms("W", .ActiveRow)
-                If Val(CurVal(1)) <> Val(CurVal(2)) Then
+                If CurVal(1) = "" Then
+                    .SetText 13, .ActiveRow, Val(CurVal(2))
+                ElseIf Val(CurVal(1)) <> Val(CurVal(2)) Then
                     If MsgBox("Variation in Calculated [" & Trim(CurVal(2)) & "] and Existing [" & Trim(CurVal(1)) & "] 1 Forms-W&T ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 13, .ActiveRow, Val(CurVal(2))
+                End If
+                .GetText 25, .ActiveRow, CurVal(1)
+                On Error Resume Next
+                If CheckEmpty(CurVal(1), False) Then
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "24"
+                FrmGeneralMaster.MasterCode = CurVal(1)
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText 14, .ActiveRow, slName: .SetText 25, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
                 End If
             ElseIf .ActiveCol = 15 Then 'Binding Forms
                 .GetText 10, .ActiveRow, CurVal(1) '¼F
@@ -2497,9 +2617,16 @@ Private Sub fpSpread4_KeyDown(KeyCode As Integer, Shift As Integer)
                 .GetText 13, .ActiveRow, CurVal(1) '1F-W&T
                 BindingForms = BindingForms + Val(CurVal(1)) 'Calculated Binding Forms
                 .GetText 15, .ActiveRow, CurVal(1) 'Binding Forms
-                If BindingForms <> Val(CurVal(1)) Then
+                If CurVal(1) = "" Then
+                    .SetText 15, .ActiveRow, BindingForms
+                ElseIf BindingForms <> Val(CurVal(1)) Then
                     If MsgBox("Variation in Calculated [" & Trim(BindingForms) & "] and Existing [" & Trim(CurVal(1)) & "] Binding Forms ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 15, .ActiveRow, BindingForms
                 End If
+                    .GetText 17, .ActiveRow, CurVal(1) 'Type
+                If CurVal(1) = "" Then
+                    If Trim(ReadFromFile("Client ID")) = "Publisher" Then CurVal(2) = "Purchase" Else CurVal(2) = "Sale"
+                    .SetText 17, .ActiveRow, CurVal(2)
+                 End If
             ElseIf .ActiveCol = 16 Then 'Forms/Sheet
                 .GetText 16, .ActiveRow, CurVal(1) 'Forms/Sheet
                 .GetText 24, .ActiveRow, CurVal(2) 'C-Forms/Sheet
@@ -2516,6 +2643,31 @@ Private Sub fpSpread4_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
         If NewCol = 2 Then 'Finishing Size
             .GetText 19, Row, CurVal(1)
             If CheckEmpty(CurVal(1), False) Then .SetText 2, Row, Text5.Text: .SetText 19, Row, FinishSizeCode1
+            .GetText 22, Row, CurVal(1) 'M-Printing Size
+            If CheckEmpty(CurVal(1), False) Then
+                    With rstItemChild
+                        If .State = adStateOpen Then .Close
+                        .Open "SELECT S.Name+'|'+'Pages/Ptg Form: '+IIF([Ups/Form]<10,'0','')+LTRIM([Ups/Form]) As Col0,S.Name,S.Code FROM FinishSizeChild C INNER JOIN GeneralMaster S ON C.[TextSize]=S.Code WHERE C.Code='" & FinishSizeCode1 & "' ORDER BY S.Name,[Ups/Form]", cnItemMaster, adOpenKeyset, adLockReadOnly
+                        SelectionType = "S": TextSizeCode = ""
+                        fpSpread4.GetText 3, fpSpread4.ActiveRow, CurVal(2) 'Printing Size
+                        If Not CheckEmpty(CurVal(1), False) And .RecordCount > 0 Then 'Move Pointer
+                            .Find "[Name] = '" & RTrim(CurVal(1)) & "'"
+                            If .EOF Then .MoveFirst Else Text99.Text = .Fields("Col0").Value
+                        End If
+                        Call LoadSelectionList(rstItemChild, "List of Printing Sizes...", "Name", "")
+                        SearchOrder = 0: Text99.Text = ""
+                        Call DisplaySelectionList(Text99, TextSizeCode)
+                        Call CloseForm(FrmSelectionList)
+                        If Not CheckEmpty(TextSizeCode, False) Then
+                            .MoveFirst
+                            .Find "[Code] = '" & TextSizeCode & "'"
+                            fpSpread4.SetText 22, fpSpread4.ActiveRow, TextSizeCode & Right(.Fields("Col0").Value, 2) & .Fields("Name").Value '6+2+40
+                        Else
+                            fpSpread4.SetText 22, fpSpread4.ActiveRow, "" 'M-Printing Size
+                        End If
+                        Sendkeys "{ENTER}"
+                    End With
+            End If
         ElseIf NewCol = 3 Then 'Printing Size
             .GetText 3, Row, CurVal(1)
             If CheckEmpty(CurVal(1), False) Then
@@ -2644,6 +2796,28 @@ Private Sub fpSpread2_KeyDown(KeyCode As Integer, Shift As Integer)
                 On Error GoTo 0
                 .SetText 6, .ActiveRow, slName: .SetText 18, .ActiveRow, slCode
                 If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+            ElseIf .ActiveCol = 7 Then 'Front Plate
+                .GetText 23, .ActiveRow, CurVal(1)
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "24"
+                FrmGeneralMaster.MasterCode = CurVal(1)
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText 7, .ActiveRow, slName: .SetText 23, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+            ElseIf .ActiveCol = 8 Then 'Back Plate
+                .GetText 24, .ActiveRow, CurVal(1)
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "24"
+                FrmGeneralMaster.MasterCode = CurVal(1)
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText 8, .ActiveRow, slName: .SetText 24, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
             End If
         ElseIf KeyCode = vbKeyReturn Then
             If .ActiveCol = 2 Then 'Pages
@@ -2682,8 +2856,15 @@ Private Sub fpSpread2_KeyDown(KeyCode As Integer, Shift As Integer)
                 End If
             ElseIf .ActiveCol = 12 Then 'Binding Forms
                 .GetText 11, .ActiveRow, CurVal(1): .GetText 12, .ActiveRow, CurVal(2)
-                If Val(CurVal(1)) <> Val(CurVal(2)) Then
+                If CurVal(2) = "" Then
+                    .SetText 12, .ActiveRow, Val(CurVal(1))
+                ElseIf Val(CurVal(1)) <> Val(CurVal(2)) Then
                     If MsgBox("Variation in Calculated [" & Trim(CurVal(1)) & "] and Existing [" & Trim(CurVal(2)) & "] Binding Forms ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 12, .ActiveRow, Val(CurVal(1))
+                End If
+                        .GetText 13, .ActiveRow, CurVal(1) 'Type
+                If CurVal(1) = "" Then
+                    If Trim(ReadFromFile("Client ID")) = "Publisher" Then CurVal(2) = "Purchase" Else CurVal(2) = "Sale"
+                        .SetText 13, .ActiveRow, CurVal(2)
                 End If
             End If
         End If
@@ -2744,7 +2925,7 @@ Private Sub fpSpread5_KeyDown(KeyCode As Integer, Shift As Integer) 'Miscellaneo
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
             If MsgBox("Are you sure to Delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus
         ElseIf KeyCode = vbKeySpace Then
-            If .ActiveCol = 1 Then
+            If .ActiveCol = 1 Then 'Element
                 .GetText .ActiveCol, .ActiveRow, CurVal
                 Text99.Text = FixQuote(CurVal)
                 If rstElementList.RecordCount = 0 Then DisplayError ("No Record in Element Master"): .SetActiveCell .ActiveCol, .ActiveRow: Exit Sub Else rstElementList.MoveFirst
@@ -2754,14 +2935,19 @@ Private Sub fpSpread5_KeyDown(KeyCode As Integer, Shift As Integer) 'Miscellaneo
                 SearchOrder = 0
                 Call DisplaySelectionList(Text99, ElementCode)
                 Call CloseForm(FrmSelectionList)
-                .SetText .ActiveCol + 6, .ActiveRow, ElementCode
+                .SetText .ActiveCol + 8, .ActiveRow, ElementCode
                 If CheckEmpty(ElementCode, False) Then
                     .SetActiveCell .ActiveCol, .ActiveRow: .SetText .ActiveCol, .ActiveRow, ""
                 Else
+                   .GetText 8, .ActiveRow, CurVal
+                    If CheckEmpty(CurVal, False) Then
+                    If Trim(ReadFromFile("Client ID")) = "Publisher" Then CurVal = "Purchase" Else CurVal = "Sale"
+                    .SetText 8, .ActiveRow, CurVal
+                    End If
                     .SetText .ActiveCol, .ActiveRow, Text99.Text: Sendkeys "{ENTER}"
                 End If
-            ElseIf .ActiveCol = 2 Then
-                .GetText .ActiveCol + 6, .ActiveRow, OperationCode
+            ElseIf .ActiveCol = 2 Then 'Operation
+                .GetText .ActiveCol + 8, .ActiveRow, OperationCode
                 On Error Resume Next
                 FrmGeneralMaster.SL = True
                 FrmGeneralMaster.MasterType = "7"
@@ -2769,74 +2955,17 @@ Private Sub fpSpread5_KeyDown(KeyCode As Integer, Shift As Integer) 'Miscellaneo
                 Load FrmGeneralMaster
                 If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
                 On Error GoTo 0
-                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 6, .ActiveRow, slCode
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 8, .ActiveRow, slCode 'Operation
+                .SetText .ActiveCol + 4, .ActiveRow, slUGroupName: .SetText .ActiveCol + 10, .ActiveRow, slUGroupCode 'CalcModeName,Code
+                .SetText .ActiveCol + 5, .ActiveRow, slUGroupValue1 'CalcValue
+                .GetText .ActiveCol + 1, .ActiveRow, CurVal 'Nos
+                If CheckEmpty(CurVal, False) Then .SetText .ActiveCol + 1, .ActiveRow, 1
+                .GetText .ActiveCol + 2, .ActiveRow, CurVal
+                If CheckEmpty(CurVal, False) Then .SetText .ActiveCol + 2, .ActiveRow, "Nos"
+                .GetText .ActiveCol + 3, .ActiveRow, CurVal 'Finish Size
+                If CheckEmpty(CurVal, False) Then .SetText .ActiveCol + 3, .ActiveRow, Text5.Text: .SetText .ActiveCol + 9, .ActiveRow, FinishSizeCode1
                 If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
-            ElseIf .ActiveCol = 4 Then
-                .GetText .ActiveCol, .ActiveRow, CurVal
-                Text99.Text = FixQuote(CurVal)
-                If rstSizeList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell .ActiveCol, .ActiveRow: Exit Sub Else rstSizeList.MoveFirst
-                rstSizeList.Find "[Col0] = '" & RTrim(CurVal) & "'"
-                SelectionType = "S": SizeCode = ""
-                Call LoadSelectionList(rstSizeList, "List of Size(s)...", "Name")
-                SearchOrder = 0
-                Call DisplaySelectionList(Text99, SizeCode)
-                Call CloseForm(FrmSelectionList)
-                .SetText .ActiveCol + 5, .ActiveRow, SizeCode
-                If CheckEmpty(SizeCode, False) Then
-                    .SetActiveCell .ActiveCol, .ActiveRow: .SetText .ActiveCol, .ActiveRow, ""
-                Else
-                    .SetText .ActiveCol, .ActiveRow, Text99.Text: Sendkeys "{ENTER}"
-                End If
-            ElseIf .ActiveCol = 5 Then
-                .GetText .ActiveCol + 5, .ActiveRow, CalcModeCode
-                On Error Resume Next
-                FrmGeneralMaster.SL = True
-                FrmGeneralMaster.MasterType = "20"
-                FrmGeneralMaster.MasterCode = CalcModeCode
-                Load FrmGeneralMaster
-                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
-                On Error GoTo 0
-                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 5, .ActiveRow, slCode
-                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
-            End If
-        End If
-    End With
-End Sub
-Private Sub fpSpread6_KeyDown(KeyCode As Integer, Shift As Integer) 'Binding Element
-    Dim CurVal As Variant
-    With fpSpread6
-        If .EditMode Then Exit Sub
-        If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
-            If MsgBox("Are you sure to Delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus
-        ElseIf KeyCode = vbKeySpace Then
-            If .ActiveCol = 1 Then
-                .GetText .ActiveCol, .ActiveRow, CurVal
-                Text99.Text = FixQuote(CurVal)
-                If rstElementList.RecordCount = 0 Then DisplayError ("No Record in Element Master"): .SetActiveCell .ActiveCol, .ActiveRow: Exit Sub Else rstElementList.MoveFirst
-                rstElementList.Find "[Col0] = '" & RTrim(CurVal) & "'"
-                SelectionType = "S": ElementCode = ""
-                Call LoadSelectionList(rstElementList, "List of Element(s)...", "Name")
-                SearchOrder = 0
-                Call DisplaySelectionList(Text99, ElementCode)
-                Call CloseForm(FrmSelectionList)
-                .SetText .ActiveCol + 7, .ActiveRow, ElementCode
-                If CheckEmpty(ElementCode, False) Then
-                    .SetActiveCell .ActiveCol, .ActiveRow: .SetText .ActiveCol, .ActiveRow, ""
-                Else
-                    .SetText .ActiveCol, .ActiveRow, Text99.Text: Sendkeys "{ENTER}"
-                End If
-            ElseIf .ActiveCol = 2 Then
-                .GetText .ActiveCol + 7, .ActiveRow, BinderyProcessCode
-                On Error Resume Next
-                FrmGeneralMaster.SL = True
-                FrmGeneralMaster.MasterType = "7"
-                FrmGeneralMaster.MasterCode = BinderyProcessCode
-                Load FrmGeneralMaster
-                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
-                On Error GoTo 0
-                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 7, .ActiveRow, slCode
-                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
-            ElseIf .ActiveCol = 4 Then
+            ElseIf .ActiveCol = 5 Then 'Size
                 .GetText .ActiveCol, .ActiveRow, CurVal
                 Text99.Text = FixQuote(CurVal)
                 If rstSizeList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell .ActiveCol, .ActiveRow: Exit Sub Else rstSizeList.MoveFirst
@@ -2852,8 +2981,8 @@ Private Sub fpSpread6_KeyDown(KeyCode As Integer, Shift As Integer) 'Binding Ele
                 Else
                     .SetText .ActiveCol, .ActiveRow, Text99.Text: Sendkeys "{ENTER}"
                 End If
-            ElseIf .ActiveCol = 6 Then
-                .GetText .ActiveCol + 5, .ActiveRow, CalcModeCode
+            ElseIf .ActiveCol = 6 Then ' Calc Mode
+                .GetText .ActiveCol + 6, .ActiveRow, CalcModeCode
                 On Error Resume Next
                 FrmGeneralMaster.SL = True
                 FrmGeneralMaster.MasterType = "20"
@@ -2861,7 +2990,78 @@ Private Sub fpSpread6_KeyDown(KeyCode As Integer, Shift As Integer) 'Binding Ele
                 Load FrmGeneralMaster
                 If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
                 On Error GoTo 0
-                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 5, .ActiveRow, slCode
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 6, .ActiveRow, slCode: .SetText .ActiveCol + 1, .ActiveRow, slValue1
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+            End If
+        End If
+    End With
+End Sub
+Private Sub fpSpread6_KeyDown(KeyCode As Integer, Shift As Integer) 'Binding Element
+    Dim CurVal As Variant, oBindingTypeCode As Variant
+    With fpSpread6
+        If .EditMode Then Exit Sub
+        If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
+            If MsgBox("Are you sure to Delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus
+        ElseIf KeyCode = vbKeySpace Then
+            If .ActiveCol = 1 Then
+                .GetText .ActiveCol + 9, .ActiveRow, oBindingTypeCode
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "6"
+                FrmGeneralMaster.MasterCode = oBindingTypeCode
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 9, .ActiveRow, slCode
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+            ElseIf .ActiveCol = 2 Then
+                .GetText .ActiveCol + 9, .ActiveRow, BinderyProcessCode
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "7"
+                FrmGeneralMaster.MasterCode = BinderyProcessCode
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 9, .ActiveRow, slCode
+                .SetText .ActiveCol + 2, .ActiveRow, "Nos"
+                .SetText .ActiveCol + 3, .ActiveRow, Text5.Text
+                .SetText .ActiveCol + 10, .ActiveRow, FinishSizeCode1
+                .SetText .ActiveCol + 4, .ActiveRow, 1
+                .SetText .ActiveCol + 5, .ActiveRow, slUGroupName
+                .SetText .ActiveCol + 6, .ActiveRow, slUGroupValue1
+                .SetText .ActiveCol + 11, .ActiveRow, slUGroupCode
+                If Trim(ReadFromFile("Client ID")) = "Publisher" Then CurVal = "Purchase" Else CurVal = "Sale"
+                .SetText 9, .ActiveRow, CurVal
+                .GetText .ActiveCol + 8, .ActiveRow, CurVal
+                If CheckEmpty(CurVal, False) Then .GetText .ActiveCol + 8, .ActiveRow - 1, CurVal: .SetText 10, .ActiveRow, CurVal
+                If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
+            ElseIf .ActiveCol = 5 Then
+                .GetText .ActiveCol, .ActiveRow, CurVal
+                Text99.Text = FixQuote(CurVal)
+                If rstSizeList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell .ActiveCol, .ActiveRow: Exit Sub Else rstSizeList.MoveFirst
+                rstSizeList.Find "[Col0] = '" & RTrim(CurVal) & "'"
+                SelectionType = "S": SizeCode = ""
+                Call LoadSelectionList(rstSizeList, "List of Size(s)...", "Name")
+                SearchOrder = 0
+                Call DisplaySelectionList(Text99, SizeCode)
+                Call CloseForm(FrmSelectionList)
+                .SetText .ActiveCol + 7, .ActiveRow, SizeCode
+                If CheckEmpty(SizeCode, False) Then
+                    .SetActiveCell .ActiveCol, .ActiveRow: .SetText .ActiveCol, .ActiveRow, ""
+                Else
+                    .SetText .ActiveCol, .ActiveRow, Text99.Text: Sendkeys "{ENTER}"
+                End If
+            ElseIf .ActiveCol = 7 Then
+                .GetText .ActiveCol + 6, .ActiveRow, CalcModeCode
+                On Error Resume Next
+                FrmGeneralMaster.SL = True
+                FrmGeneralMaster.MasterType = "20"
+                FrmGeneralMaster.MasterCode = CalcModeCode
+                Load FrmGeneralMaster
+                If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
+                On Error GoTo 0
+                .SetText .ActiveCol, .ActiveRow, slName: .SetText .ActiveCol + 6, .ActiveRow, slCode: .SetText .ActiveCol + 1, .ActiveRow, slValue1
                 If Not CheckEmpty(slCode, False) Then Sendkeys "{ENTER}"
             End If
         End If
@@ -2936,6 +3136,7 @@ Private Sub LoadFields()
             If Not rstBindingTypeList.EOF Then Text10.Text = rstBindingTypeList.Fields("Col0").Value
         End If
         Text13.Text = .Fields("Remarks").Value
+        txtNotes.Text = .Fields("Notes").Value
         Call LoadItemList(.Fields("Code").Value)
         Call CalculateTotalForms
     End With
@@ -2956,18 +3157,22 @@ Private Sub LoadItemList(ByVal MasterCode As String)
         Loop
         fpSpread1.SetActiveCell 1, 1
         If .State = adStateOpen Then .Close
-        .Open "SELECT ArrivedOn,Correction,RectifiedOn FROM BookChild0201 T WHERE Code='" & MasterCode & "'  ORDER BY ArrivedOn DESC,SNo", cnItemMaster, adOpenKeyset, adLockReadOnly
+        .Open "SELECT Sno,Correction,ArrivedOn,TargetDate,RectifiedOn,(Select Name From TeamMemberMaster Where Code=Member) As MemberName,Member As MemberCode,Remarks FROM BookChild0201 T WHERE Code='" & MasterCode & "'  ORDER BY ArrivedOn DESC,SNo", cnItemMaster, adOpenKeyset, adLockReadOnly
         i = 0
         Do Until .EOF
             i = i + 1
             fpSpread3.SetText 1, i, Format(.Fields("ArrivedOn").Value, "dd-MM-yyyy")
             fpSpread3.SetText 2, i, .Fields("Correction").Value
-            If Not IsNull(.Fields("RectifiedOn").Value) Then fpSpread3.SetText 3, i, Format(.Fields("RectifiedOn").Value, "dd-MM-yyyy")
+            If Not IsNull(.Fields("TargetDate").Value) Then fpSpread3.SetText 3, i, Format(.Fields("TargetDate").Value, "dd-MM-yyyy")
+            If Not IsNull(.Fields("RectifiedOn").Value) Then fpSpread3.SetText 4, i, Format(.Fields("RectifiedOn").Value, "dd-MM-yyyy")
+            fpSpread3.SetText 5, i, .Fields("MemberName").Value
+            fpSpread3.SetText 6, i, .Fields("Remarks").Value
+            fpSpread3.SetText 7, i, .Fields("MemberCode").Value
             .MoveNext
         Loop
         fpSpread3.SetActiveCell 1, 1
         If .State = adStateOpen Then .Close
-        .Open "SELECT Element,E.Name As ElementName,FinishSize,F.Name As FinishSizeName,[Size] As PrintingSize,P.Name As PrintingSizeName,Color,R.Name As ColorName,PlateType,C.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],C.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],BindingForms,Ups,C.Type FROM (((BookChild05 C INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster F ON C.FinishSize=F.Code) INNER JOIN GeneralMaster P ON C.[Size]=P.Code) INNER JOIN GeneralMaster R ON C.Color=R.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,F.Name,P.Name,R.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
+        .Open "SELECT Element,E.Name As ElementName,FinishSize,F.Name As FinishSizeName,[Size] As PrintingSize,P.Name As PrintingSizeName,Color,R.Name As ColorName,PlateType,R1.Name As PlateName,C.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],C.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],BindingForms,Ups,C.Type FROM ((((BookChild05 C INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster F ON C.FinishSize=F.Code) INNER JOIN GeneralMaster P ON C.[Size]=P.Code) INNER JOIN GeneralMaster R ON C.Color=R.Code) INNER JOIN GeneralMaster R1 ON C.PlateType=R1.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,F.Name,P.Name,R.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
         i = 0
         Do Until .EOF
             i = i + 1
@@ -2984,7 +3189,7 @@ Private Sub LoadItemList(ByVal MasterCode As String)
             fpSpread4.SetText 11, i, Val(.Fields("Forms-½").Value)
             fpSpread4.SetText 12, i, Val(.Fields("Forms-1-F&B").Value)
             fpSpread4.SetText 13, i, Val(.Fields("Forms-1-W&T").Value)
-            fpSpread4.SetText 14, i, Choose(Val(.Fields("PlateType").Value), "Deep-Etch", "PS", "Wipe-on", "CTP")
+            fpSpread4.SetText 14, i, .Fields("PlateName").Value: fpSpread4.SetText 25, i, .Fields("PlateType").Value 'Choose(Val(.Fields("PlateType").Value), "Deep-Etch", "PS", "Wipe-on", "CTP")
             fpSpread4.SetText 15, i, Val(.Fields("BindingForms").Value)
             fpSpread4.SetText 16, i, Val(.Fields("Ups").Value)
             fpSpread4.SetText 17, i, IIf(.Fields("Type").Value = "S", "Sale", "Purchase")
@@ -2992,7 +3197,7 @@ Private Sub LoadItemList(ByVal MasterCode As String)
         Loop
         fpSpread4.SetActiveCell 1, 1
         If .State = adStateOpen Then .Close
-        .Open "SELECT Element,E.Name As ElementName,FinishSize,F.Name As FinishSizeName,C.[Size] As PrintingSize,P.Name As PrintingSizeName,FrontPrintingType As FrontColor,R1.Name As FrontColorName,BackPrintingType As BackColor,R2.Name As BackColorName,PlateType As FrontPlateType,PlateTypeBack As BackPlateType,C.Pages,Imposition,Ups,C.Sets,BindingForms,C.Type FROM ((((BookChild06 C INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster F ON C.FinishSize=F.Code) INNER JOIN GeneralMaster P ON C.[Size]=P.Code) LEFT JOIN GeneralMaster R1 ON C.FrontPrintingType=R1.Code) LEFT JOIN GeneralMaster R2 ON C.BackPrintingType=R2.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,F.Name,P.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
+        .Open "SELECT Element,E.Name As ElementName,FinishSize,F.Name As FinishSizeName,C.[Size] As PrintingSize,P.Name As PrintingSizeName,FrontPrintingType As FrontColor,R1.Name As FrontColorName,BackPrintingType As BackColor,R2.Name As BackColorName,PlateType As FrontPlateType,R3.Name As FrontPlateName,PlateTypeBack As BackPlateType,R4.Name As BackPlateName,C.Pages,Imposition,Ups,C.Sets,BindingForms,C.Type FROM ((((((BookChild06 C INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster F ON C.FinishSize=F.Code) INNER JOIN GeneralMaster P ON C.[Size]=P.Code) LEFT JOIN GeneralMaster R1 ON C.FrontPrintingType=R1.Code) LEFT JOIN GeneralMaster R2 ON C.BackPrintingType=R2.Code) LEFT JOIN GeneralMaster R3 ON C.PlateType=R3.Code) LEFT JOIN GeneralMaster R4 ON C.PlateTypeBack=R4.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,F.Name,P.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
         i = 0
         Do Until .EOF
             i = i + 1
@@ -3002,8 +3207,8 @@ Private Sub LoadItemList(ByVal MasterCode As String)
             fpSpread2.SetText 4, i, .Fields("PrintingSizeName").Value: fpSpread2.SetText 16, i, .Fields("PrintingSize").Value
             fpSpread2.SetText 5, i, .Fields("FrontColorName").Value: fpSpread2.SetText 17, i, .Fields("FrontColor").Value
             fpSpread2.SetText 6, i, .Fields("BackColorName").Value: fpSpread2.SetText 18, i, .Fields("BackColor").Value
-            fpSpread2.SetText 7, i, Choose(Val(.Fields("FrontPlateType").Value), "Deep-Etch", "PS", "Wipe-on", "CTP")
-            fpSpread2.SetText 8, i, Choose(Val(.Fields("BackPlateType").Value), "Deep-Etch", "PS", "Wipe-on", "CTP")
+            fpSpread2.SetText 7, i, .Fields("FrontPlateName").Value: fpSpread2.SetText 23, i, .Fields("FrontPlateType").Value 'Choose(Val(.Fields("FrontPlateType").Value), "Deep-Etch", "PS", "Wipe-on", "CTP")
+            fpSpread2.SetText 8, i, .Fields("BackPlateName").Value: fpSpread2.SetText 24, i, .Fields("BackPlateType").Value 'Choose(Val(.Fields("BackPlateType").Value), "Deep-Etch", "PS", "Wipe-on", "CTP")
             fpSpread2.SetText 9, i, IIf(.Fields("Imposition").Value = "F", "F&B", "W&T")
             fpSpread2.SetText 10, i, Val(.Fields("Ups").Value)
             fpSpread2.SetText 11, i, Val(.Fields("Sets").Value)
@@ -3013,31 +3218,36 @@ Private Sub LoadItemList(ByVal MasterCode As String)
         Loop
         fpSpread2.SetActiveCell 1, 1
         If .State = adStateOpen Then .Close
-        .Open "SELECT Element,E.Name As ElementName,Operation,O.Name As OperationName,CalcMode,M.Name As CalcModeName,C.[Size],S.Name As SizeName,Number,C.Type FROM (((BookChild07 C INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) LEFT JOIN GeneralMaster S ON C.[Size]=S.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,O.Name,M.Name,S.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
+        .Open "SELECT Element,E.Name As ElementName,Operation,O.Name As OperationName,CalcMode,CalcValue,M.Name As CalcModeName,C.[Size],S.Name As SizeName,Number,OperationCountName,C.Type FROM (((BookChild07 C INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) LEFT JOIN GeneralMaster S ON C.[Size]=S.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,O.Name,M.Name,S.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
         i = 0
         Do Until .EOF
             i = i + 1
-            fpSpread5.SetText 1, i, .Fields("ElementName").Value: fpSpread5.SetText 7, i, .Fields("Element").Value
-            fpSpread5.SetText 2, i, .Fields("OperationName").Value: fpSpread5.SetText 8, i, .Fields("Operation").Value
+            fpSpread5.SetText 1, i, .Fields("ElementName").Value: fpSpread5.SetText 9, i, .Fields("Element").Value
+            fpSpread5.SetText 2, i, .Fields("OperationName").Value: fpSpread5.SetText 10, i, .Fields("Operation").Value
             fpSpread5.SetText 3, i, Val(.Fields("Number").Value)
-            fpSpread5.SetText 4, i, .Fields("SizeName").Value: fpSpread5.SetText 9, i, .Fields("Size").Value
-            fpSpread5.SetText 5, i, .Fields("CalcModeName").Value: fpSpread5.SetText 10, i, .Fields("CalcMode").Value
-            fpSpread5.SetText 6, i, IIf(.Fields("Type").Value = "S", "Sale", "Purchase")
+            fpSpread5.SetText 4, i, .Fields("OperationCountName").Value
+            fpSpread5.SetText 5, i, .Fields("SizeName").Value: fpSpread5.SetText 11, i, .Fields("Size").Value
+            fpSpread5.SetText 6, i, .Fields("CalcModeName").Value: fpSpread5.SetText 12, i, .Fields("CalcMode").Value
+            fpSpread5.SetText 7, i, Val(.Fields("CalcValue").Value)
+            fpSpread5.SetText 8, i, IIf(Trim(.Fields("Type").Value) = "S", "Sale", "Purchase")
             .MoveNext
         Loop
         fpSpread5.SetActiveCell 1, 1
         If .State = adStateOpen Then .Close
-        .Open "SELECT SubItem,E.Name As SubItemName,BinderyProcess,P.Name As BinderyProcessName,CalcMode,M.Name As CalcModeName,C.[Size],S.Name As SizeName,Number,C.Type FROM (((BookChild08 C INNER JOIN GeneralMaster P ON C.BinderyProcess=P.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) INNER JOIN BOOKMaster E ON C.SubItem=E.Code) INNER JOIN GeneralMaster S ON C.[Size]=S.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,E.Name,P.Name,M.Name,S.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
+        .Open "SELECT SubItem AS SubItemCode,E.Name As SubItemName,C.BindingType,B.Name As BindingTypeName,BinderyProcess,P.Name As BinderyProcessName,CalcMode,M.Name As CalcModeName,CalcValue,C.[Size],S.Name As SizeName,S.Type AS sType,Number,OperationCountName,C.Type FROM ((((BookChild08 C INNER JOIN GeneralMaster B ON C.BindingType=B.Code)INNER JOIN GeneralMaster P ON C.BinderyProcess=P.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) INNER JOIN BOOKMaster E ON C.SubItem=E.Code) INNER JOIN GeneralMaster S ON C.[Size]=S.Code WHERE C.Code='" & MasterCode & "' ORDER BY C.Type,C.BindingType,E.Name,P.Name,M.Name,S.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
         i = 0
         Do Until .EOF
             i = i + 1
-            fpSpread6.SetText 1, i, .Fields("SubItemName").Value: fpSpread6.SetText 8, i, .Fields("SubItem").Value
-            fpSpread6.SetText 2, i, .Fields("BinderyProcessName").Value: fpSpread6.SetText 9, i, .Fields("BinderyProcess").Value
+Dim BindingType As String
+            If i = 1 Or BindingType <> .Fields("BindingType").Value Then fpSpread6.SetText 1, i, .Fields("BindingTypeName").Value
+            fpSpread6.SetText 10, i, .Fields("BindingType").Value: BindingType = .Fields("BindingType").Value
+            fpSpread6.SetText 2, i, .Fields("BinderyProcessName").Value: fpSpread6.SetText 11, i, .Fields("BinderyProcess").Value
             fpSpread6.SetText 3, i, Val(.Fields("Number").Value)
-            fpSpread6.SetText 4, i, .Fields("SizeName").Value: fpSpread6.SetText 10, i, .Fields("Size").Value
-            'fpSpread6.SetText 5, i, Val(.Fields("Fraction").Value)
-            fpSpread6.SetText 6, i, .Fields("CalcModeName").Value: fpSpread6.SetText 11, i, .Fields("CalcMode").Value
-            fpSpread6.SetText 7, i, IIf(.Fields("Type").Value = "S", "Sale", "Purchase")
+            fpSpread6.SetText 4, i, .Fields("OperationCountName").Value
+            fpSpread6.SetText 5, i, .Fields("SizeName").Value: fpSpread6.SetText 12, i, .Fields("Size").Value
+            fpSpread6.SetText 6, i, IIf(.Fields("sType").Value = 11, 1, 0)
+            fpSpread6.SetText 7, i, .Fields("CalcModeName").Value: fpSpread6.SetText 8, i, Val(.Fields("CalcValue").Value): fpSpread6.SetText 13, i, .Fields("CalcMode").Value
+            fpSpread6.SetText 9, i, IIf(.Fields("Type").Value = "FS", "Sale", "Purchase")
             .MoveNext
         Loop
         fpSpread6.SetActiveCell 1, 1
@@ -3095,22 +3305,23 @@ Private Sub SaveFields()
         .Fields("Remarks").Value = Trim(Text13.Text)
         .Fields("Type").Value = ItemType
         .Fields("PrintStatus").Value = "N"
+        .Fields("Notes").Value = txtNotes.Text
     End With
 End Sub
 Private Function UpdateItemList(ByVal ActionType As String) As Boolean
     On Error GoTo ErrorHandler
-    Dim CellVal(1 To 17) As Variant, RectifiedON As String
+    Dim CellVal(1 To 18) As Variant, RectifiedON As String
     UpdateItemList = True
     If ActionType = "D" And (Not blnRecordExist) Then Exit Function
     If ActionType <> "I" Then
         cnItemMaster.Execute "DELETE FROM BookChild01 WHERE Code='" & rstItemMaster.Fields("Code").Value & "'"
-        cnItemMaster.Execute "DELETE FROM BookChild02 WHERE Code='" & rstItemMaster.Fields("Code").Value & "' AND Type='P'"
+        cnItemMaster.Execute "DELETE FROM BookChild0201 WHERE Code='" & rstItemMaster.Fields("Code").Value & "'"
         cnItemMaster.Execute "DELETE FROM BookChild05 WHERE Code='" & rstItemMaster.Fields("Code").Value & "'"
         cnItemMaster.Execute "DELETE FROM BookChild06 WHERE Code='" & rstItemMaster.Fields("Code").Value & "'"
         cnItemMaster.Execute "DELETE FROM BookChild07 WHERE Code='" & rstItemMaster.Fields("Code").Value & "'"
         cnItemMaster.Execute "DELETE FROM BookChild08 WHERE Code='" & rstItemMaster.Fields("Code").Value & "'"
     Else
-        If SSTab1.Tab = 2 Then
+        If SSTab1.Tab = 2 Then 'BOM
             With fpSpread1
                 .GetText 1, .ActiveRow, CellVal(1) 'Category
                 .GetText 4, .ActiveRow, CellVal(2) 'Item
@@ -3118,22 +3329,27 @@ Private Function UpdateItemList(ByVal ActionType As String) As Boolean
                 CellVal(1) = IIf(CellVal(1) = "BOM Item", "1", IIf(CellVal(1) = "Paper", "2", "3"))
             End With
             cnItemMaster.Execute "INSERT INTO BookChild01 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(2) & "'," & Val(CellVal(3)) & ")"
-        ElseIf SSTab1.Tab = 3 Then
+        ElseIf SSTab1.Tab = 3 Then 'Editorial
             With fpSpread3
                 .GetText 1, .ActiveRow, CellVal(1) 'Arrived ON
-                .GetText 2, .ActiveRow, CellVal(2) 'Correction
-                .GetText 3, .ActiveRow, CellVal(3) 'Rectified ON
+                .GetText 2, .ActiveRow, CellVal(2) 'Correction fpSpread3.ActiveRow
+                .GetText 3, .ActiveRow, CellVal(3) 'Target Date
+                .GetText 4, .ActiveRow, CellVal(4) 'Rectified ON
+                .GetText 6, .ActiveRow, CellVal(5) 'Remarks
+                .GetText 7, .ActiveRow, CellVal(6) 'Member
             End With
             If IsDate(CellVal(3)) Then RectifiedON = "'" & Format(GetDate(CellVal(3)), "MM-dd-yyyy") & "'" Else RectifiedON = "Null"
-            cnItemMaster.Execute "INSERT INTO BookChild02 VALUES ('" & rstItemMaster.Fields("Code").Value & "'," & fpSpread3.ActiveRow & ",'" & Format(GetDate(CellVal(1)), "MM-dd-yyyy") & "',Null,'" & CellVal(2) & "',Null,Null,Null," & RectifiedON & ",Null,'','P')"
-        ElseIf SSTab1.Tab = 4 Then
+            'cnItemMaster.Execute "INSERT INTO BookChild02 VALUES ('" & rstItemMaster.Fields("Code").Value & "'," & fpSpread3.ActiveRow & ",'" & Format(GetDate(CellVal(1)), "MM-dd-yyyy") & "',Null,'" & CellVal(2) & "',Null,Null,Null," & RectifiedON & ",Null,'','P')"
+            cnItemMaster.Execute "INSERT INTO BookChild0201 VALUES ('" & rstItemMaster.Fields("Code").Value & "'," & fpSpread3.ActiveRow & ",'" & CellVal(2) & "','" & Format(GetDate(CellVal(1)), "MM-dd-yyyy") & "','" & Format(GetDate(CellVal(3)), "MM-dd-yyyy") & "','" & Format(GetDate(CellVal(4)), "MM-dd-yyyy") & "','" & CellVal(6) & "','" & CellVal(5) & "')"
+        ElseIf SSTab1.Tab = 4 Then 'MultiForm
             With fpSpread4
                 .GetText 18, .ActiveRow, CellVal(1) 'Element
+                .GetText 1, .ActiveRow, CellVal(18) 'Element Print Name
                 .GetText 19, .ActiveRow, CellVal(2) 'Finish Size
                 .GetText 20, .ActiveRow, CellVal(3) 'Printing Size
                 .GetText 21, .ActiveRow, CellVal(4) 'Color
-                .GetText 14, .ActiveRow, CellVal(5) 'Plate
-                CellVal(5) = IIf(CellVal(5) = "Deep-Etch", 1, IIf(CellVal(5) = "PS", 2, IIf(CellVal(5) = "Wipe-on", 3, 4)))
+                .GetText 25, .ActiveRow, CellVal(5) 'Plate
+                'CellVal(5) = IIf(CellVal(5) = "Deep-Etch", 1, IIf(CellVal(5) = "PS", 2, IIf(CellVal(5) = "Wipe-on", 3, 4)))
                 .GetText 4, .ActiveRow, CellVal(6)  'Duplex Printing
                 CellVal(6) = IIf(Val(CellVal(6)) = 1, 1, 0)
                 .GetText 5, .ActiveRow, CellVal(7)  'Pages/Printing Form
@@ -3149,56 +3365,63 @@ Private Function UpdateItemList(ByVal ActionType As String) As Boolean
                 .GetText 17, .ActiveRow, CellVal(17) 'Type
                 CellVal(17) = IIf(CellVal(17) = "Sale", "S", "P")
             End With
-            cnItemMaster.Execute "INSERT INTO BookChild05 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(3) & "'," & CellVal(6) & "," & Val(CellVal(7)) & "," & Val(CellVal(8)) & ",'" & CellVal(4) & "'," & Val(CellVal(9)) & "," & Val(CellVal(10)) & "," & Val(CellVal(11)) & "," & Val(CellVal(12)) & "," & Val(CellVal(13)) & "," & Val(CellVal(14)) & ",'" & CellVal(5) & "'," & Val(CellVal(16)) & "," & Val(CellVal(15)) & ",'" & CellVal(17) & "')"
-        ElseIf SSTab1.Tab = 5 Then
+            cnItemMaster.Execute "INSERT INTO BookChild05 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(18) & "','" & CellVal(2) & "','" & CellVal(3) & "'," & CellVal(6) & "," & Val(CellVal(7)) & "," & Val(CellVal(8)) & ",'" & CellVal(4) & "'," & Val(CellVal(9)) & "," & Val(CellVal(10)) & "," & Val(CellVal(11)) & "," & Val(CellVal(12)) & "," & Val(CellVal(13)) & "," & Val(CellVal(14)) & ",'" & CellVal(5) & "'," & Val(CellVal(16)) & "," & Val(CellVal(15)) & ",'" & CellVal(17) & "')"
+        ElseIf SSTab1.Tab = 5 Then 'MultiElement
             With fpSpread2
                 .GetText 14, .ActiveRow, CellVal(1) 'Element
+                .GetText 1, .ActiveRow, CellVal(17) 'Element Print Name
                 .GetText 15, .ActiveRow, CellVal(2) 'Finish Size
                 .GetText 16, .ActiveRow, CellVal(3) 'Printing Size
-                .GetText 17, .ActiveRow, CellVal(4) 'Color-Front
-                .GetText 18, .ActiveRow, CellVal(5) 'Color-Back
+                .GetText 17, .ActiveRow, CellVal(4)
+                    CellVal(4) = IIf(CellVal(4) = "", "NULL", "'" & CellVal(4) & "'")
+                .GetText 18, .ActiveRow, CellVal(5)
+                    CellVal(5) = IIf(CellVal(5) = "", "NULL", "'" & CellVal(5) & "'")
                 .GetText 2, .ActiveRow, CellVal(6)  'Pages
-                .GetText 7, .ActiveRow, CellVal(7) 'Plate-Front
-                CellVal(7) = IIf(CellVal(7) = "Deep-Etch", 1, IIf(CellVal(7) = "PS", 2, IIf(CellVal(7) = "Wipe-on", 3, 4)))
-                .GetText 8, .ActiveRow, CellVal(8) 'Plate-Back
-                CellVal(8) = IIf(CellVal(8) = "Deep-Etch", 1, IIf(CellVal(8) = "PS", 2, IIf(CellVal(8) = "Wipe-on", 3, 4)))
+                .GetText 23, .ActiveRow, CellVal(7) 'Plate-Front
+                    CellVal(7) = IIf(CellVal(7) = "", "NULL", "'" & CellVal(7) & "'")
+                .GetText 24, .ActiveRow, CellVal(8) 'Plate-Back
+                    CellVal(8) = IIf(CellVal(8) = "", "NULL", "'" & CellVal(8) & "'")
                 .GetText 9, .ActiveRow, CellVal(9) 'Imposition
-                CellVal(9) = IIf(CellVal(9) = "F&B", "F", "W")
+                    CellVal(9) = IIf(CellVal(9) = "F&B", "F", "W")
                 .GetText 10, .ActiveRow, CellVal(10) 'Ups/Sheet
                 .GetText 11, .ActiveRow, CellVal(11) 'Sets
                 .GetText 12, .ActiveRow, CellVal(12) 'Binding Forms
                 .GetText 13, .ActiveRow, CellVal(13) 'Type
-                CellVal(13) = IIf(CellVal(13) = "Sale", "S", "P")
+                    CellVal(13) = IIf(CellVal(13) = "Sale", "S", "P")
             End With
-            cnItemMaster.Execute "INSERT INTO BookChild06 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "'," & Val(CellVal(6)) & ",'" & CellVal(2) & "','" & CellVal(3) & "','" & CellVal(9) & "','" & CellVal(4) & "','" & CellVal(5) & "','" & CellVal(7) & "','" & CellVal(8) & "'," & Val(CellVal(10)) & "," & Val(CellVal(11)) & "," & Val(CellVal(12)) & ",'" & CellVal(13) & "')"
-        ElseIf SSTab1.Tab = 6 Then
+            cnItemMaster.Execute "INSERT INTO BookChild06 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(17) & "'," & Val(CellVal(6)) & ",'" & CellVal(2) & "','" & CellVal(3) & "','" & CellVal(9) & "'," & CellVal(4) & "," & CellVal(5) & "," & CellVal(7) & "," & CellVal(8) & "," & Val(CellVal(10)) & "," & Val(CellVal(11)) & "," & Val(CellVal(12)) & ",'" & CellVal(13) & "')"
+        ElseIf SSTab1.Tab = 6 Then 'Misc Operation
             With fpSpread5
-                .GetText 7, .ActiveRow, CellVal(1) 'Element
-                .GetText 8, .ActiveRow, CellVal(2) 'Operation
-                .GetText 9, .ActiveRow, CellVal(3) 'Size
-                .GetText 10, .ActiveRow, CellVal(4) 'Calc Mode
+                .GetText 9, .ActiveRow, CellVal(1) 'Element
+                .GetText 10, .ActiveRow, CellVal(2) 'Operation
                 .GetText 3, .ActiveRow, CellVal(5) 'Number
-                .GetText 6, .ActiveRow, CellVal(6) 'Type
+                .GetText 4, .ActiveRow, CellVal(7) 'OperationCountName
+                .GetText 11, .ActiveRow, CellVal(3) 'Size
+                .GetText 12, .ActiveRow, CellVal(4) 'Calc Mode
+                .GetText 7, .ActiveRow, CellVal(8) 'Calc Value
+                .GetText 8, .ActiveRow, CellVal(6) 'Type
                 CellVal(6) = IIf(CellVal(6) = "Sale", "S", "P")
             End With
-            cnItemMaster.Execute "INSERT INTO BookChild07 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(2) & "'," & Val(CellVal(5)) & "," & IIf(CheckEmpty(CellVal(3), False), "Null", "'" & CellVal(3) & "'") & ",'" & CellVal(4) & "','" & CellVal(6) & "')"
-        ElseIf SSTab1.Tab = 7 Then
+            cnItemMaster.Execute "INSERT INTO BookChild07 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(2) & "'," & Val(CellVal(5)) & ",'" & CellVal(7) & "'," & IIf(CheckEmpty(CellVal(3), False), "Null", "'" & CellVal(3) & "'") & ",'" & CellVal(4) & "'," & Val(CellVal(8)) & ",'" & CellVal(6) & "')"
+        ElseIf SSTab1.Tab = 7 Then 'Binding & Finishing
             With fpSpread6
-                .GetText 8, .ActiveRow, CellVal(1) 'Element
-                .GetText 9, .ActiveRow, CellVal(2) 'Bindery Process
-                .GetText 10, .ActiveRow, CellVal(3) 'Size Group
-                .GetText 11, .ActiveRow, CellVal(4) 'Calc Mode
+                .GetText 10, .ActiveRow, CellVal(1) 'Binding Type
+                .GetText 11, .ActiveRow, CellVal(2) 'Bindery Process
+                .GetText 12, .ActiveRow, CellVal(3) 'Size
+                .GetText 13, .ActiveRow, CellVal(4) 'Calc Mode
                 .GetText 3, .ActiveRow, CellVal(5) 'Forms
-                .GetText 5, .ActiveRow, CellVal(6) 'Fraction
-                .GetText 7, .ActiveRow, CellVal(7) 'Type
+                .GetText 6, .ActiveRow, CellVal(6) 'Fraction
+                .GetText 9, .ActiveRow, CellVal(7) 'Type
                 CellVal(7) = IIf(CellVal(7) = "Sale", "S", "P")
+                .GetText 4, .ActiveRow, CellVal(8) 'Discribe/Relate
+                .GetText 8, .ActiveRow, CellVal(9) 'Discribe/Relate
             End With
-            cnItemMaster.Execute "INSERT INTO BookChild08 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(4) & "','" & CellVal(3) & "'," & Val(CellVal(6)) & "," & Val(CellVal(5)) & ",'" & CellVal(7) & "')"
+            cnItemMaster.Execute "INSERT INTO BookChild08 VALUES ('" & rstItemMaster.Fields("Code").Value & "','" & rstItemMaster.Fields("Code").Value & "','" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(5) & "','" & CellVal(8) & "','" & CellVal(3) & "','" & CellVal(4) & "'," & Val(CellVal(9)) & ",'" & ItemType & CellVal(7) & "')" '
         End If
     End If
     Exit Function
 ErrorHandler:
-    UpdateItemList = False
+        UpdateItemList = False
 End Function
 Private Sub AddToList()
     On Error Resume Next
@@ -3433,38 +3656,69 @@ End Sub
 Private Sub cmdLoadElement_Click()
     If fpSpread6.DataRowCnt > 0 Then Exit Sub
     Dim i As Integer, n As Integer, CurVal(1 To 6) As Variant
-    With fpSpread4 'Multi Form Format
-        For i = 1 To .DataRowCnt
-            .GetText 1, i, CurVal(1): .GetText 18, i, CurVal(2) 'Element
-            .GetText 15, i, CurVal(3) 'Binding Forms
-            .GetText 3, i, CurVal(4): .GetText 20, i, CurVal(5) 'Printing Size
-            .GetText 16, i, CurVal(6) 'Ups
+    If rstBdgList.State = adStateOpen Then rstBdgList.Close
+    rstBdgList.Open "SELECT B.Code As BCode,B.Name As BName,O.Code As OCode,O.Name As OName,V.Code As CalcMode,V.Name As CalcModeName,V.Value1 As CalcValue FROM GeneralMaster B  Left JOIN BindingTypeChild B1 ON B.Code=B1.Code Left JOIN GeneralMaster O ON BinderyProcess=O.Code Left JOIN GeneralMaster V ON O.UnderGroup=V.Code WHERE B.Code='" & BindingTypeCode & "' ORDER BY O.Name", cnItemMaster, adOpenKeyset, adLockReadOnly
+    rstBdgList.ActiveConnection = Nothing
+    rstBdgList.MoveFirst
+    Do While Not rstBdgList.EOF
+    With fpSpread6 'Binding & Finishing
+            CurVal(1) = rstBdgList.Fields("BName").Value: CurVal(2) = rstBdgList.Fields("BCode").Value 'BindingType
+            CurVal(3) = MhRealInput4 'Binding Forms
+            CurVal(4) = FinishSizeCode1: CurVal(5) = Text5 'Printing Size
+            CurVal(6) = 1 'Ups
             If Val(CurVal(3)) > 0 Then
-                With fpSpread6 'Binding Element
                     n = n + 1
-                    .SetText 1, n, CurVal(1): .SetText 8, n, CurVal(2) 'Element
+                    If n = 1 Then .SetText 1, n, CurVal(1)
+                    .SetText 10, n, CurVal(2) 'BindingType
+                    .SetText 2, n, rstBdgList.Fields("OName").Value: .SetText 11, n, rstBdgList.Fields("OCode").Value 'Bindiry Process
                     .SetText 3, n, CurVal(3) 'Binding Forms
-                    .SetText 4, n, CurVal(4): .SetText 10, n, CurVal(5) 'Printing Size
-                    .SetText 5, n, CurVal(6) 'Ups
-                End With
+                    .SetText 4, n, "Nos"
+                    .SetText 5, n, CurVal(5): .SetText 12, n, CurVal(4) 'Printing Size
+                    .SetText 6, n, CurVal(6) 'Ups'
+                    .SetText 7, n, rstBdgList.Fields("CalcModeName").Value
+                    .SetText 8, n, Val(rstBdgList.Fields("CalcValue").Value)
+                    .SetText 13, n, rstBdgList.Fields("CalcMode").Value
+                    If Trim(ReadFromFile("Client ID")) = "Publisher" Then CurVal(6) = "Purchase" Else CurVal(6) = "Sale"
+                    .SetText 9, n, CurVal(6)
             End If
-        Next
     End With
-    With fpSpread2 'Multi Element Format
-        For i = 1 To .DataRowCnt
-            .GetText 1, i, CurVal(1): .GetText 14, i, CurVal(2) 'Element
-            .GetText 12, i, CurVal(3) 'Binding Forms
-            .GetText 4, i, CurVal(4): .GetText 16, i, CurVal(5) 'Printing Size
-            .GetText 10, i, CurVal(6) 'Ups
-            If Val(CurVal(3)) > 0 Then
-                With fpSpread6 'Binding Element
-                    n = n + 1
-                    .SetText 1, n, CurVal(1): .SetText 8, n, CurVal(2) 'Element
-                    .SetText 3, n, CurVal(3) 'Binding Forms
-                    .SetText 4, n, CurVal(4): .SetText 10, n, CurVal(5) 'Printing Size
-                    .SetText 5, n, CurVal(6) 'Ups
-                End With
-            End If
-        Next
-    End With
+        rstBdgList.MoveNext
+    Loop
+
+'    If fpSpread6.DataRowCnt > 0 Then Exit Sub
+'    Dim i As Integer, n As Integer, CurVal(1 To 6) As Variant
+'    With fpSpread4 'Multi Form Format
+'        For i = 1 To .DataRowCnt
+'            .GetText 1, i, CurVal(1): .GetText 18, i, CurVal(2) 'Element
+'            .GetText 15, i, CurVal(3) 'Binding Forms
+'            .GetText 3, i, CurVal(4): .GetText 20, i, CurVal(5) 'Printing Size
+'            .GetText 16, i, CurVal(6) 'Ups
+'            If Val(CurVal(3)) > 0 Then
+'                With fpSpread6 'Binding Element
+'                    n = n + 1
+'                    .SetText 1, n, CurVal(1): .SetText 8, n, CurVal(2) 'Element
+'                    .SetText 3, n, CurVal(3) 'Binding Forms
+'                    .SetText 4, n, CurVal(4): .SetText 10, n, CurVal(5) 'Printing Size
+'                    .SetText 5, n, CurVal(6) 'Ups
+'                End With
+'            End If
+'        Next
+'    End With
+'    With fpSpread2 'Multi Element Format
+'        For i = 1 To .DataRowCnt
+'            .GetText 1, i, CurVal(1): .GetText 14, i, CurVal(2) 'Element
+'            .GetText 12, i, CurVal(3) 'Binding Forms
+'            .GetText 4, i, CurVal(4): .GetText 16, i, CurVal(5) 'Printing Size
+'            .GetText 10, i, CurVal(6) 'Ups
+'            If Val(CurVal(3)) > 0 Then
+'                With fpSpread6 'Binding Element
+'                    n = n + 1
+'                    .SetText 1, n, CurVal(1): .SetText 8, n, CurVal(2) 'Element
+'                    .SetText 3, n, CurVal(3) 'Binding Forms
+'                    .SetText 4, n, CurVal(4): .SetText 10, n, CurVal(5) 'Printing Size
+'                    .SetText 5, n, CurVal(6) 'Ups
+'                End With
+'            End If
+'        Next
+'    End With
 End Sub

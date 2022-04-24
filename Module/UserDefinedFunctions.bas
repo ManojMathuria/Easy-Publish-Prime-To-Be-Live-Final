@@ -8,7 +8,7 @@ Public RenewFlag As Boolean, LaterFlag As Boolean
 Public dueDate As String, DaysLeft As Variant, dDay As String, dMonth As String, dYear As String
 Public ServerID As String, UniqueDate As String
 Public Major As Variant, Minor As Variant, Revision As Variant
-Public slCode As String, slName As String   'Selection List Code & Name
+Public slCode As String, slName As String, slValue1 As Double, slUGroupName As String, slUGroupCode As String, slUGroupValue1 As Double 'Selection List Code & Name & Value1
 Public cnDatabase As New ADODB.Connection
 Public cnCompany As New ADODB.Connection
 Public cnBusy As New ADODB.Connection
@@ -1071,7 +1071,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-        Set WshShell = Nothing
+    Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -1569,6 +1569,59 @@ End If
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else  IF EXISTS(SELECT * FROM dbo.TeamMemberMaster) EXEC('INSERT INTO dbo.Tmp_TeamMemberMaster (Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus) SELECT Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus FROM dbo.TeamMemberMaster WITH (HOLDLOCK TABLOCKX)')"
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else DROP TABLE dbo.TeamMemberMaster"
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else EXECUTE sp_rename N'dbo.Tmp_TeamMemberMaster', N'TeamMemberMaster', 'OBJECT' "
+    'GeneralMaster Update Calc Mode
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BOPP Matt') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='BOPP Matt'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Box Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20009' Where Name='Box Packing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Center Pin Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Center Pin Binding'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Counting & Fabrication') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Counting & Fabrication'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Creasing+Folding+Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Creasing+Folding+Packing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Cutting and Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Cutting and Packing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Cutting Leaflet Only') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Cutting Leaflet Only'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Die Cutting Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Die Cutting Charges'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Die Making Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Die Making Charges'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Embossing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Embossing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Foiling Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Foiling Charges'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Folding & Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Folding & Packing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Graning') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Graning'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Half Die Cutting Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Half Die Cutting Charges'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Hardbound Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Hardbound Binding'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Hologram') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Hologram'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt + Spot UV') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Matt + Spot UV'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt + Spot UV + Foiling + Embossing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Matt + Spot UV + Foiling + Embossing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt + Spot UV+Glitter UV') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Matt + Spot UV+Glitter UV'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt Both Side') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='Matt Both Side'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='MINI Offset JOB') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='MINI Offset JOB'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='None') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='None'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Packing Shrink') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20006' Where Name='Packing Shrink'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Paper Cost') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Paper Cost'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Pasting Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Pasting Charges'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Perfect Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Perfect Binding'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Plate') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Plate'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Printing 4 Col') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Printing 4 Col'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='PVC') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='PVC'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Spot UV') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Spot UV'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Thermal Matt') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='Thermal Matt'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='UV Hybraid') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='UV Hybraid'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Varnising') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='Varnising'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Unit Cost') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='BP-Unit Cost'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Stitching') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Stitching'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Binding'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Folding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Folding'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Shrink Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20006' Where Name='BP-Shrink Packing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Box Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20009' Where Name='BP-Box Packing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Cartage') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20010' Where Name='BP-Cartage'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print_1C') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print_1C'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print_2C') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print_2C'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print_4C') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print_4C'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Center Pin') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Center Pin'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-CD Pasting') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='BP-CD Pasting'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Creasing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Creasing'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-CUTTING') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-CUTTING'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Die_Cutting') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Die_Cutting'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Gathering') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Gathering'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Perforation') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Perforation'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Section Insert') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Section Insert'"
     '***************************************************************************************************************************************************************
 NXT:
     cnDatabase.CommitTrans

@@ -965,7 +965,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstFetchOperationRate)
 End Sub
 Private Sub ClearFields()
-    MhDateInput1.Text = Format(Date, "dd-MM-yyyy")  'Order Date
+    MhDateInput1.Text = FrmBookPrintOrder.MhDateInput1.Text 'Format(Date, "dd-MM-yyyy")  'Order Date
     MhDateInput3.Text = Format(DateAdd("d", 2, CDate(GetDate(MhDateInput1.Text))), "dd-MM-yyyy")    'Target Date
     fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True
     MhRealInput18.Value = 0: MhRealInput19.Value = 0
