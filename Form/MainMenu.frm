@@ -2175,8 +2175,8 @@ Private Sub SetMenuOptions(bVal As Boolean)
                     If UserLevel <> "1" Then
                         rstUserChild.MoveFirst
                         rstUserChild.Find "[Module] = '" & Trim(Object.Tag) & "'"
-                        Object.Enabled = IIf(rstUserChild.EOF, False, True)
                         Object.Visible = IIf(rstUserChild.EOF, False, True)
+                        Object.Enabled = IIf(rstUserChild.EOF, False, True)
                     Else
                         Object.Visible = True
                         Object.Enabled = True
