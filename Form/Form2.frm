@@ -77,7 +77,6 @@ Private Sub Form_Activate()
  
     'Attach preview control to Spread
     spreadpreview.fpSpreadPreview1.hWndSpread = frm.fpSpread1.hwnd
-   
     'Update page count listing
     UpdatePageCount
 End Sub
@@ -145,7 +144,7 @@ Dim i As Integer
     fpSpread1.fontname = "MS Sans Serif"
     fpSpread1.FontSize = 8
     fpSpread1.FontBold = False
-    
+
     'Select a single cell
     fpSpread1.Col = 2
     fpSpread1.Row = 1
@@ -221,7 +220,7 @@ Dim i As Integer
 End Sub
 Sub DisableButton(Col As Long, bitmapdirection As String)
 'Disable specified button
-    fpSpread1.ReDraw = False
+    fpSpread1.Redraw = False
     
     fpSpread1.Row = 1
     fpSpread1.Col = Col
@@ -231,11 +230,11 @@ Sub DisableButton(Col As Long, bitmapdirection As String)
     fpSpread1.Protect = True
     Set fpSpread1.TypeButtonPicture = LoadPicture(App.Path & "\Icon\" & bitmapdirection & "DIS.BMP")
     
-    fpSpread1.ReDraw = True
+    fpSpread1.Redraw = True
 End Sub
 Sub EnableButton(Col As Long, bitmapdirection As String)
 'Enable specified button
-    fpSpread1.ReDraw = False
+    fpSpread1.Redraw = False
     
     fpSpread1.Row = 1
     fpSpread1.Col = Col
@@ -245,7 +244,7 @@ Sub EnableButton(Col As Long, bitmapdirection As String)
     fpSpread1.Protect = False
     Set fpSpread1.TypeButtonPicture = LoadPicture(App.Path & "\Icon\" & bitmapdirection & ".BMP")
     
-    fpSpread1.ReDraw = True
+    fpSpread1.Redraw = True
 End Sub
 Private Sub Form_Resize()
     fpSpread1.Move 0, 0, ScaleWidth, fpSpread1.Height

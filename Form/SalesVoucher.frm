@@ -99,50 +99,8 @@ Begin VB.Form frmSalesVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesVoucher.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "btnNotes"
-         Tab(1).Control(1)=   "txtNotes"
-         Tab(1).Control(2)=   "Mh3dFrame2"
-         Tab(1).ControlCount=   3
-         Begin VB.CommandButton btnNotes 
-            Caption         =   " Notes"
-            BeginProperty Font 
-               Name            =   "Calibri"
-               Size            =   12
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   345
-            Left            =   -74880
-            TabIndex        =   48
-            Top             =   8280
-            Width           =   1455
-         End
-         Begin VB.TextBox txtNotes 
-            Appearance      =   0  'Flat
-            BackColor       =   &H00FFFFFF&
-            DataSource      =   "Adodc1"
-            BeginProperty Font 
-               Name            =   "Calibri"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   345
-            Left            =   -73440
-            MaxLength       =   40
-            MultiLine       =   -1  'True
-            TabIndex        =   47
-            ToolTipText     =   "Open Notes"
-            Top             =   8280
-            Visible         =   0   'False
-            Width           =   1455
-         End
+         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -196,7 +154,7 @@ Begin VB.Form frmSalesVoucher
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   6
+            ColumnCount     =   7
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "Vch No."
@@ -266,13 +224,29 @@ Begin VB.Form frmSalesVoucher
                DataField       =   "Amount"
                Caption         =   "          Amount"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
-                  Type            =   1
-                  Format          =   "0.00"
+                  Type            =   0
+                  Format          =   ""
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column06 
+               DataField       =   "IntegrationStatus"
+               Caption         =   "Integration Status"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   5
+                  Format          =   ""
+                  HaveTrueFalseNull=   1
+                  TrueValue       =   "Integrated"
+                  FalseValue      =   "Not Integrated"
+                  NullValue       =   ""
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
                   LCID            =   1033
-                  SubFormatType   =   1
+                  SubFormatType   =   7
                EndProperty
             EndProperty
             SplitCount      =   1
@@ -300,23 +274,25 @@ Begin VB.Form frmSalesVoucher
                BeginProperty Column03 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   4320
+                  ColumnWidth     =   3449.764
                EndProperty
                BeginProperty Column04 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   3044.977
+                  ColumnWidth     =   2039.811
                EndProperty
                BeginProperty Column05 
-                  Alignment       =   1
+               EndProperty
+               BeginProperty Column06 
+                  DividerStyle    =   3
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   1200.189
+                  ColumnWidth     =   1544.882
                EndProperty
             EndProperty
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   7575
+            Height          =   8175
             Left            =   -74880
             TabIndex        =   28
             TabStop         =   0   'False
@@ -324,7 +300,7 @@ Begin VB.Form frmSalesVoucher
             Width           =   13260
             _Version        =   65536
             _ExtentX        =   23389
-            _ExtentY        =   13361
+            _ExtentY        =   14420
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -381,7 +357,7 @@ Begin VB.Form frmSalesVoucher
                Height          =   330
                Left            =   9855
                MaxLength       =   40
-               TabIndex        =   50
+               TabIndex        =   48
                Top             =   630
                Width           =   3300
             End
@@ -1766,7 +1742,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
                Left            =   9960
-               TabIndex        =   49
+               TabIndex        =   47
                Top             =   105
                Width           =   1455
                _Version        =   65536
@@ -1789,6 +1765,150 @@ Begin VB.Form frmSalesVoucher
                TextColor       =   0
                Picture         =   "SalesVoucher.frx":221E
                Picture         =   "SalesVoucher.frx":223A
+            End
+            Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
+               Height          =   525
+               Left            =   120
+               TabIndex        =   49
+               TabStop         =   0   'False
+               Top             =   7560
+               Width           =   13020
+               _Version        =   65536
+               _ExtentX        =   22966
+               _ExtentY        =   926
+               _StockProps     =   77
+               TintColor       =   16711935
+               Alignment       =   0
+               AutoSize        =   0   'False
+               BevelSize       =   0
+               BevelStyle      =   0
+               BorderColor     =   -2147483642
+               BorderStyle     =   1
+               FillColor       =   -2147483633
+               FontStyle       =   0
+               FontTransparent =   0   'False
+               LightColor      =   -2147483643
+               ShadowColor     =   -2147483632
+               TextColor       =   -2147483640
+               WallPaper       =   0
+               NoPrefix        =   0   'False
+               FormatString    =   ""
+               Caption         =   ""
+               Picture         =   "SalesVoucher.frx":2256
+               Begin VB.CommandButton btnNotes 
+                  Caption         =   " Notes"
+                  BeginProperty Font 
+                     Name            =   "Calibri"
+                     Size            =   12
+                     Charset         =   0
+                     Weight          =   700
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  Height          =   330
+                  Left            =   120
+                  TabIndex        =   51
+                  Top             =   105
+                  Width           =   1455
+               End
+               Begin VB.TextBox txtNotes 
+                  Appearance      =   0  'Flat
+                  BackColor       =   &H00FFFFFF&
+                  DataSource      =   "Adodc1"
+                  BeginProperty Font 
+                     Name            =   "Calibri"
+                     Size            =   9.75
+                     Charset         =   0
+                     Weight          =   400
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  Height          =   330
+                  Left            =   1560
+                  MaxLength       =   40
+                  MultiLine       =   -1  'True
+                  TabIndex        =   50
+                  ToolTipText     =   "Open Notes"
+                  Top             =   105
+                  Visible         =   0   'False
+                  Width           =   1455
+               End
+               Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
+                  Height          =   330
+                  Left            =   10080
+                  TabIndex        =   52
+                  Top             =   105
+                  Width           =   1695
+                  _Version        =   65536
+                  _ExtentX        =   2990
+                  _ExtentY        =   582
+                  _StockProps     =   77
+                  BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                     Name            =   "Calibri"
+                     Size            =   9.75
+                     Charset         =   0
+                     Weight          =   400
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  TintColor       =   16711935
+                  Caption         =   " Integration Status"
+                  Alignment       =   0
+                  FillColor       =   9164542
+                  TextColor       =   0
+                  Picture         =   "SalesVoucher.frx":2272
+                  Picture         =   "SalesVoucher.frx":228E
+               End
+               Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
+                  Height          =   330
+                  Left            =   11760
+                  TabIndex        =   53
+                  TabStop         =   0   'False
+                  Top             =   105
+                  Width           =   1170
+                  _Version        =   65536
+                  _ExtentX        =   2064
+                  _ExtentY        =   582
+                  _StockProps     =   77
+                  TintColor       =   16711935
+                  Alignment       =   0
+                  AutoSize        =   0   'False
+                  BevelSize       =   0
+                  BevelStyle      =   0
+                  BorderColor     =   -2147483642
+                  BorderStyle     =   1
+                  FillColor       =   16777215
+                  FontStyle       =   0
+                  FontTransparent =   0   'False
+                  LightColor      =   -2147483643
+                  ShadowColor     =   -2147483632
+                  TextColor       =   -2147483640
+                  WallPaper       =   0
+                  NoPrefix        =   0   'False
+                  FormatString    =   ""
+                  Caption         =   ""
+                  Picture         =   "SalesVoucher.frx":22AA
+                  Begin VB.CheckBox chkIntegrate 
+                     BackColor       =   &H00FFFFFF&
+                     BeginProperty Font 
+                        Name            =   "Calibri"
+                        Size            =   9.75
+                        Charset         =   0
+                        Weight          =   400
+                        Underline       =   0   'False
+                        Italic          =   0   'False
+                        Strikethrough   =   0   'False
+                     EndProperty
+                     Height          =   225
+                     Left            =   465
+                     TabIndex        =   54
+                     Top             =   60
+                     Width           =   180
+                  End
+               End
             End
             Begin MSForms.ComboBox cmbBillType 
                Height          =   330
@@ -1854,8 +1974,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":2256
-            Picture         =   "SalesVoucher.frx":2272
+            Picture         =   "SalesVoucher.frx":22C6
+            Picture         =   "SalesVoucher.frx":22E2
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1973,13 +2093,13 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public VchCode As String 'Vch to Modify
-Public VchType As String 'SF-Sales Voucher PF-Purchase Voucher TF-Sales Return Voucher OF-Purchase Return Voucher
+Public VchType As String, oVchType As String 'SF-Sales Voucher PF-Purchase Voucher TF-Sales Return Voucher OF-Purchase Return Voucher
 Public PtgType As String 'IIf(PtgType = 1, "Sales Invoice", IIf(PtgType = 2, "Tax Invoice", IIf(PtgType = 3, "Speciman Challan", "Delivery Challan")))
 Dim cnSalesVoucher As New ADODB.Connection, cnTally As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
 Dim rstSalesVoucherList As New ADODB.Recordset, rstSalesVoucherParent As New ADODB.Recordset, rstSalesVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
-Dim PartyCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oVchDate As Date, SalesTypeCode As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oVchDate As Date, SalesTypeCode As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, VchSeries As String
 Dim frmSalesTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
@@ -1988,25 +2108,29 @@ Private Sub Form_Load()
     CenterForm Me
     WheelHook DataGrid1
     BusySystemIndicator True
+    oVchType = VchType
     Mh3dLabel15.Caption = IIf(InStr(1, "SF_TF", VchType) > 0, " Sales", " Purchase") + " Type"
     Me.Caption = IIf(VchType = "SF", "Sales", IIf(VchType = "PF", "Purchase", IIf(VchType = "TF", "Sales Return", "Purchase Return"))) & "-Supply " & IIf(VchType = "SF", "Outward", IIf(VchType = "PF", "Inward", IIf(VchType = "TF", "Outward Return", "Inward Return"))) & "-Finished Goods"
     cnSalesVoucher.CursorLocation = adUseClient: cnSalesVoucher.Open cnDatabase.ConnectionString: cnTally.CursorLocation = adUseClient
     rstSalesVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,IntegrationStatus FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
             If Not CheckEmpty(VchCode, False) Then .MoveFirst: .Find "[Code]='" & VchCode & "'"
         End If
         Set DataGrid1.DataSource = rstSalesVoucherList
+        Me.DataGrid1.Columns(6).Caption = IIf(TallyIntegration = True, "Tally Integration", "Busy Integration")
         BusySystemIndicator False
         SSTab1.Tab = 0
-    If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+    If FrmStockLedger.dSortBy = True Or FrmAccountLedger.dSortBy = True Then
+        SortOrder = "Code"
+    ElseIf FrmAccountLedger.dSortBy = True Then
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
         If Not (.EOF Or .BOF) Then
             With DataGrid1.SelBookmarks
@@ -2301,11 +2425,11 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
                 ShowProgressInStatusBar True
                 Timer1.Enabled = True
                 Call MsgBox("Record updated !!!", vbInformation, App.Title)
-                If VchType = "SF" Then
+                'If VchType = "SF" Then
                     If BusyIntegration Or TallyIntegration Then
                         If MsgBox("Are you sure to export the Voucher?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Export !") = vbYes Then PushVch
                     End If
-                End If
+                'End If
                 SSTab1.Tab = 0
             Else
                 DisplayError ("Failed to save the record")
@@ -2521,10 +2645,14 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
         FrmAccountMaster.SL = True
         FrmAccountMaster.AccountType = "01": FrmAccountMaster.AccountGroup = ""
         FrmAccountMaster.MasterCode = PartyCode
+        FrmAccountMaster.StateCode = PartyStateCode
         Load FrmAccountMaster
         If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
         On Error GoTo 0
         PartyCode = slCode: Text3.Text = slName
+        If Not IsNull(slStateCode) Then
+        PartyStateCode = slStateCode
+        End If
         If Not CheckEmpty(PartyCode, False) Then LoadMasterList: Sendkeys "{TAB}"
     ElseIf KeyCode = vbKeyDelete Then
         PartyCode = "": Text3.Text = ""
@@ -2573,6 +2701,7 @@ End Sub
 Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
         On Error Resume Next
+        slStateCode = PartyStateCode
         FrmTaxMaster.SL = True
         FrmTaxMaster.MasterCode = TaxCode
         Load FrmTaxMaster
@@ -2621,7 +2750,7 @@ End Sub
 Private Sub FindRecord()
     With rstSalesVoucherParent
         If .State = adStateOpen Then .Close
-        .Open "SELECT * FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "'", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+        .Open "SELECT *, (Select State From AccountMaster Where Code=Party) AS State FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "'", cnSalesVoucher, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
 End Sub
@@ -2649,8 +2778,10 @@ Private Sub ClearFields()
     MhRealInput8.Value = 0
     MhRealInput10.Value = 0
     MhRealInput11.Value = 0
+    chkIntegrate.Value = 0
+    PartyStateCode = ""
     PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
-    frmSalesTptDetails.Text1.Text = "": frmSalesTptDetails.Text2.Text = "": frmSalesTptDetails.Text3.Text = "": frmSalesTptDetails.Text4.Text = "": frmSalesTptDetails.MhDateInput1.Value = Null
+    frmSalesTptDetails.Text1.Text = "": frmSalesTptDetails.Text2.Text = "": frmSalesTptDetails.Text3.Text = "": frmSalesTptDetails.Text4.Text = "": frmSalesTptDetails.Text5.Text = "": frmSalesTptDetails.MhDateInput1.Value = Null: frmSalesTptDetails.MhDateInput2.Value = Null
 End Sub
 Private Sub LoadFields()
     With rstSalesVoucherParent
@@ -2665,6 +2796,7 @@ Private Sub LoadFields()
         oVchDate = Format(.Fields("Date").Value, "dd-MMM-yyyy")
         MhDateInput1.Text = Format(.Fields("Date").Value, "dd-MM-yyyy")
         PartyCode = .Fields("Party").Value
+        PartyStateCode = .Fields("State").Value
         If rstPartyList.RecordCount > 0 Then rstPartyList.MoveFirst
         rstPartyList.Find "[Code] = '" & PartyCode & "'"
         If Not rstPartyList.EOF Then Text3.Text = rstPartyList.Fields("Col0").Value
@@ -2701,8 +2833,9 @@ Private Sub LoadFields()
             MhRealInput8.Value = Val(.Fields("IGST").Value)
         End If
         MhRealInput11.Value = Val(.Fields("Amount").Value)
+        chkIntegrate.Value = IIf(.Fields("IntegrationStatus").Value = "True", 1, 0)
         txtNotes.Text = .Fields("Notes").Value
-        frmSalesTptDetails.Text1.Text = CheckNull(.Fields("Transport").Value): frmSalesTptDetails.Text2.Text = CheckNull(.Fields("GRNo").Value): frmSalesTptDetails.Text3.Text = CheckNull(.Fields("VehicleNo").Value): frmSalesTptDetails.Text4.Text = CheckNull(.Fields("Station").Value): If Not IsNull(.Fields("GRDate").Value) Then frmSalesTptDetails.MhDateInput1.Value = .Fields("GRDate").Value
+        frmSalesTptDetails.Text1.Text = CheckNull(.Fields("Transport").Value): frmSalesTptDetails.Text2.Text = CheckNull(.Fields("GRNo").Value): frmSalesTptDetails.Text3.Text = CheckNull(.Fields("VehicleNo").Value): frmSalesTptDetails.Text4.Text = CheckNull(.Fields("Station").Value): frmSalesTptDetails.Text5.Text = CheckNull(.Fields("eWayBill").Value): If Not IsNull(.Fields("GRDate").Value) Then frmSalesTptDetails.MhDateInput1.Value = .Fields("GRDate").Value: If Not IsNull(.Fields("eWayBill").Value) Then frmSalesTptDetails.MhDateInput2.Value = .Fields("eWayBillDate").Value
     End With
 End Sub
 Private Sub EditRecord()
@@ -2780,7 +2913,10 @@ Private Sub SaveFields()
         .Fields("Transport").Value = frmSalesTptDetails.Text1.Text
         .Fields("GRNo").Value = frmSalesTptDetails.Text2.Text
         If frmSalesTptDetails.MhDateInput1.ValueIsNull Then .Fields("GRDate").Value = Null Else .Fields("GRDate").Value = GetDate(frmSalesTptDetails.MhDateInput1.Text)
+        .Fields("eWayBill").Value = frmSalesTptDetails.Text5.Text
+        If frmSalesTptDetails.MhDateInput2.ValueIsNull Then .Fields("eWayBillDate").Value = Null Else .Fields("eWayBillDate").Value = GetDate(frmSalesTptDetails.MhDateInput2.Text)
         .Fields("VehicleNo").Value = frmSalesTptDetails.Text3.Text
+        .Fields("IntegrationStatus").Value = IIf(chkIntegrate.Value = 1, "True", "False")
         .Fields("Station").Value = frmSalesTptDetails.Text4.Text
     End With
 End Sub
@@ -2800,6 +2936,7 @@ Private Sub AddToList()
         .Fields("ChallanNo").Value = rstSalesVoucherParent.Fields("ChallanNo").Value
         .Fields("ChallanDate").Value = rstSalesVoucherParent.Fields("ChallanDate").Value
         .Fields("Amount").Value = MhRealInput11.Value
+        .Fields("IntegrationStatus").Value = IIf(chkIntegrate.Value = 1, "True", "False")
         .Fields("SalesType").Value = Trim(Text10.Text)
         .Fields("Type").Value = rstSalesVoucherParent.Fields("Type").Value
         .Update
@@ -2853,9 +2990,9 @@ Private Sub LoadItemList(ByVal strOrderCode As String)
     With rstSalesVoucherChild
         If .State = adStateOpen Then .Close
         If cmbBillType.ListIndex = 0 Then 'Direct
-            .Open "SELECT I.Code As ItemCode,I.Name As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) INNER JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+            .Open "SELECT I.Code As ItemCode,I.Name As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         Else
-            .Open "SELECT I.Code As ItemCode,I.Name As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) INNER JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+            .Open "SELECT I.Code As ItemCode,I.Name As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         End If
         .ActiveConnection = Nothing
         If .RecordCount > 0 Then .MoveFirst
@@ -3088,13 +3225,18 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     If rstSalesTypeList.State = adStateOpen Then rstSalesTypeList.Close
     rstSalesTypeList.Open "SELECT Name As Col0,Code FROM AccountMaster WHERE [Group]='" & IIf(InStr(1, "SF_TF", VchType) > 0, "*26027", "*26025") & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     If rstTaxList.State = adStateOpen Then rstTaxList.Close
+    If PartyStateCode = "" Or PartyStateCode = Null Then
     rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Region,Code FROM TaxMaster ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    Else
+    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Region,Code FROM TaxMaster Where Region='" & IIf(CompStateCode = PartyStateCode, "L", "I") & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    End If
     rstTaxList.ActiveConnection = Nothing
     If rstHSNCodeList.State = adStateOpen Then rstHSNCodeList.Close
     rstHSNCodeList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type='18' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     rstHSNCodeList.ActiveConnection = Nothing
     If rstItemList.State = adStateOpen Then rstItemList.Close
     If LoadSelected Then
+    On Error Resume Next
 '        rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstSalesVoucherParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0," & _
                 "FORMAT((ISNULL((SELECT SUM(OPBAL) FROM BookChild C WHERE C.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0) " & _
@@ -3110,15 +3252,16 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
-                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Name As HSNName,I.HSNCode As HSNCode" & _
+                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    If Err.Number = -2147217871 Then MsgBox "Due To Query Timeout. Unable To Fetch Stock !!!", vbInformation: rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName  FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     Else
         rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub LoadOrderList()
@@ -3287,6 +3430,27 @@ Public Sub PrintSalesVoucher(ByVal VchCode As String, ByVal VchType As String, O
                                                 "C1.Quantity,C1.Rate,C1.Amount,N.Name As SrNo,'' As cmbTitle,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref,C1.[Disc%] AS Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,M.PrintName As MC FROM (((((((JobworkBVParent P1 INNER JOIN JobworkBVChild C1 ON P1.Code=C1.Code)INNER JOIN BookMaster I ON C1.Item=I.Code)INNER JOIN AccountMaster A ON P1.Party=A.Code)INNER JOIN AccountMaster C ON P1.Consignee=C.Code)LEFT JOIN AccountMaster M ON P1.MaterialCentre=M.Code)LEFT JOIN GeneralMaster N ON C1.Narration=N.Code)LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code)LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE P1.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName,N.Name", cnSalesVoucher, adOpenKeyset, adLockOptimistic
     If rstSalesVoucherChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstSalesVoucherChild.ActiveConnection = Nothing
+        With rptSalesOrderVoucher
+        If Logo = "S" Then
+            .Picture1.Width = LogoW
+            .Picture1.Height = LogoH
+        End If
+        If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+            .Text2.Font.Size = 20
+        ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+            .Text2.Font.Size = 18
+        ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+            .Text2.Font.Size = 16
+        ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+            .Text2.Font.Size = 14
+        End If
+        If LogoLine = "N" Then
+            .Picture1.LeftLineStyle = crLSNoLine
+            .Picture1.RightLineStyle = crLSNoLine
+            .Picture1.TopLineStyle = crLSNoLine
+            .Picture1.BottomLineStyle = crLSNoLine
+        End If
+    End With
     If Left(VchType, 2) = "SF" Then Load FrmDialog: Screen.MousePointer = vbNormal: FrmDialog.Flag = 1: FrmDialog.Caption = "": FrmDialog.Command1.Caption = "Sales Invoice": FrmDialog.Command2.Caption = "Tax Invoice": FrmDialog.Command3.Caption = "Speciman Challan": FrmDialog.Command4.Caption = "Delivery Challan": FrmDialog.Show vbModal
     If FrmDialog.Flag = 1 And PtgType > 0 Then
         rptSalesOrderVoucher.Text1.SetText IIf(PtgType = 1, "Sales Invoice", IIf(PtgType = 2, "Tax Invoice", IIf(PtgType = 3, "Speciman Challan", "Delivery Challan")))
@@ -3343,174 +3507,274 @@ Public Sub PrintSalesVoucher(ByVal VchCode As String, ByVal VchType As String, O
     On Error GoTo 0
 End Sub
 Private Sub PushVch()
-    Dim xmlstr, SaleAccount, UOM, i
+    Dim XMLStr, SaleAccount, UOM, i
     With rstCompanyMaster
         If .State = adStateOpen Then .Close
-        .Open "SELECT VchSeries,Account,UOM FROM AppConfig WHERE VchType='SF'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        '.Open "SELECT VchSeries,Account,UOM FROM AppConfig WHERE VchType='SF'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        .Open "SELECT Name+'-'+VchNAme+'-'+Right(VchType,2) As VchSeries,VchNAme As Account,'No.' As UOM FROM VchSeriesMaster WHERE Right(VchType,2)='" & VchType & "'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         VchSeries = .Fields("VchSeries").Value: SaleAccount = .Fields("Account").Value: UOM = .Fields("UOM").Value
+    End With
+    With rstCompanyMaster
+        If .State = adStateOpen Then .Close
+        .Open "SELECT * FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     End With
     With rstSalesVoucherChild
         If .State = adStateOpen Then .Close
-        xmlstr = "SELECT LTRIM(H.Name) As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
-                        "B.PrintName As Buyer,B.Address1 As bAddress1,B.Address2 As bAddress2,B.Address3 As bAddress3,B.Address4 As bAddress4,B.TIN As bGSTIN,C.PrintName As Consignee,C.Address1 As cAddress1,C.Address2 As cAddress2,C.Address3 As cAddress3,C.Address4 As cAddress4,C.TIN As cGSTIN," + _
+        XMLStr = "SELECT LTRIM(H.Name) As BillNo,H.Date As BillDate,M.PrintName As MatCentre," + _
+                        "B.PrintName As Buyer,Party As AccountCode,B.Address1 As bAddress1,B.Address2 As bAddress2,B.Address3 As bAddress3,B.Address4 As bAddress4,B.TIN As bGSTIN,C.PrintName As Consignee,C.Address1 As cAddress1,C.Address2 As cAddress2,C.Address3 As cAddress3,C.Address4 As cAddress4,C.TIN As cGSTIN," + _
                         "H.TaxableAmount,H.[Rebate%],H.Rebate,H.Freight,H.Adjustment,H.Tax,H.[IGST%],H.IGST,H.[SGST%],H.SGST,H.[CGST%],H.CGST,H.Amount As FinalAmount,H.Remarks," + _
-                        "I.BusyCode As Item,D.Rate,D.[Disc%],D.Quantity,D.Amount " & _
+                        "I.Name As ItemName,I.ItemIntegrationName As Item,I.BusyCode As ItemAlias,D.Rate,D.[Disc%],ABS(D.Quantity) As Quantity,D.Amount,H.Name As DeliveryNoteNo,H.GRNo As DispatchDocNo,H.Transport As DishpatchThrough,H.Station As Destination,H.Transport As [CarrierName/Agent],H.GRNo As [BillofLoading/LR-RRNO],H.GRDate,H.VehicleNo As MotorVehicleNo,H.eWayBill,H.eWayBillDate,IIF((Select Name From AccountMaster Where Code=H.SalesType)='Sales','Bill of Supply','Bill of Supply') As DocType,'Supply' As SubType,'Generated by me' As BILLSTATUS,D.Item As ItemCode,D.LongNarration01,D.LongNarration02,D.LongNarration03,D.LongNarration04,D.LongNarration05,ISNULL((SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=D.Ref AND RIGHT(VchType,2)='" & IIf(oVchType = "SF", "SO", IIf(oVchType = "PF", "PO", "")) & "'),'') As RefOrderNo " & _
                         "FROM ((((JobWorkBVParent H INNER JOIN AccountMaster B ON H.Party=B.Code) INNER JOIN AccountMaster C ON H.Consignee=C.Code) INNER JOIN AccountMaster M ON H.MaterialCentre=M.Code) INNER JOIN JobWorkBVChild D ON H.Code=D.Code) INNER JOIN BookMaster I ON D.Item=I.Code " + _
                         "WHERE H.Code='" + rstSalesVoucherList.Fields("Code").Value + "'"
-        .Open xmlstr, cnSalesVoucher, adOpenKeyset, adLockReadOnly
-        xmlstr = ""
+        .Open XMLStr, cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        XMLStr = ""
         If TallyIntegration Then
             Dim Dom As Object
             Set Dom = CreateObject("MSXML2.DomDocument")
             Dom.async = False
-            xmlstr = xmlstr + "<ENVELOPE>"
-            xmlstr = xmlstr + "<HEADER>"
-            xmlstr = xmlstr + "<TALLYREQUEST>Import Data</TALLYREQUEST>"
-            xmlstr = xmlstr + "</HEADER>"
-            xmlstr = xmlstr + "<BODY>"
-            xmlstr = xmlstr + "<IMPORTDATA>"
-            xmlstr = xmlstr + "<REQUESTDESC>"
-            xmlstr = xmlstr + "<REPORTNAME>Vouchers</REPORTNAME>"
-            xmlstr = xmlstr + "<STATICVARIABLES>"
-            xmlstr = xmlstr + "<SVCURRENTCOMPANY>##SVCURRENTCOMPANY</SVCURRENTCOMPANY>" '##SVCURRENTCOMPANY-Current Open Company
-            xmlstr = xmlstr + "</STATICVARIABLES>"
-            xmlstr = xmlstr + "</REQUESTDESC>"
-            xmlstr = xmlstr + "<REQUESTDATA>"
-            xmlstr = xmlstr + "<TALLYMESSAGE xmlns:UDF=""TallyUDF"">"
-            xmlstr = xmlstr + "<VOUCHER ACTION=""Create"">"
-            xmlstr = xmlstr + "<VOUCHERTYPENAME>" + Replace(Trim(VchSeries), "&", "&amp;") + "</VOUCHERTYPENAME>"
-            xmlstr = xmlstr + "<VOUCHERNUMBER>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</VOUCHERNUMBER>" 'Vch No.
-            xmlstr = xmlstr + "<DATE>" + Format(.Fields("BillDate").Value, "yyyyMMdd") + "</DATE>" 'Vch Date
-            If Not CheckEmpty(Trim(.Fields("Remarks").Value), False) Then xmlstr = xmlstr + "<NARRATION>" + Replace(Trim(.Fields("Remarks").Value), "&", "&amp;") + "</NARRATION>" 'Narration
-            xmlstr = xmlstr + "<PERSISTEDVIEW>Invoice Voucher View</PERSISTEDVIEW>"
-            xmlstr = xmlstr + "<ISINVOICE>Yes</ISINVOICE>"
-            xmlstr = xmlstr + "<HASDISCOUNTS>Yes</HASDISCOUNTS>"
-            xmlstr = xmlstr + "<PARTYNAME>" + Replace(Trim(.Fields("Buyer").Value), "&", "&amp;") + "</PARTYNAME>" 'Buyer Info
+            XMLStr = XMLStr + "<ENVELOPE>"
+            XMLStr = XMLStr + "<HEADER>"
+            XMLStr = XMLStr + "<TALLYREQUEST>Import Data</TALLYREQUEST>"
+            XMLStr = XMLStr + "</HEADER>"
+            XMLStr = XMLStr + "<BODY>"
+            XMLStr = XMLStr + "<IMPORTDATA>"
+            XMLStr = XMLStr + "<REQUESTDESC>"
+            XMLStr = XMLStr + "<REPORTNAME>Vouchers</REPORTNAME>"
+            XMLStr = XMLStr + "<STATICVARIABLES>"
+            XMLStr = XMLStr + "<SVCURRENTCOMPANY>##SVCURRENTCOMPANY</SVCURRENTCOMPANY>" '##SVCURRENTCOMPANY-Current Open Company
+            XMLStr = XMLStr + "</STATICVARIABLES>"
+            XMLStr = XMLStr + "</REQUESTDESC>"
+            XMLStr = XMLStr + "<REQUESTDATA>"
+            XMLStr = XMLStr + "<TALLYMESSAGE xmlns:UDF=""TallyUDF"">"
+            XMLStr = XMLStr + "<VOUCHER ACTION=""Create"">"
+            XMLStr = XMLStr + "<VOUCHERTYPENAME>" + Replace(Trim(VchSeries), "&", "&amp;") + "</VOUCHERTYPENAME>" 'VchSeries
+            XMLStr = XMLStr + "<VOUCHERNUMBER>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</VOUCHERNUMBER>" 'Vch No.
+            XMLStr = XMLStr + "<DATE>" + Format(.Fields("BillDate").Value, "yyyyMMdd") + "</DATE>" 'Vch Date
+            If Not CheckEmpty(Trim(.Fields("Remarks").Value), False) Then XMLStr = XMLStr + "<NARRATION>" + Replace(Trim(.Fields("Remarks").Value), "&", "&amp;") + "</NARRATION>" 'Narration
+            XMLStr = XMLStr + "<PERSISTEDVIEW>Invoice Voucher View</PERSISTEDVIEW>"
+            XMLStr = XMLStr + "<ISINVOICE>Yes</ISINVOICE>"
+            XMLStr = XMLStr + "<HASDISCOUNTS>Yes</HASDISCOUNTS>"
+            'Buyer Info
+            XMLStr = XMLStr + "<PARTYNAME>" + Replace(Trim(.Fields("Buyer").Value), "&", "&amp;") + "</PARTYNAME>"
             If Not CheckEmpty(Trim(.Fields("bAddress1").Value) + Trim(.Fields("bAddress2").Value) + Trim(.Fields("bAddress3").Value) + Trim(.Fields("bAddress4").Value), False) Then
-                xmlstr = xmlstr + "<ADDRESS.LIST TYPE=""String"">"
-                If Not CheckEmpty(Trim(.Fields("bAddress1").Value), False) Then xmlstr = xmlstr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress1").Value), "&", "&amp;") + "</ADDRESS>"
-                If Not CheckEmpty(Trim(.Fields("bAddress2").Value), False) Then xmlstr = xmlstr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress2").Value), "&", "&amp;") + "</ADDRESS>"
-                If Not CheckEmpty(Trim(.Fields("bAddress3").Value), False) Then xmlstr = xmlstr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress3").Value), "&", "&amp;") + "</ADDRESS>"
-                If Not CheckEmpty(Trim(.Fields("bAddress4").Value), False) Then xmlstr = xmlstr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress4").Value), "&", "&amp;") + "</ADDRESS>"
-                xmlstr = xmlstr + "</ADDRESS.LIST>"
+                XMLStr = XMLStr + "<ADDRESS.LIST TYPE=""String"">"
+                If Not CheckEmpty(Trim(.Fields("bAddress1").Value), False) Then XMLStr = XMLStr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress1").Value), "&", "&amp;") + "</ADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("bAddress2").Value), False) Then XMLStr = XMLStr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress2").Value), "&", "&amp;") + "</ADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("bAddress3").Value), False) Then XMLStr = XMLStr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress3").Value), "&", "&amp;") + "</ADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("bAddress4").Value), False) Then XMLStr = XMLStr + "<ADDRESS>" + Replace(Trim(.Fields("bAddress4").Value), "&", "&amp;") + "</ADDRESS>"
+                XMLStr = XMLStr + "</ADDRESS.LIST>"
             End If
-            If Not CheckEmpty(Trim(.Fields("bGSTIN").Value), False) Then xmlstr = xmlstr + "<PARTYGSTIN>" + Replace(Trim(.Fields("bGSTIN").Value), "&", "&amp;") + "</PARTYGSTIN>"
-            xmlstr = xmlstr + "<BASICBUYERNAME>" + Replace(Trim(.Fields("Consignee").Value), "&", "&amp;") + "</BASICBUYERNAME>" 'Consignee Info
+            If Not CheckEmpty(Trim(.Fields("bGSTIN").Value), False) Then XMLStr = XMLStr + "<PARTYGSTIN>" + Replace(Trim(.Fields("bGSTIN").Value), "&", "&amp;") + "</PARTYGSTIN>"
+            'Consignee Info
+            XMLStr = XMLStr + "<BASICBUYERNAME>" + Replace(Trim(.Fields("Consignee").Value), "&", "&amp;") + "</BASICBUYERNAME>"
             If Not CheckEmpty(Trim(.Fields("cAddress1").Value) + Trim(.Fields("cAddress2").Value) + Trim(.Fields("cAddress3").Value) + Trim(.Fields("cAddress4").Value), False) Then
-                xmlstr = xmlstr + "<BASICBUYERADDRESS.LIST TYPE=""String"">"
-                If Not CheckEmpty(Trim(.Fields("cAddress1").Value), False) Then xmlstr = xmlstr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress1").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
-                If Not CheckEmpty(Trim(.Fields("cAddress2").Value), False) Then xmlstr = xmlstr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress2").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
-                If Not CheckEmpty(Trim(.Fields("cAddress3").Value), False) Then xmlstr = xmlstr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress3").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
-                If Not CheckEmpty(Trim(.Fields("cAddress4").Value), False) Then xmlstr = xmlstr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress4").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
-                xmlstr = xmlstr + "</BASICBUYERADDRESS.LIST>"
+                XMLStr = XMLStr + "<BASICBUYERADDRESS.LIST TYPE=""String"">"
+                If Not CheckEmpty(Trim(.Fields("cAddress1").Value), False) Then XMLStr = XMLStr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress1").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("cAddress2").Value), False) Then XMLStr = XMLStr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress2").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("cAddress3").Value), False) Then XMLStr = XMLStr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress3").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("cAddress4").Value), False) Then XMLStr = XMLStr + "<BASICBUYERADDRESS>" + Replace(Trim(.Fields("cAddress4").Value), "&", "&amp;") + "</BASICBUYERADDRESS>"
+                XMLStr = XMLStr + "</BASICBUYERADDRESS.LIST>"
             End If
-            If Not CheckEmpty(Trim(.Fields("cGSTIN").Value), False) Then xmlstr = xmlstr + "<CONSIGNEEGSTIN>" + Replace(Trim(.Fields("cGSTIN").Value), "&", "&amp;") + "</CONSIGNEEGSTIN>"
+            
+            If Not CheckEmpty(Trim(.Fields("cGSTIN").Value), False) Then XMLStr = XMLStr + "<CONSIGNEEGSTIN>" + Replace(Trim(.Fields("cGSTIN").Value), "&", "&amp;") + "</CONSIGNEEGSTIN>"
+            'Dishpatch Details
+            'Delivery Note No (s)
+            If Not CheckEmpty(Trim(.Fields("DeliveryNoteNo").Value), False) Then XMLStr = XMLStr + "<BASICSHIPDELIVERYNOTE>" + Replace(Trim(.Fields("DeliveryNoteNo").Value), "&", "&amp;") + "</BASICSHIPDELIVERYNOTE>"
+            'Delivery Note Date
+            If Not CheckEmpty(Trim(.Fields("BillDate").Value), False) Then XMLStr = XMLStr + "<BASICSHIPPINGDATE>" + Replace(Trim(.Fields("BillDate").Value), "&", "&amp;") + "</BASICSHIPPINGDATE>"
+            'Despatch Doc No
+            If Not CheckEmpty(Trim(.Fields("BillNo").Value), False) Then XMLStr = XMLStr + "<BASICSHIPDOCUMENTNO>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</BASICSHIPDOCUMENTNO>"
+            'Despatched Through
+            If Not CheckEmpty(Trim(.Fields("DishpatchThrough").Value), False) Then XMLStr = XMLStr + "<BASICSHIPPEDBY>" + Replace(Trim(.Fields("DishpatchThrough").Value), "&", "&amp;") + "</BASICSHIPPEDBY>"
+            'Destination
+            If Not CheckEmpty(Trim(.Fields("Destination").Value), False) Then XMLStr = XMLStr + "<BASICFINALDESTINATION>" + Replace(Trim(.Fields("Destination").Value), "&", "&amp;") + "</BASICFINALDESTINATION>"
+            'CarrierName/Agent
+            If Not CheckEmpty(Trim(.Fields("CarrierName/Agent").Value), False) Then XMLStr = XMLStr + "<EICHECKPOST>" + Replace(Trim(.Fields("CarrierName/Agent").Value), "&", "&amp;") + "</EICHECKPOST>"
+            'BillofLoading/LR-RRNO
+            If Not CheckEmpty(Trim(.Fields("BillofLoading/LR-RRNO").Value), False) Then XMLStr = XMLStr + "<BILLOFLADINGNO>" + Replace(Trim(.Fields("BillofLoading/LR-RRNO").Value), "&", "&amp;") + "</BILLOFLADINGNO>"
+            'BILL OF LADING DATE
+            If Not CheckEmpty(Trim(.Fields("GRDate").Value), False) Then XMLStr = XMLStr + "<BILLOFLADINGDATE>" + Replace(Trim(.Fields("GRDate").Value), "&", "&amp;") + "</BILLOFLADINGDATE>"
+            'CarrierName/Agent
+            If Not CheckEmpty(Trim(.Fields("MotorVehicleNo").Value), False) Then XMLStr = XMLStr + "<BASICSHIPVESSELNO>" + Replace(Trim(.Fields("MotorVehicleNo").Value), "&", "&amp;") + "</BASICSHIPVESSELNO>"
+            XMLStr = XMLStr + "<REFERENCE>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</REFERENCE>"
+            'e-Way Bill Details
+            If Not CheckEmpty(Trim(.Fields("eWayBill").Value), False) Then
+            XMLStr = XMLStr + "<EWAYBILLDETAILS.LIST>"
+            
+            'CONSIGNOR Info
+            XMLStr = XMLStr + "<CONSIGNORNAME>" + Replace(Trim(rstCompanyMaster.Fields("Name").Value), "&", "&amp;") + "</CONSIGNORNAME>" 'CONSIGNOR Info
+            XMLStr = XMLStr + "<CONSIGNORPINCODE>" + Replace(Trim(rstCompanyMaster.Fields("Address4").Value), "&", "&amp;") + "</CONSIGNORPINCODE>"
+            XMLStr = XMLStr + "<CONSIGNORGSTIN>" + Replace(Trim(rstCompanyMaster.Fields("GSTIN").Value), "&", "&amp;") + "</CONSIGNORGSTIN>"
+            'xmlstr = xmlstr + "<CONSIGNORSTATENAME>" + Replace(Trim(rstCompanyMaster.Fields("Address3").Value), "&", "&amp;") + "</CONSIGNORSTATENAME>"
+            If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address1").Value) + Trim(rstCompanyMaster.Fields("Address2").Value) + Trim(rstCompanyMaster.Fields("Address3").Value) + Trim(rstCompanyMaster.Fields("Address4").Value), False) Then
+                XMLStr = XMLStr + "<CONSIGNORADDRESS.LIST TYPE=""String"">"
+                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address1").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address1").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address2").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address2").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address3").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address3").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                If Not CheckEmpty(Trim(rstCompanyMaster.Fields("Address4").Value), False) Then XMLStr = XMLStr + "<CONSIGNORADDRESS>" + Replace(Trim(rstCompanyMaster.Fields("Address4").Value), "&", "&amp;") + "</CONSIGNORADDRESS>"
+                XMLStr = XMLStr + "</CONSIGNORADDRESS.LIST>"
+            End If
+            
+            'CONSIGNEE
+            XMLStr = XMLStr + "<CONSIGNEENAME>" + Replace(Trim(.Fields("Buyer").Value), "&", "&amp;") + "</CONSIGNEENAME>" 'CONSIGNEE Info
+            XMLStr = XMLStr + "<CONSIGNEEPINCODE>" + Replace(Trim(.Fields("bAddress4").Value), "&", "&amp;") + "</CONSIGNEEPINCODE>"
+            XMLStr = XMLStr + "<CONSIGNEEGSTIN>" + Replace(Trim(.Fields("bGSTIN").Value), "&", "&amp;") + "</CONSIGNEEGSTIN>"
+            'xmlstr = xmlstr + "<CONSIGNEESTATENAME>" + Replace(Trim(.Fields("bAddress3").Value), "&", "&amp;") + "</CONSIGNEESTATENAME>"
+
+            If Not CheckEmpty(Trim(.Fields("bAddress1").Value) + Trim(.Fields("bAddress2").Value) + Trim(.Fields("bAddress3").Value) + Trim(.Fields("bAddress4").Value), False) Then
+                XMLStr = XMLStr + "<CONSIGNEEADDRESS.LIST TYPE=""String"">"
+                If Not CheckEmpty(Trim(.Fields("bAddress1").Value), False) Then XMLStr = XMLStr + "<CONSIGNEEADDRESS>" + Replace(Trim(.Fields("bAddress1").Value), "&", "&amp;") + "</CONSIGNEEADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("bAddress2").Value), False) Then XMLStr = XMLStr + "<CONSIGNEEADDRESS>" + Replace(Trim(.Fields("bAddress2").Value), "&", "&amp;") + "</CONSIGNEEADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("bAddress3").Value), False) Then XMLStr = XMLStr + "<CONSIGNEEADDRESS>" + Replace(Trim(.Fields("bAddress3").Value), "&", "&amp;") + "</CONSIGNEEADDRESS>"
+                If Not CheckEmpty(Trim(.Fields("bAddress4").Value), False) Then XMLStr = XMLStr + "<CONSIGNEEADDRESS>" + Replace(Trim(.Fields("bAddress4").Value), "&", "&amp;") + "</CONSIGNEEADDRESS>"
+                XMLStr = XMLStr + "</CONSIGNEEADDRESS.LIST>"
+            End If
+            
+                XMLStr = XMLStr + "<DOCUMENTTYPE>" + Replace(Trim(.Fields("DocType").Value), "&", "&amp;") + "</DOCUMENTTYPE>"
+                XMLStr = XMLStr + "<SUBTYPE>" + Replace(Trim(.Fields("SubType").Value), "&", "&amp;") + "</SUBTYPE>"
+                XMLStr = XMLStr + "<BILLSTATUS>" + Replace(Trim(.Fields("BILLSTATUS").Value), "&", "&amp;") + "</BILLSTATUS>"
+                
+            If Not CheckEmpty(Trim(.Fields("eWayBill").Value), False) Then XMLStr = XMLStr + "<BILLNUMBER>" + Replace(Trim(.Fields("eWayBill").Value), "&", "&amp;") + "</BILLNUMBER>"
+            If Not CheckEmpty(Trim(.Fields("eWayBillDate").Value), False) Then XMLStr = XMLStr + "<BILLDATE>" + Replace(Trim(.Fields("eWayBillDate").Value), "&", "&amp;") + "</BILLDATE>"
+            
+            XMLStr = XMLStr + "<TRANSPORTDETAILS.LIST>"
+            
+            XMLStr = XMLStr + "<DOCUMENTDATE>" + Replace(Trim(.Fields("BillDate").Value), "&", "&amp;") + "</DOCUMENTDATE>"
+            XMLStr = XMLStr + "<BASICSHIPPEDBY>" + Replace(Trim(.Fields("CarrierName/Agent").Value), "&", "&amp;") + "</BASICSHIPPEDBY>"
+            XMLStr = XMLStr + "<TRANSPORTERID>" + Replace(Trim(.Fields("CarrierName/Agent").Value), "&", "&amp;") + "</TRANSPORTERID>"
+            'xmlstr = xmlstr + "<TRANSPORTMODE>" + Replace(Trim(.Fields("TRANSPORTMODE").Value), "&", "&amp;") + "</TRANSPORTMODE>" 'Air,Rail,Road,Ship
+            XMLStr = XMLStr + "<VEHICLENUMBER>" + Replace(Trim(.Fields("MotorVehicleNo").Value), "&", "&amp;") + "</VEHICLENUMBER>"
+            XMLStr = XMLStr + "<DOCUMENTNUMBER>" + Replace(Trim(.Fields("BillofLoading/LR-RRNO").Value), "&", "&amp;") + "</DOCUMENTNUMBER>"
+            'xmlstr = xmlstr + "<VEHICLETYPE>" + Replace(Trim(.Fields("VEHICLETYPE").Value), "&", "&amp;") + "</VEHICLETYPE>"   'Regular
+            'xmlstr = xmlstr + "<DISTANCE>" + Replace(Trim(.Fields("DISTANCE").Value), "&", "&amp;") + "</DISTANCE>"
+            
+            XMLStr = XMLStr + "</TRANSPORTDETAILS.LIST>"
+            
+            XMLStr = XMLStr + "</EWAYBILLDETAILS.LIST>"
+            End If
             .MoveFirst
             Do Until .EOF
-                xmlstr = xmlstr + "<INVENTORYENTRIES.LIST>"
-                xmlstr = xmlstr + "<STOCKITEMNAME>" + Replace(Trim(.Fields("Item").Value), "&", "&amp;") + "</STOCKITEMNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<RATE>" + Format(Val(.Fields("Rate").Value), "0.00") + "/" + Replace(UOM, "&", "&amp;") + "</RATE>"
-                xmlstr = xmlstr + "<DISCOUNT>" + Format(Val(.Fields("Disc%").Value), "0.00") + "</DISCOUNT>"
-                xmlstr = xmlstr + "<AMOUNT>" + Format(Val(.Fields("Amount").Value), "0.00") + "</AMOUNT>"
-                xmlstr = xmlstr + "<ACTUALQTY>" + Format(Val(.Fields("Quantity").Value), "0.00") + " " + Replace(UOM, "&", "&amp;") + "</ACTUALQTY>"
-                xmlstr = xmlstr + "<BILLEDQTY>" + Format(Val(.Fields("Quantity").Value), "0.00") + " " + Replace(UOM, "&", "&amp;") + "</BILLEDQTY>"
-                xmlstr = xmlstr + "<BATCHALLOCATIONS.LIST>"
-                xmlstr = xmlstr + "<GODOWNNAME>" + Replace(Trim(.Fields("MatCentre").Value), "&", "&amp;") + "</GODOWNNAME>"
-                xmlstr = xmlstr + "<DESTINATIONGODOWNNAME>" + Replace(Trim(.Fields("MatCentre").Value), "&", "&amp;") + "</DESTINATIONGODOWNNAME>"
-                xmlstr = xmlstr + "</BATCHALLOCATIONS.LIST>"
-                xmlstr = xmlstr + "<ACCOUNTINGALLOCATIONS.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>" + Replace(SaleAccount, "&", "&amp;") + "</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Format(Val(.Fields("Amount").Value), "0.00") + "</AMOUNT>"
-                xmlstr = xmlstr + "</ACCOUNTINGALLOCATIONS.LIST>"
-                xmlstr = xmlstr + "</INVENTORYENTRIES.LIST>"
+                XMLStr = XMLStr + "<INVENTORYENTRIES.LIST>"
+                
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION.LIST TYPE=""String"">"
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "StockItem:" + Replace(Trim(.Fields("ItemName").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration02
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration01").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration02
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration02").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration02
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration03").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration03
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration04").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration04
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + Replace(Trim(.Fields("LongNarration05").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'LongNarration05
+                XMLStr = XMLStr + "<BASICUSERDESCRIPTION>" + "Ref. No.:" + Replace(Trim(.Fields("RefOrderNo").Value), "&", "&amp;") + "</BASICUSERDESCRIPTION>" 'RefOrderNo
+                XMLStr = XMLStr + "</BASICUSERDESCRIPTION.LIST>"
+                
+                XMLStr = XMLStr + "<STOCKITEMNAME>" + Replace(Trim(.Fields("Item").Value), "&", "&amp;") + "</STOCKITEMNAME>"
+                
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<RATE>" + Format(Val(.Fields("Rate").Value), "0.00") + "/" + Replace(UOM, "&", "&amp;") + "</RATE>"
+                XMLStr = XMLStr + "<DISCOUNT>" + Format(Val(.Fields("Disc%").Value), "0.00") + "</DISCOUNT>"
+                XMLStr = XMLStr + "<AMOUNT>" + Format(Val(.Fields("Amount").Value), "0.00") + "</AMOUNT>"
+                XMLStr = XMLStr + "<ACTUALQTY>" + Format(Val(.Fields("Quantity").Value), "0.00") + " " + Replace(UOM, "&", "&amp;") + "</ACTUALQTY>"
+                XMLStr = XMLStr + "<BILLEDQTY>" + Format(Val(.Fields("Quantity").Value), "0.00") + " " + Replace(UOM, "&", "&amp;") + "</BILLEDQTY>"
+                XMLStr = XMLStr + "<BATCHALLOCATIONS.LIST>"
+                XMLStr = XMLStr + "<GODOWNNAME>" + Replace(Trim(.Fields("MatCentre").Value), "&", "&amp;") + "</GODOWNNAME>"
+                XMLStr = XMLStr + "<DESTINATIONGODOWNNAME>" + Replace(Trim(.Fields("MatCentre").Value), "&", "&amp;") + "</DESTINATIONGODOWNNAME>"
+                XMLStr = XMLStr + "</BATCHALLOCATIONS.LIST>"
+                XMLStr = XMLStr + "<ACCOUNTINGALLOCATIONS.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>" + Replace(SaleAccount, "&", "&amp;") + "</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Format(Val(.Fields("Amount").Value), "0.00") + "</AMOUNT>"
+                XMLStr = XMLStr + "</ACCOUNTINGALLOCATIONS.LIST>"
+                XMLStr = XMLStr + "</INVENTORYENTRIES.LIST>"
+                
                 .MoveNext
             Loop
             .MoveFirst
-            xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-            xmlstr = xmlstr + "<LEDGERNAME>" + Replace(Trim(.Fields("Buyer").Value), "&", "&amp;") + "</LEDGERNAME>" 'Buyer Name
-            xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>"
-            xmlstr = xmlstr + "<ISPARTYLEDGER>Yes</ISPARTYLEDGER>"
-            xmlstr = xmlstr + "<AMOUNT>" + Trim(0 - Val(.Fields("FinalAmount").Value)) + "</AMOUNT>" 'Vch Amount
-            xmlstr = xmlstr + "<BILLALLOCATIONS.LIST>"
-            xmlstr = xmlstr + "<NAME>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</NAME>" 'Vch No.
-            xmlstr = xmlstr + "<BILLTYPE></BILLTYPE>"
-            xmlstr = xmlstr + "<AMOUNT>" + Trim(0 - Val(.Fields("FinalAmount").Value)) + "</AMOUNT>" 'Vch Amount
-            xmlstr = xmlstr + "</BILLALLOCATIONS.LIST>"
-            xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
+            XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+            XMLStr = XMLStr + "<LEDGERNAME>" + Replace(Trim(.Fields("Buyer").Value), "&", "&amp;") + "</LEDGERNAME>" 'Buyer Name
+            XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>"
+            XMLStr = XMLStr + "<ISPARTYLEDGER>Yes</ISPARTYLEDGER>"
+            XMLStr = XMLStr + "<AMOUNT>" + Trim(0 - Val(.Fields("FinalAmount").Value)) + "</AMOUNT>" 'Vch Amount
+            XMLStr = XMLStr + "<BILLALLOCATIONS.LIST>"
+            XMLStr = XMLStr + "<NAME>" + Replace(Trim(.Fields("BillNo").Value), "&", "&amp;") + "</NAME>" 'Vch No.
+            XMLStr = XMLStr + "<BILLTYPE></BILLTYPE>"
+        If VchType <> "PF" Then
+            XMLStr = XMLStr + "<AMOUNT>" + Trim(0 - Val(.Fields("FinalAmount").Value)) + "</AMOUNT>" 'Vch Amount
+        ElseIf VchType = "PF" Then
+            XMLStr = XMLStr + "<AMOUNT>" + Trim(Val(.Fields("FinalAmount").Value)) + "</AMOUNT>" 'Vch Amount
+        End If
+            XMLStr = XMLStr + "</BILLALLOCATIONS.LIST>"
+            XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
             If Val(.Fields("Rebate").Value) > 0 Then
-                xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX> " + Trim(Format(0 - Val(.Fields("Rebate%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
-                xmlstr = xmlstr + "</BASICRATEOFINVOICETAX.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>Discount</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Trim(Format(0 - Val(.Fields("Rebate").Value), "0.00")) + "</AMOUNT>"
-                xmlstr = xmlstr + "<VATEXPAMOUNT>" + Trim(0 - Format(Val(.Fields("Rebate").Value), "0.00")) + "</VATEXPAMOUNT>"
-                xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX> " + Trim(Format(0 - Val(.Fields("Rebate%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
+                XMLStr = XMLStr + "</BASICRATEOFINVOICETAX.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>Discount</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Trim(Format(0 - Val(.Fields("Rebate").Value), "0.00")) + "</AMOUNT>"
+                XMLStr = XMLStr + "<VATEXPAMOUNT>" + Trim(0 - Format(Val(.Fields("Rebate").Value), "0.00")) + "</VATEXPAMOUNT>"
+                XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
             End If
             If Val(.Fields("Freight").Value) > 0 Then
-                xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>" + Replace("Packing & Forwarding Charges", "&", "&amp;") + "</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Format(Val(.Fields("Freight").Value), "0.00") + "</AMOUNT>"
-                xmlstr = xmlstr + "<VATEXPAMOUNT>" + Format(Val(.Fields("Freight").Value), "0.00") + "</VATEXPAMOUNT>"
-                xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>" + Replace("Packing & Forwarding Charges", "&", "&amp;") + "</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Format(Val(.Fields("Freight").Value), "0.00") + "</AMOUNT>"
+                XMLStr = XMLStr + "<VATEXPAMOUNT>" + Format(Val(.Fields("Freight").Value), "0.00") + "</VATEXPAMOUNT>"
+                XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
             End If
             rstTaxList.MoveFirst
             rstTaxList.Find "[Code]='" & .Fields("Tax").Value & "'"
             If rstTaxList.Fields("Region").Value = "I" Then
-                xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX> " + Trim(Format(Val(.Fields("IGST%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
-                xmlstr = xmlstr + "</BASICRATEOFINVOICETAX.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>IGST-" + IIf(Val(.Fields("IGST%").Value) = 0, "Exempted", Trim(Format(Val(.Fields("IGST%").Value), "0.00")) + "%") + "</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Trim(Format(Val(.Fields("IGST").Value), "0.00")) + "</AMOUNT>"
-                xmlstr = xmlstr + "<VATEXPAMOUNT>" + Trim(Format(Val(.Fields("IGST").Value), "0.00")) + "</VATEXPAMOUNT>"
-                xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX> " + Trim(Format(Val(.Fields("IGST%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
+                XMLStr = XMLStr + "</BASICRATEOFINVOICETAX.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>IGST-" + IIf(Val(.Fields("IGST%").Value) = 0, "Exempted", Trim(Format(Val(.Fields("IGST%").Value), "0.00")) + "%") + "</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Trim(Format(Val(.Fields("IGST").Value), "0.00")) + "</AMOUNT>"
+                XMLStr = XMLStr + "<VATEXPAMOUNT>" + Trim(Format(Val(.Fields("IGST").Value), "0.00")) + "</VATEXPAMOUNT>"
+                XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
             Else
-                xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX> " + Trim(Format(Val(.Fields("CGST%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
-                xmlstr = xmlstr + "</BASICRATEOFINVOICETAX.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>CGST-" + IIf(Val(.Fields("CGST%").Value) = 0, "Exempted", Trim(Format(Val(.Fields("CGST%").Value), "0.00")) + "%") + "</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Trim(Format(Val(.Fields("CGST").Value), "0.00")) + "</AMOUNT>"
-                xmlstr = xmlstr + "<VATEXPAMOUNT>" + Trim(Format(Val(.Fields("CGST").Value), "0.00")) + "</VATEXPAMOUNT>"
-                xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
-                xmlstr = xmlstr + "<BASICRATEOFINVOICETAX> " + Trim(Format(Val(.Fields("SGST%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
-                xmlstr = xmlstr + "</BASICRATEOFINVOICETAX.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>SGST-" + IIf(Val(.Fields("SGST%").Value) = 0, "Exempted", Trim(Format(Val(.Fields("SGST%").Value), "0.00")) + "%") + "</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Trim(Format(Val(.Fields("SGST").Value), "0.00")) + "</AMOUNT>"
-                xmlstr = xmlstr + "<VATEXPAMOUNT>" + Trim(Format(Val(.Fields("SGST").Value), "0.00")) + "</VATEXPAMOUNT>"
-                xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX> " + Trim(Format(Val(.Fields("CGST%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
+                XMLStr = XMLStr + "</BASICRATEOFINVOICETAX.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>CGST-" + IIf(Val(.Fields("CGST%").Value) = 0, "Exempted", Trim(Format(Val(.Fields("CGST%").Value), "0.00")) + "%") + "</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Trim(Format(Val(.Fields("CGST").Value), "0.00")) + "</AMOUNT>"
+                XMLStr = XMLStr + "<VATEXPAMOUNT>" + Trim(Format(Val(.Fields("CGST").Value), "0.00")) + "</VATEXPAMOUNT>"
+                XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX.LIST TYPE=""Number"">"
+                XMLStr = XMLStr + "<BASICRATEOFINVOICETAX> " + Trim(Format(Val(.Fields("SGST%").Value), "0.00")) + "</BASICRATEOFINVOICETAX>"
+                XMLStr = XMLStr + "</BASICRATEOFINVOICETAX.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>SGST-" + IIf(Val(.Fields("SGST%").Value) = 0, "Exempted", Trim(Format(Val(.Fields("SGST%").Value), "0.00")) + "%") + "</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Trim(Format(Val(.Fields("SGST").Value), "0.00")) + "</AMOUNT>"
+                XMLStr = XMLStr + "<VATEXPAMOUNT>" + Trim(Format(Val(.Fields("SGST").Value), "0.00")) + "</VATEXPAMOUNT>"
+                XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
             End If
             If Val(.Fields("Adjustment").Value) <> 0 Then
-                xmlstr = xmlstr + "<LEDGERENTRIES.LIST>"
-                xmlstr = xmlstr + "<LEDGERNAME>Round Off</LEDGERNAME>"
-                xmlstr = xmlstr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
-                xmlstr = xmlstr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
-                xmlstr = xmlstr + "<AMOUNT>" + Format(Val(.Fields("Adjustment").Value), "0.00") + "</AMOUNT>"
-                xmlstr = xmlstr + "<VATEXPAMOUNT>" + Format(Val(.Fields("Adjustment").Value), "0.00") + "</VATEXPAMOUNT>"
-                xmlstr = xmlstr + "</LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERENTRIES.LIST>"
+                XMLStr = XMLStr + "<LEDGERNAME>Round Off</LEDGERNAME>"
+                XMLStr = XMLStr + "<ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>"
+                XMLStr = XMLStr + "<ISPARTYLEDGER>No</ISPARTYLEDGER>"
+                XMLStr = XMLStr + "<AMOUNT>" + Format(Val(.Fields("Adjustment").Value), "0.00") + "</AMOUNT>"
+                XMLStr = XMLStr + "<VATEXPAMOUNT>" + Format(Val(.Fields("Adjustment").Value), "0.00") + "</VATEXPAMOUNT>"
+                XMLStr = XMLStr + "</LEDGERENTRIES.LIST>"
             End If
-            xmlstr = xmlstr + "</VOUCHER>"
-            xmlstr = xmlstr + "</TALLYMESSAGE>"
-            xmlstr = xmlstr + "</REQUESTDATA>"
-            xmlstr = xmlstr + "</IMPORTDATA>"
-            xmlstr = xmlstr + "</BODY>"
-            xmlstr = xmlstr + "</ENVELOPE>"
+            XMLStr = XMLStr + "</VOUCHER>"
+            XMLStr = XMLStr + "</TALLYMESSAGE>"
+            XMLStr = XMLStr + "</REQUESTDATA>"
+            XMLStr = XMLStr + "</IMPORTDATA>"
+            XMLStr = XMLStr + "</BODY>"
+            XMLStr = XMLStr + "</ENVELOPE>"
             Dim WinHttpReq As Object
             Set WinHttpReq = CreateObject("WinHttp.WinHttpRequest.5.1")
             With WinHttpReq
@@ -3518,21 +3782,74 @@ Private Sub PushVch()
                 Do While True
                     On Error Resume Next
                     DelOldVch False
-                    .Send xmlstr
+                    .Send XMLStr
                     If Err.Number = -2147012867 Then
                         If MsgBox(Err.Description + "Tally is not open. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                     Else
-                        .WaitForResponse 4000
-                        Dom.Loadxml .responseText
-                        If Dom.SelectSingleNode("//CREATED").Text = "1" Then
-                            MsgBox "Voucher Exported to Tally !!!", vbInformation, App.Title: Exit Do
+                        .waitForResponse 4000
+                        Dom.loadXML .responseText
+                        If Dom.selectSingleNode("//CREATED").Text = "1" Then
+                            MsgBox "Voucher Exported to Tally !!!", vbInformation, App.Title: UpdateIntegration: Exit Do
                         Else
-                            If MsgBox(Dom.SelectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
+                            If MsgBox(Dom.selectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                         End If
                     End If
                 Loop
             End With
-'        ElseIf BusyIntegration Then
+            
+        ElseIf BusyIntegration Then
+            Dim FI  As CFixedInterface
+            Dim rstBusy As Dao.Recordset
+            Dim cnBusy As New ADODB.Connection
+            Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName
+            Dim ItemCode, ItemName, Qty, Price
+            Set FI = CreateObject("Busy2L16.CFixedInterface")
+            Dim BusyServerPassword, BusyServerUser, BusyDatabaseName, BusyServerName, BusyConnectionString As String
+            BusyServerPassword = Trim(ReadFromFile("Busy Server Password"))
+            BusyServerUser = "sa"
+            BusyDatabaseName = "BusyComp0007_db"
+            BusyServerName = "182.71.145.139"
+            cnBusy.CursorLocation = adUseClient
+        If DatabaseType = "MS SQL" Then
+        If cnBusy.State = adStateOpen Then cnBusy.Close
+            cnBusy.CommandTimeout = 300
+            BusyConnectionString = "Provider=SQLOLEDB.1;Password=" & BusyServerPassword & ";Persist Security Info=True;User ID=" & BusyServerUser & ";Initial Catalog=" & BusyDatabaseName & ";Data Source=" & BusyServerName
+        Else
+            BusyConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Printwell Printers International\PPI Busy win Data\DATA\COMP0006\db12022.bds;Persist Security Info=True;Jet OLEDB:Database Password=ILoveMyINDIA"
+        End If
+            If cnBusy.State = adStateOpen Then cnBusy.Close
+            cnBusy.Open BusyConnectionString
+                        
+            If DatabaseType = "MS SQL" Then
+            
+            FI.OpenCSDB Trim(ReadFromFile("Busy Path")), Trim(ReadFromFile("Busy Server Name")), "sa", Trim(ReadFromFile("Busy Server Password")), cnBusy.DefaultDatabase 'Mid(cnBusy.DefaultDatabase, 8, 12)
+            ElseIf DatabaseType = "MS Access" Then
+            FI.OpenDB (ReadFromFile("Busy Path")), Trim(ReadFromFile("Busy Data Path")), Trim(ReadFromFile("Busy CompCode")), Trim(ReadFromFile("Busy FY"))
+            End If
+            AccountCode = Trim(.Fields("AccountCode").Value)
+            If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
+            VchSeriesName = VchSeries: MCName = Trim(.Fields("MatCentre").Value): VchNo = Trim(Text2.Text): VchDate = FI.FormatDate(MhDateInput1.Value): Qty = Val(MhRealInput1.Value)
+            Set rstBusy = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
+            Set rstBusy = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode")
+            Set rstBusy = FI.GetRecordset("SELECT * FROM Master1  ")
+            
+            AccountName = Replace(rstBusy.Fields("Name").Value, "&", "&amp;", 1)
+            STName = IIf(Left(rstBusy.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
+            ItemCode = Mid(ItemCode, 2, 6)
+            Set rstBusy = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
+            ItemName = Replace(rstBusy.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstBusy.Fields("Price").Value)
+            XMLStr = "<PurchaseOrder>"
+                XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+                XMLStr = XMLStr & "<ItemEntries>"
+                XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+                XMLStr = XMLStr & "</ItemEntries>"
+                XMLStr = XMLStr & "<PendingOrders>"
+                    XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+                    XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+                    XMLStr = XMLStr & "</OrderDetail>"
+                XMLStr = XMLStr & "</PendingOrders>"
+            XMLStr = XMLStr & "</PurchaseOrder>"
+            If Not FI.SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
 '            Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
 '            Dim ItemCode, ItemName, Qty, Price
 '            AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
@@ -3560,56 +3877,59 @@ Private Sub PushVch()
     End With
 End Sub
 Private Sub DelOldVch(ByVal dspMsg As Boolean)
-    Dim xmlstr
+    Dim XMLStr
     If TallyIntegration Then
         Dim Dom As Object
         Set Dom = CreateObject("MSXML2.DomDocument")
         Dom.async = False
-        xmlstr = xmlstr + "<ENVELOPE>"
-        xmlstr = xmlstr + "<HEADER>"
-        xmlstr = xmlstr + "<TALLYREQUEST>Import Data</TALLYREQUEST>"
-        xmlstr = xmlstr + "</HEADER>"
-        xmlstr = xmlstr + "<BODY>"
-        xmlstr = xmlstr + "<IMPORTDATA>"
-        xmlstr = xmlstr + "<REQUESTDESC>"
-        xmlstr = xmlstr + "<REPORTNAME>Vouchers</REPORTNAME>"
-        xmlstr = xmlstr + "<STATICVARIABLES>"
-        xmlstr = xmlstr + "<SVCURRENTCOMPANY>##SVCURRENTCOMPANY</SVCURRENTCOMPANY>" '##SVCURRENTCOMPANY-Current Open Company
-        xmlstr = xmlstr + "</STATICVARIABLES>"
-        xmlstr = xmlstr + "</REQUESTDESC>"
-        xmlstr = xmlstr + "<REQUESTDATA>"
-        xmlstr = xmlstr + "<TALLYMESSAGE xmlns:UDF=""TallyUDF"">"
-        xmlstr = xmlstr + "<VOUCHER DATE='" & Format(oVchDate, "yyyyMMdd") & "' TAGNAME = ""Voucher Number"" TAGVALUE='" & oVchNo & "' ACTION=""Delete"">"
-        xmlstr = xmlstr + "<VOUCHERTYPENAME>" + VchSeries + "</VOUCHERTYPENAME>"
-        xmlstr = xmlstr + "</VOUCHER>"
-        xmlstr = xmlstr + "</TALLYMESSAGE>"
-        xmlstr = xmlstr + "</REQUESTDATA>"
-        xmlstr = xmlstr + "</IMPORTDATA>"
-        xmlstr = xmlstr + "</BODY>"
-        xmlstr = xmlstr + "</ENVELOPE>"
+        XMLStr = XMLStr + "<ENVELOPE>"
+        XMLStr = XMLStr + "<HEADER>"
+        XMLStr = XMLStr + "<TALLYREQUEST>Import Data</TALLYREQUEST>"
+        XMLStr = XMLStr + "</HEADER>"
+        XMLStr = XMLStr + "<BODY>"
+        XMLStr = XMLStr + "<IMPORTDATA>"
+        XMLStr = XMLStr + "<REQUESTDESC>"
+        XMLStr = XMLStr + "<REPORTNAME>Vouchers</REPORTNAME>"
+        XMLStr = XMLStr + "<STATICVARIABLES>"
+        XMLStr = XMLStr + "<SVCURRENTCOMPANY>##SVCURRENTCOMPANY</SVCURRENTCOMPANY>" '##SVCURRENTCOMPANY-Current Open Company
+        XMLStr = XMLStr + "</STATICVARIABLES>"
+        XMLStr = XMLStr + "</REQUESTDESC>"
+        XMLStr = XMLStr + "<REQUESTDATA>"
+        XMLStr = XMLStr + "<TALLYMESSAGE xmlns:UDF=""TallyUDF"">"
+        XMLStr = XMLStr + "<VOUCHER DATE='" & Format(oVchDate, "yyyyMMdd") & "' TAGNAME = ""Voucher Number"" TAGVALUE='" & oVchNo & "' ACTION=""Delete"">"
+        XMLStr = XMLStr + "<VOUCHERTYPENAME>" + VchSeries + "</VOUCHERTYPENAME>"
+        XMLStr = XMLStr + "</VOUCHER>"
+        XMLStr = XMLStr + "</TALLYMESSAGE>"
+        XMLStr = XMLStr + "</REQUESTDATA>"
+        XMLStr = XMLStr + "</IMPORTDATA>"
+        XMLStr = XMLStr + "</BODY>"
+        XMLStr = XMLStr + "</ENVELOPE>"
         Dim WinHttpReq As Object
         Set WinHttpReq = CreateObject("WinHttp.WinHttpRequest.5.1")
         With WinHttpReq
             .Open "POST", "http://localhost:" + ReadFromFile("Tally Port"), False
             Do While True
                 On Error Resume Next
-                .Send xmlstr
+                .Send XMLStr
                 If Err.Number = -2147012867 Then
                     If MsgBox(Err.Description + "Tally is not open. Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                 Else
-                    .WaitForResponse 4000
-                    Dom.Loadxml .responseText
-                    If Dom.SelectSingleNode("//DELETED").Text = "1" Then
+                    .waitForResponse 4000
+                    Dom.loadXML .responseText
+                    If Dom.selectSingleNode("//DELETED").Text = "1" Then
                         If dspMsg Then MsgBox "Voucher from Tally Deleted !!!", vbInformation, App.Title: Exit Do
                     Else
-                        If Dom.SelectSingleNode("//LINEERROR").Text = "Voucher does not exist!" Then
+                        If Dom.selectSingleNode("//LINEERROR").Text = "Voucher does not exist!" Then
                             Exit Do
                         Else
-                            If MsgBox(Dom.SelectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
+                            If MsgBox(Dom.selectSingleNode("//LINEERROR").Text + " Would you like to continue?", vbQuestion + vbYesNo + vbDefaultButton1, "Confirm Proceed !") = vbNo Then Exit Do
                         End If
                     End If
                 End If
             Loop
         End With
     End If
+End Sub
+Private Sub UpdateIntegration()
+cnSalesVoucher.Execute "Update JobworkBVParent Set IntegrationStatus='True' WHERE Code='" & rstSalesVoucherList.Fields("Code").Value & "' AND RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "'"
 End Sub

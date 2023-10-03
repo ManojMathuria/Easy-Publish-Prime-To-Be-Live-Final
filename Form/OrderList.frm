@@ -280,6 +280,7 @@ Private Sub Check2_Click() 'Select All
         Next
     End With
 End Sub
+
 Private Sub Text1_Change()
     Dim i As Integer, cVal As Variant
     With fpSpread1

@@ -1,3 +1,4 @@
+Attribute VB_Name = "Module1"
 '----------------------------------------------------------
 '
 ' File: SSOCX.BAS
@@ -439,7 +440,7 @@ Public Const SS_SPAN_YES = 1
 Public Const SS_SPAN_ANCHOR = 2
 
 ' ExportExcelBookEx, ExportExcelToFileEx
-Public Const SS_EXCELSAVEFLAG_NONE = 0 
+Public Const SS_EXCELSAVEFLAG_NONE = 0
 Public Const SS_EXCELSAVEFLAG_NOFORMULAS = 1
 
 ' ExportTextFile, ExportRangeToTextFile, ExportToXML and  LoadTextFile

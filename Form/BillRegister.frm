@@ -404,7 +404,7 @@ Private Sub Form_Load()
     Me.Caption = IIf(Left(VchCodeType, 2) = 2, " Purchase", " Sales") & IIf(Right(VchCodeType, 1) = 1, " Order Ledger Detailed", " Order Ledger Summarised")
     CenterForm Me
     BusySystemIndicator True
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Option3.Value = True
     MhDateInput1.Text = Format(FinancialYearFrom, "dd-mm-yyyy")
     MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))

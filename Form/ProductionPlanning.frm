@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmProductionPlanning 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Production Planning"
@@ -441,7 +441,7 @@ Private Sub Form_Load()
     Me.Caption = "Production Planning (" + IIf(OrderType = "M", "Main", "Supplement") + ") Orders"
     CenterForm Me
     BusySystemIndicator True
-    rstCompanyMaster.Open "SELECT PrintName,MCRepair FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,MCRepair FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     '
     rstGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type = '5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstGroupList.ActiveConnection = Nothing
@@ -465,7 +465,7 @@ ErrorHandler:
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-       SendKeys "{TAB}", True
+       Sendkeys "{TAB}", True
        KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)

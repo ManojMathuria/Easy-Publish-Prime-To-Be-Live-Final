@@ -2,11 +2,12 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
+Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmPaperStockRegister 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Paper Stock Ledger"
-   ClientHeight    =   9525
+   ClientHeight    =   9645
    ClientLeft      =   150
    ClientTop       =   435
    ClientWidth     =   15045
@@ -23,7 +24,7 @@ Begin VB.Form FrmPaperStockRegister
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   9525
+   ScaleHeight     =   9645
    ScaleWidth      =   15045
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -86,14 +87,14 @@ Begin VB.Form FrmPaperStockRegister
       EndProperty
    End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   9060
+      Height          =   9180
       Left            =   45
       TabIndex        =   8
       Top             =   405
       Width           =   14955
       _Version        =   65536
       _ExtentX        =   26379
-      _ExtentY        =   15981
+      _ExtentY        =   16192
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -113,6 +114,12 @@ Begin VB.Form FrmPaperStockRegister
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "PaperStockRegister.frx":0B45
+      Begin VB.Timer Timer1 
+         Enabled         =   0   'False
+         Interval        =   4
+         Left            =   8400
+         Top             =   2760
+      End
       Begin VB.CheckBox Check8 
          Caption         =   "Show Total Party-wise"
          BeginProperty Font 
@@ -124,12 +131,12 @@ Begin VB.Form FrmPaperStockRegister
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   705
-         Left            =   8280
+         Height          =   225
+         Left            =   9840
          TabIndex        =   20
-         Top             =   120
+         Top             =   440
          Value           =   1  'Checked
-         Width           =   1335
+         Width           =   2295
       End
       Begin VB.CheckBox Check7 
          Caption         =   "Show Total By Paper UOM"
@@ -143,9 +150,9 @@ Begin VB.Form FrmPaperStockRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   225
-         Left            =   9720
+         Left            =   12360
          TabIndex        =   19
-         Top             =   500
+         Top             =   440
          Width           =   2535
       End
       Begin VB.CheckBox Check6 
@@ -160,11 +167,11 @@ Begin VB.Form FrmPaperStockRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   225
-         Left            =   9720
+         Left            =   9840
          TabIndex        =   18
          Top             =   150
          Value           =   1  'Checked
-         Width           =   2535
+         Width           =   2415
       End
       Begin VB.CheckBox Check5 
          Caption         =   "Show Total By Paper GSM"
@@ -180,7 +187,7 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   225
          Left            =   12360
          TabIndex        =   17
-         Top             =   500
+         Top             =   735
          Width           =   2535
       End
       Begin VB.CheckBox Check4 
@@ -214,7 +221,7 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   225
          Left            =   4080
          TabIndex        =   15
-         Top             =   500
+         Top             =   615
          Width           =   1695
       End
       Begin VB.OptionButton Option1 
@@ -230,7 +237,7 @@ Begin VB.Form FrmPaperStockRegister
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   300
-         Left            =   5910
+         Left            =   7710
          TabIndex        =   14
          Top             =   50
          Width           =   1935
@@ -248,7 +255,7 @@ Begin VB.Form FrmPaperStockRegister
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   300
-         Left            =   5910
+         Left            =   7710
          TabIndex        =   13
          Top             =   325
          Value           =   -1  'True
@@ -268,7 +275,7 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   225
          Left            =   1900
          TabIndex        =   12
-         Top             =   500
+         Top             =   615
          Width           =   2040
       End
       Begin VB.OptionButton Option3 
@@ -284,7 +291,7 @@ Begin VB.Form FrmPaperStockRegister
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   300
-         Left            =   5910
+         Left            =   7710
          TabIndex        =   11
          Top             =   600
          Width           =   1575
@@ -303,14 +310,14 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   225
          Left            =   75
          TabIndex        =   2
-         Top             =   500
+         Top             =   615
          Width           =   1695
       End
       Begin MSComctlLib.ListView ListView1 
          Height          =   4080
          Left            =   0
          TabIndex        =   3
-         Top             =   915
+         Top             =   1035
          Width           =   6165
          _ExtentX        =   10874
          _ExtentY        =   7197
@@ -343,9 +350,9 @@ Begin VB.Form FrmPaperStockRegister
          Left            =   0
          TabIndex        =   9
          Top             =   0
-         Width           =   1215
+         Width           =   1095
          _Version        =   65536
-         _ExtentX        =   2143
+         _ExtentX        =   1931
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -366,7 +373,7 @@ Begin VB.Form FrmPaperStockRegister
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
-         Left            =   2880
+         Left            =   3000
          TabIndex        =   10
          Top             =   0
          Width           =   1215
@@ -394,7 +401,7 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   4080
          Left            =   0
          TabIndex        =   4
-         Top             =   4980
+         Top             =   5100
          Width           =   6165
          _ExtentX        =   10874
          _ExtentY        =   7197
@@ -426,7 +433,7 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   4080
          Left            =   6150
          TabIndex        =   5
-         Top             =   915
+         Top             =   1035
          Width           =   8805
          _ExtentX        =   15531
          _ExtentY        =   7197
@@ -458,7 +465,7 @@ Begin VB.Form FrmPaperStockRegister
          Height          =   4080
          Left            =   6150
          TabIndex        =   6
-         Top             =   4980
+         Top             =   5100
          Width           =   8805
          _ExtentX        =   15531
          _ExtentY        =   7197
@@ -488,12 +495,12 @@ Begin VB.Form FrmPaperStockRegister
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
-         Left            =   1200
+         Left            =   1080
          TabIndex        =   0
          Top             =   0
-         Width           =   1695
+         Width           =   1935
          _Version        =   65536
-         _ExtentX        =   2990
+         _ExtentX        =   3413
          _ExtentY        =   582
          Calendar        =   "PaperStockRegister.frx":0BD1
          Caption         =   "PaperStockRegister.frx":0CE9
@@ -550,12 +557,12 @@ Begin VB.Form FrmPaperStockRegister
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
-         Left            =   4080
+         Left            =   4200
          TabIndex        =   1
          Top             =   0
-         Width           =   1695
+         Width           =   1960
          _Version        =   65536
-         _ExtentX        =   2990
+         _ExtentX        =   3457
          _ExtentY        =   582
          Calendar        =   "PaperStockRegister.frx":0DF9
          Caption         =   "PaperStockRegister.frx":0F11
@@ -610,6 +617,51 @@ Begin VB.Form FrmPaperStockRegister
          Value           =   39849
          CenturyMode     =   0
       End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
+         Height          =   690
+         Left            =   6150
+         TabIndex        =   21
+         Top             =   0
+         Width           =   1485
+         _Version        =   65536
+         _ExtentX        =   2619
+         _ExtentY        =   1217
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Statement Unit"
+         FillColor       =   9164542
+         TextColor       =   0
+         Picture         =   "PaperStockRegister.frx":1021
+         Picture         =   "PaperStockRegister.frx":103D
+      End
+      Begin MSForms.ComboBox Combo1 
+         Height          =   450
+         Left            =   6150
+         TabIndex        =   22
+         Top             =   675
+         Width           =   1485
+         VariousPropertyBits=   545282075
+         BackColor       =   16777215
+         BorderStyle     =   1
+         DisplayStyle    =   7
+         Size            =   "2619;794"
+         MatchEntry      =   0
+         ShowDropButtonWhen=   2
+         SpecialEffect   =   0
+         FontName        =   "Calibri"
+         FontHeight      =   195
+         FontCharSet     =   0
+         FontPitchAndFamily=   2
+      End
    End
 End
 Attribute VB_Name = "FrmPaperStockRegister"
@@ -618,13 +670,20 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim nSort As Boolean, VSFlexFlag As Boolean, FontFlag As Boolean
+Public VchType As String
 Dim rstCompanyMaster As New ADODB.Recordset, rstPaperStockRegister As New ADODB.Recordset, rstPaperSizeList As New ADODB.Recordset, rstPaperGSMList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset
 Dim EMailID As String, Attachment As String, Message As String, OutputTo As String, PaperTbl
+Dim GodownNameH, SizeNameH, PaperNameH, UOMH, GSMH As String
+Dim INWardGTF As Double, OUTWardGTF As Double, BalGTF As Double
+Dim dPrint As Long
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
+    CustomSettings
     CenterForm Me
     BusySystemIndicator True
-    PaperTbl = "SELECT Code As Paper FROM PaperChild UNION " & _
+    PaperTbl = ""
+    PaperTbl = "SELECT Item As Paper FROM AccountChild0801 WHERE Category='2' UNION SELECT Code As Paper FROM PaperChild UNION " & _
                "SELECT Paper FROM PaperIOChild UNION " & _
                "SELECT Item As Paper FROM MaterialSVChild C INNER JOIN MaterialSVParent P ON P.Code=C.Code WHERE Category='2' AND ApprovedBy<>'' UNION " & _
                "SELECT Paper FROM PaperMVChild UNION " & _
@@ -632,13 +691,23 @@ Private Sub Form_Load()
                "SELECT Item As Paper FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE C.Category='2' AND LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
                "SELECT Paper FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
                "SELECT Paper FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
-               "SELECT Paper1 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
-               "SELECT Paper2 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
-               "SELECT Paper4 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*'"
-    rstCompanyMaster.Open "SELECT PrintName,Phone,eMail FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+               "SELECT Paper As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*'"
+    
+'               "SELECT Paper1 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
+'               "SELECT Paper2 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' UNION " & _
+'               "SELECT Paper4 As Paper FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*'"
+    rstCompanyMaster.Open "SELECT PrintName,Phone,eMail FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Check3_Click
     MhDateInput1.Text = Format(FinancialYearFrom, "dd-mm-yyyy")
     MhDateInput2.Text = Format(IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), FinancialYearTo, Date), "dd-mm-yyyy")
+'Statement Unit
+    Combo1.Clear
+    Combo1.AddItem " Sheets", 0
+    Combo1.AddItem " UOM", 1
+    Combo1.AddItem " KGs", 2
+    Combo1.AddItem " UOM . Sheet", 3
+    Combo1.ListIndex = 1
+
     BusySystemIndicator False
     Exit Sub
 ErrorHandler:
@@ -751,7 +820,7 @@ Private Sub LoadAccountList()
     Dim SelectedPapers, AccountTbl
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
     SelectedPapers = SelectedItems(ListView3)
-    AccountTbl = "SELECT Account FROM PaperChild WHERE " & IIf(SelectedPapers = "''", "1=1", "Code IN (" & SelectedPapers & ")") & " UNION " & _
+    AccountTbl = "SELECT Code As Account FROM AccountChild0801 WHERE Category='2' AND " & IIf(SelectedPapers = "''", "1=1", "Item IN (" & SelectedPapers & ")") & " UNION SELECT Account FROM PaperChild WHERE " & IIf(SelectedPapers = "''", "1=1", "Code IN (" & SelectedPapers & ")") & " UNION " & _
                           "SELECT Account FROM PaperIOChild WHERE " & IIf(SelectedPapers = "''", "1=1", "Paper IN (" & SelectedPapers & ")") & " UNION " & _
                           "SELECT Account FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE C.Category='2' AND ApprovedBy<>'' AND " & IIf(SelectedPapers = "''", "1=1", "C.Item IN (" & SelectedPapers & ")") & " UNION " & _
                           "SELECT AccountFrom As Account FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE " & IIf(SelectedPapers = "''", "1=1", "C.Paper IN (" & SelectedPapers & ")") & " UNION " & _
@@ -760,9 +829,12 @@ Private Sub LoadAccountList()
                           "SELECT Vendor As Account FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE C.Category='2' AND LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Item IN (" & SelectedPapers & ")") & " UNION " & _
                           "SELECT RAccount As Account FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper IN (" & SelectedPapers & ")") & " UNION " & _
                           "SELECT RAccount As Account FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper IN (" & SelectedPapers & ")") & " UNION " & _
-                          "SELECT RAccount1 As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper1 IN (" & SelectedPapers & ")") & " UNION " & _
-                          "SELECT RAccount2 As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper2 IN (" & SelectedPapers & ")") & " UNION " & _
-                          "SELECT RAccount4 As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper4 IN (" & SelectedPapers & ")")
+                          "SELECT RAccount As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper IN (" & SelectedPapers & ")")
+
+'                          "SELECT RAccount1 As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper1 IN (" & SelectedPapers & ")") & " UNION " & _
+'                          "SELECT RAccount2 As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper2 IN (" & SelectedPapers & ")") & " UNION " & _
+'                          "SELECT RAccount4 As Account FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND " & IIf(SelectedPapers = "''", "1=1", "C.Paper4 IN (" & SelectedPapers & ")")
+    
     rstAccountList.Open "SELECT Name,Code FROM AccountMaster P INNER JOIN (" & AccountTbl & ") As C ON P.Code=C.Account ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     ListView4.ListItems.Clear
@@ -785,6 +857,7 @@ End Sub
 Private Sub PrintPaperStockRegister()
     Dim OpBal As String, SQL As String, SelectedPapers As String, SelectedAccounts As String
     Dim oExcel As Object, StkIn As String, StkOut As String, i As Integer
+    Dim C As Integer
     Screen.MousePointer = vbHourglass
     On Error Resume Next
     Dim CRXParamDefs As CRAXDRT.ParameterFieldDefinitions
@@ -798,7 +871,7 @@ Private Sub PrintPaperStockRegister()
     If Option3.Value Then 'Only In-Transit
         OpBal = "(SELECT IIF(SUM(QuantitySheets) IS NULL,0,SUM(QuantitySheets)) FROM PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code WHERE Paper=M2.Code AND Account=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "' AND (P.DeliveryEndDate IS NULL AND P.BillNo=''))"
     Else
-        OpBal = "(SELECT IIF(SUM(OpBalSheets) IS NULL,0,SUM(OpBalSheets)) FROM PaperChild WHERE Code=M2.Code AND Account=M1.Code)+" & _
+        OpBal = "(SELECT IIF(SUM(OpBal) IS NULL,0,SUM(PARSENAME(OpBal,2)*1)*CONVERT(DECIMAL(12,3),M3.Value1)+SUM(PARSENAME(OpBal,1)*1)) FROM AccountChild0801 WHERE  Category='2' AND Item=M2.Code AND Code=M1.Code)+(SELECT IIF(SUM(OpBalSheets) IS NULL,0,SUM(OpBalSheets)) FROM PaperChild WHERE Code=M2.Code AND Account=M1.Code)+" & _
                         "(SELECT IIF(SUM(QuantitySheets) IS NULL,0,SUM(QuantitySheets)) FROM PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code WHERE Paper=M2.Code AND Account=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "' AND " & IIf(Option1.Value, "1=1", "(P.DeliveryEndDate IS NOT NULL OR P.BillNo<>'')") & ")+" & _
                         "(SELECT IIF(SUM(Quantity) IS NULL,0,SUM(PARSENAME(Quantity,2)*1)*CONVERT(DECIMAL(12,3),M3.Value1)+SUM(PARSENAME(Quantity,1)*1)) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND ApprovedBy<>'' AND Item=M2.Code AND Quantity>=0 AND Account=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
                         "(SELECT IIF(SUM(Quantity) IS NULL,0,SUM(PARSENAME(0-Quantity,2)*1)*CONVERT(DECIMAL(12,3),M3.Value1)+SUM(PARSENAME(0-Quantity,1)*1)) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND ApprovedBy<>'' AND Item=M2.Code AND Quantity<0 AND Account=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
@@ -809,83 +882,124 @@ Private Sub PrintPaperStockRegister()
                         "(SELECT IIF(SUM(ROUND(C.TotalConsumption,0)) IS NULL,0,SUM(ROUND(C.TotalConsumption,0))) FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Category='2' AND Item=M2.Code AND Vendor=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
                         "(SELECT IIF(SUM(PaperConsumptionSheets) IS NULL,0,SUM(PaperConsumptionSheets)) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=M2.Code AND RAccount=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
                         "(SELECT IIF(SUM(PaperConsumptionSheets) IS NULL,0,SUM(PaperConsumptionSheets)) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=M2.Code AND RAccount=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
-                        "(SELECT IIF(SUM(PaperConsumptionSheets1) IS NULL,0,SUM(PaperConsumptionSheets1)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper1=M2.Code AND RAccount1=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
-                        "(SELECT IIF(SUM(PaperConsumptionSheets2) IS NULL,0,SUM(PaperConsumptionSheets2)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper2=M2.Code AND RAccount2=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
-                        "(SELECT IIF(SUM(PaperConsumptionSheets4) IS NULL,0,SUM(PaperConsumptionSheets4)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper4=M2.Code AND RAccount4=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')"
+                        "(SELECT IIF(SUM(PaperConsumptionSheets) IS NULL,0,SUM(PaperConsumptionSheets)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=M2.Code AND RAccount=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')"
+    
+'                        "(SELECT IIF(SUM(PaperConsumptionSheets1) IS NULL,0,SUM(PaperConsumptionSheets1)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper1=M2.Code AND RAccount1=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
+'                        "(SELECT IIF(SUM(PaperConsumptionSheets2) IS NULL,0,SUM(PaperConsumptionSheets2)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper2=M2.Code AND RAccount2=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')-" & _
+'                        "(SELECT IIF(SUM(PaperConsumptionSheets4) IS NULL,0,SUM(PaperConsumptionSheets4)) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper4=M2.Code AND RAccount4=M1.Code AND Date<'" & GetDate(MhDateInput1.Text) & "')"
+    
     End If
     'VchNo,VchDate,VchType,Particulars,BookQuantity,Forms,Quantity,GSM,GodownName,SizeName,PaperName
     If Check3.Value Then    'cmwise
         If Option3.Value Then 'Only In-Transit
-            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code "
+            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code "
             SQL = SQL + "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", "(P.DeliveryEndDate IS NULL AND P.BillNo='')")
             SQL = SQL + "ORDER BY GodownName,SizeName,PaperName,VchDate,VchNo"
         Else
-            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", "(P.DeliveryEndDate IS NOT NULL OR P.BillNo<>'')") & " UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SI' As VchType,'Stock (Generated)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SI' As VchType,'Stock (Generated)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE C.Category='2' AND P.ApprovedBy<>'' AND C.Quantity>=0 AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SR' As VchType,'Stock (Consumed)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SR' As VchType,'Stock (Consumed)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE C.Category='2' AND P.ApprovedBy<>'' AND C.Quantity<0 AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MO' As VchType,'Out (To : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountTo)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountFrom=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountFrom)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountTo=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'DN' As VchType,'Debit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MO' As VchType,'Out (To : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountTo)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountFrom=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountFrom)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountTo=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'DN' As VchType,'Debit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND Quantity<0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'CN' As VchType,'Credit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'CN' As VchType,'Credit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND Quantity>=0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PC' As VchType,'(UFG : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+')' As Particulars,OrderQuantity As BookQuantity,0.00 As Forms,ROUND(C.TotalConsumption,0) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Vendor=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PC' As VchType,'(UFG : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+')' As Particulars,OrderQuantity As BookQuantity,0.00 As Forms,ROUND(C.TotalConsumption,0) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Vendor=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C.Category='2' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (SF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (SF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,'(CF:'+(SELECT STUFF((SELECT ','+(LTRIM(I.PrintName)+'-'+LTRIM([Ups/Plate])+'Ups-('+LTRIM(FrontPrintingColor)+'+'+LTRIM(BackPrintingColor)+')Col-'+LTRIM(ActualQuantity)) FROM BookPOChild0901 T INNER JOIN BookMaster I ON T.Book=I.Code WHERE T.Code=P.Code ORDER BY T.Code,I.PrintName FOR XML PATH('')),1,1,''))+' Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units)' As Particulars,(SELECT MIN(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code) As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'PC'+P.Code As VchCode " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,'(CF:'+(SELECT STUFF((SELECT ','+(LTRIM(I.PrintName)+'-'+LTRIM([Ups/Plate])+'Ups-('+LTRIM(FrontPrintingColor)+'+'+LTRIM(BackPrintingColor)+')Col-'+LTRIM(ActualQuantity)) FROM BookPOChild0901 T INNER JOIN BookMaster I ON T.Book=I.Code WHERE T.Code=P.Code ORDER BY T.Code,I.PrintName FOR XML PATH('')),1,1,''))+' Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units)' As Particulars,(SELECT MIN(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code) As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'PC'+P.Code As VchCode,M2.[Weight/Unit] " & _
                                     "FROM (((BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage1%])+'%/'+LTRIM(PaperWastageFinal1)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms1 As Forms,PaperConsumptionSheets1 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount1=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper1=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
-                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage2%])+'%/'+LTRIM(PaperWastageFinal2)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms2 As Forms,PaperConsumptionSheets2 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount2=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper2=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
-                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage4%])+'%/'+LTRIM(PaperWastageFinal4)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms4 As Forms,PaperConsumptionSheets4 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount4=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper4=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage1%])+'%/'+LTRIM(PaperWastageFinal1)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms1 As Forms,PaperConsumptionSheets1 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount1=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper1=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+'            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage2%])+'%/'+LTRIM(PaperWastageFinal2)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms2 As Forms,PaperConsumptionSheets2 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount2=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper2=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+'            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage4%])+'%/'+LTRIM(PaperWastageFinal4)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms4 As Forms,PaperConsumptionSheets4 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount4=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper4=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.cmWidth)+'x'+LTRIM(M2.cmLength)+'cm²',LTRIM(M2.cmLength)+'cm-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' "
+            
             SQL = SQL + "ORDER BY GodownName,SizeName,PaperName,VchDate,VchNo"
         End If
     Else
         If Option3.Value Then 'Only In-Transit
-            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code "
+            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code "
             SQL = SQL + "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", "(P.DeliveryEndDate IS NULL AND P.BillNo='')")
             SQL = SQL + "ORDER BY GodownName,SizeName,PaperName,VchDate,VchNo"
         Else
-            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT * FROM (SELECT '' As VchNo,'" & Format(CDate(GetDate(MhDateInput1.Text)) - 1, "dd-MMM-yyyy") & "' As VchDate,'OB' As VchType,'Opening Balance' As Particulars,0 As BookQuantity,0.00 As Forms," & OpBal & " As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM AccountMaster M1,(PaperMaster M2 INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code) WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ")) As Tbl WHERE Quantity<>0 UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Supplier)+' Challan No.:'+P.BiltyNo+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", "(P.DeliveryEndDate IS NOT NULL OR P.BillNo<>'')") & " UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SI' As VchType,'Stock (Generated)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SI' As VchType,'Stock (Generated)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE C.Category='2' AND P.ApprovedBy<>'' AND C.Quantity>=0 AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SR' As VchType,'Stock (Consumed)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'SR' As VchType,'Stock (Consumed)' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE C.Category='2' AND P.ApprovedBy<>'' AND C.Quantity<0 AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MO' As VchType,'Out (To : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountTo)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountFrom=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountFrom)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountTo=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'DN' As VchType,'Debit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MO' As VchType,'Out (To : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountTo)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountFrom=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'MI' As VchType,' IN (FROM : '+(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.AccountFrom)+')' As Particulars,0 As BookQuantity,0.00 As Forms,QuantitySheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.AccountTo=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'DN' As VchType,'Debit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(0-Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(0-Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND Quantity<0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'CN' As VchType,'Credit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'CN' As VchType,'Credit Note' As Particulars,0 As BookQuantity,0.00 As Forms,PARSENAME(Quantity,2)*CONVERT(DECIMAL(12,3),M3.Value1)+PARSENAME(Quantity,1) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON P.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND Quantity>=0 UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PC' As VchType,'(UFG : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+')' As Particulars,OrderQuantity As BookQuantity,0.00 As Forms,ROUND(C.TotalConsumption,0) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Vendor=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,P.Date As VchDate,'PC' As VchType,'(UFG : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+')' As Particulars,OrderQuantity As BookQuantity,0.00 As Forms,ROUND(C.TotalConsumption,0) As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Vendor=M1.Code) INNER JOIN PaperMaster M2 ON C.Item=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C.Category='2' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (SF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (SF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,'(CF:'+(SELECT STUFF((SELECT ','+(LTRIM(I.PrintName)+'-'+LTRIM([Ups/Plate])+'Ups-('+LTRIM(FrontPrintingColor)+'+'+LTRIM(BackPrintingColor)+')Col-'+LTRIM(ActualQuantity)) FROM BookPOChild0901 T INNER JOIN BookMaster I ON T.Book=I.Code WHERE T.Code=P.Code ORDER BY T.Code,I.PrintName FOR XML PATH('')),1,1,''))+' Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units)' As Particulars,(SELECT MIN(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code) As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'PC'+P.Code As VchCode " & _
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,'(CF:'+(SELECT STUFF((SELECT ','+(LTRIM(I.PrintName)+'-'+LTRIM([Ups/Plate])+'Ups-('+LTRIM(FrontPrintingColor)+'+'+LTRIM(BackPrintingColor)+')Col-'+LTRIM(ActualQuantity)) FROM BookPOChild0901 T INNER JOIN BookMaster I ON T.Book=I.Code WHERE T.Code=P.Code ORDER BY T.Code,I.PrintName FOR XML PATH('')),1,1,''))+' Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units)' As Particulars,(SELECT MIN(ActualQuantity) FROM BookPOChild0901 WHERE Code=P.Code) As BookQuantity,0.00 As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'PC'+P.Code As VchCode,M2.[Weight/Unit] " & _
                                     "FROM (((BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage1%])+'%/'+LTRIM(PaperWastageFinal1)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms1 As Forms,PaperConsumptionSheets1 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount1=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper1=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
-                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage2%])+'%/'+LTRIM(PaperWastageFinal2)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms2 As Forms,PaperConsumptionSheets2 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount2=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper2=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
-                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
-            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage4%])+'%/'+LTRIM(PaperWastageFinal4)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms4 As Forms,PaperConsumptionSheets4 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount4=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper4=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage1%])+'%/'+LTRIM(PaperWastageFinal1)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms1 As Forms,PaperConsumptionSheets1 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount1=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper1=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+'            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage2%])+'%/'+LTRIM(PaperWastageFinal2)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms2 As Forms,PaperConsumptionSheets2 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount2=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper2=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' UNION ALL "
+'            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage4%])+'%/'+LTRIM(PaperWastageFinal4)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms4 As Forms,PaperConsumptionSheets4 As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount4=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper4=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
+'                                    "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' "
+            SQL = SQL + "SELECT LTRIM(P.Name) As VchNo,C.OrderDate As VchDate,'PC' As VchType,' (MF : '+(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=P.Book)+') - Wastage-'+LTRIM([PaperWastage%])+'%/'+LTRIM(PaperWastageFinal)+'-Units Ref : '+Ref As Particulars,ActualQuantity As BookQuantity,Forms As Forms,PaperConsumptionSheets As Quantity,M2.GSM,'Party Name : '+LTRIM(M1.PrintName) As GodownName,'Size Name : '+IIF(Form='S',LTRIM(M2.inWidth)+'x'+LTRIM(M2.inLength)+'in²',LTRIM(M2.inLength)+'in-Reel') As SizeName,'Paper Name : '+LTRIM(M2.PrintName) As PaperName,M3.Value1 As SPU,'UOM : '+LTRIM(M3.PrintName)+'='+LTRIM(M3.Value1) As UOM,'' As VchCode,M2.[Weight/Unit] FROM (((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.RAccount=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN GeneralMaster M3 ON M2.UOM=M3.Code " & _
                                     "WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND M1.Code IN (" & SelectedAccounts & ") AND M2.Code IN (" & SelectedPapers & ") AND C.OrderDate>='" & GetDate(MhDateInput1.Text) & "' AND C.OrderDate<='" & GetDate(MhDateInput2.Text) & "' "
+            
             SQL = SQL + "ORDER BY GodownName,SizeName,PaperName,VchDate,VchNo"
         End If
     End If
+    MdiMainMenu.StatusBar1.Panels(2).Text = "Wait For Data Spooling !!!"
     rstPaperStockRegister.Open SQL, cnDatabase, adOpenKeyset, adLockOptimistic
     rstPaperStockRegister.ActiveConnection = Nothing
     Screen.MousePointer = vbNormal
+    If MsgBox("Do You Go With Grid Format", vbYesNo) = vbYes Then
+    'Call Print_Grid
+    With FrmPaperLedger
+        .sSQL = SQL
+        .VchType = 19
+        .sDate = GetDate(MhDateInput1.Text)
+        .eDate = GetDate(MhDateInput2.Text)
+        .Check0.Value = Check8.Value 'Party Total
+        .Check2.Value = Check6.Value 'Size Total
+        .Check3.Value = Check7.Value 'UOM Total
+        .Check1.Value = Check5.Value 'GSM Total
+        .Check4.Value = Check4.Value 'Paper Total
+        Load FrmPaperLedger
+        .Show
+    End With
+    Else
+    With rptPaperStockRegister
+        If Logo = "S" Then
+        .Picture1.Width = LogoW
+        .Picture1.Height = LogoH
+        End If
+        .Text2.Width = header '9000 '7800
+        .Text2.Left = HeaderL '1000 '1680
+        If LogoLine = "N" Then
+        .Picture1.LeftLineStyle = crLSNoLine
+        .Picture1.RightLineStyle = crLSNoLine
+        .Picture1.TopLineStyle = crLSNoLine
+        .Picture1.BottomLineStyle = crLSNoLine
+        End If
+    End With
+    
     If rstPaperStockRegister.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rptPaperStockRegister.Database.SetDataSource rstPaperStockRegister, 3, 1
     rptPaperStockRegister.DiscardSavedData
@@ -919,6 +1033,7 @@ Private Sub PrintPaperStockRegister()
     End If
     Set rptPaperStockRegister = Nothing
     On Error GoTo 0
+    End If
 End Sub
 Private Sub Check3_Click()
     If rstPaperSizeList.State = adStateOpen Then rstPaperSizeList.Close
@@ -933,4 +1048,228 @@ Private Sub Check3_Click()
     Call LoadPaperGSMList
     Call LoadPaperList
     Call LoadAccountList
+End Sub
+Public Function Print_Grid()
+Dim aSNO, pSNO As Long
+    On Error GoTo ErrHandler
+Dim i, C As Long
+dPrint = 0
+pSNO = 0
+aSNO = 0
+GodownNameH = "": SizeNameH = "": PaperNameH = "": UOMH = "": GSMH = ""
+INWardGTF = 0: OUTWardGTF = 0: BalGTF = 0
+    MdiMainMenu.MousePointer = vbHourglass
+    ShowProgressInStatusBar True
+    Timer1.Enabled = True
+    
+    With FrmPaperLedger
+                VchType = 19
+    If VchType = 19 Then
+           With .VSFlexGrid1
+                    .Clear
+                    .Cols = 10
+                    .Rows = rstPaperStockRegister.RecordCount + 5
+                    rstPaperStockRegister.MoveFirst
+    
+                Do While Not rstPaperStockRegister.EOF
+        i = i + 1
+        If GodownNameH <> rstPaperStockRegister.Fields("GodownName").Value Then
+        'Party Header
+                aSNO = aSNO + 1
+                .TextMatrix(i, 0) = "A/C-" & aSNO
+                .TextMatrix(i, C) = rstPaperStockRegister.Fields("GodownName").Value: .RowHeight(i) = 400: .Cell(flexcpFontSize, i, C) = 12: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = &H8000000F: .Cell(flexcpFontUnderline, i, C) = True: .Cell(flexcpForeColor, i, C) = RGB(128, 0, 64)
+                 GodownNameH = rstPaperStockRegister.Fields("GodownName").Value
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If SizeNameH <> rstPaperStockRegister.Fields("SizeName").Value Then
+        'Size Header
+                .TextMatrix(i, C) = rstPaperStockRegister.Fields("SizeName").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = False: .Cell(flexcpBackColor, i, C) = &H8000000F: .Cell(flexcpFontUnderline, i, C) = True: .Cell(flexcpForeColor, i, C) = RGB(128, 0, 128)
+                 SizeNameH = rstPaperStockRegister.Fields("SizeName").Value
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If UOMH <> rstPaperStockRegister.Fields("UOM").Value Then
+        'UOM Header
+                .TextMatrix(i, C) = rstPaperStockRegister.Fields("UOM").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = &H8000000F: .Cell(flexcpFontItalic, i, C) = True: .Cell(flexcpForeColor, i, C) = RGB(80, 80, 160)
+                 UOMH = rstPaperStockRegister.Fields("UOM").Value
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If GSMH <> rstPaperStockRegister.Fields("GSM").Value Then
+        'GSM Header
+                .TextMatrix(i, C) = "GSM : " & rstPaperStockRegister.Fields("GSM").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = &H8000000F: .Cell(flexcpFontUnderline, i, C) = True: .Cell(flexcpForeColor, i, C) = vbRed
+                 GSMH = rstPaperStockRegister.Fields("GSM").Value
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If PaperNameH <> rstPaperStockRegister.Fields("PaperName").Value Then
+        'Paper Name Header
+                .TextMatrix(i, C) = rstPaperStockRegister.Fields("PaperName").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = False: .Cell(flexcpBackColor, i, C) = &H8000000F: .Cell(flexcpFontUnderline, i, C) = False: .Cell(flexcpForeColor, i, C) = RGB(64, 128, 128)
+                 PaperNameH = rstPaperStockRegister.Fields("PaperName").Value
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        
+                C = 0
+                C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("VchNo").Value
+                C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("VchDate").Value
+                C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("VchType").Value
+                C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("Particulars").Value
+                C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperStockRegister.Fields("Forms").Value), "###0.00")
+                C = C + 1: .TextMatrix(i, C) = Val(rstPaperStockRegister.Fields("BookQuantity").Value)
+                If InStr(1, "PI_SI_MI_CN_OB", StrConv(rstPaperStockRegister.Fields("VchType").Value, vbUpperCase)) > 0 And Val(rstPaperStockRegister.Fields("Quantity").Value) > 0 Then
+                C = C + 1: .TextMatrix(i, C) = Val(rstPaperStockRegister.Fields("Quantity").Value)
+                C = C + 1
+                Else
+                C = C + 1: C = C + 1: .TextMatrix(i, C) = Val(Abs(rstPaperStockRegister.Fields("Quantity").Value))
+                End If
+'                C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("GodownName").Value
+ '               C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("SizeName").Value
+  '              C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("PaperName").Value
+   '             C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("GSM").Value
+    '            C = C + 1: .TextMatrix(i, C) = rstPaperStockRegister.Fields("SPU").Value
+                
+    
+            dPrint = dPrint + 1
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstPaperStockRegister.RecordCount & " !!!"
+                
+                rstPaperStockRegister.MoveNext
+            If MdiMainMenu.ProgressBar1.Value + Round((100 / rstPaperStockRegister.RecordCount), 2) <= 100 Then
+                MdiMainMenu.ProgressBar1.Value = MdiMainMenu.ProgressBar1.Value + Round((100 / rstPaperStockRegister.RecordCount), 2)
+            End If
+    
+            Loop
+        
+          .Rows = i + 1
+
+
+            End With
+    Else
+    
+         Set .VSFlexGrid1.DataSource = rstPaperStockRegister
+        
+    End If
+          
+    .TDBNumber2.Value = i
+    
+    End With
+Call VSFlexGrid_Format_Headers
+Call VSFlexGrid1_AfterDataRefresh
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    Exit Function
+ErrHandler:
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Function
+Private Function VSFlexGrid_Format_Headers()
+    On Error GoTo ErrHandler
+Dim i As Long
+Dim C As Long
+    With FrmPaperLedger
+        With .VSFlexGrid1
+                    If VchType = 19 Then
+                            C = C + 1: .TextMatrix(i, C) = "Vch No"
+                            C = C + 1: .TextMatrix(i, C) = "Date"
+                            C = C + 1: .TextMatrix(i, C) = "Type"
+                            C = C + 1: .TextMatrix(i, C) = "Particulars"
+                            C = C + 1: .TextMatrix(i, C) = "Forms"
+                            C = C + 1: .TextMatrix(i, C) = "Quantity"
+                            C = C + 1: .TextMatrix(i, C) = "IN"
+                            C = C + 1: .TextMatrix(i, C) = "OUT"
+                            C = C + 1: .TextMatrix(i, C) = "Balance"
+'                            C = C + 1: .TextMatrix(i, C) = "Godown Name"
+'                            C = C + 1: .TextMatrix(i, C) = "Size Name"
+'                            C = C + 1: .TextMatrix(i, C) = "Paper Name"
+'                            C = C + 1: .TextMatrix(i, C) = "GSM"
+'                            C = C + 1: .TextMatrix(i, C) = "SPU"
+                    End If
+        End With
+    End With
+Screen.MousePointer = vbNormal
+Exit Function
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Function
+Private Sub VSFlexGrid1_AfterDataRefresh()
+    On Error GoTo ErrHandler
+Dim C As Variant
+Dim T As Long
+Dim GroupOn As Long
+'nSort = False
+With FrmPaperLedger
+    With .VSFlexGrid1
+    If VchType = 18 Then
+        GroupOn = 9
+'        .FrozenCols = 7
+    ElseIf VchType = 18 Then
+        GroupOn = 3
+        .FrozenCols = 3
+    End If
+    'Subtotal
+nSort = False
+    .SubtotalPosition = flexSTBelow
+    
+    If nSort = True Then
+        .MultiTotals = True
+        .Subtotal flexSTClear
+            For C = 1 To .Cols - 1
+            Err.Number = 0
+            On Error Resume Next
+            T = .TextMatrix(1, C)
+            If Err.Number = 0 Then
+                If InStr(1, "#_GSM_SPU", StrConv(.TextMatrix(0, C), vbUpperCase)) > 0 Then
+                    .Subtotal flexSTAverage, GroupOn, C, "(#,##0)", RGB(240, 230, 247), RGB(128, 0, 64), True, "Sub Total", GroupOn, True
+                    For T = 1 To .Rows - 1
+                    If .TextMatrix(T, 3) = "" Then .TextMatrix(T, 3) = "Sub Total"
+                    Next
+                Else
+                    .Subtotal flexSTSum, GroupOn, C, "(#,##0)", RGB(240, 230, 247), RGB(128, 0, 64), True, "Sub Total", GroupOn, True
+                    .Subtotal flexSTSum, GroupOn, C, "(#,##0)", RGB(241, 248, 248), vbRed, True, , 1, True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+                End If
+            End If
+            Next
+        nSort = False
+    ElseIf nSort = False Then
+        .MultiTotals = True
+        .Subtotal flexSTClear
+            For C = 1 To .Cols - 1
+            Err.Number = 0
+            On Error Resume Next
+            T = .TextMatrix(1, C)
+            If Err.Number = 0 Then
+                If InStr(1, "#_GSM_SPU", StrConv(.TextMatrix(0, C), vbUpperCase)) > 0 Then
+                
+                Else
+                
+                If FrmItemSelectionList.Check1.Value = False Then .Subtotal flexSTSum, 1, C, "(#,##0)", RGB(240, 230, 247), vbBlue, True, "Sub-Total", 1, True
+                .Subtotal flexSTSum, 0, C, "(#,##0)", RGB(240, 230, 247), vbRed, True, , 0, True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+                End If
+            End If
+            Next
+        nSort = True
+    End If
+        For C = 1 To (.Cols - 1)
+            .AutoSize C
+            .ExplorerBar = flexExSort
+            .ColSort(C) = flexSortCustom
+            .AllowUserResizing = flexResizeBoth
+        Next
+        .Col = 33
+    C = .Rows - 1
+    
+    .TextMatrix(C, 0) = ""
+'    .ColHidden(1) = True
+'    .ColHidden(2) = True
+'    .ColHidden(3) = True
+'    .ColHidden(4) = True
+'    .ColHidden(5) = True
+    End With
+End With
+Exit Sub
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
 End Sub

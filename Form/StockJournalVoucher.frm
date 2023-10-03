@@ -97,7 +97,6 @@ Begin VB.Form frmStockJournalVoucher
          TabPicture(1)   =   "StockJournalVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -857,7 +856,7 @@ Private Sub Form_Load()
     rstStockJournalVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstStockJournalVoucherList
-        .Open "SELECT T.Code,T.Name,V.Name As VchSeriesName,Date,RIGHT(T.Type,2) As Type,M1.Name As igMaterialCentreName,M2.Name As icMaterialCentreName FROM ((JobworkBVParent T INNER JOIN AccountMaster M1 ON T.Party=M1.Code) INNER JOIN AccountMaster M2 ON T.MaterialCentre=M2.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnStockJournalVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Name As VchSeriesName,Date,RIGHT(T.Type,2) As Type,M1.Name As igMaterialCentreName,M2.Name As icMaterialCentreName FROM ((JobworkBVParent T INNER JOIN AccountMaster M1 ON T.Party=M1.Code) INNER JOIN AccountMaster M2 ON T.MaterialCentre=M2.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnStockJournalVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -1780,7 +1779,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
-                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Name As HSNName,I.HSNCode As HSNCode" & _
+                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
     
@@ -1789,7 +1788,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='20" & VchType & "' ORDER BY Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType ='20" & VchType & "' ORDER BY Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub DuplicateRecord()
@@ -1838,7 +1837,7 @@ Public Sub PrintStockJournalVoucher(ByVal VchCode As String, ByVal VchType As St
     If rstStockJournalVoucherChild.State = adStateOpen Then rstStockJournalVoucherChild.Close
     If DatabaseType = "MS SQL" Then
         rstStockJournalVoucherChild.Open "SELECT LTRIM(P.Name) As VchNo,P.[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.[PARTY]) As Godown,'FG ' AS Category,(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item)  As ItemName,CASE WHEN Quantity>=0 THEN 'Items Generated' ELSE 'Items Consumed' END As ItemType,Quantity,Remarks,'Piece' As UOMName, 'FG' As CategoryName FROM JobworkBVParent P INNER JOIN JobworkBVChild C ON P.Code=C.Code WHERE FYCode= " & FYCode & " AND P.Code='" & rstStockJournalVoucherList.Fields("Code").Value & "' ", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
-        rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode= " & FYCode & " ", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
+        rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode= " & FYCode & " FYCode='" & FYCode & "'", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
     Else
         rstStockJournalVoucherChild.Open "SELECT LTRIM(Name) As VchNo,[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Party) As Godown,'FG' as Category,(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item) As ItemName,IIF(C.Quantity>=0,'Items Generated','Items Consumed') As ItemType,C.Quantity,P.Remarks,'Piece' As UOMName, 'FG' As CategoryName FROM JobworkBVParent P Left Join JobworkBVChild C On (P.Code=C.Code And P.Code='" & rstStockJournalVoucherList.Fields("Code").Value & "' )", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
     End If

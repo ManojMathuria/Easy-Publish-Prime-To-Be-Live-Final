@@ -6,7 +6,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmItemSelectionList 
    BorderStyle     =   1  'Fixed Single
    Caption         =   " Selection List...."
-   ClientHeight    =   5190
+   ClientHeight    =   9270
    ClientLeft      =   150
    ClientTop       =   435
    ClientWidth     =   9705
@@ -21,16 +21,15 @@ Begin VB.Form FrmItemSelectionList
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   5190
+   ScaleHeight     =   9270
    ScaleWidth      =   9705
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   5
+      TabIndex        =   9
       Top             =   0
       Width           =   9705
       _ExtentX        =   17119
@@ -59,6 +58,16 @@ Begin VB.Form FrmItemSelectionList
             ImageIndex      =   4
          EndProperty
       EndProperty
+      Begin VB.CheckBox Check1 
+         Caption         =   "Summarize"
+         Height          =   255
+         Left            =   8280
+         TabIndex        =   13
+         Top             =   40
+         Value           =   1  'Checked
+         Visible         =   0   'False
+         Width           =   1335
+      End
    End
    Begin MSComctlLib.ImageList ImageList1 
       Left            =   3000
@@ -93,7 +102,8 @@ Begin VB.Form FrmItemSelectionList
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   8830
       Left            =   0
-      TabIndex        =   6
+      TabIndex        =   10
+      TabStop         =   0   'False
       Top             =   360
       Width           =   9675
       _Version        =   65536
@@ -118,10 +128,42 @@ Begin VB.Form FrmItemSelectionList
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "ItemSelectionList.frx":087C
+      Begin MSComctlLib.ListView ListView4 
+         Height          =   4020
+         Left            =   4830
+         TabIndex        =   8
+         Top             =   4800
+         Width           =   4845
+         _ExtentX        =   8546
+         _ExtentY        =   7091
+         View            =   3
+         Arrange         =   1
+         LabelEdit       =   1
+         LabelWrap       =   -1  'True
+         HideSelection   =   0   'False
+         Checkboxes      =   -1  'True
+         FullRowSelect   =   -1  'True
+         GridLines       =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   16777215
+         BorderStyle     =   1
+         Appearance      =   0
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   0
+      End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Left            =   0
-         TabIndex        =   7
+         TabIndex        =   11
          Top             =   0
          Width           =   855
          _Version        =   65536
@@ -148,7 +190,7 @@ Begin VB.Form FrmItemSelectionList
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
          Left            =   2400
-         TabIndex        =   8
+         TabIndex        =   12
          Top             =   0
          Width           =   885
          _Version        =   65536
@@ -300,39 +342,7 @@ Begin VB.Form FrmItemSelectionList
       Begin MSComctlLib.ListView ListView1 
          Height          =   4500
          Left            =   0
-         TabIndex        =   9
-         Top             =   315
-         Width           =   4845
-         _ExtentX        =   8546
-         _ExtentY        =   7938
-         View            =   3
-         Arrange         =   1
-         LabelEdit       =   1
-         LabelWrap       =   -1  'True
-         HideSelection   =   0   'False
-         Checkboxes      =   -1  'True
-         FullRowSelect   =   -1  'True
-         GridLines       =   -1  'True
-         _Version        =   393217
-         ForeColor       =   -2147483640
-         BackColor       =   16777215
-         BorderStyle     =   1
-         Appearance      =   0
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         NumItems        =   0
-      End
-      Begin MSComctlLib.ListView ListView2 
-         Height          =   4500
-         Left            =   4830
-         TabIndex        =   10
+         TabIndex        =   5
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
@@ -375,7 +385,7 @@ Begin VB.Form FrmItemSelectionList
          Height          =   300
          Left            =   5325
          TabIndex        =   2
-         Top             =   30
+         Top             =   20
          Value           =   -1  'True
          Visible         =   0   'False
          Width           =   1020
@@ -395,9 +405,9 @@ Begin VB.Form FrmItemSelectionList
          Height          =   300
          Left            =   6945
          TabIndex        =   3
-         Top             =   30
+         Top             =   20
          Visible         =   0   'False
-         Width           =   750
+         Width           =   1350
       End
       Begin VB.OptionButton Option2 
          Caption         =   "All"
@@ -414,18 +424,50 @@ Begin VB.Form FrmItemSelectionList
          Height          =   300
          Left            =   8295
          TabIndex        =   4
-         Top             =   30
+         Top             =   20
          Visible         =   0   'False
          Width           =   630
       End
       Begin MSComctlLib.ListView ListView3 
          Height          =   4020
          Left            =   0
-         TabIndex        =   11
+         TabIndex        =   7
          Top             =   4800
          Width           =   9675
          _ExtentX        =   17066
          _ExtentY        =   7091
+         View            =   3
+         Arrange         =   1
+         LabelEdit       =   1
+         LabelWrap       =   -1  'True
+         HideSelection   =   0   'False
+         Checkboxes      =   -1  'True
+         FullRowSelect   =   -1  'True
+         GridLines       =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   16777215
+         BorderStyle     =   1
+         Appearance      =   0
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   0
+      End
+      Begin MSComctlLib.ListView ListView2 
+         Height          =   4500
+         Left            =   4830
+         TabIndex        =   6
+         Top             =   315
+         Width           =   4845
+         _ExtentX        =   8546
+         _ExtentY        =   7938
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -458,26 +500,34 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Dim rstSupplierList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset
+Dim rstMatCList As New ADODB.Recordset, rstSupplierList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset
 Public VchType As String, MC As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     MhDateInput1.ReadOnly = False:
-    If VchType <= 2 Then
-        ListView1.BackColor = RGB(255, 255, 240): ListView2.BackColor = RGB(255, 255, 240): ListView3.BackColor = RGB(255, 255, 240): MhDateInput1.BackColor = RGB(255, 255, 240): MhDateInput2.BackColor = RGB(255, 255, 240):
+    If VchType <= 2 Or VchType = 33 Then
+        ListView4.Visible = False: ListView1.BackColor = RGB(255, 255, 240): ListView2.BackColor = RGB(255, 255, 240): ListView3.BackColor = RGB(255, 255, 240): MhDateInput1.BackColor = RGB(255, 255, 240): MhDateInput2.BackColor = RGB(255, 255, 240):
     ElseIf (VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56) Then
-        ListView1.BackColor = RGB(245, 255, 230): ListView2.BackColor = RGB(245, 255, 230): ListView3.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230):
+        ListView4.Visible = False: ListView1.BackColor = RGB(245, 255, 230): ListView2.BackColor = RGB(245, 255, 230): ListView3.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230):
     ElseIf (VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60) Then
-        ListView1.BackColor = RGB(245, 250, 250): ListView2.BackColor = RGB(245, 250, 250): ListView3.BackColor = RGB(245, 250, 250): MhDateInput1.BackColor = RGB(245, 250, 250): MhDateInput2.BackColor = RGB(245, 250, 250):
+        ListView4.Visible = False: ListView1.BackColor = RGB(245, 250, 250): ListView2.BackColor = RGB(245, 250, 250): ListView3.BackColor = RGB(245, 250, 250): MhDateInput1.BackColor = RGB(245, 250, 250): MhDateInput2.BackColor = RGB(245, 250, 250):
     ElseIf (VchType >= 21 And VchType <= 24) Or (VchType >= 61 And VchType <= 64) Then
-        ListView1.BackColor = RGB(255, 250, 255): ListView2.BackColor = RGB(255, 250, 255): ListView3.BackColor = RGB(255, 250, 255): MhDateInput1.BackColor = RGB(255, 250, 255): MhDateInput2.BackColor = RGB(255, 250, 255):
+        ListView4.Visible = False: ListView1.BackColor = RGB(255, 250, 255): ListView2.BackColor = RGB(255, 250, 255): ListView3.BackColor = RGB(255, 250, 255): MhDateInput1.BackColor = RGB(255, 250, 255): MhDateInput2.BackColor = RGB(255, 250, 255):
     ElseIf (VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 69) Then
-        ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255):
+        ListView4.Visible = False: ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255):
     ElseIf VchType <= 20 And VchType >= 11 Then
-        ListView1.BackColor = RGB(245, 255, 230): ListView2.BackColor = RGB(245, 255, 230): ListView3.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230):
-    ElseIf VchType >= 35 And VchType <= 44 Then
-        ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255):
-    Option3.Visible = True: Option2.Visible = True: Option1.Visible = True
+        ListView4.Visible = False: ListView1.BackColor = RGB(245, 255, 230): ListView2.BackColor = RGB(245, 255, 230): ListView3.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230):
+    ElseIf (VchType >= 35 And VchType <= 44) Or (VchType >= 46 And VchType <= 47) Then
+        ListView4.Visible = False: ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255):
+         ListView4.BackColor = RGB(240, 255, 255):
+        Option3.Visible = True: Option2.Visible = True: Option1.Visible = True
+        If VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Then ListView4.Visible = True
+    ElseIf Right(VchType, 2) = 48 Then
+        ListView4.Visible = True: ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255):
+        ListView4.BackColor = RGB(240, 255, 255):
+    ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then
+        ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255)
+        ListView4.Visible = False: Option3.Visible = True: Option2.Visible = True: Option1.Visible = True: Check1.Visible = True
     End If
                 
     If VchType <= 10 Then
@@ -486,26 +536,64 @@ Private Sub Form_Load()
     ElseIf VchType <= 20 And VchType >= 11 Then
         Me.Height = 9630
         Me.Caption = "Selection List...." + Choose((VchType - 10), "Paper Receipt Party-Wise", "Paper Receipt Order-Wise", "Paer Receipt  Without-Order", "Paper Issue Party-Wise", "Paper Issue Order-Wise", "Paper Issue Without-Order", "Paper Transfer Party-Wise", "Paper Pending Order Party-Wise")
-    ElseIf VchType >= 21 And VchType <= 44 Then
-        Me.Caption = "Selection List...." + Choose(VchType - 20, "Sales Analysis Party-Wise", "Sales Return Analysis Party-Wise", "Sales And Sales Return Analysis Party-Wise", "Net Sales Analysis Party-Wise", "Sales Analysis One-Item Party-Wise", "Sales Return Analysis One-Item Party-Wise", "Sales And Sales Return Analysis One-Item Party-Wise", "Net Sales One-Item Party-Wise", "Sales Voucher-Wise", "30", "31", "32", "Short-Item Analysis Item-Wise", "34", "Purchase Orders-Party-Wise-Detailed", "Purchase Orders-Party-wise-Summarised", "Sales Orders-Party-Wise-Detailed", "Sales Orders-Party-wise-Summarised", "Purchase Orders Order-Wise", "Purchase Orders Party-wise", "Purchase Orders Item-wise", "Sale Orders Order-wise", "Sale Orders Party-wise", "Sale Orders Item-wise")
+    ElseIf Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48 Then
+        Me.Caption = "Selection List...." + Choose(Right(VchType, 2) - 20, "Sales Analysis Party-Wise", "Sales Return Analysis Party-Wise", "Sales And Sales Return Analysis Party-Wise", "Net Sales Analysis Party-Wise", "Sales Analysis One-Item Party-Wise", "Sales Return Analysis One-Item Party-Wise", "Sales And Sales Return Analysis One-Item Party-Wise", "Net Sales One-Item Party-Wise", "Sales Voucher-Wise", "30", "Sales Voucher-Wise", "32", "Short-Item Analysis Item-Wise", "34", "Purchase Orders-Party-Wise-Detailed", "Purchase Orders-Party-wise-Summarised", "Sales Orders-Party-Wise-Detailed", "Sales Orders-Party-wise-Summarised", "Purchase Orders Order-Wise", "Purchase Orders Party-wise", "Purchase Orders Item-wise", "Sale Orders Order-wise", "Sale Orders Party-wise", "Sale Orders Item-wise", "45", " Pending Sales Order", "47", "Sales Voucher-Wise")
         Me.Height = 9630
     ElseIf VchType >= 53 And VchType <= 69 Then
         Me.Caption = "Selection List...." + Choose(VchType - 52, "Purchase Analysis Item-Wise", "Purchase Return Analysis Item-Wise", "Purchase And Purchase Return Analysis Item-Wise", "Net Purchase Analysis Item-Wise", "Purchase Analysis One Party Item-Wise", "Purchase Return Analysis One Party Item-Wise", "Purchase And Purchase Return Analysis One Party Item-Wise", "Net Purchase Analysis One Party Item-Wise", "Purchase Analysis Party-Wise", "Purchase Return Analysis Party-Wise", "Purchase And Purchase Return Analysis Party-Wise", "Net Purchase Analysis Party-Wise", "Purchase Analysis One-Item Party-Wise", "Purchase Return Analysis One-Item Party-Wise", "Purchase And Purchase Return Analysis One-Item Party-Wise", "Net Purchase One-Item Party-Wise", "Purchase Voucher-Wise")
         Me.Height = 9630
+    ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then
+        Me.Caption = "Selection List...." + Choose(VchType - 102, "WIP Pending Ledger Item-Wise", "RM Pending Ledger Item-Wise", "RM AND WIP Pending Ledger Item-Wise")
+        Me.Height = 9630
     End If
-If VchType <= 20 And VchType >= 18 Then: ListView1.Width = 9655
+If (VchType <= 20 And VchType >= 18) Then: ListView1.Width = 9655
+If VchType = 103 Or VchType = 104 Or VchType = 105 Then: ListView3.Width = 9655
     CenterForm Me
     BusySystemIndicator True
-    
-    rstSupplierList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster ORDER BY FYCode", cnDatabase, adOpenForwardOnly, adLockReadOnly
+If VchType <= 2 Or VchType = 33 Then
+    If rstSupplierList.State = adStateOpen Then rstSupplierList.Close
+    rstSupplierList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster ORDER BY FinancialYearFrom", cnDatabase, adOpenForwardOnly, adLockReadOnly
+Else
+    If rstSupplierList.State = adStateOpen Then rstSupplierList.Close
+    rstSupplierList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster WHERE FYCode='" & FYCode & "' ORDER BY FYCode", cnDatabase, adOpenForwardOnly, adLockReadOnly
+End If
     MhDateInput1.Text = Format(rstSupplierList.Fields("FinancialYearFrom").Value, "dd-mm-yyyy")
     MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))
     If rstSupplierList.State = adStateOpen Then rstSupplierList.Close
-    rstSupplierList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 6, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 2 Or VchType = 33, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstItemGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstPaperList.Open "SELECT Name,Code FROM PaperMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    If (VchType <= 10 Or VchType >= 21) Or (VchType >= 53 And VchType <= 69) Then
+        rstSupplierList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 6, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    If rstAccountList.State = adStateOpen Then rstAccountList.Close
+        rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 2 Or VchType = 33, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstAccountList.ActiveConnection = Nothing
+    If rstItemGroupList.State = adStateOpen Then rstItemGroupList.Close
+        rstItemGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstItemGroupList.ActiveConnection = Nothing
+    If rstPaperList.State = adStateOpen Then rstPaperList.Close
+        rstPaperList.Open "SELECT Name,Code FROM PaperMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstPaperList.ActiveConnection = Nothing
+    If rstVchSeriesList.State = adStateOpen Then rstPaperList.Close
+        rstVchSeriesList.Open "SELECT Name+'-'+VchName AS Name,Code FROM VchSeriesMaster Where Left(VchType,2)='" & Left(VchType, 2) & "' ORDER BY Name+'-'+VchName", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.ActiveConnection = Nothing
+    If rstItemList.State = adStateOpen Then rstItemList.Close
+        rstItemList.Open "SELECT Name,Code FROM BookMaster Where Type='F' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstItemList.ActiveConnection = Nothing
+    If rstMatCList.State = adStateOpen Then rstMatCList.Close
+        rstMatCList.Open "SELECT Name,Code FROM AccountMaster Where [Group]='*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstMatCList.ActiveConnection = Nothing
+    If Right(VchType, 2) = 48 Then
+        Call FillList(ListView1, "List of Accounts...", rstAccountList)
+        Call FillList(ListView2, "List of Voucher Series...", rstVchSeriesList)
+        Call FillList(ListView3, "List of Items...", rstItemList)
+        Call FillList(ListView4, "List of Material Centre...", rstMatCList)
+    ElseIf VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Then
+        Call FillList(ListView1, "List of Accounts...", rstAccountList)
+        Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
+        Call ItemSelection(True)
+        Call FillList(ListView4, "List of Material Centre...", rstMatCList)
+    ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then
+        Call FillList(ListView1, "List of Material Centre...", rstMatCList)
+        Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
+        Call FillList(ListView3, "List of Items...", rstItemList)
+    ElseIf (Right(VchType, 2) >= 0 And Right(VchType, 2) <= 10) Or (Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48) Or (Right(VchType, 2) >= 53 And Right(VchType, 2) <= 69) Then
         Call FillList(ListView1, "List of Accounts...", rstAccountList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
         Call ItemSelection(True)
@@ -542,6 +630,8 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstItemList)
     Call CloseRecordset(rstItemGroupList)
     Call CloseRecordset(rstPaperList)
+    Call CloseRecordset(rstVchSeriesList)
+    Call CloseRecordset(rstMatCList)
 End Sub
 Private Sub MhDateInput2_Validate(Cancel As Boolean)
     If Format(GetDate(MhDateInput2.Text), "yyyymmdd") < Format(GetDate(MhDateInput1.Text), "yyyymmdd") Then Cancel = True
@@ -568,6 +658,14 @@ Private Sub ListView3_KeyDown(KeyCode As Integer, Shift As Integer)
     If Shift = vbCtrlMask And (KeyCode = vbKeyA Or KeyCode = vbKeyD) Then
         For i = 1 To ListView3.ListItems.Count
             ListView3.ListItems(i).Checked = IIf(KeyCode = vbKeyA, True, False)
+        Next i
+    End If
+End Sub
+Private Sub ListView4_KeyDown(KeyCode As Integer, Shift As Integer)
+    Dim i As Integer
+    If Shift = vbCtrlMask And (KeyCode = vbKeyA Or KeyCode = vbKeyD) Then
+        For i = 1 To ListView4.ListItems.Count
+            ListView4.ListItems(i).Checked = IIf(KeyCode = vbKeyA, True, False)
         Next i
     End If
 End Sub
@@ -600,6 +698,7 @@ Private Sub PrintStockLedger()
         If ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) And Len(FrmStockLedger.ItemList) > 10 Then
         MsgBox ("Please Select One-Item Only"), vbCritical: Exit Sub
         End If
+        If VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Then FrmStockLedger.MatCList = SelectedItems(ListView4)
         FrmStockLedger.sMcCode = "": FrmStockLedger.SCode = "": FrmStockLedger.oSCode = "":  FrmStockLedger.vtCode = "": FrmStockLedger.vDate = "":
         FrmStockLedger.VchType = VchType
         Load FrmStockLedger
@@ -619,12 +718,17 @@ Private Sub PrintPaperLedger()
         CloseForm (Me)
 End Sub
 Private Sub ItemSelection(ByVal SelectAll As Boolean)
+If Right(VchType, 2) = 48 Then
+
+Else
     If rstItemList.State = adStateOpen Then rstItemList.Close
-    rstItemList.Open "SELECT Name,Code FROM BookMaster " & IIf(SelectAll, "", "WHERE [Group] IN (" & SelectedItems(ListView2) & ")") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstItemList.Open "SELECT Name,Code FROM BookMaster " & IIf(SelectAll, " Where Type='F' ", "Where Type='F' AND [Group] IN (" & SelectedItems(ListView2) & ")") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    
     rstItemList.ActiveConnection = Nothing
     ListView3.ListItems.Clear
     Call FillList(ListView3, "List of Items...", rstItemList)
+End If
 End Sub
 Private Sub ListView2_ItemCheck(ByVal Item As MSComctlLib.ListItem)
-If VchType >= 11 And VchType <= 20 Then Else Call ItemSelection(False)
+If (VchType >= 11 And VchType <= 20) Or Right(VchType, 2) = 48 Then Else Call ItemSelection(False)
 End Sub

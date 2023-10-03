@@ -213,8 +213,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":15D1
-         Picture         =   "AccountLedger.frx":15ED
+         Picture         =   "AccountLedger.frx":15F5
+         Picture         =   "AccountLedger.frx":1611
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -240,8 +240,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1609
-         Picture         =   "AccountLedger.frx":1625
+         Picture         =   "AccountLedger.frx":162D
+         Picture         =   "AccountLedger.frx":1649
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -252,8 +252,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":1641
-         Caption         =   "AccountLedger.frx":1759
+         Calendar        =   "AccountLedger.frx":1665
+         Caption         =   "AccountLedger.frx":177D
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -263,9 +263,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":17C5
-         Keys            =   "AccountLedger.frx":17E3
-         Spin            =   "AccountLedger.frx":1841
+         DropDown        =   "AccountLedger.frx":17E9
+         Keys            =   "AccountLedger.frx":1807
+         Spin            =   "AccountLedger.frx":1865
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -314,8 +314,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":1869
-         Caption         =   "AccountLedger.frx":1981
+         Calendar        =   "AccountLedger.frx":188D
+         Caption         =   "AccountLedger.frx":19A5
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -325,9 +325,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":19ED
-         Keys            =   "AccountLedger.frx":1A0B
-         Spin            =   "AccountLedger.frx":1A69
+         DropDown        =   "AccountLedger.frx":1A11
+         Keys            =   "AccountLedger.frx":1A2F
+         Spin            =   "AccountLedger.frx":1A8D
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -393,8 +393,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1A91
-         Picture         =   "AccountLedger.frx":1AAD
+         Picture         =   "AccountLedger.frx":1AB5
+         Picture         =   "AccountLedger.frx":1AD1
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -405,8 +405,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "AccountLedger.frx":1AC9
-         Caption         =   "AccountLedger.frx":1AE9
+         Calculator      =   "AccountLedger.frx":1AED
+         Caption         =   "AccountLedger.frx":1B0D
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -416,9 +416,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1B4D
-         Keys            =   "AccountLedger.frx":1B6B
-         Spin            =   "AccountLedger.frx":1BB5
+         DropDown        =   "AccountLedger.frx":1B71
+         Keys            =   "AccountLedger.frx":1B8F
+         Spin            =   "AccountLedger.frx":1BD9
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -478,8 +478,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1BDD
-         Picture         =   "AccountLedger.frx":1BF9
+         Picture         =   "AccountLedger.frx":1C01
+         Picture         =   "AccountLedger.frx":1C1D
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -504,8 +504,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1C15
-         Picture         =   "AccountLedger.frx":1C31
+         Picture         =   "AccountLedger.frx":1C39
+         Picture         =   "AccountLedger.frx":1C55
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -530,8 +530,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1C4D
-         Picture         =   "AccountLedger.frx":1C69
+         Picture         =   "AccountLedger.frx":1C71
+         Picture         =   "AccountLedger.frx":1C8D
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -557,8 +557,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1C85
-         Picture         =   "AccountLedger.frx":1CA1
+         Picture         =   "AccountLedger.frx":1CA9
+         Picture         =   "AccountLedger.frx":1CC5
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -584,8 +584,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1CBD
-         Picture         =   "AccountLedger.frx":1CD9
+         Picture         =   "AccountLedger.frx":1CE1
+         Picture         =   "AccountLedger.frx":1CFD
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -611,8 +611,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1CF5
-         Picture         =   "AccountLedger.frx":1D11
+         Picture         =   "AccountLedger.frx":1D19
+         Picture         =   "AccountLedger.frx":1D35
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -638,8 +638,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1D2D
-         Picture         =   "AccountLedger.frx":1D49
+         Picture         =   "AccountLedger.frx":1D51
+         Picture         =   "AccountLedger.frx":1D6D
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
@@ -694,6 +694,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Public dSortBy As Boolean
 Public sDate As String, eDate As String, AccountGroupList As String, AccountList As String, VchType As String, Header1 As String, SCode As Variant, LR As Integer, R As Long
 Dim rstAccountLedger As New ADODB.Recordset, rstAccountOpening As New ADODB.Recordset, Reset As Long
 Dim Debit As Double, Credit As Double, Bal As Variant, DebitTotal As Double, CreditTotal As Double, BalTotal As Double, Code As Variant, TotalFlag As Boolean, HideFlag As Boolean, ExitFlag As Boolean
@@ -744,8 +745,8 @@ Reset = 0:
     End If
     Reset = 1
     If VchType = 23 Then Me.Caption = " Accounts Ledger"
-    MhDateInput1.value = Format(sDate, "dd-MM-yyyy")
-    MhDateInput2.value = Format(eDate, "dd-MM-yyyy")
+    MhDateInput1.Value = Format(sDate, "dd-MM-yyyy")
+    MhDateInput2.Value = Format(eDate, "dd-MM-yyyy")
     cmdRefresh_Click
     BusySystemIndicator False
     Exit Sub
@@ -762,10 +763,11 @@ SCode = "": TypeCode = ""
     'Sale
    If (Shift = 0 And KeyCode = vbKeyReturn Or Shift = 0 And KeyCode = vbKeyF8 Or Shift = 0 And KeyCode = vbKeyF12) And (TypeCode = "SF" Or TypeCode = "TF" Or TypeCode = "PF" Or TypeCode = "OF") Then
                 With fpSpread1
-                    .GetText 3, .ActiveRow, SCode
+                    .GetText 12, .ActiveRow, SCode
                 End With
         If SCode = "" Then Exit Sub
         On Error Resume Next
+        dSortBy = True
         frmSalesVoucher.VchType = TypeCode
         If Err.Number <> 364 Then frmSalesVoucher.Show
         frmSalesVoucher.Text1 = SCode
@@ -787,12 +789,13 @@ SCode = "": TypeCode = ""
     'Jobwork Sale
    ElseIf (Shift = 0 And KeyCode = vbKeyReturn Or Shift = 0 And KeyCode = vbKeyF8 Or Shift = 0 And KeyCode = vbKeyF12) And (TypeCode = "SU" Or TypeCode = "SJ" Or TypeCode = "SC" Or TypeCode = "PU" Or TypeCode = "PJ" Or TypeCode = "PC") Then
                 With fpSpread1
-                    .GetText 3, .ActiveRow, SCode
+                    .GetText 12, .ActiveRow, SCode
                 End With
         If SCode = "" Then Exit Sub
         On Error Resume Next
         TypeCode = IIf(TypeCode = "SU", 1, IIf(TypeCode = "SC", 2, IIf(TypeCode = "SJ", 3, IIf(TypeCode = "PU", 4, IIf(TypeCode = "PC", 5, IIf(TypeCode = "PJ", 6, ""))))))
         frmJobworkBill.VchType = TypeCode
+        dSortBy = True
         If Err.Number <> 364 Then frmJobworkBill.Show
         frmJobworkBill.Text1 = SCode
         
@@ -917,9 +920,9 @@ Private Sub cmdRefresh_Click()
             If rstAccountLedger.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
             
             Dim n As Integer
-    Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").value
+    Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value
     rstAccountOpening.MoveFirst
-    Opening = Format(Val(rstAccountOpening.Fields("Opening").value), "##,##,##,##0.00")
+    Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
     Mh3dLabel10.Caption = "Opening Bal. = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
     
     Bal = Opening
@@ -941,21 +944,21 @@ Private Sub cmdRefresh_Click()
         rstAccountLedger.MoveFirst
         Do While Not rstAccountLedger.EOF
             i = i + 1
-                .SetText 1, i, rstAccountLedger.Fields("Date").value
-                .SetText 2, i, rstAccountLedger.Fields("VchType").value
-                .SetText 3, i, rstAccountLedger.Fields("VchBillNo").value
-                .SetText 4, i, rstAccountLedger.Fields("Account").value
-                        Debit = Val(rstAccountLedger.Fields("Debit").value)
-                .SetText 5, i, Val(rstAccountLedger.Fields("Debit").value)
-                        Credit = Val(rstAccountLedger.Fields("Credit").value)
-                .SetText 6, i, Val(rstAccountLedger.Fields("Credit").value)
+                .SetText 1, i, rstAccountLedger.Fields("Date").Value
+                .SetText 2, i, rstAccountLedger.Fields("VchType").Value
+                .SetText 3, i, rstAccountLedger.Fields("VchBillNo").Value
+                .SetText 4, i, rstAccountLedger.Fields("Account").Value
+                        Debit = Val(rstAccountLedger.Fields("Debit").Value)
+                .SetText 5, i, Val(rstAccountLedger.Fields("Debit").Value)
+                        Credit = Val(rstAccountLedger.Fields("Credit").Value)
+                .SetText 6, i, Val(rstAccountLedger.Fields("Credit").Value)
                         Bal = Bal + Credit - Debit
                 .SetText 7, i, Bal
                 .SetText 8, i, IIf(Bal <= 0, "Dr.", "Cr.")
-                .SetText 9, i, rstAccountLedger.Fields("ShortNarration").value
-                .SetText 10, i, rstAccountLedger.Fields("LongNarration").value
-                .SetText 11, i, rstAccountLedger.Fields("Type").value
-                .SetText 12, i, rstAccountLedger.Fields("Code").value
+                .SetText 9, i, rstAccountLedger.Fields("ShortNarration").Value
+                .SetText 10, i, rstAccountLedger.Fields("LongNarration").Value
+                .SetText 11, i, rstAccountLedger.Fields("Type").Value
+                .SetText 12, i, rstAccountLedger.Fields("Code").Value
 
              rstAccountLedger.MoveNext
         Loop
@@ -1015,11 +1018,11 @@ End Sub
 Private Sub Mh3dLabel8_Click()
 Dim C As Long, R As Long
 Dim JQty As Variant
-Dim fileName As String
+Dim FileName As String
 
 If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
 
- fileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+ FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
 
 ' Save to xls file type
 
@@ -1030,7 +1033,7 @@ fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, False
 'MsgBox
     MsgBox "Import Processing....", vbInformation, "Easy Publish...Import !!! "
 
-fpSpread1.ImportExcelBook fileName, ""        '& "\EasyPublish.xls", ""
+fpSpread1.ImportExcelBook FileName, ""        '& "\EasyPublish.xls", ""
 
 cmdRefresh.Visible = False
     
@@ -1072,7 +1075,7 @@ cmdRefresh.Visible = False
     End With
 End Sub
 Private Sub Mh3dLabel6_Click()
-Dim x As Boolean, fileName As String, SheetName As String, LogFileName As String
+Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
 Dim R As Long, C As Long
 Dim JQty As Variant
 
@@ -1103,10 +1106,10 @@ Dim JQty As Variant
     
     '
     ' Export Excel file and set result to x
-     fileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+     FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
     SheetName = "Sheet1" '"(" & Me.Caption & ")"
     LogFileName = "Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
-    x = fpSpread1.ExportToExcelEx(fileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
+    x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
     ' Display result to user based on T/F value of x
     If x = True Then
     
@@ -1114,7 +1117,7 @@ Dim JQty As Variant
         
         Dim oExcel As Object
         Set oExcel = CreateObject("Excel.Application")
-        oExcel.Workbooks.Open (fileName)
+        oExcel.Workbooks.Open (FileName)
         oExcel.Visible = True
         oExcel.Sheets("Sheet1").Select
         oExcel.Sheets("Sheet1").Unprotect
@@ -1272,7 +1275,7 @@ Private Sub Total_Click()
                 .SetText 9, i, "<< Closing Balance. "
     End With
         Call Fomatting_Click
-    fpSpread1.MaxRows = IIf(TDBNumber2.value < 27, i + (27 - TDBNumber2.value), i + 1)
+    fpSpread1.MaxRows = IIf(TDBNumber2.Value < 27, i + (27 - TDBNumber2.Value), i + 1)
 End Sub
 Private Sub Fomatting_Click()
 Dim R As Long, C As Long, Cols As Long, Rows As Long

@@ -434,7 +434,7 @@ Private Sub Form_Load()
     If VchType <= 29 Then Me.Caption = " Selection List....Account Ledger"
     CenterForm Me
     BusySystemIndicator True
-    rstCompList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster ORDER BY FYCode", cnDatabase, adOpenForwardOnly, adLockReadOnly
+    rstCompList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster WHERE FYCode='" & FYCode & "' ORDER BY FYCode", cnDatabase, adOpenForwardOnly, adLockReadOnly
     MhDateInput1.Text = Format(rstCompList.Fields("FinancialYearFrom").Value, "dd-mm-yyyy")
     MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))
     rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE [Group]<>'*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -486,11 +486,12 @@ Private Sub ListView1_ItemCheck(ByVal Item As MSComctlLib.ListItem)
     Call AccountSelection
 End Sub
 Private Sub AccountSelection()
+    'On Error Resume Next
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster)", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster) Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     ListView2.ListItems.Clear
-    Call FillList(ListView2, "List of Items...", rstAccountList)
+    Call FillList(ListView2, "List of Accounts...", rstAccountList)
 End Sub
 Private Sub ListView2_KeyDown(KeyCode As Integer, Shift As Integer)
     Dim i As Integer

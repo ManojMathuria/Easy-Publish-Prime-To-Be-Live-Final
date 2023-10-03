@@ -104,6 +104,7 @@ Begin VB.Form FrmSizeGroupMaster
          TabPicture(1)   =   "SizeGroupMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -185,7 +186,7 @@ Begin VB.Form FrmSizeGroupMaster
             EndProperty
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   3780
+            Height          =   4020
             Left            =   -74880
             TabIndex        =   11
             TabStop         =   0   'False
@@ -193,7 +194,7 @@ Begin VB.Form FrmSizeGroupMaster
             Width           =   6255
             _Version        =   65536
             _ExtentX        =   11033
-            _ExtentY        =   6667
+            _ExtentY        =   7091
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -310,14 +311,14 @@ Begin VB.Form FrmSizeGroupMaster
                Picture         =   "SizeGroupMaster.frx":00C4
             End
             Begin FPSpreadADO.fpSpread fpSpread1 
-               Height          =   2715
+               Height          =   2990
                Left            =   120
                TabIndex        =   2
-               Top             =   960
+               Top             =   940
                Width           =   6030
                _Version        =   524288
                _ExtentX        =   10636
-               _ExtentY        =   4789
+               _ExtentY        =   5274
                _StockProps     =   64
                ButtonDrawMode  =   8
                EditEnterAction =   5
@@ -548,6 +549,7 @@ Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     On Error GoTo ErrorHandler
     CenterForm Me
+    WheelHook DataGrid1
     BusySystemIndicator True
     cnSizeGroupMaster.CursorLocation = adUseClient: cnSizeGroupMaster.Open cnDatabase.ConnectionString
     rstSizeGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='10' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

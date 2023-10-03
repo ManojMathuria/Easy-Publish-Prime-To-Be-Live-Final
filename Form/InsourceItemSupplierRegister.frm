@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmInsourceItemSupplierRegister 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Insource Item Purchase Order Status Register"
@@ -463,7 +463,7 @@ Private Sub Form_Load()
     rstPrinterList.Open "Select Name, Code From AccountMaster Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     Call FillList(ListView3, "List of Printers...", rstPrinterList)
     Me.Caption = IIf(ItemType = "3", "Insource Item [Fresh Book] Purchase Order Status Register", IIf(ItemType = "4", "Insource Item [Repair Book] Purchase Order Status Register", "Insource Item [Title] Purchase Order Status Register"))
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstBoardList.Open "Select Name, Code From GeneralMaster Where Type = '2' And " & IIf(ItemType = "3", "Code='000000'", "Code<>'000000'") & " Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstBoardList.ActiveConnection = Nothing
     Call FillList(ListView1, "List of Boards...", rstBoardList)
@@ -483,7 +483,7 @@ ErrorHandler:
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-       SendKeys "{TAB}", True
+       Sendkeys "{TAB}", True
        KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)

@@ -34,7 +34,7 @@ Begin VB.Form FrmBookPOChild09
       Left            =   15293
       Picture         =   "BookPOChild09.frx":0000
       Style           =   1  'Graphical
-      TabIndex        =   98
+      TabIndex        =   51
       ToolTipText     =   "Save"
       Top             =   105
       Width           =   375
@@ -45,7 +45,8 @@ Begin VB.Form FrmBookPOChild09
       Left            =   15293
       Picture         =   "BookPOChild09.frx":0102
       Style           =   1  'Graphical
-      TabIndex        =   97
+      TabIndex        =   98
+      TabStop         =   0   'False
       ToolTipText     =   "Cancel"
       Top             =   465
       Width           =   375
@@ -53,7 +54,7 @@ Begin VB.Form FrmBookPOChild09
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
       Height          =   7635
       Left            =   120
-      TabIndex        =   51
+      TabIndex        =   52
       TabStop         =   0   'False
       Top             =   120
       Width           =   14595
@@ -184,7 +185,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel32 
          Height          =   330
          Left            =   9120
-         TabIndex        =   95
+         TabIndex        =   96
          Top             =   5535
          Width           =   1110
          _Version        =   65536
@@ -270,7 +271,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
          Height          =   330
          Left            =   9120
-         TabIndex        =   81
+         TabIndex        =   82
          Top             =   5850
          Width           =   1110
          _Version        =   65536
@@ -297,7 +298,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel39 
          Height          =   330
          Left            =   12000
-         TabIndex        =   89
+         TabIndex        =   90
          Top             =   5220
          Width           =   1410
          _Version        =   65536
@@ -374,7 +375,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   125763589
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -508,7 +509,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
          Left            =   6120
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   105
          Width           =   1575
          _Version        =   65536
@@ -535,7 +536,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
          Left            =   120
-         TabIndex        =   53
+         TabIndex        =   54
          Top             =   960
          Width           =   1575
          _Version        =   65536
@@ -562,7 +563,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
          Left            =   120
-         TabIndex        =   54
+         TabIndex        =   55
          Top             =   4725
          Width           =   1575
          _Version        =   65536
@@ -589,7 +590,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
          Left            =   3480
-         TabIndex        =   55
+         TabIndex        =   56
          Top             =   4725
          Width           =   975
          _Version        =   65536
@@ -616,7 +617,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
          Left            =   3480
-         TabIndex        =   56
+         TabIndex        =   57
          Top             =   4410
          Width           =   975
          _Version        =   65536
@@ -643,7 +644,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
          Left            =   6120
-         TabIndex        =   57
+         TabIndex        =   58
          Top             =   4410
          Width           =   1575
          _Version        =   65536
@@ -670,7 +671,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
          Left            =   6120
-         TabIndex        =   58
+         TabIndex        =   59
          Top             =   3585
          Width           =   1575
          _Version        =   65536
@@ -697,7 +698,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
          Left            =   120
-         TabIndex        =   59
+         TabIndex        =   60
          Top             =   4410
          Width           =   1575
          _Version        =   65536
@@ -724,7 +725,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
          Height          =   330
          Left            =   6120
-         TabIndex        =   60
+         TabIndex        =   61
          Top             =   5220
          Width           =   1575
          _Version        =   65536
@@ -751,7 +752,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
          Height          =   330
          Left            =   12000
-         TabIndex        =   61
+         TabIndex        =   62
          Top             =   5535
          Width           =   1410
          _Version        =   65536
@@ -778,7 +779,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
          Height          =   330
          Left            =   120
-         TabIndex        =   62
+         TabIndex        =   63
          Top             =   6390
          Width           =   1575
          _Version        =   65536
@@ -806,7 +807,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
          Height          =   330
          Left            =   6120
-         TabIndex        =   63
+         TabIndex        =   64
          Top             =   6390
          Width           =   1575
          _Version        =   65536
@@ -833,7 +834,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
          Height          =   330
          Left            =   3480
-         TabIndex        =   64
+         TabIndex        =   65
          Top             =   6390
          Width           =   975
          _Version        =   65536
@@ -860,7 +861,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
          Height          =   330
          Left            =   11355
-         TabIndex        =   65
+         TabIndex        =   66
          Top             =   105
          Width           =   1575
          _Version        =   65536
@@ -887,7 +888,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel25 
          Height          =   330
          Left            =   120
-         TabIndex        =   66
+         TabIndex        =   67
          Top             =   645
          Width           =   1575
          _Version        =   65536
@@ -914,7 +915,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
          Height          =   330
          Left            =   120
-         TabIndex        =   67
+         TabIndex        =   68
          Top             =   105
          Width           =   1575
          _Version        =   65536
@@ -941,7 +942,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel28 
          Height          =   330
          Left            =   120
-         TabIndex        =   68
+         TabIndex        =   69
          Top             =   7215
          Width           =   1575
          _Version        =   65536
@@ -1019,7 +1020,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   125763589
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1078,7 +1079,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1136,7 +1137,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1194,7 +1195,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   161873925
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1252,7 +1253,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2006515717
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1310,7 +1311,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1369,7 +1370,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   125763589
+         ValueVT         =   5
          Value           =   4
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1428,7 +1429,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2006515717
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1486,7 +1487,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   166068229
+         ValueVT         =   5
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1545,7 +1546,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2006515717
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1739,7 +1740,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel29 
          Height          =   330
          Left            =   120
-         TabIndex        =   69
+         TabIndex        =   70
          Top             =   3580
          Width           =   1575
          _Version        =   65536
@@ -1766,7 +1767,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel30 
          Height          =   330
          Left            =   6120
-         TabIndex        =   70
+         TabIndex        =   71
          Top             =   960
          Width           =   1575
          _Version        =   65536
@@ -1844,7 +1845,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2006515717
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1902,7 +1903,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   166068229
+         ValueVT         =   5
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1910,7 +1911,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel33 
          Height          =   330
          Left            =   120
-         TabIndex        =   71
+         TabIndex        =   72
          Top             =   3905
          Width           =   1575
          _Version        =   65536
@@ -1937,7 +1938,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel34 
          Height          =   330
          Left            =   120
-         TabIndex        =   72
+         TabIndex        =   73
          Top             =   6705
          Width           =   1575
          _Version        =   65536
@@ -1965,7 +1966,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel35 
          Height          =   330
          Left            =   6120
-         TabIndex        =   73
+         TabIndex        =   74
          Top             =   6705
          Width           =   1575
          _Version        =   65536
@@ -1992,7 +1993,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel36 
          Height          =   330
          Left            =   3480
-         TabIndex        =   74
+         TabIndex        =   75
          Top             =   6705
          Width           =   975
          _Version        =   65536
@@ -2069,7 +2070,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2167,7 +2168,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel31 
          Height          =   330
          Left            =   12000
-         TabIndex        =   75
+         TabIndex        =   76
          Top             =   4410
          Width           =   1410
          _Version        =   65536
@@ -2245,7 +2246,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2253,7 +2254,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel37 
          Height          =   330
          Left            =   12000
-         TabIndex        =   76
+         TabIndex        =   77
          Top             =   4725
          Width           =   1410
          _Version        =   65536
@@ -2331,7 +2332,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2339,7 +2340,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
          Height          =   330
          Left            =   6120
-         TabIndex        =   77
+         TabIndex        =   78
          Top             =   4725
          Width           =   1575
          _Version        =   65536
@@ -2417,7 +2418,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2003697669
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2477,7 +2478,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2003697669
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2499,7 +2500,7 @@ Begin VB.Form FrmBookPOChild09
          Left            =   600
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   78
+         TabIndex        =   79
          Top             =   2280
          Width           =   11370
       End
@@ -2557,7 +2558,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   125763589
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2616,7 +2617,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2624,7 +2625,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
          Left            =   120
-         TabIndex        =   79
+         TabIndex        =   80
          Top             =   5850
          Width           =   1575
          _Version        =   65536
@@ -2651,7 +2652,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
          Left            =   12000
-         TabIndex        =   80
+         TabIndex        =   81
          Top             =   5850
          Width           =   1410
          _Version        =   65536
@@ -2729,7 +2730,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   87031813
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2788,7 +2789,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   147062789
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2846,7 +2847,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   280428549
+         ValueVT         =   261292037
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2905,7 +2906,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   126943237
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2963,7 +2964,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2007367685
+         ValueVT         =   5
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2971,7 +2972,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
          Height          =   330
          Left            =   6120
-         TabIndex        =   82
+         TabIndex        =   83
          Top             =   5850
          Width           =   1575
          _Version        =   65536
@@ -2998,7 +2999,7 @@ Begin VB.Form FrmBookPOChild09
       Begin TDBNumber6Ctl.TDBNumber MhRealInput38 
          Height          =   330
          Left            =   9330
-         TabIndex        =   85
+         TabIndex        =   86
          TabStop         =   0   'False
          ToolTipText     =   "Paper Amount BT"
          Top             =   7215
@@ -3059,7 +3060,7 @@ Begin VB.Form FrmBookPOChild09
       Begin TDBNumber6Ctl.TDBNumber MhRealInput37 
          Height          =   330
          Left            =   10725
-         TabIndex        =   84
+         TabIndex        =   85
          TabStop         =   0   'False
          ToolTipText     =   "Plate Amount BT"
          Top             =   7215
@@ -3120,7 +3121,7 @@ Begin VB.Form FrmBookPOChild09
       Begin TDBNumber6Ctl.TDBNumber MhRealInput36 
          Height          =   330
          Left            =   12120
-         TabIndex        =   83
+         TabIndex        =   84
          TabStop         =   0   'False
          ToolTipText     =   "Printing Amount BT"
          Top             =   7215
@@ -3181,7 +3182,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel22 
          Height          =   330
          Left            =   9120
-         TabIndex        =   86
+         TabIndex        =   87
          Top             =   4410
          Width           =   1110
          _Version        =   65536
@@ -3210,7 +3211,7 @@ Begin VB.Form FrmBookPOChild09
          Height          =   330
          Index           =   0
          Left            =   9120
-         TabIndex        =   87
+         TabIndex        =   88
          Top             =   4725
          Width           =   1110
          _Version        =   65536
@@ -3237,7 +3238,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   300
          Left            =   120
-         TabIndex        =   88
+         TabIndex        =   89
          Top             =   3105
          Width           =   14370
          _Version        =   65536
@@ -3313,7 +3314,7 @@ Begin VB.Form FrmBookPOChild09
             ReadOnly        =   0
             Separator       =   ""
             ShowContextMenu =   1
-            ValueVT         =   -65531
+            ValueVT         =   5
             Value           =   0
             MaxValueVT      =   5
             MinValueVT      =   5
@@ -3371,7 +3372,7 @@ Begin VB.Form FrmBookPOChild09
             ReadOnly        =   0
             Separator       =   ""
             ShowContextMenu =   1
-            ValueVT         =   282984453
+            ValueVT         =   5
             Value           =   0
             MaxValueVT      =   5
             MinValueVT      =   5
@@ -3429,7 +3430,7 @@ Begin VB.Form FrmBookPOChild09
             ReadOnly        =   0
             Separator       =   ""
             ShowContextMenu =   1
-            ValueVT         =   282984453
+            ValueVT         =   5
             Value           =   0
             MaxValueVT      =   5
             MinValueVT      =   5
@@ -3487,7 +3488,7 @@ Begin VB.Form FrmBookPOChild09
             ReadOnly        =   0
             Separator       =   ""
             ShowContextMenu =   1
-            ValueVT         =   282984453
+            ValueVT         =   5
             Value           =   0
             MaxValueVT      =   5
             MinValueVT      =   5
@@ -3545,7 +3546,7 @@ Begin VB.Form FrmBookPOChild09
             ReadOnly        =   0
             Separator       =   ""
             ShowContextMenu =   1
-            ValueVT         =   282984453
+            ValueVT         =   5
             Value           =   0
             MaxValueVT      =   5
             MinValueVT      =   5
@@ -3604,7 +3605,7 @@ Begin VB.Form FrmBookPOChild09
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   126943237
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3612,7 +3613,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
          Height          =   330
          Left            =   3480
-         TabIndex        =   90
+         TabIndex        =   91
          Top             =   5535
          Width           =   975
          _Version        =   65536
@@ -3639,7 +3640,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
          Height          =   330
          Left            =   120
-         TabIndex        =   91
+         TabIndex        =   92
          Top             =   5225
          Width           =   1575
          _Version        =   65536
@@ -3666,7 +3667,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel50 
          Height          =   330
          Left            =   120
-         TabIndex        =   92
+         TabIndex        =   93
          Top             =   5535
          Width           =   1575
          _Version        =   65536
@@ -3693,7 +3694,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
          Height          =   330
          Left            =   1680
-         TabIndex        =   93
+         TabIndex        =   94
          Top             =   5535
          Width           =   1815
          _Version        =   65536
@@ -3730,7 +3731,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel26 
          Height          =   330
          Left            =   6120
-         TabIndex        =   94
+         TabIndex        =   95
          Top             =   5535
          Width           =   1575
          _Version        =   65536
@@ -3757,7 +3758,7 @@ Begin VB.Form FrmBookPOChild09
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel40 
          Height          =   330
          Left            =   6120
-         TabIndex        =   96
+         TabIndex        =   97
          Top             =   645
          Width           =   1575
          _Version        =   65536
@@ -3941,9 +3942,9 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public rstBookPOChild09 As New ADODB.Recordset, rstBookPOChild0901 As New ADODB.Recordset
-Public SizeCode As String, PrinterCode As String, RoundOffQty As Boolean
-Dim rstPlateMakerList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstPrinterRates As New ADODB.Recordset
-Dim PlateMakerCode As String, ItemCode As String, PaperCode As String
+Public SizeCode As String, PartyCode As String, RoundOffQty As Boolean
+Dim rstPlateMakerList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstFetchRate As New ADODB.Recordset
+Dim PlateMakerCode As String, ItemCode As String, PaperCode As String, fPlateCode As String, bPlateCode As String, fColor As Integer, bColor As Integer, fPlate As Integer
 Dim PaperBalance As Long, EditMode As Boolean, CutOffSize As Integer
 Dim SPU As Long, Wt As Double, ActualQty As Long
 Dim TotalPlate As Double, TotalFormFront As Double, TotalFormBack As Double, MaxPrintingQuantity As Double, ActualQuantity As Double, BillingQuantity As Double, FrontPrintingColor As Double, BackPrintingColor As Double, TotalFormsFront As Double, TotalFormsBack As Double, FrontColor As Double, BackColors As Double
@@ -3969,7 +3970,7 @@ Private Sub Form_Load()
     ClearFields
     rstPlateMakerList.Open "SELECT Name As Col0,Code FROM AccountMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstSizeList.Open "SELECT Name As Col0,Code From GeneralMaster WHERE Type='1' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstItemList.Open "SELECT Name As Col0,TitleFrontColor,TitleBackColor,Code From BookMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstItemList.Open "SELECT Name As Col0,'' as TitleFrontColor,'' as TitleBackColor,Code From BookMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstPlateMakerList.ActiveConnection = Nothing
     rstSizeList.ActiveConnection = Nothing
     rstItemList.ActiveConnection = Nothing
@@ -3992,7 +3993,7 @@ Private Sub Form_Load()
         Combo4.ListIndex = 0    'Calculation
         MhDateInput1.Value = FrmBookPrintOrder.MhDateInput1.Value   'Order Date
         MhDateInput3.Value = DateAdd("d", 2, MhDateInput1.Value)    'Target Date
-        PlateMakerCode = PrinterCode
+        PlateMakerCode = PartyCode
         If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
         rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
         If Not rstPlateMakerList.EOF Then Text9.Text = rstPlateMakerList.Fields("Col0").Value
@@ -4027,7 +4028,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstSizeList)
     Call CloseRecordset(rstItemList)
     Call CloseRecordset(rstPaperList)
-    Call CloseRecordset(rstPrinterRates)
+    Call CloseRecordset(rstFetchRate)
 End Sub
 Private Sub MhDateInput1_Validate(Cancel As Boolean)    'Order Date
     If MhDateInput1.ValueIsNull Then
@@ -4067,7 +4068,7 @@ Private Sub Combo2_Validate(Cancel As Boolean)  'Plate Type
         End If
         On Error GoTo 0
     End If
-    Call GetPrinterRates("L")   'Plate Rate
+    Call GetPartyRates("L", "F")   'Plate Rate
 End Sub
 Private Sub MhRealInput1_GotFocus()       'ActualQuantity
     If MhRealInput1.Value = 0 Then
@@ -4082,6 +4083,36 @@ Private Sub MhRealInput2_GotFocus()     'MaxPrintingQuantity
     ElseIf MhRealInput2.Value <> MaxPrintingQuantity Then
        If MsgBox("Variation in Calculated Total Printing Quantity [" & Trim(MaxPrintingQuantity) & "]" & vbNewLine & "                           and" & vbNewLine & " Existing Total Printing Quantity [" & Trim(MhRealInput2.Value) & "] " & vbNewLine & "                           ! Change?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Change !") = vbYes Then MhRealInput2.Value = MaxPrintingQuantity
         End If
+End Sub
+Private Sub MhRealInput11_GotFocus()
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("W", "F")
+End Sub
+Private Sub MhRealInput23_GotFocus()
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("M", "F")
+End Sub
+Private Sub MhRealInput23_Validate(Cancel As Boolean)   'Wastage Min - Front
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateConsumption
+    MhRealInput12_Validate False
+End Sub
+Private Sub MhRealInput29_GotFocus()
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("X", "F")
+End Sub
+Private Sub MhRealInput29_Validate(Cancel As Boolean)   'Wastage Max - Front
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateConsumption
+    MhRealInput12_Validate False
+End Sub
+Private Sub MhRealInput36_GotFocus()
+    If MhDateInput1.ReadOnly Then Exit Sub
+    Call GetPartyRates("M", "B")
+End Sub
+Private Sub MhRealInput36_Validate(Cancel As Boolean)   'Wastage Min - Back
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateConsumption
 End Sub
 Private Sub MhRealInput15_GotFocus()    'BillingQuantity
     If MhRealInput15.Value = 0 Then
@@ -4109,7 +4140,8 @@ Private Sub MhRealInput3_GotFocus()     'Total Plates
         MhRealInput3.Value = IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value))
     ElseIf MhRealInput3.Value <> IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value)) Then
        If MsgBox("Variation in Calculated Total Plates [" & Trim(IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value))) & "]" & vbNewLine & "                           and" & vbNewLine & " Existing Total Plates [" & Trim(MhRealInput3.Value) & "] " & vbNewLine & "                           ! Change?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Change !") = vbYes Then MhRealInput3.Value = IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value))
-        End If
+    End If
+        Call GetPartyRates("L", "F")   'Plate Rate
     End Sub
    Private Sub MhRealInput6_GotFocus()      'TotalFormFront
     If MhRealInput6.Value = 0 Then
@@ -4148,7 +4180,7 @@ If MhRealInput3.Value = 0 Then
         MhRealInput3.Value = IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value))
     ElseIf MhRealInput3.Value <> IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value)) Then
        If MsgBox("Variation in Calculated Total Plates [" & Trim(IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value))) & "]" & vbNewLine & "                           and" & vbNewLine & " Existing Total Plates[" & Trim(MhRealInput3.Value) & "] " & vbNewLine & "                           ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput3.Value = IIf(Combo3.ListIndex = 0, MhRealInput19.Value + MhRealInput20.Value, IIf(MhRealInput19.Value > MhRealInput20.Value, MhRealInput19.Value, MhRealInput20.Value))
-: Call GetPrinterRates("W"): Call CalculatePlateAmount
+: Call GetPartyRates("W"): Call CalculatePlateAmount
         End If
 End Sub
 Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -4162,7 +4194,7 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer)
         SearchOrder = 0
         Call DisplaySelectionList(Text4, SizeCode)
         Call CloseForm(FrmSelectionList)
-        If RTrim(SizeCode) <> "" Then GetPrinterRates ("A"): Sendkeys "{TAB}" Else Text4.Text = ""
+        If RTrim(SizeCode) <> "" Then GetPartyRates ("A"): Sendkeys "{TAB}" Else Text4.Text = ""
     End If
 End Sub
 Private Sub Text4_Validate(Cancel As Boolean)
@@ -4269,7 +4301,10 @@ Private Sub fpSpread1_EditMode(ByVal Col As Long, ByVal Row As Long, ByVal Mode 
     EditMode = IIf(Mode = 1, True, False)
 End Sub
 Private Sub MhRealInput6_Validate(Cancel As Boolean)    'Total Forms [Front]
-    Call GetPrinterRates("A")
+    Call GetPartyRates("P", "F")
+End Sub
+Private Sub MhRealInput7_Validate(Cancel As Boolean)    'Total Forms [Front]
+    Call GetPartyRates("P", "B")
 End Sub
 Private Sub MhRealInput5_Validate(Cancel As Boolean)    'Print Rate [Front]
     CalculatePrintAmount
@@ -4358,13 +4393,8 @@ Private Sub MhRealInput12_Validate(Cancel As Boolean)
 End Sub
 Private Sub MhRealInput11_Validate(Cancel As Boolean)
     MhRealInput12_Validate False
-End Sub
-Private Sub MhRealInput23_Validate(Cancel As Boolean)
-    MhRealInput12_Validate False
-End Sub
-Private Sub MhRealInput29_Validate(Cancel As Boolean)
-    MhRealInput12_Validate False
-    'CalculateConsumption
+    If MhDateInput1.ReadOnly Then Exit Sub
+    CalculateConsumption
 End Sub
 Private Sub ClearFields()
     MhDateInput1.Value = Date
@@ -4662,105 +4692,310 @@ Private Sub CalculateTotal()
 '        MhRealInput7.Value = TotalFormBack
     End With
 End Sub
-Private Sub GetPrinterRates(ByVal RateFor As String)
-    Dim PlateRate As Double, PrintRateFront As Double, PrintRateBack As Double, PaperWastageRate As Double, PaperWastageMin As Long
-    If MhRealInput2.Value = 0 Then Exit Sub
+Private Sub GetPartyRates(ByVal RateType As String, Optional ByVal Position As String)
+    If (MhRealInput6.Value + MhRealInput7.Value) = 0 Or CheckEmpty(SizeCode, False) Or (MhRealInput19.Value + MhRealInput20.Value) = 0 Then Exit Sub
+    Dim frontPlateRate As Double, backPlateRate As Double, frontPrintRate As Double, backPrintRate As Double, frontPaperWastageRate As Double, backPaperWastageRate As Double, frontPaperWastageMin As Long, backPaperWastageMin As Long, frontPaperWastageMax As Long, backPaperWastageMax As Long
     On Error GoTo ErrorHandler
-    With rstPrinterRates
-        If .State = adStateOpen Then .Close
-        .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[Size]=C.Code WHERE C.[Size]='" & SizeCode & "' AND P.Code='" & PrinterCode & "'  AND Range1>=" & MhRealInput2.Value & " ORDER BY Range1", cnDatabase, adOpenKeyset, adLockReadOnly
-        If .RecordCount = 0 Then
-            If .State = adStateOpen Then .Close
-            .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[Size]=C2.Code WHERE Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND Range1>= " & MhRealInput2.Value & " ORDER BY Range1", cnDatabase, adOpenKeyset, adLockReadOnly
-        End If
-        If .RecordCount > 0 Then
-            If RateFor = "L" Then   'Plate
-                PlateRate = Val(.Fields(Choose(Combo2.ListIndex + 1, "DeepatchPlateRate1", "PSPlateRate1", "WipeonPlateRate1", "CTPPlateRate1")).Value)
-            ElseIf RateFor = "W" Then   'Wastage
-                If Combo3.ListIndex = 0 Then    'F&B
-                    If MhRealInput19.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
-                    If MhRealInput20.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
-                Else    'W&T
-                    If MhRealInput19.Value > 0 And MhRealInput20.Value > 0 Then
-                        If MhRealInput19.Value > MhRealInput20.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
-                        If MhRealInput20.Value > MhRealInput19.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+    fColor = FrontPrintingColor: bColor = BackPrintingColor:
+    'Fetching Front Rates
+    With rstFetchRate
+        If (MhRealInput19.Value + MhRealInput20.Value) <> 0 Then
+            If RateType = "L" Then  'Plate Rate
+            fPlateCode = " Like '%" & Choose(Combo2.ListIndex + 1, "Deep-etch", "PS", "Wipe-on", "CTP") & "%'"
+            bPlateCode = " Like '%" & Choose(Combo2.ListIndex + 1, "Deep-etch", "PS", "Wipe-on", "CTP") & "%'"
+                If .State = adStateOpen Then .Close
+                .Open "SELECT TOP 1 P.* FROM AccountChild06 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND (Select Name From GeneralMaster Where Code=P.Plate)" & fPlateCode & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+                If .RecordCount = 0 Then
+                    If .State = adStateOpen Then .Close
+                    .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild06 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE [Name] LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND (Select Name From GeneralMaster Where Code=C1.Plate)" & fPlateCode & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+                End If
+                If .RecordCount > 0 Then frontPlateRate = Val(.Fields("Rate").Value)
+            Else 'Ptg Rate
+                If .State = adStateOpen Then .Close
+                .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN GeneralMaster G ON P.Color=G.Code INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND Value1='" & fColor & "' AND [Range]>=" & MhRealInput6.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+                If .RecordCount = 0 Then
+                    If .State = adStateOpen Then .Close
+                    .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN GeneralMaster G ON C1.Color=G.Code INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE P.Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND G.Value1=" & fColor & " AND [Range]>=" & MhRealInput6.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+                End If
+                If .RecordCount > 0 Then
+                    If RateType = "P" Then  'Print Rate
+                        frontPrintRate = Val(.Fields("PrintingRate").Value)
+                    ElseIf RateType = "W" Then  'Paper Wastage (Percentage)
+                        frontPaperWastageRate = Val(.Fields("PaperWastageRate").Value)
+                    ElseIf RateType = "M" Then  'Paper Wastage (Minimum Sheets)
+                        frontPaperWastageMin = Val(.Fields("PaperWastageMin").Value)
+                    ElseIf RateType = "X" Then  'Paper Wastage (Max Sheets)
+                        frontPaperWastageMax = Val(.Fields("PaperWastageMax").Value)
                     End If
                 End If
-            Else    'All
-                PlateRate = Val(.Fields(Choose(Combo2.ListIndex + 1, "DeepatchPlateRate1", "PSPlateRate1", "WipeonPlateRate1", "CTPPlateRate1")).Value)
-                If MhRealInput19.Value > 0 Then PrintRateFront = Val(.Fields("PrintRate" & Trim(MhRealInput19.Text)).Value)
-                If MhRealInput20.Value > 0 Then PrintRateBack = Val(.Fields("PrintRate" & Trim(MhRealInput20.Text)).Value)
-                If Combo3.ListIndex = 0 Then
-                    If MhRealInput19.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
-                    If MhRealInput20.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
-                Else
-                    If MhRealInput19.Value > 0 And MhRealInput20.Value > 0 Then
-                        If MhRealInput19.Value > MhRealInput20.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
-                        If MhRealInput20.Value > MhRealInput19.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+            End If
+        End If
+        'Fetching Back Rates
+        If (MhRealInput19.Value + MhRealInput20.Value) <> 0 Then
+            If RateType = "L" Then  'Plate Rate
+'                If .State = adStateOpen Then .Close
+'                .Open "SELECT TOP 1 P.* FROM AccountChild06 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Plate]='" & bPlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'                If .RecordCount = 0 Then
+'                    If .State = adStateOpen Then .Close
+'                    .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild06 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE [Name] LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND [Plate]='" & bPlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'                End If
+'                If .RecordCount > 0 Then backPlateRate = Val(.Fields("Rate").Value)
+            Else
+                If .State = adStateOpen Then .Close
+                .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN GeneralMaster G ON P.Color=G.Code INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Value1]='" & bColor & "' AND [Range]>=" & MhRealInput6.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+                If .RecordCount = 0 Then
+                    If .State = adStateOpen Then .Close
+                    .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN GeneralMaster G ON C1.Color=G.Code INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE P.Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND G.Value1=" & bColor & " AND [Range]>=" & MhRealInput6.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+                End If
+                If .RecordCount > 0 Then
+                    If RateType = "P" Then  'Print Rate
+                        backPrintRate = Val(.Fields("PrintingRate").Value)
+                    ElseIf RateType = "W" Then  'Paper Wastage (Percentage)
+                        backPaperWastageRate = Val(.Fields("PaperWastageRate").Value)
+                    ElseIf RateType = "M" Then  'Paper Wastage (Minimum Sheets)
+                        backPaperWastageMin = Val(.Fields("PaperWastageMin").Value)
+                    ElseIf RateType = "X" Then  'Paper Wastage (Max Sheets)
+                        backPaperWastageMax = Val(.Fields("PaperWastageMax").Value)
                     End If
                 End If
             End If
-        End If
-        If RateFor = "L" Then
-            If MhRealInput4.Value <> PlateRate Then
-                If MhRealInput4.Value = 0 Then
-                    MhRealInput4.Value = PlateRate
-                ElseIf MhRealInput4.Value <> PlateRate Then
-                    If MsgBox("Variation in Current (" & Trim(MhRealInput4.Value) & ") and Master (" & Trim(PlateRate) & ") Plate Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
-                End If
-            End If
-        ElseIf RateFor = "W" Then
-            If MhRealInput11.Value = 0 Then
-                MhRealInput11.Value = PaperWastageRate
-            ElseIf MhRealInput11.Value <> PaperWastageRate Then
-                If MsgBox("Variation in Current (" & Trim(MhRealInput11.Value) & ") and Master (" & Trim(PaperWastageRate) & ") Paper Wastage Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
-            End If
-            If MhRealInput23.Value = 0 Then
-                MhRealInput23.Value = PaperWastageMin
-            ElseIf MhRealInput23.Value <> PaperWastageMin Then
-                If MsgBox("Variation in Current (" & Trim(MhRealInput23.Value) & ") and Master (" & Trim(PaperWastageMin) & ") Paper Wastage Minimum !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = PaperWastageMin
-            End If
-        Else
-            If MhRealInput5.Value = 0 Then
-                MhRealInput5.Value = PrintRateFront
-            ElseIf MhRealInput5.Value <> PrintRateFront Then
-                If MsgBox("Variation in Current (" & Trim(MhRealInput5.Value) & ") and Master (" & Trim(PrintRateFront) & ") Print Rate [Front] !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput5.Value = PrintRateFront
-            End If
-            If MhRealInput8.Value = 0 Then
-                MhRealInput8.Value = PrintRateBack
-            ElseIf MhRealInput8.Value <> PrintRateBack Then
-                If MsgBox("Variation in Current (" & Trim(MhRealInput8.Value) & ") and Master (" & Trim(PrintRateBack) & ") Print Rate [Back] !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput8.Value = PrintRateBack
-            End If
-            If MhRealInput4.Value <> PlateRate Then
-                If MhRealInput4.Value = 0 Then
-                    MhRealInput4.Value = PlateRate
-                ElseIf MhRealInput4.Value <> PlateRate Then
-                    If MsgBox("Variation in Current (" & Trim(MhRealInput4.Value) & ") and Master (" & Trim(PlateRate) & ") Plate Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
-                End If
-            End If
-            If MhRealInput11.Value = 0 Then
-                MhRealInput11.Value = PaperWastageRate
-            ElseIf MhRealInput11.Value <> PaperWastageRate Then
-                If MsgBox("Variation in Current (" & Trim(MhRealInput11.Value) & ") and Master (" & Trim(PaperWastageRate) & ") Paper Wastage Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
-            End If
-            If MhRealInput23.Value = 0 Then
-                MhRealInput23.Value = PaperWastageMin
-            ElseIf MhRealInput23.Value <> PaperWastageMin Then
-                If MsgBox("Variation in Current (" & Trim(MhRealInput23.Value) & ") and Master (" & Trim(PaperWastageMin) & ") Paper Wastage Minimum !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = PaperWastageMin
-            End If
-        End If
-        If RateFor = "L" Then
-            Call CalculatePlateAmount
-        ElseIf RateFor = "W" Then
-            Call CalculateConsumption
-        Else
-            Call CalculatePrintAmount: Call CalculatePlateAmount: Call CalculateConsumption
         End If
     End With
-Exit Sub
+    'Value Posting
+    If RateType = "L" Then
+        If Position = "F" Then
+            If MhRealInput3.Value > 0 Then 'total front plates
+                If Combo1.ListIndex > 0 Then 'not old
+                    If frontPlateRate > 0 Then
+                        If MhRealInput4.Value = 0 Then
+                            MhRealInput4.Value = frontPlateRate
+                        ElseIf MhRealInput4.Value <> frontPlateRate Then
+                            If MsgBox("Front Plate Rate [" & Trim(MhRealInput4.Value) & "] is different from that in Master [" & Trim(Format(frontPlateRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = frontPlateRate
+                        End If
+                    End If
+                Else
+                    If fPlate Then MhRealInput4.Value = 0 'old 3 times usable plates
+                End If
+            Else
+                MhRealInput4.Value = 0
+            End If
+        End If
+        If Position = "B" Then
+            If MhRealInput37.Value > 0 Then 'total back plates
+                If Combo1.ListIndex > 0 Then 'not old
+                    If backPlateRate > 0 Then
+                        If MhRealInput4.Value = 0 Then
+                            MhRealInput4.Value = backPlateRate
+                        ElseIf MhRealInput4.Value <> backPlateRate Then
+                            If MsgBox("Back Plate Rate [" & Trim(MhRealInput4.Value) & "] is different from that in Master [" & Trim(Format(backPlateRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = backPlateRate
+                        End If
+                    End If
+                Else
+                    If fPlate Then MhRealInput4.Value = 0
+                End If
+            Else
+                MhRealInput4.Value = 0
+            End If
+        End If
+    ElseIf RateType = "P" Then
+        If Position = "F" Then
+            If MhRealInput6.Value > 0 Then 'Total Forms
+                If frontPrintRate > 0 Then
+                    If MhRealInput5.Value = 0 Then
+                        MhRealInput5.Value = frontPrintRate
+                    ElseIf MhRealInput5.Value <> frontPrintRate Then
+                        If MsgBox("Front Print Rate [" & Trim(MhRealInput5.Value) & "] is different from that in Master [" & Trim(Format(frontPrintRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput5.Value = frontPrintRate
+                    End If
+                End If
+            Else
+                MhRealInput5.Value = 0
+            End If
+        End If
+        If Position = "B" Then
+            If MhRealInput7.Value > 0 Then 'Total back plates
+                If backPrintRate > 0 Then
+                    If MhRealInput8.Value = 0 Then
+                        MhRealInput8.Value = backPrintRate
+                    ElseIf MhRealInput8.Value <> backPrintRate Then
+                        If MsgBox("Back Print Rate [" & Trim(MhRealInput8.Value) & "] is different from that in Master [" & Trim(Format(backPrintRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput8.Value = backPrintRate
+                    End If
+                End If
+            Else
+                MhRealInput8.Value = 0
+            End If
+        End If
+    ElseIf RateType = "W" Then
+        If Position = "F" Then
+            If fColor > 0 Then
+                If frontPaperWastageRate > 0 Then
+                    If MhRealInput11.Value = 0 Then
+                        MhRealInput11.Value = frontPaperWastageRate
+                    ElseIf MhRealInput11.Value <> frontPaperWastageRate Then
+                        If MsgBox("Front Paper Wastage Rate [" & Trim(MhRealInput11.Value) & "] is different from that in Master [" & Trim(Format(frontPaperWastageRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = frontPaperWastageRate
+                    End If
+                End If
+            Else
+                MhRealInput11.Value = 0
+            End If
+        End If
+        If Position = "B" Then
+            If IIf(Combo3.ListIndex = 0, bColor > 0, False) Then
+                If backPaperWastageRate > 0 Then
+                    If MhRealInput35.Value = 0 Then
+                        MhRealInput35.Value = backPaperWastageRate
+                    ElseIf MhRealInput35.Value <> backPaperWastageRate Then
+                        If MsgBox("Back Paper Wastage Rate [" & Trim(MhRealInput35.Value) & "] is different from that in Master [" & Trim(Format(backPaperWastageRate, "#0.00")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput35.Value = backPaperWastageRate
+                    End If
+                End If
+            Else
+                MhRealInput35.Value = 0
+            End If
+        End If
+    ElseIf RateType = "M" Then
+        If Position = "F" Then
+            If fColor > 0 Then
+                If frontPaperWastageMin > 0 Then
+                    If MhRealInput23.Value = 0 Then
+                        MhRealInput23.Value = frontPaperWastageMin
+                    ElseIf MhRealInput23.Value <> frontPaperWastageMin Then
+                        If MsgBox("Front Paper Wastage Min [" & Trim(MhRealInput23.Value) & "] is different from that in Master [" & Trim(Format(frontPaperWastageMin, "#0")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = frontPaperWastageMin
+                    End If
+                End If
+            Else
+                MhRealInput23.Value = 0
+            End If
+        End If
+    ElseIf RateType = "X" Then
+        If Position = "F" Then
+            If fColor > 0 Then
+                If frontPaperWastageMax > 0 Then
+                    If MhRealInput29.Value = 0 Then
+                        MhRealInput29.Value = frontPaperWastageMax
+                    ElseIf MhRealInput29.Value <> frontPaperWastageMax Then
+                        If MsgBox("Front Paper Wastage Max [" & Trim(MhRealInput29.Value) & "] is different from that in Master [" & Trim(Format(frontPaperWastageMax, "#0")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput29.Value = frontPaperWastageMax
+                    End If
+                End If
+            Else
+                MhRealInput29.Value = 0
+            End If
+        End If
+        If Position = "B" Then
+            If IIf(Combo3.ListIndex = 0, bColor > 0, False) Then
+                If backPaperWastageMin > 0 Then
+                    If MhRealInput36.Value = 0 Then
+                        MhRealInput36.Value = backPaperWastageMin
+                    ElseIf MhRealInput36.Value <> backPaperWastageMin Then
+                        If MsgBox("Back Paper Wastage Min [" & Trim(MhRealInput36.Value) & "] is different from that in Master [" & Trim(Format(backPaperWastageMin, "#0")) & "] ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput36.Value = backPaperWastageMin
+                    End If
+                End If
+            Else
+                MhRealInput36.Value = 0
+            End If
+        End If
+    End If
+    Exit Sub
 ErrorHandler:
-    DisplayError ("Failed to Fetch Printer Rates")
+    DisplayError (Err.Description)
 End Sub
+'Private Sub GetPrinterRates(ByVal RateFor As String)
+'    Dim PlateRate As Double, PrintRateFront As Double, PrintRateBack As Double, PaperWastageRate As Double, PaperWastageMin As Long
+'    If MhRealInput2.Value = 0 Then Exit Sub
+'    On Error GoTo ErrorHandler
+'    With rstPrinterRates
+'        If .State = adStateOpen Then .Close
+'        .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE C.[Size]='" & SizeCode & "' AND P.Code='" & PrinterCode & "'  AND Range>=" & MhRealInput2.Value & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+'        If .RecordCount = 0 Then
+'            If .State = adStateOpen Then .Close
+'            .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE Name LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND Range>= " & MhRealInput2.Value & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+'        End If
+'        If .RecordCount > 0 Then
+'            If RateFor = "L" Then   'Plate
+'                PlateRate = Val(.Fields(Choose(Combo2.ListIndex + 1, "DeepatchPlateRate1", "PSPlateRate1", "WipeonPlateRate1", "CTPPlateRate1")).Value)
+'            ElseIf RateFor = "W" Then   'Wastage
+'                If Combo3.ListIndex = 0 Then    'F&B
+'                    If MhRealInput19.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+'                    If MhRealInput20.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+'                Else    'W&T
+'                    If MhRealInput19.Value > 0 And MhRealInput20.Value > 0 Then
+'                        If MhRealInput19.Value > MhRealInput20.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+'                        If MhRealInput20.Value > MhRealInput19.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+'                    End If
+'                End If
+'            Else    'All
+'                PlateRate = Val(.Fields(Choose(Combo2.ListIndex + 1, "DeepatchPlateRate1", "PSPlateRate1", "WipeonPlateRate1", "CTPPlateRate1")).Value)
+'                If MhRealInput19.Value > 0 Then PrintRateFront = Val(.Fields("PrintRate" & Trim(MhRealInput19.Text)).Value)
+'                If MhRealInput20.Value > 0 Then PrintRateBack = Val(.Fields("PrintRate" & Trim(MhRealInput20.Text)).Value)
+'                If Combo3.ListIndex = 0 Then
+'                    If MhRealInput19.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+'                    If MhRealInput20.Value > 0 Then PaperWastageRate = PaperWastageRate + Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+'                Else
+'                    If MhRealInput19.Value > 0 And MhRealInput20.Value > 0 Then
+'                        If MhRealInput19.Value > MhRealInput20.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput19.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput19.Text)).Value)
+'                        If MhRealInput20.Value > MhRealInput19.Value Then PaperWastageRate = Val(.Fields("PaperWastageRate" & Trim(MhRealInput20.Text)).Value): PaperWastageMin = PaperWastageMin + Val(.Fields("PaperWastageMin" & Trim(MhRealInput20.Text)).Value)
+'                    End If
+'                End If
+'            End If
+'        End If
+'        If RateFor = "L" Then
+'            If MhRealInput4.Value <> PlateRate Then
+'                If MhRealInput4.Value = 0 Then
+'                    MhRealInput4.Value = PlateRate
+'                ElseIf MhRealInput4.Value <> PlateRate Then
+'                    If MsgBox("Variation in Current (" & Trim(MhRealInput4.Value) & ") and Master (" & Trim(PlateRate) & ") Plate Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
+'                End If
+'            End If
+'        ElseIf RateFor = "W" Then
+'            If MhRealInput11.Value = 0 Then
+'                MhRealInput11.Value = PaperWastageRate
+'            ElseIf MhRealInput11.Value <> PaperWastageRate Then
+'                If MsgBox("Variation in Current (" & Trim(MhRealInput11.Value) & ") and Master (" & Trim(PaperWastageRate) & ") Paper Wastage Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
+'            End If
+'            If MhRealInput23.Value = 0 Then
+'                MhRealInput23.Value = PaperWastageMin
+'            ElseIf MhRealInput23.Value <> PaperWastageMin Then
+'                If MsgBox("Variation in Current (" & Trim(MhRealInput23.Value) & ") and Master (" & Trim(PaperWastageMin) & ") Paper Wastage Minimum !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = PaperWastageMin
+'            End If
+'        Else
+'            If MhRealInput5.Value = 0 Then
+'                MhRealInput5.Value = PrintRateFront
+'            ElseIf MhRealInput5.Value <> PrintRateFront Then
+'                If MsgBox("Variation in Current (" & Trim(MhRealInput5.Value) & ") and Master (" & Trim(PrintRateFront) & ") Print Rate [Front] !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput5.Value = PrintRateFront
+'            End If
+'            If MhRealInput8.Value = 0 Then
+'                MhRealInput8.Value = PrintRateBack
+'            ElseIf MhRealInput8.Value <> PrintRateBack Then
+'                If MsgBox("Variation in Current (" & Trim(MhRealInput8.Value) & ") and Master (" & Trim(PrintRateBack) & ") Print Rate [Back] !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput8.Value = PrintRateBack
+'            End If
+'            If MhRealInput4.Value <> PlateRate Then
+'                If MhRealInput4.Value = 0 Then
+'                    MhRealInput4.Value = PlateRate
+'                ElseIf MhRealInput4.Value <> PlateRate Then
+'                    If MsgBox("Variation in Current (" & Trim(MhRealInput4.Value) & ") and Master (" & Trim(PlateRate) & ") Plate Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput4.Value = PlateRate
+'                End If
+'            End If
+'            If MhRealInput11.Value = 0 Then
+'                MhRealInput11.Value = PaperWastageRate
+'            ElseIf MhRealInput11.Value <> PaperWastageRate Then
+'                If MsgBox("Variation in Current (" & Trim(MhRealInput11.Value) & ") and Master (" & Trim(PaperWastageRate) & ") Paper Wastage Rate !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput11.Value = PaperWastageRate
+'            End If
+'            If MhRealInput23.Value = 0 Then
+'                MhRealInput23.Value = PaperWastageMin
+'            ElseIf MhRealInput23.Value <> PaperWastageMin Then
+'                If MsgBox("Variation in Current (" & Trim(MhRealInput23.Value) & ") and Master (" & Trim(PaperWastageMin) & ") Paper Wastage Minimum !!! Change rate?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput23.Value = PaperWastageMin
+'            End If
+'        End If
+'        If RateFor = "L" Then
+'            Call CalculatePlateAmount
+'        ElseIf RateFor = "W" Then
+'            Call CalculateConsumption
+'        Else
+'            Call CalculatePrintAmount: Call CalculatePlateAmount: Call CalculateConsumption
+'        End If
+'    End With
+'Exit Sub
+'ErrorHandler:
+'    DisplayError ("Failed to Fetch Printer Rates")
+'End Sub
 Private Sub CalculatePrintAmount()
     Dim TaxableAmt As Double
     TaxableAmt = IIf(MhRealInput6.Value < 1000, 1, MhRealInput6.Value / 1000) * MhRealInput5.Value + IIf(MhRealInput7.Value < 1000 And MhRealInput7.Value > 0, 1, MhRealInput7.Value / 1000) * MhRealInput8.Value
@@ -4852,7 +5087,7 @@ Private Sub cmdProceed_Click()
     VchDate = FrmBookPOChild09.MhDateInput1.Value
     If CheckMandatoryFields Then Exit Sub
     If Left(FrmBookPrintOrder.BookPOType, 1) <> "O" Then
-        Stock = CalculatePaperBalance(IIf(chkPaper.Value, PrinterCode, "000000"), PaperCode, CheckNull(rstBookPOChild09.Fields("Code").Value), "BPOT", VchDate): Stock = Fix(Val(Stock)) * Val(SPU) + Round(Val(Stock) - Fix(Val(Stock)), 3) * 1000
+        Stock = CalculatePaperBalance(IIf(chkPaper.Value, PartyCode, "000000"), PaperCode, CheckNull(rstBookPOChild09.Fields("Code").Value), "BPOT", VchDate): Stock = Fix(Val(Stock)) * Val(SPU) + Round(Val(Stock) - Fix(Val(Stock)), 3) * 1000
         If Val(SPU) = 0 Then SPU = 500
         PaperBalance = Stock - (CLng(Int(MhRealInput13.Value) * SPU) + (MhRealInput13.Value - Int(MhRealInput13.Value)) * 1000)
                 If PaperBalance < 0 Then
@@ -4887,7 +5122,7 @@ End Function
 Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     If rstPaperList.State = adStateOpen Then rstPaperList.Close
     If LoadSelected Then
-        rstPaperList.Open "SELECT * FROM (SELECT LTRIM(P.Name)+' (UOM : '+LTRIM(C.Name)+'='+LTRIM(C.Value1)+')' As Col0,FORMAT(dbo.ufnGetPaperStock('" & IIf(chkPaper.Value, PrinterCode, "000000") & "',P.Code,'PO','" & CheckNull(rstBookPOChild09.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0.000') As Col1,C.Name As UOM,GSM,inWidth,inLength,P.Code,C.Value1 As SPU,[Form],[Weight/Unit] As Wt,LTRIM(Q.Name) As Quality,Grade FROM (PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) INNER JOIN GeneralMaster Q ON P.Quality=Q.Code) As Tbl WHERE CONVERT(DECIMAL(12,3),Col1)<>0 ORDER BY Col0", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstPaperList.Open "SELECT * FROM (SELECT LTRIM(P.Name)+' (UOM : '+LTRIM(C.Name)+'='+LTRIM(C.Value1)+')' As Col0,FORMAT(dbo.ufnGetPaperStock('" & IIf(chkPaper.Value, PartyCode, "000000") & "',P.Code,'PO','" & CheckNull(rstBookPOChild09.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0.000') As Col1,C.Name As UOM,GSM,inWidth,inLength,P.Code,C.Value1 As SPU,[Form],[Weight/Unit] As Wt,LTRIM(Q.Name) As Quality,Grade FROM (PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) INNER JOIN GeneralMaster Q ON P.Quality=Q.Code) As Tbl WHERE CONVERT(DECIMAL(12,3),Col1)<>0 ORDER BY Col0", cnDatabase, adOpenKeyset, adLockReadOnly
     Else
         rstPaperList.Open "SELECT LTRIM(P.Name)+' (UOM : '+LTRIM(C.Name)+'='+LTRIM(C.Value1)+')' As Col0,FORMAT(0,'#0.000') As Col1,C.Name As UOM,GSM,inWidth,inLength,P.Code,C.Value1 As SPU,[Form],[Weight/Unit] As Wt,LTRIM(Q.Name) As Quality,Grade FROM (PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) INNER JOIN GeneralMaster Q ON P.Quality=Q.Code ORDER BY Col0", cnDatabase, adOpenKeyset, adLockReadOnly
     End If

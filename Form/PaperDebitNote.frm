@@ -2,10 +2,10 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmPaperDebitNote 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Paper Debit Note"
@@ -1369,11 +1369,13 @@ ErrorHandler:
 End Function
 Private Sub PrintPaperDebitNote(ByVal VchNo As String, ByVal OutputTo As String)
     Dim rstCompanyMaster As New ADODB.Recordset, rstPaperDebitNote As New ADODB.Recordset
-    On Error Resume Next
+    'On Error Resume Next
     Screen.MousePointer = vbHourglass
-    If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close: If rstPaperDebitNote.State = adStateOpen Then rstPaperDebitNote.Close
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstPaperDebitNote.Open "SELECT '" & IIf(VchType = "D", "DN/", "CN/") & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/'+LTRIM(P.Name) As VchNo,P.Date As VchDate,P.Remarks,M2.PrintName As AccountName,LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M3.Name)+')' As PaperName,Quantity,[Weight/Unit],Weight,Rate,C.Amount,P.Amount As DNAmt,eMail FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN PaperMaster M1 ON C.Paper=M1.Code) INNER JOIN AccountMaster M2 ON P.Account=M2.Code) INNER JOIN GeneralMaster M3 ON M1.UOM=M3.Code WHERE P.Code='" & VchNo & "' ORDER BY M1.PrintName", cnDatabase, adOpenKeyset, adLockReadOnly
+    If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster Where FYCode='" & FYCode & "'", cnxPaperDebitNote, adOpenKeyset, adLockOptimistic
+    rstCompanyMaster.ActiveConnection = Nothing
+    If rstPaperDebitNote.State = adStateOpen Then rstPaperDebitNote.Close
+    rstPaperDebitNote.Open "SELECT '" & IIf(VchType = "D", "DN/", "CN/") & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/'+LTRIM(P.Name) As VchNo,P.Date As VchDate,P.Remarks,M2.PrintName As AccountName,LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M3.Name)+')' As PaperName,Quantity,[Weight/Unit],Weight,Rate,C.Amount,P.Amount As DNAmt,eMail FROM (((PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code) INNER JOIN PaperMaster M1 ON C.Paper=M1.Code) INNER JOIN AccountMaster M2 ON P.Account=M2.Code) INNER JOIN GeneralMaster M3 ON M1.UOM=M3.Code WHERE P.Code='" & VchNo & "' ORDER BY M1.PrintName", cnxPaperDebitNote, adOpenKeyset, adLockOptimistic
     rstPaperDebitNote.ActiveConnection = Nothing
     Screen.MousePointer = vbNormal
     rptPaperDebitNote.Text1.SetText IIf(VchType = "D", "Debit", "Credit") & " Note"

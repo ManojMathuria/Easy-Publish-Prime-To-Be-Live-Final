@@ -821,13 +821,21 @@ Dim rstTaxMaster As New ADODB.Recordset
 Dim SortOrder, PrevStr As String
 Dim dblBookMark As Double
 Dim blnRecordExist As Boolean
+Dim SortCol
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     If Not SL Then MasterCode = ""
     CenterForm Me
+    WheelHook DataGrid1
     BusySystemIndicator True
-    rstTaxList.Open "SELECT Name,Code FROM TaxMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    If slStateCode = CompStateCode And CompStateCode <> "" And SL = True Then
+        rstTaxList.Open "SELECT Name,Code FROM TaxMaster Where Region='L' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    ElseIf slStateCode <> CompStateCode And CompStateCode <> "" And SL = True Then
+        rstTaxList.Open "SELECT Name,Code FROM TaxMaster Where Region='I' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    Else
+        rstTaxList.Open "SELECT Name,Code FROM TaxMaster ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic
+    End If
     rstTaxMaster.CursorLocation = adUseClient
     rstTaxList.Filter = adFilterNone
     If rstTaxList.RecordCount > 0 Then
@@ -845,6 +853,7 @@ Private Sub Form_Load()
     End If
     rstTaxList.ActiveConnection = Nothing
     SetButtonsForNoRecord
+    SortCol = "Name"
     Exit Sub
 ErrorHandler:
     BusySystemIndicator False
@@ -919,14 +928,14 @@ Private Sub Form_Unload(Cancel As Integer)
     MdiMainMenu.mnuTaxMaster.Enabled = True
 End Sub
 Private Sub Text1_Change()
-On Error Resume Next
-With rstTaxList
+    On Error Resume Next
+    With rstTaxList
         If .RecordCount = 0 Then Exit Sub
         .MoveFirst
         If Not CheckEmpty(Text1.Text, False) Then
-            If SortOrder = "Name" Then .Filter = "[" & SortOrder & "] Like '%" & FixQuote(Text1.Text) & "%'" Else .Filter = "[" & SortOrder & "] Like '%" & FixQuote(Text1.Text) & "%'"
+            .Filter = "[" & SortCol & "] Like '%" & FixQuote(Text1.Text) & "%'"
             If .EOF Then
-            .Filter = adFilterNone
+                .Filter = adFilterNone
                 .MoveFirst
                 If PrevStr <> "" And Len(Text1.Text) > 1 Then If dblBookMark <> 0 Then .Bookmark = dblBookMark Else PrevStr = ""
                 Beep

@@ -1,3 +1,3 @@
-The cab file for your application has been built as 'g:\Easy Publish Prime Setup\EasyPublish.CAB'.
+The cab file for your application has been built as 'g:\Easy Publish Prime Setup v23.06.12\EasyPublish.CAB'.
 
-There is also a batch file in the support directory (g:\Easy Publish Prime Setup\Support\EasyPublish.BAT) that will allow you to recreate the cab file in case you make changes to some of the files.
+There is also a batch file in the support directory (g:\Easy Publish Prime Setup v23.06.12\Support\EasyPublish.BAT) that will allow you to recreate the cab file in case you make changes to some of the files.

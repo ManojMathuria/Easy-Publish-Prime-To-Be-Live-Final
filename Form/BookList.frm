@@ -227,7 +227,7 @@ Private Sub Form_Load()
     BookType = "A": Check.Value = 1
     CenterForm Me
     BusySystemIndicator True
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstGroupList.ActiveConnection = Nothing
     Call FillList(ListView1, "List of Groups...", rstGroupList)

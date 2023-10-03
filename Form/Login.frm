@@ -314,6 +314,7 @@ Private Sub Form_Load()
     Mh3dLabel6.Caption = Format(Time, "hh:mm:ss")
     CenterForm Me
     txtUserName.Text = oRegistry.GetRegistryValue(HKEY_LOCAL_MACHINE, "SOFTWARE\Easy Publish", "Last User", "")
+    If Len(txtUserName.Text) = 0 Then txtUserName.Text = "EasyPublish"
     LoginSuccess = False
     Exit Sub
 ErrorHandler:

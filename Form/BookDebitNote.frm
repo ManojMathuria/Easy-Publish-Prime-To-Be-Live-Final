@@ -563,8 +563,8 @@ Begin VB.Form FrmBookDebitNote
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookDebitNote.frx":0DE3
-            Picture         =   "BookDebitNote.frx":0DFF
+            Picture         =   "BookDebitNote.frx":0DBF
+            Picture         =   "BookDebitNote.frx":0DDB
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1389,7 +1389,7 @@ Private Sub PrintBookDebitNote(ByVal VchNo As String, ByVal OutputTo As String)
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close: If rstBookDebitNote.State = adStateOpen Then rstBookDebitNote.Close
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If LYDataExist Then
         rstBookDebitNote.Open "SELECT 'DN/SB/" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/'+TRIM(P1.Name) As VchNo,P1.Date As VchDate,P1.Remarks,M2.PrintName As AccountName,M1.PrintName As BookName,VAL(P2.Name) As OrderNo,OrderDate,BillNo,BillDate,ActualQuantity As OrderQty,ActualQuantity-QuantityReceived As BalQty,FIX(ActualQuantity*0.2/100) As CrQty,Quantity As DrQty,C1.Price,Discount,C1.Amount,P1.Amount As DNAmt,eMail FROM ((((BookDNParent P1 INNER JOIN BookDNChild C1 ON P1.Code=C1.Code) INNER JOIN OBookPOChild08 C2 ON C1.Ref+FORMAT(C1.Date,'yyyyMMdd')=C2.Code+FORMAT(C2.OrderDate,'yyyyMMdd')) INNER JOIN OBookPOParent P2 ON C2.Code=P2.Code) INNER JOIN BookMaster M1 ON P2.Book=M1.Code) INNER JOIN AccountMaster M2 ON P1.Account=M2.Code WHERE P1.Code='" & VchNo & "' UNION " & _
                               "SELECT 'DN/SB/" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/'+TRIM(P1.Name) As VchNo,P1.Date As VchDate,P1.Remarks,M2.PrintName As AccountName,M1.PrintName As BookName,VAL(P2.Name) As OrderNo,OrderDate,BillNo,BillDate,ActualQuantity As OrderQty,ActualQuantity-QuantityReceived As BalQty,FIX(ActualQuantity*0.2/100) As CrQty,Quantity As DrQty,C1.Price,Discount,C1.Amount,P1.Amount As DNAmt,EMail FROM ((((BookDNParent P1 INNER JOIN BookDNChild C1 ON P1.Code=C1.Code) INNER JOIN BookPOChild08 C2 ON C1.Ref+FORMAT(C1.Date,'yyyyMMdd')=C2.Code+FORMAT(C2.OrderDate,'yyyyMMdd')) INNER JOIN BookPOParent P2 ON C2.Code=P2.Code) INNER JOIN BookMaster M1 ON P2.Book=M1.Code) INNER JOIN AccountMaster M2 ON P1.Account=M2.Code WHERE P1.Code='" & VchNo & "' ORDER BY BookName,OrderDate,OrderNo", cnDatabase, adOpenKeyset, adLockReadOnly

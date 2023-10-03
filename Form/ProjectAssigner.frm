@@ -122,8 +122,8 @@ Begin VB.Form FrmProjectAssigner
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ProjectAssigner.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dFrame3"
+         Tab(1).Control(0)=   "Mh3dFrame3"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin MSComDlg.CommonDialog CommonDialog1 
             Left            =   4320
@@ -1167,10 +1167,10 @@ Private Sub Form_Load()
     SQL = "AND (I.CODE IN (Select Code From BookChild02 Where Member=(Select Code From TeamMemberMaster Where LoginId=" & UserCode & ")) OR " & UserCode & "=Left(SNo,6) OR " & UserCode & "='000000' OR " & UserCode & "='000001' OR " & UserCode & "='000005') "
     End If
     rstItemList.Open "SELECT I.Name,C.Correction As Task,C.Status,(Select PrintName From GeneralMaster Where Code=M.Designation)+'-'+M.PrintName As AssignTo,(Select PrintName From GeneralMaster Where Code=H.Designation)+'-'+H.PrintName As AssignBy,C.ArrivedOn,C.TargetDate,BusyCode,I.Code,C.StartDate,C.RectifiedOn,C.Remarks,H.Email As FromEmail,M.Email As ToEmail,Left(SNo,6) As UserCode,Right(SNo,6) As SNo  FROM BookMaster I Left Join BookChild02 C ON C.Code=I.Code Left Join TeamMemberMaster M On M.Code=C.Member Left Join TeamMemberMaster H On H.LoginId=Left(C.SNo,6) " & _
-                                "WHERE [Type]='F' AND " & IIf(Option7.Value, "1=1", IIf(Option6.Value, "Status<>'Done'", IIf(Option1.Value, "Status='Open'", IIf(Option2.Value, "Status='Running'", IIf(Option3.Value, "Status='Pause'", IIf(Option5.Value, "Status='Hold'", IIf(Option4.Value, "Status='Done'", "1=1"))))))) & " " & IIf(Option7.Value, "AND 1=1", SQL) & " ORDER BY SNo,Name", cnProjectAssigner, adOpenKeyset, adLockOptimistic
+                                "WHERE [Type]='F' AND " & IIf(Option7.Value, "1=1", IIf(Option6.Value, "(C.Status IS NULL OR Status<>'Done' )", IIf(Option1.Value, "(C.Status IS NULL OR Status<>'Open' )", IIf(Option2.Value, "(C.Status IS NULL OR Status<>'Running')", IIf(Option3.Value, "(C.Status IS NULL OR Status='Pause')", IIf(Option5.Value, "(C.Status IS NULL OR Status='Hold')", IIf(Option4.Value, "(C.Status IS NULL OR Status='Done')", "1=1"))))))) & " " & IIf(Option7.Value, "AND 1=1", SQL) & " ORDER BY SNo,Name", cnProjectAssigner, adOpenKeyset, adLockOptimistic
     If rstMemberList.State = adStateOpen Then rstMemberList.Close
     'rstMemberList.Open "SELECT M.Name+' ('+D.Name+')' As Col0,M.Code,email As ToEmail FROM TeamMemberMaster M INNER JOIN GeneralMaster D ON M.Department=D.Code Where LoginId<>'" & UserCode & "' ORDER BY M.Name", cnProjectAssigner, adOpenKeyset, adLockReadOnly
-    rstMemberList.Open "SELECT (Select Name From GeneralMaster Where Code = M.Designation)+'_'+M.PrintName As Col0,M.Code,email As ToEmail FROM TeamMemberMaster M INNER JOIN GeneralMaster D ON M.Department=D.Code  ORDER BY M.Name", cnProjectAssigner, adOpenKeyset, adLockReadOnly
+    rstMemberList.Open "SELECT (Select Name From GeneralMaster Where Code = M.Designation)+'_'+M.PrintName As Col0,M.Code,email As ToEmail,M.PrintName As AssignTo FROM TeamMemberMaster M INNER JOIN GeneralMaster D ON M.Department=D.Code  ORDER BY M.Name", cnProjectAssigner, adOpenKeyset, adLockReadOnly
     TDBNumber2 = rstItemList.RecordCount
     rstItemList.Filter = adFilterNone
     Set DataGrid1.DataSource = rstItemList
@@ -1226,7 +1226,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
         KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyS And Toolbar1.Buttons.Item(4).Enabled Then
         If Not EditMode Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(4)
-        KeyCode = 0:    Form_Load
+        KeyCode = 0:    Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
     ElseIf Shift = 0 And KeyCode = vbKeyF5 And Toolbar1.Buttons.Item(6).Enabled Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
         KeyCode = 0
@@ -1265,25 +1265,25 @@ Private Sub Form_Unload(Cancel As Integer)
     DisableChildMenu
 End Sub
 Private Sub Option1_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Option2_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Option3_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Option4_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Option5_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Option6_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Option7_Click()
-Form_Load
+Form_Load: Text1.SetFocus: Text1.Tag = Text1.Text: Text1.Text = "": Text1.Text = Text1.Tag
 End Sub
 Private Sub Text1_Change()
 On Error Resume Next
@@ -1397,7 +1397,7 @@ Private Sub SSTab1_Click(PreviousTab As Integer)
     End If
     Exit Sub
 DisplayInfo:
-   Text2.Text = UserCode: Text6.Text = UserName: Text7.Text = rstItemList.Fields("Name").Value
+   Text2.Text = UserCode: Text6.Text = Username: Text7.Text = rstItemList.Fields("Name").Value
 End Sub
 Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Dim HiLiteRecord As Boolean, ActiveCellVal As Variant
@@ -1689,7 +1689,7 @@ ErrorHandler:
     DisplayError (Err.Description)
 End Sub
 Private Function UpdateMaterialList(ByVal ActionType As String) As Boolean
-    Dim CellVal(1 To 11) As Variant
+    Dim CellVal(1 To 12) As Variant
     Dim eDate As String
     On Error GoTo ErrorHandler
     UpdateMaterialList = True
@@ -1703,6 +1703,7 @@ Private Function UpdateMaterialList(ByVal ActionType As String) As Boolean
             .GetText 1, .ActiveRow, CellVal(1)  'Assigned ON
             .GetText 2, .ActiveRow, CellVal(2)  'Status
             .GetText 3, .ActiveRow, CellVal(3)  'Assignment Remarks
+            .GetText 4, .ActiveRow, CellVal(12)  'AssignedTo
             .GetText 5, .ActiveRow, CellVal(4)  'Target Date
             .GetText 6, .ActiveRow, CellVal(5)  'Start Date
             .GetText 7, .ActiveRow, CellVal(6)  'End Date
@@ -1715,9 +1716,20 @@ Private Function UpdateMaterialList(ByVal ActionType As String) As Boolean
         End With
         If CellVal(6) = "" Then eDate = "Null" Else eDate = "'" & GetDate(CellVal(6)) & "'"
         cnProjectAssigner.Execute "INSERT INTO BookChild02 VALUES ('" & rstItemList.Fields("Code").Value & "','" & IIf(CellVal(11) = "", UserCode, CellVal(11)) & CellVal(9) & "','" & GetDate(CellVal(1)) & "','" & CellVal(2) & "','" & CellVal(3) & "','" & CellVal(7) & "','" & GetDate(CellVal(4)) & "','" & GetDate(CellVal(5)) & "'," & eDate & ",'E','" & CellVal(8) & "')"
-    If CellVal(10) = "" Then MsgText = "I have assigned you a new task.This is for your kind information and further action.": MsgSubject = "Task Assigned at [" & Format(DateTime.Now, "dd-MMM-yyyy hh:mm:ss") & "] (" & rstItemList.Fields("Name").Value & ")"
-    TaskComments = "Assignment:" & CellVal(3) & ">>> " & "Status:" & CellVal(2) & ">>> " & "Target Date:" & CellVal(4) & ">>>" & "Task Comments: " & CellVal(8)
-    If CellVal(10) = "" Then Call SendEmail
+    If rstMemberList.RecordCount = 0 Then
+        DisplayError ("No Record in Editorial Team Member Master")
+    Else
+        rstMemberList.MoveFirst
+        rstMemberList.Find "[Code] = '" & RTrim(CellVal(7)) & "'"
+    End If
+    If CellVal(10) = "" Or CellVal(10) = " " Then MsgText = "You have assigned a new task.This is for your kind information and further action.": MsgSubject = "Task Assigned at [" & Format(DateTime.Now, "dd-MMM-yyyy hh:mm:ss") & "] (" & rstItemList.Fields("Name").Value & ")"
+    
+        If CellVal(8) <> "" Then
+            TaskComments = "Assignment:" & CellVal(3) & ">>> " & "Status:" & CellVal(2) & ">>> " & "Target Date:" & CellVal(4) & ">>>" & "Task Comments: " & CellVal(8)
+        Else
+            TaskComments = "Assignment:" & CellVal(3) & ">>> " & "Status:" & CellVal(2) & ">>> " & "Target Date:" & CellVal(4) & ">>>"
+        End If
+    If CellVal(10) = "" Or CellVal(10) = " " Then Call Send_email(rstCompanyMaster.Fields("SmtpServer").Value, rstCompanyMaster.Fields("Port").Value, rstCompanyMaster.Fields("UserName").Value, rstCompanyMaster.Fields("Password").Value, ToEmail, MsgSubject, MsgText, TaskComments, (IIf(IsNull(rstItemList.Fields("AssignBy").Value), Username, rstItemList.Fields("AssignBy").Value)), Trim(rstCompanyMaster.Fields("PrintName").Value), Trim(rstCompanyMaster.Fields("Phone").Value), Trim(rstCompanyMaster.Fields("EMail").Value), CellVal(12), "Dear " + rstMemberList.Fields("AssignTo").Value)        ' SendEmail
     End If
     Exit Function
 ErrorHandler:
@@ -1843,28 +1855,34 @@ errcode:
    Screen.MousePointer = vbDefault
 End Sub
 Sub SendEmail()
-On Error Resume Next
 Dim cdoMsg As Object
 Dim cdoConf As Object
 Dim cdoFields As Object
 Dim schema As String
+On Error GoTo errcode
+    'late binding
 Set cdoMsg = CreateObject("CDO.Message")
 Set cdoConf = CreateObject("CDO.Configuration")
+    ' load all default configurations
+    cdoConf.Load -1
 Set cdoFields = cdoConf.Fields
 
+'Set All Email Properties
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
-cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = rstCompanyMaster.Fields("SmtpServer").Value
-cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = rstCompanyMaster.Fields("Port").Value '465
+cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "smtpout.secureserver.net" 'rstCompanyMaster.Fields("SmtpServer").Value
+cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 465 'rstCompanyMaster.Fields("Port").Value '465
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1
-cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = rstCompanyMaster.Fields("UserName").Value '"production.easyinfosolutionsi@gmail.com"
-cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = rstCompanyMaster.Fields("Password").Value
+cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = "Sales@easyinfosolution.com" 'rstCompanyMaster.Fields("UserName").Value '"production.easyinfosolutionsi@gmail.com"
+cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = "pubprint123!@#" 'rstCompanyMaster.Fields("Password").Value
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusetls") = True
 cdoFields.Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout") = 60
 cdoFields.Update
 With cdoMsg
-    .From = rstCompanyMaster.Fields("UserName").Value
+    .From = "Sales@easyinfosolution.com" 'rstCompanyMaster.Fields("UserName").Value
     .To = ToEmail
+    '.CC
+    '.BCC
     .Subject = MsgSubject
      .HTMLBody = "<Font Face='Calibri' Size='3'>Dear User,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & " <Br><b><I>Task >> " & TaskComments & "<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & rstItemList.Fields("AssignBy").Value & "<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
 '    If ShotFlag = False Then Call Screen_Shot
@@ -1876,13 +1894,26 @@ With cdoMsg
     .Send
 End With
 If Err.Number = 0 Then
-    MsgBox "Email Send To : " & rstItemList.Fields("AssignTo").Value, , "Email"
-Else
-    MsgBox "Email Error" & Err.Description, , "Email"
+    MsgBox "Email Send To : " & ToEmail, , "Email" '" & rstItemList.Fields("AssignTo").Value, , "Email"
+'Else
+'    MsgBox "Email Error " & Err.Description, , "Email"
 End If
+Exit_Err:
+'    'Release object memory
 Set cdoMsg = Nothing
 Set cdoConf = Nothing
 Set cdoFields = Nothing
+Exit Sub
+
+errcode:
+    Select Case Err.Number
+    Case -2147220973  'Could be because of Internet Connection
+        MsgBox "Check your internet connection." & vbNewLine & Err.Number & ": " & Err.Description
+    Case -2147220975  'Incorrect credentials User ID or password
+        MsgBox "Check your login credentials and try again." & vbNewLine & Err.Number & ": " & Err.Description
+    Case Else   'Report other errors
+        MsgBox "Error encountered while sending email." & vbNewLine & Err.Number & ": " & Err.Description
+    End Select
+
+    Resume Exit_Err
 End Sub
-
-

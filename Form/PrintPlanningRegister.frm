@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "MSMASK32.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmPrintPlanningRegister 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Print Planning Register"
@@ -302,7 +302,7 @@ Private Sub Form_Load()
     Else
         Me.Caption = "Print Planning Register [Spread Format]"
     End If
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Call BookSelection(True)
     Option2.Value = True
     MhDateInput1.Text = Format(FinancialYearFrom, "dd-mm-yyyy")
@@ -319,7 +319,7 @@ ErrorHandler:
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-       SendKeys "{TAB}", True
+       Sendkeys "{TAB}", True
        KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)

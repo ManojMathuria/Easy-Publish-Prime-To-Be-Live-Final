@@ -7,7 +7,7 @@ Begin VB.Form FrmCompanyList
    ClientHeight    =   4800
    ClientLeft      =   150
    ClientTop       =   435
-   ClientWidth     =   9615
+   ClientWidth     =   10935
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -22,7 +22,7 @@ Begin VB.Form FrmCompanyList
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    ScaleHeight     =   4800
-   ScaleWidth      =   9615
+   ScaleWidth      =   10935
    StartUpPosition =   2  'CenterScreen
    Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
       Height          =   330
@@ -68,7 +68,7 @@ Begin VB.Form FrmCompanyList
       TabIndex        =   0
       ToolTipText     =   "Find"
       Top             =   4380
-      Width           =   9050
+      Width           =   10365
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "CompanyList.frx":0038
@@ -77,8 +77,8 @@ Begin VB.Form FrmCompanyList
       TabIndex        =   1
       TabStop         =   0   'False
       Top             =   105
-      Width           =   9525
-      _ExtentX        =   16801
+      Width           =   10845
+      _ExtentX        =   19129
       _ExtentY        =   7435
       _Version        =   393216
       AllowUpdate     =   0   'False
@@ -105,7 +105,7 @@ Begin VB.Form FrmCompanyList
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ColumnCount     =   2
+      ColumnCount     =   3
       BeginProperty Column00 
          DataField       =   "Col0"
          Caption         =   "Name"
@@ -128,6 +128,19 @@ Begin VB.Form FrmCompanyList
             HaveTrueFalseNull=   0
             FirstDayOfWeek  =   0
             FirstWeekOfYear =   0
+            LCID            =   16393
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      BeginProperty Column02 
+         DataField       =   "Col5"
+         Caption         =   "Cost Center"
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
             LCID            =   2057
             SubFormatType   =   0
          EndProperty
@@ -141,11 +154,15 @@ Begin VB.Form FrmCompanyList
          Locked          =   -1  'True
          BeginProperty Column00 
             Locked          =   -1  'True
-            ColumnWidth     =   6359.812
+            ColumnWidth     =   5940.284
          EndProperty
          BeginProperty Column01 
+            ColumnWidth     =   2610.142
+         EndProperty
+         BeginProperty Column02 
+            Alignment       =   2
             Locked          =   -1  'True
-            ColumnWidth     =   2594.835
+            ColumnWidth     =   1725.165
          EndProperty
       EndProperty
    End
@@ -170,9 +187,11 @@ Private Sub Form_Load()
     rstDBList.MoveFirst
     Do While Not rstDBList.EOF
         If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-        rstCompanyMaster.Open "SELECT Name+' [" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "]' As Col01,REPLACE(CONVERT(CHAR(11),FinancialYearFrom,113),' ','-')+' To '+REPLACE(CONVERT(CHAR(11),FinancialYearTo,113),' ','-') As Col02, '" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "' As Col03,LTRIM(YEAR(FinancialYearFrom)) As Col04,MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstCompanyMaster.Open "SELECT Name+' [" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "]' As Col01,REPLACE(CONVERT(CHAR(11),FinancialYearFrom,113),' ','-')+' To '+REPLACE(CONVERT(CHAR(11),FinancialYearTo,113),' ','-') As Col02, '" & Mid(rstDBList.Fields("Name").Value, 3, 3) & "' As Col03,LTRIM(YEAR(FinancialYearFrom)) As Col04,Code As Col05,* FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+        'MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode
         If rstCompanyList.State = adStateClosed Then
-            rstCompanyList.Open "SELECT Name As Col01,Name As Col02,Name As Col03,Name As Col04,MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster WHERE Code=''", cnDatabase, adOpenKeyset, adLockOptimistic
+            rstCompanyList.Open "SELECT Name As Col01,Name As Col02,Name As Col03,Name As Col04,Code As Col05,* FROM " & rstDBList.Fields("Name").Value & "..CompanyMaster WHERE Code=''", cnDatabase, adOpenKeyset, adLockOptimistic
+            'MCGroup,FinancialYearFrom,FinancialYearTo,TallyIntegration,BusyIntegration,FYCode
             Set rstCompanyList.ActiveConnection = Nothing
         End If
         CompanyExists = True
@@ -190,6 +209,7 @@ Private Sub Form_Load()
                 .Fields("TallyIntegration").Value = rstCompanyMaster.Fields("TallyIntegration").Value
                 .Fields("BusyIntegration").Value = rstCompanyMaster.Fields("BusyIntegration").Value
                 .Fields("FYCode").Value = rstCompanyMaster.Fields("FYCode").Value
+                .Fields("Col05").Value = rstCompanyMaster.Fields("Col05").Value
                 .Update
                 rstCompanyMaster.MoveNext
             Loop
@@ -200,6 +220,7 @@ Private Sub Form_Load()
     rstCompanyList.Sort = "Col01,FinancialYearFrom DESC"
     DataGrid1.Columns(0).DataField = rstCompanyList.Fields(0).Name
     DataGrid1.Columns(1).DataField = rstCompanyList.Fields(1).Name
+    DataGrid1.Columns(2).DataField = rstCompanyList.Fields(4).Name
     Set DataGrid1.DataSource = rstCompanyList
     If (Not rstCompanyList.EOF) And (Not rstCompanyList.BOF) Then
         With DataGrid1.SelBookmarks
@@ -340,6 +361,7 @@ Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
     Text1.SetFocus
 End Sub
 Private Sub DataGrid1_DblClick()
+On Error Resume Next
     With rstCompanyList
         If (Not .EOF) And (Not .BOF) Then
             CompCode = .Fields("Col03").Value
@@ -350,6 +372,7 @@ Private Sub DataGrid1_DblClick()
             TallyIntegration = .Fields("TallyIntegration").Value
             BusyIntegration = .Fields("BusyIntegration").Value
             FYCode = .Fields("FYCode").Value
+            CostCenter = .Fields("Col05").Value
         End If
     End With
     Call CloseForm(Me)

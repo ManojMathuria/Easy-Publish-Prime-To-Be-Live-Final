@@ -322,16 +322,20 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuCompany 
       Caption         =   "&Company"
+      Tag             =   "00000000"
       Begin VB.Menu MnuOpen 
          Caption         =   "Open"
       End
       Begin VB.Menu mnuCreate 
          Caption         =   "Create"
+         Tag             =   "00010000"
          Begin VB.Menu mnuCreate01 
             Caption         =   "With Masters"
+            Tag             =   "00010100"
          End
          Begin VB.Menu mnuCreate02 
             Caption         =   "Without Masters"
+            Tag             =   "00010200"
          End
       End
       Begin VB.Menu MnuClose 
@@ -344,10 +348,12 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu mnuEdit 
          Caption         =   "Edit"
          Enabled         =   0   'False
+         Tag             =   "00020000"
       End
       Begin VB.Menu MnuCompanyChild 
          Caption         =   "Edit Voucher Prifix"
          Enabled         =   0   'False
+         Tag             =   "00030000"
       End
       Begin VB.Menu MnuLine6 
          Caption         =   "-"
@@ -355,15 +361,18 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuDelete 
          Caption         =   "Delete"
+         Tag             =   "00040000"
       End
       Begin VB.Menu MnuLine4 
          Caption         =   "-"
       End
       Begin VB.Menu MnuBackup 
          Caption         =   "Backup"
+         Tag             =   "00050000"
       End
       Begin VB.Menu MnuRestore 
          Caption         =   "Restore"
+         Tag             =   "00060000"
       End
       Begin VB.Menu MnuLicenceAgreement 
          Caption         =   "License Agreement"
@@ -383,7 +392,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuMasters 
       Caption         =   "&Masters"
-      Enabled         =   0   'False
       Tag             =   "01000000"
       Begin VB.Menu mnuAccountMaster 
          Caption         =   "Account"
@@ -397,27 +405,27 @@ Begin VB.MDIForm MdiMainMenu
          Caption         =   "Rate"
          Tag             =   "01030000"
          Begin VB.Menu mnuRate 
-            Caption         =   "Processing"
+            Caption         =   "Printing"
             Index           =   1
             Tag             =   "01030100"
          End
          Begin VB.Menu mnuRate 
-            Caption         =   "Printing"
+            Caption         =   "Misc Operation"
             Index           =   2
             Tag             =   "01030200"
          End
          Begin VB.Menu mnuRate 
-            Caption         =   "Plate"
+            Caption         =   "Binding Process"
             Index           =   3
             Tag             =   "01030300"
          End
          Begin VB.Menu mnuRate 
-            Caption         =   "Miscellaneous Operation"
+            Caption         =   "Processing"
             Index           =   4
             Tag             =   "01030400"
          End
          Begin VB.Menu mnuRate 
-            Caption         =   "Binding"
+            Caption         =   "Plates "
             Index           =   5
             Tag             =   "01030500"
          End
@@ -499,8 +507,14 @@ Begin VB.MDIForm MdiMainMenu
          Caption         =   "Material Centre"
          Tag             =   "01140000"
       End
+      Begin VB.Menu mnuSalesExecutiveMaster 
+         Caption         =   "Sales Executive"
+      End
       Begin VB.Menu mnu777 
          Caption         =   "-"
+      End
+      Begin VB.Menu mnuStateMaster 
+         Caption         =   "State"
       End
       Begin VB.Menu mnuTaxMaster 
          Caption         =   "Tax"
@@ -590,7 +604,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuTransactions 
       Caption         =   "&Transactions"
-      Enabled         =   0   'False
       Tag             =   "02000000"
       Begin VB.Menu mnuPrintPlanningModule 
          Caption         =   "Print Planning"
@@ -863,6 +876,7 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuPaperModuleParent 
          Caption         =   "Paper"
+         Tag             =   "02150000"
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Purchase Order"
             Index           =   1
@@ -930,7 +944,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuDisplay 
       Caption         =   "&Display"
-      Enabled         =   0   'False
       Tag             =   "03000000"
       Begin VB.Menu MnuFinalResult 
          Caption         =   "Final Result"
@@ -1031,6 +1044,20 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu MnuLine59 
          Caption         =   "-"
          Index           =   1
+      End
+      Begin VB.Menu MenuPendingBilling 
+         Caption         =   "Order Processing"
+         Tag             =   "03140000"
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Sales Order-Wise"
+            Index           =   46
+            Tag             =   "03140100"
+         End
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Sales Party-Wise"
+            Index           =   47
+            Tag             =   "03140200"
+         End
       End
       Begin VB.Menu MnuOrderProcessingStatus 
          Caption         =   "Order Status"
@@ -1312,9 +1339,29 @@ Begin VB.MDIForm MdiMainMenu
             Tag             =   "03121700"
          End
       End
-      Begin VB.Menu MnuLine60 
-         Caption         =   "-"
-         Index           =   2
+      Begin VB.Menu MnuIssueReceipt 
+         Caption         =   "Issue-Receipt Analysis"
+         Index           =   1
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item-wise"
+            Index           =   48
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Party-wise"
+            Index           =   49
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Group-wise"
+            Index           =   50
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Voucher-wise"
+            Index           =   51
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Date-wise"
+            Index           =   52
+         End
       End
       Begin VB.Menu MenuPaperIssueReceipt 
          Caption         =   "Paper Ledger"
@@ -1359,11 +1406,58 @@ Begin VB.MDIForm MdiMainMenu
             Index           =   18
             Tag             =   "03130800"
          End
+         Begin VB.Menu MenuPaperLedger 
+            Caption         =   "Paper Stock Ledger"
+            Index           =   19
+         End
+      End
+   End
+   Begin VB.Menu MenuFG_UFGLedger 
+      Caption         =   "&Notebook Division"
+      Tag             =   "08000000"
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "Pending Orders"
+         Index           =   0
+         Tag             =   "08010000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "WIP Ledger"
+         Index           =   1
+         Tag             =   "08020000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "RM Ledger"
+         Index           =   2
+         Tag             =   "08030000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "WIP Pending Ledger"
+         Index           =   3
+         Tag             =   "08040000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "RM Pending Ledger"
+         Index           =   4
+         Tag             =   "08050000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "RM && WIP Pending Ledger [PSS]"
+         Index           =   5
+         Tag             =   "08060000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "Raw Materials Consumption"
+         Index           =   6
+         Tag             =   "08070000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "Sales Order"
+         Index           =   7
+         Tag             =   "08080000"
       End
    End
    Begin VB.Menu MnuReports 
       Caption         =   "&Reports"
-      Enabled         =   0   'False
       Tag             =   "04000000"
       Begin VB.Menu MnuPrintPlanningRegister 
          Caption         =   "Print Planning Register"
@@ -1562,14 +1656,10 @@ Begin VB.MDIForm MdiMainMenu
             End
          End
       End
-      Begin VB.Menu MenuQuotation 
-         Caption         =   "Quotation Processing"
-         Tag             =   "04100000"
-      End
       Begin VB.Menu MnuLine1 
          Caption         =   "-"
       End
-      Begin VB.Menu MnuIssueReceipt 
+      Begin VB.Menu MnuIssueReceipts 
          Caption         =   "Issue-Receipt Analysis"
          Tag             =   "04110000"
          Begin VB.Menu MnuItemIssueReceipt 
@@ -1649,7 +1739,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuUtilities 
       Caption         =   "&Utilities"
-      Enabled         =   0   'False
       Tag             =   "05000000"
       Begin VB.Menu MnuEmailUtilities 
          Caption         =   "Email Profile"
@@ -1730,7 +1819,6 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu mnuProjectManagementParent 
       Caption         =   "&Project Management"
-      Enabled         =   0   'False
       Tag             =   "06000000"
       Begin VB.Menu mnuEditorial 
          Caption         =   "Editorial"
@@ -1752,7 +1840,23 @@ Begin VB.MDIForm MdiMainMenu
       Tag             =   "07000000"
       Begin VB.Menu MnuHelp 
          Caption         =   "Users Manual – Easy Publish"
+         Index           =   1
          Tag             =   "07010000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Easy Publish Application Folder "
+         Index           =   2
+         Tag             =   "07020000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Application Version Updates"
+         Index           =   3
+         Tag             =   "07030000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Create New Financial Year"
+         Index           =   4
+         Tag             =   "07040000"
       End
    End
 End
@@ -1763,7 +1867,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim iCount As Long
-Public Version As String
+Public Version As String, exitFlage As Boolean
 Private WithEvents oHuffman As clsHuffman
 Attribute oHuffman.VB_VarHelpID = -1
 Private oRegistry As New clsRegistry
@@ -1783,6 +1887,52 @@ Private Sub Command1_Click()
         iCount = iCount + 1
         Next
 End Sub
+Private Sub MenuPendingBillingJobworkDirect_Click(Index As Integer)
+    On Error Resume Next
+    FrmItemSelectionList.VchType = Trim(Index)
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+End Sub
+Private Sub MenuUFGLedger_Click(Index As Integer)
+    On Error Resume Next
+If Trim(Index) = 0 Then
+    FrmItemSelectionList.VchType = "43"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 3 Then
+    FrmItemSelectionList.VchType = "103"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 4 Then
+    FrmItemSelectionList.VchType = "104"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 5 Then
+    FrmItemSelectionList.VchType = "105"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 6 Then
+    Load FrmRMConsumed
+    If Err.Number <> 364 Then FrmRMConsumed.Show
+ElseIf Trim(Index) = 7 Then
+    frmSalesOrderVoucher.VchType = "SO"
+    Load FrmRMConsumed
+    Load frmSalesOrderVoucher
+    If Err.Number <> 364 Then frmSalesOrderVoucher.Show
+Else
+    FrmUFGLedger.VchType = Trim(Index)
+    Load FrmUFGLedger
+    If Err.Number <> 364 Then FrmUFGLedger.Show
+End If
+End Sub
+
+Private Sub MnuIssueReceiptAnalysis_Click(Index As Integer)
+    On Error Resume Next
+    FrmItemSelectionList.VchType = "0448" 'Trim(Index)
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+End Sub
+
 Private Sub MnuLicenceAgreement_Click()
     On Error Resume Next
     Load frmLicenceAgreement
@@ -1839,6 +1989,7 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
         If Dir(App.Path & "\Imposition", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Imposition"
         If Dir(App.Path & "\Pic", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic"
         If Dir(App.Path & "\Report", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Report"
+        If Dir(App.Path & "\JSON", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\JSON"
     If DatabaseType = "MS Access" Then
         If Dir(App.Path & "\EasyPublish.ini") = "" Then WriteToFile "Database Path", App.Path & "\Database": WriteToFile "Database Name", ""
         DatabasePath = Trim(ReadFromFile("Database Path"))
@@ -1883,9 +2034,15 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
              ElseIf DaysLeft <= 30 Then
                     Call MsgBox("You have  " & DaysLeft & " Days Left..." & Chr(13) & "You are using a Demo/Unlicened Version or Subscription of" & Chr(13) & "Easy Publish ERP that will be expired soon." & Chr(13) & "If you would like to purchase or continue to Subcribe, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title)
              End If
-             
+            
     Loop
             If RenewFlag = True Then Call MsgBox("Your Easy Publish ERP Subscription is renewed now " & Chr(13) & " till  :" & dueDate & ". " & Chr(13) & "If you would have any query, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title): RenewFlag = False
+    MnuMasters.Enabled = False
+    MnuDisplay.Enabled = False
+    MnuTransactions.Enabled = False
+    MenuFG_UFGLedger.Enabled = False
+    MnuReports.Enabled = False
+    mnuProjectManagementParent.Enabled = False
 End Sub
 Private Sub MDIForm_Resize()
     On Error Resume Next
@@ -1920,9 +2077,14 @@ ErrorHandler:
 End Sub
 Private Sub MenuPaperLedger_Click(Index As Integer)
     On Error Resume Next
+If Trim(Index) = 19 Then
+    Load FrmPaperStockRegister
+    If Err.Number <> 364 Then FrmPaperStockRegister.Show
+Else
     FrmItemSelectionList.VchType = Trim(Index)
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
+End If
 End Sub
 Private Sub mnuExit_Click()
     If MnuClose.Enabled Then mnuClose_Click
@@ -1931,11 +2093,21 @@ End Sub
 Private Sub mnuOpen_Click()
     Dim rstCompanyMaster As New ADODB.Recordset
     On Error GoTo OpenError
+    If Decrypted(Trim(ReadFromFile("Server User")), Decrypt) Then
+        ServerUser = Decrypt
+    End If
     Load FrmCompanyList
     FrmCompanyList.Show vbModal
     If CompCode <> "" Then
         BusySystemIndicator True
         CloseMainConnection
+        cnClientAccount.CursorLocation = adUseClient
+    If DatabaseType = "MS SQL" Then
+        cnClientAccount.CommandTimeout = 300
+        ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=sa;Initial Catalog=Company ;Data Source=" & ServerName
+        If cnClientAccount.State = 1 Then cnClientAccount.Close
+        cnClientAccount.Open ConnectionString
+    End If
         cnDatabase.CursorLocation = adUseClient
         If DatabaseType = "MS SQL" Then
             cnDatabase.CommandTimeout = 300
@@ -1951,10 +2123,15 @@ Private Sub mnuOpen_Click()
         Load FrmLogin
         FrmLogin.Show vbModal
         If LoginSuccess Then
-            StatusBar1.Panels(3).Text = "User Name : " & Trim(UserName)
+            StatusBar1.Panels(3).Text = "User Name : " & Trim(Username)
             SetMenuOptions (True)
-            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-') FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
-            MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"                       '"Easy Publish  21|Rel 05 | 06.29 Version |Production & Inventory Management System [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
+            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-'),* FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+            MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
+            CompStateCode = Trim(rstCompanyMaster.Fields("State").Value)
+                Call CustomSettings
+               Call Update_Running_Version_Data
+               If exitFlage = True Then exitFlage = False: Call mnuExit_Click: Exit Sub
+               Call btnNotes
             Call CloseRecordset(rstCompanyMaster)
             Exit Sub
         End If
@@ -2019,11 +2196,19 @@ Private Sub SetMenuOptions(bVal As Boolean)
         MnuMasters.Enabled = bVal
         MnuDisplay.Enabled = bVal
         MnuTransactions.Enabled = bVal
+        MenuFG_UFGLedger.Enabled = True
         MnuReports.Enabled = bVal
         mnuProjectManagementParent.Enabled = bVal
     End If
 ErrorHandler:
     Call CloseRecordset(rstUserChild)
+End Sub
+Private Sub mnuStateMaster_Click()
+    On Error Resume Next
+    FrmGeneralMaster.MasterType = "56"
+    FrmGeneralMaster.SL = False
+    Load FrmGeneralMaster
+    If Err.Number <> 364 Then FrmGeneralMaster.Show
 End Sub
 Private Sub MnuYouTube_Click()
            Dim R As Long
@@ -2518,11 +2703,6 @@ End Sub
 '    Load FrmBillRegister
 '    If Err.Number <> 364 Then FrmBillRegister.Show
 'End Sub
-Private Sub mnuProductionSchedule_Click()
-    On Error Resume Next
-    Load FrmProductionSchedule
-    If Err.Number <> 364 Then FrmProductionSchedule.Show
-End Sub
 Private Sub mnuPurchaseSaleOrderParty_Click(Index As Integer)
     On Error Resume Next
     FrmOrderProcessing.VchCodeType = Trim(Index)
@@ -2594,7 +2774,7 @@ Private Sub mnuOpBal_Click()
     End If
     Screen.MousePointer = vbHourglass
     If rstPaperOpBal.State = adStateOpen Then rstPaperOpBal.Close
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstPaperOpBal.Open "SELECT M2.Name As GodownName,TRIM(M1.Name)+' (UOM : '+TRIM(U.Name)+')' As PaperName,[Weight/Unit],C.OpBalOther,C.OpBalSheets,C.OpBalTat,U.Value1 As SPU FROM ((PaperChild C INNER JOIN PaperMaster M1 ON M1.Code=C.Code) INNER JOIN AccountMaster M2 ON M2.Code=C.Account) INNER JOIN GeneralMaster U ON M1.UOM=U.Code ORDER BY M2.Name,M1.Name", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstPaperOpBal.RecordCount = 0 Then
         Screen.MousePointer = vbNormal
@@ -2662,7 +2842,7 @@ Private Sub mnuImportBal01_Click()  'Print Order
     Dim SQL As String
     On Error GoTo ErrorHandler
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             rstCompanyMaster.ActiveConnection = Nothing
@@ -2811,7 +2991,7 @@ Private Sub mnuImportBal02_Click()
     Dim ClBal As Double
     On Error GoTo ErrorHandler
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             CxnImporter.CursorLocation = adUseClient
@@ -2881,7 +3061,7 @@ Private Sub mnuImportBal03_Click()
     On Error GoTo ErrorHandler
     
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             CxnImporter.CursorLocation = adUseClient
@@ -3264,20 +3444,36 @@ Private Sub mnuAccountMaster_Click()
     Load FrmAccountMaster
     If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
 End Sub
+'Private Sub mnuRate_Click(Index As Integer)
+'    On Error Resume Next
+'    FrmAccountMaster.AccountType = Choose(Index, "04", "05", "06", "07", "08")
+'    FrmAccountMaster.AccountGroup = ""
+'    FrmAccountMaster.RateType = "S"
+'    FrmAccountMaster.SL = False
+'    Load FrmAccountMaster
+'    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+'End Sub
 Private Sub mnuRate_Click(Index As Integer)
     On Error Resume Next
-    FrmAccountMaster.AccountType = Choose(Index, "04", "05", "06", "07", "08")
-    FrmAccountMaster.AccountGroup = ""
-    FrmAccountMaster.RateType = "S"
+    FrmAccountMaster.AccountType = Choose(Index, "05", "07", "08", "04", "06")
     FrmAccountMaster.SL = False
+    FrmAccountMaster.Caption = Choose(Index, "Printing", "Misc Operation", "Binding", "Processing", "Plates") & " Rate Master"
     Load FrmAccountMaster
-    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+    If Err.Number <> 364 Then FrmAccountMaster.Show
 End Sub
 Private Sub mnuMaterialCentreMaster_Click()
     On Error Resume Next
     FrmAccountMaster.AccountType = "01"
     FrmAccountMaster.SL = False
     FrmAccountMaster.AccountGroup = "*99999" 'Material Centre
+    Load FrmAccountMaster
+    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+End Sub
+Private Sub mnuSalesExecutiveMaster_Click()
+    On Error Resume Next
+    FrmAccountMaster.AccountType = "01"
+    FrmAccountMaster.SL = False
+    FrmAccountMaster.AccountGroup = "*99995" 'Material Centre
     Load FrmAccountMaster
     If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
 End Sub
@@ -3338,6 +3534,7 @@ Private Sub mnuBillingNarrationMaster_Click()
 End Sub
 Private Sub mnuMachineMaster_Click()
     On Error Resume Next
+    'FrmGeneralMaster.MasterType = "21"
     FrmMachineMaster.SL = False
     Load FrmMachineMaster
     If Err.Number <> 364 Then FrmMachineMaster.Caption = "Machine Master": FrmMachineMaster.Show
@@ -3439,6 +3636,12 @@ Private Sub mnuProjectManagement_Click(Index As Integer)
     ElseIf Index = 3 Then
         Load FrmTeamMemberMaster
         If Err.Number <> 364 Then FrmTeamMemberMaster.Show
+'    ElseIf Index = 4 Then
+'        Load FrmProjectAssigner
+'        If Err.Number <> 364 Then FrmProjectAssigner.Show
+'    ElseIf Index = 5 Then
+'        Load FrmProjectTracker
+'        If Err.Number <> 364 Then FrmProjectTracker.Show
     End If
 End Sub
 Private Sub mnuProject_Click(Index As Integer)
@@ -3466,13 +3669,13 @@ Private Sub mnuDespatchManagement_Click(Index As Integer)
 End Sub
 Private Sub MenuSaleLedger_Click(Index As Integer)
     On Error Resume Next
-    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 6, Trim(Index), IIf(Trim(Index) >= 7 And Trim(Index) <= 11, (Trim(Index) - 1), IIf(Trim(Index) >= 21 And Trim(Index) <= 25, (Trim(Index) - 1), IIf(Trim(Index) = 32, (Trim(Index) - 3), (Trim(Index) - 2)))))
+    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 6, Trim(Index), IIf(Trim(Index) >= 7 And Trim(Index) <= 11, (Trim(Index) - 1), IIf(Trim(Index) >= 21 And Trim(Index) <= 25, (Trim(Index) - 1), IIf(Trim(Index) = 32, "0448", (Trim(Index) - 2)))))
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
 Private Sub MenuPurchaseLedger_Click(Index As Integer)
     On Error Resume Next
-    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 56, Trim(Index), IIf(Trim(Index) >= 57 And Trim(Index) <= 61, (Trim(Index) - 1), IIf(Trim(Index) >= 62 And Trim(Index) <= 66, (Trim(Index) - 2), IIf(Trim(Index) = 73, (Trim(Index) - 4), (Trim(Index) - 3)))))
+    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 56, Trim(Index), IIf(Trim(Index) >= 57 And Trim(Index) <= 61, (Trim(Index) - 1), IIf(Trim(Index) >= 62 And Trim(Index) <= 66, (Trim(Index) - 2), IIf(Trim(Index) = 73, "0148", (Trim(Index) - 3)))))
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
@@ -3506,12 +3709,33 @@ Private Sub MnuEmailUtilities_Click()
     Load FrmEmailing
     If Err.Number <> 364 Then FrmEmailing.Caption = "Emailing ": FrmEmailing.Show
 End Sub
-Private Sub MnuHelp_Click()
+Private Sub MnuHelp_Click(Index As Integer)
+    
     On Error Resume Next
     Dim R As Long
-    If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
-            R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
-    Else
-            R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+    Dim Foldername As String
+    Foldername = App.Path
+    If Trim(Index) = 1 Then
+        If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+        End If
+    ElseIf Trim(Index) = 2 Then
+        Shell "C:\WINDOWS\explorer.exe """ & Foldername & "", vbNormalFocus
+    ElseIf Trim(Index) = 3 Then
+        If Dir(App.Path & "\VersionUpdate.exe", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\VersionUpdate.exe", 0, 0, 1)
+                mnuExit_Click
+        End If
+    ElseIf Trim(Index) = 4 Then
+        If CompCode <> "" Then
+            Load FrmFY: Screen.MousePointer = vbNormal:  FrmFY.Show vbModal
+        Else
+            MsgBox "Please Login Company First", vbExclamation
+        End If
     End If
 End Sub
+

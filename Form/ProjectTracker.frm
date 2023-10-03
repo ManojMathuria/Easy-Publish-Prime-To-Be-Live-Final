@@ -1538,7 +1538,7 @@ Private Sub SSTab1_Click(PreviousTab As Integer)
     End If
     Exit Sub
 DisplayInfo:
-   Text2.Text = UserCode: Text6.Text = UserName: Text7.Text = rstItemList.Fields("Name").Value
+   Text2.Text = UserCode: Text6.Text = Username: Text7.Text = rstItemList.Fields("Name").Value
 End Sub
 Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Dim HiLiteRecord As Boolean
@@ -1966,11 +1966,11 @@ With cdoMsg
     .From = rstCompanyMaster.Fields("UserName").Value
     .Subject = MsgSubject
     .HTMLBody = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & "<Br><Br><b><I>" & Task & "<Br><b>Task Status: " & TaskComments & "<Br><Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & rstItemList.Fields("AssignTo").Value & "<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
-    If ShotFlag = False Then Call Screen_Shot
-    If Dir(App.Path & "\Screen Shot\Screen Shot.bmp", vbDirectory) <> "" Then
-    .AddAttachment App.Path & "\Screen Shot\Screen Shot.bmp"
-    ShotFlag = True
-    End If
+'    If ShotFlag = False Then Call Screen_Shot
+'    If Dir(App.Path & "\Screen Shot\Screen Shot.bmp", vbDirectory) <> "" Then
+'    .AddAttachment App.Path & "\Screen Shot\Screen Shot.bmp"
+'    ShotFlag = True
+'    End If
     Set .Configuration = cdoConf
 'Status Bar
     MdiMainMenu.StatusBar1.Panels(2).Text = "Sending Email..!!!"

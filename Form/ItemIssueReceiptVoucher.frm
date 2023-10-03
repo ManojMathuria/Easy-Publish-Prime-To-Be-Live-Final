@@ -14,7 +14,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
    ClientHeight    =   9075
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13740
+   ClientWidth     =   16740
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -26,20 +26,19 @@ Begin VB.Form frmItemIssueReceiptVoucher
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    ScaleHeight     =   9075
-   ScaleWidth      =   13740
+   ScaleWidth      =   16740
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   9060
       Left            =   15
       TabIndex        =   18
       TabStop         =   0   'False
       Top             =   0
-      Width           =   13710
+      Width           =   16710
       _Version        =   65536
-      _ExtentX        =   24183
+      _ExtentX        =   29475
       _ExtentY        =   15981
       _StockProps     =   77
       TintColor       =   16711935
@@ -66,8 +65,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
          TabIndex        =   20
          TabStop         =   0   'False
          Top             =   120
-         Width           =   13485
-         _ExtentX        =   23786
+         Width           =   16485
+         _ExtentX        =   29078
          _ExtentY        =   15584
          _Version        =   393216
          Style           =   1
@@ -100,7 +99,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ItemIssueReceiptVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(4)"
+         Tab(1).Control(0)=   "Mh3dLabel55"
          Tab(1).Control(1)=   "Mh3dLabel1(1)"
          Tab(1).Control(2)=   "Mh3dFrame2"
          Tab(1).Control(3)=   "btnNotes"
@@ -163,7 +162,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
             MaxLength       =   40
             TabIndex        =   48
             Top             =   8310
-            Width           =   8220
+            Width           =   11220
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   7785
@@ -171,8 +170,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
             TabIndex        =   21
             TabStop         =   0   'False
             Top             =   450
-            Width           =   13260
-            _ExtentX        =   23389
+            Width           =   16260
+            _ExtentX        =   28681
             _ExtentY        =   13732
             _Version        =   393216
             AllowUpdate     =   0   'False
@@ -312,29 +311,29 @@ Begin VB.Form frmItemIssueReceiptVoucher
                AllowSizing     =   0   'False
                Locked          =   -1  'True
                BeginProperty Column00 
-                  ColumnAllowSizing=   0   'False
+                  ColumnAllowSizing=   -1  'True
                   Locked          =   -1  'True
-                  ColumnWidth     =   1319.811
+                  ColumnWidth     =   1604.976
                EndProperty
                BeginProperty Column01 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   1904.882
+                  ColumnWidth     =   2145.26
                EndProperty
                BeginProperty Column02 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   1019.906
+                  ColumnWidth     =   1305.071
                EndProperty
                BeginProperty Column03 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   3704.882
+                  ColumnWidth     =   4004.788
                EndProperty
                BeginProperty Column04 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   1950.236
+                  ColumnWidth     =   2294.929
                EndProperty
                BeginProperty Column05 
                   ColumnAllowSizing=   0   'False
@@ -344,13 +343,13 @@ Begin VB.Form frmItemIssueReceiptVoucher
                BeginProperty Column06 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   1080
+                  ColumnWidth     =   1200.189
                EndProperty
                BeginProperty Column07 
                   Alignment       =   1
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   1200.189
+                  ColumnWidth     =   1395.213
                EndProperty
             EndProperty
          End
@@ -360,9 +359,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
             TabIndex        =   23
             TabStop         =   0   'False
             Top             =   480
-            Width           =   13260
+            Width           =   16140
             _Version        =   65536
-            _ExtentX        =   23389
+            _ExtentX        =   28469
             _ExtentY        =   13996
             _StockProps     =   77
             Enabled         =   0   'False
@@ -398,12 +397,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1680
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   0
                Top             =   120
-               Width           =   3195
+               Width           =   3555
             End
             Begin VB.TextBox Text8 
                Appearance      =   0  'Flat
@@ -419,12 +418,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   9900
+               Left            =   12060
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   5
                Top             =   675
-               Width           =   3250
+               Width           =   3975
             End
             Begin VB.TextBox Text9 
                Appearance      =   0  'Flat
@@ -440,11 +439,11 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   5460
+               Left            =   6660
                MaxLength       =   255
                TabIndex        =   10
                Top             =   1305
-               Width           =   3135
+               Width           =   4095
             End
             Begin VB.TextBox Text7 
                Appearance      =   0  'Flat
@@ -460,12 +459,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   5460
+               Left            =   6660
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   4
                Top             =   675
-               Width           =   3135
+               Width           =   4095
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -481,22 +480,22 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1680
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   6
                Top             =   990
-               Width           =   3195
+               Width           =   3555
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   285
                Left            =   120
                TabIndex        =   26
                Top             =   6690
-               Width           =   13035
+               Width           =   15915
                _Version        =   65536
-               _ExtentX        =   22992
-               _ExtentY        =   494
+               _ExtentX        =   28072
+               _ExtentY        =   503
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
@@ -647,11 +646,11 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   5460
+               Left            =   6660
                MaxLength       =   25
                TabIndex        =   1
                Top             =   120
-               Width           =   3135
+               Width           =   4095
             End
             Begin VB.TextBox Text4 
                Appearance      =   0  'Flat
@@ -667,11 +666,11 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1680
                MaxLength       =   40
                TabIndex        =   9
                Top             =   1305
-               Width           =   3195
+               Width           =   3555
             End
             Begin VB.TextBox Text3 
                Appearance      =   0  'Flat
@@ -687,21 +686,21 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   1200
+               Left            =   1680
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   3
                Top             =   675
-               Width           =   3195
+               Width           =   3555
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
                Left            =   120
                TabIndex        =   24
                Top             =   675
-               Width           =   1095
+               Width           =   1575
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2778
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -726,9 +725,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Left            =   120
                TabIndex        =   25
                Top             =   1305
-               Width           =   1095
+               Width           =   1575
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2778
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -750,12 +749,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
-               Left            =   9900
+               Left            =   12060
                TabIndex        =   2
                Top             =   120
-               Width           =   3255
+               Width           =   1815
                _Version        =   65536
-               _ExtentX        =   5741
+               _ExtentX        =   3201
                _ExtentY        =   582
                Calendar        =   "ItemIssueReceiptVoucher.frx":0350
                Caption         =   "ItemIssueReceiptVoucher.frx":0468
@@ -815,9 +814,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Left            =   120
                TabIndex        =   13
                Top             =   1830
-               Width           =   13035
+               Width           =   15915
                _Version        =   524288
-               _ExtentX        =   22992
+               _ExtentX        =   28072
                _ExtentY        =   8599
                _StockProps     =   64
                EditEnterAction =   5
@@ -861,7 +860,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
                Index           =   0
-               Left            =   8580
+               Left            =   10740
                TabIndex        =   29
                Top             =   120
                Width           =   1335
@@ -891,9 +890,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Left            =   120
                TabIndex        =   31
                Top             =   990
-               Width           =   1095
+               Width           =   1575
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2778
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -915,12 +914,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
-               Left            =   4380
+               Left            =   5220
                TabIndex        =   32
                Top             =   990
-               Width           =   1095
+               Width           =   1455
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2566
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -942,13 +941,13 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput8 
                Height          =   330
-               Left            =   9945
+               Left            =   11745
                TabIndex        =   33
                TabStop         =   0   'False
                Top             =   7170
-               Width           =   855
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   1508
+               _ExtentX        =   2143
                _ExtentY        =   582
                Calculator      =   "ItemIssueReceiptVoucher.frx":155D
                Caption         =   "ItemIssueReceiptVoucher.frx":157D
@@ -994,20 +993,20 @@ Begin VB.Form frmItemIssueReceiptVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput7 
                Height          =   330
-               Left            =   9390
+               Left            =   10950
                TabIndex        =   34
                TabStop         =   0   'False
                Top             =   7170
-               Width           =   570
+               Width           =   810
                _Version        =   65536
-               _ExtentX        =   1005
+               _ExtentX        =   1429
                _ExtentY        =   582
                Calculator      =   "ItemIssueReceiptVoucher.frx":1679
                Caption         =   "ItemIssueReceiptVoucher.frx":1699
@@ -1053,14 +1052,14 @@ Begin VB.Form frmItemIssueReceiptVoucher
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1903493125
+               ValueVT         =   209846277
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel35 
                Height          =   645
-               Left            =   10785
+               Left            =   12945
                TabIndex        =   35
                Top             =   7170
                Width           =   1215
@@ -1087,14 +1086,14 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput11 
                Height          =   645
-               Left            =   11985
+               Left            =   14145
                TabIndex        =   36
                TabStop         =   0   'False
                Top             =   7170
-               Width           =   1170
+               Width           =   1890
                _Version        =   65536
-               _ExtentX        =   2055
-               _ExtentY        =   1147
+               _ExtentX        =   3334
+               _ExtentY        =   1138
                Calculator      =   "ItemIssueReceiptVoucher.frx":17CD
                Caption         =   "ItemIssueReceiptVoucher.frx":17ED
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1232,12 +1231,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
                Height          =   330
-               Left            =   8430
+               Left            =   9750
                TabIndex        =   39
                Top             =   7485
-               Width           =   975
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   1720
+               _ExtentX        =   2143
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1259,13 +1258,13 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
-               Left            =   9945
+               Left            =   11745
                TabIndex        =   40
                TabStop         =   0   'False
                Top             =   7485
-               Width           =   855
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   1508
+               _ExtentX        =   2143
                _ExtentY        =   582
                Calculator      =   "ItemIssueReceiptVoucher.frx":1A75
                Caption         =   "ItemIssueReceiptVoucher.frx":1A95
@@ -1311,20 +1310,20 @@ Begin VB.Form frmItemIssueReceiptVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   204079109
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput9 
                Height          =   330
-               Left            =   9390
+               Left            =   10950
                TabIndex        =   41
                TabStop         =   0   'False
                Top             =   7485
-               Width           =   570
+               Width           =   810
                _Version        =   65536
-               _ExtentX        =   1005
+               _ExtentX        =   1429
                _ExtentY        =   582
                Calculator      =   "ItemIssueReceiptVoucher.frx":1B91
                Caption         =   "ItemIssueReceiptVoucher.frx":1BB1
@@ -1370,20 +1369,20 @@ Begin VB.Form frmItemIssueReceiptVoucher
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1903493125
+               ValueVT         =   204079109
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput6 
                Height          =   645
-               Left            =   5235
+               Left            =   6195
                TabIndex        =   15
                Top             =   7170
-               Width           =   1095
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   1931
-               _ExtentY        =   1147
+               _ExtentX        =   2143
+               _ExtentY        =   1138
                Calculator      =   "ItemIssueReceiptVoucher.frx":1CAD
                Caption         =   "ItemIssueReceiptVoucher.frx":1CCD
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1435,12 +1434,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   645
-               Left            =   4515
+               Left            =   5115
                TabIndex        =   42
                Top             =   7170
-               Width           =   735
+               Width           =   1095
                _Version        =   65536
-               _ExtentX        =   1296
+               _ExtentX        =   1931
                _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1465,10 +1464,10 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Left            =   2280
                TabIndex        =   43
                Top             =   7170
-               Width           =   855
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1508
-               _ExtentY        =   1147
+               _ExtentX        =   1720
+               _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
@@ -1489,13 +1488,13 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput4 
                Height          =   645
-               Left            =   3120
+               Left            =   3240
                TabIndex        =   14
                Top             =   7170
-               Width           =   570
+               Width           =   930
                _Version        =   65536
-               _ExtentX        =   1005
-               _ExtentY        =   1147
+               _ExtentX        =   1640
+               _ExtentY        =   1138
                Calculator      =   "ItemIssueReceiptVoucher.frx":1E39
                Caption         =   "ItemIssueReceiptVoucher.frx":1E59
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1547,12 +1546,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
-               Left            =   8430
+               Left            =   9750
                TabIndex        =   44
                Top             =   7170
-               Width           =   975
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   1720
+               _ExtentX        =   2143
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1574,14 +1573,14 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput5 
                Height          =   645
-               Left            =   3675
+               Left            =   4155
                TabIndex        =   17
                TabStop         =   0   'False
                Top             =   7170
-               Width           =   855
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1508
-               _ExtentY        =   1147
+               _ExtentX        =   1720
+               _ExtentY        =   1138
                Calculator      =   "ItemIssueReceiptVoucher.frx":1F8D
                Caption         =   "ItemIssueReceiptVoucher.frx":1FAD
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1633,7 +1632,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   645
-               Left            =   6315
+               Left            =   7395
                TabIndex        =   45
                Top             =   7170
                Width           =   1095
@@ -1660,12 +1659,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   645
-               Left            =   7395
+               Left            =   8475
                TabIndex        =   16
                Top             =   7170
-               Width           =   1050
+               Width           =   1290
                _Version        =   65536
-               _ExtentX        =   1852
+               _ExtentX        =   2275
                _ExtentY        =   1138
                Calculator      =   "ItemIssueReceiptVoucher.frx":20E1
                Caption         =   "ItemIssueReceiptVoucher.frx":2101
@@ -1718,12 +1717,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
-               Left            =   4380
+               Left            =   5220
                TabIndex        =   46
                Top             =   675
-               Width           =   1095
+               Width           =   1455
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2566
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1745,7 +1744,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
                Height          =   330
-               Left            =   11175
+               Left            =   13815
                TabIndex        =   47
                Top             =   1305
                Width           =   975
@@ -1773,12 +1772,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput13 
                Height          =   330
-               Left            =   12135
+               Left            =   14775
                TabIndex        =   12
                Top             =   1305
-               Width           =   1020
+               Width           =   1260
                _Version        =   65536
-               _ExtentX        =   1799
+               _ExtentX        =   2222
                _ExtentY        =   582
                Calculator      =   "ItemIssueReceiptVoucher.frx":226D
                Caption         =   "ItemIssueReceiptVoucher.frx":228D
@@ -1824,14 +1823,14 @@ Begin VB.Form frmItemIssueReceiptVoucher
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   1529872389
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
-               Left            =   8580
+               Left            =   10740
                TabIndex        =   50
                Top             =   1305
                Width           =   1335
@@ -1858,12 +1857,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
-               Left            =   9900
+               Left            =   12060
                TabIndex        =   11
                Top             =   1305
-               Width           =   1290
+               Width           =   1770
                _Version        =   65536
-               _ExtentX        =   2275
+               _ExtentX        =   3122
                _ExtentY        =   582
                Calendar        =   "ItemIssueReceiptVoucher.frx":23C1
                Caption         =   "ItemIssueReceiptVoucher.frx":24D9
@@ -1923,9 +1922,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Left            =   120
                TabIndex        =   51
                Top             =   120
-               Width           =   1095
+               Width           =   1575
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2778
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1947,12 +1946,13 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
-               Left            =   4380
+               Index           =   0
+               Left            =   5220
                TabIndex        =   52
                Top             =   120
-               Width           =   1095
+               Width           =   1455
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2566
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1974,12 +1974,12 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
-               Left            =   4380
+               Left            =   5220
                TabIndex        =   53
                Top             =   1305
-               Width           =   1095
+               Width           =   1455
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   2566
                _ExtentY        =   582
                _StockProps     =   77
                BackColor       =   32896
@@ -2002,7 +2002,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
-               Left            =   8580
+               Left            =   10740
                TabIndex        =   54
                Top             =   990
                Width           =   1335
@@ -2029,7 +2029,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
-               Left            =   8580
+               Left            =   10740
                TabIndex        =   55
                Top             =   675
                Width           =   1335
@@ -2054,17 +2054,45 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Picture         =   "ItemIssueReceiptVoucher.frx":26C9
                Picture         =   "ItemIssueReceiptVoucher.frx":26E5
             End
+            Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+               Height          =   330
+               Index           =   4
+               Left            =   13920
+               TabIndex        =   60
+               Top             =   120
+               Width           =   2055
+               _Version        =   65536
+               _ExtentX        =   3625
+               _ExtentY        =   582
+               _StockProps     =   77
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               TintColor       =   16711935
+               Caption         =   "  F11-> Get Pending List"
+               Alignment       =   0
+               FillColor       =   8421504
+               TextColor       =   16777215
+               Picture         =   "ItemIssueReceiptVoucher.frx":2701
+               Picture         =   "ItemIssueReceiptVoucher.frx":271D
+            End
             Begin MSForms.ComboBox cmbChallanType 
                Height          =   330
-               Left            =   9900
+               Left            =   12060
                TabIndex        =   8
                Top             =   990
-               Width           =   3255
+               Width           =   3975
                VariousPropertyBits=   545282075
                BackColor       =   16777215
                BorderStyle     =   1
                DisplayStyle    =   7
-               Size            =   "5741;582"
+               Size            =   "7011;582"
                ListWidth       =   5221
                MatchEntry      =   0
                ShowDropButtonWhen=   1
@@ -2076,21 +2104,21 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin VB.Line Line3 
                X1              =   0
-               X2              =   13240
+               X2              =   16200
                Y1              =   7065
                Y2              =   7065
             End
             Begin MSForms.ComboBox cmbItemType 
                Height          =   330
-               Left            =   5460
+               Left            =   6660
                TabIndex        =   7
                Top             =   990
-               Width           =   3135
+               Width           =   4095
                VariousPropertyBits=   545282075
                BackColor       =   16777215
                BorderStyle     =   1
                DisplayStyle    =   7
-               Size            =   "5530;582"
+               Size            =   "7223;582"
                ListWidth       =   5468
                MatchEntry      =   0
                ShowDropButtonWhen=   1
@@ -2102,13 +2130,13 @@ Begin VB.Form frmItemIssueReceiptVoucher
             End
             Begin VB.Line Line1 
                X1              =   0
-               X2              =   13240
-               Y1              =   575
-               Y2              =   575
+               X2              =   16200
+               Y1              =   570
+               Y2              =   570
             End
             Begin VB.Line Line2 
                X1              =   0
-               X2              =   13240
+               X2              =   16200
                Y1              =   1725
                Y2              =   1725
             End
@@ -2116,7 +2144,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   2
-            Left            =   8925
+            Left            =   11925
             TabIndex        =   49
             Top             =   8310
             Width           =   4455
@@ -2138,18 +2166,18 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":2701
-            Picture         =   "ItemIssueReceiptVoucher.frx":271D
+            Picture         =   "ItemIssueReceiptVoucher.frx":2739
+            Picture         =   "ItemIssueReceiptVoucher.frx":2755
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   1
-            Left            =   -69795
+            Left            =   -67275
             TabIndex        =   58
             Top             =   8445
-            Width           =   8175
+            Width           =   8535
             _Version        =   65536
-            _ExtentX        =   14420
+            _ExtentX        =   15055
             _ExtentY        =   582
             _StockProps     =   77
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -2166,18 +2194,18 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":2739
-            Picture         =   "ItemIssueReceiptVoucher.frx":2755
+            Picture         =   "ItemIssueReceiptVoucher.frx":2771
+            Picture         =   "ItemIssueReceiptVoucher.frx":278D
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   3
-            Left            =   11205
+            Left            =   13965
             TabIndex        =   59
             Top             =   0
-            Width           =   2175
+            Width           =   2535
             _Version        =   65536
-            _ExtentX        =   3836
+            _ExtentX        =   4471
             _ExtentY        =   582
             _StockProps     =   77
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -2194,18 +2222,17 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":2771
-            Picture         =   "ItemIssueReceiptVoucher.frx":278D
+            Picture         =   "ItemIssueReceiptVoucher.frx":27A9
+            Picture         =   "ItemIssueReceiptVoucher.frx":27C5
          End
-         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel55 
             Height          =   330
-            Index           =   4
-            Left            =   -63480
-            TabIndex        =   60
+            Left            =   -61080
+            TabIndex        =   61
             Top             =   0
-            Width           =   2055
+            Width           =   2655
             _Version        =   65536
-            _ExtentX        =   3625
+            _ExtentX        =   4683
             _ExtentY        =   582
             _StockProps     =   77
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -2218,12 +2245,15 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Strikethrough   =   0   'False
             EndProperty
             TintColor       =   16711935
-            Caption         =   "  F11-> Get Pending List"
+            Caption         =   "  -> Get Jobwork Paper Cost <-"
             Alignment       =   0
+            BevelStyle      =   1
+            BorderStyle     =   2
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":27A9
-            Picture         =   "ItemIssueReceiptVoucher.frx":27C5
+            Picture         =   "ItemIssueReceiptVoucher.frx":27E1
+            BevelStyleInside=   1
+            Picture         =   "ItemIssueReceiptVoucher.frx":27FD
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2254,8 +2284,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
       Left            =   0
       TabIndex        =   19
       Top             =   0
-      Width           =   13740
-      _ExtentX        =   24236
+      Width           =   16740
+      _ExtentX        =   29528
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -2343,10 +2373,10 @@ Option Explicit
 'Vch Type=NNNNFI/NNNNUI/NNNNSI/NNNNFR/NNNNUR/NNNNSR (F-Finished U-Unfinished I-Issue R-Receipt) e.g. 0510FI
 'BOM=NNNNXXXXXXXXXXXXFI/NNNNXXXXXXXXXXXXMF (MF/ME/CF/MO/BN/BM) e.g. 0510XXXXXXXXXXXXFI
 '05-Purchase Challan 06-Purchase Return Challan 07-Sales Return Challan 08-Sales Challan
-Public VchType As String 'R-Item Receipt I-Item Issue
+Public VchType As String, vtCode As Variant 'R-Item Receipt I-Item Issue
 Dim cnDeliveryChallan As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstDlvChVchList As New ADODB.Recordset, rstDeliveryCVParent As New ADODB.Recordset, rstDeliveryCVChild As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstNarrationList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstOrderList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset
-Dim PartyCode As String, ConsigneeCode As String, TaxCode As String, ItemCode As String, RefCode As String, NarrationCode As String, HSNCode As String, MaterialCentreCode As String, VchPrefix As String, TranType As String, VchNumbering As String, VchSeriesCode As String, AutoVchNo As String, oVchSeriesCode As String, oVchNo As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, TaxCode As String, ItemCode As String, RefCode As String, NarrationCode As String, HSNCode As String, MaterialCentreCode As String, VchPrefix As String, TranType As String, VchNumbering As String, VchSeriesCode As String, AutoVchNo As String, oVchSeriesCode As String, oVchNo As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, Narration As String
 Dim frmDlvChDespatchDetails As New FrmDespatchDetails, frmDlvChConsigneeDetails As New FrmConsigneeDetails
 Private Sub Form_Load()
@@ -2362,11 +2392,16 @@ Private Sub Form_Load()
     Narration = rstNarrationList.Fields(0).Value
     rstNarrationList.Close
     LoadMasterList
-    rstDlvChVchList.Open "SELECT T.Code,T.Name As Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,ISNULL(M.Name,ConsigneeName) As MaterialCentreName,ChallanNo,ChallanDate,Amount,T.AutoVchNo FROM (JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) LEFT JOIN AccountMaster M ON T." & IIf(VchType = "I", "Consignee", "MaterialCentre") & "=M.Code INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE LEFT(Type,2) IN ('05','06','07','08') AND RIGHT(Type,1)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.AutoVchNo", cnDeliveryChallan, adOpenKeyset, adLockPessimistic
+    rstDlvChVchList.Open "SELECT T.Code,T.Name As Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,ISNULL(M.Name,ConsigneeName) As MaterialCentreName,ChallanNo,ChallanDate,Amount,T.AutoVchNo FROM (JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) LEFT JOIN AccountMaster M ON T." & IIf(VchType = "I", "Consignee", "MaterialCentre") & "=M.Code INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE LEFT(Type,2) IN ('05','06','07','08') AND RIGHT(Type,1)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.AutoVchNo", cnDeliveryChallan, adOpenKeyset, adLockPessimistic
     rstDeliveryCVParent.CursorLocation = adUseClient
     rstDlvChVchList.Filter = adFilterNone
     If rstDlvChVchList.RecordCount > 0 Then rstDlvChVchList.MoveLast
     Set DataGrid1.DataSource = rstDlvChVchList
+    DataGrid1.Columns(4).Caption = "Ship TO"
+    DataGrid1.Columns(1).Width = 2000
+    DataGrid1.Columns(2).Width = 1200
+    DataGrid1.Columns(3).Width = 3250
+    DataGrid1.Columns(4).Width = 3250
     BusySystemIndicator False
     SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then SortOrder = "Code" Else SortOrder = "AutoVchNo"
@@ -2491,6 +2526,9 @@ Private Sub Form_Unload(Cancel As Integer)
     DisableChildMenu
     MdiMainMenu.mnuMaterialOutJobWork.Enabled = True
     MdiMainMenu.mnuMaterialInJobWork.Enabled = True
+End Sub
+Private Sub Mh3dLabel55_Click()
+Call GetJobWorkPaperCost
 End Sub
 Private Sub Text1_Change()
     'If FrmStockLedger.dSortBy = True Then SortOrder = "Code" Else SortOrder = "AutoVchNo"
@@ -2882,10 +2920,14 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
         FrmAccountMaster.SL = True
         FrmAccountMaster.AccountType = "01": FrmAccountMaster.AccountGroup = ""
         FrmAccountMaster.MasterCode = PartyCode
+        FrmAccountMaster.StateCode = PartyStateCode
         Load FrmAccountMaster
         If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
         On Error GoTo 0
-        PartyCode = slCode: Text3.Text = slName
+        PartyCode = slCode: Text3.Text = slName:
+        If Not IsNull(slStateCode) Then
+        PartyStateCode = slStateCode
+        End If
         If Not CheckEmpty(PartyCode, False) Then LoadMasterList: Sendkeys "{TAB}"
     End If
 End Sub
@@ -2930,6 +2972,7 @@ End Sub
 Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
         On Error Resume Next
+        slStateCode = PartyStateCode
         FrmTaxMaster.SL = True
         FrmTaxMaster.MasterCode = TaxCode
         Load FrmTaxMaster
@@ -2967,11 +3010,12 @@ Private Sub ViewRecord()
     ClearFields
     If rstDlvChVchList.EOF Then Exit Sub
     FindRecord
+    LoadMasterList
     LoadFields
 End Sub
 Private Sub FindRecord()
     If rstDeliveryCVParent.State = adStateOpen Then rstDeliveryCVParent.Close
-    rstDeliveryCVParent.Open "SELECT * FROM JobworkBVParent WHERE Code='" & FixQuote(rstDlvChVchList.Fields("Code").Value) & "'", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
+    rstDeliveryCVParent.Open "SELECT *, (Select State From AccountMaster Where Code=Party) AS State FROM JobworkBVParent WHERE Code='" & FixQuote(rstDlvChVchList.Fields("Code").Value) & "'", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
     If rstDeliveryCVParent.RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
 End Sub
 Private Sub ClearFields()
@@ -3000,7 +3044,7 @@ Private Sub ClearFields()
     MhRealInput11.Value = 0
     Text10.Text = ""
     fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 1, 1
-    PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
+    PartyStateCode = "": PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
     frmDlvChDespatchDetails.Text1.Text = "": frmDlvChDespatchDetails.Text2.Text = "": frmDlvChDespatchDetails.Text3.Text = "": frmDlvChDespatchDetails.Text4.Text = "": frmDlvChDespatchDetails.MhDateInput1.Value = Null: frmDlvChDespatchDetails.Text5.Text = "": frmDlvChDespatchDetails.MhDateInput2.Value = Null
     frmDlvChConsigneeDetails.Text1.Text = "": frmDlvChConsigneeDetails.Text2.Text = "": frmDlvChConsigneeDetails.Text3.Text = "": frmDlvChConsigneeDetails.Text4.Text = "": frmDlvChConsigneeDetails.Text5.Text = "": frmDlvChConsigneeDetails.Text6.Text = ""
 End Sub
@@ -3013,6 +3057,8 @@ Private Sub LoadFields()
         If Not IsNull(.Fields("ChallanDate").Value) Then MhDateInput2.Text = Format(.Fields("ChallanDate").Value, "dd-MM-yyyy")
         MhRealInput13.Value = Val(.Fields("Box").Value)
        PartyCode = .Fields("Party").Value
+       On Error Resume Next
+       PartyStateCode = .Fields("State").Value
         If rstAccountList.RecordCount > 0 Then rstAccountList.MoveFirst
         rstAccountList.Find "[Code] = '" & PartyCode & "'"
         If Not rstAccountList.EOF Then Text3.Text = rstAccountList.Fields("Col0").Value
@@ -3575,12 +3621,72 @@ Private Sub LoadOrderList()
                     End If
                     rstOrderList.MoveNext
                 Loop
+                Call GetJobWorkPaperCost
                 Call CalculateTotal
             End With
         End If
     End If
     CloseForm FrmOrderList
 End Sub
+Private Function GetJobWorkPaperCost()
+On Error Resume Next
+Dim i As Long, SQLwt As String, Rate As Variant, CellVal(1 To 8) As Variant, n As Long, K As Long
+            With fpSpread1
+            For i = 1 To .DataRowCnt
+            .SetActiveCell 13, i
+            .GetText 9, fpSpread1.ActiveRow, vtCode: vtCode = Right(vtCode, 2)
+        If VchType = "SU" Then Exit Function
+        If InStr(1, "MF_ME_CF_BM_FI", vtCode) > 0 Then
+            .GetText 9, fpSpread1.ActiveRow, vtCode: vtCode = Left(vtCode, 6)
+                SQLwt = "SELECT ISNUll(C5.PaperConsumptionsheets/(Select Value1 From GeneralMAster Where Code=PM1.UOM)*PM1.[Weight/Unit]/P.EstQty01,0) +"
+'                SQLwt = SQLwt + "ISNUll(C5.PaperConsumptionsheets2/(Select Value1 From GeneralMAster Where Code=PM2.UOM)*PM2.[Weight/Unit]/P.EstQty01,0) +"
+'                SQLwt = SQLwt + "ISNUll(C5.PaperConsumptionsheets4/(Select Value1 From GeneralMAster Where Code=PM4.UOM)*PM4.[Weight/Unit]/P.EstQty01,0) +"
+                SQLwt = SQLwt + "ISNUll(C6.PaperConsumptionKg/P.EstQty01,0) +"
+                SQLwt = SQLwt + "ISNULL(C9.PaperConsumptionSheets/(Select Value1 From GeneralMAster Where Code=PM9.UOM)*PM9.[Weight/Unit]/P.EstQty01,0) As Pwt "
+                SQLwt = SQLwt + "FROM ((((((BookPOParent P LEFT JOIN BookPOChild05 C5 ON P.Code=C5.Code) LEFT JOIN BookPOChild06 C6 ON P.Code=C6.Code) LEFT JOIN BookPOChild08 C8 ON P.Code=C8.Code) LEFT JOIN BookPOChild09 C9 ON P.Code=C9.Code) LEFT JOIN PaperMaster PM1 ON C5.Paper=PM1.Code) LEFT JOIN PaperMaster PM6 ON C6.Paper=PM6.Code) LEFT JOIN PaperMaster PM9 ON C9.Paper=PM9.Code "
+                SQLwt = SQLwt + "WHERE P.Code='" & vtCode & "'"
+                If rstOrderList.State = adStateOpen Then rstOrderList.Close
+                rstOrderList.Open SQLwt, cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+                .GetText 4, fpSpread1.ActiveRow, CellVal(1) 'Qty
+                .GetText 5, fpSpread1.ActiveRow, CellVal(2) 'Jobwork Rate
+                .GetText 13, fpSpread1.ActiveRow, CellVal(3) 'LongNarration01
+                .GetText 14, fpSpread1.ActiveRow, CellVal(4) 'LongNarration02
+                .GetText 15, fpSpread1.ActiveRow, CellVal(5) 'LongNarration03
+                .GetText 16, fpSpread1.ActiveRow, CellVal(6) 'LongNarration04
+                .GetText 17, fpSpread1.ActiveRow, CellVal(7) 'LongNarration05
+                K = 0
+                For n = 3 To 7
+                    If CellVal(n) <> "" And InStr(1, "Paper Suply By Party Cost Aprox Rs.:", Left(CellVal(n), 36)) = 0 Then
+                        If InStr(1, "Jobwork Cost Rs.:", Left(CellVal(n), 17)) = 0 Then K = K + 1
+                    End If
+                Next
+                If K < 4 Then
+                    K = 15
+                    For n = 3 To 7
+                        If CellVal(n) <> "" And InStr(1, "Paper Suply By Party Cost Aprox Rs.:", Left(CellVal(n), 36)) = 0 Then
+                            If K < 18 And InStr(1, "Jobwork Cost Rs.:", Left(CellVal(n), 17)) = 0 Then .SetText K, i, CellVal(n): K = K + 1
+                        End If
+                    Next
+                Else
+                    If MsgBox("Do You Want's To Replace Old Long Narrations ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") = vbYes Then
+                   K = 15
+                   For n = 3 To 7
+                        If CellVal(n) <> "" And InStr(1, "Paper Suply By Party Cost Aprox Rs.:", Left(CellVal(n), 36)) = 0 Then
+                            If K < 18 And InStr(1, "Jobwork Cost Rs.:", Left(CellVal(n), 17)) = 0 Then .SetText K, i, CellVal(n): K = K + 1
+                        End If
+                    Next
+                    Else
+                        Exit For
+                    End If
+                End If
+                Rate = InputBox("Paper Rate @..", , Val(Rate), 12400, 6750)
+                If Val(Rate) = 0 Then Exit Function
+                .SetText 13, i, "Paper Suply By Party Cost Aprox Rs.: " & Format(Val(rstOrderList.Fields("Pwt")) * CellVal(1) * Val(Rate), "##,##,##,###") & " /-"
+                .SetText 14, i, "Jobwork Cost Rs.: " & Format(CellVal(1) * CellVal(2), "##,##,##,###") & " /-"
+        End If
+            Next
+            End With
+End Function
 Private Function EntryExists(ByVal Entry) As Boolean
     Dim i As Integer, Item As Variant, Ref As Variant
     With fpSpread1
@@ -3606,13 +3712,17 @@ Private Sub cmbChallanType_Click()
 End Sub
 Private Sub LoadMasterList()
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "SELECT Name As Col0,Code FROM AccountMaster ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "SELECT Name As Col0,Code,State FROM AccountMaster ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     If rstMaterialCentreList.State = adStateOpen Then rstMaterialCentreList.Close
     rstMaterialCentreList.Open "SELECT Name As Col0,Code FROM AccountMaster WHERE [Group]='*99999' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
     rstMaterialCentreList.ActiveConnection = Nothing
     If rstTaxList.State = adStateOpen Then rstTaxList.Close
+    If PartyStateCode = "" Or PartyStateCode = Null Then
     rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Code FROM TaxMaster ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    Else
+    rstTaxList.Open "SELECT Name As Col0,[IGST%],[SGST%],[CGST%],Code FROM TaxMaster Where Region='" & IIf(CompStateCode = PartyStateCode, "L", "I") & "' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    End If
     rstTaxList.ActiveConnection = Nothing
     If rstNarrationList.State = adStateOpen Then rstNarrationList.Close
     rstNarrationList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type='17' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
@@ -3624,7 +3734,7 @@ Private Sub LoadMasterList()
     rstItemList.Open "SELECT I.Name As Col0,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code ORDER BY I.Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE LEFT(VchType,2) IN ('05','08') AND RIGHT(VchType,1)='" & VchType & "' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE  Left(FYCode,2)='" & Left(FYCode, 2) & "' AND LEFT(VchType,2) IN ('05','08') AND RIGHT(VchType,1)='" & VchType & "' ORDER BY Name", cnDeliveryChallan, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub btnNotes_Click()
@@ -3647,12 +3757,46 @@ Public Sub PrintDlvChVch(ByVal VchCode As String, ByVal VchType As String, ByVal
     rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Declaration01,Declaration02,Declaration03,Declaration04,Declaration05,Declaration06,Declaration07,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType= " & Left(VchType, 2), cnDeliveryChallan, adOpenKeyset, adLockOptimistic
     If rstDeliveryCVChild.State = adStateOpen Then rstDeliveryCVChild.Close
     rstDeliveryCVChild.Open "SELECT LTRIM(P.Name) As BillNo,P.Date As BillDate,B.PrintName As Party,B.Address1 As PartyAddress1,B.Address2 As PartyAddress2,B.Address3 As PartyAddress3,B.Address4 As PartyAddress4,B.TIN As PartyGSTIN,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeName,S.PrintName),M.PrintName) As Consignee,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress1,S.Address1),M.Address1) As ConsigneeAddress1,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress2,S.Address2),M.Address2) As ConsigneeAddress2,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress3,S.Address3),M.Address3) As ConsigneeAddress3,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeAddress4,S.Address4),M.Address4) As ConsigneeAddress4,IIf(LEFT(P.Type,2) IN ('06','08'),IIF(S.PrintName IS NULL,ConsigneeGSTIN,S.TIN),M.TIN) As ConsigneeGSTIN,P.[Rebate%],P.Rebate,P.Freight,P.Adjustment,P.TaxableAmount," & _
-                                                        "P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate,IIF(I.PrintName IS NULL,'',LongNarration01) As LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05," & _
-                                                        "IIF(I.PrintName IS NULL,LongNarration01,I.PrintName) As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount " & _
-                                                        "FROM (((((JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN AccountMaster B ON P.Party=B.Code) INNER JOIN AccountMaster M ON P.MaterialCentre=M.Code) LEFT JOIN AccountMaster S ON P.Consignee=S.Code) LEFT JOIN BookMaster I ON C.Item=I.Code) LEFT JOIN GeneralMaster H ON C.HSNCode=H.Code WHERE P.Code='" + Left(VchCode, 6) + "' ORDER BY Item", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
-    If rstDeliveryCVChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
+                                                        "P.[IGST%],P.IGST,P.[SGST%],P.SGST,P.[CGST%],P.CGST,P.Amount As TotalAmount,P.Remarks,P.ChallanNo,P.ChallanDate,P.Transport,P.GRNo,P.GRDate,P.VehicleNo,P.Station,eWayBill,eWayBillDate,(Select PrintName From GeneralMaster Where Code=C.Narration) As Narration,IIF(I.PrintName IS NULL,'',LongNarration01) As LongNarration01,LongNarration02,LongNarration03,LongNarration04," & _
+                                                        "IIF(I.PrintName IS NULL,LongNarration01,I.PrintName) As Item,H.PrintName As HSNCode,C.Quantity,C.Rate,C.Amount,Left((Select V.Prefix From VchSeriesMaster V Where Code=VchSeries),2)+'" & IIf(Right(VchType, 1) = "I", "/DC", "/RC") & "'+'/'+Ltrim(AutoVchNo) As VchNo,IIF(C.Ref IS NULL,'','Ref. No. : ')+(CASE WHEN C.Ref IS NULL THEN '' ELSE LTRIM(P2.Name)+'/'+IIF(P2.Type='OP','CRN/',RIGHT(P2.Type,1)+'O/')+RIGHT(C.BOM,2) END) As RefOrderNo,IIF(Len(I.ISBN)=0,'','ISBN - '+I.ISBN) As ISBN,LongNarration05 " & _
+                                                        " FROM ((((((JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN AccountMaster B ON P.Party=B.Code) INNER JOIN AccountMaster M ON P.MaterialCentre=M.Code) LEFT JOIN AccountMaster S ON P.Consignee=S.Code) LEFT JOIN BookMaster I ON C.Item=I.Code) LEFT JOIN GeneralMaster H ON C.HSNCode=H.Code)LEFT JOIN BookPOParent P2 ON C.Ref=P2.Code  WHERE P.Code='" + Left(VchCode, 6) + "' ORDER BY Item", cnDeliveryChallan, adOpenKeyset, adLockOptimistic
+    If rstDeliveryCVChild.RecordCount = 0 Then On Error GoTo 0: Screen.MousePointer = vbNormal: Exit Sub
     rstDeliveryCVChild.ActiveConnection = Nothing
     With rptItemIssueReceiptVoucher
+                .Field13.Font.Bold = False
+                .Field13.Font.Size = 10
+                .Field17.DecimalPlaces = 3
+                .Field25.DecimalPlaces = 0
+                .Text35.Font.Size = 8
+                .Field25.ThousandsSeparators = True
+            If FYFromToFlag = "True" Then
+                .Field58.Suppress = True
+                .Text45.Suppress = False
+                .Text45.SetText rstDeliveryCVChild.Fields("VchNo").Value + "/" + FYFromTo
+            Else
+                .Field58.Suppress = False
+                .Text45.Suppress = True
+            End If
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+        '.Text320.SetText ""
         .Text1.SetText IIf(InStr(1, "05_07", Left(VchType, 2)) > 0, "Receipt Note", "Delivery Challan") & " " & IIf(Left(VchType, 2) = "05", "", IIf(Left(VchType, 2) = "06", "(Purchase Return)", IIf(Left(VchType, 2) = "07", "(Sales Return)", "")))
         .Text13.SetText IIf(Left(VchType, 2) = "05", "Supplier", IIf(InStr(1, "06_07", Left(VchType, 2)) > 0, "Party", "Bill To")) & " :"
         .Text7.SetText IIf(InStr(1, "05_07", Left(VchType, 2)) > 0, "Material Centre", "Ship To")
@@ -3668,13 +3812,93 @@ Public Sub PrintDlvChVch(ByVal VchCode As String, ByVal VchType As String, ByVal
             .Text4.SetText "E-Mail : " & Trim(rstCompanyMaster.Fields("eMail").Value)
         End If
         .Text8.SetText "GSTIN/UIN : " & Trim(rstCompanyMaster.Fields("GSTIN").Value)
-        If Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) <> "" Then .Text37.SetText Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text33.SetText ""
-        If Trim(rstDeliveryCVChild.Fields("GRNo").Value) = "" And rstDeliveryCVChild.Fields("VehicleNo").Value <> "" Then .Text38.SetText Trim(rstDeliveryCVChild.Fields("VehicleNo").Value): .Text34.SetText "Vehicle NO.  :"
-        If Trim(rstDeliveryCVChild.Fields("GRNo").Value) = "" And rstDeliveryCVChild.Fields("VehicleNo").Value = "" Then .Text34.SetText ""
-        If Trim(rstDeliveryCVChild.Fields("GRNo").Value) <> "" Then .Text38.SetText Trim(rstDeliveryCVChild.Fields("GRNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("GRDate").Value, "dd-MM-yy")
-        If rstDeliveryCVChild.Fields("Transport").Value Then .Text39.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text36.SetText ""
-        If Trim(rstDeliveryCVChild.Fields("Station").Value) <> "" Then .Text41.SetText Trim(rstDeliveryCVChild.Fields("Station").Value) Else .Text42.SetText ""
-        If Trim(rstDeliveryCVChild.Fields("eWayBill").Value) <> "" Then .Text32.SetText Trim(rstDeliveryCVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+            .Text33.SetText "": .Text36.SetText "": .Text34.SetText "": .Text42.SetText "": .Text43.SetText ""
+'Challan No.
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) <> "" Then .Text33.SetText "Challan No.     :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) <> "" Then .Text36.SetText "Challan No.     :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) <> "" Then .Text34.SetText "Challan No.     :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) <> "" Then .Text42.SetText "Challan No.     :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) <> "" Then .Text43.SetText "Challan No.     :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("ChallanNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("ChallanDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+        End If
+'Transport
+If TransportLabel1 = 1 Then
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text33.SetText "Transport         :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text36.SetText "Transport         :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text34.SetText "Transport         :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text42.SetText "Transport         :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text43.SetText "Transport         :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text43.SetText ""
+        End If
+ElseIf TransportLabel1 = 0 Then
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text33.SetText "Driver/Trans.  :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text36.SetText "Driver/Trans.  :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text34.SetText "Driver/Trans.  :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text42.SetText "Driver/Trans.  :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Transport").Value) <> "" Then .Text43.SetText "Driver/Trans.  :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("Transport").Value) Else .Text43.SetText ""
+        End If
+End If
+'Gr/RR No.
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("GRNo").Value) <> "" Then .Text33.SetText "Gr/RR No.       :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("GRNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("GRNo").Value) <> "" Then .Text36.SetText "Gr/RR No.       :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("GRNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("GRNo").Value) <> "" Then .Text34.SetText "Gr/RR No.       :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("GRNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("GRNo").Value) <> "" Then .Text42.SetText "Gr/RR No.       :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("GRNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("GRNo").Value) <> "" Then .Text43.SetText "Gr/RR No.       :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("GRNo").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("GRDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+        End If
+'Station
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Station").Value) <> "" Then .Text33.SetText "Station            :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("Station").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Station").Value) <> "" Then .Text36.SetText "Station            :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("Station").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Station").Value) <> "" Then .Text34.SetText "Station            :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("Station").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Station").Value) <> "" Then .Text42.SetText "Station            :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("Station").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("Station").Value) <> "" Then .Text43.SetText "Station            :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("Station").Value) Else .Text43.SetText ""
+        End If
+'e-way Bill No.
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("eWayBill").Value) <> "" Then .Text33.SetText "e-way Bill#   :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("eWayBill").Value) <> "" Then .Text36.SetText "e-way Bill#   :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("eWayBill").Value) <> "" Then .Text34.SetText "e-way Bill#   :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("eWayBill").Value) <> "" Then .Text42.SetText "e-way Bill#   :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("eWayBill").Value) <> "" Then .Text43.SetText "e-way Bill#   :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("eWayBill").Value) + " Dt : " & Format(rstDeliveryCVChild.Fields("eWayBillDate").Value, "dd-MM-yy") Else .Text43.SetText ""
+        End If
+'VehicleNo
+        If .Text33.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) <> "" Then .Text33.SetText "Vehicle No.     :": .Text37.SetText Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) Else .Text33.SetText ""
+        ElseIf .Text36.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) <> "" Then .Text36.SetText "Vehicle No.     :": .Text39.SetText Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) Else .Text36.SetText ""
+        ElseIf .Text34.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) <> "" Then .Text34.SetText "Vehicle No.     :": .Text38.SetText Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) Else .Text34.SetText ""
+        ElseIf .Text42.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) <> "" Then .Text42.SetText "Vehicle No.     :": .Text41.SetText Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) Else .Text42.SetText ""
+        ElseIf .Text43.Text = "" Then
+            If Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) <> "" Then .Text43.SetText "Vehicle No.     :": .Text32.SetText Trim(rstDeliveryCVChild.Fields("VehicleNo").Value) Else .Text43.SetText ""
+        End If
         .Text10.SetText "(" & UCase(Trim(NumberToWords(rstDeliveryCVChild.Fields("TotalAmount").Value, False))) & ")"
         .Text11.SetText "for " & Trim(rstCompanyMaster.Fields("PrintName").Value)
         .Text26.SetText CheckNull(rstCompanyMaster.Fields("Declaration01").Value)

@@ -2813,7 +2813,8 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
             On Error Resume Next
             MdiMainMenu.MousePointer = vbHourglass
-            cnPaperPurchaseOrder.Execute "DELETE FROM PaperPOParent WHERE Code='" & rstPaperPOList.Fields("Code").Value & "'"
+                cnPaperPurchaseOrder.Execute "DELETE FROM PaperPOParent WHERE Code IN (Select Distinct Code From PaperIOChild Where (Ref= '" & rstPaperPOList.Fields("Code").Value & "' Or Code= '" & rstPaperPOList.Fields("Code").Value & "'))"
+                cnPaperPurchaseOrder.Execute "DELETE FROM PaperIOChild WHERE Code IN (Select Distinct Code From PaperIOChild Where (Ref= '" & rstPaperPOList.Fields("Code").Value & "' Or Code= '" & rstPaperPOList.Fields("Code").Value & "'))"
             MdiMainMenu.MousePointer = vbNormal
             If Err.Number = 0 Then
                 rstPaperPOList.Delete
@@ -3415,13 +3416,41 @@ Public Sub PrintPaperPurchaseOrder(ByVal OrderCode As String, Optional ByVal Not
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     Prefix = "PPO/" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/"
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail,GSTIN FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstPurchaseOrder.Open "SELECT '" & Prefix & "'+LTRIM(P.Name) As OrderNo,[Date] As OrderDate,DeliveryDate,LTRIM(M1.PrintName) As SupplierName,[GST%],GST,P.Cartage,Adjustment,BillAmount,Remarks,LTRIM(M2.PrintName) As PaperName,'',Quantity As QuantityOther,C.[Weight/Unit],QuantityKg,C.[Rate/Kg],(SELECT TOP 1 '" & Prefix & "'+LTRIM(P1.Name)+'/'+FORMAT(P1.Date,'dd-MM-yyyy')+'/'+FORMAT([Rate/Kg],'0.00') FROM PaperPOParent P1 INNER JOIN PaperPOChild C1 ON P1.Code=C1.Code WHERE C1.Paper=C.Paper AND P1.Code<P.Code ORDER BY P1.Name DESC) As LastPurchaseRate,Amount,LTRIM(eMail) As SupplierMail,(SELECT TOP 1 LTRIM([Rate/Kg])+'-'+P1.Supplier FROM PaperPOParent P1 INNER JOIN PaperPOChild C1 ON P1.Code=C1.Code WHERE C1.Paper=C.Paper AND P1.Code<P.Code ORDER BY P1.Name DESC) As LastSupplier,P.Supplier As CurrentSupplier,'('+LTRIM(G.PrintName)+'='+LTRIM(G.Value1)+')' As UOM " & _
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail,GSTIN FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstPurchaseOrder.Open "SELECT ('" & Prefix & "'+LTRIM(P.Name)) As OrderNo,[Date] As OrderDate,DeliveryDate,LTRIM(M1.PrintName) As SupplierName,[GST%],GST,P.Cartage,Adjustment,BillAmount,Remarks,LTRIM(M2.PrintName) As PaperName,'',Quantity As QuantityOther,C.[Weight/Unit],QuantityKg,C.[Rate/Kg],(SELECT TOP 1 '" & Prefix & "'+LTRIM(P1.Name)+'/'+FORMAT(P1.Date,'dd-MM-yyyy')+'/'+FORMAT([Rate/Kg],'0.00') FROM PaperPOParent P1 INNER JOIN PaperPOChild C1 ON P1.Code=C1.Code WHERE C1.Paper=C.Paper AND P1.Code<P.Code ORDER BY P1.Name DESC) As LastPurchaseRate,Amount,LTRIM(eMail) As SupplierMail,(SELECT TOP 1 LTRIM([Rate/Kg])+'-'+P1.Supplier FROM PaperPOParent P1 INNER JOIN PaperPOChild C1 ON P1.Code=C1.Code WHERE C1.Paper=C.Paper AND P1.Code<P.Code ORDER BY P1.Name DESC) As LastSupplier,P.Supplier As CurrentSupplier,'('+LTRIM(G.PrintName)+'='+LTRIM(G.Value1)+')' As UOM,Form " & _
                                                       "FROM (((PaperPOParent P LEFT JOIN PaperPOChild C ON P.Code=C.Code) LEFT JOIN AccountMaster M1 ON M1.Code=P.Supplier) LEFT JOIN PaperMaster M2 ON M2.Code=C.Paper) LEFT JOIN GeneralMaster G ON M2.UOM=G.Code WHERE P.Code='" & OrderCode & "' ORDER BY M2.PrintName", cnDatabase, adOpenKeyset, adLockOptimistic
-    rstPurchaseOrderChild.Open "SELECT '" & Prefix & "'+LTRIM(P.Name) As OrderNo,[Date] As OrderDate,LTRIM(M3.PrintName) As Godown,LTRIM(M2.PrintName) As PaperName,LTRIM(M1.PrintName) As PrinterName,'' As RefNo,Quantity,0 As Tat,'' As Remarks,M1.Address1 As PrinterAdd1,M1.Address2 As PrinterAdd2,M1.Address3 As PrinterAdd3,M1.Address4 As PrinterAdd4,LTRIM(M1.eMail) As PrinterMail,M1.TIN As GSTIN,M1.Mobile,'('+LTRIM(G.PrintName)+'='+LTRIM(G.Value1)+')' As UOM FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN AccountMaster M3 ON P.Supplier=M3.Code) INNER JOIN GeneralMaster G ON G.Code=M2.UOM WHERE P.Code='" & OrderCode & "' AND (P.Code=Ref OR Ref IS NULL OR Ref='') ORDER BY M2.PrintName", cnDatabase, adOpenKeyset, adLockOptimistic
+    rstPurchaseOrderChild.Open "SELECT ('" & Prefix & "'+LTRIM(P.Name)) As OrderNo,[Date] As OrderDate,LTRIM(M3.PrintName) As Godown,LTRIM(M2.PrintName) As PaperName,LTRIM(M1.PrintName) As PrinterName,'' As RefNo,IIF(Form='S',Quantity,QuantityKg) As Quantity,0 As Tat,'' As Remarks,M1.Address1 As PrinterAdd1,M1.Address2 As PrinterAdd2,M1.Address3 As PrinterAdd3,M1.Address4 As PrinterAdd4,LTRIM(M1.eMail) As PrinterMail,M1.TIN As GSTIN,M1.Mobile,IIF(Form='S',LTRIM(G.PrintName),'Kilograms') As UOM,M2.Form,C.QuantityKg FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN AccountMaster M3 ON P.Supplier=M3.Code) INNER JOIN GeneralMaster G ON G.Code=M2.UOM WHERE P.Code='" & OrderCode & "' AND (P.Code=Ref OR Ref IS NULL OR Ref='') ORDER BY M2.PrintName", cnDatabase, adOpenKeyset, adLockOptimistic
+    'rstPurchaseOrderChild.Open "SELECT '" & Prefix & "'+LTRIM(P.Name) As OrderNo,[Date] As OrderDate,LTRIM(M3.PrintName) As Godown,LTRIM(M2.PrintName) As PaperName,LTRIM(M1.PrintName) As PrinterName,'' As RefNo,IIF(Form='S',Quantity,QuantityKg) As Quantity,0 As Tat,'' As Remarks,M1.Address1 As PrinterAdd1,M1.Address2 As PrinterAdd2,M1.Address3 As PrinterAdd3,M1.Address4 As PrinterAdd4,LTRIM(M1.eMail) As PrinterMail,M1.TIN As GSTIN,M1.Mobile,IIF(Form='S','('+LTRIM(G.PrintName)+'='+LTRIM(G.Value1)+')','Kg') As UOM,M2.Form,C.QuantityKg FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN PaperMaster M2 ON C.Paper=M2.Code) INNER JOIN AccountMaster M3 ON P.Supplier=M3.Code) INNER JOIN GeneralMaster G ON G.Code=M2.UOM WHERE P.Code='" & OrderCode & "' AND (P.Code=Ref OR Ref IS NULL OR Ref='') ORDER BY M2.PrintName", cnDatabase, adOpenKeyset, adLockOptimistic
     Screen.MousePointer = vbNormal
+    
     rstPurchaseOrder.ActiveConnection = Nothing: rstPurchaseOrderChild.ActiveConnection = Nothing
     If MsgBox("Print Last Purchase Ref. Detail?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbNo Then rptPaperPurchaseOrder.Section12.Suppress = True
+    
+    With rptPaperPurchaseOrder
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+'        .Text2.Width = Header '9000 '7800
+'        .Text2.Left = HeaderL '1000 '1680
+'        .Text2.Top = 400 '240
+        If LogoLine = "N" Then
+        .Picture1.LeftLineStyle = crLSNoLine
+        .Picture1.RightLineStyle = crLSNoLine
+        .Picture1.TopLineStyle = crLSNoLine
+        .Picture1.BottomLineStyle = crLSNoLine
+        End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+    End With
+    
     rptPaperPurchaseOrder.Text1.SetText "Paper Purchase Order"
     rptPaperPurchaseOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptPaperPurchaseOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -3432,6 +3461,7 @@ Public Sub PrintPaperPurchaseOrder(ByVal OrderCode As String, Optional ByVal Not
     rptPaperPurchaseOrder.Text9.SetText "for " & Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptPaperPurchaseOrder.Database.SetDataSource rstPurchaseOrder, 3, 1
     rptPaperPurchaseOrder.Subreport1.OpenSubreport.Database.SetDataSource rstPurchaseOrderChild, 3, 1
+    
     If OutputType = "S" Then
         Set FrmReportViewer.Report = rptPaperPurchaseOrder
         FrmReportViewer.Show vbModal

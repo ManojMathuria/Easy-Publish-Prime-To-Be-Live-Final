@@ -25,6 +25,11 @@ Begin VB.Form FrmDiscountMaster
    ScaleHeight     =   7980
    ScaleWidth      =   8430
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Timer Timer1 
+      Interval        =   4
+      Left            =   6000
+      Top             =   3720
+   End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
       Height          =   7775
       Left            =   120
@@ -200,11 +205,6 @@ Begin VB.Form FrmDiscountMaster
          Y1              =   530
          Y2              =   530
       End
-   End
-   Begin VB.Timer Timer1 
-      Interval        =   4
-      Left            =   6000
-      Top             =   3720
    End
 End
 Attribute VB_Name = "FrmDiscountMaster"

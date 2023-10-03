@@ -29,7 +29,7 @@ Begin VB.Form frmJobWorkOrderDuplication
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   1
+      TabIndex        =   2
       Top             =   0
       Width           =   3840
       _ExtentX        =   6773
@@ -54,7 +54,8 @@ Begin VB.Form frmJobWorkOrderDuplication
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   2720
       Left            =   45
-      TabIndex        =   2
+      TabIndex        =   3
+      TabStop         =   0   'False
       Top             =   345
       Width           =   3765
       _Version        =   65536
@@ -114,7 +115,7 @@ Begin VB.Form frmJobWorkOrderDuplication
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Left            =   0
-         TabIndex        =   3
+         TabIndex        =   4
          Top             =   0
          Width           =   1095
          _Version        =   65536
@@ -141,7 +142,7 @@ Begin VB.Form frmJobWorkOrderDuplication
       Begin MSForms.ComboBox Combo3 
          Height          =   330
          Left            =   1080
-         TabIndex        =   4
+         TabIndex        =   1
          Top             =   0
          Width           =   2680
          VariousPropertyBits=   545282075

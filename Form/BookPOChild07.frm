@@ -1164,7 +1164,7 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
                     .SetText Col + 10, Row, rstCalcModeList.Fields("Code").Value
                     .GetText 8, .ActiveRow, Qty
                     'CalcVal = IIf(Qty = 0, Val(rstCalcModeList.Fields("Value1").Value), CalcVal)
-                    CalcVal = IIf(Val(xCalcVal) = 0, Val(rstCalcModeList.Fields("Value1").Value), Val(CalcVal))
+                    CalcVal = IIF(Val(xCalcVal) = 0, Val(rstCalcModeList.Fields("Value1").Value), Val(CalcVal))
                 End If
                 i6 = i6 + 1
                 If i6 = 1 Then
@@ -1188,7 +1188,7 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
         If Not CheckEmpty(CalcMode, False) Then
             If rstCalcModeList.RecordCount > 0 Then rstCalcModeList.MoveFirst
             rstCalcModeList.Find "[Code]='" & FixQuote(CalcMode) & "'"
-            If Not rstCalcModeList.EOF Then CalcType = IIf(InStr(1, rstCalcModeList.Fields("Name").Value, "Inch") > 0, "S", "O")
+            If Not rstCalcModeList.EOF Then CalcType = IIF(InStr(1, rstCalcModeList.Fields("Name").Value, "Inch") > 0, "S", "O")
             .GetText 8, Row, CalcVal
             If CalcVal = "" Then CalcVal = Val(rstCalcModeList.Fields("Value1").Value): .SetText 8, .ActiveRow, CalcVal
         End If
@@ -1200,7 +1200,7 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
             .GetText 15, Row, Operation
             .GetText 5, Row, AreaRange: If AreaRange <> "" Then AreaRange = Left(AreaRange, 5) * Mid(AreaRange, 7, 5)
             .GetText 16, Row, Size
-            If Not (CheckEmpty(Operation, False) And CheckEmpty(CalcMode, False)) And Val(Qty) > 0 Then .SetText 9, Row, FetchOperationRate(Operation, CalcMode, IIf(CalcType = "O", Size, ""), Val(AreaRange), Val(Number), Val(Qty))
+            If Not (CheckEmpty(Operation, False) And CheckEmpty(CalcMode, False)) And Val(Qty) > 0 Then .SetText 9, Row, FetchOperationRate(Operation, CalcMode, IIF(CalcType = "O", Size, ""), Val(AreaRange), Val(Number), Val(Qty))
         End If
         If Col >= 3 And Col <= 12 Then
             .GetText 3, Row, Number
@@ -1221,7 +1221,7 @@ ErrorHandler:
     End With
 End Sub
 Private Sub fpSpread1_EditMode(ByVal Col As Long, ByVal Row As Long, ByVal Mode As Integer, ByVal ChangeMade As Boolean)
-    EditMode = IIf(Mode = 1, True, False)
+    EditMode = IIF(Mode = 1, True, False)
 End Sub
 Private Sub RefreshDropDownList(ByVal xType As String)
     If xType = "R" Then
@@ -1271,10 +1271,10 @@ End Sub
 Private Function FetchOperationRate(ByVal xOperation As String, ByVal xCalcMode As String, ByVal xSize As String, xAreaRange As Double, xSectionRange As Double, xQtyRange As Double) As Double
     On Error GoTo ErrorHandler
     If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-    rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIF(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-        rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND Operation='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND (" & IIF(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " OR AreaRange>=" & xAreaRange & ") ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
     End If
     If rstFetchOperationRate.RecordCount > 0 Then FetchOperationRate = Val(rstFetchOperationRate.Fields("Rate").Value)
     Exit Function
@@ -1296,7 +1296,7 @@ Private Sub InsertOperation()
                 If rstFetchOperationRate.RecordCount > 0 Then .SetText 1, 1, rstFetchOperationRate.Fields("Name").Value: .SetText 14, 1, rstFetchOperationRate.Fields("Code").Value
                 'Operation,Size
                 If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                rstFetchOperationRate.Open "SELECT O.Code As OperationCode,O.Name As OperationName,S.Code As SizeCode,S.Name As SizeName FROM (BookMaster I LEFT JOIN GeneralMaster O ON I.LaminationType=O.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE I.Code='" & ItemCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+                rstFetchOperationRate.Open "SELECT I7.Operation As OperationCode,(Select Name From GeneralMaster Where Code=I7.Operation) As OperationName,S.Code As SizeCode,S.Name As SizeName FROM BookMaster I Left Join BookChild07 I7 ON I.Code=I7.Code LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE I.Code='" & ItemCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
                 If rstFetchOperationRate.RecordCount > 0 Then .SetText 2, 1, rstFetchOperationRate.Fields("OperationName").Value: .SetText 15, 1, rstFetchOperationRate.Fields("OperationCode").Value: .SetText 5, 1, rstFetchOperationRate.Fields("SizeName").Value: .SetText 16, 1, rstFetchOperationRate.Fields("SizeCode").Value: Operation = rstFetchOperationRate.Fields("OperationCode").Value: Size = rstFetchOperationRate.Fields("SizeCode").Value
                 If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
                 'CalcMode
@@ -1317,7 +1317,7 @@ Private Sub InsertOperation()
                 fpSpread1.SetText 4, i, CheckNull(rstOrderList.Fields("OCName").Value)
                 fpSpread1.SetText 5, i, CheckNull(rstOrderList.Fields("SName").Value)
                 fpSpread1.SetText 7, i, CheckNull(rstOrderList.Fields("CName").Value)
-                fpSpread1.SetText 8, i, Val(rstOrderList.Fields("CalcValue").Value)
+                fpSpread1.SetText 8, i, Val(rstOrderList.Fields("CalcVal").Value)
                 fpSpread1.SetText 14, i, rstOrderList.Fields("ECode").Value
                 fpSpread1.SetText 15, i, rstOrderList.Fields("OCode").Value
                 fpSpread1.SetText 16, i, rstOrderList.Fields("SCode").Value

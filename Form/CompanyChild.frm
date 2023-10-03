@@ -118,10 +118,6 @@ Option Explicit
 Dim cnCompanyChild As New ADODB.Connection
 Dim rstCompanyChild As New ADODB.Recordset
 Dim EditMode As Boolean
-
-Private Sub Command1_Click()
-
-End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me

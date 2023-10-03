@@ -542,7 +542,6 @@ Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
     Text1.Text = ""
     Text1.SetFocus
 End Sub
-
 Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     On Error GoTo ErrorHandler

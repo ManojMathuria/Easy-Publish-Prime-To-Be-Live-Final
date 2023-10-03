@@ -497,7 +497,7 @@ Private Sub Form_Load()
     Else
         Me.Caption = "Print Order Status Register [" & Choose(Val(OrderType), "Bookwise", "Print Orderwise", "", "", "Book Printerwise", "Title Printerwise", "", "Book Binderwise") & "]"
     End If
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Call BookSelection(True)
     MhDateInput1.Text = Format(DateAdd("D", -365, FinancialYearFrom), "dd-mm-yyyy"): MhDateInput2.Text = Format(Date, "dd-mm-yyyy")
     Combo1.AddItem "Without Stock", 0: Combo1.AddItem "With Stock", 1: Combo1.AddItem "With Pending SO", 2: Combo1.ListIndex = 0
