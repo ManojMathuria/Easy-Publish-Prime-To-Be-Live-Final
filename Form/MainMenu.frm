@@ -322,20 +322,16 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuCompany 
       Caption         =   "&Company"
-      Tag             =   "00000000"
       Begin VB.Menu MnuOpen 
          Caption         =   "Open"
       End
       Begin VB.Menu mnuCreate 
          Caption         =   "Create"
-         Tag             =   "00010000"
          Begin VB.Menu mnuCreate01 
             Caption         =   "With Masters"
-            Tag             =   "00010100"
          End
          Begin VB.Menu mnuCreate02 
             Caption         =   "Without Masters"
-            Tag             =   "00010200"
          End
       End
       Begin VB.Menu MnuClose 
@@ -348,12 +344,10 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu mnuEdit 
          Caption         =   "Edit"
          Enabled         =   0   'False
-         Tag             =   "00020000"
       End
       Begin VB.Menu MnuCompanyChild 
          Caption         =   "Edit Voucher Prifix"
          Enabled         =   0   'False
-         Tag             =   "00030000"
       End
       Begin VB.Menu MnuLine6 
          Caption         =   "-"
@@ -361,18 +355,15 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuDelete 
          Caption         =   "Delete"
-         Tag             =   "00040000"
       End
       Begin VB.Menu MnuLine4 
          Caption         =   "-"
       End
       Begin VB.Menu MnuBackup 
          Caption         =   "Backup"
-         Tag             =   "00050000"
       End
       Begin VB.Menu MnuRestore 
          Caption         =   "Restore"
-         Tag             =   "00060000"
       End
       Begin VB.Menu MnuLicenceAgreement 
          Caption         =   "License Agreement"
@@ -2174,7 +2165,8 @@ Private Sub SetMenuOptions(bVal As Boolean)
     MnuRestore.Enabled = Not bVal
     MnuLicenceAgreement.Enabled = True
     MnuUtilities.Enabled = bVal
-    mnuProjectManagementParent.Enabled = bVal
+    'mnuProjectManagementParent.Enabled = bVal
+    'MnuReports.Enabled = bVal
     If bVal Then
         rstUserChild.Open "Select [Module] From UserChild Where Code = '" & FixQuote(UserCode) & "' Order by [Module]", cnDatabase, adOpenKeyset, adLockReadOnly
         For Each Object In Me

@@ -110,11 +110,13 @@ Begin VB.Form FrmUserMaster
          TabPicture(1)   =   "UserMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          TabCaption(2)   =   "&Privileges"
          TabPicture(2)   =   "UserMaster.frx":0054
          Tab(2).ControlEnabled=   0   'False
          Tab(2).Control(0)=   "Mh3dFrame4"
+         Tab(2).Control(0).Enabled=   0   'False
          Tab(2).ControlCount=   1
          Begin VB.CommandButton cmdRefresh 
             Height          =   325
