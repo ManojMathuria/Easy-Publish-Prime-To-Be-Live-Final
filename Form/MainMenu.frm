@@ -322,21 +322,27 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuCompany 
       Caption         =   "&Company"
+      Tag             =   "00000000"
       Begin VB.Menu MnuOpen 
          Caption         =   "Open"
+         Tag             =   "00010000"
       End
       Begin VB.Menu mnuCreate 
          Caption         =   "Create"
+         Tag             =   "00020000"
          Begin VB.Menu mnuCreate01 
             Caption         =   "With Masters"
+            Tag             =   "00020100"
          End
          Begin VB.Menu mnuCreate02 
             Caption         =   "Without Masters"
+            Tag             =   "00020200"
          End
       End
       Begin VB.Menu MnuClose 
          Caption         =   "Close"
          Enabled         =   0   'False
+         Tag             =   "00030000"
       End
       Begin VB.Menu MnuLine57 
          Caption         =   "-"
@@ -344,10 +350,12 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu mnuEdit 
          Caption         =   "Edit"
          Enabled         =   0   'False
+         Tag             =   "00040000"
       End
       Begin VB.Menu MnuCompanyChild 
          Caption         =   "Edit Voucher Prifix"
          Enabled         =   0   'False
+         Tag             =   "00050000"
       End
       Begin VB.Menu MnuLine6 
          Caption         =   "-"
@@ -355,30 +363,36 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuDelete 
          Caption         =   "Delete"
+         Tag             =   "00060000"
       End
       Begin VB.Menu MnuLine4 
          Caption         =   "-"
       End
       Begin VB.Menu MnuBackup 
          Caption         =   "Backup"
+         Tag             =   "00070000"
       End
       Begin VB.Menu MnuRestore 
          Caption         =   "Restore"
+         Tag             =   "00080000"
       End
       Begin VB.Menu MnuLicenceAgreement 
          Caption         =   "License Agreement"
+         Tag             =   "00090000"
       End
       Begin VB.Menu MnuYouTube 
          Caption         =   "Help Videos (You Tube)"
       End
       Begin VB.Menu MnuRemoteSupprort 
          Caption         =   "Remote Support Software"
+         Tag             =   "00100000"
       End
       Begin VB.Menu MnuLine344 
          Caption         =   "-"
       End
       Begin VB.Menu MnuExit 
          Caption         =   "E&xit"
+         Tag             =   "00110000"
       End
    End
    Begin VB.Menu MnuMasters 
@@ -1005,7 +1019,6 @@ Begin VB.MDIForm MdiMainMenu
             Caption         =   "Production Schedule Print"
             Index           =   5
             Tag             =   "03080500"
-            Visible         =   0   'False
          End
       End
       Begin VB.Menu MnuStockStatus 
@@ -1685,7 +1698,6 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu MnuPendingPaymentRegister 
          Caption         =   "Pending Payment Register"
          Tag             =   "04120000"
-         Visible         =   0   'False
       End
       Begin VB.Menu MnuPendingDNRegister 
          Caption         =   "Pending Debit Notes Register"
@@ -2028,12 +2040,15 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
             
     Loop
             If RenewFlag = True Then Call MsgBox("Your Easy Publish ERP Subscription is renewed now " & Chr(13) & " till  :" & dueDate & ". " & Chr(13) & "If you would have any query, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title): RenewFlag = False
+    MnuCompany.Enabled = True
     MnuMasters.Enabled = False
-    MnuDisplay.Enabled = False
     MnuTransactions.Enabled = False
+    MnuDisplay.Enabled = False
     MenuFG_UFGLedger.Enabled = False
     MnuReports.Enabled = False
+    MnuUtilities.Enabled = False
     mnuProjectManagementParent.Enabled = False
+    MnuHelpm = True
 End Sub
 Private Sub MDIForm_Resize()
     On Error Resume Next
@@ -2151,6 +2166,7 @@ Private Sub mnuClose_Click()
     End If
 End Sub
 Private Sub SetMenuOptions(bVal As Boolean)
+    Dim MenuList As String
     Dim Object As Object
     Dim rstUserChild As New ADODB.Recordset
     On Error GoTo ErrorHandler
@@ -2165,12 +2181,11 @@ Private Sub SetMenuOptions(bVal As Boolean)
     MnuRestore.Enabled = Not bVal
     MnuLicenceAgreement.Enabled = True
     MnuUtilities.Enabled = bVal
-    'mnuProjectManagementParent.Enabled = bVal
-    'MnuReports.Enabled = bVal
     If bVal Then
         rstUserChild.Open "Select [Module] From UserChild Where Code = '" & FixQuote(UserCode) & "' Order by [Module]", cnDatabase, adOpenKeyset, adLockReadOnly
         For Each Object In Me
             If TypeName(Object) = "Menu" Then
+            On Error Resume Next
                 If Object.Tag <> "" Then
                     If UserLevel <> "1" Then
                         rstUserChild.MoveFirst
@@ -2185,13 +2200,43 @@ Private Sub SetMenuOptions(bVal As Boolean)
             End If
         Next
     Else
+        MnuCompany.Enabled = bVal
         MnuMasters.Enabled = bVal
-        MnuDisplay.Enabled = bVal
         MnuTransactions.Enabled = bVal
-        MenuFG_UFGLedger.Enabled = True
+        MnuDisplay.Enabled = bVal
+        MenuFG_UFGLedger.Enabled = bVal
         MnuReports.Enabled = bVal
+        MnuUtilities.Enabled = bVal
         mnuProjectManagementParent.Enabled = bVal
+        MnuHelpm.Enabled = bVal
     End If
+
+    Call CloseRecordset(rstUserChild)
+If bVal Then
+    MnuCompany.Enabled = bVal: MnuCompany.Visible = bVal
+    MnuOpen.Enabled = False: MnuOpen.Visible = True
+    MnuClose.Enabled = bVal: MnuClose.Visible = bVal
+    MnuLicenceAgreement.Enabled = bVal: MnuLicenceAgreement.Visible = bVal
+    MnuYouTube.Enabled = bVal: MnuYouTube.Visible = bVal
+    MnuRemoteSupprort.Enabled = bVal: MnuRemoteSupprort.Visible = bVal
+    MnuExit.Enabled = bVal: MnuExit.Visible = bVal
+    MnuHelpm.Enabled = bVal: MnuHelpm.Visible = bVal
+    MnuHelp(1).Enabled = bVal: MnuHelp(1).Visible = bVal
+    MnuHelp(2).Enabled = bVal: MnuHelp(2).Visible = bVal
+    MnuHelp(3).Enabled = bVal: MnuHelp(3).Visible = bVal
+    MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
+    If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = bVal: MnuHelp(4).Visible = bVal
+Else
+    MnuCompany.Enabled = True: MnuCompany.Visible = True
+    MnuOpen.Enabled = True: MnuOpen.Visible = True
+    MnuHelpm.Enabled = True: MnuHelpm.Visible = True
+    MnuHelp(1).Enabled = True: MnuHelp(1).Visible = True
+    MnuHelp(2).Enabled = True: MnuHelp(2).Visible = True
+    MnuHelp(3).Enabled = True: MnuHelp(3).Visible = True
+    MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
+    If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = True: MnuHelp(4).Visible = True
+End If
+Exit Sub
 ErrorHandler:
     Call CloseRecordset(rstUserChild)
 End Sub

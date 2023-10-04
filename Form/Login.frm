@@ -357,7 +357,7 @@ Private Sub cmdLogin_Click()
            Me.Caption = "Login Successful !"
            cmdCancel.ToolTipText = "Proceed"
            UserCode = RTrim(.Fields("Code").Value)
-           UserName = RTrim(.Fields("Name").Value)
+           Username = RTrim(.Fields("Name").Value)
            UserLevel = RTrim(.Fields("Level").Value)
            VchApprovalRights = .Fields("VchApprovalRights").Value
            AllowMastersModification = Val(.Fields("AllowMastersModification").Value)
