@@ -1050,7 +1050,7 @@ Begin VB.MDIForm MdiMainMenu
          Index           =   1
       End
       Begin VB.Menu MenuPendingBilling 
-         Caption         =   "Order Processing"
+         Caption         =   "Order Processing(Jobwork)"
          Tag             =   "03140000"
          Begin VB.Menu MenuPendingBillingJobworkDirect 
             Caption         =   "Pending Sales Order-Wise"
