@@ -909,7 +909,7 @@ Begin VB.Form FrmBookPrintOrder
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Variable Qnty Detail"
+               Caption         =   " Variable Qty. Details"
                FillColor       =   9164542
                TextColor       =   0
                Picture         =   "BookPrintOrder.frx":2D2C
@@ -1028,7 +1028,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   173998085
+               ValueVT         =   266469381
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3746,7 +3746,7 @@ Begin VB.Form FrmBookPrintOrder
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Base Qnty Detail"
+               Caption         =   " Base Qty. Details"
                FillColor       =   9164542
                TextColor       =   0
                Picture         =   "BookPrintOrder.frx":4AA4
@@ -5128,7 +5128,7 @@ Private Function CheckMandatoryFields() As Boolean
        CheckMandatoryFields = True
     ElseIf CheckEmpty(Text11.Text, False) Then 'Material Centre
        Text11.SetFocus
-       CheckMandatoryFields = True
+       CheckMandatoryFields = True: DisplayError "You Cann't Saved This Order Due To Field" & Chr(13) & "<<< Material Centre >>> is Mandatory Field"
     End If
 End Function
 Private Sub Timer1_Timer()
@@ -5300,6 +5300,9 @@ If Left(BookPOType, 1) = "F" Or Left(BookPOType, 1) = "R" Or Left(BookPOType, 1)
         .VchCode = CheckNull(rstBookPOParent.Fields("Code").Value)
         .VchType = BookPOType
         .PartyCode = BookPrinterCode
+        rstAccountList.MoveFirst
+        rstAccountList.Find "[Code]='" & BookPrinterCode & "'"
+        .RoundOffQty = rstAccountList.Fields("RoundOffQty").Value
         Set .rstBookPOChild05 = rstBookPOChild05
         .Mh3dLabel51.Caption = IIf(Right(BookPOType, 1) = "P", " Paper Supplied", " Paper by Party")
         On Error Resume Next

@@ -143,8 +143,8 @@ Begin VB.Form FrmBookPOChild0801
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild0801.frx":0C16
-         Picture         =   "BookPOChild0801.frx":0C32
+         Picture         =   "BookPOChild0801.frx":0C3A
+         Picture         =   "BookPOChild0801.frx":0C56
       End
       Begin VB.Line Line2 
          X1              =   0
@@ -154,15 +154,15 @@ Begin VB.Form FrmBookPOChild0801
       End
    End
    Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
-      Height          =   570
+      Height          =   1170
       Index           =   2
-      Left            =   15600
+      Left            =   15540
       TabIndex        =   6
       Top             =   960
-      Width           =   1440
+      Width           =   1560
       _Version        =   65536
-      _ExtentX        =   2540
-      _ExtentY        =   1005
+      _ExtentX        =   2752
+      _ExtentY        =   2064
       _StockProps     =   77
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Calibri"
@@ -174,14 +174,14 @@ Begin VB.Form FrmBookPOChild0801
          Strikethrough   =   0   'False
       EndProperty
       TintColor       =   16711935
-      Caption         =   " Ctrl+D->Delete  Ctrl+S->Save "
+      Caption         =   " Ctrl+E->Edit Row  F2->Edit Row  F9->Delete Row  Ctrl+D->Delete Row  Ctrl+S->Save"
       AutoSize        =   -1  'True
       FillColor       =   8421504
       TextColor       =   16777215
-      Picture         =   "BookPOChild0801.frx":0C4E
+      Picture         =   "BookPOChild0801.frx":0C72
       Multiline       =   -1  'True
       GlobalMem       =   -1  'True
-      Picture         =   "BookPOChild0801.frx":0C6A
+      Picture         =   "BookPOChild0801.frx":0C8E
    End
 End
 Attribute VB_Name = "FrmBookPOChild0801"
@@ -346,7 +346,7 @@ Private Sub SaveFields()
     End With
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    If Shift = vbCtrlMask And KeyCode = vbKeyD Then
+    If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF9) Then
         If UserLevel = "3" Then Call DisplayError("You don't have the rights to delete BOM Item"): Exit Sub
         If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
             fpSpread1.DeleteRows fpSpread1.ActiveRow, 1

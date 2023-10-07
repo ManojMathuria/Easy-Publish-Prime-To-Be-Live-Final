@@ -5760,7 +5760,7 @@ Private Sub ClearFields()
     Combo3.ListIndex = 0
     Text3.Text = ""
     Text9.Text = "": PlateMakerCode = ""
-    Text13.Text = "": 'fColorCode = "*23003"
+    Text13.Text = "": fColorCode = "*23003"
     Text15.Text = "" 'bColorCode
     bColor = 0
     fColor = 0
@@ -5772,7 +5772,7 @@ Private Sub ClearFields()
 '        fColor = Val(.Fields("Value1").Value)
 '        bColor = fColor
     End With
-    Text16.Text = "": 'fPlateCode = "*24004"
+    Text16.Text = "": fPlateCode = "*24004"
     Text17.Text = ""  'bPlateCode
     bPlate = 0
     fPlate = 0
@@ -6202,7 +6202,7 @@ Private Sub GetPartyRates(ByVal RateType As String, Optional ByVal Position As S
                 MhRealInput23.Value = 0
             End If
         End If
-        If Position = "B" Then
+            If Position = "B" Then
             If IIf(Combo3.ListIndex = 0, bColor > 0, False) Then
                 If backPaperWastageMin > 0 Then
                     If MhRealInput36.Value = 0 Then

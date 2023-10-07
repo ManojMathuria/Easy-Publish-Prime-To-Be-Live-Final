@@ -1503,7 +1503,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1562,7 +1562,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4082,7 +4082,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -5064,7 +5064,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -5422,7 +5422,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Public VchCode As String, VchType As String, PartyCode As String, rstBookPOChild05 As New ADODB.Recordset
+Public VchCode As String, VchType As String, PartyCode As String, RoundOffQty As Boolean, rstBookPOChild05 As New ADODB.Recordset
 Dim rstPaperList As New ADODB.Recordset, rstGeneralList As New ADODB.Recordset, rstPlateMakerList As New ADODB.Recordset, rstFetchRate As New ADODB.Recordset, rstElementList As New ADODB.Recordset, WithEvents rstBookPOChild05c As ADODB.Recordset
 Attribute rstBookPOChild05c.VB_VarHelpID = -1
 Dim ItemCode As String, FinishSizeCode As String, SizeCode As String, TextSizeCode As String, PlateMakerCode As String, ElementCode As String, PaperCode As String, ColorCode As Variant, PlateCode As Variant, Plate As Integer, Color As Integer
@@ -5684,10 +5684,30 @@ Private Sub MhRealInput2_GotFocus() 'Billing quantity
     q = IIf(q = 0, 1000, q * 1000) + IIf(MhRealInput1.Value Mod 1000 <= IIf(MhRealInput1.Value <= 20000, 299, 599), 0, 1000)
     If MhRealInput2.Value = 0 Then MhRealInput2.Value = q
     MhRealInput2.Tag = q
+'    If MhDateInput1.ReadOnly Then Exit Sub
+'    CalculateBillingQty
+End Sub
+Private Sub CalculateBillingQty()
+    Dim BillQty As Double
+    If MhRealInput40.Value > 0 Then 'Pages/Form
+        BillQty = MhRealInput1.Value  'BillQty
+        If BillQty > 0 Then
+            If RoundOffQty Then
+                If BillQty < 1000 Then BillQty = 1000
+                BillQty = IIf(Int(BillQty / 1000) = 0, 1000, Int(BillQty / 1000) * 1000) + IIf(BillQty Mod 1000 <= IIf(BillQty <= 20000, 299, 599), 0, 1000)
+            End If
+            If MhRealInput2.Value = 0 Then
+                MhRealInput2.Value = BillQty
+            ElseIf MhRealInput2.Value <> BillQty Then
+                If MsgBox("Variation in Billing Qty. [" & Trim(BillQty) & "] and Existing [" & Trim(MhRealInput2.Value) & "] Billing Qty. ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput2.Value = BillQty
+            End If
+        End If
+    End If
 End Sub
 Private Sub MhRealInput2_Validate(Cancel As Boolean)
     If MhDateInput1.ReadOnly Then Exit Sub
-    If MhRealInput2.Value = 0 Or MhRealInput2.Value Mod 1000 <> 0 Then Cancel = True: Exit Sub
+'    If MhRealInput2.Value = 0 Or MhRealInput2.Value Mod 1000 <> 0 Then Cancel = True: Exit Sub
+    If MhRealInput2.Value = 0 Then Cancel = True: Exit Sub
     If Val(MhRealInput2.Tag) <> MhRealInput2.Value And Val(MhRealInput2.Tag) <> 0 Then
         If MsgBox("Variation in Calculated [" & Trim(MhRealInput2.Tag) & "] and Existing [" & Trim(MhRealInput2.Value) & "] Billing Quantity ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput2.Value = Val(MhRealInput2.Tag)
     End If
@@ -6538,10 +6558,17 @@ Private Sub CalculateTotalForms()
     Dim TotalForms As Double
     TotalForms = MhRealInput2.Value / MhRealInput22.Value
     TotalForms = IIf(Option2.Value, 0.5, 1) * TotalForms
+If RoundOffQty Then
     MhRealInput6.Value = (Int((TotalForms * 0.25) / 1000) + IIf((TotalForms * 0.25) Mod 1000 = 0, 0, 1)) * MhRealInput17.Value
     MhRealInput25.Value = (Int((TotalForms * 0.5) / 1000) + IIf((TotalForms * 0.5) Mod 1000 = 0, 0, 1)) * MhRealInput20.Value
     MhRealInput26.Value = (Int((TotalForms * 1) / 1000) + IIf((TotalForms * 1) Mod 1000 = 0, 0, 1)) * MhRealInput21.Value
     MhRealInput43.Value = (Int((TotalForms * 1) / 1000) + IIf((TotalForms * 1) Mod 1000 = 0, 0, 1)) * MhRealInput41.Value
+Else
+    MhRealInput6.Value = (((TotalForms * 0.25) / 1000)) * MhRealInput17.Value
+    MhRealInput25.Value = (((TotalForms * 0.5) / 1000)) * MhRealInput20.Value
+    MhRealInput26.Value = (((TotalForms * 1) / 1000)) * MhRealInput21.Value
+    MhRealInput43.Value = (((TotalForms * 1) / 1000)) * MhRealInput41.Value
+End If
 End Sub
 Private Sub CalculateTotalPlates()
     If MhRealInput22.Value = 0 Then Exit Sub
