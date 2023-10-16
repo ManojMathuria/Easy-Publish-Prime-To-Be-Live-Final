@@ -2044,16 +2044,19 @@ If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPictur
     MnuMasters.Enabled = False
     MnuTransactions.Enabled = False
     MnuDisplay.Enabled = False
-    MenuFG_UFGLedger.Enabled = False
+    MenuFG_UFGLedger.Enabled = False: MenuFG_UFGLedger.Visible = False
     MnuReports.Enabled = False
     MnuUtilities.Enabled = False
-    mnuProjectManagementParent.Enabled = False
+    mnuProjectManagementParent.Enabled = False: mnuProjectManagementParent.Visible = False
     MnuHelpm = True
 End Sub
 Private Sub MDIForm_Resize()
     On Error Resume Next
     Dim client_rect As RECT
     Dim client_hwnd As Long
+    If Not Trim(ReadFromFile("Customer Type")) = "General" Then
+            MenuFG_UFGLedger.Visible = True: mnuProjectManagementParent.Visible = True
+    End If
     If Trim(ReadFromFile("Client ID")) = "Publisher" Then
     picOriginal.Picture = LoadPicture(App.Path & "\Icon\EasyPublish.jpeg")
     ElseIf Trim(ReadFromFile("Client ID")) = "Printer" Then
@@ -2166,7 +2169,6 @@ Private Sub mnuClose_Click()
     End If
 End Sub
 Private Sub SetMenuOptions(bVal As Boolean)
-    Dim MenuList As String
     Dim Object As Object
     Dim rstUserChild As New ADODB.Recordset
     On Error GoTo ErrorHandler
@@ -2226,6 +2228,49 @@ If bVal Then
     MnuHelp(3).Enabled = bVal: MnuHelp(3).Visible = bVal
     MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
     If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = bVal: MnuHelp(4).Visible = bVal
+
+    
+    If Trim(ReadFromFile("Customer Type")) = "General" Then
+        MenuFG_UFGLedger.Enabled = False: MenuFG_UFGLedger.Visible = False:
+        mnuProjectManagementParent.Enabled = False: mnuProjectManagementParent.Visible = False
+        mnuRateMaster.Enabled = False: mnuRateMaster.Visible = False:
+        mnuBindingTypeMaster.Enabled = False: mnuBindingTypeMaster.Visible = False:
+        mnuOperationMaster.Enabled = False: mnuOperationMaster.Visible = False:
+        mnuSizeMaster.Enabled = False: mnuSizeMaster.Visible = False:
+        mnuFinishSizeMaster.Enabled = False: mnuFinishSizeMaster.Visible = False:
+        mnuSizeGroupMaster.Enabled = False: mnuSizeGroupMaster.Visible = False:
+        mnuPaperMaster.Enabled = False: mnuPaperMaster.Visible = False:
+        mnuPaperUnitMaster.Enabled = False: mnuPaperUnitMaster.Visible = False:
+        mnuColorMaster.Enabled = False: mnuColorMaster.Visible = False:
+        mnuOutsourceItemMaster.Enabled = False: mnuOutsourceItemMaster.Visible = False:
+        mnuProjectManagementMaster.Enabled = False: mnuProjectManagementMaster.Visible = False:
+        mnuMachineMaster.Enabled = False: mnuMachineMaster.Visible = False:
+        mnuDespatchManagementParent.Enabled = False: mnuDespatchManagementParent.Visible = False:
+        mnuPrintPlanningModule.Enabled = False: mnuPrintPlanningModule.Visible = False:
+        mnuPurchaseQuotationJW.Enabled = False: mnuPurchaseQuotationJW.Visible = False:
+        mnuSalesQuotationJW.Enabled = False: mnuSalesQuotationJW.Visible = False
+        mnuPurchaseOrderJobWork.Enabled = False: mnuPurchaseOrderJobWork.Visible = False
+        mnuSalesOrderJobWork.Enabled = False: mnuSalesOrderJobWork.Visible = False
+        mnuSalesJW.Enabled = False: mnuSalesJW.Visible = False
+        mnuPurchaseJW.Enabled = False: mnuPurchaseJW.Visible = False
+        mnuMaterialInJobWork.Enabled = False: mnuMaterialInJobWork.Visible = False
+        mnuMaterialOutJobWork.Enabled = False: mnuMaterialOutJobWork.Visible = False
+        mnuBookProcessOrder.Enabled = False: mnuBookProcessOrder.Visible = False
+        mnuPaperModuleParent.Enabled = False: mnuPaperModuleParent.Visible = False
+        MnuMaterialIssueOrder.Enabled = False: MnuMaterialIssueOrder.Visible = False
+        MnuMaterialMovement.Enabled = False: MnuMaterialMovement.Visible = False
+        mnuStockJournalRawMaterial.Enabled = False: mnuStockJournalRawMaterial.Visible = False
+        MnuProduction.Enabled = False: MnuProduction.Visible = False
+        MenuPendingBilling.Enabled = False: MenuPendingBilling.Visible = False
+        MnuOrdersSJW.Enabled = False: MnuOrdersSJW.Visible = False
+        MenuPaperIssueReceipt.Enabled = False: MenuPaperIssueReceipt.Visible = False
+        MnuReports.Enabled = False: MnuReports.Visible = False
+        
+        MnuPrintUtilities.Enabled = False: MnuPrintUtilities.Visible = False
+        MnuBookReceiptBusy.Enabled = False: MnuBookReceiptBusy.Visible = False
+        mnuCostSheet.Enabled = False: mnuCostSheet.Visible = False
+        MnuImportBal.Enabled = False: MnuImportBal.Visible = False
+    End If
 Else
     MnuCompany.Enabled = True: MnuCompany.Visible = True
     MnuOpen.Enabled = True: MnuOpen.Visible = True

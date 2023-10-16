@@ -78,6 +78,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+'Option Explicit
     Dim DestinationFileVersion, SourceFileVersion
     Dim dMajor, dMinor, dRevision, dRelease
     Dim sMajor, sMinor, sRevision, sRelease
@@ -88,14 +89,14 @@ Attribute VB_Exposed = False
     Dim SourceFileUrl, SourceFileFolder, DestinationFolder
     Dim DestinationFile
     Dim dFlag As Boolean
-Private Sub Command1_Click() 'EasyPublish To Be Live 22.12
-SourceFileUrl = "https://onedrive.live.com/?authkey=%21AHRTNqbmWcbrE7A&cid=A3BEF1B4FF3CDACB&id=A3BEF1B4FF3CDACB%2145851&parId=A3BEF1B4FF3CDACB%2145707&o=OneUp"
-FrmVersionUpdate.txtSourceFileUrl.Text = SourceFileUrl
-DownloadGoogleDriveWithFilename
-Unload Me
-FrmVersionUpdate.Command3.SetFocus
-    Sendkeys "{TAB}", True
-    KeyCode = 0
+Private Sub Command1_Click() 'EasyPublish Live 22.12
+    SourceFileUrl = "https://onedrive.live.com/?authkey=%21AHRTNqbmWcbrE7A&cid=A3BEF1B4FF3CDACB&id=A3BEF1B4FF3CDACB%2145851&parId=A3BEF1B4FF3CDACB%2145707&o=OneUp"
+    FrmVersionUpdate.txtSourceFileUrl.Text = SourceFileUrl
+    DownloadGoogleDriveWithFilename
+    Unload Me
+    FrmVersionUpdate.Command3.SetFocus
+        Sendkeys "{TAB}", True
+        KeyCode = 0
 End Sub
 Private Sub Command2_Click() 'EasyPublish To Be Live 23.4
 SourceFileUrl = "https://onedrive.live.com/?authkey=%21AAi6Oa8yimMPjUs&cid=A3BEF1B4FF3CDACB&id=A3BEF1B4FF3CDACB%2145852&parId=A3BEF1B4FF3CDACB%2145708&o=OneUp"
@@ -104,6 +105,12 @@ DownloadGoogleDriveWithFilename
 Unload Me
 End Sub
 Private Sub Form_Load()
+''*****
+'    ' Initialize the Graph API client.
+'    Dim graphClient As New graphClient
+'    graphClient.Init "YOUR_APPLICATION_ID", "YOUR_CLIENT_SECRET", "YOUR_REDIRECT_URI"
+''*****
+    
     ' Get the user name minus any trailing spaces found in the name.
     ret = GetUserName(lpBuff, 25)
     UserName = Left(lpBuff, InStr(lpBuff, Chr(0)) - 1)
@@ -128,3 +135,39 @@ FrmModule.Command2.FontStrikethru = True
        KeyCode = 0
 End If
 End Sub
+''*****
+'Private Sub DownloadFile_Click()
+'    ' Define the OneDrive file ID and local file path.
+'    Dim oneDriveFileId As String
+'    Dim localFilePath As String
+'    oneDriveFileId = "YOUR_ONE_DRIVE_FILE_ID"
+'    localFilePath = "C:\Path\To\Downloaded\File.txt"
+'
+'    ' Download the file from OneDrive.
+'    If DownloadOneDriveFile(oneDriveFileId, localFilePath) Then
+'        MsgBox "Download completed successfully."
+'    Else
+'        MsgBox "Download failed."
+'    End If
+'End Sub
+'
+'Private Function DownloadOneDriveFile(oneDriveFileId As String, localFilePath As String) As Boolean
+'    Dim response As String
+'    Dim success As Boolean
+'
+'    ' Get the file content from OneDrive.
+'    success = graphClient.DownloadOneDriveFile(oneDriveFileId, response)
+'
+'    ' Save the file content to the local path.
+'    If success Then
+'        Dim fileNumber As Integer
+'        fileNumber = FreeFile
+'        Open localFilePath For Binary As #fileNumber
+'        Put #fileNumber, , response
+'        Close #fileNumber
+'    End If
+'
+'    DownloadOneDriveFile = success
+'End Function
+'
+''*****

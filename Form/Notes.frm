@@ -332,6 +332,8 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     VSFlexGrid1.Visible = False
+    TDBNumber2.Visible = False
+    Mh3dLabel4.Visible = False
     If DatabaseType = "MS SQL" Then
         cnClientAccount.CommandTimeout = 300
         ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=sa;Initial Catalog=Company ;Data Source=" & ServerName
@@ -349,6 +351,8 @@ Private Sub Form_Load()
     rstClientAccount.Open "SELECT SuM(Debit)-Sum(Credit) As Bal FROM ClientAccount Where Left(UUID,5)='EP'+'" & CompCode & "'", cnClientAccount, adOpenKeyset, adLockReadOnly
     If ((Trim(ReadFromFile("Client User")) = "EasyPublish") Or (rstClientAccount.Fields("Bal").Value <> "Null" And rstClientAccount.Fields("Bal").Value <> 0 And BalFlag = True)) And NotesFlag = 0 Then
             VSFlexGrid1.Visible = True
+            TDBNumber2.Visible = True
+            Mh3dLabel4.Visible = True
             btnSave.Visible = False
             Call PublishGrid
     ElseIf IsNull(rstClientAccount.Fields("Bal").Value) And BalFlag = True Then

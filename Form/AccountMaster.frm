@@ -6,6 +6,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form FrmAccountMaster 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Account Master"
@@ -94,15 +95,25 @@ Begin VB.Form FrmAccountMaster
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Label1"
          Tab(0).Control(0).Enabled=   0   'False
-         Tab(0).Control(1)=   "Mh3dLabel1(5)"
+         Tab(0).Control(1)=   "CmdLabel"
          Tab(0).Control(1).Enabled=   0   'False
-         Tab(0).Control(2)=   "Mh3dLabel1(3)"
+         Tab(0).Control(2)=   "Mh3dLabel1(5)"
          Tab(0).Control(2).Enabled=   0   'False
-         Tab(0).Control(3)=   "DataGrid1"
+         Tab(0).Control(3)=   "Mh3dLabel1(3)"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).Control(4)=   "Text1"
+         Tab(0).Control(4)=   "DataGrid1"
          Tab(0).Control(4).Enabled=   0   'False
-         Tab(0).ControlCount=   5
+         Tab(0).Control(5)=   "Text1"
+         Tab(0).Control(5).Enabled=   0   'False
+         Tab(0).Control(6)=   "CommonDialog1"
+         Tab(0).Control(6).Enabled=   0   'False
+         Tab(0).Control(7)=   "ImageList1"
+         Tab(0).Control(7).Enabled=   0   'False
+         Tab(0).Control(8)=   "CmdPrint"
+         Tab(0).Control(8).Enabled=   0   'False
+         Tab(0).Control(9)=   "CmdExport"
+         Tab(0).Control(9).Enabled=   0   'False
+         Tab(0).ControlCount=   10
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "AccountMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
@@ -149,16 +160,148 @@ Begin VB.Form FrmAccountMaster
          TabCaption(8)   =   "&Details"
          TabPicture(8)   =   "AccountMaster.frx":00FC
          Tab(8).ControlEnabled=   0   'False
-         Tab(8).Control(0)=   "Mh3dLabel1(8)"
+         Tab(8).Control(0)=   "Command10"
          Tab(8).Control(1)=   "Mh3dFrame2(7)"
-         Tab(8).Control(2)=   "Command10"
+         Tab(8).Control(2)=   "Mh3dLabel1(8)"
          Tab(8).ControlCount=   3
          TabCaption(9)   =   "&Op.Bal."
          TabPicture(9)   =   "AccountMaster.frx":0118
          Tab(9).ControlEnabled=   0   'False
          Tab(9).Control(0)=   "Mh3dFrame2(8)"
-         Tab(9).Control(0).Enabled=   0   'False
          Tab(9).ControlCount=   1
+         Begin Mh3dlblLib.Mh3dLabel CmdExport 
+            Height          =   330
+            Left            =   12000
+            TabIndex        =   163
+            Top             =   8445
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Export List"
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "AccountMaster.frx":0134
+            Picture         =   "AccountMaster.frx":0150
+         End
+         Begin Mh3dlblLib.Mh3dLabel CmdPrint 
+            Height          =   330
+            Left            =   10920
+            TabIndex        =   162
+            Top             =   8445
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Print List"
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "AccountMaster.frx":016C
+            Picture         =   "AccountMaster.frx":0188
+         End
+         Begin MSComctlLib.ImageList ImageList1 
+            Left            =   7560
+            Top             =   4200
+            _ExtentX        =   1005
+            _ExtentY        =   1005
+            BackColor       =   -2147483643
+            ImageWidth      =   16
+            ImageHeight     =   16
+            MaskColor       =   12632256
+            _Version        =   393216
+            BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+               NumListImages   =   15
+               BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":01A4
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":06E8
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":0C2C
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":0D40
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":0E54
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":0F68
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":10C4
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":1608
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":171C
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":1C60
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":1D74
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":1E88
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":1F9C
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":20B0
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "AccountMaster.frx":21C4
+                  Key             =   ""
+               EndProperty
+            EndProperty
+         End
+         Begin MSComDlg.CommonDialog CommonDialog1 
+            Left            =   6600
+            Top             =   4200
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   393216
+         End
          Begin VB.CommandButton Command10 
             BeginProperty Font 
                Name            =   "Arial Narrow"
@@ -171,7 +314,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             Height          =   345
             Left            =   -61080
-            Picture         =   "AccountMaster.frx":0134
+            Picture         =   "AccountMaster.frx":22D8
             Style           =   1  'Graphical
             TabIndex        =   156
             ToolTipText     =   "Import Rates From Other Accounts"
@@ -190,7 +333,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             Height          =   345
             Left            =   -61080
-            Picture         =   "AccountMaster.frx":0476
+            Picture         =   "AccountMaster.frx":261A
             Style           =   1  'Graphical
             TabIndex        =   155
             ToolTipText     =   "Import Rates From Other Accounts"
@@ -209,7 +352,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             Height          =   345
             Left            =   -61080
-            Picture         =   "AccountMaster.frx":07B8
+            Picture         =   "AccountMaster.frx":295C
             Style           =   1  'Graphical
             TabIndex        =   154
             ToolTipText     =   "Import Rates From Other Accounts"
@@ -228,7 +371,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             Height          =   345
             Left            =   -61080
-            Picture         =   "AccountMaster.frx":0AFA
+            Picture         =   "AccountMaster.frx":2C9E
             Style           =   1  'Graphical
             TabIndex        =   153
             ToolTipText     =   "Import Rates From Other Accounts"
@@ -247,7 +390,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             Height          =   345
             Left            =   -61080
-            Picture         =   "AccountMaster.frx":0E3C
+            Picture         =   "AccountMaster.frx":2FE0
             Style           =   1  'Graphical
             TabIndex        =   152
             ToolTipText     =   "Import Rates From Other Accounts"
@@ -266,7 +409,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             Height          =   345
             Left            =   -74880
-            Picture         =   "AccountMaster.frx":117E
+            Picture         =   "AccountMaster.frx":3322
             Style           =   1  'Graphical
             TabIndex        =   14
             ToolTipText     =   "Notes"
@@ -289,7 +432,7 @@ Begin VB.Form FrmAccountMaster
             Left            =   600
             TabIndex        =   69
             Top             =   8445
-            Width           =   8775
+            Width           =   5415
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   7920
@@ -420,7 +563,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":1525
+            Picture         =   "AccountMaster.frx":36C9
             Begin VB.TextBox Text14 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -679,8 +822,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1541
-               Picture         =   "AccountMaster.frx":155D
+               Picture         =   "AccountMaster.frx":36E5
+               Picture         =   "AccountMaster.frx":3701
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -707,8 +850,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1579
-               Picture         =   "AccountMaster.frx":1595
+               Picture         =   "AccountMaster.frx":371D
+               Picture         =   "AccountMaster.frx":3739
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   1275
@@ -735,8 +878,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":15B1
-               Picture         =   "AccountMaster.frx":15CD
+               Picture         =   "AccountMaster.frx":3755
+               Picture         =   "AccountMaster.frx":3771
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -763,8 +906,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":15E9
-               Picture         =   "AccountMaster.frx":1605
+               Picture         =   "AccountMaster.frx":378D
+               Picture         =   "AccountMaster.frx":37A9
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -791,8 +934,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1621
-               Picture         =   "AccountMaster.frx":163D
+               Picture         =   "AccountMaster.frx":37C5
+               Picture         =   "AccountMaster.frx":37E1
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -819,8 +962,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1659
-               Picture         =   "AccountMaster.frx":1675
+               Picture         =   "AccountMaster.frx":37FD
+               Picture         =   "AccountMaster.frx":3819
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -847,8 +990,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1691
-               Picture         =   "AccountMaster.frx":16AD
+               Picture         =   "AccountMaster.frx":3835
+               Picture         =   "AccountMaster.frx":3851
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -875,8 +1018,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":16C9
-               Picture         =   "AccountMaster.frx":16E5
+               Picture         =   "AccountMaster.frx":386D
+               Picture         =   "AccountMaster.frx":3889
             End
             Begin VB.TextBox Text3 
                Appearance      =   0  'Flat
@@ -945,8 +1088,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1701
-               Picture         =   "AccountMaster.frx":171D
+               Picture         =   "AccountMaster.frx":38A5
+               Picture         =   "AccountMaster.frx":38C1
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -973,8 +1116,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1739
-               Picture         =   "AccountMaster.frx":1755
+               Picture         =   "AccountMaster.frx":38DD
+               Picture         =   "AccountMaster.frx":38F9
             End
             Begin TDBNumber6Ctl.TDBNumber TDBNumber1 
                Height          =   330
@@ -985,8 +1128,8 @@ Begin VB.Form FrmAccountMaster
                _Version        =   65536
                _ExtentX        =   4260
                _ExtentY        =   582
-               Calculator      =   "AccountMaster.frx":1771
-               Caption         =   "AccountMaster.frx":1791
+               Calculator      =   "AccountMaster.frx":3915
+               Caption         =   "AccountMaster.frx":3935
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -996,9 +1139,9 @@ Begin VB.Form FrmAccountMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "AccountMaster.frx":17FD
-               Keys            =   "AccountMaster.frx":181B
-               Spin            =   "AccountMaster.frx":1865
+               DropDown        =   "AccountMaster.frx":39A1
+               Keys            =   "AccountMaster.frx":39BF
+               Spin            =   "AccountMaster.frx":3A09
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1059,8 +1202,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":188D
-               Picture         =   "AccountMaster.frx":18A9
+               Picture         =   "AccountMaster.frx":3A31
+               Picture         =   "AccountMaster.frx":3A4D
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
@@ -1093,7 +1236,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":18C5
+            Picture         =   "AccountMaster.frx":3A69
             Begin VB.CommandButton Command1 
                BeginProperty Font 
                   Name            =   "Arial Narrow"
@@ -1106,7 +1249,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                Height          =   345
                Left            =   13680
-               Picture         =   "AccountMaster.frx":18E1
+               Picture         =   "AccountMaster.frx":3A85
                Style           =   1  'Graphical
                TabIndex        =   147
                ToolTipText     =   "Copy Rates"
@@ -1368,8 +1511,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1E13
-               Picture         =   "AccountMaster.frx":1E2F
+               Picture         =   "AccountMaster.frx":3FB7
+               Picture         =   "AccountMaster.frx":3FD3
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -1396,8 +1539,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1E4B
-               Picture         =   "AccountMaster.frx":1E67
+               Picture         =   "AccountMaster.frx":3FEF
+               Picture         =   "AccountMaster.frx":400B
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   960
@@ -1424,8 +1567,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1E83
-               Picture         =   "AccountMaster.frx":1E9F
+               Picture         =   "AccountMaster.frx":4027
+               Picture         =   "AccountMaster.frx":4043
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -1452,8 +1595,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1EBB
-               Picture         =   "AccountMaster.frx":1ED7
+               Picture         =   "AccountMaster.frx":405F
+               Picture         =   "AccountMaster.frx":407B
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -1480,8 +1623,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1EF3
-               Picture         =   "AccountMaster.frx":1F0F
+               Picture         =   "AccountMaster.frx":4097
+               Picture         =   "AccountMaster.frx":40B3
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -1508,8 +1651,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1F2B
-               Picture         =   "AccountMaster.frx":1F47
+               Picture         =   "AccountMaster.frx":40CF
+               Picture         =   "AccountMaster.frx":40EB
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -1536,8 +1679,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1F63
-               Picture         =   "AccountMaster.frx":1F7F
+               Picture         =   "AccountMaster.frx":4107
+               Picture         =   "AccountMaster.frx":4123
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -1564,8 +1707,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1F9B
-               Picture         =   "AccountMaster.frx":1FB7
+               Picture         =   "AccountMaster.frx":413F
+               Picture         =   "AccountMaster.frx":415B
             End
             Begin VB.TextBox Text13 
                Appearance      =   0  'Flat
@@ -1618,7 +1761,7 @@ Begin VB.Form FrmAccountMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "AccountMaster.frx":1FD3
+               Picture         =   "AccountMaster.frx":4177
                Begin VB.CheckBox chkRound 
                   BackColor       =   &H00FFFFFF&
                   BeginProperty Font 
@@ -1662,8 +1805,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":1FEF
-               Picture         =   "AccountMaster.frx":200B
+               Picture         =   "AccountMaster.frx":4193
+               Picture         =   "AccountMaster.frx":41AF
             End
             Begin FPSpreadADO.fpSpread fpSpread2 
                Height          =   5385
@@ -1690,7 +1833,7 @@ Begin VB.Form FrmAccountMaster
                GridColor       =   4227327
                MaxCols         =   10
                MaxRows         =   1000
-               SpreadDesigner  =   "AccountMaster.frx":2027
+               SpreadDesigner  =   "AccountMaster.frx":41CB
             End
             Begin VB.Line Line4 
                X1              =   0
@@ -1729,7 +1872,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":2A02
+            Picture         =   "AccountMaster.frx":4B82
             Begin VB.CommandButton Command3 
                BeginProperty Font 
                   Name            =   "Arial Narrow"
@@ -1742,7 +1885,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                Height          =   345
                Left            =   13680
-               Picture         =   "AccountMaster.frx":2A1E
+               Picture         =   "AccountMaster.frx":4B9E
                Style           =   1  'Graphical
                TabIndex        =   149
                ToolTipText     =   "Copy Rates"
@@ -2004,8 +2147,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":2F50
-               Picture         =   "AccountMaster.frx":2F6C
+               Picture         =   "AccountMaster.frx":50D0
+               Picture         =   "AccountMaster.frx":50EC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -2032,8 +2175,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":2F88
-               Picture         =   "AccountMaster.frx":2FA4
+               Picture         =   "AccountMaster.frx":5108
+               Picture         =   "AccountMaster.frx":5124
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   1270
@@ -2060,8 +2203,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":2FC0
-               Picture         =   "AccountMaster.frx":2FDC
+               Picture         =   "AccountMaster.frx":5140
+               Picture         =   "AccountMaster.frx":515C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -2088,8 +2231,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":2FF8
-               Picture         =   "AccountMaster.frx":3014
+               Picture         =   "AccountMaster.frx":5178
+               Picture         =   "AccountMaster.frx":5194
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -2116,8 +2259,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":3030
-               Picture         =   "AccountMaster.frx":304C
+               Picture         =   "AccountMaster.frx":51B0
+               Picture         =   "AccountMaster.frx":51CC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -2144,8 +2287,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":3068
-               Picture         =   "AccountMaster.frx":3084
+               Picture         =   "AccountMaster.frx":51E8
+               Picture         =   "AccountMaster.frx":5204
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -2172,8 +2315,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":30A0
-               Picture         =   "AccountMaster.frx":30BC
+               Picture         =   "AccountMaster.frx":5220
+               Picture         =   "AccountMaster.frx":523C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -2200,8 +2343,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":30D8
-               Picture         =   "AccountMaster.frx":30F4
+               Picture         =   "AccountMaster.frx":5258
+               Picture         =   "AccountMaster.frx":5274
             End
             Begin VB.TextBox Text13 
                Appearance      =   0  'Flat
@@ -2251,7 +2394,7 @@ Begin VB.Form FrmAccountMaster
                GridColor       =   4227327
                MaxCols         =   14
                MaxRows         =   1000
-               SpreadDesigner  =   "AccountMaster.frx":3110
+               SpreadDesigner  =   "AccountMaster.frx":5290
             End
             Begin VB.Line Line6 
                X1              =   0
@@ -2290,7 +2433,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":3D20
+            Picture         =   "AccountMaster.frx":5E7C
             Begin VB.CommandButton Command5 
                BeginProperty Font 
                   Name            =   "Arial Narrow"
@@ -2303,7 +2446,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                Height          =   345
                Left            =   13680
-               Picture         =   "AccountMaster.frx":3D3C
+               Picture         =   "AccountMaster.frx":5E98
                Style           =   1  'Graphical
                TabIndex        =   151
                ToolTipText     =   "Copy Rates"
@@ -2565,8 +2708,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":426E
-               Picture         =   "AccountMaster.frx":428A
+               Picture         =   "AccountMaster.frx":63CA
+               Picture         =   "AccountMaster.frx":63E6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -2593,8 +2736,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":42A6
-               Picture         =   "AccountMaster.frx":42C2
+               Picture         =   "AccountMaster.frx":6402
+               Picture         =   "AccountMaster.frx":641E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   1270
@@ -2621,8 +2764,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":42DE
-               Picture         =   "AccountMaster.frx":42FA
+               Picture         =   "AccountMaster.frx":643A
+               Picture         =   "AccountMaster.frx":6456
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -2649,8 +2792,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":4316
-               Picture         =   "AccountMaster.frx":4332
+               Picture         =   "AccountMaster.frx":6472
+               Picture         =   "AccountMaster.frx":648E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -2677,8 +2820,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":434E
-               Picture         =   "AccountMaster.frx":436A
+               Picture         =   "AccountMaster.frx":64AA
+               Picture         =   "AccountMaster.frx":64C6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -2705,8 +2848,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":4386
-               Picture         =   "AccountMaster.frx":43A2
+               Picture         =   "AccountMaster.frx":64E2
+               Picture         =   "AccountMaster.frx":64FE
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -2733,8 +2876,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":43BE
-               Picture         =   "AccountMaster.frx":43DA
+               Picture         =   "AccountMaster.frx":651A
+               Picture         =   "AccountMaster.frx":6536
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -2761,8 +2904,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":43F6
-               Picture         =   "AccountMaster.frx":4412
+               Picture         =   "AccountMaster.frx":6552
+               Picture         =   "AccountMaster.frx":656E
             End
             Begin VB.TextBox Text13 
                Appearance      =   0  'Flat
@@ -2811,7 +2954,7 @@ Begin VB.Form FrmAccountMaster
                GridColor       =   4227327
                MaxCols         =   13
                MaxRows         =   1000
-               SpreadDesigner  =   "AccountMaster.frx":442E
+               SpreadDesigner  =   "AccountMaster.frx":658A
             End
             Begin VB.Line Line7 
                X1              =   0
@@ -2849,7 +2992,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":4F9F
+            Picture         =   "AccountMaster.frx":70D7
             Begin VB.CommandButton Command4 
                BeginProperty Font 
                   Name            =   "Arial Narrow"
@@ -2862,7 +3005,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                Height          =   345
                Left            =   13680
-               Picture         =   "AccountMaster.frx":4FBB
+               Picture         =   "AccountMaster.frx":70F3
                Style           =   1  'Graphical
                TabIndex        =   150
                ToolTipText     =   "Copy Rates"
@@ -3124,8 +3267,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":54ED
-               Picture         =   "AccountMaster.frx":5509
+               Picture         =   "AccountMaster.frx":7625
+               Picture         =   "AccountMaster.frx":7641
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -3152,8 +3295,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":5525
-               Picture         =   "AccountMaster.frx":5541
+               Picture         =   "AccountMaster.frx":765D
+               Picture         =   "AccountMaster.frx":7679
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   1270
@@ -3180,8 +3323,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":555D
-               Picture         =   "AccountMaster.frx":5579
+               Picture         =   "AccountMaster.frx":7695
+               Picture         =   "AccountMaster.frx":76B1
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -3208,8 +3351,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":5595
-               Picture         =   "AccountMaster.frx":55B1
+               Picture         =   "AccountMaster.frx":76CD
+               Picture         =   "AccountMaster.frx":76E9
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -3236,8 +3379,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":55CD
-               Picture         =   "AccountMaster.frx":55E9
+               Picture         =   "AccountMaster.frx":7705
+               Picture         =   "AccountMaster.frx":7721
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -3264,8 +3407,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":5605
-               Picture         =   "AccountMaster.frx":5621
+               Picture         =   "AccountMaster.frx":773D
+               Picture         =   "AccountMaster.frx":7759
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -3292,8 +3435,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":563D
-               Picture         =   "AccountMaster.frx":5659
+               Picture         =   "AccountMaster.frx":7775
+               Picture         =   "AccountMaster.frx":7791
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -3320,8 +3463,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":5675
-               Picture         =   "AccountMaster.frx":5691
+               Picture         =   "AccountMaster.frx":77AD
+               Picture         =   "AccountMaster.frx":77C9
             End
             Begin VB.TextBox Text13 
                Appearance      =   0  'Flat
@@ -3370,7 +3513,7 @@ Begin VB.Form FrmAccountMaster
                GridColor       =   4227327
                MaxCols         =   7
                MaxRows         =   100
-               SpreadDesigner  =   "AccountMaster.frx":56AD
+               SpreadDesigner  =   "AccountMaster.frx":77E5
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -3409,7 +3552,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":60B2
+            Picture         =   "AccountMaster.frx":81C6
             Begin FPSpreadADO.fpSpread fpSpread1 
                Height          =   8085
                Left            =   120
@@ -3435,7 +3578,7 @@ Begin VB.Form FrmAccountMaster
                GridColor       =   4227327
                MaxCols         =   5
                MaxRows         =   100
-               SpreadDesigner  =   "AccountMaster.frx":60CE
+               SpreadDesigner  =   "AccountMaster.frx":81E2
             End
             Begin VB.TextBox Text99 
                Appearance      =   0  'Flat
@@ -3490,7 +3633,7 @@ Begin VB.Form FrmAccountMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "AccountMaster.frx":67CA
+            Picture         =   "AccountMaster.frx":88BA
             Begin VB.CommandButton Command2 
                BeginProperty Font 
                   Name            =   "Arial Narrow"
@@ -3503,7 +3646,7 @@ Begin VB.Form FrmAccountMaster
                EndProperty
                Height          =   345
                Left            =   13680
-               Picture         =   "AccountMaster.frx":67E6
+               Picture         =   "AccountMaster.frx":88D6
                Style           =   1  'Graphical
                TabIndex        =   148
                ToolTipText     =   "Copy Rates"
@@ -3535,7 +3678,7 @@ Begin VB.Form FrmAccountMaster
                GridColor       =   4227327
                MaxCols         =   6
                MaxRows         =   1000
-               SpreadDesigner  =   "AccountMaster.frx":6D18
+               SpreadDesigner  =   "AccountMaster.frx":8E08
             End
             Begin VB.TextBox Text13 
                Appearance      =   0  'Flat
@@ -3815,8 +3958,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":746D
-               Picture         =   "AccountMaster.frx":7489
+               Picture         =   "AccountMaster.frx":9539
+               Picture         =   "AccountMaster.frx":9555
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -3843,8 +3986,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":74A5
-               Picture         =   "AccountMaster.frx":74C1
+               Picture         =   "AccountMaster.frx":9571
+               Picture         =   "AccountMaster.frx":958D
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   1270
@@ -3871,8 +4014,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":74DD
-               Picture         =   "AccountMaster.frx":74F9
+               Picture         =   "AccountMaster.frx":95A9
+               Picture         =   "AccountMaster.frx":95C5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -3899,8 +4042,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":7515
-               Picture         =   "AccountMaster.frx":7531
+               Picture         =   "AccountMaster.frx":95E1
+               Picture         =   "AccountMaster.frx":95FD
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -3927,8 +4070,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":754D
-               Picture         =   "AccountMaster.frx":7569
+               Picture         =   "AccountMaster.frx":9619
+               Picture         =   "AccountMaster.frx":9635
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -3955,8 +4098,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":7585
-               Picture         =   "AccountMaster.frx":75A1
+               Picture         =   "AccountMaster.frx":9651
+               Picture         =   "AccountMaster.frx":966D
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -3983,8 +4126,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":75BD
-               Picture         =   "AccountMaster.frx":75D9
+               Picture         =   "AccountMaster.frx":9689
+               Picture         =   "AccountMaster.frx":96A5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -4011,8 +4154,8 @@ Begin VB.Form FrmAccountMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "AccountMaster.frx":75F5
-               Picture         =   "AccountMaster.frx":7611
+               Picture         =   "AccountMaster.frx":96C1
+               Picture         =   "AccountMaster.frx":96DD
             End
             Begin VB.Line Line2 
                X1              =   0
@@ -4046,7 +4189,7 @@ Begin VB.Form FrmAccountMaster
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   3
-            Left            =   9360
+            Left            =   6000
             TabIndex        =   144
             Top             =   8445
             Width           =   4815
@@ -4068,8 +4211,8 @@ Begin VB.Form FrmAccountMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":762D
-            Picture         =   "AccountMaster.frx":7649
+            Picture         =   "AccountMaster.frx":96F9
+            Picture         =   "AccountMaster.frx":9715
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -4096,8 +4239,8 @@ Begin VB.Form FrmAccountMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":7665
-            Picture         =   "AccountMaster.frx":7681
+            Picture         =   "AccountMaster.frx":9731
+            Picture         =   "AccountMaster.frx":974D
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -4124,8 +4267,8 @@ Begin VB.Form FrmAccountMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":769D
-            Picture         =   "AccountMaster.frx":76B9
+            Picture         =   "AccountMaster.frx":9769
+            Picture         =   "AccountMaster.frx":9785
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -4148,12 +4291,12 @@ Begin VB.Form FrmAccountMaster
                Strikethrough   =   0   'False
             EndProperty
             TintColor       =   16711935
-            Caption         =   $"AccountMaster.frx":76D5
+            Caption         =   $"AccountMaster.frx":97A1
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":775C
-            Picture         =   "AccountMaster.frx":7778
+            Picture         =   "AccountMaster.frx":9828
+            Picture         =   "AccountMaster.frx":9844
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -4176,12 +4319,12 @@ Begin VB.Form FrmAccountMaster
                Strikethrough   =   0   'False
             EndProperty
             TintColor       =   16711935
-            Caption         =   $"AccountMaster.frx":7794
+            Caption         =   $"AccountMaster.frx":9860
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":781B
-            Picture         =   "AccountMaster.frx":7837
+            Picture         =   "AccountMaster.frx":98E7
+            Picture         =   "AccountMaster.frx":9903
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -4204,12 +4347,12 @@ Begin VB.Form FrmAccountMaster
                Strikethrough   =   0   'False
             EndProperty
             TintColor       =   16711935
-            Caption         =   $"AccountMaster.frx":7853
+            Caption         =   $"AccountMaster.frx":991F
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":78DA
-            Picture         =   "AccountMaster.frx":78F6
+            Picture         =   "AccountMaster.frx":99A6
+            Picture         =   "AccountMaster.frx":99C2
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -4232,12 +4375,38 @@ Begin VB.Form FrmAccountMaster
                Strikethrough   =   0   'False
             EndProperty
             TintColor       =   16711935
-            Caption         =   $"AccountMaster.frx":7912
+            Caption         =   $"AccountMaster.frx":99DE
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "AccountMaster.frx":7999
-            Picture         =   "AccountMaster.frx":79B5
+            Picture         =   "AccountMaster.frx":9A65
+            Picture         =   "AccountMaster.frx":9A81
+         End
+         Begin Mh3dlblLib.Mh3dLabel CmdLabel 
+            Height          =   330
+            Left            =   13080
+            TabIndex        =   164
+            Top             =   8445
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Label Print"
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "AccountMaster.frx":9A9D
+            Picture         =   "AccountMaster.frx":9AB9
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -4360,6 +4529,8 @@ Attribute VB_Exposed = False
 Option Explicit
 Public SL As Boolean, MasterCode As String, AccountType As String, AccountGroup As String, RateType As String 'SL-Selection List, MasterCode-Master to Modify
 Public StateCode As String
+Dim PrintFlag As Boolean
+Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String
 Dim cnAccountMaster As New ADODB.Connection
 Dim rstAccountList As New ADODB.Recordset, rstAccountMaster As New ADODB.Recordset, rstAccountGroupList As New ADODB.Recordset, rstAccountChild As New ADODB.Recordset, rstElementList As New ADODB.Recordset, rstSizeList As New ADODB.Recordset, rstStateList As New ADODB.Recordset
 Dim AccountGroupCode As String, SizeGroupCode As Variant, ColorCode As Variant, SizeCode As String, OperationCode As Variant, CalcModeCode As Variant, BindingTypeCode As Variant, BinderyProcessCode As Variant, BOMCode As Variant, PaperCode As Variant, FGCode As Variant, UFGCode As Variant, TitleCode As Variant, FinishedItemCode As Variant, PlateCode As Variant, ElementCode As String, AccountGroupName As String, StateName As String
@@ -4395,7 +4566,7 @@ Private Sub Form_Load()
     End If
     'If AccountType <> "Account" Then Mh3dLabel1(5).Caption = " Ctrl+C -> Copy Duplicate Rates -> > Ctrl+I -> Import Rates From other Account": Mh3dLabel1(5).Width = 6375: Mh3dLabel1(5).Left = 7920
     cnAccountMaster.CursorLocation = adUseClient: cnAccountMaster.Open cnDatabase.ConnectionString
-    rstAccountList.Open "SELECT P.Name,Alias,C.Name As AccountGroup,P.Code,State FROM AccountMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE " & AccountGroup & " ORDER BY P.Name", cnAccountMaster, adOpenKeyset, adLockPessimistic
+    rstAccountList.Open "SELECT P.Name,Alias,C.Name As AccountGroup,P.Code,State,(Select Name From GeneralMaster Where Code=State) As StateName,(Select Name From GeneralMaster Where ISNULL(C.UnderGroup,[Group])=Code) As PrimaryGroup,Address1,Address2,Address3,Address4,Phone,Mobile,TIN,eMail FROM AccountMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE " & AccountGroup & " ORDER BY P.Name", cnAccountMaster, adOpenKeyset, adLockPessimistic
     LoadMasterList
     rstAccountMaster.CursorLocation = adUseClient
     rstAccountList.Filter = adFilterNone
@@ -4459,8 +4630,10 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyI Then  'Import Rates
         Import_Rates
         KeyCode = 0
-    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyE And Toolbar1.Buttons.Item(2).Enabled Then 'Edit
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(2): KeyCode = 0
+    ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyE Or Shift = vbCtrlMask And KeyCode = vbKeyP) And Toolbar1.Buttons.Item(2).Enabled Then 'Edit
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(2):
+        If Shift = vbCtrlMask And KeyCode = vbKeyP Then CmdLabel_Click
+        KeyCode = 0
     ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF8)) And Toolbar1.Buttons.Item(3).Enabled Then 'Delete
         If AccountType = "01" Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
         KeyCode = 0
@@ -4560,7 +4733,6 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
 '        End If
 '    End If
 End Sub
-
 Private Sub Text1_Change()
     If rstAccountList.RecordCount = 0 Then Exit Sub
     rstAccountList.MoveFirst
@@ -5790,3 +5962,184 @@ Private Sub Import_Rates() 'Import Rates
         slCode = "": slName = "": slValue1 = 0: slUGroupName = "": slUGroupCode = "": slUGroupValue1 = 0
         End If
 End Sub
+Private Sub CmdPrint_Click()
+PrintFlag = True
+On Error GoTo errHandler_print
+cmdexport_click
+    On Error GoTo 0
+Exit Sub
+errHandler_print:
+  On Error GoTo 0
+  Exit Sub
+End Sub
+Private Sub cmdexport_click()
+Screen.MousePointer = vbHourglass
+Dim oExcel As Object
+Dim oPdf As Object
+Dim oBook As Object
+Dim oSheet As Object
+Dim j As Integer, i As Integer, Cnt As Long
+   Set oExcel = CreateObject("Excel.Application")
+   Set oBook = oExcel.Workbooks.Add
+   Set oSheet = oBook.Worksheets(1)
+   On Error GoTo errcode
+   With oBook.Worksheets("sheet1").Rows(1)
+        .Font.Bold = True
+        .Font.Size = 16
+        oBook.Worksheets("sheet1").Cells(1, j + 1).Value = "Account List"
+        .Range("A1:O1").Merge
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        oBook.Worksheets("sheet1").Rows(2).Font.Bold = True
+        For j = 0 To DataGrid1.Columns.Count - 1
+            oBook.Worksheets("sheet1").Cells(2, j + 1).Value = DataGrid1.Columns(j).Caption
+           MdiMainMenu.StatusBar1.Panels(2).Text = "Processed record #" & Trim(Str(Cnt)) & " of " & Trim(Str(rstAccountList.RecordCount)) & " !!!"
+        Cnt = Cnt + 1
+        Next j
+    'Next i
+   End With
+ 'Save Data
+   oSheet.Range("A3").CopyFromRecordset rstAccountList
+     
+   With oExcel
+            StartColumn = "A"
+            StartRow = 1
+            EndColumn = "O"
+            EndRow = rstAccountList.RecordCount + 1
+            oBook.Activate
+            oExcel.Visible = True
+            oBook.Worksheets("sheet1").Cells(2, 1).Value = " Account Name"
+            oBook.Worksheets("sheet1").Cells(2, 2).Value = " Alias"
+            oBook.Worksheets("sheet1").Cells(2, 3).Value = " Account Group"
+            oBook.Worksheets("sheet1").Cells(2, 4).Value = " Account Code"
+            oBook.Worksheets("sheet1").Cells(2, 5).Value = " Account Group Code"
+            oBook.Worksheets("sheet1").Cells(2, 6).Value = "  State"
+            oBook.Worksheets("sheet1").Cells(2, 7).Value = "  Primary-Group"
+            oBook.Worksheets("sheet1").Cells(2, 8).Value = " Address-1"
+            oBook.Worksheets("sheet1").Cells(2, 9).Value = " Address-2"
+            oBook.Worksheets("sheet1").Cells(2, 10).Value = " Address-3"
+            oBook.Worksheets("sheet1").Cells(2, 11).Value = " Address-4"
+            oBook.Worksheets("sheet1").Cells(2, 12).Value = " Phone"
+            oBook.Worksheets("sheet1").Cells(2, 13).Value = " Mobile"
+            oBook.Worksheets("sheet1").Cells(2, 14).Value = " TIN"
+            oBook.Worksheets("sheet1").Cells(2, 15).Value = " Email"
+            .Columns("A:O").EntireColumn.AutoFit
+            .ActiveSheet.Columns("D:E").Hidden = True
+            .ActiveSheet.pagesetup.Orientation = xlLandscape
+            .ActiveSheet.pagesetup.LeftMargin = .InchesToPoints(0.36)
+            .ActiveSheet.pagesetup.RightMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.TopMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.BottomMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.HeaderMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.FooterMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.PrintArea = StartColumn & StartRow & ":" & EndColumn & EndRow + 1
+            .ActiveSheet.pagesetup.Zoom = False
+            .ActiveSheet.pagesetup.FitToPagesTall = False
+            .ActiveSheet.pagesetup.FitToPagesWide = 1
+            .ActiveSheet.pagesetup.PrintGridlines = True
+            .ActiveSheet.pagesetup.PrintTitleRows = "$1:$2"
+            .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
+            If PrintFlag Then
+                With CommonDialog1
+                    .Copies = 1
+                    .flags = &H0&
+                    .ShowPrinter
+                    oExcel.ActiveSheet.PrintOut
+                End With
+            End If
+   End With
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+   Exit Sub
+errcode:
+   MsgBox Err.Description, , Err.Source
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+End Sub
+Private Sub CmdLabel_Click()
+On Error Resume Next
+    PrintFlag = True
+    Call PrintLabel
+End Sub
+Public Sub PrintLabel()
+    On Error Resume Next
+    Screen.MousePointer = vbHourglass
+    Dim oExcel As Object
+    Dim oPdf As Object
+    Dim oBook As Object
+    Dim oSheet As Object
+    Dim j As Integer, i As Integer, Cnt As Long
+    Set oExcel = CreateObject("Excel.Application")
+    Set oBook = oExcel.Workbooks.Add
+    Set oSheet = oBook.Worksheets(1)
+    
+    If rstAccountMaster.State = adStateOpen Then rstAccountMaster.Close
+    rstAccountMaster.Open "SELECT * ,(Select Name From GeneralMaster Where Type=56 And Code=State) As StateName FROM AccountMaster WHERE Code='" & FixQuote(rstAccountList.Fields("Code").Value) & "'", cnAccountMaster, adOpenKeyset, adLockReadOnly
+    If rstAccountMaster.RecordCount = 0 Then On Error GoTo 0: Exit Sub
+    rstAccountMaster.ActiveConnection = Nothing
+    
+   On Error GoTo errcode
+        For j = 1 To 49
+      With oBook.Worksheets("sheet1").Rows(j)
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .Font.Bold = True
+        .Font.Size = 16
+    End With
+        Next j
+   With oExcel
+            oBook.Activate
+            oExcel.Visible = True
+For j = 1 To 2
+    For i = 0 To 49
+
+            oBook.Worksheets("sheet1").Cells(i + 1, j).Value = "To,"
+            oBook.Worksheets("sheet1").Cells(i + 2, j).Value = " M/S " + rstAccountList.Fields("Name").Value
+            oBook.Worksheets("sheet1").Cells(i + 3, j).Value = " Address: " + rstAccountList.Fields("Address1").Value
+            oBook.Worksheets("sheet1").Cells(i + 4, j).Value = " " + rstAccountList.Fields("Address2").Value
+            oBook.Worksheets("sheet1").Cells(i + 5, j).Value = " " + rstAccountList.Fields("Address3").Value
+            oBook.Worksheets("sheet1").Cells(i + 6, j).Value = " " + rstAccountList.Fields("Address4").Value
+            oBook.Worksheets("sheet1").Cells(i + 7, j).Value = " State: " + rstAccountList.Fields("StateName").Value
+            oBook.Worksheets("sheet1").Cells(i + 8, j).Value = " Phone: " + rstAccountList.Fields("Phone").Value
+            oBook.Worksheets("sheet1").Cells(i + 9, j).Value = " Mobile: " + rstAccountList.Fields("Mobile").Value
+            i = i + 9
+    Next i
+Next j
+            .Columns("A:B").EntireColumn.AutoFit
+            .ActiveSheet.pagesetup.Orientation = xlPortrait
+            .ActiveSheet.pagesetup.LeftMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.RightMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.TopMargin = .InchesToPoints(0)
+            .ActiveSheet.pagesetup.BottomMargin = .InchesToPoints(0)
+            .ActiveSheet.pagesetup.HeaderMargin = .InchesToPoints(0)
+            .ActiveSheet.pagesetup.FooterMargin = .InchesToPoints(0)
+            StartColumn = "A"
+            StartRow = 1
+            EndColumn = "B"
+            EndRow = i
+            .ActiveSheet.pagesetup.PrintArea = StartColumn & StartRow & ":" & EndColumn & EndRow - 1
+            .ActiveSheet.pagesetup.Zoom = False
+            .ActiveSheet.pagesetup.FitToPagesTall = 1
+            .ActiveSheet.pagesetup.FitToPagesWide = 1
+            .ActiveSheet.pagesetup.PrintGridlines = False
+            .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
+            If PrintFlag Then
+                With CommonDialog1
+                    .Copies = 1
+                    .flags = &H0&
+                    .ShowPrinter
+                    oExcel.ActiveSheet.PrintOut
+                End With
+            End If
+   End With
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+   Exit Sub
+errcode:
+   MsgBox Err.Description, , Err.Source
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+    Call CloseRecordset(rstAccountMaster)
+    On Error GoTo 0
+End Sub
+

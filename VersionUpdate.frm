@@ -141,6 +141,14 @@ Begin VB.Form FrmVersionUpdate
       ToolTipText     =   "30 Days Free Trial"
       Top             =   2840
       Width           =   3975
+      Begin VB.CommandButton Command5 
+         Caption         =   "Command5"
+         Height          =   495
+         Left            =   720
+         TabIndex        =   25
+         Top             =   360
+         Width           =   855
+      End
       Begin VB.CommandButton Command4 
          Caption         =   "Easy Publish Prime Setup  v23.06.08"
          BeginProperty Font 
@@ -454,6 +462,14 @@ Dim Setup
 Setup = "https://onedrive.live.com/?authkey=%21ANp5Xkhjk9F9Ums&cid=A3BEF1B4FF3CDACB&id=A3BEF1B4FF3CDACB%2146057&parId=A3BEF1B4FF3CDACB%2146056&o=OneUp"
         Shell "C:\WINDOWS\explorer.exe """ & Setup & "", vbNormalFocus
 End Sub
+
+Private Sub Command5_Click()
+    On Error Resume Next
+    Load Form1
+    Form1.Command1.SetFocus
+    If Err.Number <> 364 Then Form1.Show
+End Sub
+
 Private Sub Form_Load()
     ' Get the user name minus any trailing spaces found in the name.
     ret = GetUserName(lpBuff, 25)
