@@ -117,9 +117,9 @@ Begin VB.Form FrmAccountMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "AccountMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(0)=   "btnNotes"
          Tab(1).Control(1)=   "Mh3dFrame2(0)"
-         Tab(1).Control(2)=   "btnNotes"
+         Tab(1).Control(2)=   "txtNotes"
          Tab(1).ControlCount=   3
          TabCaption(2)   =   "&Details"
          TabPicture(2)   =   "AccountMaster.frx":0054
@@ -132,37 +132,37 @@ Begin VB.Form FrmAccountMaster
          TabCaption(4)   =   "&Details"
          TabPicture(4)   =   "AccountMaster.frx":008C
          Tab(4).ControlEnabled=   0   'False
-         Tab(4).Control(0)=   "Mh3dLabel1(9)"
+         Tab(4).Control(0)=   "Command9"
          Tab(4).Control(1)=   "Mh3dFrame2(3)"
-         Tab(4).Control(2)=   "Command9"
+         Tab(4).Control(2)=   "Mh3dLabel1(9)"
          Tab(4).ControlCount=   3
          TabCaption(5)   =   "&Details"
          TabPicture(5)   =   "AccountMaster.frx":00A8
          Tab(5).ControlEnabled=   0   'False
-         Tab(5).Control(0)=   "Mh3dLabel1(10)"
+         Tab(5).Control(0)=   "Command8"
          Tab(5).Control(1)=   "Mh3dFrame2(4)"
-         Tab(5).Control(2)=   "Command8"
+         Tab(5).Control(2)=   "Mh3dLabel1(10)"
          Tab(5).ControlCount=   3
          TabCaption(6)   =   "&Details"
          TabPicture(6)   =   "AccountMaster.frx":00C4
          Tab(6).ControlEnabled=   0   'False
-         Tab(6).Control(0)=   "Mh3dLabel1(11)"
+         Tab(6).Control(0)=   "Command6"
          Tab(6).Control(1)=   "Mh3dFrame2(5)"
-         Tab(6).Control(2)=   "Command6"
+         Tab(6).Control(2)=   "Mh3dLabel1(11)"
          Tab(6).ControlCount=   3
          TabCaption(7)   =   "&Details"
          TabPicture(7)   =   "AccountMaster.frx":00E0
          Tab(7).ControlEnabled=   0   'False
-         Tab(7).Control(0)=   "Mh3dLabel1(12)"
+         Tab(7).Control(0)=   "Command7"
          Tab(7).Control(1)=   "Mh3dFrame2(6)"
-         Tab(7).Control(2)=   "Command7"
+         Tab(7).Control(2)=   "Mh3dLabel1(12)"
          Tab(7).ControlCount=   3
          TabCaption(8)   =   "&Details"
          TabPicture(8)   =   "AccountMaster.frx":00FC
          Tab(8).ControlEnabled=   0   'False
-         Tab(8).Control(0)=   "Command10"
+         Tab(8).Control(0)=   "Mh3dLabel1(8)"
          Tab(8).Control(1)=   "Mh3dFrame2(7)"
-         Tab(8).Control(2)=   "Mh3dLabel1(8)"
+         Tab(8).Control(2)=   "Command10"
          Tab(8).ControlCount=   3
          TabCaption(9)   =   "&Op.Bal."
          TabPicture(9)   =   "AccountMaster.frx":0118
@@ -171,7 +171,7 @@ Begin VB.Form FrmAccountMaster
          Tab(9).ControlCount=   1
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
-            Left            =   12000
+            Left            =   11880
             TabIndex        =   163
             Top             =   8445
             Width           =   1005
@@ -197,7 +197,7 @@ Begin VB.Form FrmAccountMaster
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
-            Left            =   10920
+            Left            =   10800
             TabIndex        =   162
             Top             =   8445
             Width           =   1005
@@ -432,7 +432,7 @@ Begin VB.Form FrmAccountMaster
             Left            =   600
             TabIndex        =   69
             Top             =   8445
-            Width           =   5415
+            Width           =   5175
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   7920
@@ -468,7 +468,7 @@ Begin VB.Form FrmAccountMaster
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   3
+            ColumnCount     =   4
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "Name"
@@ -504,6 +504,19 @@ Begin VB.Form FrmAccountMaster
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column03 
+               DataField       =   "StateName"
+               Caption         =   "State"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
                   LCID            =   1033
                   SubFormatType   =   0
                EndProperty
@@ -518,7 +531,7 @@ Begin VB.Form FrmAccountMaster
                BeginProperty Column00 
                   ColumnAllowSizing=   -1  'True
                   Locked          =   -1  'True
-                  ColumnWidth     =   8414.93
+                  ColumnWidth     =   6765.166
                EndProperty
                BeginProperty Column01 
                   ColumnAllowSizing=   0   'False
@@ -526,6 +539,9 @@ Begin VB.Form FrmAccountMaster
                   ColumnWidth     =   2865.26
                EndProperty
                BeginProperty Column02 
+                  ColumnWidth     =   1635.024
+               EndProperty
+               BeginProperty Column03 
                   DividerStyle    =   0
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
@@ -4189,12 +4205,12 @@ Begin VB.Form FrmAccountMaster
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   3
-            Left            =   6000
+            Left            =   5760
             TabIndex        =   144
             Top             =   8445
-            Width           =   4815
+            Width           =   4935
             _Version        =   65536
-            _ExtentX        =   8493
+            _ExtentX        =   8705
             _ExtentY        =   582
             _StockProps     =   77
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -4384,7 +4400,7 @@ Begin VB.Form FrmAccountMaster
          End
          Begin Mh3dlblLib.Mh3dLabel CmdLabel 
             Height          =   330
-            Left            =   13080
+            Left            =   12960
             TabIndex        =   164
             Top             =   8445
             Width           =   1005
@@ -6068,7 +6084,7 @@ Public Sub PrintLabel()
     Dim oPdf As Object
     Dim oBook As Object
     Dim oSheet As Object
-    Dim j As Integer, i As Integer, Cnt As Long
+    Dim j, R As Integer, i As Integer, Cnt As Long
     Set oExcel = CreateObject("Excel.Application")
     Set oBook = oExcel.Workbooks.Add
     Set oSheet = oBook.Worksheets(1)
@@ -6079,7 +6095,7 @@ Public Sub PrintLabel()
     rstAccountMaster.ActiveConnection = Nothing
     
    On Error GoTo errcode
-        For j = 1 To 49
+        For j = 1 To 60
       With oBook.Worksheets("sheet1").Rows(j)
         .HorizontalAlignment = xlLeft
         .VerticalAlignment = xlCenter
@@ -6092,17 +6108,15 @@ Public Sub PrintLabel()
             oExcel.Visible = True
 For j = 1 To 2
     For i = 0 To 49
-
-            oBook.Worksheets("sheet1").Cells(i + 1, j).Value = "To,"
-            oBook.Worksheets("sheet1").Cells(i + 2, j).Value = " M/S " + rstAccountList.Fields("Name").Value
-            oBook.Worksheets("sheet1").Cells(i + 3, j).Value = " Address: " + rstAccountList.Fields("Address1").Value
-            oBook.Worksheets("sheet1").Cells(i + 4, j).Value = " " + rstAccountList.Fields("Address2").Value
-            oBook.Worksheets("sheet1").Cells(i + 5, j).Value = " " + rstAccountList.Fields("Address3").Value
-            oBook.Worksheets("sheet1").Cells(i + 6, j).Value = " " + rstAccountList.Fields("Address4").Value
-            oBook.Worksheets("sheet1").Cells(i + 7, j).Value = " State: " + rstAccountList.Fields("StateName").Value
-            oBook.Worksheets("sheet1").Cells(i + 8, j).Value = " Phone: " + rstAccountList.Fields("Phone").Value
-            oBook.Worksheets("sheet1").Cells(i + 9, j).Value = " Mobile: " + rstAccountList.Fields("Mobile").Value
-            i = i + 9
+            i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "To,"
+            If rstAccountList.Fields("Name").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " M/S " + rstAccountList.Fields("Name").Value
+            If rstAccountList.Fields("Address1").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " Address: " + rstAccountList.Fields("Address1").Value
+            If rstAccountList.Fields("Address2").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " " + rstAccountList.Fields("Address2").Value
+            If rstAccountList.Fields("Address3").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " " + rstAccountList.Fields("Address3").Value
+            If rstAccountList.Fields("Address4").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " " + rstAccountList.Fields("Address4").Value
+            If rstAccountList.Fields("StateName").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " State: " + rstAccountList.Fields("StateName").Value
+            If rstAccountList.Fields("Phone").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " Phone: " + rstAccountList.Fields("Phone").Value
+            If rstAccountList.Fields("Mobile").Value <> "" Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = " Mobile: " + rstAccountList.Fields("Mobile").Value
     Next i
 Next j
             .Columns("A:B").EntireColumn.AutoFit

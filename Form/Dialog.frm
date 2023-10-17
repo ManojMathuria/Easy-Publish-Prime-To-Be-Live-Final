@@ -119,6 +119,7 @@ Begin VB.Form FrmDialog
          Left            =   240
          TabIndex        =   5
          Top             =   960
+         Visible         =   0   'False
          Width           =   5415
          VariousPropertyBits=   746604571
          DisplayStyle    =   3
