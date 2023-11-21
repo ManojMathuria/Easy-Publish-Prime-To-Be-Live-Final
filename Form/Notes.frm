@@ -653,6 +653,7 @@ End If
     Next
     .Col = 7
 End With
+
 End Sub
 Private Sub VSFlexGrid1_AfterSort(ByVal Col As Long, Order As Integer)
 Dim C As Variant

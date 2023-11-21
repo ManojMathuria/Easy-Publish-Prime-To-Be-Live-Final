@@ -1066,6 +1066,7 @@ Public Function ConnectToBusy(ByVal DatabaseName As String) As Boolean
     ConnectToBusy = True
 End Function
 Public Function RefreshData(ByRef rsGeneral As ADODB.Recordset)
+If cnDatabase.State <> adStateOpen Then cnDatabase.Open
     rsGeneral.ActiveConnection = cnDatabase
     Do While Not RefreshRecord(rsGeneral): Loop
     rsGeneral.ActiveConnection = Nothing
@@ -4677,7 +4678,7 @@ End Function
 Public Function btnNotes()
     frmNotes.BalFlag = True
     frmNotes.Label1.Caption = "Accounts Ledger : Easy Info Solutions International " '& Text2(Val(AccountType) - 1).Text
-    If frmNotes.BalFlag = True Or frmNotes.NotesFlag > 0 Then frmNotes.Show vbModal: frmNotes.SetFocus: Sendkeys "{TAB}"
+    If frmNotes.BalFlag = True Or frmNotes.NotesFlag > 0 Then frmNotes.Show vbModal
 End Function
 Public Function GetFileVersion(ByVal FileName As String) As String
 'Windows API function declarations
