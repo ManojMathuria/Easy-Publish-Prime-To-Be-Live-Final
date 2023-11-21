@@ -385,16 +385,21 @@ Private Sub Form_Load()
         Mh3dLabel4.Visible = False
     End If
     BusySystemIndicator False
+    Sendkeys "{TAB}"
     Exit Sub
 ErrorHandler:
     BusySystemIndicator False
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error Resume Next
     'If InStr(1, "VSFlexGrid1", Me.ActiveControl.Name) > 0 And VSFlexGrid1.Visible Then If Me.ActiveControl.Editable > flexEDNone Then EditMode = True Else EditMode = False
     If InStr(1, "VSFlexGrid1", Me.ActiveControl.Name) > 0 And VSFlexGrid1.Visible Then EditMode = True Else EditMode = False
     If Shift = 0 And KeyCode = vbKeyEscape Then
         If Not EditMode Then
             If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then Me.ActiveControl.SetFocus Else CloseForm Me
+        ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
+            Unload Me
+            KeyCode = 0
         End If
         If Not EditMode Then KeyCode = 0
     ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyS) Or (Shift = 0 And KeyCode = vbKeyF2) Then
@@ -805,6 +810,9 @@ Private Sub VSFlexGrid1_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         If Not EditMode Then
             If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then Me.ActiveControl.SetFocus Else CloseForm Me
+        ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
+            Unload Me
+            KeyCode = 0
         End If
         If Not EditMode Then KeyCode = 0
     ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyS) Or (Shift = 0 And KeyCode = vbKeyF2) Then

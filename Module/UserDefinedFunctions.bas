@@ -6,7 +6,7 @@ Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstEasyPublishVersion As New ADODB.Recordset
 Public cnClientAccount As New ADODB.Connection
 Public FileVersion
-Public Logo, LogoLine As String, LogoW, LogoH, header, HeaderL As Integer, TransportLabel1 As Integer
+Public Logo, LogoLine As String, LogoW, LogoH, Header, HeaderL As Integer, TransportLabel1 As Integer
 Public MajorFlag As Boolean
 Public RenewFlag As Boolean, LaterFlag As Boolean
 Public dueDate As String, DaysLeft As Variant, dDay As String, dMonth As String, dYear As String
@@ -1035,8 +1035,8 @@ Public Sub WheelUnHook()
     WorkFlag = SetWindowLong(LocalHwnd, GWL_WNDPROC, LocalPrevWndProc)
     Set MyControl = Nothing
 End Sub
-Public Function FMod(a As Variant, B As Variant) As Variant 'Floating Point Modulus
-   FMod = a - Int(a / B) * B + CLng(Sgn(a) <> Sgn(B)) * B
+Public Function FMod(A As Variant, B As Variant) As Variant 'Floating Point Modulus
+   FMod = A - Int(A / B) * B + CLng(Sgn(A) <> Sgn(B)) * B
 End Function
 Public Function GetChildGroup() As String
     On Error GoTo ErrHandler
@@ -4658,7 +4658,7 @@ Dim rstCustomList As New ADODB.Recordset
     LogoW = Trim(rstCustomList.Fields("LogoW").Value)
     LogoH = Trim(rstCustomList.Fields("LogoH").Value)
     LogoLine = Trim(rstCustomList.Fields("LogoLine").Value)
-    header = Trim(rstCustomList.Fields("Header").Value)
+    Header = Trim(rstCustomList.Fields("Header").Value)
     HeaderL = Trim(rstCustomList.Fields("HeaderL").Value)
     FYFromToFlag = IIf(Trim(rstCustomList.Fields("FYFromTo").Value) = "Y", "True", "False")
     GSTMethod = Trim(rstCustomList.Fields("GSTMethod").Value)
@@ -4677,7 +4677,7 @@ End Function
 Public Function btnNotes()
     frmNotes.BalFlag = True
     frmNotes.Label1.Caption = "Accounts Ledger : Easy Info Solutions International " '& Text2(Val(AccountType) - 1).Text
-    If frmNotes.BalFlag = True Or frmNotes.NotesFlag > 0 Then frmNotes.Show vbModal
+    If frmNotes.BalFlag = True Or frmNotes.NotesFlag > 0 Then frmNotes.Show vbModal: frmNotes.SetFocus: Sendkeys "{TAB}"
 End Function
 Public Function GetFileVersion(ByVal FileName As String) As String
 'Windows API function declarations
