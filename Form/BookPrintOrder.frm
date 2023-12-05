@@ -27,7 +27,6 @@ Begin VB.Form FrmBookPrintOrder
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   7725
    ScaleWidth      =   17610
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -109,11 +108,11 @@ Begin VB.Form FrmBookPrintOrder
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookPrintOrder.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame7"
-         Tab(1).Control(1)=   "Mh3dFrame3"
+         Tab(1).Control(0)=   "Mh3dFrame6"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(2)=   "Mh3dFrame5"
-         Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(4)=   "Mh3dFrame6"
+         Tab(1).Control(3)=   "Mh3dFrame3"
+         Tab(1).Control(4)=   "Mh3dFrame7"
          Tab(1).ControlCount=   5
          Begin MSComDlg.CommonDialog CommonDialog1 
             Left            =   2280
@@ -4029,6 +4028,12 @@ Begin VB.Form FrmBookPrintOrder
          End
       End
    End
+   Begin VB.Timer Timer1 
+      Enabled         =   0   'False
+      Interval        =   4
+      Left            =   2760
+      Top             =   2280
+   End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
       Height          =   330
@@ -4110,12 +4115,6 @@ Begin VB.Form FrmBookPrintOrder
          EndProperty
       EndProperty
    End
-   Begin VB.Timer Timer1 
-      Enabled         =   0   'False
-      Interval        =   4
-      Left            =   2760
-      Top             =   2280
-   End
 End
 Attribute VB_Name = "FrmBookPrintOrder"
 Attribute VB_GlobalNameSpace = False
@@ -4146,6 +4145,9 @@ Private Sub Form_Load()
     Unload FrmBookPOPrintUtility
     CenterForm Me
     WheelHook DataGrid1
+    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    BusySystemIndicator True
     Me.Caption = IIf(BookPOType = "DS", "Sales Order [Digital Printing]", IIf(BookPOType = "DP", "Purchase Order [Digital Printing]", IIf(BookPOType = "FP", "Purchase Order [Finished Goods]", IIf(BookPOType = "RP", "Purchase Order [Unfinished Goods]", IIf(BookPOType = "OP", "Cost Sheet", IIf(BookPOType = "FS", "Sales Order [Finished Goods]", "Sales Order [Unfinished Goods]"))))))
     'If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 3750: Mh3dFrame6.Top = 4280: Mh3dFrame7.Top = 5120 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
     If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 4000: Mh3dFrame6.Top = 4500: Mh3dFrame7.Top = 5400 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
@@ -4156,6 +4158,8 @@ Private Sub Form_Load()
     SSTab1.Tab = 0
 '    SortOrder = "Name"
     If FrmStockLedger.dSortBy = True Then
+    SortOrder = "Code"
+    ElseIf frmJobworkBill.dSortBy = True Then
     SortOrder = "Code"
     Else
     SortOrder = "NAME"
@@ -4203,6 +4207,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
         KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyS And Toolbar1.Buttons.Item(4).Enabled Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(4)
+        If frmJobworkBill.dSortBy = True Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
         KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyF12 Then
         If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then DuplicateRecord
@@ -4260,6 +4265,7 @@ Private Sub Form_Unload(Cancel As Integer)
     DisableChildMenu
     MdiMainMenu.mnuPurchaseOrderJobWork.Enabled = True: MdiMainMenu.mnuSalesOrderJobWork.Enabled = True: MdiMainMenu.mnuCostSheet.Enabled = True
 End Sub
+
 Private Sub MhRealInput3_Validate(Cancel As Boolean) 'EstQty01
     If MhRealInput3.Value = 0 Then Cancel = True Else MhRealInput8_Validate False
 End Sub
@@ -5109,6 +5115,15 @@ Private Sub SaveFields()
         .Fields("Type").Value = BookPOType
         .Fields("FYCode").Value = FYCode
         .Fields("PrintStatus").Value = "N"
+        If frmJobworkBill.dSortBy = True Then
+            frmJobworkBill.uRate = MhRealInput9.Value
+            frmJobworkBill.uRateMF = MhRealInput19.Value
+            frmJobworkBill.uRateME = MhRealInput21.Value
+            frmJobworkBill.uRateCF = MhRealInput23.Value
+            frmJobworkBill.uRateMO = MhRealInput25.Value
+            frmJobworkBill.uRateBN = MhRealInput27.Value
+            frmJobworkBill.uRateBM = MhRealInput31.Value
+        End If
     End With
 End Sub
 Private Function CheckMandatoryFields() As Boolean

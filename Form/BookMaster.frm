@@ -104,16 +104,11 @@ Begin VB.Form FrmBookMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
-         Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "Mh3dFrame2"
-         Tab(1).Control(1).Enabled=   0   'False
+         Tab(1).Control(0)=   "Mh3dLabel6"
+         Tab(1).Control(1)=   "btnNotes"
          Tab(1).Control(2)=   "txtNotes"
-         Tab(1).Control(2).Enabled=   0   'False
-         Tab(1).Control(3)=   "btnNotes"
-         Tab(1).Control(3).Enabled=   0   'False
-         Tab(1).Control(4)=   "Mh3dLabel6"
-         Tab(1).Control(4).Enabled=   0   'False
+         Tab(1).Control(3)=   "Mh3dFrame2"
+         Tab(1).Control(4)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   5
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
@@ -2121,6 +2116,7 @@ Private Sub Form_Load()
     CenterForm Me
     WheelHook DataGrid1
     Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     Me.Caption = IIf(ItemType = "F", "Item Master [Finished]", "Item Master [Unfinished]")
     cnItemMaster.CursorLocation = adUseClient: cnItemMaster.Open cnDatabase.ConnectionString
@@ -2236,9 +2232,9 @@ Private Sub Form_Unload(Cancel As Integer)
     ShowProgressInStatusBar False
 End Sub
 Private Sub fpSpread1_ComboSelChange(ByVal Col As Long, ByVal Row As Long)
-Dim cVal As Variant
-fpSpread1.GetText 4, Row, cVal
-    If cVal <> "" Then
+Dim Cval As Variant
+fpSpread1.GetText 4, Row, Cval
+    If Cval <> "" Then
         If fpSpread1.ActiveCol = 1 Then fpSpread1.SetText 4, Row, "": fpSpread1.SetText 2, Row, "": fpSpread1.SetText 3, Row, ""
     Else
     Sendkeys "{TAB}"

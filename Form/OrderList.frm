@@ -221,8 +221,8 @@ Begin VB.Form FrmOrderList
       Alignment       =   0
       FillColor       =   9164542
       TextColor       =   0
-      Picture         =   "OrderList.frx":0BFD
-      Picture         =   "OrderList.frx":0C19
+      Picture         =   "OrderList.frx":0C27
+      Picture         =   "OrderList.frx":0C43
    End
 End
 Attribute VB_Name = "FrmOrderList"
@@ -280,9 +280,8 @@ Private Sub Check2_Click() 'Select All
         Next
     End With
 End Sub
-
 Private Sub Text1_Change()
-    Dim i As Integer, cVal As Variant
+    Dim i As Integer, CVal As Variant
     With fpSpread1
         For i = 1 To .DataRowCnt 'Unhide All
             .Row = i: .RowHidden = False
@@ -290,8 +289,8 @@ Private Sub Text1_Change()
         If CheckEmpty(Text1.Text, False) Then Exit Sub
         .SetActiveCell 1, 1
         For i = 1 To .DataRowCnt
-                .GetText 1, i, cVal
-                If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then .Row = i: .RowHidden = True Else .SetActiveCell 1, i
+                .GetText 1, i, CVal
+                If InStr(StrConv(CVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then .Row = i: .RowHidden = True Else .SetActiveCell 1, i
         Next
     End With
 End Sub

@@ -670,7 +670,6 @@ Private Sub Form_Load()
     Unload FrmBookPrintOrder
     CenterForm Me
     BusySystemIndicator True
-    
     If VchCode = 1 Then
     Me.Caption = "Item Order Print Utility"
     ListView1.ColumnHeaders.Add 1, , "List of Order Types"

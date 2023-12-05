@@ -1035,8 +1035,8 @@ Public Sub WheelUnHook()
     WorkFlag = SetWindowLong(LocalHwnd, GWL_WNDPROC, LocalPrevWndProc)
     Set MyControl = Nothing
 End Sub
-Public Function FMod(A As Variant, B As Variant) As Variant 'Floating Point Modulus
-   FMod = A - Int(A / B) * B + CLng(Sgn(A) <> Sgn(B)) * B
+Public Function FMod(a As Variant, B As Variant) As Variant 'Floating Point Modulus
+   FMod = a - Int(a / B) * B + CLng(Sgn(a) <> Sgn(B)) * B
 End Function
 Public Function GetChildGroup() As String
     On Error GoTo ErrHandler
@@ -5042,7 +5042,6 @@ ElseIf rstEasyPublishVersion.RecordCount <> 0 Then
                                   "End "
 End If
 End Function
-
 Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As String, ByVal Username As String, ByVal Password As String, ByVal ToEmail As Variant, ByVal Subject As String, ByVal MsgText As String, ByVal TaskComments As String, ByVal AssignBy As String, ByVal CompanyPrintName As String, ByVal CompanyPhone As String, ByVal CompanyEMail As String, ByVal AssignTo As Variant, ByVal ToName As Variant)
     Dim objMessage As Object
     Set objMessage = CreateObject("CDO.Message")
@@ -5078,4 +5077,16 @@ Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As S
         MsgBox "Error sending email: " & Err.Description, vbExclamation
     End If
     Set objMessage = Nothing
+End Function
+Public Function AddDate(ByVal OriginalDate As Date, NewDate As Date, AddMonth As Integer)
+    NewDate = DateAdd("m", AddMonth, OriginalDate)
+    ' Display the result
+    'MsgBox "Original Date: " & OriginalDate & vbCrLf & "New Date: " & NewDate
+End Function
+Public Function Get_oVchType(ByVal strInput As String) As String
+If Len(strInput) > 2 Then
+    Get_oVchType = Left(strInput, Len(strInput) - 2)
+Else
+    Get_oVchType = Left(strInput, Len(strInput) - 2)
+End If
 End Function

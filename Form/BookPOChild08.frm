@@ -765,8 +765,8 @@ Begin VB.Form FrmBookPOChild08
          _Version        =   65536
          _ExtentX        =   2090
          _ExtentY        =   529
-         Calculator      =   "BookPOChild08.frx":1A4E
-         Caption         =   "BookPOChild08.frx":1A6E
+         Calculator      =   "BookPOChild08.frx":1A72
+         Caption         =   "BookPOChild08.frx":1A92
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -776,9 +776,9 @@ Begin VB.Form FrmBookPOChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild08.frx":1ADA
-         Keys            =   "BookPOChild08.frx":1AF8
-         Spin            =   "BookPOChild08.frx":1B42
+         DropDown        =   "BookPOChild08.frx":1AFE
+         Keys            =   "BookPOChild08.frx":1B1C
+         Spin            =   "BookPOChild08.frx":1B66
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -838,8 +838,8 @@ Begin VB.Form FrmBookPOChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild08.frx":1B6A
-         Picture         =   "BookPOChild08.frx":1B86
+         Picture         =   "BookPOChild08.frx":1B8E
+         Picture         =   "BookPOChild08.frx":1BAA
          Begin TDBNumber6Ctl.TDBNumber MhRealInput18 
             Height          =   300
             Left            =   14790
@@ -850,8 +850,8 @@ Begin VB.Form FrmBookPOChild08
             _Version        =   65536
             _ExtentX        =   1905
             _ExtentY        =   529
-            Calculator      =   "BookPOChild08.frx":1BA2
-            Caption         =   "BookPOChild08.frx":1BC2
+            Calculator      =   "BookPOChild08.frx":1BC6
+            Caption         =   "BookPOChild08.frx":1BE6
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -861,9 +861,9 @@ Begin VB.Form FrmBookPOChild08
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "BookPOChild08.frx":1C2E
-            Keys            =   "BookPOChild08.frx":1C4C
-            Spin            =   "BookPOChild08.frx":1C96
+            DropDown        =   "BookPOChild08.frx":1C52
+            Keys            =   "BookPOChild08.frx":1C70
+            Spin            =   "BookPOChild08.frx":1CBA
             AlignHorizontal =   1
             AlignVertical   =   0
             Appearance      =   0
@@ -925,10 +925,10 @@ Begin VB.Form FrmBookPOChild08
          AutoSize        =   -1  'True
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "BookPOChild08.frx":1CBE
+         Picture         =   "BookPOChild08.frx":1CE2
          Multiline       =   -1  'True
          GlobalMem       =   -1  'True
-         Picture         =   "BookPOChild08.frx":1CDA
+         Picture         =   "BookPOChild08.frx":1CFE
       End
       Begin VB.Line Line1 
          X1              =   0
@@ -970,6 +970,7 @@ Dim EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
     DisableCloseButton Me
@@ -1161,67 +1162,67 @@ Private Sub SaveFields()
     End With
 End Sub
 Private Sub fpSpread1_ComboSelChange(ByVal Col As Long, ByVal Row As Long)
-Dim CVal As Variant, SubItem As Variant
-fpSpread1.GetText 19, Row, CVal
+Dim Cval As Variant, SubItem As Variant
+fpSpread1.GetText 19, Row, Cval
 fpSpread1.GetText 1, Row, SubItem
     If SubItem <> "" And Col = 1 Then
-        fpSpread1.GetText Col, Row, CVal
-        If Not CheckEmpty(CVal, False) Then
+        fpSpread1.GetText Col, Row, Cval
+        If Not CheckEmpty(Cval, False) Then
             If rstSubItemList.RecordCount > 0 Then rstSubItemList.MoveFirst
-            rstSubItemList.Find "[Name]='" & FixQuote(CVal) & "'"
+            rstSubItemList.Find "[Name]='" & FixQuote(Cval) & "'"
             If Not rstSubItemList.EOF Then
                 fpSpread1.SetText 26, Row, rstSubItemList.Fields("Code").Value: SubItem = rstSubItemList.Fields("Code").Value
                 End If
         End If
-    ElseIf CVal <> "" And Col = 4 Then
-        fpSpread1.GetText Col, Row, CVal
-        If Not CheckEmpty(CVal, False) Then
+    ElseIf Cval <> "" And Col = 4 Then
+        fpSpread1.GetText Col, Row, Cval
+        If Not CheckEmpty(Cval, False) Then
             If rstOperationList.RecordCount > 0 Then rstOperationList.MoveFirst
-            rstOperationList.Find "[Name]='" & FixQuote(CVal) & "'"
+            rstOperationList.Find "[Name]='" & FixQuote(Cval) & "'"
             If Not rstOperationList.EOF Then
                 fpSpread1.SetText 19, Row, rstOperationList.Fields("Code").Value
             'Check Element
-                fpSpread1.GetText 18, Row, CVal
-                If CVal = "" Then fpSpread1.GetText 18, Row - 1, CVal
-                fpSpread1.SetText 18, Row, CVal
+                fpSpread1.GetText 18, Row, Cval
+                If Cval = "" Then fpSpread1.GetText 18, Row - 1, Cval
+                fpSpread1.SetText 18, Row, Cval
             'Check BindingType
-                fpSpread1.GetText 24, Row, CVal
-                If CVal = "" Then fpSpread1.GetText 24, Row - 1, CVal
-                fpSpread1.SetText 24, Row, CVal
+                fpSpread1.GetText 24, Row, Cval
+                If Cval = "" Then fpSpread1.GetText 24, Row - 1, Cval
+                fpSpread1.SetText 24, Row, Cval
             'Check SubItem
-                fpSpread1.GetText 26, Row, CVal
-                If CVal = "" Then fpSpread1.GetText 26, Row - 1, CVal
-                fpSpread1.SetText 26, Row, CVal
+                fpSpread1.GetText 26, Row, Cval
+                If Cval = "" Then fpSpread1.GetText 26, Row - 1, Cval
+                fpSpread1.SetText 26, Row, Cval
             End If
         End If
-    ElseIf CVal <> "" And Col = 7 Then
-        fpSpread1.GetText Col, Row, CVal
-        If Not CheckEmpty(CVal, False) Then
+    ElseIf Cval <> "" And Col = 7 Then
+        fpSpread1.GetText Col, Row, Cval
+        If Not CheckEmpty(Cval, False) Then
             If rstSizeList.RecordCount > 0 Then rstSizeList.MoveFirst
-            rstSizeList.Find "[Name]='" & FixQuote(CVal) & "'"
+            rstSizeList.Find "[Name]='" & FixQuote(Cval) & "'"
             If Not rstSizeList.EOF Then
                 fpSpread1.SetText 20, Row, rstSizeList.Fields("Code").Value
                 fpSpread1.SetText 27, Row, rstSizeList.Fields("STYPE").Value
                 End If
         End If
-    ElseIf CVal <> "" And Col = 3 Then
-        fpSpread1.GetText Col, Row, CVal
-        If Not CheckEmpty(CVal, False) Then
+    ElseIf Cval <> "" And Col = 3 Then
+        fpSpread1.GetText Col, Row, Cval
+        If Not CheckEmpty(Cval, False) Then
             If rstElementList.RecordCount > 0 Then rstElementList.MoveFirst
-            rstElementList.Find "[Name]='" & FixQuote(CVal) & "'"
+            rstElementList.Find "[Name]='" & FixQuote(Cval) & "'"
             If Not rstElementList.EOF Then
                 fpSpread1.SetText 18, Row, rstElementList.Fields("Code").Value
                 End If
         End If
-    ElseIf CVal <> "" Then
+    ElseIf Cval <> "" Then
         If (Col = 1 Or Col = 2) And Row <> 1 Then fpSpread1.SetText Col, Row, ""
-    ElseIf CVal = "" Then
+    ElseIf Cval = "" Then
         If Col = 2 Then
-            fpSpread1.GetText Col, Row, CVal
+            fpSpread1.GetText Col, Row, Cval
             fpSpread1.GetText 26, Row, SubItem
-            If Not CheckEmpty(CVal, False) Then
+            If Not CheckEmpty(Cval, False) Then
                 If rstBindingList.RecordCount > 0 Then rstBindingList.MoveFirst
-                rstBindingList.Find "[Name]='" & FixQuote(CVal) & "'"
+                rstBindingList.Find "[Name]='" & FixQuote(Cval) & "'"
                 If Not rstBindingList.EOF Then
                     fpSpread1.SetText Col + 22, Row, rstBindingList.Fields("Code").Value
                 End If
@@ -1231,12 +1232,12 @@ fpSpread1.GetText 1, Row, SubItem
             If rstItemDetails.RecordCount = 0 Then Exit Sub
         Dim i As Integer, OCN As Variant, NO As Variant
         With rstBindingNBinderyProcess
-        fpSpread1.GetText 24, Row, CVal
+        fpSpread1.GetText 24, Row, Cval
         fpSpread1.GetText 26, Row, SubItem
             i = fpSpread1.DataRowCnt
             If .State = adStateOpen Then .Close
             .Open "SELECT ((Select Sum(BindingForms) From BookChild05 Where SubItem='" & SubItem & "')+(Select Sum(BindingForms) From BookChild06 Where SubItem='" & SubItem & "')) As Number," & _
-                       "B.Code AS OCode,B.Name As OName,B.Value1 As oValue1,(Select Name From GeneralMaster Where Code=IIf(C.BinderyProcess = '*07037', '*20005', IIf(C.BinderyProcess = '*07039', '*20005', IIf(C.BinderyProcess = '*07036', '*20001', IIf(C.BinderyProcess = '*07038', '*20005', IIf(C.BinderyProcess = '*07041', '*20009', IIf(C.BinderyProcess = '*07051', '*20005', '*20006'))))))) As CalcName,(Select Value1 From GeneralMaster Where Code=IIf(C.BinderyProcess = '*07037', '*20005', IIf(C.BinderyProcess = '*07039', '*20005', IIf(C.BinderyProcess = '*07036', '*20001', IIf(C.BinderyProcess = '*07038', '*20005', IIf(C.BinderyProcess = '*07041', '*20009', IIf(C.BinderyProcess = '*07051', '*20005', '*20006'))))))) As CVal  FROM BindingTypeChild C INNER JOIN GeneralMaster B ON C.BinderyProcess=B.Code WHERE C.Code='" & CVal & "' ORDER BY B.Name", cnDatabase, adOpenKeyset, adLockReadOnly
+                       "B.Code AS OCode,B.Name As OName,B.Value1 As oValue1,(Select Name From GeneralMaster Where Code=IIf(C.BinderyProcess = '*07037', '*20005', IIf(C.BinderyProcess = '*07039', '*20005', IIf(C.BinderyProcess = '*07036', '*20001', IIf(C.BinderyProcess = '*07038', '*20005', IIf(C.BinderyProcess = '*07041', '*20009', IIf(C.BinderyProcess = '*07051', '*20005', '*20006'))))))) As CalcName,(Select Value1 From GeneralMaster Where Code=IIf(C.BinderyProcess = '*07037', '*20005', IIf(C.BinderyProcess = '*07039', '*20005', IIf(C.BinderyProcess = '*07036', '*20001', IIf(C.BinderyProcess = '*07038', '*20005', IIf(C.BinderyProcess = '*07041', '*20009', IIf(C.BinderyProcess = '*07051', '*20005', '*20006'))))))) As CVal  FROM BindingTypeChild C INNER JOIN GeneralMaster B ON C.BinderyProcess=B.Code WHERE C.Code='" & Cval & "' ORDER BY B.Name", cnDatabase, adOpenKeyset, adLockReadOnly
             If .RecordCount = 0 Then
             Exit Sub
             ElseIf .RecordCount > 0 Then
@@ -1253,7 +1254,7 @@ fpSpread1.GetText 1, Row, SubItem
                         fpSpread1.SetText 10, i, .Fields("CalcName").Value
                         fpSpread1.SetText 11, i, IIf(Val(.Fields("CVal").Value) <> 0, Val(.Fields("CVal").Value), "") 'Calc Value
                         fpSpread1.SetText 21, i, IIf(OCN = "*07037", "*20005", IIf(OCN = "*07039", "*20005", IIf(OCN = "*07036", "*20001", IIf(OCN = "*07038", "*20005", IIf(OCN = "*07041", "*20009", IIf(OCN = "*07051", "*20005", "*20006")))))) 'CalcMode
-                        fpSpread1.SetText 24, i, CVal
+                        fpSpread1.SetText 24, i, Cval
                         fpSpread1.SetText 25, i, Val(.Fields("oValue1").Value) 'oValue1
                         fpSpread1.SetText 26, i, rstItemDetails.Fields("ICODE").Value 'ICode
                         fpSpread1.SetText 27, i, 11
@@ -1264,24 +1265,24 @@ fpSpread1.GetText 1, Row, SubItem
             End If
         End With
     ElseIf Col = 4 Then
-            fpSpread1.GetText Col, Row, CVal
-            If Not CheckEmpty(CVal, False) Then
+            fpSpread1.GetText Col, Row, Cval
+            If Not CheckEmpty(Cval, False) Then
                 If rstOperationList.RecordCount > 0 Then rstOperationList.MoveFirst
-                rstOperationList.Find "[Name]='" & FixQuote(CVal) & "'"
+                rstOperationList.Find "[Name]='" & FixQuote(Cval) & "'"
                 If Not rstOperationList.EOF Then
                     fpSpread1.SetText 19, Row, rstOperationList.Fields("Code").Value
             'Check Element
-                fpSpread1.GetText 18, Row, CVal
-                If CVal = "" And Row <> 1 Then fpSpread1.GetText 18, Row - 1, CVal
-                fpSpread1.SetText 18, Row, CVal
+                fpSpread1.GetText 18, Row, Cval
+                If Cval = "" And Row <> 1 Then fpSpread1.GetText 18, Row - 1, Cval
+                fpSpread1.SetText 18, Row, Cval
             'Check BindingType
-                fpSpread1.GetText 24, Row, CVal
-                If CVal = "" And Row <> 1 Then fpSpread1.GetText 24, Row - 1, CVal
-                fpSpread1.SetText 24, Row, CVal
+                fpSpread1.GetText 24, Row, Cval
+                If Cval = "" And Row <> 1 Then fpSpread1.GetText 24, Row - 1, Cval
+                fpSpread1.SetText 24, Row, Cval
             'Check SubItem
-                fpSpread1.GetText 26, Row, CVal
-                If CVal = "" And Row <> 1 Then fpSpread1.GetText 26, Row - 1, CVal
-                fpSpread1.SetText 26, Row, CVal
+                fpSpread1.GetText 26, Row, Cval
+                If Cval = "" And Row <> 1 Then fpSpread1.GetText 26, Row - 1, Cval
+                fpSpread1.SetText 26, Row, Cval
                 End If
             End If
     End If
@@ -1373,13 +1374,13 @@ Private Sub cmdProceed_Click()
     Call CloseForm(Me)
 End Sub
 Private Function CheckMandatoryFields(ByVal A, B As Integer) As Boolean
-    Dim i As Integer, x As Integer, CVal As Variant, Header As Variant
+    Dim i As Integer, x As Integer, Cval As Variant, Header As Variant
         For i = 1 To fpSpread1.DataRowCnt
             For x = A To B
             fpSpread1.SetActiveCell x, i
-            fpSpread1.GetText x, i, CVal
-                If CVal = "" Then CheckMandatoryFields = True: Exit For
-                If CVal = " " Then CheckMandatoryFields = True: Exit For
+            fpSpread1.GetText x, i, Cval
+                If Cval = "" Then CheckMandatoryFields = True: Exit For
+                If Cval = " " Then CheckMandatoryFields = True: Exit For
             Next
             If CheckMandatoryFields Then fpSpread1.GetText x, 0, Header: DisplayError "Data Cann't Be Saved due To Field Active Row No.  (#" & Trim(Str(i)) & ") &          Column>>>  " & Header & "  <<< is Mandatory Fields": fpSpread1.SetActiveCell x, i: Exit For
         Next

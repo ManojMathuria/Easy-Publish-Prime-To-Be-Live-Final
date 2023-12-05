@@ -99,11 +99,11 @@ Begin VB.Form frmItemIssueReceiptVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ItemIssueReceiptVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel55"
-         Tab(1).Control(1)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(1)=   "btnNotes"
          Tab(1).Control(2)=   "Mh3dFrame2"
-         Tab(1).Control(3)=   "btnNotes"
-         Tab(1).Control(4)=   "txtNotes"
+         Tab(1).Control(3)=   "Mh3dLabel1(1)"
+         Tab(1).Control(4)=   "Mh3dLabel55"
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
@@ -882,8 +882,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":14B5
-               Picture         =   "ItemIssueReceiptVoucher.frx":14D1
+               Picture         =   "ItemIssueReceiptVoucher.frx":14D9
+               Picture         =   "ItemIssueReceiptVoucher.frx":14F5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -909,8 +909,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":14ED
-               Picture         =   "ItemIssueReceiptVoucher.frx":1509
+               Picture         =   "ItemIssueReceiptVoucher.frx":1511
+               Picture         =   "ItemIssueReceiptVoucher.frx":152D
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -936,8 +936,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1525
-               Picture         =   "ItemIssueReceiptVoucher.frx":1541
+               Picture         =   "ItemIssueReceiptVoucher.frx":1549
+               Picture         =   "ItemIssueReceiptVoucher.frx":1565
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput8 
                Height          =   330
@@ -949,8 +949,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "ItemIssueReceiptVoucher.frx":155D
-               Caption         =   "ItemIssueReceiptVoucher.frx":157D
+               Calculator      =   "ItemIssueReceiptVoucher.frx":1581
+               Caption         =   "ItemIssueReceiptVoucher.frx":15A1
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -960,9 +960,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":15E9
-               Keys            =   "ItemIssueReceiptVoucher.frx":1607
-               Spin            =   "ItemIssueReceiptVoucher.frx":1651
+               DropDown        =   "ItemIssueReceiptVoucher.frx":160D
+               Keys            =   "ItemIssueReceiptVoucher.frx":162B
+               Spin            =   "ItemIssueReceiptVoucher.frx":1675
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1008,8 +1008,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1429
                _ExtentY        =   582
-               Calculator      =   "ItemIssueReceiptVoucher.frx":1679
-               Caption         =   "ItemIssueReceiptVoucher.frx":1699
+               Calculator      =   "ItemIssueReceiptVoucher.frx":169D
+               Caption         =   "ItemIssueReceiptVoucher.frx":16BD
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1019,9 +1019,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1705
-               Keys            =   "ItemIssueReceiptVoucher.frx":1723
-               Spin            =   "ItemIssueReceiptVoucher.frx":176D
+               DropDown        =   "ItemIssueReceiptVoucher.frx":1729
+               Keys            =   "ItemIssueReceiptVoucher.frx":1747
+               Spin            =   "ItemIssueReceiptVoucher.frx":1791
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1081,8 +1081,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1795
-               Picture         =   "ItemIssueReceiptVoucher.frx":17B1
+               Picture         =   "ItemIssueReceiptVoucher.frx":17B9
+               Picture         =   "ItemIssueReceiptVoucher.frx":17D5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput11 
                Height          =   645
@@ -1094,8 +1094,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   3334
                _ExtentY        =   1138
-               Calculator      =   "ItemIssueReceiptVoucher.frx":17CD
-               Caption         =   "ItemIssueReceiptVoucher.frx":17ED
+               Calculator      =   "ItemIssueReceiptVoucher.frx":17F1
+               Caption         =   "ItemIssueReceiptVoucher.frx":1811
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1105,9 +1105,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1859
-               Keys            =   "ItemIssueReceiptVoucher.frx":1877
-               Spin            =   "ItemIssueReceiptVoucher.frx":18C1
+               DropDown        =   "ItemIssueReceiptVoucher.frx":187D
+               Keys            =   "ItemIssueReceiptVoucher.frx":189B
+               Spin            =   "ItemIssueReceiptVoucher.frx":18E5
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1153,8 +1153,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   1147
-               Calculator      =   "ItemIssueReceiptVoucher.frx":18E9
-               Caption         =   "ItemIssueReceiptVoucher.frx":1909
+               Calculator      =   "ItemIssueReceiptVoucher.frx":190D
+               Caption         =   "ItemIssueReceiptVoucher.frx":192D
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1164,9 +1164,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1975
-               Keys            =   "ItemIssueReceiptVoucher.frx":1993
-               Spin            =   "ItemIssueReceiptVoucher.frx":19DD
+               DropDown        =   "ItemIssueReceiptVoucher.frx":1999
+               Keys            =   "ItemIssueReceiptVoucher.frx":19B7
+               Spin            =   "ItemIssueReceiptVoucher.frx":1A01
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1226,8 +1226,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1A05
-               Picture         =   "ItemIssueReceiptVoucher.frx":1A21
+               Picture         =   "ItemIssueReceiptVoucher.frx":1A29
+               Picture         =   "ItemIssueReceiptVoucher.frx":1A45
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
                Height          =   330
@@ -1253,8 +1253,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1A3D
-               Picture         =   "ItemIssueReceiptVoucher.frx":1A59
+               Picture         =   "ItemIssueReceiptVoucher.frx":1A61
+               Picture         =   "ItemIssueReceiptVoucher.frx":1A7D
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
@@ -1266,8 +1266,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "ItemIssueReceiptVoucher.frx":1A75
-               Caption         =   "ItemIssueReceiptVoucher.frx":1A95
+               Calculator      =   "ItemIssueReceiptVoucher.frx":1A99
+               Caption         =   "ItemIssueReceiptVoucher.frx":1AB9
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1277,9 +1277,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1B01
-               Keys            =   "ItemIssueReceiptVoucher.frx":1B1F
-               Spin            =   "ItemIssueReceiptVoucher.frx":1B69
+               DropDown        =   "ItemIssueReceiptVoucher.frx":1B25
+               Keys            =   "ItemIssueReceiptVoucher.frx":1B43
+               Spin            =   "ItemIssueReceiptVoucher.frx":1B8D
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1325,8 +1325,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1429
                _ExtentY        =   582
-               Calculator      =   "ItemIssueReceiptVoucher.frx":1B91
-               Caption         =   "ItemIssueReceiptVoucher.frx":1BB1
+               Calculator      =   "ItemIssueReceiptVoucher.frx":1BB5
+               Caption         =   "ItemIssueReceiptVoucher.frx":1BD5
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1336,9 +1336,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1C1D
-               Keys            =   "ItemIssueReceiptVoucher.frx":1C3B
-               Spin            =   "ItemIssueReceiptVoucher.frx":1C85
+               DropDown        =   "ItemIssueReceiptVoucher.frx":1C41
+               Keys            =   "ItemIssueReceiptVoucher.frx":1C5F
+               Spin            =   "ItemIssueReceiptVoucher.frx":1CA9
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1383,8 +1383,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   1138
-               Calculator      =   "ItemIssueReceiptVoucher.frx":1CAD
-               Caption         =   "ItemIssueReceiptVoucher.frx":1CCD
+               Calculator      =   "ItemIssueReceiptVoucher.frx":1CD1
+               Caption         =   "ItemIssueReceiptVoucher.frx":1CF1
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1394,9 +1394,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1D39
-               Keys            =   "ItemIssueReceiptVoucher.frx":1D57
-               Spin            =   "ItemIssueReceiptVoucher.frx":1DA1
+               DropDown        =   "ItemIssueReceiptVoucher.frx":1D5D
+               Keys            =   "ItemIssueReceiptVoucher.frx":1D7B
+               Spin            =   "ItemIssueReceiptVoucher.frx":1DC5
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1456,8 +1456,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1DC9
-               Picture         =   "ItemIssueReceiptVoucher.frx":1DE5
+               Picture         =   "ItemIssueReceiptVoucher.frx":1DED
+               Picture         =   "ItemIssueReceiptVoucher.frx":1E09
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   645
@@ -1483,8 +1483,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1E01
-               Picture         =   "ItemIssueReceiptVoucher.frx":1E1D
+               Picture         =   "ItemIssueReceiptVoucher.frx":1E25
+               Picture         =   "ItemIssueReceiptVoucher.frx":1E41
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput4 
                Height          =   645
@@ -1495,8 +1495,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1640
                _ExtentY        =   1138
-               Calculator      =   "ItemIssueReceiptVoucher.frx":1E39
-               Caption         =   "ItemIssueReceiptVoucher.frx":1E59
+               Calculator      =   "ItemIssueReceiptVoucher.frx":1E5D
+               Caption         =   "ItemIssueReceiptVoucher.frx":1E7D
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1506,9 +1506,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":1EC5
-               Keys            =   "ItemIssueReceiptVoucher.frx":1EE3
-               Spin            =   "ItemIssueReceiptVoucher.frx":1F2D
+               DropDown        =   "ItemIssueReceiptVoucher.frx":1EE9
+               Keys            =   "ItemIssueReceiptVoucher.frx":1F07
+               Spin            =   "ItemIssueReceiptVoucher.frx":1F51
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1568,8 +1568,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":1F55
-               Picture         =   "ItemIssueReceiptVoucher.frx":1F71
+               Picture         =   "ItemIssueReceiptVoucher.frx":1F79
+               Picture         =   "ItemIssueReceiptVoucher.frx":1F95
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput5 
                Height          =   645
@@ -1581,8 +1581,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   1138
-               Calculator      =   "ItemIssueReceiptVoucher.frx":1F8D
-               Caption         =   "ItemIssueReceiptVoucher.frx":1FAD
+               Calculator      =   "ItemIssueReceiptVoucher.frx":1FB1
+               Caption         =   "ItemIssueReceiptVoucher.frx":1FD1
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1592,9 +1592,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":2019
-               Keys            =   "ItemIssueReceiptVoucher.frx":2037
-               Spin            =   "ItemIssueReceiptVoucher.frx":2081
+               DropDown        =   "ItemIssueReceiptVoucher.frx":203D
+               Keys            =   "ItemIssueReceiptVoucher.frx":205B
+               Spin            =   "ItemIssueReceiptVoucher.frx":20A5
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1654,8 +1654,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":20A9
-               Picture         =   "ItemIssueReceiptVoucher.frx":20C5
+               Picture         =   "ItemIssueReceiptVoucher.frx":20CD
+               Picture         =   "ItemIssueReceiptVoucher.frx":20E9
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   645
@@ -1666,8 +1666,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   2275
                _ExtentY        =   1138
-               Calculator      =   "ItemIssueReceiptVoucher.frx":20E1
-               Caption         =   "ItemIssueReceiptVoucher.frx":2101
+               Calculator      =   "ItemIssueReceiptVoucher.frx":2105
+               Caption         =   "ItemIssueReceiptVoucher.frx":2125
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1677,9 +1677,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":216D
-               Keys            =   "ItemIssueReceiptVoucher.frx":218B
-               Spin            =   "ItemIssueReceiptVoucher.frx":21D5
+               DropDown        =   "ItemIssueReceiptVoucher.frx":2191
+               Keys            =   "ItemIssueReceiptVoucher.frx":21AF
+               Spin            =   "ItemIssueReceiptVoucher.frx":21F9
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1739,8 +1739,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":21FD
-               Picture         =   "ItemIssueReceiptVoucher.frx":2219
+               Picture         =   "ItemIssueReceiptVoucher.frx":2221
+               Picture         =   "ItemIssueReceiptVoucher.frx":223D
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
                Height          =   330
@@ -1767,8 +1767,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":2235
-               Picture         =   "ItemIssueReceiptVoucher.frx":2251
+               Picture         =   "ItemIssueReceiptVoucher.frx":2259
+               Picture         =   "ItemIssueReceiptVoucher.frx":2275
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput13 
                Height          =   330
@@ -1779,8 +1779,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   2222
                _ExtentY        =   582
-               Calculator      =   "ItemIssueReceiptVoucher.frx":226D
-               Caption         =   "ItemIssueReceiptVoucher.frx":228D
+               Calculator      =   "ItemIssueReceiptVoucher.frx":2291
+               Caption         =   "ItemIssueReceiptVoucher.frx":22B1
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1790,9 +1790,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":22F9
-               Keys            =   "ItemIssueReceiptVoucher.frx":2317
-               Spin            =   "ItemIssueReceiptVoucher.frx":2361
+               DropDown        =   "ItemIssueReceiptVoucher.frx":231D
+               Keys            =   "ItemIssueReceiptVoucher.frx":233B
+               Spin            =   "ItemIssueReceiptVoucher.frx":2385
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1852,8 +1852,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":2389
-               Picture         =   "ItemIssueReceiptVoucher.frx":23A5
+               Picture         =   "ItemIssueReceiptVoucher.frx":23AD
+               Picture         =   "ItemIssueReceiptVoucher.frx":23C9
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -1864,8 +1864,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   3122
                _ExtentY        =   582
-               Calendar        =   "ItemIssueReceiptVoucher.frx":23C1
-               Caption         =   "ItemIssueReceiptVoucher.frx":24D9
+               Calendar        =   "ItemIssueReceiptVoucher.frx":23E5
+               Caption         =   "ItemIssueReceiptVoucher.frx":24FD
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1875,9 +1875,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "ItemIssueReceiptVoucher.frx":2545
-               Keys            =   "ItemIssueReceiptVoucher.frx":2563
-               Spin            =   "ItemIssueReceiptVoucher.frx":25C1
+               DropDown        =   "ItemIssueReceiptVoucher.frx":2569
+               Keys            =   "ItemIssueReceiptVoucher.frx":2587
+               Spin            =   "ItemIssueReceiptVoucher.frx":25E5
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -1941,8 +1941,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":25E9
-               Picture         =   "ItemIssueReceiptVoucher.frx":2605
+               Picture         =   "ItemIssueReceiptVoucher.frx":260D
+               Picture         =   "ItemIssueReceiptVoucher.frx":2629
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
@@ -1969,8 +1969,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":2621
-               Picture         =   "ItemIssueReceiptVoucher.frx":263D
+               Picture         =   "ItemIssueReceiptVoucher.frx":2645
+               Picture         =   "ItemIssueReceiptVoucher.frx":2661
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
@@ -1997,8 +1997,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":2659
-               Picture         =   "ItemIssueReceiptVoucher.frx":2675
+               Picture         =   "ItemIssueReceiptVoucher.frx":267D
+               Picture         =   "ItemIssueReceiptVoucher.frx":2699
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
@@ -2024,8 +2024,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":2691
-               Picture         =   "ItemIssueReceiptVoucher.frx":26AD
+               Picture         =   "ItemIssueReceiptVoucher.frx":26B5
+               Picture         =   "ItemIssueReceiptVoucher.frx":26D1
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -2051,8 +2051,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ItemIssueReceiptVoucher.frx":26C9
-               Picture         =   "ItemIssueReceiptVoucher.frx":26E5
+               Picture         =   "ItemIssueReceiptVoucher.frx":26ED
+               Picture         =   "ItemIssueReceiptVoucher.frx":2709
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -2079,8 +2079,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   8421504
                TextColor       =   16777215
-               Picture         =   "ItemIssueReceiptVoucher.frx":2701
-               Picture         =   "ItemIssueReceiptVoucher.frx":271D
+               Picture         =   "ItemIssueReceiptVoucher.frx":2725
+               Picture         =   "ItemIssueReceiptVoucher.frx":2741
             End
             Begin MSForms.ComboBox cmbChallanType 
                Height          =   330
@@ -2166,8 +2166,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":2739
-            Picture         =   "ItemIssueReceiptVoucher.frx":2755
+            Picture         =   "ItemIssueReceiptVoucher.frx":275D
+            Picture         =   "ItemIssueReceiptVoucher.frx":2779
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2194,8 +2194,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":2771
-            Picture         =   "ItemIssueReceiptVoucher.frx":278D
+            Picture         =   "ItemIssueReceiptVoucher.frx":2795
+            Picture         =   "ItemIssueReceiptVoucher.frx":27B1
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2222,8 +2222,8 @@ Begin VB.Form frmItemIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":27A9
-            Picture         =   "ItemIssueReceiptVoucher.frx":27C5
+            Picture         =   "ItemIssueReceiptVoucher.frx":27CD
+            Picture         =   "ItemIssueReceiptVoucher.frx":27E9
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel55 
             Height          =   330
@@ -2251,9 +2251,9 @@ Begin VB.Form frmItemIssueReceiptVoucher
             BorderStyle     =   2
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ItemIssueReceiptVoucher.frx":27E1
+            Picture         =   "ItemIssueReceiptVoucher.frx":2805
             BevelStyleInside=   1
-            Picture         =   "ItemIssueReceiptVoucher.frx":27FD
+            Picture         =   "ItemIssueReceiptVoucher.frx":2821
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -3380,19 +3380,19 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
     End If
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim cVal As Variant
+    Dim Cval As Variant
     With fpSpread1
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
             If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
         ElseIf KeyCode = vbKeySpace Then
             If .ActiveCol = 1 Then 'Item
-                .GetText 5, .ActiveRow, cVal 'Ref
-                If Not CheckEmpty(cVal, False) Then Exit Sub
+                .GetText 5, .ActiveRow, Cval 'Ref
+                If Not CheckEmpty(Cval, False) Then Exit Sub
                 If cmbChallanType.ListIndex <= 1 And cmbItemType.ListIndex = 0 Then
-                    .GetText 1, .ActiveRow, cVal 'Item
-                    Text6.Text = FixQuote(cVal)
+                    .GetText 1, .ActiveRow, Cval 'Item
+                    Text6.Text = FixQuote(Cval)
                     If rstItemList.RecordCount = 0 Then DisplayError ("No record in Item Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstItemList.MoveFirst
-                    rstItemList.Find "[Col0] = '" & FixQuote(Trim(cVal)) & "'"
+                    rstItemList.Find "[Col0] = '" & FixQuote(Trim(Cval)) & "'"
                     SelectionType = "S": ItemCode = ""
                     Call LoadSelectionList(rstItemList, "List of Items...", "Name")
                     SearchOrder = 0
@@ -3405,19 +3405,19 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                         .SetText 10, .ActiveRow, ItemCode
                         rstItemList.MoveFirst: rstItemList.Find "[Code] ='" & ItemCode & "'"
                         .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
-                        .GetText 11, .ActiveRow, cVal 'HSN
-                        If CheckEmpty(cVal, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 11, .ActiveRow, rstItemList.Fields("HSNCode").Value
+                        .GetText 11, .ActiveRow, Cval 'HSN
+                        If CheckEmpty(Cval, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 11, .ActiveRow, rstItemList.Fields("HSNCode").Value
                         .SetFocus
                         Sendkeys "{ENTER}"
                     End If
                 End If
             ElseIf .ActiveCol = 2 Then
-                .GetText 11, .ActiveRow, cVal 'HSN Code
+                .GetText 11, .ActiveRow, Cval 'HSN Code
                 On Error Resume Next
                 With FrmGeneralMaster
                     .SL = True
                     .MasterType = "18"
-                    .MasterCode = cVal
+                    .MasterCode = Cval
                     Load FrmGeneralMaster
                     If Err.Number <> 364 Then .Show vbModal
                 End With
@@ -3425,12 +3425,12 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                 .SetText 2, .ActiveRow, slName: .SetText 11, .ActiveRow, slCode
                 If Not CheckEmpty(slCode, False) Then LoadMasterList: Sendkeys "{ENTER}"
             ElseIf .ActiveCol = 7 Then
-                .GetText 8, .ActiveRow, cVal 'Short Narration
+                .GetText 8, .ActiveRow, Cval 'Short Narration
                 On Error Resume Next
                 With FrmGeneralMaster
                     .SL = True
                     .MasterType = "17"
-                    .MasterCode = cVal
+                    .MasterCode = Cval
                     Load FrmGeneralMaster
                     If Err.Number <> 364 Then .Show vbModal
                 End With

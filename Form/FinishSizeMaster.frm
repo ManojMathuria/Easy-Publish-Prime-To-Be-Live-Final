@@ -547,6 +547,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnFinishSizeMaster.CursorLocation = adUseClient: cnFinishSizeMaster.Open cnDatabase.ConnectionString
     rstFinishSizeList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='11' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

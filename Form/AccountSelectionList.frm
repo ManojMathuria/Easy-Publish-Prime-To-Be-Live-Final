@@ -486,9 +486,9 @@ Private Sub ListView1_ItemCheck(ByVal Item As MSComctlLib.ListItem)
     Call AccountSelection
 End Sub
 Private Sub AccountSelection()
-    'On Error Resume Next
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster) Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    'rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster) And Code IN (SELECT Code As ACode FROM AccountMaster Where Opening<>0 Union SELECT C.Account As ACode FROM DebitCreditParent T LEFT JOIN DebitCreditChild C ON C.Code=T.Code Union SELECT Distinct T.Party As ACode FROM JobworkBVParent T WHERE LEFT(T.Type,2)='01' OR LEFT(T.Type,2)='02' AND LEFT(T.Type,2)='03' OR LEFT(T.Type,2)='04') Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster)  Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     ListView2.ListItems.Clear
     Call FillList(ListView2, "List of Accounts...", rstAccountList)
@@ -511,17 +511,9 @@ Private Sub PrintAccountLedger()
         FrmAccountLedger.sDate = MhDateInput1.Text
         FrmAccountLedger.eDate = MhDateInput2.Text
         FrmAccountLedger.AccountList = SelectedItems(ListView2)
-'        If VchType = 0 And Len(FrmAccountLedger.AccountList) > 10 Then
-'        MsgBox ("Please Select One-Account"), vbCritical: Exit Sub
-'        Else
-'        MC = FrmAccountLedger.AccountList
-'        End If
         If VchType >= 0 And VchType <= 29 And Len(FrmAccountLedger.AccountList) > 10 Then MsgBox ("Please Select One-Party Account Only"), vbCritical: Exit Sub
         FrmAccountLedger.AccountGroupList = SelectedItems(ListView1)
         FrmAccountLedger.AccountList = SelectedItems(ListView2)
-'        If VchType >= 25 And VchType <= 28 And Len(FrmAccountLedger.ItemList) > 10 Then
-'        MsgBox ("Please Select One-Item Only"), vbCritical: Exit Sub
-'        End If
         FrmAccountLedger.VchType = VchType
         Load FrmAccountLedger
         FrmAccountLedger.Show

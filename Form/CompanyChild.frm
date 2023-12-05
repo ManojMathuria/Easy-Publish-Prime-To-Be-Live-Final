@@ -121,6 +121,7 @@ Dim EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnCompanyChild.CursorLocation = adUseClient
     cnCompanyChild.Open cnDatabase.ConnectionString

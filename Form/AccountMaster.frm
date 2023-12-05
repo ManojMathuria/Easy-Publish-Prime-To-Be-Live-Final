@@ -160,9 +160,9 @@ Begin VB.Form FrmAccountMaster
          TabCaption(8)   =   "&Details"
          TabPicture(8)   =   "AccountMaster.frx":00FC
          Tab(8).ControlEnabled=   0   'False
-         Tab(8).Control(0)=   "Mh3dLabel1(8)"
+         Tab(8).Control(0)=   "Command10"
          Tab(8).Control(1)=   "Mh3dFrame2(7)"
-         Tab(8).Control(2)=   "Command10"
+         Tab(8).Control(2)=   "Mh3dLabel1(8)"
          Tab(8).ControlCount=   3
          TabCaption(9)   =   "&Op.Bal."
          TabPicture(9)   =   "AccountMaster.frx":0118
@@ -4558,6 +4558,7 @@ Private Sub Form_Load()
     CenterForm Me
     WheelHook DataGrid1
     Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     Dim Cnt As Integer
     For Cnt = 1 To 8
@@ -5628,18 +5629,18 @@ Private Sub fpSpread4_KeyDown(KeyCode As Integer, Shift As Integer)
     End With
 End Sub
 Private Sub fpSpread4_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewCol As Long, ByVal NewRow As Long, Cancel As Boolean)
-    Dim cVal(1 To 4) As Variant, Area As Double
+    Dim Cval(1 To 4) As Variant, Area As Double
     With fpSpread4
         If Col <> 6 Then i6 = 0
         If Col = 6 Then
-            .GetText 4, Row, cVal(1) 'Size
-            .GetText 5, Row, cVal(2) 'Fraction
-            .GetText 6, Row, cVal(3) 'Area
-            If CheckEmpty(cVal(1), False) Or Val(cVal(2)) = 0 Then Exit Sub
-            Area = Round(Val(Left(cVal(1), 5)) * Val(Mid(cVal(1), 7, 5)) / Val(cVal(2)), 3)
+            .GetText 4, Row, Cval(1) 'Size
+            .GetText 5, Row, Cval(2) 'Fraction
+            .GetText 6, Row, Cval(3) 'Area
+            If CheckEmpty(Cval(1), False) Or Val(Cval(2)) = 0 Then Exit Sub
+            Area = Round(Val(Left(Cval(1), 5)) * Val(Mid(Cval(1), 7, 5)) / Val(Cval(2)), 3)
             i6 = i6 + 1
-            If Area <> Val(cVal(3)) Then
-                If i6 = 1 Then If MsgBox("Variation in Calculated [" & Trim(Format(Area, "0.000")) & "] and Existing [" & Trim(Format(Val(cVal(3)), "0.000")) & "] Area ! Change?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Change !") = vbYes Then .SetText 6, Row, Area
+            If Area <> Val(Cval(3)) Then
+                If i6 = 1 Then If MsgBox("Variation in Calculated [" & Trim(Format(Area, "0.000")) & "] and Existing [" & Trim(Format(Val(Cval(3)), "0.000")) & "] Area ! Change?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Change !") = vbYes Then .SetText 6, Row, Area
             Else
                 .SetText 6, Row, Area
             End If
@@ -5647,7 +5648,7 @@ Private Sub fpSpread4_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
     End With
 End Sub
 Private Sub fpSpread5_KeyDown(KeyCode As Integer, Shift As Integer)
-Dim cVal As Variant
+Dim Cval As Variant
     With fpSpread5
         If .EditMode Then Exit Sub
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then

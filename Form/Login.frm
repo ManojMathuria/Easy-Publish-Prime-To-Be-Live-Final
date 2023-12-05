@@ -395,7 +395,9 @@ Private Sub Timer1_Timer()
     Else
         FrmLogin.Caption = " "
     End If
-    If LoginSuccess Then CloseForm Me
+    If LoginSuccess Then
+        CloseForm Me
+    End If
 End Sub
 Private Sub Label3_Click()
     If LoginSuccess Then Exit Sub

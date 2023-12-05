@@ -549,6 +549,7 @@ Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnSizeGroupMaster.CursorLocation = adUseClient: cnSizeGroupMaster.Open cnDatabase.ConnectionString

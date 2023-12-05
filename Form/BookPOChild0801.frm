@@ -143,8 +143,8 @@ Begin VB.Form FrmBookPOChild0801
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild0801.frx":0C3A
-         Picture         =   "BookPOChild0801.frx":0C56
+         Picture         =   "BookPOChild0801.frx":0C5E
+         Picture         =   "BookPOChild0801.frx":0C7A
       End
       Begin VB.Line Line2 
          X1              =   0
@@ -178,10 +178,10 @@ Begin VB.Form FrmBookPOChild0801
       AutoSize        =   -1  'True
       FillColor       =   8421504
       TextColor       =   16777215
-      Picture         =   "BookPOChild0801.frx":0C72
+      Picture         =   "BookPOChild0801.frx":0C96
       Multiline       =   -1  'True
       GlobalMem       =   -1  'True
-      Picture         =   "BookPOChild0801.frx":0C8E
+      Picture         =   "BookPOChild0801.frx":0CB2
    End
 End
 Attribute VB_Name = "FrmBookPOChild0801"
@@ -196,6 +196,7 @@ Private Sub Form_Load()
     Dim i As Integer
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     AbortPO = False

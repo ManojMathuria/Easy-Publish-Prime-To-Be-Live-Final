@@ -2004,6 +2004,7 @@ Private Sub Form_Load()
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnPaperMaster.CursorLocation = adUseClient

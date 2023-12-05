@@ -2,6 +2,7 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
+Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmItemSelectionList 
    BorderStyle     =   1  'Fixed Single
@@ -207,7 +208,7 @@ Begin VB.Form FrmItemSelectionList
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " To"
+         Caption         =   "     To"
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
@@ -492,6 +493,38 @@ Begin VB.Form FrmItemSelectionList
          EndProperty
          NumItems        =   0
       End
+      Begin MSForms.ComboBox ComboBox2 
+         Height          =   400
+         Left            =   3300
+         TabIndex        =   15
+         Top             =   8
+         Width           =   1550
+         VariousPropertyBits=   746604571
+         DisplayStyle    =   3
+         Size            =   "2734;706"
+         MatchEntry      =   1
+         ShowDropButtonWhen=   2
+         FontName        =   "Calibri"
+         FontHeight      =   195
+         FontCharSet     =   0
+         FontPitchAndFamily=   2
+      End
+      Begin MSForms.ComboBox ComboBox1 
+         Height          =   400
+         Left            =   850
+         TabIndex        =   14
+         Top             =   8
+         Width           =   1550
+         VariousPropertyBits=   746604571
+         DisplayStyle    =   3
+         Size            =   "2734;706"
+         MatchEntry      =   1
+         ShowDropButtonWhen=   2
+         FontName        =   "Calibri"
+         FontHeight      =   195
+         FontCharSet     =   0
+         FontPitchAndFamily=   2
+      End
    End
 End
 Attribute VB_Name = "FrmItemSelectionList"
@@ -502,11 +535,58 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim rstMatCList As New ADODB.Recordset, rstSupplierList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset
 Public VchType As String, MC As String
+Private Sub ComboBox1_Change()
+Dim NewDate As Date
+    Call AddDate(FinancialYearFrom, NewDate, ComboBox1.ListIndex)
+    MhDateInput1.Value = NewDate
+End Sub
+Private Sub ComboBox2_Change()
+Dim NewDate As Date
+    Call AddDate(FinancialYearTo, NewDate, ComboBox2.ListIndex - 11)
+    MhDateInput2.Value = NewDate
+End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     MhDateInput1.ReadOnly = False:
-    If VchType <= 2 Or VchType = 33 Then
+    ComboBox1.Visible = False: ComboBox2.Visible = False
+    If VchType <= 2 Or VchType = 33 Or VchType = 31 Or VchType = 49 Then
         ListView4.Visible = False: ListView1.BackColor = RGB(255, 255, 240): ListView2.BackColor = RGB(255, 255, 240): ListView3.BackColor = RGB(255, 255, 240): MhDateInput1.BackColor = RGB(255, 255, 240): MhDateInput2.BackColor = RGB(255, 255, 240):
+        If VchType = 49 Then
+            MhDateInput1.Visible = False: MhDateInput2.Visible = False
+            ListView4.Visible = False
+            ComboBox1.Visible = True: ComboBox2.Visible = True
+            ComboBox1.FontSize = 10: ComboBox1.FontBold = True
+            ComboBox1.Clear
+            ComboBox1.AddItem " April", 0
+            ComboBox1.AddItem " May", 1
+            ComboBox1.AddItem " June", 2
+            ComboBox1.AddItem " July", 3
+            ComboBox1.AddItem " August", 4
+            ComboBox1.AddItem " September", 5
+            ComboBox1.AddItem " October", 6
+            ComboBox1.AddItem " November", 7
+            ComboBox1.AddItem " December", 8
+            ComboBox1.AddItem " January", 9
+            ComboBox1.AddItem " February", 10
+            ComboBox1.AddItem " March", 11
+            ComboBox1.ListIndex = 0
+            
+            ComboBox2.FontSize = 10: ComboBox2.FontBold = True
+            ComboBox2.Clear
+            ComboBox2.AddItem " April", 0
+            ComboBox2.AddItem " May", 1
+            ComboBox2.AddItem " June", 2
+            ComboBox2.AddItem " July", 3
+            ComboBox2.AddItem " August", 4
+            ComboBox2.AddItem " September", 5
+            ComboBox2.AddItem " October", 6
+            ComboBox2.AddItem " November", 7
+            ComboBox2.AddItem " December", 8
+            ComboBox2.AddItem " January", 9
+            ComboBox2.AddItem " February", 10
+            ComboBox2.AddItem " March", 11
+            ComboBox2.ListIndex = 11
+        End If
     ElseIf (VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56) Then
         ListView4.Visible = False: ListView1.BackColor = RGB(245, 255, 230): ListView2.BackColor = RGB(245, 255, 230): ListView3.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230):
     ElseIf (VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60) Then
@@ -529,14 +609,14 @@ Private Sub Form_Load()
         ListView1.BackColor = RGB(240, 255, 255): ListView2.BackColor = RGB(240, 255, 255): ListView3.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255)
         ListView4.Visible = False: Option3.Visible = True: Option2.Visible = True: Option1.Visible = True: Check1.Visible = True
     End If
-                
+
     If VchType <= 10 Then
         Me.Caption = "Selection List...." + Choose(IIf(VchType = 0, VchType + 1, VchType + 1), "Physical Stock Audit Item-Wise", "Inventory Movement Ledger Item-Wise", "Stock Status Item-Wise", "Sales Analysis Item-Wise", "Sales Return Analysis Item-Wise", "Sales And Sales Return Analysis Item-Wise", "Net Sales Analysis Item-Wise", "Sales Analysis One Party Item-Wise", "Sales Return Analysis One Party Item-Wise", "Sales And Sales Return Analysis One Party Item-Wise", "Net Sales Analysis One Party Item-Wise", "Paper Receipt Party-Wise")
         Me.Height = 9630
     ElseIf VchType <= 20 And VchType >= 11 Then
         Me.Height = 9630
         Me.Caption = "Selection List...." + Choose((VchType - 10), "Paper Receipt Party-Wise", "Paper Receipt Order-Wise", "Paer Receipt  Without-Order", "Paper Issue Party-Wise", "Paper Issue Order-Wise", "Paper Issue Without-Order", "Paper Transfer Party-Wise", "Paper Pending Order Party-Wise")
-    ElseIf Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48 Then
+    ElseIf Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48 And VchType <> 31 Then
         Me.Caption = "Selection List...." + Choose(Right(VchType, 2) - 20, "Sales Analysis Party-Wise", "Sales Return Analysis Party-Wise", "Sales And Sales Return Analysis Party-Wise", "Net Sales Analysis Party-Wise", "Sales Analysis One-Item Party-Wise", "Sales Return Analysis One-Item Party-Wise", "Sales And Sales Return Analysis One-Item Party-Wise", "Net Sales One-Item Party-Wise", "Sales Voucher-Wise", "30", "Sales Voucher-Wise", "32", "Short-Item Analysis Item-Wise", "34", "Purchase Orders-Party-Wise-Detailed", "Purchase Orders-Party-wise-Summarised", "Sales Orders-Party-Wise-Detailed", "Sales Orders-Party-wise-Summarised", "Purchase Orders Order-Wise", "Purchase Orders Party-wise", "Purchase Orders Item-wise", "Sale Orders Order-wise", "Sale Orders Party-wise", "Sale Orders Item-wise", "45", " Pending Sales Order", "Pending Sales Order Party-Wise", "Sales Voucher-Wise")
         Me.Height = 9630
     ElseIf VchType >= 53 And VchType <= 69 Then
@@ -545,6 +625,10 @@ Private Sub Form_Load()
     ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then
         Me.Caption = "Selection List...." + Choose(VchType - 102, "WIP Pending Ledger Item-Wise", "RM Pending Ledger Item-Wise", "RM AND WIP Pending Ledger Item-Wise")
         Me.Height = 9630
+    ElseIf VchType = 49 Then
+        Me.Caption = "Item Ledger Summarize": Me.Height = 9630
+    Else
+        Me.Caption = "Item Ledger Date-Wise": Me.Height = 9630
     End If
 If (VchType <= 20 And VchType >= 18) Then: ListView1.Width = 9655
 If VchType = 103 Or VchType = 104 Or VchType = 105 Then: ListView3.Width = 9655
@@ -558,11 +642,15 @@ Else
     rstSupplierList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster WHERE FYCode='" & FYCode & "' ORDER BY FYCode", cnDatabase, adOpenForwardOnly, adLockReadOnly
 End If
     MhDateInput1.Text = Format(rstSupplierList.Fields("FinancialYearFrom").Value, "dd-mm-yyyy")
-    MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))
+    If VchType <> 49 Then
+        MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))
+    ElseIf VchType = 49 Then
+        MhDateInput2.Text = Format(FinancialYearTo, "dd-mm-yyyy")
+    End If
     If rstSupplierList.State = adStateOpen Then rstSupplierList.Close
-        rstSupplierList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 6, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstSupplierList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 6, "[Group]='*99999'", IIf(VchType = 31, "[Group]='*99999'", "[Group]<>'*99999'")) & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-        rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 2 Or VchType = 33, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 2 Or VchType = 31 Or VchType = 49 Or VchType = 33, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     If rstItemGroupList.State = adStateOpen Then rstItemGroupList.Close
         rstItemGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -589,11 +677,17 @@ End If
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
         Call ItemSelection(True)
         Call FillList(ListView4, "List of Material Centre...", rstMatCList)
-    ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then
+    ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Or VchType = 31 Then
         Call FillList(ListView1, "List of Material Centre...", rstMatCList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
-        Call FillList(ListView3, "List of Items...", rstItemList)
-    ElseIf (Right(VchType, 2) >= 0 And Right(VchType, 2) <= 10) Or (Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48) Or (Right(VchType, 2) >= 53 And Right(VchType, 2) <= 69) Then
+        Call ItemSelection(True)
+        'Call FillList(ListView3, "List of Items...", rstItemList)
+    ElseIf VchType = 49 Then
+        Call FillList(ListView1, "List of Material Centre...", rstMatCList)
+        Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
+        Call ItemSelection(True)
+        'Call FillList(ListView3, "List of Items...", rstItemList)
+    ElseIf (Right(VchType, 2) >= 0 And Right(VchType, 2) <= 10) Or (Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48) Or (Right(VchType, 2) >= 53 And Right(VchType, 2) <= 69 And Right(VchType, 2) <> 31) Then
         Call FillList(ListView1, "List of Accounts...", rstAccountList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
         Call ItemSelection(True)
@@ -679,28 +773,62 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     End If
 End Sub
 Private Sub PrintStockLedger()
+Dim i As Integer
     On Error Resume Next
         FrmStockLedger.sDate = MhDateInput1.Text
         FrmStockLedger.eDate = MhDateInput2.Text
         FrmStockLedger.AccountList = SelectedItems(ListView1)
         
-        If VchType = 0 And Len(FrmStockLedger.AccountList) > 10 Then
-        MsgBox ("Please Select One-Godown"), vbCritical: Exit Sub
+        If VchType = 0 And (Len(FrmStockLedger.AccountList) > 10 Or Len(FrmStockLedger.AccountList) < 8) Then
+            If Len(FrmStockLedger.AccountList) < 8 Then MsgBox ("Please Select One-Godown"), vbCritical
+            If Len(FrmStockLedger.AccountList) > 10 Then MsgBox ("Please Select One-Godown-Only"), vbCritical
+            For i = 1 To ListView1.ListItems.Count
+                ListView1.ListItems(i).Checked = False
+            Next i
+            ListView1.SetFocus
+            Exit Sub
         Else
-        MC = FrmStockLedger.AccountList
+            MC = FrmStockLedger.AccountList
         End If
                
-        If ((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)) And Len(FrmStockLedger.AccountList) > 10 Then
-        MsgBox ("Please Select One-Party Account Only"), vbCritical: Exit Sub
+        If ((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)) And (Len(FrmStockLedger.AccountList) > 10 Or Len(FrmStockLedger.AccountList) < 8) Then
+            If Len(FrmStockLedger.AccountList) < 8 Then MsgBox ("Please Select One-Party Account"), vbCritical
+            If Len(FrmStockLedger.AccountList) > 10 Then MsgBox ("Please Select One-Party Account Only"), vbCritical
+            For i = 1 To ListView1.ListItems.Count
+                ListView1.ListItems(i).Checked = False
+            Next i
+            ListView1.SetFocus
+            Exit Sub
         End If
         FrmStockLedger.ItemGroupList = SelectedItems(ListView2)
         FrmStockLedger.ItemList = SelectedItems(ListView3)
-        If ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) And Len(FrmStockLedger.ItemList) > 10 Then
-        MsgBox ("Please Select One-Item Only"), vbCritical: Exit Sub
+        
+        If ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) And (Len(FrmStockLedger.ItemList) > 10 Or Len(FrmStockLedger.ItemList) < 8) Then
+                If Len(FrmStockLedger.ItemList) < 8 Then MsgBox ("Please Select One-Item"), vbCritical
+                If Len(FrmStockLedger.ItemList) > 10 Then MsgBox ("Please Select One-Item-Only"), vbCritical
+            For i = 1 To ListView3.ListItems.Count
+                ListView3.ListItems(i).Checked = False
+            Next i
+            ListView3.SetFocus
+             Exit Sub
         End If
+        
         If VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Then FrmStockLedger.MatCList = SelectedItems(ListView4)
         FrmStockLedger.sMcCode = "": FrmStockLedger.SCode = "": FrmStockLedger.oSCode = "":  FrmStockLedger.vtCode = "": FrmStockLedger.vDate = "":
         FrmStockLedger.VchType = VchType
+        
+        If VchType = 31 And (Len(FrmStockLedger.ItemList) > 10 Or Len(FrmStockLedger.ItemList) < 8) Then
+            If Len(FrmStockLedger.ItemList) < 8 Then MsgBox ("Please Select One-Item"), vbCritical
+            If Len(FrmStockLedger.ItemList) > 10 Then MsgBox ("Please Select One-Item-Only"), vbCritical
+        For i = 1 To ListView3.ListItems.Count
+            ListView3.ListItems(i).Checked = False
+        Next i
+        ListView3.SetFocus
+         Exit Sub
+        Else
+            FrmStockLedger.sMcCode = MC
+        End If
+        
         Load FrmStockLedger
         FrmStockLedger.Show
         CloseForm (Me)
@@ -722,8 +850,8 @@ If Right(VchType, 2) = 48 Then
 
 Else
     If rstItemList.State = adStateOpen Then rstItemList.Close
-    rstItemList.Open "SELECT Name,Code FROM BookMaster " & IIf(SelectAll, " Where Type='F' ", "Where Type='F' AND [Group] IN (" & SelectedItems(ListView2) & ")") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    
+'    rstItemList.Open "SELECT Name,Code FROM BookMaster " & IIf(SelectAll, " Where Type='F' ", "Where Type='F' AND [Group] IN (" & SelectedItems(ListView2) & ")") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstItemList.Open "WITH ItemGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('5') AND Code IN (" & SelectedItems(ListView2) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN ItemGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM BookMaster WHERE [Group] IN (SELECT Code FROM ItemGroupMaster)  ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstItemList.ActiveConnection = Nothing
     ListView3.ListItems.Clear
     Call FillList(ListView3, "List of Items...", rstItemList)

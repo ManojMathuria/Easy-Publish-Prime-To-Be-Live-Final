@@ -3958,6 +3958,7 @@ End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     AbortPO = False

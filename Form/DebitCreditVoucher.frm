@@ -13,7 +13,7 @@ Begin VB.Form frmDebitCreditVoucher
    ClientHeight    =   8835
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   19740
+   ClientWidth     =   17715
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -26,9 +26,8 @@ Begin VB.Form frmDebitCreditVoucher
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8835
-   ScaleWidth      =   19740
+   ScaleWidth      =   17715
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   8820
       Left            =   -105
@@ -74,6 +73,7 @@ Begin VB.Form frmDebitCreditVoucher
          Left            =   17040
          TabIndex        =   28
          Top             =   420
+         Visible         =   0   'False
          Width           =   2655
       End
       Begin VB.CommandButton AddReceipt 
@@ -91,6 +91,7 @@ Begin VB.Form frmDebitCreditVoucher
          Left            =   17040
          TabIndex        =   27
          Top             =   780
+         Visible         =   0   'False
          Width           =   2655
       End
       Begin VB.CommandButton AddJournal 
@@ -108,6 +109,7 @@ Begin VB.Form frmDebitCreditVoucher
          Left            =   17040
          TabIndex        =   26
          Top             =   1140
+         Visible         =   0   'False
          Width           =   2655
       End
       Begin VB.CommandButton AddDebitNote 
@@ -125,6 +127,7 @@ Begin VB.Form frmDebitCreditVoucher
          Left            =   17040
          TabIndex        =   25
          Top             =   1860
+         Visible         =   0   'False
          Width           =   2655
       End
       Begin VB.CommandButton AddCountra 
@@ -142,6 +145,7 @@ Begin VB.Form frmDebitCreditVoucher
          Left            =   17040
          TabIndex        =   24
          Top             =   1500
+         Visible         =   0   'False
          Width           =   2655
       End
       Begin VB.CommandButton AddCreditNote 
@@ -159,6 +163,7 @@ Begin VB.Form frmDebitCreditVoucher
          Left            =   17040
          TabIndex        =   23
          Top             =   2220
+         Visible         =   0   'False
          Width           =   2655
       End
       Begin TabDlg.SSTab SSTab1 
@@ -167,8 +172,8 @@ Begin VB.Form frmDebitCreditVoucher
          TabIndex        =   2
          TabStop         =   0   'False
          Top             =   120
-         Width           =   16905
-         _ExtentX        =   29819
+         Width           =   17625
+         _ExtentX        =   31089
          _ExtentY        =   15161
          _Version        =   393216
          Style           =   1
@@ -189,21 +194,23 @@ Begin VB.Form frmDebitCreditVoucher
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Label1"
          Tab(0).Control(0).Enabled=   0   'False
-         Tab(0).Control(1)=   "Mh3dLabel1(2)"
+         Tab(0).Control(1)=   "Toolbar2"
          Tab(0).Control(1).Enabled=   0   'False
-         Tab(0).Control(2)=   "DataGrid1"
+         Tab(0).Control(2)=   "Mh3dLabel1(2)"
          Tab(0).Control(2).Enabled=   0   'False
-         Tab(0).Control(3)=   "Text1"
+         Tab(0).Control(3)=   "DataGrid1"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).ControlCount=   4
+         Tab(0).Control(4)=   "Text1"
+         Tab(0).Control(4).Enabled=   0   'False
+         Tab(0).ControlCount=   5
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "DebitCreditVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "txtAccount"
+         Tab(1).Control(1)=   "btnNotes"
          Tab(1).Control(2)=   "txtNotes"
-         Tab(1).Control(3)=   "btnNotes"
-         Tab(1).Control(4)=   "txtAccount"
+         Tab(1).Control(3)=   "Mh3dFrame2"
+         Tab(1).Control(4)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtAccount 
             Appearance      =   0  'Flat
@@ -293,8 +300,8 @@ Begin VB.Form frmDebitCreditVoucher
             Left            =   120
             TabIndex        =   3
             Top             =   450
-            Width           =   16660
-            _ExtentX        =   29395
+            Width           =   17385
+            _ExtentX        =   30665
             _ExtentY        =   13520
             _Version        =   393216
             AllowUpdate     =   0   'False
@@ -456,7 +463,7 @@ Begin VB.Form frmDebitCreditVoucher
                BeginProperty Column06 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   3600
+                  ColumnWidth     =   4334.74
                EndProperty
             EndProperty
          End
@@ -896,8 +903,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0D93
-               Picture         =   "DebitCreditVoucher.frx":0DAF
+               Picture         =   "DebitCreditVoucher.frx":0E6D
+               Picture         =   "DebitCreditVoucher.frx":0E89
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
@@ -923,8 +930,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0DCB
-               Picture         =   "DebitCreditVoucher.frx":0DE7
+               Picture         =   "DebitCreditVoucher.frx":0EA5
+               Picture         =   "DebitCreditVoucher.frx":0EC1
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -945,9 +952,9 @@ Begin VB.Form frmDebitCreditVoucher
             Left            =   -61485
             TabIndex        =   29
             Top             =   480
-            Width           =   3255
+            Width           =   3975
             _Version        =   65536
-            _ExtentX        =   5741
+            _ExtentX        =   7011
             _ExtentY        =   1429
             _StockProps     =   77
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -964,9 +971,101 @@ Begin VB.Form frmDebitCreditVoucher
             AutoSize        =   -1  'True
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "DebitCreditVoucher.frx":0E03
+            Picture         =   "DebitCreditVoucher.frx":0EDD
             Multiline       =   -1  'True
-            Picture         =   "DebitCreditVoucher.frx":0E1F
+            Picture         =   "DebitCreditVoucher.frx":0EF9
+         End
+         Begin MSComctlLib.Toolbar Toolbar2 
+            Height          =   630
+            Left            =   0
+            TabIndex        =   30
+            Top             =   0
+            Width           =   0
+            _ExtentX        =   0
+            _ExtentY        =   1111
+            ButtonWidth     =   3625
+            ButtonHeight    =   1005
+            AllowCustomize  =   0   'False
+            Appearance      =   1
+            _Version        =   393216
+            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+               NumButtons      =   23
+               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "F1 >> Help "
+                  Key             =   "F1"
+                  Object.ToolTipText     =   "F1 >> Help"
+                  Object.Tag             =   "F!"
+               EndProperty
+               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F1 >> Add Account "
+                  Key             =   "Alt+F1"
+                  Object.ToolTipText     =   "Alt+F1 >> Add Account "
+               EndProperty
+               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F2 >>Add Item "
+                  Key             =   "Alt+F2"
+                  Object.ToolTipText     =   "Alt+F2 >>Add Item "
+               EndProperty
+               BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F5 >>Add Payment "
+                  Key             =   "Alt+F5"
+                  Object.ToolTipText     =   "Alt+F5 >>Add Payment "
+               EndProperty
+               BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F6 >>Add Receipt "
+                  Key             =   "Alt+F6"
+                  Object.ToolTipText     =   "Alt+F6 >>Add Receipt "
+               EndProperty
+               BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F7 >>Add Journal "
+                  Key             =   "Alt+F7"
+                  Object.ToolTipText     =   "Alt+F7 >>Add Journal"
+               EndProperty
+               BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Ctrl+F5 >>Add Countra "
+                  Key             =   "Ctrl+F5"
+                  Object.ToolTipText     =   "Ctrl+F5 >>Add Countra "
+               EndProperty
+               BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Ctrl+F6 >>Add Debit "
+                  Key             =   "Ctrl+F6"
+                  Object.ToolTipText     =   "Ctrl+F6 >>Add DebitNote"
+               EndProperty
+               BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Ctrl+F7 >>Add Credit "
+                  Key             =   "Ctrl+F7"
+                  Object.ToolTipText     =   "Ctrl+F7 >>Add Credit "
+               EndProperty
+               BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button22 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button23 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "F10>> Calculator "
+               EndProperty
+            EndProperty
          End
          Begin VB.Label Label1 
             Alignment       =   2  'Center
@@ -998,8 +1097,8 @@ Begin VB.Form frmDebitCreditVoucher
       Left            =   0
       TabIndex        =   1
       Top             =   0
-      Width           =   19740
-      _ExtentX        =   34819
+      Width           =   17715
+      _ExtentX        =   31247
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1191,6 +1290,7 @@ End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
         Dim Cols As Long, C As Long
@@ -1330,23 +1430,31 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             End If
             If Me.ActiveControl.Name <> "fpSpread1" Then KeyCode = 0
         ElseIf Shift = vbAltMask And KeyCode = vbKeyF5 Then
-            AddPayment_Click
+            'AddPayment_Click
+            Toolbar2_ButtonClick .Item(6)
             KeyCode = 0
         ElseIf Shift = vbAltMask And KeyCode = vbKeyF6 Then
-            AddReceipt_Click
+            'AddReceipt_Click
+            Toolbar2_ButtonClick .Item(7)
             KeyCode = 0
         ElseIf Shift = vbAltMask And KeyCode = vbKeyF7 Then
-            AddJournal_Click
+            Toolbar2_ButtonClick .Item(8)
+            'AddJournal_Click
             KeyCode = 0
         ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
-            AddCountra_Click
+            'AddCountra_Click
+            Toolbar2_ButtonClick .Item(9)
             KeyCode = 0
         ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
-            AddDebitNote_Click
+            Toolbar2_ButtonClick .Item(10)
+            'AddDebitNote_Click
             KeyCode = 0
         ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
-            AddCreditNote_Click
+        Toolbar2_ButtonClick .Item(11)
+            'AddCreditNote_Click
             KeyCode = 0
+        ElseIf Shift = 0 And KeyCode = vbKeyF10 Then
+            Shell "calc.exe", vbNormalFocus
         End If
     End With
 End Sub
@@ -2010,7 +2118,7 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
 '    End If
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim Item As Variant, i As Integer, x As Integer, cVal(1 To 8) As Variant
+    Dim Item As Variant, i As Integer, x As Integer, Cval(1 To 8) As Variant
 With fpSpread1
     If Shift = 0 And KeyCode = vbKeyF9 Then
             .GetText 8, .ActiveRow, Item  'Ref Code
@@ -2021,11 +2129,11 @@ With fpSpread1
                 End If
     ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
             If .ActiveCol = 3 Or .ActiveCol = 4 Then  'Debit
-            .GetText 1, .ActiveRow, cVal(1)  'TOA
-            .GetText 3, .ActiveRow, cVal(3)  'Debit
-            .GetText 4, .ActiveRow, cVal(4)  'Credit
-            If cVal(1) = "D" And cVal(3) = 0 Then Call MsgBox("Debit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 3, .ActiveRow: .SetFocus:
-            If cVal(1) = "C" And cVal(4) = 0 Then Call MsgBox("Credit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 4, .ActiveRow: .SetFocus:
+            .GetText 1, .ActiveRow, Cval(1)  'TOA
+            .GetText 3, .ActiveRow, Cval(3)  'Debit
+            .GetText 4, .ActiveRow, Cval(4)  'Credit
+            If Cval(1) = "D" And Cval(3) = 0 Then Call MsgBox("Debit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 3, .ActiveRow: .SetFocus:
+            If Cval(1) = "C" And Cval(4) = 0 Then Call MsgBox("Credit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 4, .ActiveRow: .SetFocus:
             End If
     ElseIf KeyCode = vbKeyF3 Then
             If .ActiveCol = 2 Then
@@ -2051,36 +2159,36 @@ With fpSpread1
         Dim Account As Variant
             CalculateTotal
             If .ActiveCol = 1 Then  'Switch TOA  Value D/C
-            .GetText 1, .ActiveRow, cVal(1)  'TOA
+            .GetText 1, .ActiveRow, Cval(1)  'TOA
             'Switch TOA  Value D/C
-                If cVal(1) = "C" Or cVal(1) = "" Then
+                If Cval(1) = "C" Or Cval(1) = "" Then
                 .SetText 1, .ActiveRow, "D"
-                ElseIf cVal(1) = "D" Or cVal(1) = "" Then
+                ElseIf Cval(1) = "D" Or Cval(1) = "" Then
                 .SetText 1, .ActiveRow, "C"
                 End If
             ElseIf .ActiveCol = 2 Then 'Select Account
-                .GetText 1, .ActiveRow, cVal(1)  'TOA
+                .GetText 1, .ActiveRow, Cval(1)  'TOA
                 .GetText .ActiveCol, .ActiveRow, Account
                 txtAccount.Text = FixQuote(Account)
-                    If cVal(1) = "" And dDCFlag <= 0 Then
-                        cVal(1) = "D"
-                    ElseIf cVal(1) = "" And dDCFlag > 0 Then
-                        cVal(1) = "C": fpSpread1.SetText 1, fpSpread1.ActiveRow, "C"
+                    If Cval(1) = "" And dDCFlag <= 0 Then
+                        Cval(1) = "D"
+                    ElseIf Cval(1) = "" And dDCFlag > 0 Then
+                        Cval(1) = "C": fpSpread1.SetText 1, fpSpread1.ActiveRow, "C"
                     End If
                     
-                    If cVal(1) = "D" And VchType = "PI" Or cVal(1) = "C" And VchType = "PR" Then
+                    If Cval(1) = "D" And VchType = "PI" Or Cval(1) = "C" And VchType = "PR" Then
                         If rstAccountList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstAccountList.MoveFirst
                         rstAccountList.Find "[Col0] = '" & FixQuote(Trim(Account)) & "'"
                         SelectionType = "S": AccountCode = ""
                     Call LoadSelectionList(rstAccountList, "List of Accounts...", "Name")
                     
-                    ElseIf cVal(1) = "C" And VchType = "PI" Or cVal(1) = "D" And VchType = "PR" Or cVal(1) = "D" And VchType = "CE" Or cVal(1) = "C" And VchType = "CE" Then
+                    ElseIf Cval(1) = "C" And VchType = "PI" Or Cval(1) = "D" And VchType = "PR" Or Cval(1) = "D" And VchType = "CE" Or Cval(1) = "C" And VchType = "CE" Then
                         If rstSelfAccountList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstSelfAccountList.MoveFirst
                         rstSelfAccountList.Find "[Col0] = '" & FixQuote(Trim(Account)) & "'"
                         SelectionType = "S": AccountCode = ""
                         Call LoadSelectionList(rstSelfAccountList, "List of Accounts...", "Name")
                     
-                    ElseIf cVal(1) = "C" And VchType = "JE" Or cVal(1) = "D" And VchType = "JE" Or cVal(1) = "C" And VchType = "DN" Or cVal(1) = "D" And VchType = "DN" Or cVal(1) = "C" And VchType = "CN" Or cVal(1) = "D" And VchType = "CN" Then
+                    ElseIf Cval(1) = "C" And VchType = "JE" Or Cval(1) = "D" And VchType = "JE" Or Cval(1) = "C" And VchType = "DN" Or Cval(1) = "D" And VchType = "DN" Or Cval(1) = "C" And VchType = "CN" Or Cval(1) = "D" And VchType = "CN" Then
                         If rstJEAccountList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstJEAccountList.MoveFirst
                         rstJEAccountList.Find "[Col0] = '" & FixQuote(Trim(Account)) & "'"
                         SelectionType = "S": AccountCode = ""
@@ -2124,7 +2232,7 @@ Private Sub fpSpread1_LeaveRow(ByVal Row As Long, ByVal RowWasLast As Boolean, B
     End With
 End Sub
 Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewCol As Long, ByVal NewRow As Long, Cancel As Boolean)
-    Dim TOA As Variant, Account As Variant, Debit As Variant, Credit As Variant, cVal(1 To 8) As Variant
+    Dim TOA As Variant, Account As Variant, Debit As Variant, Credit As Variant, Cval(1 To 8) As Variant
     With fpSpread1
                 .GetText 1, Row, TOA
                 .GetText 2, Row, Account
@@ -2142,12 +2250,12 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
                 If TOA = "C" And Credit > 0 Then .SetText 3, Row, 0: CalculateTotal
                 If Col = 4 And TOA = "C" And Credit <= 0 And Not CheckEmpty(Account, False) Then .SetActiveCell 4, .ActiveRow: CalculateTotal:
         ElseIf Col = 5 Then  'TOA
-        .GetText 1, .ActiveRow + 1, cVal(1) 'Next Row TOA
+        .GetText 1, .ActiveRow + 1, Cval(1) 'Next Row TOA
             If dDCFlag = 0 Then
             fpSpread1.SetActiveCell .ActiveCol, .ActiveRow: Text4.SetFocus
-            ElseIf dDCFlag <= 0 And cVal(1) = "" Then
+            ElseIf dDCFlag <= 0 And Cval(1) = "" Then
                 .SetText 1, Row + 1, "D": .SetActiveCell 2, .ActiveRow + 1: CalculateTotal
-            ElseIf dDCFlag > 0 And cVal(1) = "" Then
+            ElseIf dDCFlag > 0 And Cval(1) = "" Then
                 .SetText 1, Row + 1, "C": .SetActiveCell 2, .ActiveRow + 1: CalculateTotal
             End If
         End If
@@ -2275,3 +2383,24 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType= '" & IIf(VchType = "PI", "51", IIf(VchType = "PR", "52", IIf(VchType = "JE", "53", IIf(VchType = "CE", "54", IIf(VchType = "CN", "55", "56"))))) & VchType & "' ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
+Private Sub Toolbar2_ButtonClick(ByVal Button As MSComctlLib.Button)
+    On Error Resume Next
+    If Button.Index = 1 Then
+        'MnuHelp_Click (1)
+    ElseIf Button.Index >= 6 And Button.Index <= 11 Then
+        If Me.Name <> "frmDebitCreditVoucher" Then
+            frmDebitCreditVoucher.VchType = Choose(Button.Index - 5, "PI", "PR", "JE", "CE", "DN", "CN")
+            Load frmDebitCreditVoucher
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        Else
+            Call CloseForm(frmDebitCreditVoucher)
+            frmDebitCreditVoucher.VchType = Choose(Button.Index - 5, "PI", "PR", "JE", "CE", "DN", "CN")
+            Load frmDebitCreditVoucher
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        End If
+    
+    End If
+End Sub
+

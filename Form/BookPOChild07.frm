@@ -742,8 +742,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2090
          _ExtentY        =   582
-         Calculator      =   "BookPOChild07.frx":18D6
-         Caption         =   "BookPOChild07.frx":18F6
+         Calculator      =   "BookPOChild07.frx":18FA
+         Caption         =   "BookPOChild07.frx":191A
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -753,9 +753,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":1962
-         Keys            =   "BookPOChild07.frx":1980
-         Spin            =   "BookPOChild07.frx":19CA
+         DropDown        =   "BookPOChild07.frx":1986
+         Keys            =   "BookPOChild07.frx":19A4
+         Spin            =   "BookPOChild07.frx":19EE
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -815,8 +815,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":19F2
-         Picture         =   "BookPOChild07.frx":1A0E
+         Picture         =   "BookPOChild07.frx":1A16
+         Picture         =   "BookPOChild07.frx":1A32
          Begin TDBNumber6Ctl.TDBNumber MhRealInput18 
             Height          =   330
             Left            =   14220
@@ -827,8 +827,8 @@ Begin VB.Form FrmBookPOChild07
             _Version        =   65536
             _ExtentX        =   1896
             _ExtentY        =   582
-            Calculator      =   "BookPOChild07.frx":1A2A
-            Caption         =   "BookPOChild07.frx":1A4A
+            Calculator      =   "BookPOChild07.frx":1A4E
+            Caption         =   "BookPOChild07.frx":1A6E
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -838,9 +838,9 @@ Begin VB.Form FrmBookPOChild07
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "BookPOChild07.frx":1AB6
-            Keys            =   "BookPOChild07.frx":1AD4
-            Spin            =   "BookPOChild07.frx":1B1E
+            DropDown        =   "BookPOChild07.frx":1ADA
+            Keys            =   "BookPOChild07.frx":1AF8
+            Spin            =   "BookPOChild07.frx":1B42
             AlignHorizontal =   1
             AlignVertical   =   0
             Appearance      =   0
@@ -917,6 +917,7 @@ Dim EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
     DisableCloseButton Me
@@ -1111,20 +1112,20 @@ Private Sub cmdProceed_Click()
     Call CloseForm(Me)
 End Sub
 Private Function CheckMandatoryFields(ByVal A, B As Integer) As Boolean
-    Dim i As Integer, x As Integer, CVal As Variant, Header As Variant
+    Dim i As Integer, x As Integer, Cval As Variant, Header As Variant
         For i = 1 To fpSpread1.DataRowCnt
             For x = 1 To 10
             fpSpread1.SetActiveCell x, i
-            fpSpread1.GetText x, i, CVal
-                If CVal = "" Then CheckMandatoryFields = True: Exit For
-                If CVal = " " Then CheckMandatoryFields = True: Exit For
+            fpSpread1.GetText x, i, Cval
+                If Cval = "" Then CheckMandatoryFields = True: Exit For
+                If Cval = " " Then CheckMandatoryFields = True: Exit For
             Next
             If CheckMandatoryFields Then fpSpread1.GetText x, 0, Header: DisplayError "Data Cann't Be Saved due To Field Active Row No.  (#" & Trim(Str(i)) & ") &          Column>>>  " & Header & "  <<< is Mandatory Fields": fpSpread1.SetActiveCell x, i: Exit For
             For x = 14 To 17
             fpSpread1.SetActiveCell x, i
-            fpSpread1.GetText x, i, CVal
-                If CVal = "" Then CheckMandatoryFields = True: Exit For
-                If CVal = " " Then CheckMandatoryFields = True: Exit For
+            fpSpread1.GetText x, i, Cval
+                If Cval = "" Then CheckMandatoryFields = True: Exit For
+                If Cval = " " Then CheckMandatoryFields = True: Exit For
             Next
             If CheckMandatoryFields Then fpSpread1.GetText x, 0, Header: DisplayError "Data Cann't Be Saved due To Field Row No.  (#" & Trim(Str(i)) & ") Column>>>  " & Header & ") <<< Mandatory Fields ": fpSpread1.SetActiveCell x, i: Exit For
         Next

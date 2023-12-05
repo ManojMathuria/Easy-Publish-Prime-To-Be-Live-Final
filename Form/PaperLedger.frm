@@ -25,7 +25,6 @@ Begin VB.Form FrmPaperLedger
    KeyPreview      =   -1  'True
    LinkTopic       =   "FrmLogin"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9495
    ScaleWidth      =   20085
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
@@ -853,6 +852,7 @@ Private Sub Form_Load()
     Reset = 0:
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     BusySystemIndicator True
     If VchType = 19 Then Me.Caption = "Paper Stock Ladger"
 If VchType <> 19 Then
@@ -1228,27 +1228,27 @@ Private Sub cmdRefresh_Click()
                 .SetText 9, i, rstPaperLedger.Fields("VchRef").Value
                 .SetText 10, i, rstPaperLedger.Fields("Date").Value
                 .SetText 11, i, rstPaperLedger.Fields("Ref").Value
-                .SetText 12, i, val(rstPaperLedger.Fields("wtUOM").Value)
-                .SetText 13, i, IIf(val(rstPaperLedger.Fields("Quantity").Value) = 0, "", val(rstPaperLedger.Fields("Quantity").Value))
+                .SetText 12, i, Val(rstPaperLedger.Fields("wtUOM").Value)
+                .SetText 13, i, IIf(Val(rstPaperLedger.Fields("Quantity").Value) = 0, "", Val(rstPaperLedger.Fields("Quantity").Value))
                 .SetText 14, i, rstPaperLedger.Fields("UOM").Value
-                .SetText 15, i, IIf(val(rstPaperLedger.Fields("QuantitySheets").Value) = 0, "", val(rstPaperLedger.Fields("QuantitySheets").Value))
-                .SetText 16, i, IIf(val(rstPaperLedger.Fields("QuantityKg").Value) = 0, "", val(rstPaperLedger.Fields("QuantityKg").Value))
-                .SetText 17, i, val(rstPaperLedger.Fields("Units/Bundle").Value)
-                .SetText 18, i, val(rstPaperLedger.Fields("TotalBundles").Value)
+                .SetText 15, i, IIf(Val(rstPaperLedger.Fields("QuantitySheets").Value) = 0, "", Val(rstPaperLedger.Fields("QuantitySheets").Value))
+                .SetText 16, i, IIf(Val(rstPaperLedger.Fields("QuantityKg").Value) = 0, "", Val(rstPaperLedger.Fields("QuantityKg").Value))
+                .SetText 17, i, Val(rstPaperLedger.Fields("Units/Bundle").Value)
+                .SetText 18, i, Val(rstPaperLedger.Fields("TotalBundles").Value)
             If VchType = 11 Or VchType = 12 Or VchType = 13 Or VchType = 18 Or VchType = 19 Then
-                .SetText 19, i, IIf(val(rstPaperLedger.Fields("QuantityIssue").Value) = 0, "", val(rstPaperLedger.Fields("QuantityIssue").Value))
+                .SetText 19, i, IIf(Val(rstPaperLedger.Fields("QuantityIssue").Value) = 0, "", Val(rstPaperLedger.Fields("QuantityIssue").Value))
                 .SetText 20, i, rstPaperLedger.Fields("UOM").Value
-                .SetText 21, i, IIf(val(rstPaperLedger.Fields("IssueQtySheets").Value) = 0, "", val(rstPaperLedger.Fields("IssueQtySheets").Value))
-                .SetText 22, i, IIf(val(rstPaperLedger.Fields("IssueQtyKg").Value) = 0, "", val(rstPaperLedger.Fields("IssueQtyKg").Value))
+                .SetText 21, i, IIf(Val(rstPaperLedger.Fields("IssueQtySheets").Value) = 0, "", Val(rstPaperLedger.Fields("IssueQtySheets").Value))
+                .SetText 22, i, IIf(Val(rstPaperLedger.Fields("IssueQtyKg").Value) = 0, "", Val(rstPaperLedger.Fields("IssueQtyKg").Value))
             End If
             If VchType = 18 Or VchType = 19 Then
-                .SetText 23, i, IIf(val(rstPaperLedger.Fields("PendingQty").Value) = 0, "", val(rstPaperLedger.Fields("PendingQty").Value))
+                .SetText 23, i, IIf(Val(rstPaperLedger.Fields("PendingQty").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQty").Value))
                 .SetText 24, i, rstPaperLedger.Fields("UOM").Value
-                .SetText 25, i, IIf(val(rstPaperLedger.Fields("PendingQtySheets").Value) = 0, "", val(rstPaperLedger.Fields("PendingQtySheets").Value))
-                .SetText 26, i, IIf(val(rstPaperLedger.Fields("PendingQtyKG").Value) = 0, "", val(rstPaperLedger.Fields("PendingQtyKG").Value))
-                .SetText 27, i, val(rstPaperLedger.Fields("Rate/Kg").Value)
-                .SetText 28, i, val(rstPaperLedger.Fields("Rate/Unit").Value)
-                .SetText 29, i, val(rstPaperLedger.Fields("Amount").Value)
+                .SetText 25, i, IIf(Val(rstPaperLedger.Fields("PendingQtySheets").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQtySheets").Value))
+                .SetText 26, i, IIf(Val(rstPaperLedger.Fields("PendingQtyKG").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQtyKG").Value))
+                .SetText 27, i, Val(rstPaperLedger.Fields("Rate/Kg").Value)
+                .SetText 28, i, Val(rstPaperLedger.Fields("Rate/Unit").Value)
+                .SetText 29, i, Val(rstPaperLedger.Fields("Amount").Value)
             End If
             rstPaperLedger.MoveNext
         Loop
@@ -1530,7 +1530,7 @@ If VSFlexFlag = True Then
             For C = 4 To 8
                 For i = 7 To VSFlexGrid1.Rows - 2 'Match Col Header
                 If VSFlexGrid1.RowHidden(i) = False Then
-                    StockVal = StockVal + val(VSFlexGrid1.TextMatrix(i, C)) 'Total
+                    StockVal = StockVal + Val(VSFlexGrid1.TextMatrix(i, C)) 'Total
                 End If
                 Next
                 VSFlexGrid1.TextMatrix(VSFlexGrid1.Rows - 1, C) = StockVal
@@ -1878,18 +1878,18 @@ dPrint = 0: pSNO = 0: aSNO = 0: GodownNameH = "": SizeNameH = "": PaperNameH = "
                 C = C + 1: .TextMatrix(i, C) = rstPaperLedger.Fields("VchType").Value + IIf(rstPaperLedger.Fields("VchNo").Value <> "", "-" + rstPaperLedger.Fields("VchNo").Value, "")
                 C = C + 1: .TextMatrix(i, C) = Format(rstPaperLedger.Fields("VchDate").Value, "dd-mm-yy")
                 C = C + 1: .TextMatrix(i, C) = rstPaperLedger.Fields("Particulars").Value: .WordWrap = True: .AutoSizeMode = flexAutoSizeRowHeight
-                C = C + 1: .TextMatrix(i, C) = Format(val(rstPaperLedger.Fields("Forms").Value), "###0.00")
-                C = C + 1: .TextMatrix(i, C) = val(rstPaperLedger.Fields("BookQuantity").Value)
+                C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Forms").Value), "###0.00")
+                C = C + 1: .TextMatrix(i, C) = Val(rstPaperLedger.Fields("BookQuantity").Value)
 '********************************IN
-            If InStr(1, "PI_SI_MI_CN_OB", StrConv(rstPaperLedger.Fields("VchType").Value, vbUpperCase)) > 0 And val(rstPaperLedger.Fields("Quantity").Value) > 0 Then
+            If InStr(1, "PI_SI_MI_CN_OB", StrConv(rstPaperLedger.Fields("VchType").Value, vbUpperCase)) > 0 And Val(rstPaperLedger.Fields("Quantity").Value) > 0 Then
                     If Combo1.ListIndex = 0 Then
-                        C = C + 1: .TextMatrix(i, C) = val(rstPaperLedger.Fields("Quantity").Value)
+                        C = C + 1: .TextMatrix(i, C) = Val(rstPaperLedger.Fields("Quantity").Value)
                     ElseIf Combo1.ListIndex = 1 Then
-                        C = C + 1: .TextMatrix(i, C) = Format(val(rstPaperLedger.Fields("Quantity").Value) / val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                        C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Quantity").Value) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
                     ElseIf Combo1.ListIndex = 2 Then
-                        C = C + 1: .TextMatrix(i, C) = Format(val(rstPaperLedger.Fields("Quantity").Value) / val(rstPaperLedger.Fields("SPU").Value) * val(rstPaperLedger.Fields("Weight/Unit").Value), "###0.000") 'Weight/Unit
+                        C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Quantity").Value) / Val(rstPaperLedger.Fields("SPU").Value) * Val(rstPaperLedger.Fields("Weight/Unit").Value), "###0.000") 'Weight/Unit
                     ElseIf Combo1.ListIndex = 3 Then
-                        C = C + 1: .TextMatrix(i, C) = Format(val(rstPaperLedger.Fields("Quantity").Value) / val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                        C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Quantity").Value) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
                         'C = C + 1: .TextMatrix(i, C) = Format(Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) + ((Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) - Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value))) * Val(rstPaperLedger.Fields("SPU").Value) / 1000, "####0.000")
                     End If
                 C = C + 1
@@ -1897,18 +1897,18 @@ dPrint = 0: pSNO = 0: aSNO = 0: GodownNameH = "": SizeNameH = "": PaperNameH = "
             Else
                 C = C + 1
                 If Combo1.ListIndex = 0 Then
-                    C = C + 1: .TextMatrix(i, C) = val(Abs(rstPaperLedger.Fields("Quantity").Value))
+                    C = C + 1: .TextMatrix(i, C) = Val(Abs(rstPaperLedger.Fields("Quantity").Value))
                 ElseIf Combo1.ListIndex = 1 Then
-                    C = C + 1: .TextMatrix(i, C) = Format(val(Abs(rstPaperLedger.Fields("Quantity").Value)) / val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                    C = C + 1: .TextMatrix(i, C) = Format(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
                 ElseIf Combo1.ListIndex = 2 Then
-                    C = C + 1: .TextMatrix(i, C) = Format(val(Abs(rstPaperLedger.Fields("Quantity").Value)) / val(rstPaperLedger.Fields("SPU").Value) * val(rstPaperLedger.Fields("Weight/Unit").Value), "###0.000") 'Weight/Unit
+                    C = C + 1: .TextMatrix(i, C) = Format(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value) * Val(rstPaperLedger.Fields("Weight/Unit").Value), "###0.000") 'Weight/Unit
                 ElseIf Combo1.ListIndex = 3 Then
-                    C = C + 1: .TextMatrix(i, C) = Format(val(Abs(rstPaperLedger.Fields("Quantity").Value)) / val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                    C = C + 1: .TextMatrix(i, C) = Format(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
                     'C = C + 1: .TextMatrix(i, C) = Format(Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) + ((Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) - Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value))) * Val(rstPaperLedger.Fields("SPU").Value) / 1000, "####0.000")
                 End If
             End If
 '********************************Bal
-                C = C + 1:  .TextMatrix(i, C) = Format(val(val(.TextMatrix(i, C - 2)) - val(.TextMatrix(i, C - 1))), "###0.000"): .Cell(flexcpForeColor, i, C) = vbWhite: pSNO = pSNO + 1
+                C = C + 1:  .TextMatrix(i, C) = Format(Val(Val(.TextMatrix(i, C - 2)) - Val(.TextMatrix(i, C - 1))), "###0.000"): .Cell(flexcpForeColor, i, C) = vbWhite: pSNO = pSNO + 1
 '********************************
                  .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
                  .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
@@ -2145,10 +2145,10 @@ Dim Cval, SPU, Col As Variant
 
     For Col = 6 To 8
         For i = 4 To VSFlexGrid1.Rows - 1
-            If val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) <> 0 Then
-            If val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) < 0 Then C = -1 Else C = 1
-                    Cval = val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000"))
-                    SPU = IIf(val(VSFlexGrid1.TextMatrix(i, 14)) <> 0, val(VSFlexGrid1.TextMatrix(i, 14)), val(VSFlexGrid1.TextMatrix(i - 1, 14))): VSFlexGrid1.TextMatrix(i, 14) = SPU
+            If Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) <> 0 Then
+            If Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) < 0 Then C = -1 Else C = 1
+                    Cval = Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000"))
+                    SPU = IIf(Val(VSFlexGrid1.TextMatrix(i, 14)) <> 0, Val(VSFlexGrid1.TextMatrix(i, 14)), Val(VSFlexGrid1.TextMatrix(i - 1, 14))): VSFlexGrid1.TextMatrix(i, 14) = SPU
                     VSFlexGrid1.TextMatrix(i, Col) = Format(Format(Int(Abs(Cval)) + ((Abs(Cval) - Int(Abs(Cval))) * SPU / 1000), "####0.000") * C, "####0.000")
             End If
         Next

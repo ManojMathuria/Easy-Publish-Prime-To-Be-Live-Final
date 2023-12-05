@@ -104,7 +104,6 @@ Begin VB.Form FrmBindingTypeMaster
          TabPicture(1)   =   "BindingTypeMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -523,6 +522,7 @@ Private Sub Form_Load()
     CenterForm Me
     WheelHook DataGrid1
     Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnBindingTypeMaster.CursorLocation = adUseClient: cnBindingTypeMaster.Open cnDatabase.ConnectionString
     rstBindingTypeList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='6' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

@@ -27,7 +27,6 @@ Begin VB.Form frmJobworkBill
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9195
    ScaleWidth      =   16500
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -99,9 +98,40 @@ Begin VB.Form frmJobworkBill
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "JobworkBill.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dLabel55"
-         Tab(1).ControlCount=   2
+         Tab(1).Control(0)=   "Mh3dLabel55"
+         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(2)=   "Mh3dLabel1(1)"
+         Tab(1).ControlCount=   3
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel55 
+            Height          =   330
+            Left            =   -61970
+            TabIndex        =   51
+            Top             =   7515
+            Width           =   3015
+            _Version        =   65536
+            _ExtentX        =   5318
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   "  -> Get Jobwork Paper Cost <-"
+            Alignment       =   0
+            BevelStyle      =   1
+            BorderStyle     =   2
+            FillColor       =   8421504
+            TextColor       =   16777215
+            Picture         =   "JobworkBill.frx":0054
+            BevelStyleInside=   1
+            Picture         =   "JobworkBill.frx":0070
+         End
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -316,7 +346,7 @@ Begin VB.Form frmJobworkBill
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "JobworkBill.frx":0054
+            Picture         =   "JobworkBill.frx":008C
             Begin VB.TextBox Text10 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -382,8 +412,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":0070
-               Picture         =   "JobworkBill.frx":008C
+               Picture         =   "JobworkBill.frx":00A8
+               Picture         =   "JobworkBill.frx":00C4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
@@ -409,8 +439,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":00A8
-               Picture         =   "JobworkBill.frx":00C4
+               Picture         =   "JobworkBill.frx":00E0
+               Picture         =   "JobworkBill.frx":00FC
             End
             Begin VB.TextBox Text8 
                Appearance      =   0  'Flat
@@ -498,8 +528,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":00E0
-               Picture         =   "JobworkBill.frx":00FC
+               Picture         =   "JobworkBill.frx":0118
+               Picture         =   "JobworkBill.frx":0134
                Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
                   Height          =   285
                   Left            =   9870
@@ -510,8 +540,8 @@ Begin VB.Form frmJobworkBill
                   _Version        =   65536
                   _ExtentX        =   1640
                   _ExtentY        =   503
-                  Calculator      =   "JobworkBill.frx":0118
-                  Caption         =   "JobworkBill.frx":0138
+                  Calculator      =   "JobworkBill.frx":0150
+                  Caption         =   "JobworkBill.frx":0170
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -521,9 +551,9 @@ Begin VB.Form frmJobworkBill
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "JobworkBill.frx":01A4
-                  Keys            =   "JobworkBill.frx":01C2
-                  Spin            =   "JobworkBill.frx":020C
+                  DropDown        =   "JobworkBill.frx":01DC
+                  Keys            =   "JobworkBill.frx":01FA
+                  Spin            =   "JobworkBill.frx":0244
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -569,8 +599,8 @@ Begin VB.Form frmJobworkBill
                   _Version        =   65536
                   _ExtentX        =   2090
                   _ExtentY        =   503
-                  Calculator      =   "JobworkBill.frx":0234
-                  Caption         =   "JobworkBill.frx":0254
+                  Calculator      =   "JobworkBill.frx":026C
+                  Caption         =   "JobworkBill.frx":028C
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -580,9 +610,9 @@ Begin VB.Form frmJobworkBill
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "JobworkBill.frx":02C0
-                  Keys            =   "JobworkBill.frx":02DE
-                  Spin            =   "JobworkBill.frx":0328
+                  DropDown        =   "JobworkBill.frx":02F8
+                  Keys            =   "JobworkBill.frx":0316
+                  Spin            =   "JobworkBill.frx":0360
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -705,8 +735,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":0350
-               Picture         =   "JobworkBill.frx":036C
+               Picture         =   "JobworkBill.frx":0388
+               Picture         =   "JobworkBill.frx":03A4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -732,8 +762,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":0388
-               Picture         =   "JobworkBill.frx":03A4
+               Picture         =   "JobworkBill.frx":03C0
+               Picture         =   "JobworkBill.frx":03DC
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -744,8 +774,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   2355
                _ExtentY        =   582
-               Calendar        =   "JobworkBill.frx":03C0
-               Caption         =   "JobworkBill.frx":04D8
+               Calendar        =   "JobworkBill.frx":03F8
+               Caption         =   "JobworkBill.frx":0510
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -755,9 +785,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":0544
-               Keys            =   "JobworkBill.frx":0562
-               Spin            =   "JobworkBill.frx":05C0
+               DropDown        =   "JobworkBill.frx":057C
+               Keys            =   "JobworkBill.frx":059A
+               Spin            =   "JobworkBill.frx":05F8
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -822,7 +852,7 @@ Begin VB.Form frmJobworkBill
                MaxCols         =   17
                MaxRows         =   1000
                ScrollBars      =   2
-               SpreadDesigner  =   "JobworkBill.frx":05E8
+               SpreadDesigner  =   "JobworkBill.frx":0620
             End
             Begin VB.TextBox Text6 
                Appearance      =   0  'Flat
@@ -870,8 +900,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":1587
-               Picture         =   "JobworkBill.frx":15A3
+               Picture         =   "JobworkBill.frx":1595
+               Picture         =   "JobworkBill.frx":15B1
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -897,8 +927,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":15BF
-               Picture         =   "JobworkBill.frx":15DB
+               Picture         =   "JobworkBill.frx":15CD
+               Picture         =   "JobworkBill.frx":15E9
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput8 
                Height          =   330
@@ -910,8 +940,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calculator      =   "JobworkBill.frx":15F7
-               Caption         =   "JobworkBill.frx":1617
+               Calculator      =   "JobworkBill.frx":1605
+               Caption         =   "JobworkBill.frx":1625
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -921,9 +951,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":1683
-               Keys            =   "JobworkBill.frx":16A1
-               Spin            =   "JobworkBill.frx":16EB
+               DropDown        =   "JobworkBill.frx":1691
+               Keys            =   "JobworkBill.frx":16AF
+               Spin            =   "JobworkBill.frx":16F9
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -969,8 +999,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   2064
                _ExtentY        =   582
-               Calculator      =   "JobworkBill.frx":1713
-               Caption         =   "JobworkBill.frx":1733
+               Calculator      =   "JobworkBill.frx":1721
+               Caption         =   "JobworkBill.frx":1741
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -980,9 +1010,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":179F
-               Keys            =   "JobworkBill.frx":17BD
-               Spin            =   "JobworkBill.frx":1807
+               DropDown        =   "JobworkBill.frx":17AD
+               Keys            =   "JobworkBill.frx":17CB
+               Spin            =   "JobworkBill.frx":1815
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1042,8 +1072,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":182F
-               Picture         =   "JobworkBill.frx":184B
+               Picture         =   "JobworkBill.frx":183D
+               Picture         =   "JobworkBill.frx":1859
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput11 
                Height          =   645
@@ -1055,8 +1085,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   2461
                _ExtentY        =   1138
-               Calculator      =   "JobworkBill.frx":1867
-               Caption         =   "JobworkBill.frx":1887
+               Calculator      =   "JobworkBill.frx":1875
+               Caption         =   "JobworkBill.frx":1895
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1066,9 +1096,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":18F3
-               Keys            =   "JobworkBill.frx":1911
-               Spin            =   "JobworkBill.frx":195B
+               DropDown        =   "JobworkBill.frx":1901
+               Keys            =   "JobworkBill.frx":191F
+               Spin            =   "JobworkBill.frx":1969
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1114,8 +1144,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   1138
-               Calculator      =   "JobworkBill.frx":1983
-               Caption         =   "JobworkBill.frx":19A3
+               Calculator      =   "JobworkBill.frx":1991
+               Caption         =   "JobworkBill.frx":19B1
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1125,9 +1155,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":1A0F
-               Keys            =   "JobworkBill.frx":1A2D
-               Spin            =   "JobworkBill.frx":1A77
+               DropDown        =   "JobworkBill.frx":1A1D
+               Keys            =   "JobworkBill.frx":1A3B
+               Spin            =   "JobworkBill.frx":1A85
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1187,8 +1217,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":1A9F
-               Picture         =   "JobworkBill.frx":1ABB
+               Picture         =   "JobworkBill.frx":1AAD
+               Picture         =   "JobworkBill.frx":1AC9
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
                Height          =   330
@@ -1214,8 +1244,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":1AD7
-               Picture         =   "JobworkBill.frx":1AF3
+               Picture         =   "JobworkBill.frx":1AE5
+               Picture         =   "JobworkBill.frx":1B01
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
@@ -1227,8 +1257,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calculator      =   "JobworkBill.frx":1B0F
-               Caption         =   "JobworkBill.frx":1B2F
+               Calculator      =   "JobworkBill.frx":1B1D
+               Caption         =   "JobworkBill.frx":1B3D
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1238,9 +1268,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":1B9B
-               Keys            =   "JobworkBill.frx":1BB9
-               Spin            =   "JobworkBill.frx":1C03
+               DropDown        =   "JobworkBill.frx":1BA9
+               Keys            =   "JobworkBill.frx":1BC7
+               Spin            =   "JobworkBill.frx":1C11
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1286,8 +1316,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   2064
                _ExtentY        =   582
-               Calculator      =   "JobworkBill.frx":1C2B
-               Caption         =   "JobworkBill.frx":1C4B
+               Calculator      =   "JobworkBill.frx":1C39
+               Caption         =   "JobworkBill.frx":1C59
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1297,9 +1327,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":1CB7
-               Keys            =   "JobworkBill.frx":1CD5
-               Spin            =   "JobworkBill.frx":1D1F
+               DropDown        =   "JobworkBill.frx":1CC5
+               Keys            =   "JobworkBill.frx":1CE3
+               Spin            =   "JobworkBill.frx":1D2D
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1344,8 +1374,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   1138
-               Calculator      =   "JobworkBill.frx":1D47
-               Caption         =   "JobworkBill.frx":1D67
+               Calculator      =   "JobworkBill.frx":1D55
+               Caption         =   "JobworkBill.frx":1D75
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1355,9 +1385,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":1DD3
-               Keys            =   "JobworkBill.frx":1DF1
-               Spin            =   "JobworkBill.frx":1E3B
+               DropDown        =   "JobworkBill.frx":1DE1
+               Keys            =   "JobworkBill.frx":1DFF
+               Spin            =   "JobworkBill.frx":1E49
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1417,8 +1447,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":1E63
-               Picture         =   "JobworkBill.frx":1E7F
+               Picture         =   "JobworkBill.frx":1E71
+               Picture         =   "JobworkBill.frx":1E8D
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   645
@@ -1444,8 +1474,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":1E9B
-               Picture         =   "JobworkBill.frx":1EB7
+               Picture         =   "JobworkBill.frx":1EA9
+               Picture         =   "JobworkBill.frx":1EC5
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput4 
                Height          =   645
@@ -1456,8 +1486,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   1640
                _ExtentY        =   1138
-               Calculator      =   "JobworkBill.frx":1ED3
-               Caption         =   "JobworkBill.frx":1EF3
+               Calculator      =   "JobworkBill.frx":1EE1
+               Caption         =   "JobworkBill.frx":1F01
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1467,9 +1497,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":1F5F
-               Keys            =   "JobworkBill.frx":1F7D
-               Spin            =   "JobworkBill.frx":1FC7
+               DropDown        =   "JobworkBill.frx":1F6D
+               Keys            =   "JobworkBill.frx":1F8B
+               Spin            =   "JobworkBill.frx":1FD5
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1529,8 +1559,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":1FEF
-               Picture         =   "JobworkBill.frx":200B
+               Picture         =   "JobworkBill.frx":1FFD
+               Picture         =   "JobworkBill.frx":2019
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput5 
                Height          =   645
@@ -1542,8 +1572,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   1138
-               Calculator      =   "JobworkBill.frx":2027
-               Caption         =   "JobworkBill.frx":2047
+               Calculator      =   "JobworkBill.frx":2035
+               Caption         =   "JobworkBill.frx":2055
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1553,9 +1583,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":20B3
-               Keys            =   "JobworkBill.frx":20D1
-               Spin            =   "JobworkBill.frx":211B
+               DropDown        =   "JobworkBill.frx":20C1
+               Keys            =   "JobworkBill.frx":20DF
+               Spin            =   "JobworkBill.frx":2129
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1615,8 +1645,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":2143
-               Picture         =   "JobworkBill.frx":215F
+               Picture         =   "JobworkBill.frx":2151
+               Picture         =   "JobworkBill.frx":216D
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   645
@@ -1627,8 +1657,8 @@ Begin VB.Form frmJobworkBill
                _Version        =   65536
                _ExtentX        =   2064
                _ExtentY        =   1138
-               Calculator      =   "JobworkBill.frx":217B
-               Caption         =   "JobworkBill.frx":219B
+               Calculator      =   "JobworkBill.frx":2189
+               Caption         =   "JobworkBill.frx":21A9
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1638,9 +1668,9 @@ Begin VB.Form frmJobworkBill
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "JobworkBill.frx":2207
-               Keys            =   "JobworkBill.frx":2225
-               Spin            =   "JobworkBill.frx":226F
+               DropDown        =   "JobworkBill.frx":2215
+               Keys            =   "JobworkBill.frx":2233
+               Spin            =   "JobworkBill.frx":227D
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1700,8 +1730,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":2297
-               Picture         =   "JobworkBill.frx":22B3
+               Picture         =   "JobworkBill.frx":22A5
+               Picture         =   "JobworkBill.frx":22C1
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -1727,8 +1757,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":22CF
-               Picture         =   "JobworkBill.frx":22EB
+               Picture         =   "JobworkBill.frx":22DD
+               Picture         =   "JobworkBill.frx":22F9
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
@@ -1754,8 +1784,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":2307
-               Picture         =   "JobworkBill.frx":2323
+               Picture         =   "JobworkBill.frx":2315
+               Picture         =   "JobworkBill.frx":2331
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1781,8 +1811,8 @@ Begin VB.Form frmJobworkBill
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "JobworkBill.frx":233F
-               Picture         =   "JobworkBill.frx":235B
+               Picture         =   "JobworkBill.frx":234D
+               Picture         =   "JobworkBill.frx":2369
             End
             Begin MSForms.ComboBox cmbBillingType 
                Height          =   330
@@ -1847,8 +1877,8 @@ Begin VB.Form frmJobworkBill
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "JobworkBill.frx":2377
-            Picture         =   "JobworkBill.frx":2393
+            Picture         =   "JobworkBill.frx":2385
+            Picture         =   "JobworkBill.frx":23A1
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -1875,17 +1905,18 @@ Begin VB.Form frmJobworkBill
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "JobworkBill.frx":23AF
-            Picture         =   "JobworkBill.frx":23CB
+            Picture         =   "JobworkBill.frx":23BD
+            Picture         =   "JobworkBill.frx":23D9
          End
-         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel55 
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
-            Left            =   -61320
-            TabIndex        =   51
+            Index           =   1
+            Left            =   -67440
+            TabIndex        =   52
             Top             =   0
-            Width           =   2655
+            Width           =   8775
             _Version        =   65536
-            _ExtentX        =   4683
+            _ExtentX        =   15478
             _ExtentY        =   582
             _StockProps     =   77
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1898,15 +1929,12 @@ Begin VB.Form frmJobworkBill
                Strikethrough   =   0   'False
             EndProperty
             TintColor       =   16711935
-            Caption         =   "  -> Get Jobwork Paper Cost <-"
+            Caption         =   " F6->Edit Reference Order  F7->Get Revised Unit Rates  Ctrl+E->Edit Voucher  F9->Delete Row Ctrl+S->Save"
             Alignment       =   0
-            BevelStyle      =   1
-            BorderStyle     =   2
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "JobworkBill.frx":23E7
-            BevelStyleInside=   1
-            Picture         =   "JobworkBill.frx":2403
+            Picture         =   "JobworkBill.frx":23F5
+            Picture         =   "JobworkBill.frx":2411
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2035,6 +2063,7 @@ Dim frmDlvChDespatchDetails As New FrmDespatchDetails, frmDlvChConsigneeDetails 
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     VchType = Choose(Val(VchType), "SU", "SC", "SJ", "PU", "PC", "PJ", "QU", "QC", "QJ", "ZU", "ZC", "ZJ")
@@ -2125,7 +2154,8 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             dSortBy = True
                     On Error Resume Next
                     FrmBookPrintOrder.BookPOType = vtType
-                    If Err.Number <> 364 Then FrmBookPrintOrder.Show
+                    Load FrmBookPrintOrder
+                    If Err.Number <> 364 Then FrmBookPrintOrder.Show 'vbModal
                     FrmBookPrintOrder.Text1 = vtCode
                     KeyCode = vbKeyE
                 If Shift = 0 And KeyCode = vbKeyReturn Then 'View
@@ -2978,19 +3008,19 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
     If SrchFor = "Party" Then rstJobworkBVList.Filter = "[PartyName] Like '%" & SrchText & "%'"
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim cVal As Variant
+    Dim Cval As Variant
     With fpSpread1
         If .EditMode Then Exit Sub
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
             If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
         ElseIf KeyCode = vbKeySpace Then
             If .ActiveCol = 1 Then 'Item
-                .GetText 14, .ActiveRow, cVal 'Ref
-                If (Not CheckEmpty(cVal, False)) Or cmbBillingType.ListIndex = 1 Or Right(VchType, 1) = "J" Then Exit Sub 'Non-blank Ref OR Against Challan or VchType is SJ/PJ
-                .GetText 1, .ActiveRow, cVal 'Item
-                Text6.Text = FixQuote(cVal)
+                .GetText 14, .ActiveRow, Cval 'Ref
+                If (Not CheckEmpty(Cval, False)) Or cmbBillingType.ListIndex = 1 Or Right(VchType, 1) = "J" Then Exit Sub 'Non-blank Ref OR Against Challan or VchType is SJ/PJ
+                .GetText 1, .ActiveRow, Cval 'Item
+                Text6.Text = FixQuote(Cval)
                 If rstItemList.RecordCount = 0 Then DisplayError ("No record in Item Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstItemList.MoveFirst
-                rstItemList.Find "[Col0] = '" & FixQuote(Trim(cVal)) & "'"
+                rstItemList.Find "[Col0] = '" & FixQuote(Trim(Cval)) & "'"
                 SelectionType = "S": ItemCode = ""
                 Call LoadSelectionList(rstItemList, "List of Items...", "Name")
                 SearchOrder = 0
@@ -3002,30 +3032,30 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                     rstItemList.MoveFirst: rstItemList.Find "[Code] ='" & ItemCode & "'"
                     .SetText 1, .ActiveRow, Text6.Text
                     .SetText 15, .ActiveRow, ItemCode
-                    .GetText 16, .ActiveRow, cVal 'HSN
-                    If CheckEmpty(cVal, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 16, .ActiveRow, rstItemList.Fields("HSNCode").Value
-                    .GetText 14, .ActiveRow, cVal 'Ref
-                    If CheckEmpty(cVal, False) Then .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                    .GetText 16, .ActiveRow, Cval 'HSN
+                    If CheckEmpty(Cval, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 16, .ActiveRow, rstItemList.Fields("HSNCode").Value
+                    .GetText 14, .ActiveRow, Cval 'Ref
+                    If CheckEmpty(Cval, False) Then .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
                     .SetFocus
                     Sendkeys "{ENTER}"
                 End If
             ElseIf .ActiveCol = 2 Then 'HSN
-                .GetText 16, .ActiveRow, cVal 'HSN Code
+                .GetText 16, .ActiveRow, Cval 'HSN Code
                 On Error Resume Next
                 FrmGeneralMaster.SL = True
                 FrmGeneralMaster.MasterType = "18"
-                FrmGeneralMaster.MasterCode = cVal
+                FrmGeneralMaster.MasterCode = Cval
                 Load FrmGeneralMaster
                 If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
                 On Error GoTo 0
                 .SetText 2, .ActiveRow, slName: .SetText 16, .ActiveRow, slCode
                 If Not CheckEmpty(slCode, False) Then LoadMasterList: Sendkeys "{ENTER}"
             ElseIf .ActiveCol = 7 Then 'Short Nattaion
-                .GetText 13, .ActiveRow, cVal 'Short Narration
+                .GetText 13, .ActiveRow, Cval 'Short Narration
                 On Error Resume Next
                 FrmGeneralMaster.SL = True
                 FrmGeneralMaster.MasterType = "17"
-                FrmGeneralMaster.MasterCode = cVal
+                FrmGeneralMaster.MasterCode = Cval
                 Load FrmGeneralMaster
                 If Err.Number <> 364 Then FrmGeneralMaster.Show vbModal
                 On Error GoTo 0

@@ -96,6 +96,7 @@ Begin VB.Form FrmPrintPlanning
          TabPicture(1)   =   "PrintPlanning.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat

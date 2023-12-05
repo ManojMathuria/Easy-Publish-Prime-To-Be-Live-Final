@@ -572,8 +572,8 @@ Begin VB.Form FrmBookCreditNote
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookCreditNote.frx":0D6C
-            Picture         =   "BookCreditNote.frx":0D88
+            Picture         =   "BookCreditNote.frx":0D90
+            Picture         =   "BookCreditNote.frx":0DAC
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

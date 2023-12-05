@@ -24,7 +24,6 @@ Begin VB.Form FrmAccountLedger
    KeyPreview      =   -1  'True
    LinkTopic       =   "FrmLogin"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9255
    ScaleWidth      =   19485
    Begin VB.CommandButton Command1 
@@ -213,8 +212,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":15F5
-         Picture         =   "AccountLedger.frx":1611
+         Picture         =   "AccountLedger.frx":16AB
+         Picture         =   "AccountLedger.frx":16C7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -240,8 +239,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":162D
-         Picture         =   "AccountLedger.frx":1649
+         Picture         =   "AccountLedger.frx":16E3
+         Picture         =   "AccountLedger.frx":16FF
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -252,8 +251,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":1665
-         Caption         =   "AccountLedger.frx":177D
+         Calendar        =   "AccountLedger.frx":171B
+         Caption         =   "AccountLedger.frx":1833
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -263,9 +262,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":17E9
-         Keys            =   "AccountLedger.frx":1807
-         Spin            =   "AccountLedger.frx":1865
+         DropDown        =   "AccountLedger.frx":189F
+         Keys            =   "AccountLedger.frx":18BD
+         Spin            =   "AccountLedger.frx":191B
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -314,8 +313,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":188D
-         Caption         =   "AccountLedger.frx":19A5
+         Calendar        =   "AccountLedger.frx":1943
+         Caption         =   "AccountLedger.frx":1A5B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -325,9 +324,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1A11
-         Keys            =   "AccountLedger.frx":1A2F
-         Spin            =   "AccountLedger.frx":1A8D
+         DropDown        =   "AccountLedger.frx":1AC7
+         Keys            =   "AccountLedger.frx":1AE5
+         Spin            =   "AccountLedger.frx":1B43
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -393,8 +392,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1AB5
-         Picture         =   "AccountLedger.frx":1AD1
+         Picture         =   "AccountLedger.frx":1B6B
+         Picture         =   "AccountLedger.frx":1B87
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -405,8 +404,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "AccountLedger.frx":1AED
-         Caption         =   "AccountLedger.frx":1B0D
+         Calculator      =   "AccountLedger.frx":1BA3
+         Caption         =   "AccountLedger.frx":1BC3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -416,9 +415,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1B71
-         Keys            =   "AccountLedger.frx":1B8F
-         Spin            =   "AccountLedger.frx":1BD9
+         DropDown        =   "AccountLedger.frx":1C27
+         Keys            =   "AccountLedger.frx":1C45
+         Spin            =   "AccountLedger.frx":1C8F
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -478,8 +477,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1C01
-         Picture         =   "AccountLedger.frx":1C1D
+         Picture         =   "AccountLedger.frx":1CB7
+         Picture         =   "AccountLedger.frx":1CD3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -504,8 +503,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1C39
-         Picture         =   "AccountLedger.frx":1C55
+         Picture         =   "AccountLedger.frx":1CEF
+         Picture         =   "AccountLedger.frx":1D0B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -530,8 +529,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1C71
-         Picture         =   "AccountLedger.frx":1C8D
+         Picture         =   "AccountLedger.frx":1D27
+         Picture         =   "AccountLedger.frx":1D43
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -557,8 +556,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1CA9
-         Picture         =   "AccountLedger.frx":1CC5
+         Picture         =   "AccountLedger.frx":1D5F
+         Picture         =   "AccountLedger.frx":1D7B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -584,8 +583,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1CE1
-         Picture         =   "AccountLedger.frx":1CFD
+         Picture         =   "AccountLedger.frx":1D97
+         Picture         =   "AccountLedger.frx":1DB3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -611,8 +610,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1D19
-         Picture         =   "AccountLedger.frx":1D35
+         Picture         =   "AccountLedger.frx":1DCF
+         Picture         =   "AccountLedger.frx":1DEB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -638,8 +637,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1D51
-         Picture         =   "AccountLedger.frx":1D6D
+         Picture         =   "AccountLedger.frx":1E07
+         Picture         =   "AccountLedger.frx":1E23
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
@@ -695,7 +694,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public dSortBy As Boolean
-Public sDate As String, eDate As String, AccountGroupList As String, AccountList As String, VchType As String, Header1 As String, SCode As Variant, LR As Integer, R As Long
+Public sDate As String, eDate As String, AccountGroupList As String, AccountList As String, VchType As String, Header1 As String, vDate, SCode As Variant, LR As Integer, R As Long
 Dim rstAccountLedger As New ADODB.Recordset, rstAccountOpening As New ADODB.Recordset, Reset As Long
 Dim Debit As Double, Credit As Double, Bal As Variant, DebitTotal As Double, CreditTotal As Double, BalTotal As Double, Code As Variant, TotalFlag As Boolean, HideFlag As Boolean, ExitFlag As Boolean
 Dim Opening As Double
@@ -712,6 +711,7 @@ Private Sub Form_Load()
 Reset = 0:
     On Error GoTo ErrorHandler
     CenterForm Me
+Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1200
     BusySystemIndicator True
     Dim Cols As Long, C As Long
         fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader
@@ -766,12 +766,19 @@ SCode = "": TypeCode = ""
                     .GetText 12, .ActiveRow, SCode
                 End With
         If SCode = "" Then Exit Sub
-        On Error Resume Next
-        dSortBy = True
-        frmSalesVoucher.VchType = TypeCode
-        If Err.Number <> 364 Then frmSalesVoucher.Show
-        frmSalesVoucher.Text1 = SCode
-        
+        'FY Check
+        fpSpread1.GetText 1, fpSpread1.ActiveRow, vDate: vDate = Format(vDate, "dd-MMM-yyyy"):
+        If vDate = "" Then
+            Exit Sub
+        ElseIf FinancialYearFrom > vDate Or vDate = "" Then
+            If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
+        Else
+            On Error Resume Next
+            dSortBy = True
+            frmSalesVoucher.VchType = TypeCode
+            If Err.Number <> 364 Then frmSalesVoucher.Show
+            frmSalesVoucher.Text1 = SCode
+        End If
         If Shift = 0 And KeyCode = vbKeyReturn Then 'View
             frmSalesVoucher.SSTab1.Tab = 1
         ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
@@ -783,22 +790,29 @@ SCode = "": TypeCode = ""
             Call cmdRefresh_Click
         End If
         KeyCode = 0
-     'Refresh
+   'Refresh
    ElseIf Shift = 0 And KeyCode = vbKeyF5 Then 'Refresh
         Call cmdRefresh_Click
-    'Jobwork Sale
+   'Jobwork Sale
    ElseIf (Shift = 0 And KeyCode = vbKeyReturn Or Shift = 0 And KeyCode = vbKeyF8 Or Shift = 0 And KeyCode = vbKeyF12) And (TypeCode = "SU" Or TypeCode = "SJ" Or TypeCode = "SC" Or TypeCode = "PU" Or TypeCode = "PJ" Or TypeCode = "PC") Then
                 With fpSpread1
                     .GetText 12, .ActiveRow, SCode
                 End With
         If SCode = "" Then Exit Sub
-        On Error Resume Next
-        TypeCode = IIf(TypeCode = "SU", 1, IIf(TypeCode = "SC", 2, IIf(TypeCode = "SJ", 3, IIf(TypeCode = "PU", 4, IIf(TypeCode = "PC", 5, IIf(TypeCode = "PJ", 6, ""))))))
-        frmJobworkBill.VchType = TypeCode
-        dSortBy = True
-        If Err.Number <> 364 Then frmJobworkBill.Show
-        frmJobworkBill.Text1 = SCode
-        
+        'FY Check
+        fpSpread1.GetText 1, fpSpread1.ActiveRow, vDate: vDate = Format(vDate, "dd-MMM-yyyy"):
+        If vDate = "" Then
+            Exit Sub
+        ElseIf FinancialYearFrom > vDate Or vDate = "" Then
+            If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
+        Else
+            On Error Resume Next
+            TypeCode = IIf(TypeCode = "SU", 1, IIf(TypeCode = "SC", 2, IIf(TypeCode = "SJ", 3, IIf(TypeCode = "PU", 4, IIf(TypeCode = "PC", 5, IIf(TypeCode = "PJ", 6, ""))))))
+            frmJobworkBill.VchType = TypeCode
+            dSortBy = True
+            If Err.Number <> 364 Then frmJobworkBill.Show
+            frmJobworkBill.Text1 = SCode
+        End If
         If Shift = 0 And KeyCode = vbKeyReturn Then 'View
             frmJobworkBill.SSTab1.Tab = 1
         ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
@@ -814,11 +828,18 @@ SCode = "": TypeCode = ""
                 With fpSpread1
                     .GetText 3, .ActiveRow, SCode
                 End With
-        If SCode = "" Then Exit Sub
-        On Error Resume Next
-        frmDebitCreditVoucher.VchType = TypeCode
-        If Err.Number <> 364 Then frmDebitCreditVoucher.Show
-        frmDebitCreditVoucher.Text1 = SCode
+        'FY Check
+        fpSpread1.GetText 1, fpSpread1.ActiveRow, vDate: vDate = Format(vDate, "dd-MMM-yyyy"):
+        If vDate = "" Then
+            Exit Sub
+        ElseIf FinancialYearFrom > vDate Or vDate = "" Then
+            If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
+        Else
+            On Error Resume Next
+            frmDebitCreditVoucher.VchType = TypeCode
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Text1 = SCode
+        End If
         If Shift = 0 And KeyCode = vbKeyReturn Then 'View
             frmDebitCreditVoucher.SSTab1.Tab = 1
         ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
@@ -841,15 +862,17 @@ SCode = "": TypeCode = ""
             .SetActiveCell .ActiveCol, 1
             HideFlag = False
         ElseIf HideFlag = False And ExitFlag = False Then
-            Call cmdRefresh_Click: ExitFlag = True
-        ElseIf ExitFlag = True Then
             Call cmdCancel_Click: ExitFlag = False
         End If
             KeyCode = 0
      End With
    ElseIf KeyCode = vbKeyF And Shift = vbCtrlMask Then
-        MsgBox "Please Provide Search Input", vbInformation
-        Text1.SetFocus
+            If Text1.Text = "" Then
+                MsgBox "Please Provide Search Input", vbInformation
+                Text1.SetFocus
+            ElseIf Text1.Text <> "" Then
+            Call Command2_Click
+            End If
         KeyCode = 0
    ElseIf Shift = 0 And KeyCode = vbKeyF9 Then
         With fpSpread1
@@ -864,7 +887,7 @@ SCode = "": TypeCode = ""
    End If
 End Sub
 Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
-If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
+    If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
 End Sub
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     If UnloadMode = 0 Then Call CloseForm(Me)
@@ -907,20 +930,30 @@ Private Sub cmdRefresh_Click()
             "SELECT Date As Date,'PurRtr' As VchTYPE,T.Name As VchBillNo,'Purchase Return' As Account, T.Amount As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='02' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
             "SELECT Date As Date,'SaleRtr' As VchTYPE,T.Name As VchBillNo,'Sale Return' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='03' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
             "SELECT Date As Date,'Sale' As VchType,LTRIM(T.Name) As VchBillNo,S.Name As Account,(T.Amount+T.Rebate) As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) As Type,T.Code As Code,A.Name As AccountName FROM (((JobworkBVParent T LEFT JOIN JobworkBVChild C ON C.Code=T.Code) LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code) LEFT JOIN AccountMaster A ON T.Party=A.Code) LEFT JOIN AccountMaster S ON T.SalesType=S.Code WHERE LEFT(Type,2)='04' AND RIGHT(Type,2)='SF' AND T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'Sale' As VchTYPE,T.Name As VchBillNo,'Rebate' As Account, '0' As Debit,T.Rebate As Credit,'Rebate' As ShortNarration,'' As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Rebate>0 And Left(Type,2)='04' And Right(Type,2)='SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
+            "SELECT Date As Date,'Sale' As VchTYPE,LTRIM(T.Name) As VchBillNo,'Rebate' As Account, '0' As Debit,T.Rebate As Credit,'Rebate' As ShortNarration,'' As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Rebate>0 And Left(Type,2)='04' And Right(Type,2)='SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
             "SELECT Date As Date,'Sale' As VchTYPE,T.Name As VchBillNo,'Job Work Sale ' As Account, T.Amount As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T INNER JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='04' And Right(Type,2)<>'SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") ORDER BY Date ASC"
     End If
 '            "SELECT Date As Date,'Jrnl' As VchTYPE,T.Name As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") And Right(BOM,2)='JE' " & _
 '            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
 
-            
             Screen.MousePointer = vbHourglass
             If rstAccountLedger.State = adStateOpen Then rstAccountLedger.Close
             rstAccountLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
-            If rstAccountLedger.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
+            If rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
             
             Dim n As Integer
-    Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value
+    If rstAccountLedger.RecordCount <> 0 Then
+        Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value
+    ElseIf rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount <> 0 Then
+            If rstAccountLedger.State = adStateOpen Then rstAccountLedger.Close
+            rstAccountLedger.Open "Select Name AS AccountName From AccountMaster Where code IN (" & AccountList & ")", cnDatabase, adOpenKeyset, adLockReadOnly
+            If rstAccountLedger.RecordCount <> 0 Then rstAccountLedger.MoveFirst
+            If rstAccountLedger.RecordCount <> 0 Then Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value
+            rstAccountOpening.MoveFirst
+            Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
+            Mh3dLabel10.Caption = "Opening Bal. = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
+            Screen.MousePointer = vbNormal: Exit Sub
+    End If
     rstAccountOpening.MoveFirst
     Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
     Mh3dLabel10.Caption = "Opening Bal. = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
@@ -965,7 +998,7 @@ Private Sub cmdRefresh_Click()
                 R = i + 1
             For C = 1 To .MaxCols
             fpSpread1.Col = C: fpSpread1.Row = R:  fpSpread1.FontSize = 12: fpSpread1.FontUnderline = True: fpSpread1.ForeColor = vbBlue: 'fpSpread1.FontBold = True:
-            '    .Col = C: .Row = R: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: '.FontBold = True:
+                       '    .Col = C: .Row = R: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: '.FontBold = True:
             Next
             
                     .LockBackColor = RGB(255, 250, 255): Combo1.BackColor = RGB(255, 250, 255): Combo2.BackColor = RGB(255, 250, 255): MhDateInput1.BackColor = RGB(255, 250, 255): MhDateInput2.BackColor = RGB(255, 250, 255):  TDBNumber2.BackColor = RGB(255, 250, 255): Text1.BackColor = RGB(255, 250, 255):
@@ -982,32 +1015,6 @@ ErrHandler:
     Screen.MousePointer = vbNormal
     DisplayError (Err.Description)
 End Sub
-'Private Sub PendingCheck_Click()
-'If TDBNumber1.Value <= 0 And PendingCheck.Value Then ZeroStock.Value = 0
-'    Call cmdRefresh_Click
-'End Sub
-'Private Sub ZeroStock_Click()
-'If ZeroStock.Value Then NegativeStock.Value = 0
-'If TDBNumber1.Value <= 0 And ZeroStock.Value Then PendingCheck.Value = 0
-'    Call cmdRefresh_Click
-'End Sub
-'Private Sub NegativeStock_Click()
-'   If NegativeStock.Value And PendingCheck.Value = 0 Then ZeroStock.Value = 0
-'   If NegativeStock.Value And PendingCheck.Value And TDBNumber1 > 0 Then ZeroStock.Value = 0: TDBNumber1.Value = 0
-'Call cmdRefresh_Click
-'End Sub
-'Private Sub TDBNumber1_Change()
-'Dim n As Long, i As Long
-'If TDBNumber1 > 0 Then ZeroStock.Value = 1
-'    With fpSpread1
-'    If .DataRowCnt = 0 Then Exit Sub
-'            n = .DataRowCnt:
-'        For i = 1 To .DataRowCnt 'Unhide All
-'            .Row = i: .RowHidden = False
-'    Next
-'End With
-'Call cmdRefresh_Click
-'End Sub
 Private Sub MhDateInput2_Validate(Cancel As Boolean)
     If Format(GetDate(MhDateInput2.Text), "yyyymmdd") < Format(GetDate(MhDateInput1.Text), "yyyymmdd") Then
         Cancel = True
@@ -1154,60 +1161,60 @@ Const PaperWidth = 12240
 Const PaperHeight = 15840
 Printer.PaperSize = vbPRPSA4
 ' Set printing options for sheet
-fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
-fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
-'fpSpread1.PrintHeader = "/cPrint Header/rPage # ./p/n2nd Line"
-fpSpread1.PrintFooter = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") & " /rPage # ./p ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
-fpSpread1.PrintBorder = True
-fpSpread1.PrintColHeaders = True
-fpSpread1.PrintColor = True
-fpSpread1.PrintGrid = True
-fpSpread1.PrintMarginTop = 750 '1440
-fpSpread1.PrintMarginBottom = 500 '1440
-fpSpread1.PrintMarginLeft = 100 '720
-fpSpread1.PrintMarginRight = 100 '720
-'fpSpread1.PrintType = SPRD_PRINT_ALL
-fpSpread1.PrintRowHeaders = True
-fpSpread1.PrintShadows = True
-fpSpread1.PrintUseDataMax = True
+.PrintAbortMsg = "Printing - Click Cancel to .Quit"
+.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
+'.PrintHeader = "/cPrint Header/rPage # ./p/n2nd Line"
+.PrintFooter = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") & " /rPage # ./p ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
+.PrintBorder = True
+.PrintColHeaders = True
+.PrintColor = True
+.PrintGrid = True
+.PrintMarginTop = 750 '1440
+.PrintMarginBottom = 500 '1440
+.PrintMarginLeft = 100 '720
+.PrintMarginRight = 100 '720
+'.PrintType = SPRD_PRINT_ALL
+.PrintRowHeaders = True
+.PrintShadows = True
+.PrintUseDataMax = True
 ' Center vertically
-fpSpread1.PrintCenterOnPageV = False
+.PrintCenterOnPageV = False
 ' Center horizontally
-fpSpread1.PrintCenterOnPageH = True
+.PrintCenterOnPageH = True
 ' Perform the printing action
 ' Set the sheet to print
-fpSpread1.Sheet = 1
+.Sheet = 1
 ' Set scaling method
-fpSpread1.PrintScalingMethod = PrintScalingMethodZoom
+.PrintScalingMethod = PrintScalingMethodZoom
 ' Set zoom factor
-fpSpread1.PrintZoomFactor = 0.75
+.PrintZoomFactor = 0.75
 ' Print
-'fpSpread1.PrintSheet 0
-fpSpread1.PrintOrientation = PrintOrientationLandscape
-fpSpread1.PrintSheet
+'.PrintSheet 0
+.PrintOrientation = PrintOrientationLandscape
+.PrintSheet
 .LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
     'Delete Header Row
-    If VchType >= 0 And VchType <= 30 Then fpSpread1.DeleteRows 1, 1
+    If VchType >= 0 And VchType <= 30 Then .DeleteRows 1, 1
  End With
 End Sub
 Private Sub cmdFilter_Click()
         Call Total_Click
 End Sub
 Private Sub Command2_Click() ' Search Command
-  Dim i As Integer, cVal As Variant, R As Long
+  Dim i As Integer, Cval As Variant, R As Long
     With fpSpread1
     If Text1.Text = "" Then Exit Sub
             If .DataRowCnt = 0 Then Exit Sub
                 For i = 1 To .DataRowCnt 'Unhide All
                 .Row = i: .RowHidden = False
             Next
-        fpSpread1.MaxCols = 13
+        .MaxCols = 13
         
             R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
             LR = R
             For i = R To .DataRowCnt
-            If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, cVal
-                        If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+            If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, Cval
+                        If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                         ''''
                         ElseIf Combo2.ListIndex >= 0 Then
                         .SetActiveCell Combo2.ListIndex + 1, i: Exit Sub
@@ -1220,40 +1227,40 @@ End Sub
 Private Sub fpSpread1_BeforeUserSort(ByVal Col As Long, ByVal State As FPSpreadADO.BeforeUserSortStateConstants, DefaultAction As FPSpreadADO.BeforeUserSortDefaultActionConstants)
     Dim n As Integer
     With fpSpread1
-    If .DataRowCnt = 0 Then Exit Sub
-n = .DataRowCnt:
-fpSpread1.RowHeight(n) = 12.75
+        If .DataRowCnt = 0 Then Exit Sub
+        n = .DataRowCnt:
+        .RowHeight(n) = 12.75
+        .DeleteRows n, 1
     End With
- fpSpread1.DeleteRows n, 1
     End Sub
 Private Sub fpSpread1_AfterUserSort(ByVal Col As Long)
 With fpSpread1
-If .DataRowCnt = 0 Then Exit Sub
+    If .DataRowCnt = 0 Then Exit Sub
 End With
-Call Total_Click
+    Call Total_Click
 End Sub
 Private Sub Total_Click()
-    Dim i As Integer, cVal As Variant, n As Integer, R As Long, C As Long, Cols As Long, Flag As Variant
+    Dim i As Integer, Cval As Variant, n As Integer, R As Long, C As Long, Cols As Long, Flag As Variant
     Dim DebitVal As Variant, DebitTotal As Variant
     Dim CreditVal As Variant, CreditTotal As Variant
     With fpSpread1
     If .DataRowCnt = 0 Then Exit Sub
             n = .DataRowCnt: DebitVal = 0: CreditVal = 0: Bal = Opening
         For i = 1 To .DataRowCnt 'Unhide All
-        .GetText 3, i, cVal
+        .GetText 3, i, Cval
             If TotalFlag = False Then .Row = i: .RowHidden = False
-            If cVal = "Grand Total" Then fpSpread1.DeleteRows i, 1
+            If Cval = "Grand Total" Then fpSpread1.DeleteRows i, 1
         Next
     fpSpread1.MaxCols = 13
          
     For i = 1 To .DataRowCnt
         
-    If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, cVal
+    If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, Cval
                 .GetText 5, i, DebitVal
                 .GetText 6, i, CreditVal
                 .GetText 13, i, Flag
-                .GetText 3, i, cVal
-        If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                .GetText 3, i, Cval
+        If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                 .Row = i: .RowHidden = True: n = n - 1: .SetText 13, .ActiveRow, "True": 'Hide Filter
         Else
             .Row = i
@@ -1302,41 +1309,41 @@ PrintHeader = Me.Caption
 Const PaperWidth = 12240
 Const PaperHeight = 15840
 ' Set printing options for sheet
-fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
-fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
-fpSpread1.PrintFooter = "        Export Data Company : " & " " & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
-fpSpread1.PrintBorder = True
-fpSpread1.PrintColHeaders = True
-fpSpread1.PrintColor = True
-fpSpread1.PrintGrid = True
-fpSpread1.PrintMarginTop = 200 '750 '1440
-fpSpread1.PrintMarginBottom = 200 '500 '1440
-fpSpread1.PrintMarginLeft = 100 '720
-fpSpread1.PrintMarginRight = 100 '720
-'fpSpread1.PrintType = SPRD_PRINT_ALL
-fpSpread1.PrintRowHeaders = True
-fpSpread1.PrintShadows = True
-fpSpread1.PrintUseDataMax = True
+.PrintAbortMsg = "Printing - Click Cancel to .Quit"
+.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
+.PrintFooter = "        Export Data Company : " & " " & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
+.PrintBorder = True
+.PrintColHeaders = True
+.PrintColor = True
+.PrintGrid = True
+.PrintMarginTop = 200 '750 '1440
+.PrintMarginBottom = 200 '500 '1440
+.PrintMarginLeft = 100 '720
+.PrintMarginRight = 100 '720
+'.PrintType = SPRD_PRINT_ALL
+.PrintRowHeaders = True
+.PrintShadows = True
+.PrintUseDataMax = True
 ' Center vertically
-fpSpread1.PrintCenterOnPageV = False
+.PrintCenterOnPageV = False
 ' Center horizontally
-fpSpread1.PrintCenterOnPageH = True
+.PrintCenterOnPageH = True
 ' Perform the printing action
 ' Set the sheet to print
-fpSpread1.Sheet = 1
+.Sheet = 1
 ' Set scaling method
-fpSpread1.PrintScalingMethod = PrintScalingMethodZoom
+.PrintScalingMethod = PrintScalingMethodZoom
 ' Set zoom factor
-fpSpread1.PrintZoomFactor = 0.75
+.PrintZoomFactor = 0.75
 ' Print
-'fpSpread1.PrintSheet 0
-fpSpread1.PrintOrientation = PrintOrientationLandscape
-'fpSpread1.PrintSheet
+'.PrintSheet 0
+.PrintOrientation = PrintOrientationLandscape
+'.PrintSheet
 .LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
    
    'If a cell is currently active, turn off edit mode
-    If fpSpread1.EditMode = True Then
-        fpSpread1.EditMode = False
+    If .EditMode = True Then
+        .EditMode = False
         DoEvents
     End If
     Set spreadpreview.frm = Me

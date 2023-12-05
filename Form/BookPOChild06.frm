@@ -4948,6 +4948,7 @@ Dim SPU As Long, Wt As Double, inLength As Double, inWidth As Double, GSM As Dou
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value

@@ -1,0 +1,12 @@
+===== FarPoint Technologies, Inc =====
+===== Begin of Excel Export =====
+12/2/2023 - 21:39
+
+Col	Row	Information
+___	___	___________
+		Export Excel File: E:\Easy Publish Prime(To_Be_Live)\Export\Export Data(511_Item Ledger)02-Dec-2023.xls
+-	-	102:Excel reads the AllowDragDrop, AutoClipboard, and EditEnterAction properties from the registry. If you modify these properties in Spread, the changes are not saved at export.
+1		173:Custom headers are not exported to Excel. 
+
+===== End of Excel Export =====
+===== FarPoint Technologies, Inc =====

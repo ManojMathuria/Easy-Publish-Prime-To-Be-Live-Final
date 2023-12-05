@@ -459,7 +459,7 @@ End Sub
 
 Private Sub Command4_Click()
 Dim Setup
-Setup = "https://onedrive.live.com/?authkey=%21ANp5Xkhjk9F9Ums&cid=A3BEF1B4FF3CDACB&id=A3BEF1B4FF3CDACB%2146057&parId=A3BEF1B4FF3CDACB%2146056&o=OneUp"
+Setup = "   "
         Shell "C:\WINDOWS\explorer.exe """ & Setup & "", vbNormalFocus
 End Sub
 
