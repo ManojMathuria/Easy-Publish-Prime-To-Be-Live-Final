@@ -2814,7 +2814,9 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             oVchType = oVchType + Format(VchType, "00")
         End If
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
-        If oVchType <> "" And oVchType <> Format(VchType, "00") Then
+        If oVchType = "" And Len(Format(VchType, "00")) = 2 Then
+            oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
+        ElseIf oVchType <> "" And oVchType <> Format(VchType, "00") Then
             oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
         ElseIf oVchType <> "" And oVchType = Format(VchType, "00") Then
             oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
@@ -2974,7 +2976,7 @@ With fpSpread1
             Else
                 If oSCode = "" Then oSCode = SCode
             End If
-            
+'Get vtType,vtCode
             If VchType = 46 Then
                 fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 25, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
                 Else
@@ -2982,7 +2984,7 @@ With fpSpread1
             End If
             
             If VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 36 Or VchType = 38 Or VchType = 45 Then fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
-            
+'ChecK vch FY
             If vDate = "" Then Exit Sub
             If FinancialYearFrom > vDate Or vDate = "" Then
                 If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
@@ -3508,7 +3510,8 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 Private Sub cmdCancel_Click()
     Call CloseForm(Me)
-    sMcCode = "": SCode = "": oSCode = "":  vtType = "": vDate = "": vTypeCode = "": vtNo = "":
+    sMcCode = "": SCode = "": oSCode = "": vTypeCode = "": vtCode = "": vtType = "": vtNo = "": vDate = "":
+    dSortBy = False
 End Sub
 Private Sub cmdFilter_Click()
  Dim i As Integer, cVal As Variant, n As Integer, R As Long, C As Long, Cols As Long

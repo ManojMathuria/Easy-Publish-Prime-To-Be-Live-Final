@@ -817,7 +817,7 @@ Dim i As Integer
         FrmStockLedger.sMcCode = "": FrmStockLedger.SCode = "": FrmStockLedger.oSCode = "":  FrmStockLedger.vtCode = "": FrmStockLedger.vDate = "":
         FrmStockLedger.VchType = VchType
         
-        If VchType = 31 And (Len(FrmStockLedger.ItemList) > 10 Or Len(FrmStockLedger.ItemList) < 8) Then
+        If (VchType = 31 Or VchType = 49) And (Len(FrmStockLedger.ItemList) > 10 Or Len(FrmStockLedger.ItemList) < 8) Then
             If Len(FrmStockLedger.ItemList) < 8 Then MsgBox ("Please Select One-Item"), vbCritical
             If Len(FrmStockLedger.ItemList) > 10 Then MsgBox ("Please Select One-Item-Only"), vbCritical
         For i = 1 To ListView3.ListItems.Count
