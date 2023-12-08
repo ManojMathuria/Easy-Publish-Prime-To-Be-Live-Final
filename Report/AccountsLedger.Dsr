@@ -1,9 +1,9 @@
 VERSION 5.00
 Begin {BD4B4E61-F7B8-11D0-964D-00A0C9273C2A} rptAccountsLedger 
-   ClientHeight    =   10155
+   ClientHeight    =   10350
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   15045
+   ClientWidth     =   15480
    OleObjectBlob   =   "AccountsLedger.dsx":0000
 End
 Attribute VB_Name = "rptAccountsLedger"
