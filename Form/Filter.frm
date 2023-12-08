@@ -1,13 +1,13 @@
 VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.dll"
+Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Begin VB.Form FrmFilter 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Filter Records"
    ClientHeight    =   1140
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4440
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,7 +24,6 @@ Begin VB.Form FrmFilter
    MaxButton       =   0   'False
    ScaleHeight     =   1140
    ScaleWidth      =   4440
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Height          =   375
@@ -187,7 +186,7 @@ ErrorHandler:
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-       SendKeys "{TAB}", True
+       Sendkeys "{TAB}", True
        KeyCode = 0
     End If
 End Sub

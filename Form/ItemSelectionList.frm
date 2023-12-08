@@ -7,7 +7,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmItemSelectionList 
    BorderStyle     =   1  'Fixed Single
    Caption         =   " Selection List...."
-   ClientHeight    =   9270
+   ClientHeight    =   9630
    ClientLeft      =   150
    ClientTop       =   435
    ClientWidth     =   9705
@@ -24,7 +24,7 @@ Begin VB.Form FrmItemSelectionList
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   9270
+   ScaleHeight     =   9630
    ScaleWidth      =   9705
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -101,7 +101,7 @@ Begin VB.Form FrmItemSelectionList
       EndProperty
    End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   8830
+      Height          =   9250
       Left            =   0
       TabIndex        =   10
       TabStop         =   0   'False
@@ -109,7 +109,7 @@ Begin VB.Form FrmItemSelectionList
       Width           =   9675
       _Version        =   65536
       _ExtentX        =   17066
-      _ExtentY        =   15593
+      _ExtentY        =   16316
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -129,6 +129,34 @@ Begin VB.Form FrmItemSelectionList
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "ItemSelectionList.frx":087C
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+         Height          =   300
+         Index           =   2
+         Left            =   105
+         TabIndex        =   16
+         Top             =   8880
+         Width           =   9460
+         _Version        =   65536
+         _ExtentX        =   16686
+         _ExtentY        =   529
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Ctrl+V->Print Preview  Ctrl+P->Print Preview"
+         Alignment       =   0
+         FillColor       =   8421504
+         TextColor       =   16777215
+         Picture         =   "ItemSelectionList.frx":0898
+         Picture         =   "ItemSelectionList.frx":08B4
+      End
       Begin MSComctlLib.ListView ListView4 
          Height          =   4020
          Left            =   4830
@@ -163,6 +191,7 @@ Begin VB.Form FrmItemSelectionList
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
+         Index           =   0
          Left            =   0
          TabIndex        =   11
          Top             =   0
@@ -185,8 +214,8 @@ Begin VB.Form FrmItemSelectionList
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ItemSelectionList.frx":0898
-         Picture         =   "ItemSelectionList.frx":08B4
+         Picture         =   "ItemSelectionList.frx":08D0
+         Picture         =   "ItemSelectionList.frx":08EC
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
@@ -212,8 +241,8 @@ Begin VB.Form FrmItemSelectionList
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ItemSelectionList.frx":08D0
-         Picture         =   "ItemSelectionList.frx":08EC
+         Picture         =   "ItemSelectionList.frx":0908
+         Picture         =   "ItemSelectionList.frx":0924
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
@@ -225,8 +254,8 @@ Begin VB.Form FrmItemSelectionList
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "ItemSelectionList.frx":0908
-         Caption         =   "ItemSelectionList.frx":0A20
+         Calendar        =   "ItemSelectionList.frx":0940
+         Caption         =   "ItemSelectionList.frx":0A58
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -236,9 +265,9 @@ Begin VB.Form FrmItemSelectionList
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ItemSelectionList.frx":0A8C
-         Keys            =   "ItemSelectionList.frx":0AAA
-         Spin            =   "ItemSelectionList.frx":0B08
+         DropDown        =   "ItemSelectionList.frx":0AC4
+         Keys            =   "ItemSelectionList.frx":0AE2
+         Spin            =   "ItemSelectionList.frx":0B40
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -287,8 +316,8 @@ Begin VB.Form FrmItemSelectionList
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "ItemSelectionList.frx":0B30
-         Caption         =   "ItemSelectionList.frx":0C48
+         Calendar        =   "ItemSelectionList.frx":0B68
+         Caption         =   "ItemSelectionList.frx":0C80
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -298,9 +327,9 @@ Begin VB.Form FrmItemSelectionList
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ItemSelectionList.frx":0CB4
-         Keys            =   "ItemSelectionList.frx":0CD2
-         Spin            =   "ItemSelectionList.frx":0D30
+         DropDown        =   "ItemSelectionList.frx":0CEC
+         Keys            =   "ItemSelectionList.frx":0D0A
+         Spin            =   "ItemSelectionList.frx":0D68
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -535,6 +564,7 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim rstMatCList As New ADODB.Recordset, rstSupplierList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset
 Public VchType As String, MC As String
+
 Private Sub ComboBox1_Change()
 Dim NewDate As Date
     Call AddDate(FinancialYearFrom, NewDate, ComboBox1.ListIndex)
@@ -547,6 +577,7 @@ Dim NewDate As Date
 End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
+    If cnDatabase.State = 1 Then cnDatabase.Close: cnDatabase.Open
     MhDateInput1.ReadOnly = False:
     ComboBox1.Visible = False: ComboBox2.Visible = False
     If VchType <= 2 Or VchType = 33 Or VchType = 31 Or VchType = 49 Then
@@ -626,7 +657,7 @@ Private Sub Form_Load()
         Me.Caption = "Selection List...." + Choose(VchType - 102, "WIP Pending Ledger Item-Wise", "RM Pending Ledger Item-Wise", "RM AND WIP Pending Ledger Item-Wise")
         Me.Height = 9630
     ElseIf VchType = 49 Then
-        Me.Caption = "Item Ledger Summarize": Me.Height = 9630
+        Me.Caption = "Item Ledger Summarize": Me.Height = 10065 '9630
     Else
         Me.Caption = "Item Ledger Date-Wise": Me.Height = 9630
     End If
@@ -675,22 +706,20 @@ End If
     ElseIf VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Then
         Call FillList(ListView1, "List of Accounts...", rstAccountList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
-        Call ItemSelection(True)
+        Call FillList(ListView3, "List of Items...", rstItemList)
         Call FillList(ListView4, "List of Material Centre...", rstMatCList)
     ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Or VchType = 31 Then
         Call FillList(ListView1, "List of Material Centre...", rstMatCList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
-        Call ItemSelection(True)
-        'Call FillList(ListView3, "List of Items...", rstItemList)
+        Call FillList(ListView3, "List of Items...", rstItemList)
     ElseIf VchType = 49 Then
         Call FillList(ListView1, "List of Material Centre...", rstMatCList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
-        Call ItemSelection(True)
-        'Call FillList(ListView3, "List of Items...", rstItemList)
+        Call FillList(ListView3, "List of Items...", rstItemList)
     ElseIf (Right(VchType, 2) >= 0 And Right(VchType, 2) <= 10) Or (Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48) Or (Right(VchType, 2) >= 53 And Right(VchType, 2) <= 69 And Right(VchType, 2) <> 31) Then
         Call FillList(ListView1, "List of Accounts...", rstAccountList)
         Call FillList(ListView2, "List of Item Groups...", rstItemGroupList)
-        Call ItemSelection(True)
+        Call FillList(ListView3, "List of Items...", rstItemList)
     ElseIf VchType <= 20 And VchType >= 11 Then
         Call FillList(ListView1, "List of Suppliers...", rstSupplierList)
         Call FillList(ListView2, "List of Accounts...", rstAccountList)
@@ -774,7 +803,9 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 Private Sub PrintStockLedger()
 Dim i As Integer
+
     On Error Resume Next
+    
         FrmStockLedger.sDate = MhDateInput1.Text
         FrmStockLedger.eDate = MhDateInput2.Text
         FrmStockLedger.AccountList = SelectedItems(ListView1)
@@ -829,8 +860,11 @@ Dim i As Integer
             FrmStockLedger.sMcCode = MC
         End If
         
+        If (VchType = 2) And Len(FrmStockLedger.ItemList) < 8 Then MsgBox ("Please Select at Least One Item"), vbCritical: Exit Sub
+        
         Load FrmStockLedger
         FrmStockLedger.Show
+        Sendkeys "{TAB}", True:        Sendkeys "{TAB}", True
         CloseForm (Me)
 End Sub
 Private Sub PrintPaperLedger()

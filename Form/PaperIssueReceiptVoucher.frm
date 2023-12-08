@@ -12,7 +12,7 @@ Begin VB.Form frmPaperIssueReceiptVoucher
    Caption         =   "Paper Receipt Voucher"
    ClientHeight    =   8265
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -27,7 +27,6 @@ Begin VB.Form frmPaperIssueReceiptVoucher
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8265
    ScaleWidth      =   13740
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -835,8 +834,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":1284
-               Picture         =   "PaperIssueReceiptVoucher.frx":12A0
+               Picture         =   "PaperIssueReceiptVoucher.frx":1388
+               Picture         =   "PaperIssueReceiptVoucher.frx":13A4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -862,8 +861,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":12BC
-               Picture         =   "PaperIssueReceiptVoucher.frx":12D8
+               Picture         =   "PaperIssueReceiptVoucher.frx":13C0
+               Picture         =   "PaperIssueReceiptVoucher.frx":13DC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -889,8 +888,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":12F4
-               Picture         =   "PaperIssueReceiptVoucher.frx":1310
+               Picture         =   "PaperIssueReceiptVoucher.frx":13F8
+               Picture         =   "PaperIssueReceiptVoucher.frx":1414
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -901,8 +900,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calendar        =   "PaperIssueReceiptVoucher.frx":132C
-               Caption         =   "PaperIssueReceiptVoucher.frx":1444
+               Calendar        =   "PaperIssueReceiptVoucher.frx":1430
+               Caption         =   "PaperIssueReceiptVoucher.frx":1548
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -912,9 +911,9 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperIssueReceiptVoucher.frx":14B0
-               Keys            =   "PaperIssueReceiptVoucher.frx":14CE
-               Spin            =   "PaperIssueReceiptVoucher.frx":152C
+               DropDown        =   "PaperIssueReceiptVoucher.frx":15B4
+               Keys            =   "PaperIssueReceiptVoucher.frx":15D2
+               Spin            =   "PaperIssueReceiptVoucher.frx":1630
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -978,8 +977,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":1554
-               Picture         =   "PaperIssueReceiptVoucher.frx":1570
+               Picture         =   "PaperIssueReceiptVoucher.frx":1658
+               Picture         =   "PaperIssueReceiptVoucher.frx":1674
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -1005,8 +1004,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":158C
-               Picture         =   "PaperIssueReceiptVoucher.frx":15A8
+               Picture         =   "PaperIssueReceiptVoucher.frx":1690
+               Picture         =   "PaperIssueReceiptVoucher.frx":16AC
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput14 
                Height          =   330
@@ -1017,8 +1016,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calculator      =   "PaperIssueReceiptVoucher.frx":15C4
-               Caption         =   "PaperIssueReceiptVoucher.frx":15E4
+               Calculator      =   "PaperIssueReceiptVoucher.frx":16C8
+               Caption         =   "PaperIssueReceiptVoucher.frx":16E8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1028,9 +1027,9 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperIssueReceiptVoucher.frx":1650
-               Keys            =   "PaperIssueReceiptVoucher.frx":166E
-               Spin            =   "PaperIssueReceiptVoucher.frx":16B8
+               DropDown        =   "PaperIssueReceiptVoucher.frx":1754
+               Keys            =   "PaperIssueReceiptVoucher.frx":1772
+               Spin            =   "PaperIssueReceiptVoucher.frx":17BC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1125,8 +1124,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "PaperIssueReceiptVoucher.frx":16E0
-            Picture         =   "PaperIssueReceiptVoucher.frx":16FC
+            Picture         =   "PaperIssueReceiptVoucher.frx":17E4
+            Picture         =   "PaperIssueReceiptVoucher.frx":1800
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

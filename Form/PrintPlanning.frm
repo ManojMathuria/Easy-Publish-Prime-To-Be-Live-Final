@@ -10,7 +10,7 @@ Begin VB.Form FrmPrintPlanning
    Caption         =   "Print Planning"
    ClientHeight    =   4875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   8715
    BeginProperty Font 
       Name            =   "Arial"

@@ -5,13 +5,14 @@ Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmAccountLedger 
    BorderStyle     =   1  'Fixed Single
    Caption         =   " Account Ledger"
    ClientHeight    =   9255
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   19485
+   ClientWidth     =   19245
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -25,27 +26,17 @@ Begin VB.Form FrmAccountLedger
    LinkTopic       =   "FrmLogin"
    MaxButton       =   0   'False
    ScaleHeight     =   9255
-   ScaleWidth      =   19485
-   Begin VB.CommandButton Command1 
-      Height          =   375
-      Left            =   18600
-      Picture         =   "AccountLedger.frx":0000
-      Style           =   1  'Graphical
-      TabIndex        =   19
-      ToolTipText     =   "Refresh"
-      Top             =   210
-      Width           =   375
-   End
+   ScaleWidth      =   19245
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-      Height          =   9030
-      Left            =   120
+      Height          =   9255
+      Left            =   0
       TabIndex        =   4
       TabStop         =   0   'False
-      Top             =   120
-      Width           =   19290
+      Top             =   0
+      Width           =   19245
       _Version        =   65536
-      _ExtentX        =   34025
-      _ExtentY        =   15928
+      _ExtentX        =   33946
+      _ExtentY        =   16325
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -64,24 +55,54 @@ Begin VB.Form FrmAccountLedger
       NoPrefix        =   0   'False
       FormatString    =   ""
       Caption         =   ""
-      Picture         =   "AccountLedger.frx":014A
+      Picture         =   "AccountLedger.frx":0000
+      Begin MSComctlLib.ImageList ImageList1 
+         Left            =   13800
+         Top             =   1560
+         _ExtentX        =   1005
+         _ExtentY        =   1005
+         BackColor       =   -2147483643
+         ImageWidth      =   16
+         ImageHeight     =   16
+         MaskColor       =   12632256
+         _Version        =   393216
+         BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+            NumListImages   =   4
+            BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "AccountLedger.frx":001C
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "AccountLedger.frx":0560
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "AccountLedger.frx":0674
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "AccountLedger.frx":0786
+               Key             =   ""
+            EndProperty
+         EndProperty
+      End
       Begin VB.CommandButton Preview 
          Caption         =   "&Print Preview"
          Height          =   330
          Left            =   15600
-         TabIndex        =   24
-         Top             =   8640
+         TabIndex        =   20
+         Top             =   8840
          Width           =   1215
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Index           =   2
-         Left            =   8760
-         TabIndex        =   22
-         Top             =   8625
-         Width           =   6735
+         Left            =   120
+         TabIndex        =   18
+         Top             =   8370
+         Width           =   8535
          _Version        =   65536
-         _ExtentX        =   11880
+         _ExtentX        =   15055
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -97,27 +118,27 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "AccountLedger.frx":0166
-         Picture         =   "AccountLedger.frx":0182
+         Picture         =   "AccountLedger.frx":0898
+         Picture         =   "AccountLedger.frx":08B4
       End
       Begin VB.CommandButton Command2 
          Height          =   320
          Left            =   6000
-         Picture         =   "AccountLedger.frx":019E
+         Picture         =   "AccountLedger.frx":08D0
          Style           =   1  'Graphical
-         TabIndex        =   20
+         TabIndex        =   17
          ToolTipText     =   "Search"
-         Top             =   8620
+         Top             =   8840
          Width           =   375
       End
       Begin VB.CommandButton cmdFilter 
          Height          =   320
          Left            =   5520
-         Picture         =   "AccountLedger.frx":04E0
+         Picture         =   "AccountLedger.frx":0C12
          Style           =   1  'Graphical
-         TabIndex        =   16
+         TabIndex        =   14
          ToolTipText     =   "Filter"
-         Top             =   8620
+         Top             =   8840
          Width           =   375
       End
       Begin VB.TextBox Text1 
@@ -136,40 +157,20 @@ Begin VB.Form FrmAccountLedger
          Height          =   330
          Left            =   3240
          MaxLength       =   40
-         TabIndex        =   14
+         TabIndex        =   12
          ToolTipText     =   "Find And Search"
-         Top             =   8620
+         Top             =   8840
          Width           =   2190
       End
-      Begin VB.CommandButton cmdCancel 
-         Height          =   375
-         Left            =   18840
-         Picture         =   "AccountLedger.frx":0822
-         Style           =   1  'Graphical
-         TabIndex        =   9
-         ToolTipText     =   "Cancel"
-         Top             =   90
-         Width           =   375
-      End
-      Begin VB.CommandButton cmdRefresh 
-         Height          =   375
-         Left            =   18480
-         Picture         =   "AccountLedger.frx":0924
-         Style           =   1  'Graphical
-         TabIndex        =   8
-         ToolTipText     =   "Refresh"
-         Top             =   90
-         Width           =   375
-      End
       Begin FPSpreadADO.fpSpread fpSpread1 
-         Height          =   7905
+         Height          =   7305
          Left            =   120
          TabIndex        =   0
-         Top             =   645
+         Top             =   960
          Width           =   19050
          _Version        =   524288
          _ExtentX        =   33602
-         _ExtentY        =   13944
+         _ExtentY        =   12885
          _StockProps     =   64
          ColsFrozen      =   3
          EditEnterAction =   2
@@ -186,13 +187,13 @@ Begin VB.Form FrmAccountLedger
          MaxCols         =   13
          MaxRows         =   2000
          SelectBlockOptions=   4
-         SpreadDesigner  =   "AccountLedger.frx":0A6E
+         SpreadDesigner  =   "AccountLedger.frx":0F54
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
-         Left            =   15240
+         Left            =   120
          TabIndex        =   5
-         Top             =   105
+         Top             =   620
          Width           =   615
          _Version        =   65536
          _ExtentX        =   1085
@@ -212,14 +213,14 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":16AB
-         Picture         =   "AccountLedger.frx":16C7
+         Picture         =   "AccountLedger.frx":1AB7
+         Picture         =   "AccountLedger.frx":1AD3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
-         Left            =   16920
+         Left            =   1800
          TabIndex        =   6
-         Top             =   105
+         Top             =   620
          Width           =   405
          _Version        =   65536
          _ExtentX        =   714
@@ -239,20 +240,20 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":16E3
-         Picture         =   "AccountLedger.frx":16FF
+         Picture         =   "AccountLedger.frx":1AEF
+         Picture         =   "AccountLedger.frx":1B0B
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
-         Left            =   17310
+         Left            =   2190
          TabIndex        =   2
-         Top             =   105
+         Top             =   620
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":171B
-         Caption         =   "AccountLedger.frx":1833
+         Calendar        =   "AccountLedger.frx":1B27
+         Caption         =   "AccountLedger.frx":1C3F
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -262,9 +263,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":189F
-         Keys            =   "AccountLedger.frx":18BD
-         Spin            =   "AccountLedger.frx":191B
+         DropDown        =   "AccountLedger.frx":1CAB
+         Keys            =   "AccountLedger.frx":1CC9
+         Spin            =   "AccountLedger.frx":1D27
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -306,15 +307,15 @@ Begin VB.Form FrmAccountLedger
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
-         Left            =   15840
+         Left            =   720
          TabIndex        =   1
-         Top             =   105
+         Top             =   620
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":1943
-         Caption         =   "AccountLedger.frx":1A5B
+         Calendar        =   "AccountLedger.frx":1D4F
+         Caption         =   "AccountLedger.frx":1E67
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -324,9 +325,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1AC7
-         Keys            =   "AccountLedger.frx":1AE5
-         Spin            =   "AccountLedger.frx":1B43
+         DropDown        =   "AccountLedger.frx":1ED3
+         Keys            =   "AccountLedger.frx":1EF1
+         Spin            =   "AccountLedger.frx":1F4F
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -369,7 +370,7 @@ Begin VB.Form FrmAccountLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Index           =   0
-         Left            =   5550
+         Left            =   13230
          TabIndex        =   7
          Top             =   105
          Visible         =   0   'False
@@ -392,20 +393,20 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1B6B
-         Picture         =   "AccountLedger.frx":1B87
+         Picture         =   "AccountLedger.frx":1F77
+         Picture         =   "AccountLedger.frx":1F93
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
          Left            =   1200
-         TabIndex        =   10
-         Top             =   8620
+         TabIndex        =   8
+         Top             =   8840
          Width           =   1215
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "AccountLedger.frx":1BA3
-         Caption         =   "AccountLedger.frx":1BC3
+         Calculator      =   "AccountLedger.frx":1FAF
+         Caption         =   "AccountLedger.frx":1FCF
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -415,9 +416,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1C27
-         Keys            =   "AccountLedger.frx":1C45
-         Spin            =   "AccountLedger.frx":1C8F
+         DropDown        =   "AccountLedger.frx":2033
+         Keys            =   "AccountLedger.frx":2051
+         Spin            =   "AccountLedger.frx":209B
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -448,7 +449,7 @@ Begin VB.Form FrmAccountLedger
          ReadOnly        =   0
          Separator       =   ","
          ShowContextMenu =   -1
-         ValueVT         =   5
+         ValueVT         =   332922885
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -456,8 +457,8 @@ Begin VB.Form FrmAccountLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
          Left            =   120
-         TabIndex        =   11
-         Top             =   8620
+         TabIndex        =   9
+         Top             =   8840
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
@@ -477,14 +478,14 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1CB7
-         Picture         =   "AccountLedger.frx":1CD3
+         Picture         =   "AccountLedger.frx":20C3
+         Picture         =   "AccountLedger.frx":20DF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
          Left            =   18090
-         TabIndex        =   12
-         Top             =   8625
+         TabIndex        =   10
+         Top             =   8840
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
@@ -503,14 +504,14 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1CEF
-         Picture         =   "AccountLedger.frx":1D0B
+         Picture         =   "AccountLedger.frx":20FB
+         Picture         =   "AccountLedger.frx":2117
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
          Left            =   16920
-         TabIndex        =   13
-         Top             =   8625
+         TabIndex        =   11
+         Top             =   8840
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
@@ -529,14 +530,14 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1D27
-         Picture         =   "AccountLedger.frx":1D43
+         Picture         =   "AccountLedger.frx":2133
+         Picture         =   "AccountLedger.frx":214F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
          Left            =   2520
-         TabIndex        =   15
-         Top             =   8625
+         TabIndex        =   13
+         Top             =   8840
          Width           =   735
          _Version        =   65536
          _ExtentX        =   1296
@@ -556,14 +557,14 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1D5F
-         Picture         =   "AccountLedger.frx":1D7B
+         Picture         =   "AccountLedger.frx":216B
+         Picture         =   "AccountLedger.frx":2187
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
-         Left            =   17295
-         TabIndex        =   18
-         Top             =   8505
+         Left            =   14295
+         TabIndex        =   16
+         Top             =   8840
          Visible         =   0   'False
          Width           =   1215
          _Version        =   65536
@@ -583,48 +584,21 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1D97
-         Picture         =   "AccountLedger.frx":1DB3
-      End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
-         Height          =   330
-         Left            =   240
-         TabIndex        =   21
-         Top             =   120
-         Width           =   7575
-         _Version        =   65536
-         _ExtentX        =   13361
-         _ExtentY        =   582
-         _StockProps     =   77
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   12
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         TintColor       =   16711935
-         Caption         =   "Accounts :"
-         Alignment       =   0
-         BorderStyle     =   0
-         TextColor       =   0
-         Picture         =   "AccountLedger.frx":1DCF
-         Picture         =   "AccountLedger.frx":1DEB
+         Picture         =   "AccountLedger.frx":21A3
+         Picture         =   "AccountLedger.frx":21BF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
-         Left            =   7920
-         TabIndex        =   23
-         Top             =   120
-         Width           =   4455
+         Left            =   13320
+         TabIndex        =   19
+         Top             =   600
+         Width           =   5775
          _Version        =   65536
-         _ExtentX        =   7858
+         _ExtentX        =   10186
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
+            Name            =   "Arial MT Light"
             Size            =   12
             Charset         =   0
             Weight          =   700
@@ -637,14 +611,163 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1E07
-         Picture         =   "AccountLedger.frx":1E23
+         Picture         =   "AccountLedger.frx":21DB
+         Picture         =   "AccountLedger.frx":21F7
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
+         Height          =   330
+         Left            =   13320
+         TabIndex        =   21
+         Top             =   8370
+         Width           =   5775
+         _Version        =   65536
+         _ExtentX        =   10186
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial MT Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Opening Bal. = Rs. 0.00"
+         Alignment       =   1
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "AccountLedger.frx":2213
+         Picture         =   "AccountLedger.frx":222F
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
+         Height          =   330
+         Left            =   120
+         TabIndex        =   22
+         Top             =   120
+         Width           =   7695
+         _Version        =   65536
+         _ExtentX        =   13573
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial MT Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Accounts :"
+         Alignment       =   0
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "AccountLedger.frx":224B
+         Picture         =   "AccountLedger.frx":2267
+      End
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   16800
+         TabIndex        =   23
+         Top             =   120
+         Width           =   2385
+         _ExtentX        =   4207
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         Style           =   1
+         ImageList       =   "ImageList1"
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Print Preview"
+               ImageIndex      =   1
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Print"
+               ImageIndex      =   2
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Mail"
+               ImageIndex      =   3
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Exit"
+               ImageIndex      =   4
+            EndProperty
+         EndProperty
+         Begin VB.CommandButton Command1 
+            Height          =   375
+            Left            =   1440
+            Picture         =   "AccountLedger.frx":2283
+            Style           =   1  'Graphical
+            TabIndex        =   26
+            ToolTipText     =   "Refresh"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton cmdRefresh 
+            Height          =   375
+            Left            =   1440
+            Picture         =   "AccountLedger.frx":23CD
+            Style           =   1  'Graphical
+            TabIndex        =   25
+            ToolTipText     =   "Refresh"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton cmdCancel 
+            Height          =   375
+            Left            =   1920
+            Picture         =   "AccountLedger.frx":2517
+            Style           =   1  'Graphical
+            TabIndex        =   24
+            ToolTipText     =   "Cancel"
+            Top             =   0
+            Width           =   375
+         End
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
+         Height          =   330
+         Left            =   6735
+         TabIndex        =   27
+         Top             =   600
+         Width           =   5775
+         _Version        =   65536
+         _ExtentX        =   10186
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial MT Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Report Header"
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "AccountLedger.frx":2619
+         Picture         =   "AccountLedger.frx":2635
+      End
+      Begin VB.Line Line1 
+         X1              =   0
+         X2              =   19300
+         Y1              =   8760
+         Y2              =   8760
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
          Left            =   6480
-         TabIndex        =   17
-         Top             =   8625
+         TabIndex        =   15
+         Top             =   8840
          Width           =   2205
          VariousPropertyBits=   545282075
          BackColor       =   16777215
@@ -661,7 +784,7 @@ Begin VB.Form FrmAccountLedger
       End
       Begin MSForms.ComboBox Combo1 
          Height          =   330
-         Left            =   5310
+         Left            =   14430
          TabIndex        =   3
          Top             =   105
          Visible         =   0   'False
@@ -695,9 +818,11 @@ Attribute VB_Exposed = False
 Option Explicit
 Public dSortBy As Boolean
 Public sDate As String, eDate As String, AccountGroupList As String, AccountList As String, VchType As String, Header1 As String, vDate, SCode As Variant, LR As Integer, R As Long
-Dim rstAccountLedger As New ADODB.Recordset, rstAccountOpening As New ADODB.Recordset, Reset As Long
+Dim rstAccountLedger As New ADODB.Recordset, rstAccountOpening As New ADODB.Recordset, rstCompanyMaster As New ADODB.Recordset, Reset As Long
 Dim Debit As Double, Credit As Double, Bal As Variant, DebitTotal As Double, CreditTotal As Double, BalTotal As Double, Code As Variant, TotalFlag As Boolean, HideFlag As Boolean, ExitFlag As Boolean
 Dim Opening As Double
+Dim oOutlook As New Outlook.Application
+Dim EMailID As String, Attachment As String, Message As String, OutputTo As String
 Private Sub Combo1_Change()
     If Reset = 1 Then Call cmdRefresh_Click
 End Sub
@@ -711,7 +836,7 @@ Private Sub Form_Load()
 Reset = 0:
     On Error GoTo ErrorHandler
     CenterForm Me
-Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1200
+    Me.Top = 1200
     BusySystemIndicator True
     Dim Cols As Long, C As Long
         fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader
@@ -895,6 +1020,7 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstAccountLedger)
     Call CloseRecordset(rstAccountOpening)
+    Call CloseRecordset(rstCompanyMaster)
 End Sub
 Private Sub cmdCancel_Click()
     Call CloseForm(Me)
@@ -941,22 +1067,22 @@ Private Sub cmdRefresh_Click()
             rstAccountLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
             If rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
             
-            Dim n As Integer
+    Dim n As Integer
     If rstAccountLedger.RecordCount <> 0 Then
-        Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value
+        Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value: Mh3dLabel9.FontSize = 14
     ElseIf rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount <> 0 Then
             If rstAccountLedger.State = adStateOpen Then rstAccountLedger.Close
             rstAccountLedger.Open "Select Name AS AccountName From AccountMaster Where code IN (" & AccountList & ")", cnDatabase, adOpenKeyset, adLockReadOnly
             If rstAccountLedger.RecordCount <> 0 Then rstAccountLedger.MoveFirst
-            If rstAccountLedger.RecordCount <> 0 Then Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value
+            If rstAccountLedger.RecordCount <> 0 Then Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value: Mh3dLabel9.FontSize = 13
             rstAccountOpening.MoveFirst
             Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
-            Mh3dLabel10.Caption = "Opening Bal. = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
+            Mh3dLabel10.Caption = "Opening Balance: = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
             Screen.MousePointer = vbNormal: Exit Sub
     End If
     rstAccountOpening.MoveFirst
     Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
-    Mh3dLabel10.Caption = "Opening Bal. = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
+    Mh3dLabel10.Caption = "Opening Balance: = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
     
     Bal = Opening
     With fpSpread1
@@ -992,7 +1118,6 @@ Private Sub cmdRefresh_Click()
                 .SetText 10, i, rstAccountLedger.Fields("LongNarration").Value
                 .SetText 11, i, rstAccountLedger.Fields("Type").Value
                 .SetText 12, i, rstAccountLedger.Fields("Code").Value
-
              rstAccountLedger.MoveNext
         Loop
                 R = i + 1
@@ -1000,11 +1125,11 @@ Private Sub cmdRefresh_Click()
             fpSpread1.Col = C: fpSpread1.Row = R:  fpSpread1.FontSize = 12: fpSpread1.FontUnderline = True: fpSpread1.ForeColor = vbBlue: 'fpSpread1.FontBold = True:
                        '    .Col = C: .Row = R: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: '.FontBold = True:
             Next
-            
                     .LockBackColor = RGB(255, 250, 255): Combo1.BackColor = RGB(255, 250, 255): Combo2.BackColor = RGB(255, 250, 255): MhDateInput1.BackColor = RGB(255, 250, 255): MhDateInput2.BackColor = RGB(255, 250, 255):  TDBNumber2.BackColor = RGB(255, 250, 255): Text1.BackColor = RGB(255, 250, 255):
                      .SelectBlockOptions = SelectBlockOptionsAll
                     .AllowMultiBlocks = True:
                     If TDBNumber2 <> 0 Then fpSpread1.SetFocus: fpSpread1.SetActiveCell 1, i + 1
+    Mh3dLabel11.Caption = "Closing Balance : = Rs. " & Format(Bal, "##,##,##,##0.00") & IIf(Bal <= 0, " Dr.", " Cr.")
     End With
     TDBNumber2 = i
     fpSpread1.MaxRows = IIf(i < 27, 27, i + 1)
@@ -1201,7 +1326,7 @@ Private Sub cmdFilter_Click()
         Call Total_Click
 End Sub
 Private Sub Command2_Click() ' Search Command
-  Dim i As Integer, Cval As Variant, R As Long
+  Dim i As Integer, cVal As Variant, R As Long
     With fpSpread1
     If Text1.Text = "" Then Exit Sub
             If .DataRowCnt = 0 Then Exit Sub
@@ -1213,8 +1338,8 @@ Private Sub Command2_Click() ' Search Command
             R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
             LR = R
             For i = R To .DataRowCnt
-            If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, Cval
-                        If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+            If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, cVal
+                        If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                         ''''
                         ElseIf Combo2.ListIndex >= 0 Then
                         .SetActiveCell Combo2.ListIndex + 1, i: Exit Sub
@@ -1240,27 +1365,27 @@ End With
     Call Total_Click
 End Sub
 Private Sub Total_Click()
-    Dim i As Integer, Cval As Variant, n As Integer, R As Long, C As Long, Cols As Long, Flag As Variant
+    Dim i As Integer, cVal As Variant, n As Integer, R As Long, C As Long, Cols As Long, Flag As Variant
     Dim DebitVal As Variant, DebitTotal As Variant
     Dim CreditVal As Variant, CreditTotal As Variant
     With fpSpread1
     If .DataRowCnt = 0 Then Exit Sub
             n = .DataRowCnt: DebitVal = 0: CreditVal = 0: Bal = Opening
         For i = 1 To .DataRowCnt 'Unhide All
-        .GetText 3, i, Cval
+        .GetText 3, i, cVal
             If TotalFlag = False Then .Row = i: .RowHidden = False
-            If Cval = "Grand Total" Then fpSpread1.DeleteRows i, 1
+            If cVal = "Grand Total" Then fpSpread1.DeleteRows i, 1
         Next
     fpSpread1.MaxCols = 13
          
     For i = 1 To .DataRowCnt
         
-    If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, Cval
+    If Combo2.ListIndex >= 0 Then .GetText Combo2.ListIndex + 1, i, cVal
                 .GetText 5, i, DebitVal
                 .GetText 6, i, CreditVal
                 .GetText 13, i, Flag
-                .GetText 3, i, Cval
-        If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                .GetText 3, i, cVal
+        If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                 .Row = i: .RowHidden = True: n = n - 1: .SetText 13, .ActiveRow, "True": 'Hide Filter
         Else
             .Row = i
@@ -1352,4 +1477,89 @@ Const PaperHeight = 15840
     Set headerfooter.frmHeaderFooter = Me
     spreadpreview.Show
  End With
+End Sub
+Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+    If Button.Index = 1 Then
+        PrintLedger ("S")
+    ElseIf Button.Index = 2 Then
+        PrintLedger ("P")
+    ElseIf Button.Index = 3 Then
+        PrintLedger ("E")
+    ElseIf Button.Index = 4 Then
+        cmdCancel_Click
+    End If
+End Sub
+Public Sub PrintLedger(ByVal OutputType As String)
+    On Error Resume Next
+    Screen.MousePointer = vbHourglass
+    If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
+    rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.ActiveConnection = Nothing
+        If rstCompanyMaster.RecordCount = 0 Then On Error GoTo 0: Exit Sub
+        If rstAccountLedger.RecordCount = 0 Then On Error GoTo 0: Exit Sub
+        rstAccountLedger.ActiveConnection = Nothing
+        With rstAccountLedger
+        'ArialMT (Western)
+        'Bookman Old Style (Western)
+        End With
+        rstAccountLedger.MoveFirst
+        rptAccountsLedger.Database.SetDataSource rstAccountLedger, 3, 1
+        rptAccountsLedger.DiscardSavedData
+    With rptAccountsLedger
+            
+            .Text.SetText "Printed on " & Format(Now, "dd-MMM-yyyy") & " at " & Format(Now, "hh:mm")
+            .Text.Font.Size = 7: .Text.Font.Bold = False
+            
+            .Text1.SetText rstCompanyMaster.Fields("PrintName").Value
+             .Text1.Font.Size = 16: .Text2.Font.Bold = True
+            
+            .Text2.SetText rstCompanyMaster.Fields("Address1").Value & " " & rstCompanyMaster.Fields("Address2").Value & " " & rstCompanyMaster.Fields("Address3").Value & " " & rstCompanyMaster.Fields("Address4").Value
+            .Text2.Font.Size = 12: .Text2.Font.Bold = False
+            
+            If VchType = "1" Then .Text3.SetText " Account Ledger "
+            .Text3.Font.Size = 12: .Text3.Font.Bold = True:
+            
+            If VchType = "1" Then .Text4.SetText "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")"
+            .Text4.Font.Size = 11: .Text4.Font.Bold = False
+            
+            .Text5.SetText "Accounts : " & rstAccountLedger.Fields("AccountName").Value
+            .Text5.Font.Size = 12: .Text5.Font.Bold = True
+            
+            .Text6.SetText rstCompanyMaster.Fields("PrintName").Value
+            .Text6.Font.Size = 10: .Text6.Font.Bold = False: .Text6.HorAlignment = crLeftAlign
+            
+            If VchType = "1" Then .Text7.SetText "Account Ledger : " & "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")"
+            .Text7.Font.Size = 10: .Text7.Font.Bold = False: .Text7.HorAlignment = crLeftAlign
+            
+            .Text8.SetText "Accounts :" & rstAccountLedger.Fields("AccountName").Value
+            .Text8.Font.Size = 10: .Text8.Font.Bold = False: .Text8.HorAlignment = crLeftAlign
+    End With
+        If OutputType = "S" Then
+            Screen.MousePointer = vbNormal
+            Set FrmReportViewer.Report = rptAccountsLedger: FrmReportViewer.Show vbModal
+        ElseIf OutputType = "P" Then
+            rptAccountsLedger.PaperSource = crPRBinAuto
+            rptAccountsLedger.PrintOut
+        Else
+                Dim oOutlookMsg As Outlook.MailItem, FileName As String
+                Set oOutlookMsg = oOutlook.CreateItem(olMailItem)
+                With oOutlookMsg
+                    '.To = rstPaperDebitNote.Fields("EMail").Value
+                    .Subject = "Account Ledger"
+                    .HTMLBody = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please find attached herewith " & "Account Ledger from " + Format(GetDate(MhDateInput1.Text), "dd-MMM-yyyy") + " to " + Format(GetDate(MhDateInput2.Text), "dd-MMM-yyyy") & " for doing the needful at your end.<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>Production Department<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
+                    rptAccountsLedger.ExportOptions.FormatType = crEFTPortableDocFormat    ' Set the Export Format As .Pdf
+                    rptAccountsLedger.ExportOptions.DestinationType = crEDTDiskFile
+                    FileName = FixAPIString(GetTemporaryFileName): FileName = Mid(FileName, 1, Len(FileName) - 4) & ".Pdf"
+                    rptAccountsLedger.ExportOptions.DiskFileName = FileName
+                    rptAccountsLedger.Export False
+                    .Attachments.Add (FileName)
+                    .Importance = olImportanceHigh
+                    .ReadReceiptRequested = True
+                    If CheckEmpty(.To, False) Then .Display Else .Send
+                End With
+                Set oOutlookMsg = Nothing
+        End If
+        Set rptAccountsLedger = Nothing
+        On Error GoTo 0
+        Screen.MousePointer = vbNormal
 End Sub

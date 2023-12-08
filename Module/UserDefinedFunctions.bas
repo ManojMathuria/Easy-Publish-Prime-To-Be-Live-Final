@@ -5086,7 +5086,5 @@ End Function
 Public Function Get_oVchType(ByVal strInput As String) As String
 If Len(strInput) > 2 Then
     Get_oVchType = Left(strInput, Len(strInput) - 2)
-Else
-    'Get_oVchType = Left(strInput, Len(strInput) - 2)
 End If
 End Function

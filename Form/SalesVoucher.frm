@@ -13,7 +13,7 @@ Begin VB.Form frmSalesVoucher
    Caption         =   "Sales Voucher"
    ClientHeight    =   9075
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -1736,8 +1736,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":229C
-               Picture         =   "SalesVoucher.frx":22B8
+               Picture         =   "SalesVoucher.frx":222E
+               Picture         =   "SalesVoucher.frx":224A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1763,8 +1763,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":22D4
-               Picture         =   "SalesVoucher.frx":22F0
+               Picture         =   "SalesVoucher.frx":2266
+               Picture         =   "SalesVoucher.frx":2282
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
                Height          =   525
@@ -1794,7 +1794,7 @@ Begin VB.Form frmSalesVoucher
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "SalesVoucher.frx":230C
+               Picture         =   "SalesVoucher.frx":229E
                Begin VB.CommandButton btnNotes 
                   Caption         =   " Notes"
                   BeginProperty Font 
@@ -1859,8 +1859,8 @@ Begin VB.Form frmSalesVoucher
                   Alignment       =   0
                   FillColor       =   9164542
                   TextColor       =   0
-                  Picture         =   "SalesVoucher.frx":2328
-                  Picture         =   "SalesVoucher.frx":2344
+                  Picture         =   "SalesVoucher.frx":22BA
+                  Picture         =   "SalesVoucher.frx":22D6
                End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
@@ -1890,7 +1890,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":2360
+                  Picture         =   "SalesVoucher.frx":22F2
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1974,8 +1974,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":237C
-            Picture         =   "SalesVoucher.frx":2398
+            Picture         =   "SalesVoucher.frx":230E
+            Picture         =   "SalesVoucher.frx":232A
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2002,8 +2002,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":23B4
-            Picture         =   "SalesVoucher.frx":23D0
+            Picture         =   "SalesVoucher.frx":2346
+            Picture         =   "SalesVoucher.frx":2362
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2134,8 +2134,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
-    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    Me.Top = 1200
     WheelHook DataGrid1
     BusySystemIndicator True
     oVchType = VchType
@@ -3098,7 +3097,7 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
     End If
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim Item As Variant, i As Integer, x As Integer, Cval(1 To 6) As Variant, Disc As Double
+    Dim Item As Variant, i As Integer, x As Integer, cVal(1 To 6) As Variant, Disc As Double
     With fpSpread1
         If .EditMode Then Exit Sub
         If Shift = 0 And KeyCode = vbKeyF9 Then
@@ -3145,22 +3144,22 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                     .Show vbModal
                     If .LoadItems Then
                         For i = 1 To .fpSpread1.DataRowCnt
-                            .fpSpread1.GetText 1, i, Cval(1) 'Item
-                            .fpSpread1.GetText 3, i, Cval(2) 'Quantity
-                            .fpSpread1.GetText 4, i, Cval(3) 'Price
-                            .fpSpread1.GetText 5, i, Cval(4) 'Item Code
-                            .fpSpread1.GetText 6, i, Cval(5) 'HSN Code
-                            .fpSpread1.GetText 7, i, Cval(6) 'HSN
-                            If Val(Cval(2)) > 0 Then
+                            .fpSpread1.GetText 1, i, cVal(1) 'Item
+                            .fpSpread1.GetText 3, i, cVal(2) 'Quantity
+                            .fpSpread1.GetText 4, i, cVal(3) 'Price
+                            .fpSpread1.GetText 5, i, cVal(4) 'Item Code
+                            .fpSpread1.GetText 6, i, cVal(5) 'HSN Code
+                            .fpSpread1.GetText 7, i, cVal(6) 'HSN
+                            If Val(cVal(2)) > 0 Then
                                 x = fpSpread1.DataRowCnt + 1
-                                fpSpread1.SetText 1, x, Cval(1)
-                                fpSpread1.SetText 2, x, Cval(6)
-                                fpSpread1.SetText 4, x, Val(Cval(2))
-                                fpSpread1.SetText 5, x, Val(Cval(3))
+                                fpSpread1.SetText 1, x, cVal(1)
+                                fpSpread1.SetText 2, x, cVal(6)
+                                fpSpread1.SetText 4, x, Val(cVal(2))
+                                fpSpread1.SetText 5, x, Val(cVal(3))
                                 fpSpread1.SetText 6, x, 0
-                                fpSpread1.SetText 7, x, Val(Cval(2)) * Val(Cval(3))
-                                fpSpread1.SetText 8, x, Cval(4)
-                                fpSpread1.SetText 9, x, Cval(5)
+                                fpSpread1.SetText 7, x, Val(cVal(2)) * Val(cVal(3))
+                                fpSpread1.SetText 8, x, cVal(4)
+                                fpSpread1.SetText 9, x, cVal(5)
                             End If
                         Next
                         CalculateTotal

@@ -11,7 +11,7 @@ Begin VB.Form FrmPaperMaster
    Caption         =   "Paper Master"
    ClientHeight    =   5880
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   9180
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -2004,7 +2004,7 @@ Private Sub Form_Load()
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnPaperMaster.CursorLocation = adUseClient

@@ -6,7 +6,7 @@ Begin VB.Form FrmConsigneeDetails
    Caption         =   "Ship To Party Details"
    ClientHeight    =   2400
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   6960
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmConsigneeDetails
    MaxButton       =   0   'False
    ScaleHeight     =   2400
    ScaleWidth      =   6960
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdProceed 
       Height          =   375
       Left            =   6485

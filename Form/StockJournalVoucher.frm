@@ -11,7 +11,7 @@ Begin VB.Form frmStockJournalVoucher
    Caption         =   "Stock Journal-Finished Goods"
    ClientHeight    =   8880
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   15675
    BeginProperty Font 
       Name            =   "Arial"
@@ -26,7 +26,6 @@ Begin VB.Form frmStockJournalVoucher
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8880
    ScaleWidth      =   15675
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -430,8 +429,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07C3
-               Picture         =   "StockJournalVoucher.frx":07DF
+               Picture         =   "StockJournalVoucher.frx":07E7
+               Picture         =   "StockJournalVoucher.frx":0803
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -458,8 +457,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07FB
-               Picture         =   "StockJournalVoucher.frx":0817
+               Picture         =   "StockJournalVoucher.frx":081F
+               Picture         =   "StockJournalVoucher.frx":083B
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -485,8 +484,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":0833
-               Picture         =   "StockJournalVoucher.frx":084F
+               Picture         =   "StockJournalVoucher.frx":0857
+               Picture         =   "StockJournalVoucher.frx":0873
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -512,8 +511,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":086B
-               Picture         =   "StockJournalVoucher.frx":0887
+               Picture         =   "StockJournalVoucher.frx":088F
+               Picture         =   "StockJournalVoucher.frx":08AB
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -524,8 +523,8 @@ Begin VB.Form frmStockJournalVoucher
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournalVoucher.frx":08A3
-               Caption         =   "StockJournalVoucher.frx":09BB
+               Calendar        =   "StockJournalVoucher.frx":08C7
+               Caption         =   "StockJournalVoucher.frx":09DF
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -535,9 +534,9 @@ Begin VB.Form frmStockJournalVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournalVoucher.frx":0A27
-               Keys            =   "StockJournalVoucher.frx":0A45
-               Spin            =   "StockJournalVoucher.frx":0AA3
+               DropDown        =   "StockJournalVoucher.frx":0A4B
+               Keys            =   "StockJournalVoucher.frx":0A69
+               Spin            =   "StockJournalVoucher.frx":0AC7
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -617,7 +616,7 @@ Begin VB.Form frmStockJournalVoucher
                GridColor       =   4227327
                MaxCols         =   6
                MaxRows         =   2000
-               SpreadDesigner  =   "StockJournalVoucher.frx":0ACB
+               SpreadDesigner  =   "StockJournalVoucher.frx":0AEF
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -643,8 +642,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":1222
-               Picture         =   "StockJournalVoucher.frx":123E
+               Picture         =   "StockJournalVoucher.frx":126A
+               Picture         =   "StockJournalVoucher.frx":1286
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -670,8 +669,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":125A
-               Picture         =   "StockJournalVoucher.frx":1276
+               Picture         =   "StockJournalVoucher.frx":12A2
+               Picture         =   "StockJournalVoucher.frx":12BE
             End
             Begin VB.Line Line3 
                X1              =   0
@@ -717,8 +716,8 @@ Begin VB.Form frmStockJournalVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "StockJournalVoucher.frx":1292
-            Picture         =   "StockJournalVoucher.frx":12AE
+            Picture         =   "StockJournalVoucher.frx":12DA
+            Picture         =   "StockJournalVoucher.frx":12F6
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -847,8 +846,10 @@ Dim igMaterialCentreCode As String, icMaterialCentreCode As String, MaterialCent
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
-    If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
+    'If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
+   ' Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    Me.Top = 1200
     WheelHook DataGrid1
     BusySystemIndicator True
     VchPrefix = "2010" '10-Stock affected

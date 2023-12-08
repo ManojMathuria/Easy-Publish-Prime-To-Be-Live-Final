@@ -10,7 +10,7 @@ Begin VB.Form FrmUFGLedger
    Caption         =   " UFG Ledger"
    ClientHeight    =   9495
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   20085
    BeginProperty Font 
       Name            =   "Arial"
@@ -284,8 +284,8 @@ Begin VB.Form FrmUFGLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":140A
-         Picture         =   "UFGLedger.frx":1426
+         Picture         =   "UFGLedger.frx":14FF
+         Picture         =   "UFGLedger.frx":151B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -311,8 +311,8 @@ Begin VB.Form FrmUFGLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":1442
-         Picture         =   "UFGLedger.frx":145E
+         Picture         =   "UFGLedger.frx":1537
+         Picture         =   "UFGLedger.frx":1553
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -323,8 +323,8 @@ Begin VB.Form FrmUFGLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "UFGLedger.frx":147A
-         Caption         =   "UFGLedger.frx":1592
+         Calendar        =   "UFGLedger.frx":156F
+         Caption         =   "UFGLedger.frx":1687
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -334,9 +334,9 @@ Begin VB.Form FrmUFGLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "UFGLedger.frx":15FE
-         Keys            =   "UFGLedger.frx":161C
-         Spin            =   "UFGLedger.frx":167A
+         DropDown        =   "UFGLedger.frx":16F3
+         Keys            =   "UFGLedger.frx":1711
+         Spin            =   "UFGLedger.frx":176F
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -385,8 +385,8 @@ Begin VB.Form FrmUFGLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "UFGLedger.frx":16A2
-         Caption         =   "UFGLedger.frx":17BA
+         Calendar        =   "UFGLedger.frx":1797
+         Caption         =   "UFGLedger.frx":18AF
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -396,9 +396,9 @@ Begin VB.Form FrmUFGLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "UFGLedger.frx":1826
-         Keys            =   "UFGLedger.frx":1844
-         Spin            =   "UFGLedger.frx":18A2
+         DropDown        =   "UFGLedger.frx":191B
+         Keys            =   "UFGLedger.frx":1939
+         Spin            =   "UFGLedger.frx":1997
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -462,8 +462,8 @@ Begin VB.Form FrmUFGLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":18CA
-         Picture         =   "UFGLedger.frx":18E6
+         Picture         =   "UFGLedger.frx":19BF
+         Picture         =   "UFGLedger.frx":19DB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -488,8 +488,8 @@ Begin VB.Form FrmUFGLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":1902
-         Picture         =   "UFGLedger.frx":191E
+         Picture         =   "UFGLedger.frx":19F7
+         Picture         =   "UFGLedger.frx":1A13
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -514,8 +514,8 @@ Begin VB.Form FrmUFGLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":193A
-         Picture         =   "UFGLedger.frx":1956
+         Picture         =   "UFGLedger.frx":1A2F
+         Picture         =   "UFGLedger.frx":1A4B
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -526,8 +526,8 @@ Begin VB.Form FrmUFGLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "UFGLedger.frx":1972
-         Caption         =   "UFGLedger.frx":1992
+         Calculator      =   "UFGLedger.frx":1A67
+         Caption         =   "UFGLedger.frx":1A87
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -537,9 +537,9 @@ Begin VB.Form FrmUFGLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "UFGLedger.frx":19F6
-         Keys            =   "UFGLedger.frx":1A14
-         Spin            =   "UFGLedger.frx":1A5E
+         DropDown        =   "UFGLedger.frx":1AEB
+         Keys            =   "UFGLedger.frx":1B09
+         Spin            =   "UFGLedger.frx":1B53
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -599,8 +599,8 @@ Begin VB.Form FrmUFGLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":1A86
-         Picture         =   "UFGLedger.frx":1AA2
+         Picture         =   "UFGLedger.frx":1B7B
+         Picture         =   "UFGLedger.frx":1B97
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -626,8 +626,8 @@ Begin VB.Form FrmUFGLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UFGLedger.frx":1ABE
-         Picture         =   "UFGLedger.frx":1ADA
+         Picture         =   "UFGLedger.frx":1BB3
+         Picture         =   "UFGLedger.frx":1BCF
       End
       Begin MSForms.ComboBox Combo4 
          Height          =   330

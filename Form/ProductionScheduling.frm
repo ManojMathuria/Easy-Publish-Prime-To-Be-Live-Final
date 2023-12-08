@@ -12,7 +12,7 @@ Begin VB.Form FrmProductionScheduling
    Caption         =   "Production Scheduling"
    ClientHeight    =   9375
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   19845
    BeginProperty Font 
       Name            =   "Arial"
@@ -204,7 +204,7 @@ Begin VB.Form FrmProductionScheduling
          NoPrefix        =   0   'False
          FormatString    =   ""
          Caption         =   ""
-         Picture         =   "ProductionScheduling.frx":2033
+         Picture         =   "ProductionScheduling.frx":215B
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
             Height          =   330
             Left            =   0
@@ -229,8 +229,8 @@ Begin VB.Form FrmProductionScheduling
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProductionScheduling.frx":204F
-            Picture         =   "ProductionScheduling.frx":206B
+            Picture         =   "ProductionScheduling.frx":2177
+            Picture         =   "ProductionScheduling.frx":2193
          End
          Begin MSForms.OptionButton Option1 
             Height          =   300
@@ -391,7 +391,7 @@ Begin VB.Form FrmProductionScheduling
       Begin VB.CommandButton cmdFilter 
          Height          =   320
          Left            =   6720
-         Picture         =   "ProductionScheduling.frx":2087
+         Picture         =   "ProductionScheduling.frx":21AF
          Style           =   1  'Graphical
          TabIndex        =   14
          ToolTipText     =   "Filter"
@@ -401,7 +401,7 @@ Begin VB.Form FrmProductionScheduling
       Begin VB.CommandButton Command2 
          Height          =   320
          Left            =   7200
-         Picture         =   "ProductionScheduling.frx":23C9
+         Picture         =   "ProductionScheduling.frx":24F1
          Style           =   1  'Graphical
          TabIndex        =   13
          ToolTipText     =   "Search"
@@ -432,8 +432,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":270B
-         Picture         =   "ProductionScheduling.frx":2727
+         Picture         =   "ProductionScheduling.frx":2833
+         Picture         =   "ProductionScheduling.frx":284F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -459,8 +459,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2743
-         Picture         =   "ProductionScheduling.frx":275F
+         Picture         =   "ProductionScheduling.frx":286B
+         Picture         =   "ProductionScheduling.frx":2887
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -471,8 +471,8 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "ProductionScheduling.frx":277B
-         Caption         =   "ProductionScheduling.frx":2893
+         Calendar        =   "ProductionScheduling.frx":28A3
+         Caption         =   "ProductionScheduling.frx":29BB
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -482,9 +482,9 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ProductionScheduling.frx":28FF
-         Keys            =   "ProductionScheduling.frx":291D
-         Spin            =   "ProductionScheduling.frx":297B
+         DropDown        =   "ProductionScheduling.frx":2A27
+         Keys            =   "ProductionScheduling.frx":2A45
+         Spin            =   "ProductionScheduling.frx":2AA3
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   1
@@ -533,8 +533,8 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "ProductionScheduling.frx":29A3
-         Caption         =   "ProductionScheduling.frx":2ABB
+         Calendar        =   "ProductionScheduling.frx":2ACB
+         Caption         =   "ProductionScheduling.frx":2BE3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -544,9 +544,9 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ProductionScheduling.frx":2B27
-         Keys            =   "ProductionScheduling.frx":2B45
-         Spin            =   "ProductionScheduling.frx":2BA3
+         DropDown        =   "ProductionScheduling.frx":2C4F
+         Keys            =   "ProductionScheduling.frx":2C6D
+         Spin            =   "ProductionScheduling.frx":2CCB
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   1
@@ -610,8 +610,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2BCB
-         Picture         =   "ProductionScheduling.frx":2BE7
+         Picture         =   "ProductionScheduling.frx":2CF3
+         Picture         =   "ProductionScheduling.frx":2D0F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
@@ -637,8 +637,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2C03
-         Picture         =   "ProductionScheduling.frx":2C1F
+         Picture         =   "ProductionScheduling.frx":2D2B
+         Picture         =   "ProductionScheduling.frx":2D47
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -649,8 +649,8 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "ProductionScheduling.frx":2C3B
-         Caption         =   "ProductionScheduling.frx":2C5B
+         Calculator      =   "ProductionScheduling.frx":2D63
+         Caption         =   "ProductionScheduling.frx":2D83
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -660,9 +660,9 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ProductionScheduling.frx":2CBF
-         Keys            =   "ProductionScheduling.frx":2CDD
-         Spin            =   "ProductionScheduling.frx":2D27
+         DropDown        =   "ProductionScheduling.frx":2DE7
+         Keys            =   "ProductionScheduling.frx":2E05
+         Spin            =   "ProductionScheduling.frx":2E4F
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -722,8 +722,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2D4F
-         Picture         =   "ProductionScheduling.frx":2D6B
+         Picture         =   "ProductionScheduling.frx":2E77
+         Picture         =   "ProductionScheduling.frx":2E93
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -748,8 +748,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2D87
-         Picture         =   "ProductionScheduling.frx":2DA3
+         Picture         =   "ProductionScheduling.frx":2EAF
+         Picture         =   "ProductionScheduling.frx":2ECB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -774,8 +774,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2DBF
-         Picture         =   "ProductionScheduling.frx":2DDB
+         Picture         =   "ProductionScheduling.frx":2EE7
+         Picture         =   "ProductionScheduling.frx":2F03
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -801,8 +801,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2DF7
-         Picture         =   "ProductionScheduling.frx":2E13
+         Picture         =   "ProductionScheduling.frx":2F1F
+         Picture         =   "ProductionScheduling.frx":2F3B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
@@ -827,8 +827,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "ProductionScheduling.frx":2E2F
-         Picture         =   "ProductionScheduling.frx":2E4B
+         Picture         =   "ProductionScheduling.frx":2F57
+         Picture         =   "ProductionScheduling.frx":2F73
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -854,8 +854,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2E67
-         Picture         =   "ProductionScheduling.frx":2E83
+         Picture         =   "ProductionScheduling.frx":2F8F
+         Picture         =   "ProductionScheduling.frx":2FAB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -880,8 +880,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Click To Schedule M/C"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2E9F
-         Picture         =   "ProductionScheduling.frx":2EBB
+         Picture         =   "ProductionScheduling.frx":2FC7
+         Picture         =   "ProductionScheduling.frx":2FE3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
@@ -906,8 +906,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Click To Deschedule M/C"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2ED7
-         Picture         =   "ProductionScheduling.frx":2EF3
+         Picture         =   "ProductionScheduling.frx":2FFF
+         Picture         =   "ProductionScheduling.frx":301B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
          Height          =   330
@@ -933,8 +933,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2F0F
-         Picture         =   "ProductionScheduling.frx":2F2B
+         Picture         =   "ProductionScheduling.frx":3037
+         Picture         =   "ProductionScheduling.frx":3053
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
          Height          =   330
@@ -960,8 +960,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2F47
-         Picture         =   "ProductionScheduling.frx":2F63
+         Picture         =   "ProductionScheduling.frx":306F
+         Picture         =   "ProductionScheduling.frx":308B
       End
       Begin TDBTime6Ctl.TDBTime TDBTime4 
          Height          =   330
@@ -972,7 +972,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":2F7F
+         Caption         =   "ProductionScheduling.frx":30A7
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -982,8 +982,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":2FE3
-         Spin            =   "ProductionScheduling.frx":3033
+         Keys            =   "ProductionScheduling.frx":310B
+         Spin            =   "ProductionScheduling.frx":315B
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1031,7 +1031,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":305B
+         Caption         =   "ProductionScheduling.frx":3183
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -1041,8 +1041,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":30BF
-         Spin            =   "ProductionScheduling.frx":310F
+         Keys            =   "ProductionScheduling.frx":31E7
+         Spin            =   "ProductionScheduling.frx":3237
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1129,8 +1129,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":3137
-         Picture         =   "ProductionScheduling.frx":3153
+         Picture         =   "ProductionScheduling.frx":325F
+         Picture         =   "ProductionScheduling.frx":327B
       End
       Begin TDBTime6Ctl.TDBTime TDBTime1 
          Height          =   330
@@ -1142,7 +1142,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":316F
+         Caption         =   "ProductionScheduling.frx":3297
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -1152,8 +1152,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":31D3
-         Spin            =   "ProductionScheduling.frx":3223
+         Keys            =   "ProductionScheduling.frx":32FB
+         Spin            =   "ProductionScheduling.frx":334B
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1217,8 +1217,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":324B
-         Picture         =   "ProductionScheduling.frx":3267
+         Picture         =   "ProductionScheduling.frx":3373
+         Picture         =   "ProductionScheduling.frx":338F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
          Height          =   330
@@ -1245,8 +1245,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":3283
-         Picture         =   "ProductionScheduling.frx":329F
+         Picture         =   "ProductionScheduling.frx":33AB
+         Picture         =   "ProductionScheduling.frx":33C7
       End
       Begin TDBTime6Ctl.TDBTime TDBTime2 
          Height          =   330
@@ -1258,7 +1258,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":32BB
+         Caption         =   "ProductionScheduling.frx":33E3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -1268,8 +1268,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":331F
-         Spin            =   "ProductionScheduling.frx":336F
+         Keys            =   "ProductionScheduling.frx":3447
+         Spin            =   "ProductionScheduling.frx":3497
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1332,8 +1332,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":3397
-         Picture         =   "ProductionScheduling.frx":33B3
+         Picture         =   "ProductionScheduling.frx":34BF
+         Picture         =   "ProductionScheduling.frx":34DB
       End
       Begin MSForms.ComboBox Combo4 
          Height          =   330

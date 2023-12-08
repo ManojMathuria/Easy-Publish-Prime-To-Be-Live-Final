@@ -7,7 +7,7 @@ Begin VB.Form FrmPSPlateRegister
    Caption         =   "CTP/ PS Plate Register"
    ClientHeight    =   7425
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   14175
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,7 +24,6 @@ Begin VB.Form FrmPSPlateRegister
    MaxButton       =   0   'False
    ScaleHeight     =   7425
    ScaleWidth      =   14175
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdExit 
       Height          =   375
       Left            =   13680
@@ -159,8 +158,8 @@ Begin VB.Form FrmPSPlateRegister
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PSPlateRegister.frx":0889
-         Picture         =   "PSPlateRegister.frx":08A5
+         Picture         =   "PSPlateRegister.frx":09B1
+         Picture         =   "PSPlateRegister.frx":09CD
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
@@ -186,8 +185,8 @@ Begin VB.Form FrmPSPlateRegister
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PSPlateRegister.frx":08C1
-         Picture         =   "PSPlateRegister.frx":08DD
+         Picture         =   "PSPlateRegister.frx":09E9
+         Picture         =   "PSPlateRegister.frx":0A05
       End
       Begin VB.Line Line1 
          X1              =   0

@@ -7,8 +7,8 @@ Begin VB.MDIForm MdiMainMenu
    Caption         =   "Easy Publish  21|Rel 05 | 06.29 Version |Production & Inventory Management System"
    ClientHeight    =   9045
    ClientLeft      =   165
-   ClientTop       =   510
-   ClientWidth     =   11400
+   ClientTop       =   1005
+   ClientWidth     =   19920
    Icon            =   "MainMenu.frx":0000
    LinkTopic       =   "MdiMainMenu"
    LockControls    =   -1  'True
@@ -16,7 +16,7 @@ Begin VB.MDIForm MdiMainMenu
    Begin MSComctlLib.Toolbar Toolbar2 
       Align           =   4  'Align Right
       Height          =   8010
-      Left            =   9030
+      Left            =   17550
       TabIndex        =   6
       Top             =   360
       Width           =   2370
@@ -98,12 +98,12 @@ Begin VB.MDIForm MdiMainMenu
             Object.ToolTipText     =   "Ctrl+F11 >>Add Quotation"
          EndProperty
          BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Caption         =   "Ctrl+F12>>Add Order                   "
+            Caption         =   "Ctrl+F12>>Add Order                    "
             Key             =   "Ctrl+F12"
             Object.ToolTipText     =   "Ctrl+F12>>Add Order    "
          EndProperty
          BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Caption         =   "Ctrl+F4>> Add Challan                   "
+            Caption         =   "Ctrl+F4>> Add Challan                    "
          EndProperty
          BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "Ctrl+M>> Acc Summary                   "
@@ -112,15 +112,16 @@ Begin VB.MDIForm MdiMainMenu
             Caption         =   "Ctrl+L>> Acc Ledger                     "
          EndProperty
          BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Caption         =   "Ctrl+B>> Stock Ledger                   "
+            Caption         =   "Ctrl+B>> Stock Ledger                    "
          EndProperty
          BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Caption         =   "Ctrl+I>> Item Summary                  "
+            Caption         =   "Ctrl+I>> Item Summary                   "
          EndProperty
          BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "Ctrl+G>> Item Ledger                        "
          EndProperty
          BeginProperty Button22 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Ctrl+R>> Rate Masters                      "
          EndProperty
          BeginProperty Button23 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "Shift+F1>>Calculator                        "
@@ -160,8 +161,8 @@ Begin VB.MDIForm MdiMainMenu
       Left            =   0
       TabIndex        =   3
       Top             =   0
-      Width           =   11400
-      _ExtentX        =   20108
+      Width           =   19920
+      _ExtentX        =   35137
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -343,11 +344,11 @@ Begin VB.MDIForm MdiMainMenu
       Height          =   375
       Left            =   0
       ScaleHeight     =   345
-      ScaleWidth      =   11370
+      ScaleWidth      =   19890
       TabIndex        =   1
       Top             =   8370
       Visible         =   0   'False
-      Width           =   11400
+      Width           =   19920
       Begin VB.PictureBox picOriginal 
          Height          =   5055
          Left            =   1800
@@ -388,36 +389,36 @@ Begin VB.MDIForm MdiMainMenu
       Left            =   0
       TabIndex        =   0
       Top             =   8745
-      Width           =   11400
-      _ExtentX        =   20108
+      Width           =   19920
+      _ExtentX        =   35137
       _ExtentY        =   529
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   5
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   6306
+            Object.Width           =   8978
             MinWidth        =   6306
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
             AutoSize        =   1
-            Object.Width           =   6306
+            Object.Width           =   8978
             MinWidth        =   6306
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   4357
+            Object.Width           =   7029
             MinWidth        =   4357
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   2646
+            Object.Width           =   5318
             MinWidth        =   2646
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   1501
+            Object.Width           =   4173
             MinWidth        =   1501
          EndProperty
       EndProperty
@@ -2087,8 +2088,9 @@ Begin VB.MDIForm MdiMainMenu
          Shortcut        =   ^G
       End
       Begin VB.Menu MnuAdd1 
-         Caption         =   "  "
+         Caption         =   " Rate Masters  "
          Index           =   22
+         Shortcut        =   ^R
       End
       Begin VB.Menu MnuAdd1 
          Caption         =   "Calculator"
@@ -4078,7 +4080,7 @@ Dim i As Integer, cVal As Variant, mString As String
             mnuFreshBookMaster_Click
             FrmBookMaster.Toolbar1_ButtonClick FrmBookMaster.Toolbar1.Buttons.Item(1)
         End If
-    ElseIf (Button.Index >= 4 And Button.Index <= 5) Or Button.Index >= 12 And Button.Index <= 16 Then
+    ElseIf (Button.Index >= 4 And Button.Index <= 5) Or (Button.Index >= 12 And Button.Index <= 16) Or Button.Index = 22 Then
         oButtonIndex = Button.Index
             Load KeyDown
         For i = 1 To KeyDown.fpSpread1.MaxCols
@@ -4088,13 +4090,19 @@ Dim i As Integer, cVal As Variant, mString As String
             If Button.Index = 5 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Vouches"
             If Button.Index = 12 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Sales Vouches": mString = "Sales Unit Cost_Sales JobWork Unit Cost_Sales JobWork_Sales [FG]"
             If Button.Index = 13 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Purchase Vouches": mString = "Purchase Unit Cost_Purchase JobWork Unit Cost_Purchase JobWork_Purchase [FG]"
-            If Button.Index = 14 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Quotation Vouches": mString = "Purchase Quotation Unit Cost_Purchase Quotation JobWork Unit Cost_Purchase Quotation JobWork_Purchase Quotation"
+            If Button.Index = 14 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Quotation Vouches": mString = "Purchase Quotation Unit Cost_Purchase Quotation JobWork Unit Cost_Purchase Quotation JobWork_Purchase Quotation_Sales Quotation Unit Cost_Sales Quotation JobWork Unit Cost_Sales Quotation JobWork_Sales Quotation"
             If Button.Index = 15 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Orders Vouches": mString = "Purchase Order [FG]_Purchase Order [UFG]_Purchase Order Digital_Purchase Order_Purchase Order [BOM]_Sales Order [FG]_Sales Order [UFG]_Sales Order Digital_Sales Order_Item Process Order_Paper Purchase Order_Material Issue Order"
             If Button.Index = 16 Then KeyDown.fpSpread1.Col = 5: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Material Challans[Supply]": mString = "Material IN Jobwork [Supply Inward]_Purchase Challan [Supply Inward]_Material Out Jobwork [SupplyOutward]_Sales Challan [SupplyOutward]"
-    
-        If Button.Index >= 12 And Button.Index <= 16 Then
+            If Button.Index = 22 Then KeyDown.fpSpread1.Col = 1: KeyDown.fpSpread1.ColHidden = False: KeyDown.Caption = "List Of Rate Master [Jobwork]": mString = "Printing Rate Master_Misc Operation Rate Master_Binding Rate Master_Processing Rate Master_Plates Rate Master"
+    Dim StringNo As String
+    Dim dString As String
+        StringNo = "Default String_" & MdiMainMenu.oButtonIndex
+        dString = Trim(ReadFromFile(StringNo))
+        If dString = "" Then WriteToFile StringNo, ""
+        If mString <> "" And dString = "" Then WriteToFile StringNo, mString
+        If (Button.Index >= 12 And Button.Index <= 16) Or Button.Index = 22 Then
             For i = 1 To KeyDown.fpSpread1.DataRowCnt
-            KeyDown.fpSpread1.GetText 5, i, cVal
+            If Button.Index = 22 Then KeyDown.fpSpread1.GetText 1, i, cVal Else KeyDown.fpSpread1.GetText 5, i, cVal
             If InStr(1, StrConv(mString, vbUpperCase), StrConv(Trim(cVal), vbUpperCase)) = 0 Then
                 KeyDown.fpSpread1.SetText 9, i, 1
                 KeyDown.fpSpread1.Row = i: KeyDown.fpSpread1.RowHidden = True
@@ -4144,7 +4152,7 @@ Private Sub ShowList()
         KeyDown.Show vbModal
         If oExitFlage Then Exit Sub
         i = KeyDown.fpSpread1.ActiveRow
-If oButtonIndex = 4 Then
+If oButtonIndex = 4 Or oButtonIndex = 22 Then
     If i = 1 Or i = 15 Or i = 16 Or i = 28 Or i = 29 Or i = 30 Then
             If i = 1 Then mnuAccountMaster_Click
             If i = 15 Then mnuMaterialCentreMaster_Click
@@ -4208,10 +4216,10 @@ If oButtonIndex = 4 Then
             mnuProjectManagement_Click (3)
             FrmTeamMemberMaster.Toolbar1_ButtonClick FrmTeamMemberMaster.Toolbar1.Buttons.Item(1)
     ElseIf i = 25 Then
-            mnuProjectManagement_Click (4)
+            mnuProject_Click (1)
             FrmProjectAssigner.Toolbar1_ButtonClick FrmProjectAssigner.Toolbar1.Buttons.Item(1)
     ElseIf i = 26 Then
-            mnuProjectManagement_Click (5)
+            mnuProject_Click (2)
             FrmProjectTracker.Toolbar1_ButtonClick FrmProjectTracker.Toolbar1.Buttons.Item(1)
     ElseIf i = 27 Then
             mnuMachineMaster_Click
@@ -4228,7 +4236,7 @@ Else 'If oButtonIndex = 5 Then
             If i = 1 Then mnuPrintPlanning_Click (1)
             If i = 2 Then mnuPrintPlanning_Click (2)
             FrmPrintPlanning.Toolbar1_ButtonClick FrmPrintPlanning.Toolbar1.Buttons.Item(1)
-    ElseIf (i >= 11 And i <= 13) Or (i >= 11 And i <= 13) Then
+    ElseIf (i >= 11 And i <= 13) Or (i >= 16 And i <= 18) Then
             If i = 11 Then mnuPurchaseOrderJobWorkFinishedItem_Click
             If i = 12 Then mnuPurchaseOrderJobWorkUnfinishedItem_Click
             If i = 13 Then mnuPurchaseOrderJobWorkDigital_Click
@@ -4276,15 +4284,16 @@ Else 'If oButtonIndex = 5 Then
             frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
     ElseIf i = 37 Or i = 39 Then
             If i = 37 Then mnuMaterialInJobWork_Click
+            If i = 39 Then mnuMaterialOutJobWork_Click
             frmItemIssueReceiptVoucher.Toolbar1_ButtonClick frmItemIssueReceiptVoucher.Toolbar1.Buttons.Item(1)
     ElseIf i = 38 Or i = 40 Then
             If i = 38 Then mnuMaterialInSupplyInward_Click
-            If i = 40 Then mnuMaterialInSupplyInward_Click
+            If i = 40 Then mnuMaterialOutSupplyOutward_Click
             frmSalesChallanVoucher.Toolbar1_ButtonClick frmSalesChallanVoucher.Toolbar1.Buttons.Item(1)
     ElseIf i = 41 Then
             If i = 41 Then mnuBookProcessOrder_Click
             FrmBookProcessOrder.Toolbar1_ButtonClick FrmBookProcessOrder.Toolbar1.Buttons.Item(1)
-    ElseIf i = 41 Then
+    ElseIf i = 42 Then
             If i = 42 Then mnuPaperModule_Click (1)
             FrmPaperPurchaseOrder.Toolbar1_ButtonClick FrmPaperPurchaseOrder.Toolbar1.Buttons.Item(1)
     ElseIf i >= 43 And i <= 45 Then

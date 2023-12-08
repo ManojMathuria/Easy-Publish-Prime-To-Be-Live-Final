@@ -5,7 +5,7 @@ Begin VB.Form KeyDown
    Caption         =   " List of  Master"
    ClientHeight    =   9810
    ClientLeft      =   60
-   ClientTop       =   510
+   ClientTop       =   405
    ClientWidth     =   6570
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
@@ -79,12 +79,12 @@ Begin VB.Form KeyDown
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " F9->Hide  F!0->Un-Hide "
+         Caption         =   "   F8->Un-Hide   F9->Hide  "
          Alignment       =   0
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "KeyDown.frx":487D
-         Picture         =   "KeyDown.frx":4899
+         Picture         =   "KeyDown.frx":48C6
+         Picture         =   "KeyDown.frx":48E2
       End
    End
 End
@@ -93,10 +93,12 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+Option Explicit
+Dim HideFlag As Boolean
 Private Sub Form_Load()
         fpSpread1.Height = 9150
-    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) - 760
+'    Me.Top = 1200 '(MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+ '   Me.Left = 0 '(MdiMainMenu.ScaleWidth - Me.Width) - 760
 End Sub
 Private Sub Form_Activate()
     Format_Grid
@@ -125,12 +127,17 @@ Dim i As Integer, StringNo, mString As String, cVal As Variant
                         End If
     ElseIf Shift = 0 And KeyCode = vbKeyF5 Then 'Refresh Data
         Format_Grid
-    ElseIf Shift = 0 And KeyCode = vbKeyF10 Then 'UnHide Row
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF8 Then  'Refresh Data
+         Check1.Value = 1
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF9 Then  'Refresh Data
+        Check1.Value = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'UnHide Row
                 StringNo = "Custom String_" & MdiMainMenu.oButtonIndex
                 mString = Trim(ReadFromFile(StringNo))
                 If mString = "" Then WriteToFile StringNo, ""
                 cVal = fpSpread1.ActiveRow
             If InStr(1, mString, Format(Trim(cVal), "00")) > 0 Then
+                            fpSpread1.Col = fpSpread1.ActiveCol: fpSpread1.Row = fpSpread1.ActiveRow: fpSpread1.FontBold = True: fpSpread1.FontSize = 10:  fpSpread1.ForeColor = vbBlue:
                             fpSpread1.SetText 9, fpSpread1.ActiveRow, 0
                             mString = ""
                 For i = 1 To fpSpread1.DataRowCnt
@@ -155,6 +162,7 @@ Dim StringNo, mString As String, cVal As Variant, i As Integer
         fpSpread1.Width = 3900
         fpSpread1.ColWidth(1) = 30
         fpSpread1.ColWidth(5) = 30
+        fpSpread1.RowHeadersShow = True
     For i = 1 To fpSpread1.DataRowCnt
         cVal = i
         If InStr(1, mString, Format(Trim(cVal), "00")) > 0 Then
@@ -169,19 +177,42 @@ fpSpread1.SetActiveCell fpSpread1.ActiveCol, fpSpread1.ActiveRow: fpSpread1.SetF
 End Sub
 Private Sub Check1_Click()
 Dim StringNo, mString As String, cVal As Variant, i As Integer
-        StringNo = "Custom String_" & MdiMainMenu.oButtonIndex
-        mString = Trim(ReadFromFile(StringNo))
-        If mString = "" Then WriteToFile StringNo, ""
+If Check1.Value Then If MsgBox("Do You wants to Reset Default value Setting", vbYesNo) = vbYes Then HideFlag = True
+
+    If HideFlag = False Then
+            StringNo = "Custom String_" & MdiMainMenu.oButtonIndex
+            mString = Trim(ReadFromFile(StringNo))
+            If mString = "" Then WriteToFile StringNo, ""
+    ElseIf HideFlag = True Then
+            StringNo = "Default String_" & MdiMainMenu.oButtonIndex
+            mString = Trim(ReadFromFile(StringNo))
+            If mString = "" Then WriteToFile StringNo, ""
+    End If
+    
     If Check1.Value Then
         For i = 1 To fpSpread1.DataRowCnt
-                cVal = i
-                If InStr(1, mString, Format(Trim(cVal), "00")) > 0 Then
+                If HideFlag = True Then fpSpread1.GetText fpSpread1.ActiveCol, i, cVal Else cVal = i
+                
+                If HideFlag = True And InStr(1, mString, Format(Trim(cVal), "00")) > 0 Then
+                    fpSpread1.SetText 9, i, 0
+                    fpSpread1.Row = i: fpSpread1.RowHidden = False
+                ElseIf InStr(1, mString, Format(Trim(cVal), "00")) > 0 Then
                     fpSpread1.SetText 9, i, 1
                     fpSpread1.Row = i: fpSpread1.RowHidden = False
-                 Else
-                    'fpSpread1.SetText 9, i, 0
                  End If
+                 
+                 fpSpread1.GetText 9, i, cVal
+                 fpSpread1.Col = fpSpread1.ActiveCol: fpSpread1.Row = i:
+                    If cVal = 1 Then
+                       fpSpread1.ForeColor = vbRed
+                    ElseIf cVal = 0 Then
+                        fpSpread1.ForeColor = vbBlack
+                    Else
+                        fpSpread1.ForeColor = vbBlue
+                    End If
+
         Next i
+        HideFlag = False
     Else
         Format_Grid
     End If

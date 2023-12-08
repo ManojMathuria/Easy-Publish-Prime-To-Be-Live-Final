@@ -13,7 +13,7 @@ Begin VB.Form frmSalesChallanVoucher
    Caption         =   "Sales Challan Voucher"
    ClientHeight    =   9075
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -98,13 +98,13 @@ Begin VB.Form frmSalesChallanVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesChallanVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "txtNotes"
          Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "btnNotes"
          Tab(1).Control(1).Enabled=   0   'False
-         Tab(1).Control(2)=   "btnNotes"
+         Tab(1).Control(2)=   "Mh3dFrame2"
          Tab(1).Control(2).Enabled=   0   'False
-         Tab(1).Control(3)=   "txtNotes"
+         Tab(1).Control(3)=   "Mh3dLabel1(1)"
          Tab(1).Control(3).Enabled=   0   'False
          Tab(1).ControlCount=   4
          Begin VB.TextBox txtNotes 
@@ -2003,8 +2003,8 @@ Begin VB.Form frmSalesChallanVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesChallanVoucher.frx":25D4
-               Picture         =   "SalesChallanVoucher.frx":25F0
+               Picture         =   "SalesChallanVoucher.frx":26B4
+               Picture         =   "SalesChallanVoucher.frx":26D0
             End
             Begin MSForms.ComboBox cmbChallanType 
                Height          =   330
@@ -2070,8 +2070,8 @@ Begin VB.Form frmSalesChallanVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesChallanVoucher.frx":260C
-            Picture         =   "SalesChallanVoucher.frx":2628
+            Picture         =   "SalesChallanVoucher.frx":26EC
+            Picture         =   "SalesChallanVoucher.frx":2708
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2098,8 +2098,8 @@ Begin VB.Form frmSalesChallanVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesChallanVoucher.frx":2644
-            Picture         =   "SalesChallanVoucher.frx":2660
+            Picture         =   "SalesChallanVoucher.frx":2724
+            Picture         =   "SalesChallanVoucher.frx":2740
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -3127,7 +3127,7 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
     End If
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim Item As Variant, i As Integer, x As Integer, Cval(1 To 6) As Variant, Disc As Variant
+    Dim Item As Variant, i As Integer, x As Integer, cVal(1 To 6) As Variant, Disc As Variant
     With fpSpread1
         If .EditMode Then Exit Sub
         If Shift = 0 And KeyCode = vbKeyF9 Then
@@ -3181,22 +3181,22 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                     .Show vbModal
                     If .LoadItems Then
                         For i = 1 To .fpSpread1.DataRowCnt
-                            .fpSpread1.GetText 1, i, Cval(1) 'Item
-                            .fpSpread1.GetText 3, i, Cval(2) 'Quantity
-                            .fpSpread1.GetText 4, i, Cval(3) 'Price
-                            .fpSpread1.GetText 5, i, Cval(4) 'Item Code
-                            .fpSpread1.GetText 6, i, Cval(5) 'HSN Code
-                            .fpSpread1.GetText 7, i, Cval(6) 'HSN
-                            If Val(Cval(2)) > 0 Then
+                            .fpSpread1.GetText 1, i, cVal(1) 'Item
+                            .fpSpread1.GetText 3, i, cVal(2) 'Quantity
+                            .fpSpread1.GetText 4, i, cVal(3) 'Price
+                            .fpSpread1.GetText 5, i, cVal(4) 'Item Code
+                            .fpSpread1.GetText 6, i, cVal(5) 'HSN Code
+                            .fpSpread1.GetText 7, i, cVal(6) 'HSN
+                            If Val(cVal(2)) > 0 Then
                                 x = fpSpread1.DataRowCnt + 1
-                                fpSpread1.SetText 1, x, Cval(1)
-                                fpSpread1.SetText 2, x, Cval(6)
-                                fpSpread1.SetText 4, x, Val(Cval(2))
-                                fpSpread1.SetText 5, x, Val(Cval(3))
+                                fpSpread1.SetText 1, x, cVal(1)
+                                fpSpread1.SetText 2, x, cVal(6)
+                                fpSpread1.SetText 4, x, Val(cVal(2))
+                                fpSpread1.SetText 5, x, Val(cVal(3))
                                 fpSpread1.SetText 6, x, 0
-                                fpSpread1.SetText 7, x, Val(Cval(2)) * Val(Cval(3))
-                                fpSpread1.SetText 8, x, Cval(4)
-                                fpSpread1.SetText 9, x, Cval(5)
+                                fpSpread1.SetText 7, x, Val(cVal(2)) * Val(cVal(3))
+                                fpSpread1.SetText 8, x, cVal(4)
+                                fpSpread1.SetText 9, x, cVal(5)
                             End If
                         Next
                         CalculateTotal

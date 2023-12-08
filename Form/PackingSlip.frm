@@ -13,7 +13,7 @@ Begin VB.Form FrmPackingSlip
    Caption         =   "Packing Slip"
    ClientHeight    =   8865
    ClientLeft      =   45
-   ClientTop       =   225
+   ClientTop       =   390
    ClientWidth     =   14505
    BeginProperty Font 
       Name            =   "Arial"
@@ -605,8 +605,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0D7E
-               Picture         =   "PackingSlip.frx":0D9A
+               Picture         =   "PackingSlip.frx":0E82
+               Picture         =   "PackingSlip.frx":0E9E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -632,8 +632,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0DB6
-               Picture         =   "PackingSlip.frx":0DD2
+               Picture         =   "PackingSlip.frx":0EBA
+               Picture         =   "PackingSlip.frx":0ED6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -659,8 +659,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0DEE
-               Picture         =   "PackingSlip.frx":0E0A
+               Picture         =   "PackingSlip.frx":0EF2
+               Picture         =   "PackingSlip.frx":0F0E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -686,8 +686,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":0E26
-               Picture         =   "PackingSlip.frx":0E42
+               Picture         =   "PackingSlip.frx":0F2A
+               Picture         =   "PackingSlip.frx":0F46
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -699,8 +699,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   3201
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":0E5E
-               Caption         =   "PackingSlip.frx":0F76
+               Calendar        =   "PackingSlip.frx":0F62
+               Caption         =   "PackingSlip.frx":107A
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -710,9 +710,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":0FE2
-               Keys            =   "PackingSlip.frx":1000
-               Spin            =   "PackingSlip.frx":105E
+               DropDown        =   "PackingSlip.frx":10E6
+               Keys            =   "PackingSlip.frx":1104
+               Spin            =   "PackingSlip.frx":1162
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -862,9 +862,9 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1086
+               Picture         =   "PackingSlip.frx":118A
                VAlignment      =   0
-               Picture         =   "PackingSlip.frx":10A2
+               Picture         =   "PackingSlip.frx":11A6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -891,8 +891,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":10BE
-               Picture         =   "PackingSlip.frx":10DA
+               Picture         =   "PackingSlip.frx":11C2
+               Picture         =   "PackingSlip.frx":11DE
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -918,8 +918,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":10F6
-               Picture         =   "PackingSlip.frx":1112
+               Picture         =   "PackingSlip.frx":11FA
+               Picture         =   "PackingSlip.frx":1216
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -945,8 +945,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":112E
-               Picture         =   "PackingSlip.frx":114A
+               Picture         =   "PackingSlip.frx":1232
+               Picture         =   "PackingSlip.frx":124E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
@@ -972,8 +972,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1166
-               Picture         =   "PackingSlip.frx":1182
+               Picture         =   "PackingSlip.frx":126A
+               Picture         =   "PackingSlip.frx":1286
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   330
@@ -999,8 +999,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":119E
-               Picture         =   "PackingSlip.frx":11BA
+               Picture         =   "PackingSlip.frx":12A2
+               Picture         =   "PackingSlip.frx":12BE
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput4 
                Height          =   330
@@ -1012,8 +1012,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":11D6
-               Caption         =   "PackingSlip.frx":12EE
+               Calendar        =   "PackingSlip.frx":12DA
+               Caption         =   "PackingSlip.frx":13F2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1023,9 +1023,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":135A
-               Keys            =   "PackingSlip.frx":1378
-               Spin            =   "PackingSlip.frx":13D6
+               DropDown        =   "PackingSlip.frx":145E
+               Keys            =   "PackingSlip.frx":147C
+               Spin            =   "PackingSlip.frx":14DA
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1089,8 +1089,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":13FE
-               Picture         =   "PackingSlip.frx":141A
+               Picture         =   "PackingSlip.frx":1502
+               Picture         =   "PackingSlip.frx":151E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
@@ -1116,8 +1116,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1436
-               Picture         =   "PackingSlip.frx":1452
+               Picture         =   "PackingSlip.frx":153A
+               Picture         =   "PackingSlip.frx":1556
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
@@ -1143,8 +1143,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":146E
-               Picture         =   "PackingSlip.frx":148A
+               Picture         =   "PackingSlip.frx":1572
+               Picture         =   "PackingSlip.frx":158E
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -1156,8 +1156,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":14A6
-               Caption         =   "PackingSlip.frx":15BE
+               Calendar        =   "PackingSlip.frx":15AA
+               Caption         =   "PackingSlip.frx":16C2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1167,9 +1167,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":162A
-               Keys            =   "PackingSlip.frx":1648
-               Spin            =   "PackingSlip.frx":16A6
+               DropDown        =   "PackingSlip.frx":172E
+               Keys            =   "PackingSlip.frx":174C
+               Spin            =   "PackingSlip.frx":17AA
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1219,8 +1219,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":16CE
-               Caption         =   "PackingSlip.frx":16EE
+               Calculator      =   "PackingSlip.frx":17D2
+               Caption         =   "PackingSlip.frx":17F2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1230,9 +1230,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":175A
-               Keys            =   "PackingSlip.frx":1778
-               Spin            =   "PackingSlip.frx":17C2
+               DropDown        =   "PackingSlip.frx":185E
+               Keys            =   "PackingSlip.frx":187C
+               Spin            =   "PackingSlip.frx":18C6
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1278,8 +1278,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":17EA
-               Caption         =   "PackingSlip.frx":180A
+               Calculator      =   "PackingSlip.frx":18EE
+               Caption         =   "PackingSlip.frx":190E
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1289,9 +1289,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1876
-               Keys            =   "PackingSlip.frx":1894
-               Spin            =   "PackingSlip.frx":18DE
+               DropDown        =   "PackingSlip.frx":197A
+               Keys            =   "PackingSlip.frx":1998
+               Spin            =   "PackingSlip.frx":19E2
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1337,8 +1337,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":1906
-               Caption         =   "PackingSlip.frx":1926
+               Calculator      =   "PackingSlip.frx":1A0A
+               Caption         =   "PackingSlip.frx":1A2A
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1348,9 +1348,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1992
-               Keys            =   "PackingSlip.frx":19B0
-               Spin            =   "PackingSlip.frx":19FA
+               DropDown        =   "PackingSlip.frx":1A96
+               Keys            =   "PackingSlip.frx":1AB4
+               Spin            =   "PackingSlip.frx":1AFE
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1396,8 +1396,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":1A22
-               Caption         =   "PackingSlip.frx":1B3A
+               Calendar        =   "PackingSlip.frx":1B26
+               Caption         =   "PackingSlip.frx":1C3E
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1407,9 +1407,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1BA6
-               Keys            =   "PackingSlip.frx":1BC4
-               Spin            =   "PackingSlip.frx":1C22
+               DropDown        =   "PackingSlip.frx":1CAA
+               Keys            =   "PackingSlip.frx":1CC8
+               Spin            =   "PackingSlip.frx":1D26
                AlignHorizontal =   0
                AlignVertical   =   2
                Appearance      =   0
@@ -1473,8 +1473,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1C4A
-               Picture         =   "PackingSlip.frx":1C66
+               Picture         =   "PackingSlip.frx":1D4E
+               Picture         =   "PackingSlip.frx":1D6A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
@@ -1500,8 +1500,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1C82
-               Picture         =   "PackingSlip.frx":1C9E
+               Picture         =   "PackingSlip.frx":1D86
+               Picture         =   "PackingSlip.frx":1DA2
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
@@ -1531,7 +1531,7 @@ Begin VB.Form FrmPackingSlip
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "PackingSlip.frx":1CBA
+               Picture         =   "PackingSlip.frx":1DBE
                Begin VB.CheckBox Check1 
                   BackColor       =   &H00FFFFFF&
                   BeginProperty Font 
@@ -1574,8 +1574,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1CD6
-               Picture         =   "PackingSlip.frx":1CF2
+               Picture         =   "PackingSlip.frx":1DDA
+               Picture         =   "PackingSlip.frx":1DF6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
@@ -1601,8 +1601,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1D0E
-               Picture         =   "PackingSlip.frx":1D2A
+               Picture         =   "PackingSlip.frx":1E12
+               Picture         =   "PackingSlip.frx":1E2E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
                Height          =   330
@@ -1628,8 +1628,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1D46
-               Picture         =   "PackingSlip.frx":1D62
+               Picture         =   "PackingSlip.frx":1E4A
+               Picture         =   "PackingSlip.frx":1E66
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput13 
                Height          =   330
@@ -1640,8 +1640,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   5530
                _ExtentY        =   582
-               Calculator      =   "PackingSlip.frx":1D7E
-               Caption         =   "PackingSlip.frx":1D9E
+               Calculator      =   "PackingSlip.frx":1E82
+               Caption         =   "PackingSlip.frx":1EA2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1651,9 +1651,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":1E0A
-               Keys            =   "PackingSlip.frx":1E28
-               Spin            =   "PackingSlip.frx":1E72
+               DropDown        =   "PackingSlip.frx":1F0E
+               Keys            =   "PackingSlip.frx":1F2C
+               Spin            =   "PackingSlip.frx":1F76
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1712,8 +1712,8 @@ Begin VB.Form FrmPackingSlip
                Caption         =   ""
                Alignment       =   1
                BorderStyle     =   0
-               Picture         =   "PackingSlip.frx":1E9A
-               Picture         =   "PackingSlip.frx":1EB6
+               Picture         =   "PackingSlip.frx":1F9E
+               Picture         =   "PackingSlip.frx":1FBA
             End
             Begin Mh3dlblLib.Mh3dLabel lblPkdQty 
                Height          =   240
@@ -1738,8 +1738,8 @@ Begin VB.Form FrmPackingSlip
                Caption         =   ""
                Alignment       =   1
                BorderStyle     =   0
-               Picture         =   "PackingSlip.frx":1ED2
-               Picture         =   "PackingSlip.frx":1EEE
+               Picture         =   "PackingSlip.frx":1FD6
+               Picture         =   "PackingSlip.frx":1FF2
             End
             Begin Mh3dlblLib.Mh3dLabel lblVchCreator 
                Height          =   240
@@ -1764,8 +1764,8 @@ Begin VB.Form FrmPackingSlip
                Caption         =   ""
                Alignment       =   0
                BorderStyle     =   0
-               Picture         =   "PackingSlip.frx":1F0A
-               Picture         =   "PackingSlip.frx":1F26
+               Picture         =   "PackingSlip.frx":200E
+               Picture         =   "PackingSlip.frx":202A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
                Height          =   330
@@ -1791,8 +1791,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1F42
-               Picture         =   "PackingSlip.frx":1F5E
+               Picture         =   "PackingSlip.frx":2046
+               Picture         =   "PackingSlip.frx":2062
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
@@ -1818,8 +1818,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1F7A
-               Picture         =   "PackingSlip.frx":1F96
+               Picture         =   "PackingSlip.frx":207E
+               Picture         =   "PackingSlip.frx":209A
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
                Height          =   330
@@ -1849,7 +1849,7 @@ Begin VB.Form FrmPackingSlip
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "PackingSlip.frx":1FB2
+               Picture         =   "PackingSlip.frx":20B6
                Begin VB.CheckBox Check2 
                   BackColor       =   &H00FFFFFF&
                   BeginProperty Font 
@@ -1893,8 +1893,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":1FCE
-               Picture         =   "PackingSlip.frx":1FEA
+               Picture         =   "PackingSlip.frx":20D2
+               Picture         =   "PackingSlip.frx":20EE
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput5 
                Height          =   330
@@ -1905,8 +1905,8 @@ Begin VB.Form FrmPackingSlip
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PackingSlip.frx":2006
-               Caption         =   "PackingSlip.frx":211E
+               Calendar        =   "PackingSlip.frx":210A
+               Caption         =   "PackingSlip.frx":2222
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1916,9 +1916,9 @@ Begin VB.Form FrmPackingSlip
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PackingSlip.frx":218A
-               Keys            =   "PackingSlip.frx":21A8
-               Spin            =   "PackingSlip.frx":2206
+               DropDown        =   "PackingSlip.frx":228E
+               Keys            =   "PackingSlip.frx":22AC
+               Spin            =   "PackingSlip.frx":230A
                AlignHorizontal =   2
                AlignVertical   =   2
                Appearance      =   0
@@ -1982,8 +1982,8 @@ Begin VB.Form FrmPackingSlip
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PackingSlip.frx":222E
-               Picture         =   "PackingSlip.frx":224A
+               Picture         =   "PackingSlip.frx":2332
+               Picture         =   "PackingSlip.frx":234E
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -2022,8 +2022,8 @@ Begin VB.Form FrmPackingSlip
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "PackingSlip.frx":2266
-            Picture         =   "PackingSlip.frx":2282
+            Picture         =   "PackingSlip.frx":236A
+            Picture         =   "PackingSlip.frx":2386
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
             Height          =   330
@@ -2049,8 +2049,8 @@ Begin VB.Form FrmPackingSlip
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "PackingSlip.frx":229E
-            Picture         =   "PackingSlip.frx":22BA
+            Picture         =   "PackingSlip.frx":23A2
+            Picture         =   "PackingSlip.frx":23BE
          End
          Begin MSForms.ComboBox Combo7 
             Height          =   330

@@ -6,7 +6,7 @@ Begin VB.Form FrmChangePassword
    Caption         =   "Change Password..."
    ClientHeight    =   1410
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4200
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmChangePassword
    MaxButton       =   0   'False
    ScaleHeight     =   1410
    ScaleWidth      =   4200
-   StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtOldPassword 
       Appearance      =   0  'Flat
       BackColor       =   &H00FFFFFF&

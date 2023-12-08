@@ -483,13 +483,13 @@ Private Sub PrintDayBook()
             .MoveNext
         Loop
     End With
-    rstDayBook.MoveFirst
-    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
-    rptDayBook.Text12.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
-    rptDayBook.Text7.SetText "From " + Format(GetDate(MhDateInput1.Text), "dd-mm-yyyy") + " To " + Format(GetDate(MhDateInput2.Text), "dd-mm-yyyy")
-    rptDayBook.Database.SetDataSource rstDayBook, 3, 1
-    rptDayBook.DiscardSavedData
-    If OutputTo = "S" Then Set FrmReportViewer.Report = rptDayBook: FrmReportViewer.Show vbModal Else rptDayBook.PaperSource = crPRBinAuto: rptDayBook.PrintOut
-    Set rptDayBook = Nothing
+'    rstDayBook.MoveFirst
+'    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+'    rptDayBook.Text12.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
+'    rptDayBook.Text7.SetText "From " + Format(GetDate(MhDateInput1.Text), "dd-mm-yyyy") + " To " + Format(GetDate(MhDateInput2.Text), "dd-mm-yyyy")
+'    rptDayBook.Database.SetDataSource rstDayBook, 3, 1
+'    rptDayBook.DiscardSavedData
+'    If OutputTo = "S" Then Set FrmReportViewer.Report = rptDayBook: FrmReportViewer.Show vbModal Else rptDayBook.PaperSource = crPRBinAuto: rptDayBook.PrintOut
+'    Set rptDayBook = Nothing
     On Error GoTo 0
 End Sub

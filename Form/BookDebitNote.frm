@@ -11,7 +11,7 @@ Begin VB.Form FrmBookDebitNote
    Caption         =   "Book Debit Note"
    ClientHeight    =   7725
    ClientLeft      =   45
-   ClientTop       =   225
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -563,8 +563,8 @@ Begin VB.Form FrmBookDebitNote
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookDebitNote.frx":0DBF
-            Picture         =   "BookDebitNote.frx":0DDB
+            Picture         =   "BookDebitNote.frx":0EE7
+            Picture         =   "BookDebitNote.frx":0F03
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

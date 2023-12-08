@@ -9,7 +9,7 @@ Begin VB.Form FrmTeamMemberMaster
    Caption         =   "Project Member Master"
    ClientHeight    =   5160
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   6750
    BeginProperty Font 
       Name            =   "Comic Sans MS"

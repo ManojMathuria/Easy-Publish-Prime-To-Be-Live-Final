@@ -1,9 +1,9 @@
 VERSION 5.00
 Begin {BD4B4E61-F7B8-11D0-964D-00A0C9273C2A} rptJobworkBill 
-   ClientHeight    =   9870
+   ClientHeight    =   10155
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   16920
+   ClientWidth     =   15135
    OleObjectBlob   =   "JobworkBill.dsx":0000
 End
 Attribute VB_Name = "rptJobworkBill"

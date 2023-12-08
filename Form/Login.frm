@@ -6,7 +6,7 @@ Begin VB.Form FrmLogin
    Caption         =   "Login Please..."
    ClientHeight    =   1590
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4440
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmLogin
    MaxButton       =   0   'False
    ScaleHeight     =   1590
    ScaleWidth      =   4440
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Height          =   375

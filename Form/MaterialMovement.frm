@@ -27,7 +27,6 @@ Begin VB.Form FrmMaterialMovement
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8400
    ScaleWidth      =   15675
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -605,8 +604,8 @@ Begin VB.Form FrmMaterialMovement
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "MaterialMovement.frx":0975
-            Picture         =   "MaterialMovement.frx":0991
+            Picture         =   "MaterialMovement.frx":0A79
+            Picture         =   "MaterialMovement.frx":0A95
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -750,6 +749,8 @@ Dim OutputTo As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     WheelHook DataGrid1
     BusySystemIndicator True
     cnMaterialMovement.CursorLocation = adUseClient

@@ -7,7 +7,7 @@ Begin VB.Form FrmCompanyMaster
    Caption         =   "Company Master"
    ClientHeight    =   6615
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   8745
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
@@ -15,7 +15,6 @@ Begin VB.Form FrmCompanyMaster
    MaxButton       =   0   'False
    ScaleHeight     =   6615
    ScaleWidth      =   8745
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdExit 
       Height          =   375
       Left            =   8270

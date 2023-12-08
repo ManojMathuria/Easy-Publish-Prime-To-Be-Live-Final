@@ -10,7 +10,7 @@ Begin VB.Form FrmBindingTypeMaster
    Caption         =   "Binding Type Master"
    ClientHeight    =   4875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   6750
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -388,8 +388,8 @@ Begin VB.Form FrmBindingTypeMaster
             Caption         =   "Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save"
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BindingTypeMaster.frx":06BF
-            Picture         =   "BindingTypeMaster.frx":06DB
+            Picture         =   "BindingTypeMaster.frx":07C3
+            Picture         =   "BindingTypeMaster.frx":07DF
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -521,8 +521,8 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
     WheelHook DataGrid1
-    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+ '   Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnBindingTypeMaster.CursorLocation = adUseClient: cnBindingTypeMaster.Open cnDatabase.ConnectionString
     rstBindingTypeList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='6' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

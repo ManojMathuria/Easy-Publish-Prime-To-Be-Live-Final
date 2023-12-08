@@ -7,7 +7,7 @@ Begin VB.Form FrmDiscountMaster
    Caption         =   "Discount Structure"
    ClientHeight    =   7980
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   8430
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,7 +24,6 @@ Begin VB.Form FrmDiscountMaster
    MaxButton       =   0   'False
    ScaleHeight     =   7980
    ScaleWidth      =   8430
-   StartUpPosition =   2  'CenterScreen
    Begin VB.Timer Timer1 
       Interval        =   4
       Left            =   6000

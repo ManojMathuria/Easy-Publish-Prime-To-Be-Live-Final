@@ -11,7 +11,7 @@ Begin VB.Form FrmEmailing
    Caption         =   "Email"
    ClientHeight    =   9375
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   19845
    BeginProperty Font 
       Name            =   "Arial"
@@ -627,8 +627,8 @@ Begin VB.Form FrmEmailing
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "emailing.frx":2DB5
-         Picture         =   "emailing.frx":2DD1
+         Picture         =   "emailing.frx":2EDD
+         Picture         =   "emailing.frx":2EF9
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber1 
          Height          =   330
@@ -639,8 +639,8 @@ Begin VB.Form FrmEmailing
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "emailing.frx":2DED
-         Caption         =   "emailing.frx":2E0D
+         Calculator      =   "emailing.frx":2F15
+         Caption         =   "emailing.frx":2F35
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -650,9 +650,9 @@ Begin VB.Form FrmEmailing
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "emailing.frx":2E71
-         Keys            =   "emailing.frx":2E8F
-         Spin            =   "emailing.frx":2ED9
+         DropDown        =   "emailing.frx":2F99
+         Keys            =   "emailing.frx":2FB7
+         Spin            =   "emailing.frx":3001
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -712,8 +712,8 @@ Begin VB.Form FrmEmailing
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "emailing.frx":2F01
-         Picture         =   "emailing.frx":2F1D
+         Picture         =   "emailing.frx":3029
+         Picture         =   "emailing.frx":3045
       End
       Begin MSForms.ComboBox Combo3 
          Height          =   330

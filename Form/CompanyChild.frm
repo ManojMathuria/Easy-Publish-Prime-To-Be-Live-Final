@@ -6,7 +6,7 @@ Begin VB.Form FrmCompanyChild
    Caption         =   "CompanyChild"
    ClientHeight    =   6495
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   18315
    BeginProperty Font 
       Name            =   "Arial"
@@ -22,7 +22,6 @@ Begin VB.Form FrmCompanyChild
    MaxButton       =   0   'False
    ScaleHeight     =   6495
    ScaleWidth      =   18315
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdRefresh 
       Height          =   375
       Left            =   17835
@@ -121,7 +120,7 @@ Dim EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnCompanyChild.CursorLocation = adUseClient
     cnCompanyChild.Open cnDatabase.ConnectionString

@@ -26,7 +26,6 @@ Begin VB.Form FrmStockJournal
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   10965.03
    ScaleMode       =   0  'User
    ScaleWidth      =   15675
@@ -376,8 +375,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":06A8
-               Picture         =   "StockJournal.frx":06C4
+               Picture         =   "StockJournal.frx":07D0
+               Picture         =   "StockJournal.frx":07EC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -404,8 +403,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":06E0
-               Picture         =   "StockJournal.frx":06FC
+               Picture         =   "StockJournal.frx":0808
+               Picture         =   "StockJournal.frx":0824
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -431,8 +430,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0718
-               Picture         =   "StockJournal.frx":0734
+               Picture         =   "StockJournal.frx":0840
+               Picture         =   "StockJournal.frx":085C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -458,8 +457,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0750
-               Picture         =   "StockJournal.frx":076C
+               Picture         =   "StockJournal.frx":0878
+               Picture         =   "StockJournal.frx":0894
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -470,8 +469,8 @@ Begin VB.Form FrmStockJournal
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournal.frx":0788
-               Caption         =   "StockJournal.frx":08A0
+               Calendar        =   "StockJournal.frx":08B0
+               Caption         =   "StockJournal.frx":09C8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -481,9 +480,9 @@ Begin VB.Form FrmStockJournal
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournal.frx":090C
-               Keys            =   "StockJournal.frx":092A
-               Spin            =   "StockJournal.frx":0988
+               DropDown        =   "StockJournal.frx":0A34
+               Keys            =   "StockJournal.frx":0A52
+               Spin            =   "StockJournal.frx":0AB0
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -564,7 +563,7 @@ Begin VB.Form FrmStockJournal
                MaxCols         =   6
                MaxRows         =   100
                OperationMode   =   2
-               SpreadDesigner  =   "StockJournal.frx":09B0
+               SpreadDesigner  =   "StockJournal.frx":0AD8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -590,8 +589,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":100F
-               Picture         =   "StockJournal.frx":102B
+               Picture         =   "StockJournal.frx":125F
+               Picture         =   "StockJournal.frx":127B
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
@@ -617,8 +616,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":1047
-               Picture         =   "StockJournal.frx":1063
+               Picture         =   "StockJournal.frx":1297
+               Picture         =   "StockJournal.frx":12B3
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -629,8 +628,8 @@ Begin VB.Form FrmStockJournal
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournal.frx":107F
-               Caption         =   "StockJournal.frx":1197
+               Calendar        =   "StockJournal.frx":12CF
+               Caption         =   "StockJournal.frx":13E7
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -640,9 +639,9 @@ Begin VB.Form FrmStockJournal
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournal.frx":1203
-               Keys            =   "StockJournal.frx":1221
-               Spin            =   "StockJournal.frx":127F
+               DropDown        =   "StockJournal.frx":1453
+               Keys            =   "StockJournal.frx":1471
+               Spin            =   "StockJournal.frx":14CF
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -726,8 +725,8 @@ Begin VB.Form FrmStockJournal
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "StockJournal.frx":12A7
-            Picture         =   "StockJournal.frx":12C3
+            Picture         =   "StockJournal.frx":14F7
+            Picture         =   "StockJournal.frx":1513
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -855,6 +854,8 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+ '   Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     WheelHook DataGrid1
     BusySystemIndicator True
     cnMaterialStockAdjustment.CursorLocation = adUseClient

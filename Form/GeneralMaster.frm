@@ -11,7 +11,7 @@ Begin VB.Form FrmGeneralMaster
    Caption         =   "General Master"
    ClientHeight    =   5730
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   7590
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -105,8 +105,8 @@ Begin VB.Form FrmGeneralMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "GeneralMaster.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -490,7 +490,7 @@ Begin VB.Form FrmGeneralMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "GeneralMaster.frx":075D
+               Picture         =   "GeneralMaster.frx":08A9
                Begin VB.CheckBox cbValue 
                   Caption         =   "Check1"
                   Height          =   210
@@ -526,8 +526,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":0779
-            Picture         =   "GeneralMaster.frx":0795
+            Picture         =   "GeneralMaster.frx":08C5
+            Picture         =   "GeneralMaster.frx":08E1
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   300
@@ -554,8 +554,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":07B1
-            Picture         =   "GeneralMaster.frx":07CD
+            Picture         =   "GeneralMaster.frx":08FD
+            Picture         =   "GeneralMaster.frx":0919
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -730,7 +730,7 @@ Private Sub Form_Load()
         If MasterType = "56" Then Mh3dLabel3.Caption = " Code" 'State Master
     End If
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     If cnDatabase.State Then cnDatabase.Close: cnDatabase.Open
@@ -1346,20 +1346,20 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Accoun
     Call Text4_Change
 End Sub
 Private Sub Text4_Change()
-    Dim i As Integer, Cval As Variant
+    Dim i As Integer, cVal As Variant
     If oKeyCode <> vbKeyReturn Then
     With fpSpread1
         For i = 1 To .DataRowCnt
             .Row = i: .RowHidden = False
         Next
         For i = 1 To .DataRowCnt
-            .GetText 1, i, Cval
+            .GetText 1, i, cVal
             If CheckEmpty(Text4.Text, False) Then
                 .SetActiveCell 1, 1
-            ElseIf InStr(StrConv(Cval, vbUpperCase), StrConv(Trim(Text4.Text), vbUpperCase)) > 0 Then
+            ElseIf InStr(StrConv(cVal, vbUpperCase), StrConv(Trim(Text4.Text), vbUpperCase)) > 0 Then
                 '.SetActiveCell 1, i: Exit Sub
                 .SetActiveCell 1, i
-            ElseIf InStr(StrConv(Cval, vbUpperCase), StrConv(Trim(Text4.Text), vbUpperCase)) < 0 Then
+            ElseIf InStr(StrConv(cVal, vbUpperCase), StrConv(Trim(Text4.Text), vbUpperCase)) < 0 Then
             .Row = i: .RowHidden = True
             End If
         Next

@@ -7,7 +7,7 @@ Begin VB.Form FrmBookPOChild0801
    Caption         =   "BOM Details"
    ClientHeight    =   7695
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   17160
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,7 +24,6 @@ Begin VB.Form FrmBookPOChild0801
    MaxButton       =   0   'False
    ScaleHeight     =   7695
    ScaleWidth      =   17160
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       BackColor       =   &H008BD6FE&
       Height          =   375
@@ -143,8 +142,8 @@ Begin VB.Form FrmBookPOChild0801
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild0801.frx":0C5E
-         Picture         =   "BookPOChild0801.frx":0C7A
+         Picture         =   "BookPOChild0801.frx":0D3E
+         Picture         =   "BookPOChild0801.frx":0D5A
       End
       Begin VB.Line Line2 
          X1              =   0
@@ -178,10 +177,10 @@ Begin VB.Form FrmBookPOChild0801
       AutoSize        =   -1  'True
       FillColor       =   8421504
       TextColor       =   16777215
-      Picture         =   "BookPOChild0801.frx":0C96
+      Picture         =   "BookPOChild0801.frx":0D76
       Multiline       =   -1  'True
       GlobalMem       =   -1  'True
-      Picture         =   "BookPOChild0801.frx":0CB2
+      Picture         =   "BookPOChild0801.frx":0D92
    End
 End
 Attribute VB_Name = "FrmBookPOChild0801"
@@ -196,7 +195,7 @@ Private Sub Form_Load()
     Dim i As Integer
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     AbortPO = False

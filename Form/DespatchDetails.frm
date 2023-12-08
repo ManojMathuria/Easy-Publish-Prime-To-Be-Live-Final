@@ -7,7 +7,7 @@ Begin VB.Form FrmDespatchDetails
    Caption         =   "Transport Details"
    ClientHeight    =   2070
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   8160
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmDespatchDetails
    MaxButton       =   0   'False
    ScaleHeight     =   2070
    ScaleWidth      =   8160
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdProceed 
       Height          =   375
       Left            =   7680

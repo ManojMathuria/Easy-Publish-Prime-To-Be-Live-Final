@@ -13,7 +13,7 @@ Begin VB.Form FrmPaperPurchaseOrder
    Caption         =   "Paper Purchase Order"
    ClientHeight    =   8985
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   17745
    BeginProperty Font 
       Name            =   "Arial"
@@ -1102,7 +1102,7 @@ Begin VB.Form FrmPaperPurchaseOrder
                MaxCols         =   14
                MaxRows         =   1000
                ScrollBars      =   2
-               SpreadDesigner  =   "PaperPurchaseOrder.frx":1EE7
+               SpreadDesigner  =   "PaperPurchaseOrder.frx":1FEB
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput4 
                Height          =   330
@@ -1113,8 +1113,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PaperPurchaseOrder.frx":2BEA
-               Caption         =   "PaperPurchaseOrder.frx":2D02
+               Calendar        =   "PaperPurchaseOrder.frx":2DF2
+               Caption         =   "PaperPurchaseOrder.frx":2F0A
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1124,9 +1124,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":2D6E
-               Keys            =   "PaperPurchaseOrder.frx":2D8C
-               Spin            =   "PaperPurchaseOrder.frx":2DEA
+               DropDown        =   "PaperPurchaseOrder.frx":2F76
+               Keys            =   "PaperPurchaseOrder.frx":2F94
+               Spin            =   "PaperPurchaseOrder.frx":2FF2
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -1175,8 +1175,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PaperPurchaseOrder.frx":2E12
-               Caption         =   "PaperPurchaseOrder.frx":2F2A
+               Calendar        =   "PaperPurchaseOrder.frx":301A
+               Caption         =   "PaperPurchaseOrder.frx":3132
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1186,9 +1186,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":2F96
-               Keys            =   "PaperPurchaseOrder.frx":2FB4
-               Spin            =   "PaperPurchaseOrder.frx":3012
+               DropDown        =   "PaperPurchaseOrder.frx":319E
+               Keys            =   "PaperPurchaseOrder.frx":31BC
+               Spin            =   "PaperPurchaseOrder.frx":321A
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -1237,8 +1237,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calendar        =   "PaperPurchaseOrder.frx":303A
-               Caption         =   "PaperPurchaseOrder.frx":3152
+               Calendar        =   "PaperPurchaseOrder.frx":3242
+               Caption         =   "PaperPurchaseOrder.frx":335A
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1248,9 +1248,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":31BE
-               Keys            =   "PaperPurchaseOrder.frx":31DC
-               Spin            =   "PaperPurchaseOrder.frx":323A
+               DropDown        =   "PaperPurchaseOrder.frx":33C6
+               Keys            =   "PaperPurchaseOrder.frx":33E4
+               Spin            =   "PaperPurchaseOrder.frx":3442
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -1299,8 +1299,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":3262
-               Caption         =   "PaperPurchaseOrder.frx":3282
+               Calculator      =   "PaperPurchaseOrder.frx":346A
+               Caption         =   "PaperPurchaseOrder.frx":348A
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1310,9 +1310,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":32EE
-               Keys            =   "PaperPurchaseOrder.frx":330C
-               Spin            =   "PaperPurchaseOrder.frx":3356
+               DropDown        =   "PaperPurchaseOrder.frx":34F6
+               Keys            =   "PaperPurchaseOrder.frx":3514
+               Spin            =   "PaperPurchaseOrder.frx":355E
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1357,8 +1357,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2699
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":337E
-               Caption         =   "PaperPurchaseOrder.frx":339E
+               Calculator      =   "PaperPurchaseOrder.frx":3586
+               Caption         =   "PaperPurchaseOrder.frx":35A6
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1368,9 +1368,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":340A
-               Keys            =   "PaperPurchaseOrder.frx":3428
-               Spin            =   "PaperPurchaseOrder.frx":3472
+               DropDown        =   "PaperPurchaseOrder.frx":3612
+               Keys            =   "PaperPurchaseOrder.frx":3630
+               Spin            =   "PaperPurchaseOrder.frx":367A
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1415,8 +1415,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2699
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":349A
-               Caption         =   "PaperPurchaseOrder.frx":34BA
+               Calculator      =   "PaperPurchaseOrder.frx":36A2
+               Caption         =   "PaperPurchaseOrder.frx":36C2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1426,9 +1426,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":3526
-               Keys            =   "PaperPurchaseOrder.frx":3544
-               Spin            =   "PaperPurchaseOrder.frx":358E
+               DropDown        =   "PaperPurchaseOrder.frx":372E
+               Keys            =   "PaperPurchaseOrder.frx":374C
+               Spin            =   "PaperPurchaseOrder.frx":3796
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1474,8 +1474,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":35B6
-               Caption         =   "PaperPurchaseOrder.frx":35D6
+               Calculator      =   "PaperPurchaseOrder.frx":37BE
+               Caption         =   "PaperPurchaseOrder.frx":37DE
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1485,9 +1485,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":3642
-               Keys            =   "PaperPurchaseOrder.frx":3660
-               Spin            =   "PaperPurchaseOrder.frx":36AA
+               DropDown        =   "PaperPurchaseOrder.frx":384A
+               Keys            =   "PaperPurchaseOrder.frx":3868
+               Spin            =   "PaperPurchaseOrder.frx":38B2
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1532,8 +1532,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":36D2
-               Caption         =   "PaperPurchaseOrder.frx":36F2
+               Calculator      =   "PaperPurchaseOrder.frx":38DA
+               Caption         =   "PaperPurchaseOrder.frx":38FA
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1543,9 +1543,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":375E
-               Keys            =   "PaperPurchaseOrder.frx":377C
-               Spin            =   "PaperPurchaseOrder.frx":37C6
+               DropDown        =   "PaperPurchaseOrder.frx":3966
+               Keys            =   "PaperPurchaseOrder.frx":3984
+               Spin            =   "PaperPurchaseOrder.frx":39CE
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1590,8 +1590,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2699
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":37EE
-               Caption         =   "PaperPurchaseOrder.frx":380E
+               Calculator      =   "PaperPurchaseOrder.frx":39F6
+               Caption         =   "PaperPurchaseOrder.frx":3A16
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1601,9 +1601,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":387A
-               Keys            =   "PaperPurchaseOrder.frx":3898
-               Spin            =   "PaperPurchaseOrder.frx":38E2
+               DropDown        =   "PaperPurchaseOrder.frx":3A82
+               Keys            =   "PaperPurchaseOrder.frx":3AA0
+               Spin            =   "PaperPurchaseOrder.frx":3AEA
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1649,8 +1649,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":390A
-               Caption         =   "PaperPurchaseOrder.frx":392A
+               Calculator      =   "PaperPurchaseOrder.frx":3B12
+               Caption         =   "PaperPurchaseOrder.frx":3B32
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1660,9 +1660,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":3996
-               Keys            =   "PaperPurchaseOrder.frx":39B4
-               Spin            =   "PaperPurchaseOrder.frx":39FE
+               DropDown        =   "PaperPurchaseOrder.frx":3B9E
+               Keys            =   "PaperPurchaseOrder.frx":3BBC
+               Spin            =   "PaperPurchaseOrder.frx":3C06
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1722,8 +1722,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperPurchaseOrder.frx":3A26
-               Picture         =   "PaperPurchaseOrder.frx":3A42
+               Picture         =   "PaperPurchaseOrder.frx":3C2E
+               Picture         =   "PaperPurchaseOrder.frx":3C4A
                Begin TDBNumber6Ctl.TDBNumber MhRealInput19 
                   Height          =   285
                   Left            =   14085
@@ -1734,8 +1734,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1782
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":3A5E
-                  Caption         =   "PaperPurchaseOrder.frx":3A7E
+                  Calculator      =   "PaperPurchaseOrder.frx":3C66
+                  Caption         =   "PaperPurchaseOrder.frx":3C86
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -1745,9 +1745,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":3AEA
-                  Keys            =   "PaperPurchaseOrder.frx":3B08
-                  Spin            =   "PaperPurchaseOrder.frx":3B52
+                  DropDown        =   "PaperPurchaseOrder.frx":3CF2
+                  Keys            =   "PaperPurchaseOrder.frx":3D10
+                  Spin            =   "PaperPurchaseOrder.frx":3D5A
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -1793,8 +1793,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1746
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":3B7A
-                  Caption         =   "PaperPurchaseOrder.frx":3B9A
+                  Calculator      =   "PaperPurchaseOrder.frx":3D82
+                  Caption         =   "PaperPurchaseOrder.frx":3DA2
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -1804,9 +1804,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":3C06
-                  Keys            =   "PaperPurchaseOrder.frx":3C24
-                  Spin            =   "PaperPurchaseOrder.frx":3C6E
+                  DropDown        =   "PaperPurchaseOrder.frx":3E0E
+                  Keys            =   "PaperPurchaseOrder.frx":3E2C
+                  Spin            =   "PaperPurchaseOrder.frx":3E76
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -1852,8 +1852,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1834
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":3C96
-                  Caption         =   "PaperPurchaseOrder.frx":3CB6
+                  Calculator      =   "PaperPurchaseOrder.frx":3E9E
+                  Caption         =   "PaperPurchaseOrder.frx":3EBE
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -1863,9 +1863,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":3D22
-                  Keys            =   "PaperPurchaseOrder.frx":3D40
-                  Spin            =   "PaperPurchaseOrder.frx":3D8A
+                  DropDown        =   "PaperPurchaseOrder.frx":3F2A
+                  Keys            =   "PaperPurchaseOrder.frx":3F48
+                  Spin            =   "PaperPurchaseOrder.frx":3F92
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -1911,8 +1911,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1570
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":3DB2
-                  Caption         =   "PaperPurchaseOrder.frx":3DD2
+                  Calculator      =   "PaperPurchaseOrder.frx":3FBA
+                  Caption         =   "PaperPurchaseOrder.frx":3FDA
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -1922,9 +1922,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":3E3E
-                  Keys            =   "PaperPurchaseOrder.frx":3E5C
-                  Spin            =   "PaperPurchaseOrder.frx":3EA6
+                  DropDown        =   "PaperPurchaseOrder.frx":4046
+                  Keys            =   "PaperPurchaseOrder.frx":4064
+                  Spin            =   "PaperPurchaseOrder.frx":40AE
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -1985,8 +1985,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperPurchaseOrder.frx":3ECE
-               Picture         =   "PaperPurchaseOrder.frx":3EEA
+               Picture         =   "PaperPurchaseOrder.frx":40D6
+               Picture         =   "PaperPurchaseOrder.frx":40F2
                Begin TDBNumber6Ctl.TDBNumber MhRealInput20 
                   Height          =   285
                   Left            =   13520
@@ -1997,8 +1997,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1746
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":3F06
-                  Caption         =   "PaperPurchaseOrder.frx":3F26
+                  Calculator      =   "PaperPurchaseOrder.frx":410E
+                  Caption         =   "PaperPurchaseOrder.frx":412E
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -2008,9 +2008,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":3F92
-                  Keys            =   "PaperPurchaseOrder.frx":3FB0
-                  Spin            =   "PaperPurchaseOrder.frx":3FFA
+                  DropDown        =   "PaperPurchaseOrder.frx":419A
+                  Keys            =   "PaperPurchaseOrder.frx":41B8
+                  Spin            =   "PaperPurchaseOrder.frx":4202
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -2056,8 +2056,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1173
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":4022
-                  Caption         =   "PaperPurchaseOrder.frx":4042
+                  Calculator      =   "PaperPurchaseOrder.frx":422A
+                  Caption         =   "PaperPurchaseOrder.frx":424A
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -2067,9 +2067,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":40AE
-                  Keys            =   "PaperPurchaseOrder.frx":40CC
-                  Spin            =   "PaperPurchaseOrder.frx":4116
+                  DropDown        =   "PaperPurchaseOrder.frx":42B6
+                  Keys            =   "PaperPurchaseOrder.frx":42D4
+                  Spin            =   "PaperPurchaseOrder.frx":431E
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -2115,8 +2115,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                   _Version        =   65536
                   _ExtentX        =   1826
                   _ExtentY        =   503
-                  Calculator      =   "PaperPurchaseOrder.frx":413E
-                  Caption         =   "PaperPurchaseOrder.frx":415E
+                  Calculator      =   "PaperPurchaseOrder.frx":4346
+                  Caption         =   "PaperPurchaseOrder.frx":4366
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   9.75
@@ -2126,9 +2126,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "PaperPurchaseOrder.frx":41CA
-                  Keys            =   "PaperPurchaseOrder.frx":41E8
-                  Spin            =   "PaperPurchaseOrder.frx":4232
+                  DropDown        =   "PaperPurchaseOrder.frx":43D2
+                  Keys            =   "PaperPurchaseOrder.frx":43F0
+                  Spin            =   "PaperPurchaseOrder.frx":443A
                   AlignHorizontal =   1
                   AlignVertical   =   0
                   Appearance      =   0
@@ -2190,8 +2190,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperPurchaseOrder.frx":425A
-               Picture         =   "PaperPurchaseOrder.frx":4276
+               Picture         =   "PaperPurchaseOrder.frx":4462
+               Picture         =   "PaperPurchaseOrder.frx":447E
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
@@ -2217,8 +2217,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperPurchaseOrder.frx":4292
-               Picture         =   "PaperPurchaseOrder.frx":42AE
+               Picture         =   "PaperPurchaseOrder.frx":449A
+               Picture         =   "PaperPurchaseOrder.frx":44B6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
@@ -2244,8 +2244,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperPurchaseOrder.frx":42CA
-               Picture         =   "PaperPurchaseOrder.frx":42E6
+               Picture         =   "PaperPurchaseOrder.frx":44D2
+               Picture         =   "PaperPurchaseOrder.frx":44EE
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput6 
                Height          =   330
@@ -2256,8 +2256,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "PaperPurchaseOrder.frx":4302
-               Caption         =   "PaperPurchaseOrder.frx":441A
+               Calendar        =   "PaperPurchaseOrder.frx":450A
+               Caption         =   "PaperPurchaseOrder.frx":4622
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2267,9 +2267,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":4486
-               Keys            =   "PaperPurchaseOrder.frx":44A4
-               Spin            =   "PaperPurchaseOrder.frx":4502
+               DropDown        =   "PaperPurchaseOrder.frx":468E
+               Keys            =   "PaperPurchaseOrder.frx":46AC
+               Spin            =   "PaperPurchaseOrder.frx":470A
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -2318,8 +2318,8 @@ Begin VB.Form FrmPaperPurchaseOrder
                _Version        =   65536
                _ExtentX        =   2143
                _ExtentY        =   582
-               Calculator      =   "PaperPurchaseOrder.frx":452A
-               Caption         =   "PaperPurchaseOrder.frx":454A
+               Calculator      =   "PaperPurchaseOrder.frx":4732
+               Caption         =   "PaperPurchaseOrder.frx":4752
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2329,9 +2329,9 @@ Begin VB.Form FrmPaperPurchaseOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperPurchaseOrder.frx":45B6
-               Keys            =   "PaperPurchaseOrder.frx":45D4
-               Spin            =   "PaperPurchaseOrder.frx":461E
+               DropDown        =   "PaperPurchaseOrder.frx":47BE
+               Keys            =   "PaperPurchaseOrder.frx":47DC
+               Spin            =   "PaperPurchaseOrder.frx":4826
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2429,8 +2429,8 @@ Begin VB.Form FrmPaperPurchaseOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "PaperPurchaseOrder.frx":4646
-            Picture         =   "PaperPurchaseOrder.frx":4662
+            Picture         =   "PaperPurchaseOrder.frx":484E
+            Picture         =   "PaperPurchaseOrder.frx":486A
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

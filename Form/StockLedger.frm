@@ -3,8 +3,6 @@ Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{C115893A-A3BF-43AF-B28D-69DB846077F3}#1.0#0"; "vsflex8u.ocx"
-Object = "{54850C51-14EA-4470-A5E4-8C5DB32DC853}#1.0#0"; "vsprint8.ocx"
-Object = "{C8CF160E-7278-4354-8071-850013B36892}#1.0#0"; "vsrpt8.ocx"
 Object = "{96548BD2-D0BF-46B1-B519-8F2268D49306}#1.0#0"; "vsvport8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
@@ -15,8 +13,8 @@ Begin VB.Form FrmStockLedger
    Caption         =   " Stock Status"
    ClientHeight    =   9255
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   19485
+   ClientTop       =   390
+   ClientWidth     =   19305
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -30,27 +28,27 @@ Begin VB.Form FrmStockLedger
    LinkTopic       =   "FrmLogin"
    MaxButton       =   0   'False
    ScaleHeight     =   9255
-   ScaleWidth      =   19485
+   ScaleWidth      =   19305
    Begin VB.CommandButton Command1 
       Height          =   375
-      Left            =   18600
+      Left            =   18480
       Picture         =   "StockLedger.frx":0000
       Style           =   1  'Graphical
       TabIndex        =   25
       ToolTipText     =   "Refresh"
-      Top             =   210
+      Top             =   90
       Width           =   375
    End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-      Height          =   9030
-      Left            =   120
+      Height          =   9270
+      Left            =   0
       TabIndex        =   5
       TabStop         =   0   'False
-      Top             =   120
+      Top             =   0
       Width           =   19290
       _Version        =   65536
       _ExtentX        =   34025
-      _ExtentY        =   15928
+      _ExtentY        =   16351
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -82,35 +80,20 @@ Begin VB.Form FrmStockLedger
             Strikethrough   =   0   'False
          EndProperty
          Height          =   225
-         Left            =   3840
-         TabIndex        =   37
-         Top             =   158
+         Left            =   3360
+         TabIndex        =   35
+         Top             =   645
          Visible         =   0   'False
          Width           =   1575
       End
-      Begin MSComctlLib.Slider Zoom 
-         Height          =   75
-         Left            =   17400
-         TabIndex        =   36
-         TabStop         =   0   'False
-         ToolTipText     =   "Zoom"
-         Top             =   8400
-         Width           =   1815
-         _ExtentX        =   3201
-         _ExtentY        =   132
-         _Version        =   393216
-         Min             =   -5
-         Max             =   5
-         TickStyle       =   2
-      End
       Begin VSFlex8UCtl.VSFlexGrid VSFlexGrid1 
-         Height          =   7935
+         Height          =   7455
          Left            =   120
          TabIndex        =   32
-         Top             =   645
-         Width           =   19095
-         _cx             =   33681
-         _cy             =   13996
+         Top             =   885
+         Width           =   19050
+         _cx             =   33602
+         _cy             =   13150
          Appearance      =   1
          BorderStyle     =   1
          Enabled         =   -1  'True
@@ -200,13 +183,13 @@ Begin VB.Form FrmStockLedger
          AccessibleValue =   ""
          AccessibleRole  =   24
          Begin VSViewPort8LibCtl.VSViewPort VSViewPort1 
-            Height          =   7875
+            Height          =   7515
             Left            =   570
-            TabIndex        =   33
+            TabIndex        =   38
             Top             =   -30
             Width           =   19050
             _cx             =   33602
-            _cy             =   13891
+            _cy             =   13256
             Appearance      =   1
             BorderStyle     =   1
             Enabled         =   -1  'True
@@ -230,229 +213,16 @@ Begin VB.Form FrmStockLedger
             AccessibleValue =   ""
             AccessibleRole  =   9
          End
-         Begin VSPrinter8LibCtl.VSPrinter VSPrinter1 
-            Height          =   7935
-            Left            =   600
-            TabIndex        =   34
-            Top             =   0
-            Width           =   19095
-            _cx             =   33681
-            _cy             =   13996
-            Appearance      =   1
-            BorderStyle     =   1
-            Enabled         =   -1  'True
-            MousePointer    =   0
-            BackColor       =   -2147483643
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Arial"
-               Size            =   11.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            BeginProperty HdrFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Courier New"
-               Size            =   14.25
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            AutoRTF         =   -1  'True
-            Preview         =   -1  'True
-            DefaultDevice   =   0   'False
-            PhysicalPage    =   -1  'True
-            AbortWindow     =   -1  'True
-            AbortWindowPos  =   0
-            AbortCaption    =   "Printing..."
-            AbortTextButton =   "Cancel"
-            AbortTextDevice =   "on the %s on %s"
-            AbortTextPage   =   "Now printing Page %d of"
-            FileName        =   ""
-            MarginLeft      =   1440
-            MarginTop       =   1440
-            MarginRight     =   1440
-            MarginBottom    =   1440
-            MarginHeader    =   0
-            MarginFooter    =   0
-            IndentLeft      =   0
-            IndentRight     =   0
-            IndentFirst     =   0
-            IndentTab       =   720
-            SpaceBefore     =   0
-            SpaceAfter      =   0
-            LineSpacing     =   100
-            Columns         =   1
-            ColumnSpacing   =   180
-            ShowGuides      =   2
-            LargeChangeHorz =   300
-            LargeChangeVert =   300
-            SmallChangeHorz =   30
-            SmallChangeVert =   30
-            Track           =   0   'False
-            ProportionalBars=   -1  'True
-            Zoom            =   42.2974176313446
-            ZoomMode        =   3
-            ZoomMax         =   400
-            ZoomMin         =   10
-            ZoomStep        =   25
-            EmptyColor      =   -2147483636
-            TextColor       =   0
-            HdrColor        =   0
-            BrushColor      =   0
-            BrushStyle      =   0
-            PenColor        =   0
-            PenStyle        =   0
-            PenWidth        =   0
-            PageBorder      =   0
-            Header          =   ""
-            Footer          =   ""
-            TableSep        =   "|;"
-            TableBorder     =   7
-            TablePen        =   0
-            TablePenLR      =   0
-            TablePenTB      =   0
-            NavBar          =   3
-            NavBarColor     =   -2147483633
-            ExportFormat    =   0
-            URL             =   ""
-            Navigation      =   3
-            NavBarMenuText  =   "Whole &Page|Page &Width|&Two Pages|Thumb&nail"
-            AutoLinkNavigate=   0   'False
-            AccessibleName  =   ""
-            AccessibleDescription=   ""
-            AccessibleValue =   ""
-            AccessibleRole  =   9
-         End
-         Begin VSReport8LibCtl.VSReport VSReport1 
-            Left            =   9240
-            Top             =   1560
-            _rv             =   800
-            ReportName      =   ""
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Arial"
-               Size            =   9
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            OnOpen          =   ""
-            OnClose         =   ""
-            OnNoData        =   ""
-            OnPage          =   ""
-            OnError         =   ""
-            MaxPages        =   0
-            DoEvents        =   -1  'True
-            BeginProperty Layout {D853A4F1-D032-4508-909F-18F074BD547A} 
-               Width           =   0
-               MarginLeft      =   1440
-               MarginTop       =   1440
-               MarginRight     =   1440
-               MarginBottom    =   1440
-               Columns         =   1
-               ColumnLayout    =   0
-               Orientation     =   0
-               PageHeader      =   0
-               PageFooter      =   0
-               PictureAlign    =   7
-               PictureShow     =   1
-               PaperSize       =   0
-            EndProperty
-            BeginProperty DataSource {D1359088-0913-44EA-AE50-6A7CD77D4C50} 
-               ConnectionString=   ""
-               RecordSource    =   ""
-               Filter          =   ""
-               MaxRecords      =   0
-            EndProperty
-            GroupCount      =   0
-            SectionCount    =   5
-            BeginProperty Section0 {673CB92F-28D3-421F-86CD-1099425A5037} 
-               Name            =   "Detail"
-               Visible         =   0   'False
-               Height          =   0
-               CanGrow         =   -1  'True
-               CanShrink       =   0   'False
-               KeepTogether    =   -1  'True
-               ForcePageBreak  =   0
-               BackColor       =   16777215
-               Repeat          =   0   'False
-               OnFormat        =   ""
-               OnPrint         =   ""
-               Object.Tag             =   ""
-            EndProperty
-            BeginProperty Section1 {673CB92F-28D3-421F-86CD-1099425A5037} 
-               Name            =   "Header"
-               Visible         =   0   'False
-               Height          =   0
-               CanGrow         =   -1  'True
-               CanShrink       =   0   'False
-               KeepTogether    =   -1  'True
-               ForcePageBreak  =   0
-               BackColor       =   16777215
-               Repeat          =   0   'False
-               OnFormat        =   ""
-               OnPrint         =   ""
-               Object.Tag             =   ""
-            EndProperty
-            BeginProperty Section2 {673CB92F-28D3-421F-86CD-1099425A5037} 
-               Name            =   "Footer"
-               Visible         =   0   'False
-               Height          =   0
-               CanGrow         =   -1  'True
-               CanShrink       =   0   'False
-               KeepTogether    =   -1  'True
-               ForcePageBreak  =   0
-               BackColor       =   16777215
-               Repeat          =   0   'False
-               OnFormat        =   ""
-               OnPrint         =   ""
-               Object.Tag             =   ""
-            EndProperty
-            BeginProperty Section3 {673CB92F-28D3-421F-86CD-1099425A5037} 
-               Name            =   "Page Header"
-               Visible         =   0   'False
-               Height          =   0
-               CanGrow         =   -1  'True
-               CanShrink       =   0   'False
-               KeepTogether    =   -1  'True
-               ForcePageBreak  =   0
-               BackColor       =   16777215
-               Repeat          =   0   'False
-               OnFormat        =   ""
-               OnPrint         =   ""
-               Object.Tag             =   ""
-            EndProperty
-            BeginProperty Section4 {673CB92F-28D3-421F-86CD-1099425A5037} 
-               Name            =   "Page Footer"
-               Visible         =   0   'False
-               Height          =   0
-               CanGrow         =   -1  'True
-               CanShrink       =   0   'False
-               KeepTogether    =   -1  'True
-               ForcePageBreak  =   0
-               BackColor       =   16777215
-               Repeat          =   0   'False
-               OnFormat        =   ""
-               OnPrint         =   ""
-               Object.Tag             =   ""
-            EndProperty
-            FieldCount      =   0
-         End
       End
       Begin VB.CommandButton Command3 
          Height          =   375
          Left            =   18880
          Picture         =   "StockLedger.frx":0166
          Style           =   1  'Graphical
-         TabIndex        =   35
+         TabIndex        =   33
          TabStop         =   0   'False
          ToolTipText     =   "Zoom"
-         Top             =   8625
+         Top             =   8800
          Width           =   375
       End
       Begin VB.Timer Timer1 
@@ -466,27 +236,27 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   15360
          TabIndex        =   30
-         Top             =   8640
+         Top             =   8850
          Width           =   1215
       End
       Begin VB.CommandButton Command2 
          Height          =   320
-         Left            =   5880
+         Left            =   7560
          Picture         =   "StockLedger.frx":04D8
          Style           =   1  'Graphical
          TabIndex        =   26
          ToolTipText     =   "Search"
-         Top             =   8640
+         Top             =   8850
          Width           =   375
       End
       Begin VB.CommandButton cmdFilter 
          Height          =   320
-         Left            =   5400
+         Left            =   7080
          Picture         =   "StockLedger.frx":081A
          Style           =   1  'Graphical
          TabIndex        =   21
          ToolTipText     =   "Filter"
-         Top             =   8620
+         Top             =   8850
          Width           =   375
       End
       Begin VB.TextBox Text1 
@@ -507,8 +277,8 @@ Begin VB.Form FrmStockLedger
          MaxLength       =   40
          TabIndex        =   19
          ToolTipText     =   "Find And Search"
-         Top             =   8620
-         Width           =   2070
+         Top             =   8850
+         Width           =   3750
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber1 
          Height          =   330
@@ -601,7 +371,7 @@ Begin VB.Form FrmStockLedger
          Height          =   225
          Left            =   4920
          TabIndex        =   12
-         Top             =   158
+         Top             =   165
          Visible         =   0   'False
          Width           =   2535
       End
@@ -638,9 +408,9 @@ Begin VB.Form FrmStockLedger
             Strikethrough   =   0   'False
          EndProperty
          Height          =   225
-         Left            =   9360
+         Left            =   9240
          TabIndex        =   9
-         Top             =   158
+         Top             =   165
          Visible         =   0   'False
          Width           =   4215
       End
@@ -663,14 +433,14 @@ Begin VB.Form FrmStockLedger
          Width           =   1455
       End
       Begin FPSpreadADO.fpSpread fpSpread1 
-         Height          =   7905
+         Height          =   7425
          Left            =   120
          TabIndex        =   0
-         Top             =   660
+         Top             =   950
          Width           =   19050
          _Version        =   524288
          _ExtentX        =   33602
-         _ExtentY        =   13944
+         _ExtentY        =   13097
          _StockProps     =   64
          ColsFrozen      =   3
          EditEnterAction =   2
@@ -713,8 +483,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2061
-         Picture         =   "StockLedger.frx":207D
+         Picture         =   "StockLedger.frx":2085
+         Picture         =   "StockLedger.frx":20A1
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -740,8 +510,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2099
-         Picture         =   "StockLedger.frx":20B5
+         Picture         =   "StockLedger.frx":20BD
+         Picture         =   "StockLedger.frx":20D9
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -752,8 +522,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":20D1
-         Caption         =   "StockLedger.frx":21E9
+         Calendar        =   "StockLedger.frx":20F5
+         Caption         =   "StockLedger.frx":220D
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -763,9 +533,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":2255
-         Keys            =   "StockLedger.frx":2273
-         Spin            =   "StockLedger.frx":22D1
+         DropDown        =   "StockLedger.frx":2279
+         Keys            =   "StockLedger.frx":2297
+         Spin            =   "StockLedger.frx":22F5
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -814,8 +584,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":22F9
-         Caption         =   "StockLedger.frx":2411
+         Calendar        =   "StockLedger.frx":231D
+         Caption         =   "StockLedger.frx":2435
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -825,9 +595,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":247D
-         Keys            =   "StockLedger.frx":249B
-         Spin            =   "StockLedger.frx":24F9
+         DropDown        =   "StockLedger.frx":24A1
+         Keys            =   "StockLedger.frx":24BF
+         Spin            =   "StockLedger.frx":251D
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -892,20 +662,20 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2521
-         Picture         =   "StockLedger.frx":253D
+         Picture         =   "StockLedger.frx":2545
+         Picture         =   "StockLedger.frx":2561
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
          Left            =   1200
          TabIndex        =   15
-         Top             =   8620
+         Top             =   8850
          Width           =   1215
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "StockLedger.frx":2559
-         Caption         =   "StockLedger.frx":2579
+         Calculator      =   "StockLedger.frx":257D
+         Caption         =   "StockLedger.frx":259D
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -915,9 +685,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":25DD
-         Keys            =   "StockLedger.frx":25FB
-         Spin            =   "StockLedger.frx":2645
+         DropDown        =   "StockLedger.frx":2601
+         Keys            =   "StockLedger.frx":261F
+         Spin            =   "StockLedger.frx":2669
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -957,7 +727,7 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   120
          TabIndex        =   16
-         Top             =   8620
+         Top             =   8850
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
@@ -977,14 +747,14 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":266D
-         Picture         =   "StockLedger.frx":2689
+         Picture         =   "StockLedger.frx":2691
+         Picture         =   "StockLedger.frx":26AD
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
          Left            =   17880
          TabIndex        =   17
-         Top             =   8625
+         Top             =   8850
          Width           =   975
          _Version        =   65536
          _ExtentX        =   1720
@@ -1003,14 +773,14 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":26A5
-         Picture         =   "StockLedger.frx":26C1
+         Picture         =   "StockLedger.frx":26C9
+         Picture         =   "StockLedger.frx":26E5
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
          Left            =   16680
          TabIndex        =   18
-         Top             =   8625
+         Top             =   8850
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
@@ -1029,14 +799,14 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":26DD
-         Picture         =   "StockLedger.frx":26F9
+         Picture         =   "StockLedger.frx":2701
+         Picture         =   "StockLedger.frx":271D
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
          Left            =   2520
          TabIndex        =   20
-         Top             =   8625
+         Top             =   8850
          Width           =   735
          _Version        =   65536
          _ExtentX        =   1296
@@ -1056,14 +826,14 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2715
-         Picture         =   "StockLedger.frx":2731
+         Picture         =   "StockLedger.frx":2739
+         Picture         =   "StockLedger.frx":2755
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
-         Left            =   15380
+         Left            =   15375
          TabIndex        =   23
-         Top             =   8620
+         Top             =   8850
          Visible         =   0   'False
          Width           =   1215
          _Version        =   65536
@@ -1083,25 +853,25 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":274D
-         Picture         =   "StockLedger.frx":2769
+         Picture         =   "StockLedger.frx":2771
+         Picture         =   "StockLedger.frx":278D
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
-         Left            =   8520
+         Left            =   120
          TabIndex        =   27
-         Top             =   8625
+         Top             =   8400
          Visible         =   0   'False
-         Width           =   6735
+         Width           =   7335
          _Version        =   65536
-         _ExtentX        =   11880
+         _ExtentX        =   12938
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -1110,18 +880,18 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":2785
-         Picture         =   "StockLedger.frx":27A1
+         Picture         =   "StockLedger.frx":27A9
+         Picture         =   "StockLedger.frx":27C5
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
-         Left            =   13680
+         Left            =   13800
          TabIndex        =   28
-         Top             =   120
+         Top             =   555
          Visible         =   0   'False
-         Width           =   4455
+         Width           =   5295
          _Version        =   65536
-         _ExtentX        =   7858
+         _ExtentX        =   9340
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1138,8 +908,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":27BD
-         Picture         =   "StockLedger.frx":27D9
+         Picture         =   "StockLedger.frx":27E1
+         Picture         =   "StockLedger.frx":27FD
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -1166,14 +936,14 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":27F5
-         Picture         =   "StockLedger.frx":2811
+         Picture         =   "StockLedger.frx":2819
+         Picture         =   "StockLedger.frx":2835
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
          Left            =   12720
          TabIndex        =   24
-         Top             =   8625
+         Top             =   8850
          Visible         =   0   'False
          Width           =   2535
          _Version        =   65536
@@ -1193,18 +963,18 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Create Stock Journal Voucher"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":282D
-         Picture         =   "StockLedger.frx":2849
+         Picture         =   "StockLedger.frx":2851
+         Picture         =   "StockLedger.frx":286D
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
-         Left            =   9360
+         Left            =   7560
          TabIndex        =   31
-         Top             =   105
+         Top             =   8400
          Visible         =   0   'False
-         Width           =   5415
+         Width           =   6975
          _Version        =   65536
-         _ExtentX        =   9551
+         _ExtentX        =   12303
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1220,20 +990,96 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":2865
-         Picture         =   "StockLedger.frx":2881
+         Picture         =   "StockLedger.frx":2889
+         Picture         =   "StockLedger.frx":28A5
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
+         Height          =   330
+         Left            =   14640
+         TabIndex        =   36
+         Top             =   8355
+         Visible         =   0   'False
+         Width           =   4455
+         _Version        =   65536
+         _ExtentX        =   7858
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Closing Bal. = Rs. 0.00"
+         Alignment       =   1
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "StockLedger.frx":28C1
+         Picture         =   "StockLedger.frx":28DD
+      End
+      Begin MSComctlLib.Slider Zoom 
+         Height          =   75
+         Left            =   17400
+         TabIndex        =   34
+         TabStop         =   0   'False
+         ToolTipText     =   "Zoom"
+         Top             =   8400
+         Width           =   1815
+         _ExtentX        =   3201
+         _ExtentY        =   132
+         _Version        =   393216
+         Min             =   -5
+         Max             =   5
+         TickStyle       =   2
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
+         Height          =   330
+         Left            =   6225
+         TabIndex        =   37
+         Top             =   555
+         Visible         =   0   'False
+         Width           =   6855
+         _Version        =   65536
+         _ExtentX        =   12091
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Report Header"
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "StockLedger.frx":28F9
+         Picture         =   "StockLedger.frx":2915
+      End
+      Begin VB.Line Line1 
+         X1              =   0
+         X2              =   19300
+         Y1              =   8760
+         Y2              =   8760
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
-         Left            =   6360
+         Left            =   8040
          TabIndex        =   22
-         Top             =   8625
-         Width           =   2085
+         Top             =   8850
+         Width           =   2925
          VariousPropertyBits=   545282075
          BackColor       =   16777215
          BorderStyle     =   1
          DisplayStyle    =   7
-         Size            =   "3678;582"
+         Size            =   "5159;582"
          MatchEntry      =   0
          ShowDropButtonWhen=   2
          SpecialEffect   =   0
@@ -1268,354 +1114,6 @@ Begin VB.Form FrmStockLedger
          Y2              =   540
       End
    End
-   Begin VSReport8LibCtl.VSReport VSReport4 
-      Left            =   9600
-      Top             =   4440
-      _rv             =   800
-      ReportName      =   ""
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Arial"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      OnOpen          =   ""
-      OnClose         =   ""
-      OnNoData        =   ""
-      OnPage          =   ""
-      OnError         =   ""
-      MaxPages        =   0
-      DoEvents        =   -1  'True
-      BeginProperty Layout {D853A4F1-D032-4508-909F-18F074BD547A} 
-         Width           =   0
-         MarginLeft      =   1440
-         MarginTop       =   1440
-         MarginRight     =   1440
-         MarginBottom    =   1440
-         Columns         =   1
-         ColumnLayout    =   0
-         Orientation     =   0
-         PageHeader      =   0
-         PageFooter      =   0
-         PictureAlign    =   7
-         PictureShow     =   1
-         PaperSize       =   0
-      EndProperty
-      BeginProperty DataSource {D1359088-0913-44EA-AE50-6A7CD77D4C50} 
-         ConnectionString=   ""
-         RecordSource    =   ""
-         Filter          =   ""
-         MaxRecords      =   0
-      EndProperty
-      GroupCount      =   0
-      SectionCount    =   5
-      BeginProperty Section0 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Detail"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section1 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Header"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section2 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Footer"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section3 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Page Header"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section4 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Page Footer"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      FieldCount      =   0
-   End
-   Begin VSReport8LibCtl.VSReport VSReport3 
-      Left            =   9600
-      Top             =   4440
-      _rv             =   800
-      ReportName      =   ""
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Arial"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      OnOpen          =   ""
-      OnClose         =   ""
-      OnNoData        =   ""
-      OnPage          =   ""
-      OnError         =   ""
-      MaxPages        =   0
-      DoEvents        =   -1  'True
-      BeginProperty Layout {D853A4F1-D032-4508-909F-18F074BD547A} 
-         Width           =   0
-         MarginLeft      =   1440
-         MarginTop       =   1440
-         MarginRight     =   1440
-         MarginBottom    =   1440
-         Columns         =   1
-         ColumnLayout    =   0
-         Orientation     =   0
-         PageHeader      =   0
-         PageFooter      =   0
-         PictureAlign    =   7
-         PictureShow     =   1
-         PaperSize       =   0
-      EndProperty
-      BeginProperty DataSource {D1359088-0913-44EA-AE50-6A7CD77D4C50} 
-         ConnectionString=   ""
-         RecordSource    =   ""
-         Filter          =   ""
-         MaxRecords      =   0
-      EndProperty
-      GroupCount      =   0
-      SectionCount    =   5
-      BeginProperty Section0 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Detail"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section1 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Header"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section2 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Footer"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section3 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Page Header"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section4 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Page Footer"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      FieldCount      =   0
-   End
-   Begin VSReport8LibCtl.VSReport VSReport2 
-      Left            =   9600
-      Top             =   4440
-      _rv             =   800
-      ReportName      =   ""
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "Arial"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      OnOpen          =   ""
-      OnClose         =   ""
-      OnNoData        =   ""
-      OnPage          =   ""
-      OnError         =   ""
-      MaxPages        =   0
-      DoEvents        =   -1  'True
-      BeginProperty Layout {D853A4F1-D032-4508-909F-18F074BD547A} 
-         Width           =   0
-         MarginLeft      =   1440
-         MarginTop       =   1440
-         MarginRight     =   1440
-         MarginBottom    =   1440
-         Columns         =   1
-         ColumnLayout    =   0
-         Orientation     =   0
-         PageHeader      =   0
-         PageFooter      =   0
-         PictureAlign    =   7
-         PictureShow     =   1
-         PaperSize       =   0
-      EndProperty
-      BeginProperty DataSource {D1359088-0913-44EA-AE50-6A7CD77D4C50} 
-         ConnectionString=   ""
-         RecordSource    =   ""
-         Filter          =   ""
-         MaxRecords      =   0
-      EndProperty
-      GroupCount      =   0
-      SectionCount    =   5
-      BeginProperty Section0 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Detail"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section1 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Header"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section2 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Footer"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section3 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Page Header"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      BeginProperty Section4 {673CB92F-28D3-421F-86CD-1099425A5037} 
-         Name            =   "Page Footer"
-         Visible         =   0   'False
-         Height          =   0
-         CanGrow         =   -1  'True
-         CanShrink       =   0   'False
-         KeepTogether    =   -1  'True
-         ForcePageBreak  =   0
-         BackColor       =   16777215
-         Repeat          =   0   'False
-         OnFormat        =   ""
-         OnPrint         =   ""
-         Object.Tag             =   ""
-      EndProperty
-      FieldCount      =   0
-   End
 End
 Attribute VB_Name = "FrmStockLedger"
 Attribute VB_GlobalNameSpace = False
@@ -1645,7 +1143,8 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
 If VchType = 31 Or VchType = 49 Then If SCode = "" Then SCode = ItemList
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+Me.Top = 1200
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     BusySystemIndicator True
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
     rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -1807,7 +1306,7 @@ If VchType = 31 Or VchType = 49 Then If SCode = "" Then SCode = ItemList
     If VchType = 103 Then Check2.Visible = True: Check1.Visible = False: ZeroStock.Visible = False: Check1.Left = 3500: Me.Caption = "WIP Pending Item-Wise Ledger": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False
     If VchType = 104 Then Check2.Visible = True: Check1.Visible = False: ZeroStock.Visible = False: Check1.Left = 3500: Me.Caption = "RM Pending Item-Wise": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False
     If VchType = 105 Then Check2.Visible = True: Check1.Visible = False: ZeroStock.Visible = False: Check1.Left = 3500: Me.Caption = "RM & WIP Item-Wise [PSS] ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False
-    If VchType = 49 Then Combo1.Visible = False: Mh3dLabel1(0).Visible = False: MhDateInput1.ReadOnly = True: MhDateInput2.ReadOnly = True: Combo2.Visible = False: Command1.Visible = False: cmdFilter.Visible = False: Mh3dLabel7.Visible = False: Text1.Visible = False: Mh3dLabel.Visible = False: Command2.Visible = False: Mh3dLabel10.Visible = False: Me.Caption = " Inventory - Montly Summary":
+    If VchType = 49 Then Combo1.Visible = False: Mh3dLabel1(0).Visible = False: MhDateInput1.ReadOnly = True: MhDateInput2.ReadOnly = True: Combo2.Visible = False: Command1.Visible = False: cmdFilter.Visible = False: Mh3dLabel7.Visible = False: Text1.Visible = False: Mh3dLabel.Visible = True: Command2.Visible = False: Mh3dLabel10.Visible = False: Me.Caption = " Inventory - Montly Summary":
     MhDateInput1.Value = Format(sDate, "dd-MM-yyyy")
     MhDateInput2.Value = Format(eDate, "dd-MM-yyyy")
     cmdRefresh_Click
@@ -1935,7 +1434,8 @@ Private Sub cmdRefresh_Click()
                 "Order By P.Date ASC "
     ElseIf VchType = 49 Then ' Item Ledger Date-wise
     oMcCode = IIf(sMcCode <> "", "P.MaterialCentre", "P.Party")
-    SQL = "Select mCode,MonthYear,Sum(INWard) As INWard,Sum(OutWard) As OutWard,Item As Item,Format(DATEADD(month, mCode-4, '" & FinancialYearFrom & "'),'dd-MMM-yyyy') AS FromDate,Format(DATEADD(Day,-01,DATEADD(month, mCode-3, '" & FinancialYearFrom & "')),'dd-MMM-yyyy') As ToDate From(" & _
+     SQL = "WITH Months AS (SELECT TOP 12 CASE WHEN ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) <= 3 THEN ROW_NUMBER() OVER (ORDER BY (SELECT NULL )) +12 Else ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) END AS mCode FROM master.dbo.spt_values)" & _
+                "Select CASE WHEN m.mCode <= 3 THEN m.mCode + 12 ELSE m.mCode END AS mCode,FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'MMMM-yyy') MonthYear,Sum(ISNULL(INWard,0)) As INWard,Sum(ISNULL(OutWard,0)) As OutWard,ISNULL(Item,'') As Item,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'dd-MMM-yyyy') Else FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'), 'dd-MMM-yyyy') END  AS FromDate,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') Else FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') END    AS ToDate FROM Months m LEFT JOIN (" & _
                 "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,(Select Name From BookMaster Where Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
                 "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,(Select Name From BookMaster Where Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
                 "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,(Select Name From BookMaster Where Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
@@ -1948,7 +1448,7 @@ Private Sub cmdRefresh_Click()
                 "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select Name From BookMaster Where Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 UNION ALL " & _
                 "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select Name From BookMaster Where Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0 UNION ALL " & _
                 "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select Name From BookMaster Where Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0" & _
-                ") As TBL Group By mCode,MonthYear,Item Order By mCode Asc "
+                ") AS TBL ON m.mCode = TBL.mCode GROUP BY m.mCode,TBL.Item ORDER BY m.mCode ASC; "
       ElseIf VchType = 32 Then 'One Item Ledger Material Centre-wise
       SQL = "Select ISNULL(Sum(oINWard),0) As oINWard,ISNULL(Sum(oOutWard),0) As oOutWard, ISNULL(Sum(oINWard),0)-ISNULL(Sum(oOutWard),0)+(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre = TBL.MaterialCentre AND Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Opening,ISNULL(Sum(cINWard),0) As cINWard,ISNULL(Sum(cOutWard),0) As cOutWard,ISNULL(Sum(cINWard),0)-ISNULL(Sum(cOutWard),0)+ISNULL(Sum(oINWard),0)-ISNULL(Sum(oOutWard),0)+(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre = TBL.MaterialCentre AND Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Closing,(Select Name From AccountMaster Where Code= MaterialCentre) As MaterialCentreName,MaterialCentre,(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre = TBL.MaterialCentre AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As OPBAL From ( " & _
                 "Select ISNULL(ABS(Quantity),0) As oINWard,'0' As oOutWard,'0' As cINWard,'0' As cOutWard,MaterialCentre,C.Code FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
@@ -2105,7 +1605,7 @@ Private Sub cmdRefresh_Click()
         Timer1.Enabled = True
         If rstStockLedger.RecordCount = 0 And oVchType <> "" Then VchType = oVchType
         VSViewPort1.Visible = False
-        VSPrinter1.Visible = False
+        'VSPrinter1.Visible = False
         VSFlexGrid1.Visible = False
         If rstStockLedger.RecordCount = 0 Then
             With fpSpread1
@@ -2454,7 +1954,14 @@ If VSFlexFlag = False Then
         If VchType >= 53 And VchType <= 68 Then TDBNumber2 = i: fpSpread1.MaxRows = IIf(i < 27, 27, i + 1): Call cmdFilter_Click
         If VchType = 46 Or VchType = 47 Then Call cmdFilter_Click
         'Item Ledger
-        If VchType = 31 Then fpSpread1.SetText 24, i + 1, Bal: fpSpread1.GetText 26, i + 1, Bal: fpSpread1.SetText 26, i + 1, Bal / i: fpSpread1.GetText 27, i, Bal: fpSpread1.SetText 27, i + 1, Bal:
+        If VchType = 31 Then
+            fpSpread1.SetText 24, i + 1, Bal:
+            Mh3dLabel13.Caption = "Closing Balance = " & Bal & " Units ": Mh3dLabel13.Visible = True: Mh3dLabel13.FontSize = 13
+            fpSpread1.GetText 26, i + 1, Bal: fpSpread1.SetText 26, i + 1, Bal / i: fpSpread1.GetText 27, i, Bal: fpSpread1.SetText 27, i + 1, Bal:
+            Mh3dLabel10.Caption = "Opening Balance = " & Val(rstItemOpening.Fields("Opening").Value) & " Units ": Mh3dLabel10.Visible = True: Mh3dLabel10.FontSize = 13
+            rstStockLedger.MoveFirst: Mh3dLabel14.Caption = " Item : " + rstStockLedger.Fields("Item").Value & " [Inventory - Ledger]": Mh3dLabel14.Visible = True
+        End If
+        
         If VchType = 32 Then
                 Mh3dLabel11.Caption = "Material Centre : " + "All"
             If rstItemOpening.RecordCount <> 0 Then rstItemOpening.MoveFirst
@@ -2780,19 +2287,22 @@ NXT:
             If VchType = 49 Then
                 .SetText 3, i, ""
                  .SetText 20, i, INWardF: .SetText 23, i, OUTWardF: .SetText 24, i, Bal: .SetText 25, i, "Units"
-                 Mh3dLabel10.Caption = "Closing Balance = " & Bal & " Units ": Mh3dLabel10.Visible = True
+                 Mh3dLabel10.Caption = "Opening Balance = " & Val(rstItemOpening.Fields("Opening").Value) & " Units ": Mh3dLabel10.Visible = True: Mh3dLabel10.FontSize = 13
+                 Mh3dLabel13.Caption = "Closing Balance = " & Bal & " Units ": Mh3dLabel13.Visible = True: Mh3dLabel13.FontSize = 13
+                 Mh3dLabel14.Caption = "Inventory - Monthly Ledger": Mh3dLabel14.Visible = True
             Else
                 .SetText 6, i, OrderF: .SetText 8, i, INWardF: .SetText 23, i, OUTWardF: .SetText 24, i, Bal: .SetText 25, i, "Units": .SetText 27, i, AmountF: If VchType = 36 Or VchType = 38 Then .SetText 24, i, (IIf(VchCode = "S", -1, 1) * OrderF) - OUTWardF + INWardF
             End If
 
-                .Col = 5: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True: .TypeHAlign = TypeHAlignRight
-                .Col = 6: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-                .Col = 8: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-                .Col = 20: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-                .Col = 23: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-                .Col = 24: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-                .Col = 25: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-                .Col = 27: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 5: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True: .TypeHAlign = TypeHAlignRight
+                .Col = 6: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 8: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 20: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 23: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 24: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 25: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 27: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Height = 7300
        End If
 If VchType <> 49 Then
         INWardGTF = INWardGTF + INWardF: INWardF = 0: OUTWardGTF = OUTWardGTF + OUTWardF: OUTWardF = 0: OrderGTF = OrderGTF + OrderF: OrderF = 0: AmountGTF = AmountGTF + AmountF: AmountF = 0:
@@ -2808,33 +2318,42 @@ End If
 End With
 End Function
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-'Check VchCode Next & Previous
+
+'********Check VchCode Next & Previous
     If Shift = 0 And KeyCode = vbKeyReturn Then
         If Right(oVchType, 2) <> Format(VchType, "00") Then
             oVchType = oVchType + Format(VchType, "00")
         End If
+    
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
-        If oVchType = "" And Len(Format(VchType, "00")) = 2 Then
+        If oVchType = "" And Len(Format(VchType, "00")) = 2 And HideFlag = False Then
             oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
+        ElseIf oVchType = "" And Len(Format(VchType, "00")) = 2 And HideFlag = True Then
+            oVchType = Format(VchType, "00")
         ElseIf oVchType <> "" And oVchType <> Format(VchType, "00") Then
             oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
-        ElseIf oVchType <> "" And oVchType = Format(VchType, "00") Then
+        ElseIf oVchType <> "" And oVchType = Format(VchType, "00") And HideFlag = False Then
             oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
         End If
         If oVchType = "" And Format(VchType, "00") = "" And HideFlag = False And ExitFlag = False Then
             Call cmdCancel_Click: ExitFlag = False: KeyCode = 0: Exit Sub
         End If
+        
     End If
+'********
 
 With fpSpread1
+'********Specific VchType(34,35,37,36,38,39,40,41,42,43,44, 45 ,48) .GetText 32, .ActiveRow, SCode: If SCode = "''" Then Exit Sub
         If Shift = 0 And KeyCode = vbKeyReturn And (VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 36 Or VchType = 38 Or VchType = 39 Or VchType = 40 Or VchType = 41 Or VchType = 42 Or VchType = 43 Or VchType = 44 Or VchType = 45 Or Right(VchType, 2) = 48) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+'********Specific VchType(46) .GetText 35, .ActiveRow, SCode: If SCode = "''" Then Exit Sub
         If Shift = 0 And KeyCode = vbKeyReturn And VchType = 46 Then .GetText 35, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-        
+'********To Be Check
         If (Shift = vbCtrlMask And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
         If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
         If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 21 And VchType <= 28) Or (VchType >= 61 And VchType <= 68)) Then .GetText 32, .ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
+'********
 
-'Specific VchType = 46
+'********Specific VchType = 46 Pending Order Qty Clear
         If (Shift = 0 And KeyCode = vbKeyF9) And VchType = 46 Then
             If Check1.Value <> 1 Then .GetText 8, .ActiveRow, SCode
             If SCode = 0 Then ClearFlag = False: MsgBox "You Can't Clear This Order  !!!", vbCritical, "   Order Quantity Clear  !!!": SCode = "": Exit Sub
@@ -2844,6 +2363,8 @@ With fpSpread1
             If SCode = 0 Then unClearFlag = False: MsgBox "Order Quantity Can't Retrieve  !!!", vbCritical, "   Retrieve Pending Order !!!": SCode = "": Exit Sub
             If SCode <> 0 Then unClearFlag = True: ClearQty (True): MsgBox " ( " & SCode & " )  Order Quantity Retrieve !!!", vbCritical, "   Retrieve Pending Order !!!": SCode = "": unClearFlag = False:: Form_Load: Exit Sub
         End If
+'********
+    
     
     
     If (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) Then
@@ -2929,7 +2450,8 @@ With fpSpread1
         Form_Load
         KeyCode = 0
     
-'vbKeyReturn
+
+'vbKeyReturn Go To Next Report
     ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And (VchType = 2 Or VchType = 1 Or VchType = 30 Or VchType = 32 Or VchType = 33 Or VchType = 49) Then   'One-Item Pending
         
         LR = fpSpread1.ActiveRow
@@ -2938,23 +2460,16 @@ With fpSpread1
             If fpSpread1.ActiveCol = 18 Then vTypeCode = "18": VchCode = "S"
             If fpSpread1.ActiveCol = 19 Then vTypeCode = "19": VchCode = "P"
             If (VchType = 1 Or VchType = 2) Then fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-            If VchType = 2 And fpSpread1.ActiveCol = 6 Then oVchType = VchType: VchType = 32: Text1.Text = "" 'Item Ledger Material Center-Wise
+            If VchType = 2 And fpSpread1.ActiveCol = 6 Then VchType = 32: Text1.Text = "": oVchType = oVchType + Format(VchType, "00") 'Item Ledger Material Center-Wise
             If VchType = 1 And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then VchType = 29 'Pending Order
-            If (VchType = 2 Or VchType = 33) And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then oVchType = VchType: VchType = 30 'Pending Order
-            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "FP" Or vtType = "FS") Then oVchType = VchType: oSCode = SCode: VchType = 34: VchCode = Right(vtType, 1): VchCode = IIf(VchCode = "P", "S", "P"): fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub 'Pending Order
-            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "PO" Or vtType = "SO") Then oVchType = VchType: oSCode = SCode: VchType = 45: fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub 'Pending Order
+            If (VchType = 2 Or VchType = 33) And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then VchType = 30: oVchType = oVchType + Format(VchType, "00") 'Pending Order
+            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "FP" Or vtType = "FS") Then oSCode = SCode: VchType = 34: oVchType = oVchType + Format(VchType, "00"): VchCode = Right(vtType, 1): VchCode = IIf(VchCode = "P", "S", "P"): fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub  'Pending Order
+            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "PO" Or vtType = "SO") Then oSCode = SCode: VchType = 45: oVchType = oVchType + Format(VchType, "00"): fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub  'Pending Order
             Form_Load
         ElseIf VchType = 32 Then
-            If VchType = 32 Then oVchType = oVchType + Format(VchType, "00"): VchType = 31 'Item Ledger Material Centre-Wise
+            If VchType = 32 Then VchType = 31: oVchType = oVchType + Format(VchType, "00") 'Item Ledger Material Centre-Wise
                 oSCode = SCode
                 fpSpread1.GetText 35, fpSpread1.ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
-                Form_Load
-        ElseIf VchType = 31 Then
-                VchType = 31 'One-Item-Ledger
-                oVchType = oVchType + Format(VchType, "00")
-                oSCode = SCode
-                fpSpread1.GetText 32, fpSpread1.ActiveRow, vDate: sDate = Format(vDate, "dd-MM-yyyy")
-                fpSpread1.GetText 35, fpSpread1.ActiveRow, vDate: eDate = Format(vDate, "dd-MM-yyyy")
                 Form_Load
         ElseIf VchType = 49 Then
                 VchType = 31 'One-Item-Ledger
@@ -2969,26 +2484,18 @@ With fpSpread1
             KeyCode = 0
 'Open Transection
     ElseIf ((Shift = 0 And KeyCode = vbKeyReturn) Or (Shift = 0 And KeyCode = vbKeyF8) Or (Shift = 0 And KeyCode = vbKeyF12)) And (VchType = 29 Or VchType = 30 Or Right(VchType, 2) = 48 Or VchType = 31 Or VchType = 32 Or VchType = 34 Or VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Or VchType = 45 Or VchType = 46) And SCode <> "" Then     'Open Transection
+'Get vtCode,vtType,vtNo,vDate
             fpSpread1.GetText 1, fpSpread1.ActiveRow, vDate: vDate = Format(vDate, "dd-MMM-yyyy"):
-            
+            If VchType = 46 Then SCode = "" Else If oSCode = "" Then oSCode = SCode
             If VchType = 46 Then
-                SCode = ""
+                fpSpread1.GetText 35, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 25, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo:
             Else
-                If oSCode = "" Then oSCode = SCode
+                fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo:
             End If
-'Get vtType,vtCode
-            If VchType = 46 Then
-                fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 25, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
-                Else
-                fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo: fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
-            End If
-            
-            If VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 36 Or VchType = 38 Or VchType = 45 Then fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
 'ChecK vch FY
             If vDate = "" Then Exit Sub
             If FinancialYearFrom > vDate Or vDate = "" Then
                 If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
-                
 'Order FG AND Jobwork
             ElseIf vtType = "FP" Or vtType = "FS" Then
             dSortBy = True
@@ -3097,8 +2604,8 @@ With fpSpread1
                 End If
 'Jobwork Sale Voucher
             ElseIf vtType = "SU" Or vtType = "SC" Or vtType = "SJ" Or vtType = "PU" Or vtType = "PC" Or vtType = "PJ" Then
-            vtType = IIf(vtType = "SU", 1, IIf(vtType = "SC", 2, IIf(vtType = "SJ", 3, IIf(vtType = "PU", 4, IIf(vtType = "PC", 5, IIf(vtType = "PJ", 6, ""))))))
-            dSortBy = True
+                vtType = IIf(vtType = "SU", 1, IIf(vtType = "SC", 2, IIf(vtType = "SJ", 3, IIf(vtType = "PU", 4, IIf(vtType = "PC", 5, IIf(vtType = "PJ", 6, ""))))))
+                dSortBy = True
                     On Error Resume Next
                     frmJobworkBill.VchType = vtType
                     If Err.Number <> 364 Then frmJobworkBill.Show
@@ -3113,24 +2620,18 @@ With fpSpread1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
                     Call cmdRefresh_Click
                 End If
-                
             End If
         KeyCode = 0
-        
-
-'Escape
-    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 29 Or VchType = 30 Or VchType = 31 Or VchType = 32 Or VchType = 49) And SCode <> "" Then   'Stock Ledger Closing
-        'VchType = Right(oVchType, 2):
+'vbKeyEscape
+    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 2 Or VchType = 29 Or VchType = 30 Or VchType = 31 Or VchType = 32 Or VchType = 49) And SCode <> "" And HideFlag = False Then 'Stock Ledger Closing
         sDate = FrmItemSelectionList.MhDateInput1: eDate = FrmItemSelectionList.MhDateInput2
-        
 '        If VchType = 29 Then VchType = 1 'Inventry Movement Ledger Closing
 '        If VchType = 30 Then VchType = 2 'Stock Ledger Closing
 '        If VchType = 32 Then VchType = 2 'Stock Ledger Closing
 '        If VchType = 31 Then VchType = Right(oVchType, 2): oVchType = GetOvchType(oVchType): sDate = FrmItemSelectionList.MhDateInput1: eDate = FrmItemSelectionList.MhDateInput2   'VchType = 32 'Stock Ledger Closing
-        If VchType = 32 Then SCode = oSCode
-        If oVchType <> 49 Then sMcCode = ""
+        If VchType = 30 Or VchType = 32 Then SCode = oSCode
+        If oVchType <> 49 And VchType <> 2 And VchType <> 30 Then sMcCode = ""
         Form_Load
-        'fpSpread1.SetActiveCell vTypeCode, LR
         KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
         If VSFlexGrid1.Visible Then
@@ -3142,21 +2643,21 @@ With fpSpread1
                     Call VSFlexGrid1_AfterDataRefresh
         End If
     ElseIf Shift = 0 And KeyCode = vbKeyF9 Then
-    If VSFlexGrid1.Visible Then
-    On Error Resume Next
-            R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
-            LR = R
-            VSFlexGrid1.RowHidden(VSFlexGrid1.Row) = True: LR = VSFlexGrid1.Row
-            VSFlexGrid1.Row = R
-'            Call VSFlexGrid1_AfterDataRefresh
-    Else
-            R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
-            LR = R
-             .Row = .ActiveRow: .RowHidden = True: LR = .Row
-            TotalFlag = True: HideFlag = True: If VchType < 35 Then Total_Click
-            TotalFlag = False
-            .SetActiveCell .ActiveCol, R
-    End If
+        If VSFlexGrid1.Visible Then
+        On Error Resume Next
+                R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
+                LR = R
+                VSFlexGrid1.RowHidden(VSFlexGrid1.Row) = True: LR = VSFlexGrid1.Row
+                VSFlexGrid1.Row = R
+    '            Call VSFlexGrid1_AfterDataRefresh
+        Else
+                R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
+                LR = R
+                 .Row = .ActiveRow: .RowHidden = True: LR = .Row
+                TotalFlag = True: HideFlag = True: If VchType < 35 Then Total_Click
+                TotalFlag = False
+                .SetActiveCell .ActiveCol, R
+        End If
     ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
         If VSFlexFlag = False Then
             If Me.ActiveControl.Name <> "fpSpread1" Then Sendkeys "{TAB}": KeyCode = 0
@@ -3191,6 +2692,7 @@ With fpSpread1
     ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyV) Or (Shift = 0 And KeyCode = vbKeyF12) Then
         Call PasteFromClipboard
     End If
+    KeyCode = 0
 End With
 End Sub
 Private Sub Combo1_Change()
@@ -3404,11 +2906,13 @@ Else
     VSFlexGrid1.Subtotal flexSTClear
 End If
 End Sub
+
 Private Sub PendingCheck_Click()
 If TDBNumber1.Value <= 0 And PendingCheck.Value Then ZeroStock.Value = 0
 If VSFlexFlag = True Then VSFlexGrid1.Subtotal flexSTClear
     Call cmdRefresh_Click
 End Sub
+
 Private Sub ZeroStock_Click()
 If ZeroStock.Value Then NegativeStock.Value = 0
 If TDBNumber1.Value <= 0 And ZeroStock.Value Then PendingCheck.Value = 0
@@ -3510,8 +3014,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 Private Sub cmdCancel_Click()
     Call CloseForm(Me)
-    sMcCode = "": SCode = "": oSCode = "": vTypeCode = "": vtCode = "": vtType = "": vtNo = "": vDate = "":
-    dSortBy = False
+    sMcCode = "": SCode = "": oSCode = "": vTypeCode = "": vtCode = "": vtType = "": vtNo = "": vDate = "": dSortBy = False
 End Sub
 Private Sub cmdFilter_Click()
  Dim i As Integer, cVal As Variant, n As Integer, R As Long, C As Long, Cols As Long
@@ -4297,16 +3800,24 @@ With fpSpread1
         ElseIf VchType = 32 Or VchType = 49 Then
             fpSpread1.ColHeaderRows = 2:
             For C = 1 To .MaxCols
-            .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "": .Col = C: fpSpread1.Row = SpreadHeader + 1: fpSpread1.FontSize = 12:
+            .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "": .Col = C: fpSpread1.Row = SpreadHeader + 1: fpSpread1.FontSize = 14:
             Next
+            For C = 1 To .MaxCols
+                For i = 1 To rstStockLedger.RecordCount + 1
+                    .Col = C: .Row = i:  fpSpread1.FontSize = 14:
+                Next
+            Next
+    
     'Header1
-            If rstItemList.State = adStateOpen Then rstItemList.Close
-            rstItemList.Open "SELECT PrintName As Item FROM BookMaster WHERE Code=" & ItemList & "", cnDatabase, adOpenKeyset, adLockReadOnly
-            rstItemList.MoveFirst
-                    fpSpread1.AddCellSpan 1, SpreadHeader, 5, 1
-                    fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = " Item : " + rstItemList.Fields("Item").Value: fpSpread1.FontSize = 12: fpSpread1.FontBold = True
-                    fpSpread1.TypeHAlign = TypeHAlignCenter
-                    Header1 = " Item : " + rstItemList.Fields("Item").Value:
+            If VchType = 49 Then
+                If rstItemList.State = adStateOpen Then rstItemList.Close
+                rstItemList.Open "SELECT PrintName As Item FROM BookMaster WHERE Code=" & ItemList & "", cnDatabase, adOpenKeyset, adLockReadOnly
+                rstItemList.MoveFirst
+                        fpSpread1.AddCellSpan 1, SpreadHeader, 5, 1
+                        fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = " Item : " + rstItemList.Fields("Item").Value: fpSpread1.FontSize = 13: fpSpread1.FontBold = True
+                        fpSpread1.TypeHAlign = TypeHAlignCenter
+                        Header1 = " Item : " + rstItemList.Fields("Item").Value:
+            End If
     'Header2 rstItemOpening
             If VchType = 32 Then fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = " Material Centre ": fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Opening Qty.": fpSpread1.Col = 20: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "IN-Ward Qty.": fpSpread1.Col = 23: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Out-Ward Qty": fpSpread1.Col = 24: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Closing Qty": fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Units":
             If VchType = 49 Then fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = " Month ": fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Opening Qty.": fpSpread1.Col = 20: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "IN-Ward Qty.": fpSpread1.Col = 23: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Out-Ward Qty": fpSpread1.Col = 24: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Closing Qty": fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Units":

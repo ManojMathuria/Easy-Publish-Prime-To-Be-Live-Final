@@ -11,7 +11,7 @@ Begin VB.Form FrmPaperLedger
    Caption         =   "w2"
    ClientHeight    =   9495
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   20085
    BeginProperty Font 
       Name            =   "Arial"
@@ -415,8 +415,8 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1A22
-         Picture         =   "PaperLedger.frx":1A3E
+         Picture         =   "PaperLedger.frx":1B4A
+         Picture         =   "PaperLedger.frx":1B66
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -442,8 +442,8 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1A5A
-         Picture         =   "PaperLedger.frx":1A76
+         Picture         =   "PaperLedger.frx":1B82
+         Picture         =   "PaperLedger.frx":1B9E
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -454,8 +454,8 @@ Begin VB.Form FrmPaperLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "PaperLedger.frx":1A92
-         Caption         =   "PaperLedger.frx":1BAA
+         Calendar        =   "PaperLedger.frx":1BBA
+         Caption         =   "PaperLedger.frx":1CD2
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -465,9 +465,9 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "PaperLedger.frx":1C16
-         Keys            =   "PaperLedger.frx":1C34
-         Spin            =   "PaperLedger.frx":1C92
+         DropDown        =   "PaperLedger.frx":1D3E
+         Keys            =   "PaperLedger.frx":1D5C
+         Spin            =   "PaperLedger.frx":1DBA
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -516,8 +516,8 @@ Begin VB.Form FrmPaperLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "PaperLedger.frx":1CBA
-         Caption         =   "PaperLedger.frx":1DD2
+         Calendar        =   "PaperLedger.frx":1DE2
+         Caption         =   "PaperLedger.frx":1EFA
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -527,9 +527,9 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "PaperLedger.frx":1E3E
-         Keys            =   "PaperLedger.frx":1E5C
-         Spin            =   "PaperLedger.frx":1EBA
+         DropDown        =   "PaperLedger.frx":1F66
+         Keys            =   "PaperLedger.frx":1F84
+         Spin            =   "PaperLedger.frx":1FE2
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -593,8 +593,8 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1EE2
-         Picture         =   "PaperLedger.frx":1EFE
+         Picture         =   "PaperLedger.frx":200A
+         Picture         =   "PaperLedger.frx":2026
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -619,8 +619,8 @@ Begin VB.Form FrmPaperLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1F1A
-         Picture         =   "PaperLedger.frx":1F36
+         Picture         =   "PaperLedger.frx":2042
+         Picture         =   "PaperLedger.frx":205E
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -645,8 +645,8 @@ Begin VB.Form FrmPaperLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1F52
-         Picture         =   "PaperLedger.frx":1F6E
+         Picture         =   "PaperLedger.frx":207A
+         Picture         =   "PaperLedger.frx":2096
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -657,8 +657,8 @@ Begin VB.Form FrmPaperLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "PaperLedger.frx":1F8A
-         Caption         =   "PaperLedger.frx":1FAA
+         Calculator      =   "PaperLedger.frx":20B2
+         Caption         =   "PaperLedger.frx":20D2
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -668,9 +668,9 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "PaperLedger.frx":200E
-         Keys            =   "PaperLedger.frx":202C
-         Spin            =   "PaperLedger.frx":2076
+         DropDown        =   "PaperLedger.frx":2136
+         Keys            =   "PaperLedger.frx":2154
+         Spin            =   "PaperLedger.frx":219E
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -730,8 +730,8 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":209E
-         Picture         =   "PaperLedger.frx":20BA
+         Picture         =   "PaperLedger.frx":21C6
+         Picture         =   "PaperLedger.frx":21E2
       End
       Begin VB.CheckBox Check3 
          Caption         =   "Show Challan Details"
@@ -852,7 +852,7 @@ Private Sub Form_Load()
     Reset = 0:
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+  '  Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     BusySystemIndicator True
     If VchType = 19 Then Me.Caption = "Paper Stock Ladger"
 If VchType <> 19 Then
@@ -1467,7 +1467,7 @@ ErrHandler:
     DisplayError (Err.Description)
 End Sub
 Private Sub cmdFilter_Click()
-    Dim i, n, C, R As Integer, Cval As Variant
+    Dim i, n, C, R As Integer, cVal As Variant
     Dim StockVal As Variant, StockTotal As Variant
     Dim PVal As Variant, PTotal As Variant
     Dim PRVal As Variant, PRTotal As Variant
@@ -1505,13 +1505,13 @@ If VSFlexFlag = True Then
                     LR = R
                 For i = 0 To VSFlexGrid1.RightCol  'Match Col Header
                 C = C + 1
-                Cval = VSFlexGrid1.TextMatrix(0, C)
-                If Combo4.Value = Cval Then Exit For
+                cVal = VSFlexGrid1.TextMatrix(0, C)
+                If Combo4.Value = cVal Then Exit For
                 Next
                 
                     For i = 5 To VSFlexGrid1.Rows - 1
-                    Cval = VSFlexGrid1.TextMatrix(i, C)
-                                If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                    cVal = VSFlexGrid1.TextMatrix(i, C)
+                                If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                                 VSFlexGrid1.RowHidden(i) = True
                                 Else
                                 VSFlexGrid1.RowHidden(i) = False
@@ -1548,7 +1548,7 @@ Else
         .SetActiveCell C, 1
         For i = 1 To .DataRowCnt
 '        If Combo4.ListIndex = 0 Then .SetActiveCell C, i: .GetText C, i, cVal Else .SetActiveCell C, 1 ': .GetText 3, i, cVal
-        .SetActiveCell C, i: .GetText C, i, Cval  'Else .SetActiveCell C, 1 ': .GetText 3, i, cVal
+        .SetActiveCell C, i: .GetText C, i, cVal  'Else .SetActiveCell C, 1 ': .GetText 3, i, cVal
                 .GetText 4, i, StockVal
                 .GetText 6, i, PVal
                 .GetText 7, i, PRVal
@@ -1572,7 +1572,7 @@ Else
                 .GetText 27, i, SRAVal
                 .GetText 28, i, NPAVal
                 .GetText 29, i, NSAVal
-        If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+        If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
         .Row = i: .RowHidden = True: n = n - 1
             Else
         .SetActiveCell C, i '1
@@ -1640,7 +1640,7 @@ End Sub
 Private Sub Preview_Click()
 Dim PrintHeader As String, x As Boolean
 Dim SheetName, FileName As String
-Dim Cval As Variant, i, C As Integer
+Dim cVal As Variant, i, C As Integer
 On Error Resume Next
 If VSFlexFlag = True Then
     With Me.VSFlexGrid1
@@ -1706,7 +1706,7 @@ With fpSpread1
         .PrintZoomFactor = 0.95
         C = 0
         For i = 2 To 9
-            .GetText i, 1, Cval: .SetText i, 0, Cval
+            .GetText i, 1, cVal: .SetText i, 0, cVal
         Next
             .Col = 5: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 2
             .Col = 6: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 0
@@ -1743,7 +1743,7 @@ With fpSpread1
  End With
 End Sub
 Private Sub Search_Click()
-Dim i, C As Integer, Cval As Variant, R As Long
+Dim i, C As Integer, cVal As Variant, R As Long
   If VSFlexGrid1.Visible Then
               C = 0
             If VSFlexGrid1.BottomRow = 1 Then Exit Sub
@@ -1754,16 +1754,16 @@ Dim i, C As Integer, Cval As Variant, R As Long
                 Next
                 For i = 1 To VSFlexGrid1.RightCol  'Match Col Header
                 C = C + 1
-                Cval = VSFlexGrid1.TextMatrix(0, C)
-                If Combo4.Value = Cval Then Exit For
+                cVal = VSFlexGrid1.TextMatrix(0, C)
+                If Combo4.Value = cVal Then Exit For
                 Next
                 
                 R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
                 LR = R
             For C = 1 To VSFlexGrid1.RightCol
                 For i = R To VSFlexGrid1.Rows - 1
-                Cval = VSFlexGrid1.TextMatrix(i, C)
-                            If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                cVal = VSFlexGrid1.TextMatrix(i, C)
+                            If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                             VSFlexGrid1.Row = i: VSFlexGrid1.Col = C: VSFlexGrid1.RowPosition(VSFlexGrid1.Row) = i: VSFlexGrid1.ColPosition(VSFlexGrid1.Col) = C
                             Else
                             VSFlexGrid1.Row = i: VSFlexGrid1.Col = C: VSFlexGrid1.TopRow = i: VSFlexGrid1.LeftCol = C: Exit Sub
@@ -1782,8 +1782,8 @@ Dim i, C As Integer, Cval As Variant, R As Long
                     R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
                     LR = R
                     For i = R To .DataRowCnt
-                    If Combo4.ListIndex = Combo4.ListIndex Then .GetText Combo4.ListIndex + 2, i, Cval                                                                 'Else .SetActiveCell 3, 1: .GetText 3, i, cVal
-                                If InStr(StrConv(Cval, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                    If Combo4.ListIndex = Combo4.ListIndex Then .GetText Combo4.ListIndex + 2, i, cVal                                                                 'Else .SetActiveCell 3, 1: .GetText 3, i, cVal
+                                If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                                 
                                 Else
                                         .SetActiveCell Combo4.ListIndex + 2, i: Exit Sub
@@ -2141,15 +2141,15 @@ ErrHandler:
     DisplayError (Err.Description)
 End Sub
 Sub Find_SubTotal_Row()
-Dim Cval, SPU, Col As Variant
+Dim cVal, SPU, Col As Variant
 
     For Col = 6 To 8
         For i = 4 To VSFlexGrid1.Rows - 1
             If Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) <> 0 Then
             If Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) < 0 Then C = -1 Else C = 1
-                    Cval = Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000"))
+                    cVal = Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000"))
                     SPU = IIf(Val(VSFlexGrid1.TextMatrix(i, 14)) <> 0, Val(VSFlexGrid1.TextMatrix(i, 14)), Val(VSFlexGrid1.TextMatrix(i - 1, 14))): VSFlexGrid1.TextMatrix(i, 14) = SPU
-                    VSFlexGrid1.TextMatrix(i, Col) = Format(Format(Int(Abs(Cval)) + ((Abs(Cval) - Int(Abs(Cval))) * SPU / 1000), "####0.000") * C, "####0.000")
+                    VSFlexGrid1.TextMatrix(i, Col) = Format(Format(Int(Abs(cVal)) + ((Abs(cVal) - Int(Abs(cVal))) * SPU / 1000), "####0.000") * C, "####0.000")
             End If
         Next
     Next

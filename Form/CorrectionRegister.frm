@@ -7,7 +7,7 @@ Begin VB.Form FrmCorrectionRegister
    Caption         =   "Correction Register"
    ClientHeight    =   5265
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   9735
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,7 +24,6 @@ Begin VB.Form FrmCorrectionRegister
    MaxButton       =   0   'False
    ScaleHeight     =   5265
    ScaleWidth      =   9735
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdExit 
       Cancel          =   -1  'True
       Height          =   375

@@ -10,7 +10,7 @@ Begin VB.Form FrmFinishSizeMaster
    Caption         =   "Finish Size Master"
    ClientHeight    =   4875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   6750
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -389,8 +389,8 @@ Begin VB.Form FrmFinishSizeMaster
             Caption         =   "Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save"
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "FinishSizeMaster.frx":08D4
-            Picture         =   "FinishSizeMaster.frx":08F0
+            Picture         =   "FinishSizeMaster.frx":09D8
+            Picture         =   "FinishSizeMaster.frx":09F4
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -547,7 +547,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnFinishSizeMaster.CursorLocation = adUseClient: cnFinishSizeMaster.Open cnDatabase.ConnectionString
     rstFinishSizeList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='11' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

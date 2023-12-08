@@ -13,7 +13,7 @@ Begin VB.Form frmItemIssueReceiptVoucher
    Caption         =   "Material In/Out Voucher"
    ClientHeight    =   9075
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   16740
    BeginProperty Font 
       Name            =   "Arial"
@@ -99,11 +99,11 @@ Begin VB.Form frmItemIssueReceiptVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "ItemIssueReceiptVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtNotes"
-         Tab(1).Control(1)=   "btnNotes"
+         Tab(1).Control(0)=   "Mh3dLabel55"
+         Tab(1).Control(1)=   "Mh3dLabel1(1)"
          Tab(1).Control(2)=   "Mh3dFrame2"
-         Tab(1).Control(3)=   "Mh3dLabel1(1)"
-         Tab(1).Control(4)=   "Mh3dLabel55"
+         Tab(1).Control(3)=   "btnNotes"
+         Tab(1).Control(4)=   "txtNotes"
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
@@ -3380,19 +3380,19 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
     End If
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim Cval As Variant
+    Dim cVal As Variant
     With fpSpread1
         If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
             If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
         ElseIf KeyCode = vbKeySpace Then
             If .ActiveCol = 1 Then 'Item
-                .GetText 5, .ActiveRow, Cval 'Ref
-                If Not CheckEmpty(Cval, False) Then Exit Sub
+                .GetText 5, .ActiveRow, cVal 'Ref
+                If Not CheckEmpty(cVal, False) Then Exit Sub
                 If cmbChallanType.ListIndex <= 1 And cmbItemType.ListIndex = 0 Then
-                    .GetText 1, .ActiveRow, Cval 'Item
-                    Text6.Text = FixQuote(Cval)
+                    .GetText 1, .ActiveRow, cVal 'Item
+                    Text6.Text = FixQuote(cVal)
                     If rstItemList.RecordCount = 0 Then DisplayError ("No record in Item Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstItemList.MoveFirst
-                    rstItemList.Find "[Col0] = '" & FixQuote(Trim(Cval)) & "'"
+                    rstItemList.Find "[Col0] = '" & FixQuote(Trim(cVal)) & "'"
                     SelectionType = "S": ItemCode = ""
                     Call LoadSelectionList(rstItemList, "List of Items...", "Name")
                     SearchOrder = 0
@@ -3405,19 +3405,19 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                         .SetText 10, .ActiveRow, ItemCode
                         rstItemList.MoveFirst: rstItemList.Find "[Code] ='" & ItemCode & "'"
                         .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
-                        .GetText 11, .ActiveRow, Cval 'HSN
-                        If CheckEmpty(Cval, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 11, .ActiveRow, rstItemList.Fields("HSNCode").Value
+                        .GetText 11, .ActiveRow, cVal 'HSN
+                        If CheckEmpty(cVal, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 11, .ActiveRow, rstItemList.Fields("HSNCode").Value
                         .SetFocus
                         Sendkeys "{ENTER}"
                     End If
                 End If
             ElseIf .ActiveCol = 2 Then
-                .GetText 11, .ActiveRow, Cval 'HSN Code
+                .GetText 11, .ActiveRow, cVal 'HSN Code
                 On Error Resume Next
                 With FrmGeneralMaster
                     .SL = True
                     .MasterType = "18"
-                    .MasterCode = Cval
+                    .MasterCode = cVal
                     Load FrmGeneralMaster
                     If Err.Number <> 364 Then .Show vbModal
                 End With
@@ -3425,12 +3425,12 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                 .SetText 2, .ActiveRow, slName: .SetText 11, .ActiveRow, slCode
                 If Not CheckEmpty(slCode, False) Then LoadMasterList: Sendkeys "{ENTER}"
             ElseIf .ActiveCol = 7 Then
-                .GetText 8, .ActiveRow, Cval 'Short Narration
+                .GetText 8, .ActiveRow, cVal 'Short Narration
                 On Error Resume Next
                 With FrmGeneralMaster
                     .SL = True
                     .MasterType = "17"
-                    .MasterCode = Cval
+                    .MasterCode = cVal
                     Load FrmGeneralMaster
                     If Err.Number <> 364 Then .Show vbModal
                 End With

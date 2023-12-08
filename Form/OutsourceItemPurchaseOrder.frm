@@ -1718,6 +1718,8 @@ Dim EMailID, Attachment, Message
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnBOMPurchaseOrder.CursorLocation = adUseClient

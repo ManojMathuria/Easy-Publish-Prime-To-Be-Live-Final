@@ -6,7 +6,7 @@ Begin VB.Form FrmFY
    Caption         =   "Create Financial Year ..."
    ClientHeight    =   1110
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4440
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmFY
    MaxButton       =   0   'False
    ScaleHeight     =   1110
    ScaleWidth      =   4440
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Height          =   375

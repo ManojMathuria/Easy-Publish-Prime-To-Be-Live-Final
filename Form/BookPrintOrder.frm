@@ -13,7 +13,7 @@ Begin VB.Form FrmBookPrintOrder
    Caption         =   "Item Print Order"
    ClientHeight    =   7725
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   17610
    BeginProperty Font 
       Name            =   "Arial"
@@ -27,6 +27,7 @@ Begin VB.Form FrmBookPrintOrder
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
+   MDIChild        =   -1  'True
    ScaleHeight     =   7725
    ScaleWidth      =   17610
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -1068,7 +1069,7 @@ Begin VB.Form FrmBookPrintOrder
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   14
+            ColumnCount     =   16
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "   Order No."
@@ -1199,6 +1200,19 @@ Begin VB.Form FrmBookPrintOrder
                EndProperty
             EndProperty
             BeginProperty Column09 
+               DataField       =   "EstQty01"
+               Caption         =   "Order Qty."
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
+               EndProperty
+            EndProperty
+            BeginProperty Column10 
                DataField       =   "DeliveredQuantity"
                Caption         =   "    Recd Qty"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1211,7 +1225,20 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   1
                EndProperty
             EndProperty
-            BeginProperty Column10 
+            BeginProperty Column11 
+               DataField       =   "Pending"
+               Caption         =   "Pending Qty."
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
+               EndProperty
+            EndProperty
+            BeginProperty Column12 
                DataField       =   "BookPrinterName"
                Caption         =   "Multi Format"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1224,7 +1251,7 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column11 
+            BeginProperty Column13 
                DataField       =   "TitlePrinterName"
                Caption         =   "Spread Format"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1237,7 +1264,7 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column12 
+            BeginProperty Column14 
                DataField       =   "LaminatorName"
                Caption         =   "Misc Operation"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1250,7 +1277,7 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column13 
+            BeginProperty Column15 
                DataField       =   "BinderName"
                Caption         =   "Binding Process"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1317,24 +1344,32 @@ Begin VB.Form FrmBookPrintOrder
                EndProperty
                BeginProperty Column09 
                   Alignment       =   1
-                  Locked          =   -1  'True
                   ColumnWidth     =   975.118
                EndProperty
                BeginProperty Column10 
+                  Alignment       =   1
                   Locked          =   -1  'True
-                  ColumnWidth     =   1289.764
+                  ColumnWidth     =   975.118
                EndProperty
                BeginProperty Column11 
-                  Locked          =   -1  'True
-                  ColumnWidth     =   1335.118
+                  Alignment       =   1
+                  ColumnWidth     =   1140.095
                EndProperty
                BeginProperty Column12 
                   Locked          =   -1  'True
-                  ColumnWidth     =   989.858
+                  ColumnWidth     =   2505.26
                EndProperty
                BeginProperty Column13 
                   Locked          =   -1  'True
-                  ColumnWidth     =   1950.236
+                  ColumnWidth     =   2505.26
+               EndProperty
+               BeginProperty Column14 
+                  Locked          =   -1  'True
+                  ColumnWidth     =   2505.26
+               EndProperty
+               BeginProperty Column15 
+                  Locked          =   -1  'True
+                  ColumnWidth     =   2505.26
                EndProperty
             EndProperty
          End
@@ -4145,8 +4180,8 @@ Private Sub Form_Load()
     Unload FrmBookPOPrintUtility
     CenterForm Me
     WheelHook DataGrid1
-    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     Me.Caption = IIf(BookPOType = "DS", "Sales Order [Digital Printing]", IIf(BookPOType = "DP", "Purchase Order [Digital Printing]", IIf(BookPOType = "FP", "Purchase Order [Finished Goods]", IIf(BookPOType = "RP", "Purchase Order [Unfinished Goods]", IIf(BookPOType = "OP", "Cost Sheet", IIf(BookPOType = "FS", "Sales Order [Finished Goods]", "Sales Order [Unfinished Goods]"))))))
     'If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 3750: Mh3dFrame6.Top = 4280: Mh3dFrame7.Top = 5120 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
@@ -8473,10 +8508,11 @@ Private Sub RefreshList(ByVal VchCode As String)
         If .State = adStateOpen Then .Close
         BusySystemIndicator True
         If DisplayListType = "O" Then
-            .Open "SELECT DISTINCT T.Code,T.Name,IIF(ISNULL(C1.Ref,'')='' AND ISNULL(C2.Ref,'')='','',IIF(ISNULL(C1.Ref,'')='',C2.Ref,IIF(ISNULL(C2.Ref,'')='',C1.Ref,C1.Ref+'-'+C2.Ref))) As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM ((((((BookPOParent T INNER JOIN BookMaster I ON T.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder) LEFT JOIN BookPOChild05 C1 ON T.Code=C1.Code) LEFT JOIN BookPOChild06 C2 ON T.Code=C2.Code WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
+            .Open "SELECT DISTINCT T.Code,T.Name,IIF(ISNULL(C1.Ref,'')='' AND ISNULL(C2.Ref,'')='','',IIF(ISNULL(C1.Ref,'')='',C2.Ref,IIF(ISNULL(C2.Ref,'')='',C1.Ref,C1.Ref+'-'+C2.Ref))) As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.EstQty01,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,IIF(T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)<0,0,T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)) As Pending," & _
+            "XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM ((((((BookPOParent T INNER JOIN BookMaster I ON T.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder) LEFT JOIN BookPOChild05 C1 ON T.Code=C1.Code) LEFT JOIN BookPOChild06 C2 ON T.Code=C2.Code WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
             cmdProceed.Caption = " Show Combo Item List Only"
         Else
-            .Open "SELECT DISTINCT T.Code,T.Name,'' As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM (((((BookPOParent T INNER JOIN BookPOChild0901 C3 ON T.Code=C3.Code) INNER JOIN BookMaster I ON C3.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
+            .Open "SELECT DISTINCT T.Code,T.Name,'' As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.EstQty01,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,IIF(T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)<0,0,T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)) As Pending,XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM (((((BookPOParent T INNER JOIN BookPOChild0901 C3 ON T.Code=C3.Code) INNER JOIN BookMaster I ON C3.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
             cmdProceed.Caption = " Show Genaral Item List "
         End If
         .ActiveConnection = Nothing

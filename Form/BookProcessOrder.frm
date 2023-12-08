@@ -12,7 +12,7 @@ Begin VB.Form FrmBookProcessOrder
    Caption         =   "Item Process Order"
    ClientHeight    =   8265
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -1392,8 +1392,8 @@ Begin VB.Form FrmBookProcessOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookProcessOrder.frx":1A71
-               Picture         =   "BookProcessOrder.frx":1A8D
+               Picture         =   "BookProcessOrder.frx":1B99
+               Picture         =   "BookProcessOrder.frx":1BB5
             End
             Begin VB.Line Line2 
                X1              =   0
@@ -1445,8 +1445,8 @@ Begin VB.Form FrmBookProcessOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookProcessOrder.frx":1AA9
-            Picture         =   "BookProcessOrder.frx":1AC5
+            Picture         =   "BookProcessOrder.frx":1BD1
+            Picture         =   "BookProcessOrder.frx":1BED
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

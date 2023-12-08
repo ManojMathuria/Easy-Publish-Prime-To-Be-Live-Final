@@ -231,8 +231,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   8421376
                TextColor       =   16777215
-               Picture         =   "MaterialIssueOrder.frx":07A2
-               Picture         =   "MaterialIssueOrder.frx":07BE
+               Picture         =   "MaterialIssueOrder.frx":08A6
+               Picture         =   "MaterialIssueOrder.frx":08C2
             End
             Begin VB.TextBox Text2 
                Alignment       =   1  'Right Justify
@@ -319,8 +319,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":07DA
-               Picture         =   "MaterialIssueOrder.frx":07F6
+               Picture         =   "MaterialIssueOrder.frx":08DE
+               Picture         =   "MaterialIssueOrder.frx":08FA
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -347,8 +347,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":0812
-               Picture         =   "MaterialIssueOrder.frx":082E
+               Picture         =   "MaterialIssueOrder.frx":0916
+               Picture         =   "MaterialIssueOrder.frx":0932
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -374,8 +374,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":084A
-               Picture         =   "MaterialIssueOrder.frx":0866
+               Picture         =   "MaterialIssueOrder.frx":094E
+               Picture         =   "MaterialIssueOrder.frx":096A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -401,8 +401,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":0882
-               Picture         =   "MaterialIssueOrder.frx":089E
+               Picture         =   "MaterialIssueOrder.frx":0986
+               Picture         =   "MaterialIssueOrder.frx":09A2
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -413,8 +413,8 @@ Begin VB.Form FrmMaterialIssueOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "MaterialIssueOrder.frx":08BA
-               Caption         =   "MaterialIssueOrder.frx":09D2
+               Calendar        =   "MaterialIssueOrder.frx":09BE
+               Caption         =   "MaterialIssueOrder.frx":0AD6
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -424,9 +424,9 @@ Begin VB.Form FrmMaterialIssueOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "MaterialIssueOrder.frx":0A3E
-               Keys            =   "MaterialIssueOrder.frx":0A5C
-               Spin            =   "MaterialIssueOrder.frx":0ABA
+               DropDown        =   "MaterialIssueOrder.frx":0B42
+               Keys            =   "MaterialIssueOrder.frx":0B60
+               Spin            =   "MaterialIssueOrder.frx":0BBE
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -616,8 +616,8 @@ Begin VB.Form FrmMaterialIssueOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "MaterialIssueOrder.frx":0AE2
-            Picture         =   "MaterialIssueOrder.frx":0AFE
+            Picture         =   "MaterialIssueOrder.frx":0BE6
+            Picture         =   "MaterialIssueOrder.frx":0C02
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -766,6 +766,8 @@ Dim OutputTo As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     WheelHook DataGrid1
     BusySystemIndicator True
     CxnMaterialIssueOrder.CursorLocation = adUseClient

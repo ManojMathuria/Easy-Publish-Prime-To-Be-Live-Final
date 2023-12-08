@@ -10,7 +10,7 @@ Begin VB.Form FrmBookPOChild02
    Caption         =   "Multi Sheet Digital Printing Order Details"
    ClientHeight    =   9765
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   11160
    BeginProperty Font 
       Name            =   "Arial"
@@ -26,7 +26,6 @@ Begin VB.Form FrmBookPOChild02
    MaxButton       =   0   'False
    ScaleHeight     =   9765
    ScaleWidth      =   11160
-   StartUpPosition =   1  'CenterOwner
    Begin VB.CommandButton cmdCancel 
       BackColor       =   &H008BD6FE&
       Height          =   375
@@ -2475,8 +2474,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":3C7E
-         Picture         =   "BookPOChild02.frx":3C9A
+         Picture         =   "BookPOChild02.frx":3D2B
+         Picture         =   "BookPOChild02.frx":3D47
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput28 
          Height          =   330
@@ -2488,8 +2487,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":3CB6
-         Caption         =   "BookPOChild02.frx":3CD6
+         Calculator      =   "BookPOChild02.frx":3D63
+         Caption         =   "BookPOChild02.frx":3D83
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2499,9 +2498,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":3D42
-         Keys            =   "BookPOChild02.frx":3D60
-         Spin            =   "BookPOChild02.frx":3DAA
+         DropDown        =   "BookPOChild02.frx":3DEF
+         Keys            =   "BookPOChild02.frx":3E0D
+         Spin            =   "BookPOChild02.frx":3E57
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -2547,8 +2546,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":3DD2
-         Caption         =   "BookPOChild02.frx":3DF2
+         Calculator      =   "BookPOChild02.frx":3E7F
+         Caption         =   "BookPOChild02.frx":3E9F
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2558,9 +2557,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":3E5E
-         Keys            =   "BookPOChild02.frx":3E7C
-         Spin            =   "BookPOChild02.frx":3EC6
+         DropDown        =   "BookPOChild02.frx":3F0B
+         Keys            =   "BookPOChild02.frx":3F29
+         Spin            =   "BookPOChild02.frx":3F73
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -2620,8 +2619,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":3EEE
-         Picture         =   "BookPOChild02.frx":3F0A
+         Picture         =   "BookPOChild02.frx":3F9B
+         Picture         =   "BookPOChild02.frx":3FB7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
          Height          =   330
@@ -2647,8 +2646,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":3F26
-         Picture         =   "BookPOChild02.frx":3F42
+         Picture         =   "BookPOChild02.frx":3FD3
+         Picture         =   "BookPOChild02.frx":3FEF
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput4 
          Height          =   330
@@ -2660,8 +2659,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calendar        =   "BookPOChild02.frx":3F5E
-         Caption         =   "BookPOChild02.frx":4076
+         Calendar        =   "BookPOChild02.frx":400B
+         Caption         =   "BookPOChild02.frx":4123
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2671,9 +2670,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":40E2
-         Keys            =   "BookPOChild02.frx":4100
-         Spin            =   "BookPOChild02.frx":415E
+         DropDown        =   "BookPOChild02.frx":418F
+         Keys            =   "BookPOChild02.frx":41AD
+         Spin            =   "BookPOChild02.frx":420B
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -2723,8 +2722,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":4186
-         Caption         =   "BookPOChild02.frx":41A6
+         Calculator      =   "BookPOChild02.frx":4233
+         Caption         =   "BookPOChild02.frx":4253
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2734,9 +2733,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":4212
-         Keys            =   "BookPOChild02.frx":4230
-         Spin            =   "BookPOChild02.frx":427A
+         DropDown        =   "BookPOChild02.frx":42BF
+         Keys            =   "BookPOChild02.frx":42DD
+         Spin            =   "BookPOChild02.frx":4327
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -2782,8 +2781,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   1508
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":42A2
-         Caption         =   "BookPOChild02.frx":42C2
+         Calculator      =   "BookPOChild02.frx":434F
+         Caption         =   "BookPOChild02.frx":436F
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2793,9 +2792,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":432E
-         Keys            =   "BookPOChild02.frx":434C
-         Spin            =   "BookPOChild02.frx":4396
+         DropDown        =   "BookPOChild02.frx":43DB
+         Keys            =   "BookPOChild02.frx":43F9
+         Spin            =   "BookPOChild02.frx":4443
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -2840,8 +2839,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":43BE
-         Caption         =   "BookPOChild02.frx":43DE
+         Calculator      =   "BookPOChild02.frx":446B
+         Caption         =   "BookPOChild02.frx":448B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2851,9 +2850,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":444A
-         Keys            =   "BookPOChild02.frx":4468
-         Spin            =   "BookPOChild02.frx":44B2
+         DropDown        =   "BookPOChild02.frx":44F7
+         Keys            =   "BookPOChild02.frx":4515
+         Spin            =   "BookPOChild02.frx":455F
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -2913,8 +2912,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":44DA
-         Picture         =   "BookPOChild02.frx":44F6
+         Picture         =   "BookPOChild02.frx":4587
+         Picture         =   "BookPOChild02.frx":45A3
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput33 
          Height          =   330
@@ -2926,8 +2925,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":4512
-         Caption         =   "BookPOChild02.frx":4532
+         Calculator      =   "BookPOChild02.frx":45BF
+         Caption         =   "BookPOChild02.frx":45DF
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2937,9 +2936,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":459E
-         Keys            =   "BookPOChild02.frx":45BC
-         Spin            =   "BookPOChild02.frx":4606
+         DropDown        =   "BookPOChild02.frx":464B
+         Keys            =   "BookPOChild02.frx":4669
+         Spin            =   "BookPOChild02.frx":46B3
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -2986,8 +2985,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":462E
-         Caption         =   "BookPOChild02.frx":464E
+         Calculator      =   "BookPOChild02.frx":46DB
+         Caption         =   "BookPOChild02.frx":46FB
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -2997,9 +2996,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":46BA
-         Keys            =   "BookPOChild02.frx":46D8
-         Spin            =   "BookPOChild02.frx":4722
+         DropDown        =   "BookPOChild02.frx":4767
+         Keys            =   "BookPOChild02.frx":4785
+         Spin            =   "BookPOChild02.frx":47CF
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -3045,8 +3044,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":474A
-         Caption         =   "BookPOChild02.frx":476A
+         Calculator      =   "BookPOChild02.frx":47F7
+         Caption         =   "BookPOChild02.frx":4817
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -3056,9 +3055,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":47D6
-         Keys            =   "BookPOChild02.frx":47F4
-         Spin            =   "BookPOChild02.frx":483E
+         DropDown        =   "BookPOChild02.frx":4883
+         Keys            =   "BookPOChild02.frx":48A1
+         Spin            =   "BookPOChild02.frx":48EB
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -3118,8 +3117,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4866
-         Picture         =   "BookPOChild02.frx":4882
+         Picture         =   "BookPOChild02.frx":4913
+         Picture         =   "BookPOChild02.frx":492F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel45 
          Height          =   330
@@ -3145,8 +3144,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":489E
-         Picture         =   "BookPOChild02.frx":48BA
+         Picture         =   "BookPOChild02.frx":494B
+         Picture         =   "BookPOChild02.frx":4967
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput37 
          Height          =   330
@@ -3157,8 +3156,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":48D6
-         Caption         =   "BookPOChild02.frx":48F6
+         Calculator      =   "BookPOChild02.frx":4983
+         Caption         =   "BookPOChild02.frx":49A3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -3168,9 +3167,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":4962
-         Keys            =   "BookPOChild02.frx":4980
-         Spin            =   "BookPOChild02.frx":49CA
+         DropDown        =   "BookPOChild02.frx":4A0F
+         Keys            =   "BookPOChild02.frx":4A2D
+         Spin            =   "BookPOChild02.frx":4A77
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -3216,8 +3215,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":49F2
-         Caption         =   "BookPOChild02.frx":4A12
+         Calculator      =   "BookPOChild02.frx":4A9F
+         Caption         =   "BookPOChild02.frx":4ABF
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -3227,9 +3226,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":4A7E
-         Keys            =   "BookPOChild02.frx":4A9C
-         Spin            =   "BookPOChild02.frx":4AE6
+         DropDown        =   "BookPOChild02.frx":4B2B
+         Keys            =   "BookPOChild02.frx":4B49
+         Spin            =   "BookPOChild02.frx":4B93
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -3275,8 +3274,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":4B0E
-         Caption         =   "BookPOChild02.frx":4B2E
+         Calculator      =   "BookPOChild02.frx":4BBB
+         Caption         =   "BookPOChild02.frx":4BDB
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -3286,9 +3285,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":4B9A
-         Keys            =   "BookPOChild02.frx":4BB8
-         Spin            =   "BookPOChild02.frx":4C02
+         DropDown        =   "BookPOChild02.frx":4C47
+         Keys            =   "BookPOChild02.frx":4C65
+         Spin            =   "BookPOChild02.frx":4CAF
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -3335,8 +3334,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   661
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":4C2A
-         Caption         =   "BookPOChild02.frx":4C4A
+         Calculator      =   "BookPOChild02.frx":4CD7
+         Caption         =   "BookPOChild02.frx":4CF7
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -3346,9 +3345,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":4CB6
-         Keys            =   "BookPOChild02.frx":4CD4
-         Spin            =   "BookPOChild02.frx":4D1E
+         DropDown        =   "BookPOChild02.frx":4D63
+         Keys            =   "BookPOChild02.frx":4D81
+         Spin            =   "BookPOChild02.frx":4DCB
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -3408,8 +3407,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4D46
-         Picture         =   "BookPOChild02.frx":4D62
+         Picture         =   "BookPOChild02.frx":4DF3
+         Picture         =   "BookPOChild02.frx":4E0F
          Begin VB.CheckBox chkPaper 
             BackColor       =   &H00000000&
             Caption         =   "Check2"
@@ -3445,8 +3444,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4D7E
-         Picture         =   "BookPOChild02.frx":4D9A
+         Picture         =   "BookPOChild02.frx":4E2B
+         Picture         =   "BookPOChild02.frx":4E47
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel41 
          Height          =   330
@@ -3472,8 +3471,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4DB6
-         Picture         =   "BookPOChild02.frx":4DD2
+         Picture         =   "BookPOChild02.frx":4E63
+         Picture         =   "BookPOChild02.frx":4E7F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -3499,8 +3498,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4DEE
-         Picture         =   "BookPOChild02.frx":4E0A
+         Picture         =   "BookPOChild02.frx":4E9B
+         Picture         =   "BookPOChild02.frx":4EB7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel39 
          Height          =   330
@@ -3526,8 +3525,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4E26
-         Picture         =   "BookPOChild02.frx":4E42
+         Picture         =   "BookPOChild02.frx":4ED3
+         Picture         =   "BookPOChild02.frx":4EEF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel36 
          Height          =   330
@@ -3554,8 +3553,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4E5E
-         Picture         =   "BookPOChild02.frx":4E7A
+         Picture         =   "BookPOChild02.frx":4F0B
+         Picture         =   "BookPOChild02.frx":4F27
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel35 
          Height          =   330
@@ -3581,8 +3580,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4E96
-         Picture         =   "BookPOChild02.frx":4EB2
+         Picture         =   "BookPOChild02.frx":4F43
+         Picture         =   "BookPOChild02.frx":4F5F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel34 
          Height          =   330
@@ -3608,8 +3607,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4ECE
-         Picture         =   "BookPOChild02.frx":4EEA
+         Picture         =   "BookPOChild02.frx":4F7B
+         Picture         =   "BookPOChild02.frx":4F97
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel32 
          Height          =   330
@@ -3635,8 +3634,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4F06
-         Picture         =   "BookPOChild02.frx":4F22
+         Picture         =   "BookPOChild02.frx":4FB3
+         Picture         =   "BookPOChild02.frx":4FCF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel28 
          Height          =   330
@@ -3662,8 +3661,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4F3E
-         Picture         =   "BookPOChild02.frx":4F5A
+         Picture         =   "BookPOChild02.frx":4FEB
+         Picture         =   "BookPOChild02.frx":5007
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
          Height          =   330
@@ -3689,8 +3688,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4F76
-         Picture         =   "BookPOChild02.frx":4F92
+         Picture         =   "BookPOChild02.frx":5023
+         Picture         =   "BookPOChild02.frx":503F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel25 
          Height          =   330
@@ -3716,8 +3715,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4FAE
-         Picture         =   "BookPOChild02.frx":4FCA
+         Picture         =   "BookPOChild02.frx":505B
+         Picture         =   "BookPOChild02.frx":5077
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
          Height          =   330
@@ -3744,8 +3743,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":4FE6
-         Picture         =   "BookPOChild02.frx":5002
+         Picture         =   "BookPOChild02.frx":5093
+         Picture         =   "BookPOChild02.frx":50AF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
          Height          =   330
@@ -3771,8 +3770,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":501E
-         Picture         =   "BookPOChild02.frx":503A
+         Picture         =   "BookPOChild02.frx":50CB
+         Picture         =   "BookPOChild02.frx":50E7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
          Height          =   330
@@ -3798,8 +3797,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":5056
-         Picture         =   "BookPOChild02.frx":5072
+         Picture         =   "BookPOChild02.frx":5103
+         Picture         =   "BookPOChild02.frx":511F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
@@ -3825,8 +3824,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":508E
-         Picture         =   "BookPOChild02.frx":50AA
+         Picture         =   "BookPOChild02.frx":513B
+         Picture         =   "BookPOChild02.frx":5157
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -3852,8 +3851,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":50C6
-         Picture         =   "BookPOChild02.frx":50E2
+         Picture         =   "BookPOChild02.frx":5173
+         Picture         =   "BookPOChild02.frx":518F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -3879,8 +3878,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":50FE
-         Picture         =   "BookPOChild02.frx":511A
+         Picture         =   "BookPOChild02.frx":51AB
+         Picture         =   "BookPOChild02.frx":51C7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
@@ -3906,8 +3905,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":5136
-         Picture         =   "BookPOChild02.frx":5152
+         Picture         =   "BookPOChild02.frx":51E3
+         Picture         =   "BookPOChild02.frx":51FF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -3933,8 +3932,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":516E
-         Picture         =   "BookPOChild02.frx":518A
+         Picture         =   "BookPOChild02.frx":521B
+         Picture         =   "BookPOChild02.frx":5237
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
@@ -3960,8 +3959,8 @@ Begin VB.Form FrmBookPOChild02
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild02.frx":51A6
-         Picture         =   "BookPOChild02.frx":51C2
+         Picture         =   "BookPOChild02.frx":5253
+         Picture         =   "BookPOChild02.frx":526F
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput21 
          Height          =   330
@@ -3974,8 +3973,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   1508
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":51DE
-         Caption         =   "BookPOChild02.frx":51FE
+         Calculator      =   "BookPOChild02.frx":528B
+         Caption         =   "BookPOChild02.frx":52AB
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -3985,9 +3984,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":526A
-         Keys            =   "BookPOChild02.frx":5288
-         Spin            =   "BookPOChild02.frx":52D2
+         DropDown        =   "BookPOChild02.frx":5317
+         Keys            =   "BookPOChild02.frx":5335
+         Spin            =   "BookPOChild02.frx":537F
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -4034,8 +4033,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   1508
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":52FA
-         Caption         =   "BookPOChild02.frx":531A
+         Calculator      =   "BookPOChild02.frx":53A7
+         Caption         =   "BookPOChild02.frx":53C7
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -4045,9 +4044,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":5386
-         Keys            =   "BookPOChild02.frx":53A4
-         Spin            =   "BookPOChild02.frx":53EE
+         DropDown        =   "BookPOChild02.frx":5433
+         Keys            =   "BookPOChild02.frx":5451
+         Spin            =   "BookPOChild02.frx":549B
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -4094,8 +4093,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":5416
-         Caption         =   "BookPOChild02.frx":5436
+         Calculator      =   "BookPOChild02.frx":54C3
+         Caption         =   "BookPOChild02.frx":54E3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -4105,9 +4104,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":54A2
-         Keys            =   "BookPOChild02.frx":54C0
-         Spin            =   "BookPOChild02.frx":550A
+         DropDown        =   "BookPOChild02.frx":554F
+         Keys            =   "BookPOChild02.frx":556D
+         Spin            =   "BookPOChild02.frx":55B7
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -4154,8 +4153,8 @@ Begin VB.Form FrmBookPOChild02
          _Version        =   65536
          _ExtentX        =   2990
          _ExtentY        =   582
-         Calculator      =   "BookPOChild02.frx":5532
-         Caption         =   "BookPOChild02.frx":5552
+         Calculator      =   "BookPOChild02.frx":55DF
+         Caption         =   "BookPOChild02.frx":55FF
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -4165,9 +4164,9 @@ Begin VB.Form FrmBookPOChild02
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild02.frx":55BE
-         Keys            =   "BookPOChild02.frx":55DC
-         Spin            =   "BookPOChild02.frx":5626
+         DropDown        =   "BookPOChild02.frx":566B
+         Keys            =   "BookPOChild02.frx":5689
+         Spin            =   "BookPOChild02.frx":56D3
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -4333,7 +4332,7 @@ Private Sub Form_Load()
     Dim Cnt As Integer, Pages As Variant
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    'Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     For Cnt = 11 To 27

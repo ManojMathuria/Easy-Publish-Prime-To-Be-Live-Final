@@ -10,7 +10,7 @@ Begin VB.Form FrmSizeGroupMaster
    Caption         =   "Size Group Master"
    ClientHeight    =   4875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   6750
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -391,8 +391,8 @@ Begin VB.Form FrmSizeGroupMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SizeGroupMaster.frx":06B9
-            Picture         =   "SizeGroupMaster.frx":06D5
+            Picture         =   "SizeGroupMaster.frx":07BD
+            Picture         =   "SizeGroupMaster.frx":07D9
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -549,7 +549,7 @@ Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnSizeGroupMaster.CursorLocation = adUseClient: cnSizeGroupMaster.Open cnDatabase.ConnectionString

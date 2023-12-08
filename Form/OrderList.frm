@@ -7,7 +7,7 @@ Begin VB.Form FrmOrderList
    Caption         =   "List of Pending Orders..."
    ClientHeight    =   6165
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   16110
    BeginProperty Font 
       Name            =   "Arial"
@@ -221,8 +221,8 @@ Begin VB.Form FrmOrderList
       Alignment       =   0
       FillColor       =   9164542
       TextColor       =   0
-      Picture         =   "OrderList.frx":0C27
-      Picture         =   "OrderList.frx":0C43
+      Picture         =   "OrderList.frx":0D01
+      Picture         =   "OrderList.frx":0D1D
    End
 End
 Attribute VB_Name = "FrmOrderList"
@@ -281,7 +281,7 @@ Private Sub Check2_Click() 'Select All
     End With
 End Sub
 Private Sub Text1_Change()
-    Dim i As Integer, CVal As Variant
+    Dim i As Integer, cVal As Variant
     With fpSpread1
         For i = 1 To .DataRowCnt 'Unhide All
             .Row = i: .RowHidden = False
@@ -289,8 +289,8 @@ Private Sub Text1_Change()
         If CheckEmpty(Text1.Text, False) Then Exit Sub
         .SetActiveCell 1, 1
         For i = 1 To .DataRowCnt
-                .GetText 1, i, CVal
-                If InStr(StrConv(CVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then .Row = i: .RowHidden = True Else .SetActiveCell 1, i
+                .GetText 1, i, cVal
+                If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then .Row = i: .RowHidden = True Else .SetActiveCell 1, i
         Next
     End With
 End Sub

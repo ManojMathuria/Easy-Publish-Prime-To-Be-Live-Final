@@ -1,17 +1,16 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmProductList 
    BackColor       =   &H8000000B&
    Caption         =   "Product List"
    ClientHeight    =   7695
    ClientLeft      =   120
-   ClientTop       =   465
+   ClientTop       =   405
    ClientWidth     =   8490
    LinkTopic       =   "Form1"
    ScaleHeight     =   8490
    ScaleMode       =   0  'User
    ScaleWidth      =   8730
-   StartUpPosition =   3  'Windows Default
    WindowState     =   2  'Maximized
    Begin VB.PictureBox Mh3dFrame1 
       FillColor       =   &H8000000F&

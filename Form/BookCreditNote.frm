@@ -11,7 +11,7 @@ Begin VB.Form FrmBookCreditNote
    Caption         =   "Book Credit Note"
    ClientHeight    =   7725
    ClientLeft      =   45
-   ClientTop       =   225
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -572,8 +572,8 @@ Begin VB.Form FrmBookCreditNote
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookCreditNote.frx":0D90
-            Picture         =   "BookCreditNote.frx":0DAC
+            Picture         =   "BookCreditNote.frx":0E94
+            Picture         =   "BookCreditNote.frx":0EB0
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

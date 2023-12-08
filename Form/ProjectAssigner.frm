@@ -12,7 +12,7 @@ Begin VB.Form FrmProjectAssigner
    Caption         =   "Project Assigner"
    ClientHeight    =   9120
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   18870
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -26,7 +26,6 @@ Begin VB.Form FrmProjectAssigner
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9120
    ScaleWidth      =   18870
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -685,7 +684,7 @@ Begin VB.Form FrmProjectAssigner
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "ProjectAssigner.frx":2C93
+            Picture         =   "ProjectAssigner.frx":2CB7
             Begin VB.TextBox Text7 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -795,8 +794,8 @@ Begin VB.Form FrmProjectAssigner
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectAssigner.frx":2CAF
-               Picture         =   "ProjectAssigner.frx":2CCB
+               Picture         =   "ProjectAssigner.frx":2CD3
+               Picture         =   "ProjectAssigner.frx":2CEF
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -823,8 +822,8 @@ Begin VB.Form FrmProjectAssigner
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectAssigner.frx":2CE7
-               Picture         =   "ProjectAssigner.frx":2D03
+               Picture         =   "ProjectAssigner.frx":2D0B
+               Picture         =   "ProjectAssigner.frx":2D27
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -851,8 +850,8 @@ Begin VB.Form FrmProjectAssigner
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectAssigner.frx":2D1F
-               Picture         =   "ProjectAssigner.frx":2D3B
+               Picture         =   "ProjectAssigner.frx":2D43
+               Picture         =   "ProjectAssigner.frx":2D5F
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
@@ -880,8 +879,8 @@ Begin VB.Form FrmProjectAssigner
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ProjectAssigner.frx":2D57
-            Picture         =   "ProjectAssigner.frx":2D73
+            Picture         =   "ProjectAssigner.frx":2D7B
+            Picture         =   "ProjectAssigner.frx":2D97
          End
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
@@ -906,8 +905,8 @@ Begin VB.Form FrmProjectAssigner
             Caption         =   " &Export "
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectAssigner.frx":2D8F
-            Picture         =   "ProjectAssigner.frx":2DAB
+            Picture         =   "ProjectAssigner.frx":2DB3
+            Picture         =   "ProjectAssigner.frx":2DCF
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
@@ -932,8 +931,8 @@ Begin VB.Form FrmProjectAssigner
             Caption         =   " &Print"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectAssigner.frx":2DC7
-            Picture         =   "ProjectAssigner.frx":2DE3
+            Picture         =   "ProjectAssigner.frx":2DEB
+            Picture         =   "ProjectAssigner.frx":2E07
          End
          Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
             Height          =   330
@@ -944,8 +943,8 @@ Begin VB.Form FrmProjectAssigner
             _Version        =   65536
             _ExtentX        =   2143
             _ExtentY        =   582
-            Calculator      =   "ProjectAssigner.frx":2DFF
-            Caption         =   "ProjectAssigner.frx":2E1F
+            Calculator      =   "ProjectAssigner.frx":2E23
+            Caption         =   "ProjectAssigner.frx":2E43
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -955,9 +954,9 @@ Begin VB.Form FrmProjectAssigner
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "ProjectAssigner.frx":2E83
-            Keys            =   "ProjectAssigner.frx":2EA1
-            Spin            =   "ProjectAssigner.frx":2EEB
+            DropDown        =   "ProjectAssigner.frx":2EA7
+            Keys            =   "ProjectAssigner.frx":2EC5
+            Spin            =   "ProjectAssigner.frx":2F0F
             AlignHorizontal =   2
             AlignVertical   =   0
             Appearance      =   1
@@ -1017,8 +1016,8 @@ Begin VB.Form FrmProjectAssigner
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectAssigner.frx":2F13
-            Picture         =   "ProjectAssigner.frx":2F2F
+            Picture         =   "ProjectAssigner.frx":2F37
+            Picture         =   "ProjectAssigner.frx":2F53
          End
          Begin VB.Label Label1 
             Alignment       =   2  'Center
@@ -1154,6 +1153,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     Dim SQL As String
     CenterForm Me
+    Me.Top = 1200
     BusySystemIndicator True
     cnProjectAssigner.CursorLocation = adUseClient
     If cnProjectAssigner.State = adStateOpen Then cnProjectAssigner.Close

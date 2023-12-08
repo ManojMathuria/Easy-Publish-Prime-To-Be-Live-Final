@@ -12,7 +12,7 @@ Begin VB.Form frmDebitCreditVoucher
    Caption         =   "Voucher"
    ClientHeight    =   8835
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   17715
    BeginProperty Font 
       Name            =   "Arial"
@@ -903,8 +903,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0E6D
-               Picture         =   "DebitCreditVoucher.frx":0E89
+               Picture         =   "DebitCreditVoucher.frx":0DDB
+               Picture         =   "DebitCreditVoucher.frx":0DF7
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
@@ -930,8 +930,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0EA5
-               Picture         =   "DebitCreditVoucher.frx":0EC1
+               Picture         =   "DebitCreditVoucher.frx":0E13
+               Picture         =   "DebitCreditVoucher.frx":0E2F
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -971,9 +971,9 @@ Begin VB.Form frmDebitCreditVoucher
             AutoSize        =   -1  'True
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "DebitCreditVoucher.frx":0EDD
+            Picture         =   "DebitCreditVoucher.frx":0E4B
             Multiline       =   -1  'True
-            Picture         =   "DebitCreditVoucher.frx":0EF9
+            Picture         =   "DebitCreditVoucher.frx":0E67
          End
          Begin MSComctlLib.Toolbar Toolbar2 
             Height          =   630
@@ -1290,7 +1290,8 @@ End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    Me.Left = 120
+    Me.Top = 1200
     WheelHook DataGrid1
     BusySystemIndicator True
         Dim Cols As Long, C As Long
@@ -2118,7 +2119,7 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
 '    End If
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    Dim Item As Variant, i As Integer, x As Integer, Cval(1 To 8) As Variant
+    Dim Item As Variant, i As Integer, x As Integer, cVal(1 To 8) As Variant
 With fpSpread1
     If Shift = 0 And KeyCode = vbKeyF9 Then
             .GetText 8, .ActiveRow, Item  'Ref Code
@@ -2129,11 +2130,11 @@ With fpSpread1
                 End If
     ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
             If .ActiveCol = 3 Or .ActiveCol = 4 Then  'Debit
-            .GetText 1, .ActiveRow, Cval(1)  'TOA
-            .GetText 3, .ActiveRow, Cval(3)  'Debit
-            .GetText 4, .ActiveRow, Cval(4)  'Credit
-            If Cval(1) = "D" And Cval(3) = 0 Then Call MsgBox("Debit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 3, .ActiveRow: .SetFocus:
-            If Cval(1) = "C" And Cval(4) = 0 Then Call MsgBox("Credit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 4, .ActiveRow: .SetFocus:
+            .GetText 1, .ActiveRow, cVal(1)  'TOA
+            .GetText 3, .ActiveRow, cVal(3)  'Debit
+            .GetText 4, .ActiveRow, cVal(4)  'Credit
+            If cVal(1) = "D" And cVal(3) = 0 Then Call MsgBox("Debit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 3, .ActiveRow: .SetFocus:
+            If cVal(1) = "C" And cVal(4) = 0 Then Call MsgBox("Credit Amount Can't be zero !!!", vbInformation, App.Title): .SetActiveCell 4, .ActiveRow: .SetFocus:
             End If
     ElseIf KeyCode = vbKeyF3 Then
             If .ActiveCol = 2 Then
@@ -2159,36 +2160,36 @@ With fpSpread1
         Dim Account As Variant
             CalculateTotal
             If .ActiveCol = 1 Then  'Switch TOA  Value D/C
-            .GetText 1, .ActiveRow, Cval(1)  'TOA
+            .GetText 1, .ActiveRow, cVal(1)  'TOA
             'Switch TOA  Value D/C
-                If Cval(1) = "C" Or Cval(1) = "" Then
+                If cVal(1) = "C" Or cVal(1) = "" Then
                 .SetText 1, .ActiveRow, "D"
-                ElseIf Cval(1) = "D" Or Cval(1) = "" Then
+                ElseIf cVal(1) = "D" Or cVal(1) = "" Then
                 .SetText 1, .ActiveRow, "C"
                 End If
             ElseIf .ActiveCol = 2 Then 'Select Account
-                .GetText 1, .ActiveRow, Cval(1)  'TOA
+                .GetText 1, .ActiveRow, cVal(1)  'TOA
                 .GetText .ActiveCol, .ActiveRow, Account
                 txtAccount.Text = FixQuote(Account)
-                    If Cval(1) = "" And dDCFlag <= 0 Then
-                        Cval(1) = "D"
-                    ElseIf Cval(1) = "" And dDCFlag > 0 Then
-                        Cval(1) = "C": fpSpread1.SetText 1, fpSpread1.ActiveRow, "C"
+                    If cVal(1) = "" And dDCFlag <= 0 Then
+                        cVal(1) = "D"
+                    ElseIf cVal(1) = "" And dDCFlag > 0 Then
+                        cVal(1) = "C": fpSpread1.SetText 1, fpSpread1.ActiveRow, "C"
                     End If
                     
-                    If Cval(1) = "D" And VchType = "PI" Or Cval(1) = "C" And VchType = "PR" Then
+                    If cVal(1) = "D" And VchType = "PI" Or cVal(1) = "C" And VchType = "PR" Then
                         If rstAccountList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstAccountList.MoveFirst
                         rstAccountList.Find "[Col0] = '" & FixQuote(Trim(Account)) & "'"
                         SelectionType = "S": AccountCode = ""
                     Call LoadSelectionList(rstAccountList, "List of Accounts...", "Name")
                     
-                    ElseIf Cval(1) = "C" And VchType = "PI" Or Cval(1) = "D" And VchType = "PR" Or Cval(1) = "D" And VchType = "CE" Or Cval(1) = "C" And VchType = "CE" Then
+                    ElseIf cVal(1) = "C" And VchType = "PI" Or cVal(1) = "D" And VchType = "PR" Or cVal(1) = "D" And VchType = "CE" Or cVal(1) = "C" And VchType = "CE" Then
                         If rstSelfAccountList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstSelfAccountList.MoveFirst
                         rstSelfAccountList.Find "[Col0] = '" & FixQuote(Trim(Account)) & "'"
                         SelectionType = "S": AccountCode = ""
                         Call LoadSelectionList(rstSelfAccountList, "List of Accounts...", "Name")
                     
-                    ElseIf Cval(1) = "C" And VchType = "JE" Or Cval(1) = "D" And VchType = "JE" Or Cval(1) = "C" And VchType = "DN" Or Cval(1) = "D" And VchType = "DN" Or Cval(1) = "C" And VchType = "CN" Or Cval(1) = "D" And VchType = "CN" Then
+                    ElseIf cVal(1) = "C" And VchType = "JE" Or cVal(1) = "D" And VchType = "JE" Or cVal(1) = "C" And VchType = "DN" Or cVal(1) = "D" And VchType = "DN" Or cVal(1) = "C" And VchType = "CN" Or cVal(1) = "D" And VchType = "CN" Then
                         If rstJEAccountList.RecordCount = 0 Then DisplayError ("No Record in Size Master"): .SetActiveCell 1, .ActiveRow: .SetFocus: Exit Sub Else rstJEAccountList.MoveFirst
                         rstJEAccountList.Find "[Col0] = '" & FixQuote(Trim(Account)) & "'"
                         SelectionType = "S": AccountCode = ""
@@ -2232,7 +2233,7 @@ Private Sub fpSpread1_LeaveRow(ByVal Row As Long, ByVal RowWasLast As Boolean, B
     End With
 End Sub
 Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewCol As Long, ByVal NewRow As Long, Cancel As Boolean)
-    Dim TOA As Variant, Account As Variant, Debit As Variant, Credit As Variant, Cval(1 To 8) As Variant
+    Dim TOA As Variant, Account As Variant, Debit As Variant, Credit As Variant, cVal(1 To 8) As Variant
     With fpSpread1
                 .GetText 1, Row, TOA
                 .GetText 2, Row, Account
@@ -2250,12 +2251,12 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
                 If TOA = "C" And Credit > 0 Then .SetText 3, Row, 0: CalculateTotal
                 If Col = 4 And TOA = "C" And Credit <= 0 And Not CheckEmpty(Account, False) Then .SetActiveCell 4, .ActiveRow: CalculateTotal:
         ElseIf Col = 5 Then  'TOA
-        .GetText 1, .ActiveRow + 1, Cval(1) 'Next Row TOA
+        .GetText 1, .ActiveRow + 1, cVal(1) 'Next Row TOA
             If dDCFlag = 0 Then
             fpSpread1.SetActiveCell .ActiveCol, .ActiveRow: Text4.SetFocus
-            ElseIf dDCFlag <= 0 And Cval(1) = "" Then
+            ElseIf dDCFlag <= 0 And cVal(1) = "" Then
                 .SetText 1, Row + 1, "D": .SetActiveCell 2, .ActiveRow + 1: CalculateTotal
-            ElseIf dDCFlag > 0 And Cval(1) = "" Then
+            ElseIf dDCFlag > 0 And cVal(1) = "" Then
                 .SetText 1, Row + 1, "C": .SetActiveCell 2, .ActiveRow + 1: CalculateTotal
             End If
         End If

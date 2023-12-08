@@ -13,7 +13,7 @@ Begin VB.Form FrmMachineMaster
    Caption         =   "Machine Master"
    ClientHeight    =   7050
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   7590
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -1103,8 +1103,8 @@ Begin VB.Form FrmMachineMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "MachineMaster.frx":1279
-            Picture         =   "MachineMaster.frx":1295
+            Picture         =   "MachineMaster.frx":13C5
+            Picture         =   "MachineMaster.frx":13E1
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1260,7 +1260,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
-    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnMachineMaster.CursorLocation = adUseClient: cnMachineMaster.Open cnDatabase.ConnectionString
