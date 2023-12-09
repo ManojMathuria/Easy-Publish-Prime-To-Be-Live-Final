@@ -4131,7 +4131,7 @@ Dim i As Integer, cVal As Variant, mString As String
     ElseIf Button.Index = 17 Then 'Acc Summary
     
     ElseIf Button.Index = 18 Then 'Acc Ledger
-        MnuAccountWise_Click (1)
+        MnuAccountWise_Click (23)
     ElseIf Button.Index = 19 Then 'Stock Ledger
         mnuStockLedger_Click (2)
     ElseIf Button.Index = 20 Then 'Item Summary
