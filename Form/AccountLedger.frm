@@ -295,7 +295,7 @@ Begin VB.Form FrmAccountLedger
          OLEDragMode     =   0
          OLEDropMode     =   0
          PromptChar      =   " "
-         ReadOnly        =   -1
+         ReadOnly        =   0
          ShowContextMenu =   1
          ShowLiterals    =   0
          TabAction       =   0
@@ -357,7 +357,7 @@ Begin VB.Form FrmAccountLedger
          OLEDragMode     =   0
          OLEDropMode     =   0
          PromptChar      =   " "
-         ReadOnly        =   -1
+         ReadOnly        =   0
          ShowContextMenu =   1
          ShowLiterals    =   0
          TabAction       =   0
@@ -817,21 +817,12 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public dSortBy As Boolean
-Public sDate As String, eDate As String, AccountGroupList As String, AccountList As String, VchType As String, Header1 As String, vDate, SCode As Variant, LR As Integer, R As Long
+Public sDate As String, eDate As String, AccountGroupList As String, AccountList As String, VchType As String, Header1 As String, vDate, SCode As Variant, LR As Integer, R As Long, OutputTo As String
 Dim rstAccountLedger As New ADODB.Recordset, rstAccountOpening As New ADODB.Recordset, rstCompanyMaster As New ADODB.Recordset, Reset As Long
 Dim Debit As Double, Credit As Double, Bal As Variant, DebitTotal As Double, CreditTotal As Double, BalTotal As Double, Code As Variant, TotalFlag As Boolean, HideFlag As Boolean, ExitFlag As Boolean
 Dim Opening As Double
 Dim oOutlook As New Outlook.Application
-Dim EMailID As String, Attachment As String, Message As String, OutputTo As String
-Private Sub Combo1_Change()
-    If Reset = 1 Then Call cmdRefresh_Click
-End Sub
-Private Sub Command1_Click()
-With fpSpread1
-    fpSpread1.DeleteRows .DataRowCnt, 1
-    cmdRefresh_Click
-End With
-End Sub
+Dim EMailID As String, Attachment As String, Message As String
 Private Sub Form_Load()
 Reset = 0:
     On Error GoTo ErrorHandler
@@ -869,7 +860,7 @@ Reset = 0:
         Combo2.ListIndex = 0
     End If
     Reset = 1
-    If VchType = 23 Then Me.Caption = " Accounts Ledger"
+    If VchType = 2 Then Me.Caption = " Accounts Ledger"
     MhDateInput1.Value = Format(sDate, "dd-MM-yyyy")
     MhDateInput2.Value = Format(eDate, "dd-MM-yyyy")
     cmdRefresh_Click
@@ -1011,82 +1002,63 @@ SCode = "": TypeCode = ""
         KeyCode = 0
    End If
 End Sub
-Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
-    If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
-End Sub
-Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-    If UnloadMode = 0 Then Call CloseForm(Me)
-End Sub
-Private Sub Form_Unload(Cancel As Integer)
-    Call CloseRecordset(rstAccountLedger)
-    Call CloseRecordset(rstAccountOpening)
-    Call CloseRecordset(rstCompanyMaster)
-End Sub
-Private Sub cmdCancel_Click()
-    Call CloseForm(Me)
-End Sub
 Private Sub cmdRefresh_Click()
     On Error GoTo ErrHandler
-    Dim SQL As String, OpSQL As String, i As Long, R As Long, C As Long
+    Dim SQL As String, OpSQL As String, mSQL, sSQL, dSQL As String  '[SQL Query,Opening SQL Query,Month SQL Query,Summary SQL Query,Details SQL Query]
+    Dim i As Long, R As Long, C As Long, n As Integer
     Debit = 0: Credit = 0: Bal = 0
     CreditTotal = 0: DebitTotal = 0:
-     If VchType >= 0 And VchType <= 29 Then 'Account Ledger
-  OpSQL = "SELECT(SELECT ISNULL(Sum(C.Credit-C.Debit),0) As Opening FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account IN (" & AccountList & ")) + " & _
-                             "(SELECT ISNULL(Sum(IIF(LEFT(Type,2)='01',(T.Amount),IIF(LEFT(Type,2)='02',(0-T.Amount),IIF(LEFT(Type,2)='03',(T.Amount),IIF(LEFT(Type,2)='04',(0-T.Amount),0))))),0) As Opening FROM JobworkBVParent T LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Date < '" & GetDate(MhDateInput1.Text) & "' And T.Party IN (" & AccountList & ")) +  " & _
-                             "(Select ISNULL(Sum(Opening),0) From AccountMaster Where Code IN (" & AccountList & ")) As Opening "
-            Screen.MousePointer = vbHourglass
-            If rstAccountOpening.State = adStateOpen Then rstAccountOpening.Close
-            rstAccountOpening.Open OpSQL, cnDatabase, adOpenKeyset, adLockReadOnly
-            If rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
-            'OpSQL = "Select '' As Date,'' VchType,'' As VchBillNo,'Opening' As Account,ABS(IIF(Sum(Credit)-Sum(Debit)<0,Sum(Credit)-Sum(Debit),0)) AS Debit,ABS(IIF(Sum(Credit)-Sum(Debit)>0,Sum(Credit)-Sum(Debit),0)) AS Credit,'' As ShortNarration,'' AS LongNarration,'' AS Type,'' as  Code,'' AS AccountName From(  " & _
-            '"Select IIF(ISNULL(Opening,0)<0,ISNULL(Opening,0),0) As Debit,IIF(ISNULL(Opening,0)>0,ISNULL(Opening,0),0) As Credit From AccountMaster Where Where Code IN (" & AccountList & ") Union " & _
-            '"SELECT (Select IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "'  And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='PI' AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            '"SELECT (SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "'  And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='PR' AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            '"SELECT (SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,IIF(TOA='D',C.Debit,0) As Credit FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "'  AND C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") And Right(BOM,2)='JE' AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            '"SELECT (SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "'  And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='CE' AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            '"SELECT (SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "'  And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='DN' AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            '"SELECT (SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "'  And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='CN' AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            '"SELECT '0' As Debit,T.Amount As Credit FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='01' And Right(Type,2)='PF' And T.Date < '" & GetDate(MhDateInput1.Text) & "'  And T.Party IN (" & AccountList & ") Union " & _
-            '"SELECT '0' As Debit,T.Amount As Credit FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='01' And Right(Type,2)<>'PF' And T.Date < '" & GetDate(MhDateInput1.Text) & "'  And T.Party IN (" & AccountList & ") Union " & _
-            '"SELECT T.Amount As Debit,'0' As Credit  FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='02' And T.Date < '" & GetDate(MhDateInput1.Text) & "'  And T.Party IN (" & AccountList & ") Union " & _
-            '"SELECT '0' As Debit,T.Amount As Credit FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='03' And T.Date < '" & GetDate(MhDateInput1.Text) & "'  And T.Party IN (" & AccountList & ") Union " & _
-            '"SELECT (T.Amount+T.Rebate) As Debit,'0' As Credit FROM (((JobworkBVParent T LEFT JOIN JobworkBVChild C ON C.Code=T.Code) LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code) LEFT JOIN AccountMaster A ON T.Party=A.Code) LEFT JOIN AccountMaster S ON T.SalesType=S.Code WHERE LEFT(Type,2)='04' AND RIGHT(Type,2)='SF' AND T.Date < '" & GetDate(MhDateInput1.Text) & "'  AND T.Party IN (" & AccountList & ") Union " & _
-            '"SELECT '0' As Debit,T.Rebate As Credit FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Rebate>0 And Left(Type,2)='04' And Right(Type,2)='SF' And T.Date < '" & GetDate(MhDateInput1.Text) & "'  And T.Party IN (" & AccountList & ") Union " & _
-            '"SELECT T.Amount As Debit,'0' As Credit FROM JobworkBVParent T INNER JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='04' And Right(Type,2)<>'SF' And T.Date < '" & GetDate(MhDateInput1.Text) & "'  And T.Party IN (" & AccountList & ")) Tbl "
-    OpSQL = "Select '" & GetDate(MhDateInput1.Text) & "' As Date,'' VchType,'' As VchBillNo,'Opening' As Account,ABS(IIF(Opening<0,Opening,0)) AS Debit,ABS(IIF(Opening>0,Opening,0)) AS Credit,'' As ShortNarration,'' AS LongNarration,'' AS Type,'' as  Code,(Select PrintName From AccountMaster Where Code IN (" & AccountList & ")) AS AccountName " & _
-                    "From (SELECT(SELECT ISNULL(Sum(C.Credit-C.Debit),0) FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account IN (" & AccountList & ")) " & _
-                    "+ (SELECT ISNULL(Sum(IIF(LEFT(Type,2)='01',(T.Amount),IIF(LEFT(Type,2)='02',(0-T.Amount),IIF(LEFT(Type,2)='03',(T.Amount),IIF(LEFT(Type,2)='04',(0-T.Amount),0))))),0) FROM JobworkBVParent T LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Date < '" & GetDate(MhDateInput1.Text) & "' And T.Party IN (" & AccountList & ")) " & _
-                    "+ (Select ISNULL(Sum(Opening),0) From AccountMaster Where Code IN (" & AccountList & ")) As Opening ) TBL Union "
-  
-    SQL = "SELECT Date As Date,'Pymt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(Select IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='PI' " & _
-            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            "SELECT Date As Date,'Rcpt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='PR' " & _
-            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            "SELECT Date As Date,'Jrnl' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,IIF(TOA='D',C.Debit,0) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") And Right(BOM,2)='JE' " & _
-            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            "SELECT Date As Date,'Cntr' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='CE' " & _
-            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            "SELECT Date As Date,'DrNt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='DN' " & _
-            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            "SELECT Date As Date,'CrNt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='CN' " & _
-            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
-            "SELECT Date As Date,'Pur' As VchTYPE,LTrim(T.Name) As VchBillNo,'Purchase' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='01' And Right(Type,2)='PF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'Pur' As VchTYPE,LTrim(T.Name) As VchBillNo,'Job Work Purchase ' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='01' And Right(Type,2)<>'PF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'PurRtr' As VchTYPE,LTrim(T.Name) As VchBillNo,'Purchase Return' As Account, T.Amount As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='02' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'SaleRtr' As VchTYPE,LTrim(T.Name) As VchBillNo,'Sale Return' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='03' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'Sale' As VchType,LTRIM(T.Name) As VchBillNo,S.Name As Account,(T.Amount+T.Rebate) As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) As Type,T.Code As Code,A.Name As AccountName FROM (((JobworkBVParent T LEFT JOIN JobworkBVChild C ON C.Code=T.Code) LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code) LEFT JOIN AccountMaster A ON T.Party=A.Code) LEFT JOIN AccountMaster S ON T.SalesType=S.Code WHERE LEFT(Type,2)='04' AND RIGHT(Type,2)='SF' AND T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'Sale' As VchTYPE,LTRIM(T.Name) As VchBillNo,'Rebate' As Account, '0' As Debit,T.Rebate As Credit,'Rebate' As ShortNarration,'' As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Rebate>0 And Left(Type,2)='04' And Right(Type,2)='SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
-            "SELECT Date As Date,'Sale' As VchTYPE,LTrim(T.Name) As VchBillNo,'Job Work Sale ' As Account, T.Amount As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T INNER JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='04' And Right(Type,2)<>'SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") ORDER BY Date ASC"
+    If VchType >= 0 And VchType <= 29 Then 'Account Ledger
+        OpSQL = "SELECT (SELECT ISNULL(Sum(C.Credit-C.Debit),0) As Opening FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account IN (" & AccountList & ")) + " & _
+                       "(SELECT ISNULL(Sum(IIF(LEFT(Type,2)='01',(T.Amount),IIF(LEFT(Type,2)='02',(0-T.Amount),IIF(LEFT(Type,2)='03',(T.Amount),IIF(LEFT(Type,2)='04',(0-T.Amount),0))))),0) As Opening FROM JobworkBVParent T LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Date < '" & GetDate(MhDateInput1.Text) & "' And T.Party IN (" & AccountList & ")) +  " & _
+                       "(Select ISNULL(Sum(Opening),0) From AccountMaster Where Code IN (" & AccountList & ")) As Opening,(SELECT PRINTNAME FROM AccountMaster Where Code IN (" & AccountList & ")) AS AccountNAME  "
+        Screen.MousePointer = vbHourglass
+        If rstAccountOpening.State = adStateOpen Then rstAccountOpening.Close
+        rstAccountOpening.Open OpSQL, cnDatabase, adOpenKeyset, adLockReadOnly
+        If rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
+        
+        mSQL = "WITH Months AS (SELECT TOP 12 CASE WHEN ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) <= 3 THEN ROW_NUMBER() OVER (ORDER BY (SELECT NULL )) +12 Else ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) END AS mCode FROM master.dbo.spt_values) "
+        mSQL = mSQL + "SELECT '' Date,'' VchType,'' VchBillNo,FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'MMMM') MonthYear,ISNULL(SUM(TBL.Debit), 0) AS Debit,ISNULL(SUM(TBL.Credit), 0) AS Credit,'' ShortNarration,'' LongNarration,''Type,''Code,ISNULL(TBL.AccountName,'') As AccountName,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(month, m.mCode - 4, DATEADD(YEAR,-1,'" & FinancialYearFrom & "')), 'dd-MMM-yyyy') Else FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'), 'dd-MMM-yyyy') END AS FromDate,CASE WHEN m.mCode <= 12 THEN   FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, DATEADD(YEAR,-1,'" & FinancialYearFrom & "'))), 'dd-MMM-yyyy') Else FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') END AS ToDate,'' Account,CASE WHEN m.mCode <= 3 THEN m.mCode + 12 ELSE m.mCode END AS mCode FROM Months m LEFT JOIN ( "
+        sSQL = "Select IIF(FORMAT(Date, 'MM') > 3, FORMAT(Date, 'MM'), FORMAT(Date, 'MM') + 12) AS mCode,Debit AS Debit,Credit AS Credit,AccountName FROM ( "
+        If VchType = 2 Then
+             OpSQL = ""
+             OpSQL = "Select '" & GetDate(MhDateInput1.Text) & "' As Date,'' VchType,'' As VchBillNo,'Opening' As Account,ABS(IIF(Opening<0,Opening,0)) AS Debit,ABS(IIF(Opening>0,Opening,0)) AS Credit,'' As ShortNarration,'' AS LongNarration,'' AS Type,'' as  Code,(Select PrintName From AccountMaster Where Code IN (" & AccountList & ")) AS AccountName " & _
+                            "From (SELECT(SELECT ISNULL(Sum(C.Credit-C.Debit),0) FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date < '" & GetDate(MhDateInput1.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account IN (" & AccountList & ")) " & _
+                            "+ (SELECT ISNULL(Sum(IIF(LEFT(Type,2)='01',(T.Amount),IIF(LEFT(Type,2)='02',(0-T.Amount),IIF(LEFT(Type,2)='03',(T.Amount),IIF(LEFT(Type,2)='04',(0-T.Amount),0))))),0) FROM JobworkBVParent T LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Date < '" & GetDate(MhDateInput1.Text) & "' And T.Party IN (" & AccountList & ")) " & _
+                            "+ (Select ISNULL(Sum(Opening),0) From AccountMaster Where Code IN (" & AccountList & ")) As Opening ) TBL Union "
+        End If
+                dSQL = "SELECT Date As Date,'Pymt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(Select IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='PI' " & _
+                            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
+                            "SELECT Date As Date,'Rcpt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 Where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='PR' " & _
+                            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
+                            "SELECT Date As Date,'Jrnl' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,IIF(TOA='D',C.Debit,0) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") And Right(BOM,2)='JE' " & _
+                            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
+                            "SELECT Date As Date,'Cntr' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='CE' " & _
+                            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
+                            "SELECT Date As Date,'DrNt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='DN' " & _
+                            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
+                            "SELECT Date As Date,'CrNt' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") AND Right(BOM,2)='CN' " & _
+                            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union " & _
+                            "SELECT Date As Date,'Pur' As VchTYPE,LTrim(T.Name) As VchBillNo,'Purchase' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='01' And Right(Type,2)='PF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
+                            "SELECT Date As Date,'Pur' As VchTYPE,LTrim(T.Name) As VchBillNo,'Job Work Purchase ' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='01' And Right(Type,2)<>'PF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
+                            "SELECT Date As Date,'PurRtr' As VchTYPE,LTrim(T.Name) As VchBillNo,'Purchase Return' As Account, T.Amount As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='02' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
+                            "SELECT Date As Date,'SaleRtr' As VchTYPE,LTrim(T.Name) As VchBillNo,'Sale Return' As Account, '0' As Debit,T.Amount As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='03' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
+                            "SELECT Date As Date,'Sale' As VchType,LTRIM(T.Name) As VchBillNo,S.Name As Account,(T.Amount+T.Rebate) As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) As Type,T.Code As Code,A.Name As AccountName FROM (((JobworkBVParent T LEFT JOIN JobworkBVChild C ON C.Code=T.Code) LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code) LEFT JOIN AccountMaster A ON T.Party=A.Code) LEFT JOIN AccountMaster S ON T.SalesType=S.Code WHERE LEFT(Type,2)='04' AND RIGHT(Type,2)='SF' AND T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND T.Party IN (" & AccountList & ") Union " & _
+                            "SELECT Date As Date,'Sale' As VchTYPE,LTRIM(T.Name) As VchBillNo,'Rebate' As Account, '0' As Debit,T.Rebate As Credit,'Rebate' As ShortNarration,'' As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T LEFT JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where T.Rebate>0 And Left(Type,2)='04' And Right(Type,2)='SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") Union " & _
+                            "SELECT Date As Date,'Sale' As VchTYPE,LTrim(T.Name) As VchBillNo,'Job Work Sale ' As Account, T.Amount As Debit,'0' As Credit,'' As ShortNarration,T.Remarks As LongNarration,LTRIM(T.Type) AS Type,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM JobworkBVParent T INNER JOIN JobworkBVChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On T.Party=A.Code Where Left(Type,2)='04' And Right(Type,2)<>'SF' And T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' And T.Party IN (" & AccountList & ") "
+        
     End If
-'            "SELECT Date As Date,'Jrnl' As VchTYPE,LTrim(T.Name) As VchBillNo,A.Name As Account,(SELECT IIF(C2.TOA='D',Debit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Debit,(Select IIF(C2.TOA='C',Credit,0) From DebitCreditChild C2 where C2.Account IN (" & AccountList & ") AND T.Code=C2.Code) As Credit,C.ShortNarration As ShortNarration,T.LongNarration As LongNarration,LTRIM(T.Type) AS Type ,T.Code As Code,(Select Name From AccountMaster Master Where Code=" & AccountList & ") As AccountName FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE T.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Code IN (Select Code From DebitCreditChild C1 Where C1.Account IN (" & AccountList & ")) AND C.Account NOT IN (" & AccountList & ") And Right(BOM,2)='JE' " & _
-'            "AND TOA= IIF((Select TOA From DebitCreditChild C1 Where T.Code=C1.Code AND C1.Account IN (" & AccountList & "))='D','C','D') Union "
-    SQL = OpSQL + SQL
+    If VchType = 1 Then SQL = mSQL + sSQL + dSQL + " ) As T) AS TBL ON m.mCode = TBL.mCode GROUP BY m.mCode,TBL.AccountName ORDER BY m.mCode; "
+    If VchType = 2 Then SQL = OpSQL + dSQL + " ORDER BY Date ASC"
+    
             Screen.MousePointer = vbHourglass
             If rstAccountLedger.State = adStateOpen Then rstAccountLedger.Close
             rstAccountLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
             If rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
-            
-    Dim n As Integer
+
+If OutputTo = "S" Then
+    PrintLedger (OutputTo)
+ElseIf OutputTo = "" Then
     If rstAccountLedger.RecordCount <> 0 Then
         Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value: Mh3dLabel9.FontSize = 14
     ElseIf rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount <> 0 Then
@@ -1099,6 +1071,8 @@ Private Sub cmdRefresh_Click()
             Mh3dLabel10.Caption = "Opening Balance: = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
             Screen.MousePointer = vbNormal: Exit Sub
     End If
+
+
     rstAccountOpening.MoveFirst
     Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
     Mh3dLabel10.Caption = ""
@@ -1118,7 +1092,7 @@ Private Sub cmdRefresh_Click()
             fpSpread1.MaxCols = 13
             fpSpread1.MaxRows = IIf(K < 27, 27, K + 1)
             For C = 1 To .MaxCols
-            If VchType <= 24 And VchType >= 21 Then fpSpread1.ColHeaderRows = 1: fpSpread1.Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12:
+            If VchType <= 24 And VchType >= 0 Then fpSpread1.ColHeaderRows = 1: fpSpread1.Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12:
             Next
         rstAccountLedger.MoveFirst
         Do While Not rstAccountLedger.EOF
@@ -1126,7 +1100,11 @@ Private Sub cmdRefresh_Click()
                 .SetText 1, i, rstAccountLedger.Fields("Date").Value
                 .SetText 2, i, rstAccountLedger.Fields("VchType").Value
                 .SetText 3, i, rstAccountLedger.Fields("VchBillNo").Value
+            If VchType = 1 Then
+                .SetText 4, i, rstAccountLedger.Fields("MonthYear").Value
+            ElseIf VchType = 2 Then
                 .SetText 4, i, rstAccountLedger.Fields("Account").Value
+            End If
                         Debit = Val(rstAccountLedger.Fields("Debit").Value)
                 .SetText 5, i, Val(rstAccountLedger.Fields("Debit").Value)
                         Credit = Val(rstAccountLedger.Fields("Credit").Value)
@@ -1157,6 +1135,10 @@ Private Sub cmdRefresh_Click()
     Call cmdFilter_Click
     Screen.MousePointer = vbNormal
     Exit Sub
+ElseIf OutputTo = "V" Or OutputTo = "P" Or OutputTo = "M" Then
+    PrintLedger (OutputTo)
+End If
+Exit Sub
 ErrHandler:
     Screen.MousePointer = vbNormal
     DisplayError (Err.Description)
@@ -1405,7 +1387,7 @@ Private Sub Total_Click()
                 .GetText 5, i, DebitVal
                 .GetText 6, i, CreditVal
                 .GetText 13, i, Flag
-                .GetText 4, i, cVal
+                .GetText 7, i, cVal
         If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                 .Row = i: .RowHidden = True: n = n - 1: .SetText 13, .ActiveRow, "True": 'Hide Filter
         Else
@@ -1499,6 +1481,30 @@ Const PaperHeight = 15840
     spreadpreview.Show
  End With
 End Sub
+Private Sub Combo1_Change()
+    If Reset = 1 Then Call cmdRefresh_Click
+End Sub
+Private Sub Command1_Click()
+With fpSpread1
+    fpSpread1.DeleteRows .DataRowCnt, 1
+    cmdRefresh_Click
+End With
+End Sub
+Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
+End Sub
+Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+    If UnloadMode = 0 Then Call CloseForm(Me)
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+    Call CloseRecordset(rstAccountLedger)
+    Call CloseRecordset(rstAccountOpening)
+    Call CloseRecordset(rstCompanyMaster)
+End Sub
+Private Sub cmdCancel_Click()
+    Call CloseForm(Me)
+OutputTo = ""
+End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     If Button.Index = 1 Then
         PrintLedger ("S")
@@ -1525,34 +1531,41 @@ Public Sub PrintLedger(ByVal OutputType As String)
         End With
         rstAccountLedger.MoveFirst
         rptAccountsLedger.Database.SetDataSource rstAccountLedger, 3, 1
+        rptAccountsLedger.Database.SetDataSource rstAccountOpening, 3, 2
         rptAccountsLedger.DiscardSavedData
     With rptAccountsLedger
-            .Text.SetText "Printed on " & Format(Now, "dd-MMM-yyyy") & " at " & Format(Now, "hh:mm")
-            .Text.Font.Size = 7: .Text.Font.Bold = False
-            
-            .Text1.SetText rstCompanyMaster.Fields("PrintName").Value
-             .Text1.Font.Size = 16: .Text2.Font.Bold = True
-            
-            .Text2.SetText rstCompanyMaster.Fields("Address1").Value & " " & rstCompanyMaster.Fields("Address2").Value & " " & rstCompanyMaster.Fields("Address3").Value & " " & rstCompanyMaster.Fields("Address4").Value
-            .Text2.Font.Size = 12: .Text2.Font.Bold = False
-            
-            If VchType = "23" Then .Text3.SetText " Account Ledger "
-            .Text3.Font.Size = 12: .Text3.Font.Bold = True:
-            
-            If VchType = "23" Then .Text4.SetText "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")"
-            .Text4.Font.Size = 11: .Text4.Font.Bold = False
-            
-            .Text5.SetText "Accounts : " & rstAccountLedger.Fields("AccountName").Value
-            .Text5.Font.Size = 12: .Text5.Font.Bold = True
-            
-            .Text6.SetText rstCompanyMaster.Fields("PrintName").Value
-            .Text6.Font.Size = 10: .Text6.Font.Bold = False: .Text6.HorAlignment = crLeftAlign
-            
-            If VchType = "23" Then .Text7.SetText "Account Ledger : " & "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")"
-            .Text7.Font.Size = 10: .Text7.Font.Bold = False: .Text7.HorAlignment = crLeftAlign
-            
-            .Text8.SetText "Accounts : " & rstAccountLedger.Fields("AccountName").Value
-            .Text8.Font.Size = 10: .Text8.Font.Bold = False: .Text8.HorAlignment = crLeftAlign
+    'Section
+    If VchType = "1" Then
+        .Section00.Suppress = True
+        .Section10.Suppress = True
+        .Section20.Suppress = True
+        .Section4.Suppress = False
+        .Section5.Suppress = False
+        .Section6.Suppress = False
+        .Section05.Suppress = True
+        .Section06.Suppress = True
+        .Section09.Suppress = False
+    ElseIf VchType = "2" Then
+        .Section00.Suppress = False
+        .Section10.Suppress = False
+        .Section20.Suppress = False
+        .Section4.Suppress = True
+        .Section5.Suppress = True
+        .Section6.Suppress = True
+    End If
+            .Text.SetText "Printed on " & Format(Now, "dd-MMM-yyyy") & " at " & Format(Now, "hh:mm"): .Text.Font.Size = 7: .Text.Font.Bold = False
+            .Text1.SetText rstCompanyMaster.Fields("PrintName").Value: .Text1.Font.Size = 16: .Text2.Font.Bold = True
+            .Text2.SetText rstCompanyMaster.Fields("Address1").Value & " " & rstCompanyMaster.Fields("Address2").Value & " " & rstCompanyMaster.Fields("Address3").Value & " " & rstCompanyMaster.Fields("Address4").Value: .Text2.Font.Size = 12: .Text2.Font.Bold = False
+            If VchType = "1" Then .Text3.SetText " MONTHLY SUMMARY ": .Text3.Font.Size = 12: .Text3.Font.Bold = True:
+            If VchType = "2" Then .Text3.SetText " Account Ledger ": .Text3.Font.Size = 12: .Text3.Font.Bold = True:
+            If VchType = "2" Then .Text4.SetText "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")": .Text4.Font.Size = 11: .Text4.Font.Bold = False
+            .Text5.SetText "Accounts : " & rstAccountOpening.Fields("AccountName").Value: .Text5.Font.Size = 12: .Text5.Font.Bold = True
+    If VchType = "2" Then
+            .Text6.SetText rstCompanyMaster.Fields("PrintName").Value: .Text6.Font.Size = 10: .Text6.Font.Bold = False: .Text6.HorAlignment = crLeftAlign
+            If VchType = "2" Then .Text7.SetText "Account Ledger : " & "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")": .Text7.Font.Size = 10: .Text7.Font.Bold = False: .Text7.HorAlignment = crLeftAlign
+            .Text8.SetText "Accounts : " & rstAccountOpening.Fields("AccountName").Value: .Text8.Font.Size = 10: .Text8.Font.Bold = False: .Text8.HorAlignment = crLeftAlign
+    End If
+            If VchType = "1" Then .Text8.SetText "Accounts : " & rstAccountOpening.Fields("AccountName").Value: .Text8.Font.Size = 12: .Text8.Font.Bold = False: .Text8.HorAlignment = crLeftAlign
     End With
         If OutputType = "S" Then
             Screen.MousePointer = vbNormal
@@ -1583,6 +1596,9 @@ Public Sub PrintLedger(ByVal OutputType As String)
                 Set oOutlookMsg = Nothing
         End If
         Set rptAccountsLedger = Nothing
+        Screen.MousePointer = vbNormal
+'        Call CloseForm(Me)
+        Exit Sub
         On Error GoTo 0
         Screen.MousePointer = vbNormal
 End Sub

@@ -1087,13 +1087,14 @@ Begin VB.MDIForm MdiMainMenu
             Tag             =   "03030200"
             Begin VB.Menu MnuAccountWise 
                Caption         =   "Account-Wise"
-               Index           =   23
+               Index           =   2
                Tag             =   "03030201"
             End
          End
       End
       Begin VB.Menu MnuAccountSummary 
          Caption         =   "Account Summary"
+         Index           =   1
          Tag             =   "03040000"
       End
       Begin VB.Menu MnuCostCentre 
@@ -2065,7 +2066,7 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu MnuAdd1 
          Caption         =   "Account Summary"
          Index           =   17
-         Shortcut        =   ^M
+         Shortcut        =   ^A
       End
       Begin VB.Menu MnuAdd1 
          Caption         =   "Account Ledger         "
@@ -2269,6 +2270,14 @@ Else
     If Err.Number <> 364 Then FrmUFGLedger.Show
 End If
 End Sub
+
+Private Sub MnuAccountSummary_Click(Index As Integer)
+    On Error Resume Next
+    FrmAccountSelectionList.VchType = Trim(Index)
+    Load FrmAccountSelectionList
+    If Err.Number <> 364 Then FrmAccountSelectionList.Show
+End Sub
+
 Private Sub MnuIssueReceiptAnalysis_Click(Index As Integer)
     On Error Resume Next
     FrmItemSelectionList.VchType = "0448" 'Trim(Index)
@@ -4129,9 +4138,9 @@ Dim i As Integer, cVal As Variant, mString As String
         mnuPurchaseSupplyInwardFinishedItem_Click
         frmSalesVoucher.Toolbar1_ButtonClick frmSalesVoucher.Toolbar1.Buttons.Item(1)
     ElseIf Button.Index = 17 Then 'Acc Summary
-    
+        MnuAccountSummary_Click (1)
     ElseIf Button.Index = 18 Then 'Acc Ledger
-        MnuAccountWise_Click (23)
+        MnuAccountWise_Click (2)
     ElseIf Button.Index = 19 Then 'Stock Ledger
         mnuStockLedger_Click (2)
     ElseIf Button.Index = 20 Then 'Item Summary

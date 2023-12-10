@@ -150,7 +150,7 @@ Begin VB.Form FrmItemSelectionList
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Ctrl+V->Print Preview  Ctrl+P->Print Preview"
+         Caption         =   " Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Ctrl+V->Print Preview  Ctrl+P->Print Preview Ctrl+M->Email  Escape->Exit"
          Alignment       =   0
          FillColor       =   8421504
          TextColor       =   16777215

@@ -483,8 +483,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2085
-         Picture         =   "StockLedger.frx":20A1
+         Picture         =   "StockLedger.frx":2061
+         Picture         =   "StockLedger.frx":207D
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -510,8 +510,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":20BD
-         Picture         =   "StockLedger.frx":20D9
+         Picture         =   "StockLedger.frx":2099
+         Picture         =   "StockLedger.frx":20B5
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -522,8 +522,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":20F5
-         Caption         =   "StockLedger.frx":220D
+         Calendar        =   "StockLedger.frx":20D1
+         Caption         =   "StockLedger.frx":21E9
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -533,9 +533,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":2279
-         Keys            =   "StockLedger.frx":2297
-         Spin            =   "StockLedger.frx":22F5
+         DropDown        =   "StockLedger.frx":2255
+         Keys            =   "StockLedger.frx":2273
+         Spin            =   "StockLedger.frx":22D1
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -584,8 +584,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":231D
-         Caption         =   "StockLedger.frx":2435
+         Calendar        =   "StockLedger.frx":22F9
+         Caption         =   "StockLedger.frx":2411
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -595,9 +595,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":24A1
-         Keys            =   "StockLedger.frx":24BF
-         Spin            =   "StockLedger.frx":251D
+         DropDown        =   "StockLedger.frx":247D
+         Keys            =   "StockLedger.frx":249B
+         Spin            =   "StockLedger.frx":24F9
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -662,8 +662,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2545
-         Picture         =   "StockLedger.frx":2561
+         Picture         =   "StockLedger.frx":2521
+         Picture         =   "StockLedger.frx":253D
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -674,8 +674,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "StockLedger.frx":257D
-         Caption         =   "StockLedger.frx":259D
+         Calculator      =   "StockLedger.frx":2559
+         Caption         =   "StockLedger.frx":2579
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -685,9 +685,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":2601
-         Keys            =   "StockLedger.frx":261F
-         Spin            =   "StockLedger.frx":2669
+         DropDown        =   "StockLedger.frx":25DD
+         Keys            =   "StockLedger.frx":25FB
+         Spin            =   "StockLedger.frx":2645
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -747,8 +747,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2691
-         Picture         =   "StockLedger.frx":26AD
+         Picture         =   "StockLedger.frx":266D
+         Picture         =   "StockLedger.frx":2689
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -773,8 +773,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":26C9
-         Picture         =   "StockLedger.frx":26E5
+         Picture         =   "StockLedger.frx":26A5
+         Picture         =   "StockLedger.frx":26C1
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -799,8 +799,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2701
-         Picture         =   "StockLedger.frx":271D
+         Picture         =   "StockLedger.frx":26DD
+         Picture         =   "StockLedger.frx":26F9
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -826,8 +826,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2739
-         Picture         =   "StockLedger.frx":2755
+         Picture         =   "StockLedger.frx":2715
+         Picture         =   "StockLedger.frx":2731
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -853,8 +853,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2771
-         Picture         =   "StockLedger.frx":278D
+         Picture         =   "StockLedger.frx":274D
+         Picture         =   "StockLedger.frx":2769
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
@@ -880,8 +880,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":27A9
-         Picture         =   "StockLedger.frx":27C5
+         Picture         =   "StockLedger.frx":2785
+         Picture         =   "StockLedger.frx":27A1
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -908,8 +908,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":27E1
-         Picture         =   "StockLedger.frx":27FD
+         Picture         =   "StockLedger.frx":27BD
+         Picture         =   "StockLedger.frx":27D9
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -936,8 +936,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2819
-         Picture         =   "StockLedger.frx":2835
+         Picture         =   "StockLedger.frx":27F5
+         Picture         =   "StockLedger.frx":2811
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -963,8 +963,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Create Stock Journal Voucher"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2851
-         Picture         =   "StockLedger.frx":286D
+         Picture         =   "StockLedger.frx":282D
+         Picture         =   "StockLedger.frx":2849
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
@@ -990,8 +990,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":2889
-         Picture         =   "StockLedger.frx":28A5
+         Picture         =   "StockLedger.frx":2865
+         Picture         =   "StockLedger.frx":2881
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
          Height          =   330
@@ -1018,8 +1018,8 @@ Begin VB.Form FrmStockLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":28C1
-         Picture         =   "StockLedger.frx":28DD
+         Picture         =   "StockLedger.frx":289D
+         Picture         =   "StockLedger.frx":28B9
       End
       Begin MSComctlLib.Slider Zoom 
          Height          =   75
@@ -1060,8 +1060,8 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Report Header"
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":28F9
-         Picture         =   "StockLedger.frx":2915
+         Picture         =   "StockLedger.frx":28D5
+         Picture         =   "StockLedger.frx":28F1
       End
       Begin VB.Line Line1 
          X1              =   0
@@ -1318,7 +1318,8 @@ ErrorHandler:
 End Sub
 Private Sub cmdRefresh_Click()
     On Error GoTo ErrHandler
-    Dim SQL As String, i As Long, R As Long, C As Long, Stock As Long, EffectiveStock As Long, StockTotal As Long, POTotal As Long, SOTotal As Long, EStockTotal As Long, AmountTotal As Double, PurchaseTotal As Long, PurchaseReturnTotal As Long, PurchaseChallanTotal As Long, PurchaseReturnChallanTotal As Long, SalesTotal As Long, SalesReturnTotal As Long, SalesChallanTotal As Long, SalesReturnChallanTotal As Long, StockJournalINTotal As Long, StockJournalOUTTotal As Long, NetPurchaseTotal As Long, NetSalesTotal As Long, PurchaseAmountTotal As Double, SalesAmountTotal As Double, PurchaseReturnAmountTotal As Double, SalesReturnAmountTotal As Double, NetPurchaseAmountTotal As Double, NetSalesAmountTotal As Double, ICode As Variant
+    'Dim mSQL, sSQL, dSQL As String   '[Month SQL Query,Summary SQL Query,Details SQL Query]
+    Dim SQL, i As Long, R As Long, C As Long, Stock As Long, EffectiveStock As Long, StockTotal As Long, POTotal As Long, SOTotal As Long, EStockTotal As Long, AmountTotal As Double, PurchaseTotal As Long, PurchaseReturnTotal As Long, PurchaseChallanTotal As Long, PurchaseReturnChallanTotal As Long, SalesTotal As Long, SalesReturnTotal As Long, SalesChallanTotal As Long, SalesReturnChallanTotal As Long, StockJournalINTotal As Long, StockJournalOUTTotal As Long, NetPurchaseTotal As Long, NetSalesTotal As Long, PurchaseAmountTotal As Double, SalesAmountTotal As Double, PurchaseReturnAmountTotal As Double, SalesReturnAmountTotal As Double, NetPurchaseAmountTotal As Double, NetSalesAmountTotal As Double, ICode As Variant
     Dim OpSQL As String, dPrint As Long
     Debit = 0: Credit = 0: Bal = 0
     If VchType = 31 Or VchType = 32 Or VchType = 49 Then ' Item Ledger

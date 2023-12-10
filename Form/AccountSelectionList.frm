@@ -120,6 +120,7 @@ Begin VB.Form FrmAccountSelectionList
       Picture         =   "AccountSelectionList.frx":087C
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
+         Index           =   0
          Left            =   0
          TabIndex        =   7
          Top             =   0
@@ -298,13 +299,13 @@ Begin VB.Form FrmAccountSelectionList
          CenturyMode     =   0
       End
       Begin MSComctlLib.ListView ListView1 
-         Height          =   8460
+         Height          =   7980
          Left            =   0
          TabIndex        =   9
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
-         _ExtentY        =   14923
+         _ExtentY        =   14076
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -330,13 +331,13 @@ Begin VB.Form FrmAccountSelectionList
          NumItems        =   0
       End
       Begin MSComctlLib.ListView ListView2 
-         Height          =   8460
+         Height          =   7980
          Left            =   4830
          TabIndex        =   10
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
-         _ExtentY        =   14923
+         _ExtentY        =   14076
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -418,6 +419,33 @@ Begin VB.Form FrmAccountSelectionList
          Visible         =   0   'False
          Width           =   630
       End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+         Height          =   420
+         Index           =   2
+         Left            =   80
+         TabIndex        =   11
+         Top             =   8340
+         Width           =   9540
+         _Version        =   65536
+         _ExtentX        =   16828
+         _ExtentY        =   741
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Ctrl+V->Print Preview  Ctrl+P->Print Ctrl+M->Email  Escape->Exit"
+         FillColor       =   8421504
+         TextColor       =   16777215
+         Picture         =   "AccountSelectionList.frx":0D58
+         Picture         =   "AccountSelectionList.frx":0D74
+      End
    End
 End
 Attribute VB_Name = "FrmAccountSelectionList"
@@ -455,10 +483,13 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(4): KeyCode = 0
     ElseIf Shift = vbAltMask And KeyCode = vbKeyM Then
+        FrmAccountLedger.OutputTo = "M"
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3): KeyCode = 0
     ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then
+        FrmAccountLedger.OutputTo = "P"
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(2): KeyCode = 0
     ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then
+        FrmAccountLedger.OutputTo = "S"
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(1): KeyCode = 0
     End If
 End Sub
@@ -487,8 +518,8 @@ Private Sub ListView1_ItemCheck(ByVal Item As MSComctlLib.ListItem)
 End Sub
 Private Sub AccountSelection()
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster) And Code IN (SELECT Code As ACode FROM AccountMaster Where Opening<>0 Union SELECT C.Account As ACode FROM DebitCreditParent T LEFT JOIN DebitCreditChild C ON C.Code=T.Code Union SELECT Distinct T.Party As ACode FROM JobworkBVParent T WHERE T.FYCode='" & FYCode & "' AND LEFT(T.Type,2)='01' OR LEFT(T.Type,2)='02' AND LEFT(T.Type,2)='03' OR LEFT(T.Type,2)='04') Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    'rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster)  Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    ''rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster) And Code IN (SELECT Code As ACode FROM AccountMaster Where Opening<>0 Union SELECT C.Account As ACode FROM DebitCreditParent T LEFT JOIN DebitCreditChild C ON C.Code=T.Code Union SELECT Distinct T.Party As ACode FROM JobworkBVParent T WHERE T.FYCode='" & FYCode & "' AND LEFT(T.Type,2)='01' OR LEFT(T.Type,2)='02' AND LEFT(T.Type,2)='03' OR LEFT(T.Type,2)='04') Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "WITH AccountGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') AND Code IN (" & SelectedItems(ListView1) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN AccountGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM AccountMaster WHERE [Group] IN (SELECT Code FROM AccountGroupMaster)  Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     ListView2.ListItems.Clear
     Call FillList(ListView2, "List of Accounts...", rstAccountList)
@@ -516,6 +547,7 @@ Private Sub PrintAccountLedger()
         FrmAccountLedger.AccountList = SelectedItems(ListView2)
         FrmAccountLedger.VchType = VchType
         Load FrmAccountLedger
-        FrmAccountLedger.Show
+        If FrmAccountLedger.OutputTo = "" Then FrmAccountLedger.Show
+        FrmAccountLedger.OutputTo = ""
         CloseForm (Me)
 End Sub
