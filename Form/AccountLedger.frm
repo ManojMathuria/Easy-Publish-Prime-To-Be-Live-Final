@@ -57,8 +57,8 @@ Begin VB.Form FrmAccountLedger
       Caption         =   ""
       Picture         =   "AccountLedger.frx":0000
       Begin MSComctlLib.ImageList ImageList1 
-         Left            =   13800
-         Top             =   1560
+         Left            =   3600
+         Top             =   2640
          _ExtentX        =   1005
          _ExtentY        =   1005
          BackColor       =   -2147483643
@@ -121,7 +121,7 @@ Begin VB.Form FrmAccountLedger
          Picture         =   "AccountLedger.frx":0898
          Picture         =   "AccountLedger.frx":08B4
       End
-      Begin VB.CommandButton Command2 
+      Begin VB.CommandButton Search 
          Height          =   320
          Left            =   6000
          Picture         =   "AccountLedger.frx":08D0
@@ -370,7 +370,7 @@ Begin VB.Form FrmAccountLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Index           =   0
-         Left            =   13230
+         Left            =   9750
          TabIndex        =   7
          Top             =   105
          Visible         =   0   'False
@@ -668,73 +668,10 @@ Begin VB.Form FrmAccountLedger
          Picture         =   "AccountLedger.frx":224B
          Picture         =   "AccountLedger.frx":2267
       End
-      Begin MSComctlLib.Toolbar Toolbar1 
-         Height          =   330
-         Left            =   16800
-         TabIndex        =   23
-         Top             =   120
-         Width           =   2385
-         _ExtentX        =   4207
-         _ExtentY        =   582
-         ButtonWidth     =   609
-         ButtonHeight    =   582
-         Style           =   1
-         ImageList       =   "ImageList1"
-         _Version        =   393216
-         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   4
-            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Print Preview"
-               ImageIndex      =   1
-            EndProperty
-            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Print"
-               ImageIndex      =   2
-            EndProperty
-            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Mail"
-               ImageIndex      =   3
-            EndProperty
-            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Exit"
-               ImageIndex      =   4
-            EndProperty
-         EndProperty
-         Begin VB.CommandButton Command1 
-            Height          =   375
-            Left            =   1440
-            Picture         =   "AccountLedger.frx":2283
-            Style           =   1  'Graphical
-            TabIndex        =   26
-            ToolTipText     =   "Refresh"
-            Top             =   0
-            Width           =   375
-         End
-         Begin VB.CommandButton cmdRefresh 
-            Height          =   375
-            Left            =   1440
-            Picture         =   "AccountLedger.frx":23CD
-            Style           =   1  'Graphical
-            TabIndex        =   25
-            ToolTipText     =   "Refresh"
-            Top             =   0
-            Width           =   375
-         End
-         Begin VB.CommandButton cmdCancel 
-            Height          =   375
-            Left            =   1920
-            Picture         =   "AccountLedger.frx":2517
-            Style           =   1  'Graphical
-            TabIndex        =   24
-            ToolTipText     =   "Cancel"
-            Top             =   0
-            Width           =   375
-         End
-      End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
          Left            =   6735
-         TabIndex        =   27
+         TabIndex        =   23
          Top             =   600
          Width           =   5775
          _Version        =   65536
@@ -754,8 +691,90 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "Report Header"
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":2619
-         Picture         =   "AccountLedger.frx":2635
+         Picture         =   "AccountLedger.frx":2283
+         Picture         =   "AccountLedger.frx":229F
+      End
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   16680
+         TabIndex        =   24
+         Top             =   120
+         Width           =   2505
+         _ExtentX        =   4419
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         Style           =   1
+         ImageList       =   "ImageList1"
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   7
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Print Preview"
+               ImageIndex      =   1
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Print"
+               ImageIndex      =   2
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Mail"
+               ImageIndex      =   3
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Exit"
+               ImageIndex      =   4
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Export"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Refresh"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Cancel"
+            EndProperty
+         EndProperty
+         Begin VB.CommandButton Export 
+            Height          =   375
+            Left            =   1320
+            Picture         =   "AccountLedger.frx":22BB
+            Style           =   1  'Graphical
+            TabIndex        =   28
+            ToolTipText     =   "Export"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton cmdCancel 
+            Height          =   375
+            Left            =   2040
+            Picture         =   "AccountLedger.frx":2686
+            Style           =   1  'Graphical
+            TabIndex        =   27
+            ToolTipText     =   "Cancel"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton Command1 
+            Height          =   375
+            Left            =   1680
+            Picture         =   "AccountLedger.frx":2788
+            Style           =   1  'Graphical
+            TabIndex        =   26
+            ToolTipText     =   "Refresh"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton cmdRefresh 
+            Height          =   375
+            Left            =   1680
+            Picture         =   "AccountLedger.frx":28D2
+            Style           =   1  'Graphical
+            TabIndex        =   25
+            ToolTipText     =   "Refresh"
+            Top             =   0
+            Width           =   375
+         End
       End
       Begin VB.Line Line1 
          X1              =   0
@@ -784,7 +803,7 @@ Begin VB.Form FrmAccountLedger
       End
       Begin MSForms.ComboBox Combo1 
          Height          =   330
-         Left            =   14430
+         Left            =   10950
          TabIndex        =   3
          Top             =   105
          Visible         =   0   'False
@@ -823,6 +842,56 @@ Dim Debit As Double, Credit As Double, Bal As Variant, DebitTotal As Double, Cre
 Dim Opening As Double
 Dim oOutlook As New Outlook.Application
 Dim EMailID As String, Attachment As String, Message As String
+Private Sub Export_Click()
+Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
+Dim R As Long, C As Long
+Dim JQty As Variant
+'"Export Data" &
+    With fpSpread1
+    If VchType >= 0 And VchType <= 30 Then fpSpread1.InsertRows 1, 2
+                    .SetText 4, 1, Mh3dLabel9.Caption
+                    R = 1
+                For C = 1 To .MaxCols
+                    .Col = C: .Row = R: .FontBold = True: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbRed: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:
+                Next
+                    .Col = 7: .Row = R: .CellType = CellTypeEdit: .SetText 7, 1, "*** Opening Balance = " & Format(Abs(Opening), "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr."): .TypeHAlign = TypeHAlignRight: .FontBold = True: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: If Opening < 0 Then .ForeColor = vbRed Else .ForeColor = vbBlue
+                    .Col = 7: .Row = R + .DataRowCnt: .CellType = CellTypeEdit: .SetText 7, R + .DataRowCnt, "*** Closing Balance = " & Format(Abs(Bal), "##,##,##,##0.00") & IIf(Bal <= 0, " Dr.", " Cr."):  .TypeHAlign = TypeHAlignRight: .FontBold = True: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: If Bal < 0 Then .ForeColor = vbRed Else .ForeColor = vbBlue
+                    R = 2
+                For C = 1 To .MaxCols
+                    .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:
+                    .GetText C, 0, JQty
+                    .SetText C, 2, JQty
+                Next
+Mh3dLabel9.Caption = ""
+                    .ColHeadersShow = True: .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
+                If VchType >= 0 And VchType <= 30 Then .Col = 4: .Row = 1: .FontBold = True: .FontSize = 14: .FontUnderline = True: .ForeColor = vbRed:
+    End With
+    If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+    '
+    ' Export Excel file and set result to x
+     FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+    SheetName = "Sheet1" '"(" & Me.Caption & ")"
+    LogFileName = "Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
+    x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
+    ' Display result to user based on T/F value of x
+    If x = True Then
+    MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+        Dim oExcel As Object
+        Set oExcel = CreateObject("Excel.Application")
+        oExcel.Workbooks.Open (FileName)
+        oExcel.Visible = True
+        oExcel.Sheets("Sheet1").Select
+        oExcel.Sheets("Sheet1").Unprotect
+         Set oExcel = Nothing
+    Else
+    MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+    End If
+    '
+    With fpSpread1
+    'Delete Header Row
+    If VchType >= 0 And VchType <= 30 Then fpSpread1.DeleteRows 1, 2: fpSpread1.DeleteRows fpSpread1.DataRowCnt, 1
+    End With
+End Sub
 Private Sub Form_Load()
 Reset = 0:
     On Error GoTo ErrorHandler
@@ -906,9 +975,6 @@ SCode = "": TypeCode = ""
             Call cmdRefresh_Click
         End If
         KeyCode = 0
-   'Refresh
-   ElseIf Shift = 0 And KeyCode = vbKeyF5 Then 'Refresh
-        Call cmdRefresh_Click
    'Jobwork Sale
    ElseIf (Shift = 0 And KeyCode = vbKeyReturn Or Shift = 0 And KeyCode = vbKeyF8 Or Shift = 0 And KeyCode = vbKeyF12) And (TypeCode = "SU" Or TypeCode = "SJ" Or TypeCode = "SC" Or TypeCode = "PU" Or TypeCode = "PJ" Or TypeCode = "PC") Then
                 With fpSpread1
@@ -987,7 +1053,7 @@ SCode = "": TypeCode = ""
                 MsgBox "Please Provide Search Input", vbInformation
                 Text1.SetFocus
             ElseIf Text1.Text <> "" Then
-            Call Command2_Click
+            Call Search_Click
             End If
         KeyCode = 0
    ElseIf Shift = 0 And KeyCode = vbKeyF9 Then
@@ -1000,7 +1066,44 @@ SCode = "": TypeCode = ""
             .SetActiveCell .ActiveCol, R
         End With
         KeyCode = 0
+    ElseIf KeyCode = vbKeyReturn Then
+        Sendkeys "{TAB}", True: KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then
+        OutputTo = "S"
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(1): KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then
+        OutputTo = "P"
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(2): KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyM Then
+        OutputTo = "M"
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(3): KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(4): KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyE Then
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
+   ElseIf Shift = 0 And KeyCode = vbKeyF5 Then 'Refresh
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+   ElseIf Shift = 0 And KeyCode = vbKeyEscape Then 'Cencel
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(7): KeyCode = 0
+        Call cmdRefresh_Click
    End If
+End Sub
+Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+    If Button.Index = 1 Then    'Crystal Preview
+        PrintLedger ("S")
+    ElseIf Button.Index = 2 Then 'Crystal Print
+        PrintLedger ("P")
+    ElseIf Button.Index = 3 Then 'Crystal Email
+        PrintLedger ("M")
+    ElseIf Button.Index = 4 Then 'Exit
+        cmdCancel_Click
+    ElseIf Button.Index = 5 Then 'Export To Excel
+         Call Export_Click
+    ElseIf Button.Index = 6 Then
+        Call cmdRefresh_Click
+    ElseIf Button.Index = 7 Then
+        cmdCancel_Click
+    End If
 End Sub
 Private Sub cmdRefresh_Click()
     On Error GoTo ErrHandler
@@ -1056,16 +1159,17 @@ Private Sub cmdRefresh_Click()
             rstAccountLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
             If rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
 
-If OutputTo = "S" Then
+If OutputTo = "" Then
     PrintLedger (OutputTo)
-ElseIf OutputTo = "" Then
+ElseIf OutputTo = "S" Then
     If rstAccountLedger.RecordCount <> 0 Then
-        Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value: Mh3dLabel9.FontSize = 14
+    If Not IsNull(rstAccountOpening.Fields("AccountName").Value) Then Mh3dLabel9.Caption = "Account : " + rstAccountOpening.Fields("AccountName").Value: Mh3dLabel9.FontSize = 14
+    If Not IsNull(rstAccountLedger.Fields("AccountName").Value) And rstAccountLedger.Fields("AccountName").Value <> "" Then Mh3dLabel9.Caption = "Account : " + rstAccountOpening.Fields("AccountName").Value: Mh3dLabel9.FontSize = 14
     ElseIf rstAccountLedger.RecordCount = 0 And rstAccountOpening.RecordCount <> 0 Then
             If rstAccountLedger.State = adStateOpen Then rstAccountLedger.Close
             rstAccountLedger.Open "Select Name AS AccountName From AccountMaster Where code IN (" & AccountList & ")", cnDatabase, adOpenKeyset, adLockReadOnly
             If rstAccountLedger.RecordCount <> 0 Then rstAccountLedger.MoveFirst
-            If rstAccountLedger.RecordCount <> 0 Then Mh3dLabel9.Caption = "Account : " + rstAccountLedger.Fields("AccountName").Value: Mh3dLabel9.FontSize = 13
+            If rstAccountLedger.RecordCount <> 0 Then Mh3dLabel9.Caption = "Account : " + rstAccountOpening.Fields("AccountName").Value: Mh3dLabel9.FontSize = 13
             rstAccountOpening.MoveFirst
             Opening = Format(Val(rstAccountOpening.Fields("Opening").Value), "##,##,##,##0.00")
             Mh3dLabel10.Caption = "Opening Balance: = Rs. " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
@@ -1078,12 +1182,12 @@ ElseIf OutputTo = "" Then
     Mh3dLabel10.Caption = ""
     Mh3dLabel10.Caption = "Opening Balance: = Rs. " & Format(Abs(Opening), "##,##,##,##0.00") & IIf(Opening <= 0, " Dr.", " Cr.")
     
-'    Bal = Opening
+    If VchType = 1 Then Bal = Opening
     With fpSpread1
             If .DataRowCnt = 0 Then
             Else
-            n = .DataRowCnt:
-            fpSpread1.RowHeight(n) = 12.75
+            n = .DataRowCnt
+            If VchType <> 1 Then fpSpread1.RowHeight(n) = 12.75
            End If
             .ClearRange 1, 1, .MaxCols, .MaxRows, False
             Dim K As Integer
@@ -1094,6 +1198,7 @@ ElseIf OutputTo = "" Then
             For C = 1 To .MaxCols
             If VchType <= 24 And VchType >= 0 Then fpSpread1.ColHeaderRows = 1: fpSpread1.Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12:
             Next
+
         rstAccountLedger.MoveFirst
         Do While Not rstAccountLedger.EOF
             i = i + 1
@@ -1112,8 +1217,13 @@ ElseIf OutputTo = "" Then
                         Bal = Bal + Credit - Debit
                 .SetText 7, i, Bal
                 .SetText 8, i, IIf(Bal <= 0, "Dr.", "Cr.")
+            If VchType = 1 Then
+                .SetText 9, i, rstAccountLedger.Fields("FromDate").Value
+                .SetText 10, i, rstAccountLedger.Fields("ToDate").Value
+            ElseIf VchType = 1 Then
                 .SetText 9, i, rstAccountLedger.Fields("ShortNarration").Value
                 .SetText 10, i, rstAccountLedger.Fields("LongNarration").Value
+            End If
                 .SetText 11, i, rstAccountLedger.Fields("Type").Value
                 .SetText 12, i, rstAccountLedger.Fields("Code").Value
              rstAccountLedger.MoveNext
@@ -1128,11 +1238,13 @@ ElseIf OutputTo = "" Then
                     .AllowMultiBlocks = True:
                     If TDBNumber2 <> 0 Then fpSpread1.SetFocus: fpSpread1.SetActiveCell 1, i + 1
     Mh3dLabel11.Caption = "Closing Balance : = Rs. " & Format(Abs(Bal), "##,##,##,##0.00") & IIf(Bal <= 0, " Dr.", " Cr.")
-    Mh3dLabel12.Caption = "Accounts Ledger"
+    If VchType = 1 Then Mh3dLabel12.Caption = " Monthly - Summary "
+    If VchType = 2 Then Mh3dLabel12.Caption = "Accounts Ledger"
     End With
     TDBNumber2 = i
     fpSpread1.MaxRows = IIf(i < 27, 27, i + 1)
     Call cmdFilter_Click
+    If VchType = 1 Then Call FormatCol
     Screen.MousePointer = vbNormal
     Exit Sub
 ElseIf OutputTo = "V" Or OutputTo = "P" Or OutputTo = "M" Then
@@ -1142,6 +1254,21 @@ Exit Sub
 ErrHandler:
     Screen.MousePointer = vbNormal
     DisplayError (Err.Description)
+End Sub
+Private Sub FormatCol()
+Dim C As Integer
+Dim i As Integer
+With fpSpread1
+    If VchType = 1 Then
+    .Col = 1: .ColHidden = True: .Col = 2: .ColHidden = True: .Col = 3: .ColHidden = True: .Col = 9: .ColHidden = True: .Col = 10: .ColHidden = True: .ColWidth(4) = 40: .ColWidth(5) = 35: .ColWidth(6) = 35: .ColWidth(7) = 35.75: .ColWidth(8) = 6
+    For C = 1 To .MaxCols
+        For i = 1 To rstAccountLedger.RecordCount + 1
+            .Col = C: .Row = i:  fpSpread1.FontSize = 14: .FontBold = True: .RowHeight(C) = 18
+        Next
+    Next
+    .Col = 4: .Row = SpreadHeader: .FontSize = 12: .Text = "Month":
+    End If
+End With
 End Sub
 Private Sub MhDateInput2_Validate(Cancel As Boolean)
     If Format(GetDate(MhDateInput2.Text), "yyyymmdd") < Format(GetDate(MhDateInput1.Text), "yyyymmdd") Then
@@ -1210,61 +1337,61 @@ cmdRefresh.Visible = False
     End With
 End Sub
 Private Sub Mh3dLabel6_Click()
-Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
-Dim R As Long, C As Long
-Dim JQty As Variant
-
-'"Export Data" &
-    With fpSpread1
-    If VchType >= 0 And VchType <= 30 Then fpSpread1.InsertRows 1, 2
-                    .SetText 4, 1, Mh3dLabel9.Caption
-                    .SetText 7, 1, Format(Opening, "##,##,##,##0.00")
-                    .SetText 8, 1, IIf(Opening <= 0, " Dr.", " Cr.")
-                    .SetText 9, 1, " Rs. *** Opening Bal."
-                    R = 1
-                For C = 1 To .MaxCols
-                    .Col = C: .Row = R: .FontBold = True: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbRed: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:
-                Next
-                    R = 2
-                For C = 1 To .MaxCols
-                    .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:
-                    .GetText C, 0, JQty
-                    .SetText C, 2, JQty
-                Next
-                                    
-                    .ColHeadersShow = True: .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
-                If VchType >= 0 And VchType <= 30 Then .Col = 4: .Row = 1: .FontBold = True: .FontSize = 14: .FontUnderline = True: .ForeColor = vbRed:
-    
-    End With
-
-    If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
-    
-    '
-    ' Export Excel file and set result to x
-     FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
-    SheetName = "Sheet1" '"(" & Me.Caption & ")"
-    LogFileName = "Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
-    x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
-    ' Display result to user based on T/F value of x
-    If x = True Then
-    
-    MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
-        
-        Dim oExcel As Object
-        Set oExcel = CreateObject("Excel.Application")
-        oExcel.Workbooks.Open (FileName)
-        oExcel.Visible = True
-        oExcel.Sheets("Sheet1").Select
-        oExcel.Sheets("Sheet1").Unprotect
-         Set oExcel = Nothing
-    Else
-    MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
-    End If
-    '
-    With fpSpread1
-    'Delete Header Row
-    If VchType >= 0 And VchType <= 30 Then fpSpread1.DeleteRows 1, 2
-    End With
+'Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
+'Dim R As Long, C As Long
+'Dim JQty As Variant
+'
+''"Export Data" &
+'    With fpSpread1
+'    If VchType >= 0 And VchType <= 30 Then fpSpread1.InsertRows 1, 2
+'                    .SetText 4, 1, Mh3dLabel9.Caption
+'                    .SetText 7, 1, Format(Opening, "##,##,##,##0.00")
+'                    .SetText 8, 1, IIf(Opening <= 0, " Dr.", " Cr.")
+'                    .SetText 9, 1, " Rs. *** Opening Bal."
+'                    R = 1
+'                For C = 1 To .MaxCols
+'                    .Col = C: .Row = R: .FontBold = True: .FontSize = 12: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbRed: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:
+'                Next
+'                    R = 2
+'                For C = 1 To .MaxCols
+'                    .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:
+'                    .GetText C, 0, JQty
+'                    .SetText C, 2, JQty
+'                Next
+'
+'                    .ColHeadersShow = True: .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
+'                If VchType >= 0 And VchType <= 30 Then .Col = 4: .Row = 1: .FontBold = True: .FontSize = 14: .FontUnderline = True: .ForeColor = vbRed:
+'
+'    End With
+'
+'    If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+'
+'    '
+'    ' Export Excel file and set result to x
+'     FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+'    SheetName = "Sheet1" '"(" & Me.Caption & ")"
+'    LogFileName = "Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
+'    x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
+'    ' Display result to user based on T/F value of x
+'    If x = True Then
+'
+'    MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+'
+'        Dim oExcel As Object
+'        Set oExcel = CreateObject("Excel.Application")
+'        oExcel.Workbooks.Open (FileName)
+'        oExcel.Visible = True
+'        oExcel.Sheets("Sheet1").Select
+'        oExcel.Sheets("Sheet1").Unprotect
+'         Set oExcel = Nothing
+'    Else
+'    MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+'    End If
+'    '
+'    With fpSpread1
+'    'Delete Header Row
+'    If VchType >= 0 And VchType <= 30 Then fpSpread1.DeleteRows 1, 2
+'    End With
 End Sub
 Private Sub Mh3dLabel5_Click()
 With fpSpread1
@@ -1328,7 +1455,7 @@ End Sub
 Private Sub cmdFilter_Click()
         Call Total_Click
 End Sub
-Private Sub Command2_Click() ' Search Command
+Private Sub Search_Click() ' Search Command
   Dim i As Integer, cVal As Variant, R As Long
     With fpSpread1
     If Text1.Text = "" Then Exit Sub
@@ -1373,7 +1500,9 @@ Private Sub Total_Click()
     Dim CreditVal As Variant, CreditTotal As Variant
     With fpSpread1
     If .DataRowCnt = 0 Then Exit Sub
-            n = .DataRowCnt: DebitVal = 0: CreditVal = 0: Bal = 0 'Bal = Opening
+            n = .DataRowCnt: DebitVal = 0: CreditVal = 0: Bal = 0
+            If VchType = 1 Then Bal = Opening
+
         For i = 1 To .DataRowCnt 'Unhide All
         .GetText 3, i, cVal
             If TotalFlag = False Then .Row = i: .RowHidden = False
@@ -1505,17 +1634,6 @@ Private Sub cmdCancel_Click()
     Call CloseForm(Me)
 OutputTo = ""
 End Sub
-Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Index = 1 Then
-        PrintLedger ("S")
-    ElseIf Button.Index = 2 Then
-        PrintLedger ("P")
-    ElseIf Button.Index = 3 Then
-        PrintLedger ("E")
-    ElseIf Button.Index = 4 Then
-        cmdCancel_Click
-    End If
-End Sub
 Public Sub PrintLedger(ByVal OutputType As String)
     On Error Resume Next
     Screen.MousePointer = vbHourglass
@@ -1542,7 +1660,6 @@ Public Sub PrintLedger(ByVal OutputType As String)
         .Section4.Suppress = False
         .Section5.Suppress = False
         .Section6.Suppress = False
-        .Section05.Suppress = True
         .Section06.Suppress = True
         .Section09.Suppress = False
     ElseIf VchType = "2" Then
@@ -1558,7 +1675,7 @@ Public Sub PrintLedger(ByVal OutputType As String)
             .Text2.SetText rstCompanyMaster.Fields("Address1").Value & " " & rstCompanyMaster.Fields("Address2").Value & " " & rstCompanyMaster.Fields("Address3").Value & " " & rstCompanyMaster.Fields("Address4").Value: .Text2.Font.Size = 12: .Text2.Font.Bold = False
             If VchType = "1" Then .Text3.SetText " MONTHLY SUMMARY ": .Text3.Font.Size = 12: .Text3.Font.Bold = True:
             If VchType = "2" Then .Text3.SetText " Account Ledger ": .Text3.Font.Size = 12: .Text3.Font.Bold = True:
-            If VchType = "2" Then .Text4.SetText "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")": .Text4.Font.Size = 11: .Text4.Font.Bold = False
+            If VchType = "1" Or VchType = "2" Then .Text4.SetText "(" & Format(MhDateInput1.Value, "dd-MM-yyyy") & " to " & Format(MhDateInput2.Value, "dd-MM-yyyy") & ")": .Text4.Font.Size = 11: .Text4.Font.Bold = False
             .Text5.SetText "Accounts : " & rstAccountOpening.Fields("AccountName").Value: .Text5.Font.Size = 12: .Text5.Font.Bold = True
     If VchType = "2" Then
             .Text6.SetText rstCompanyMaster.Fields("PrintName").Value: .Text6.Font.Size = 10: .Text6.Font.Bold = False: .Text6.HorAlignment = crLeftAlign

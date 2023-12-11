@@ -542,12 +542,12 @@ Private Sub PrintAccountLedger()
         FrmAccountLedger.sDate = MhDateInput1.Text
         FrmAccountLedger.eDate = MhDateInput2.Text
         FrmAccountLedger.AccountList = SelectedItems(ListView2)
+        If Len(AccountList) < 8 Then Exit Sub
         If VchType >= 0 And VchType <= 29 And Len(FrmAccountLedger.AccountList) > 10 Then MsgBox ("Please Select One-Party Account Only"), vbCritical: Exit Sub
         FrmAccountLedger.AccountGroupList = SelectedItems(ListView1)
         FrmAccountLedger.AccountList = SelectedItems(ListView2)
         FrmAccountLedger.VchType = VchType
         Load FrmAccountLedger
-        If FrmAccountLedger.OutputTo = "" Then FrmAccountLedger.Show
-        FrmAccountLedger.OutputTo = ""
+        FrmAccountLedger.Show
         CloseForm (Me)
 End Sub

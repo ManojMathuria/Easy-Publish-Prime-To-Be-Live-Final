@@ -2913,7 +2913,6 @@ If TDBNumber1.Value <= 0 And PendingCheck.Value Then ZeroStock.Value = 0
 If VSFlexFlag = True Then VSFlexGrid1.Subtotal flexSTClear
     Call cmdRefresh_Click
 End Sub
-
 Private Sub ZeroStock_Click()
 If ZeroStock.Value Then NegativeStock.Value = 0
 If TDBNumber1.Value <= 0 And ZeroStock.Value Then PendingCheck.Value = 0
@@ -3002,7 +3001,7 @@ cmdRefresh.Visible = False
     End With
 End Sub
 Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
-If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
+    If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
 End Sub
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     If UnloadMode = 0 Then Call CloseForm(Me)
