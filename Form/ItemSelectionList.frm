@@ -150,7 +150,7 @@ Begin VB.Form FrmItemSelectionList
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Ctrl+V->Print Preview  Ctrl+P->Print Preview Ctrl+M->Email  Escape->Exit"
+         Caption         =   "  Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Alt+V->Print Preview  Alt+P->Print Alt+E->Email  Escape->Exit"
          Alignment       =   0
          FillColor       =   8421504
          TextColor       =   16777215
@@ -527,6 +527,7 @@ Begin VB.Form FrmItemSelectionList
          Left            =   3300
          TabIndex        =   15
          Top             =   8
+         Visible         =   0   'False
          Width           =   1550
          VariousPropertyBits=   746604571
          DisplayStyle    =   3
@@ -543,6 +544,7 @@ Begin VB.Form FrmItemSelectionList
          Left            =   850
          TabIndex        =   14
          Top             =   8
+         Visible         =   0   'False
          Width           =   1550
          VariousPropertyBits=   746604571
          DisplayStyle    =   3
@@ -564,7 +566,6 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim rstMatCList As New ADODB.Recordset, rstSupplierList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemGroupList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset
 Public VchType As String, MC As String
-
 Private Sub ComboBox1_Change()
 Dim NewDate As Date
     Call AddDate(FinancialYearFrom, NewDate, ComboBox1.ListIndex)
@@ -579,13 +580,15 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If cnDatabase.State = 1 Then cnDatabase.Close: cnDatabase.Open
     MhDateInput1.ReadOnly = False:
-    ComboBox1.Visible = False: ComboBox2.Visible = False
+
     If VchType <= 2 Or VchType = 33 Or VchType = 31 Or VchType = 49 Then
         ListView4.Visible = False: ListView1.BackColor = RGB(255, 255, 240): ListView2.BackColor = RGB(255, 255, 240): ListView3.BackColor = RGB(255, 255, 240): MhDateInput1.BackColor = RGB(255, 255, 240): MhDateInput2.BackColor = RGB(255, 255, 240):
+        
         If VchType = 49 Then
             MhDateInput1.Visible = False: MhDateInput2.Visible = False
             ListView4.Visible = False
-            ComboBox1.Visible = True: ComboBox2.Visible = True
+            
+            ComboBox1.Visible = True
             ComboBox1.FontSize = 10: ComboBox1.FontBold = True
             ComboBox1.Clear
             ComboBox1.AddItem " April", 0
@@ -602,6 +605,7 @@ Private Sub Form_Load()
             ComboBox1.AddItem " March", 11
             ComboBox1.ListIndex = 0
             
+            ComboBox2.Visible = True
             ComboBox2.FontSize = 10: ComboBox2.FontBold = True
             ComboBox2.Clear
             ComboBox2.AddItem " April", 0

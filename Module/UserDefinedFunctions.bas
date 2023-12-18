@@ -1106,7 +1106,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    WshShell.Sendkeys CStr(Text), Wait
         
         
-        Set WshShell = Nothing
+                Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -4678,7 +4678,9 @@ End Function
 Public Function btnNotes()
     frmNotes.BalFlag = True
     frmNotes.Label1.Caption = "Accounts Ledger : Easy Info Solutions International " '& Text2(Val(AccountType) - 1).Text
+    
     If frmNotes.BalFlag = True Or frmNotes.NotesFlag > 0 Then frmNotes.Show vbModal
+    
 End Function
 Public Function GetFileVersion(ByVal FileName As String) As String
 'Windows API function declarations

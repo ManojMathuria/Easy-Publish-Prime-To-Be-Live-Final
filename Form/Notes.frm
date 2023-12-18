@@ -349,7 +349,8 @@ Private Sub Form_Load()
     If NotesFlag = 7 Then Text1.Text = frmItemIssueReceiptVoucher.txtNotes.Text
     If rstClientAccount.State = 1 Then rstClientAccount.Close
     rstClientAccount.Open "SELECT SuM(Debit)-Sum(Credit) As Bal FROM ClientAccount Where Left(UUID,5)='EP'+'" & CompCode & "'", cnClientAccount, adOpenKeyset, adLockReadOnly
-    If ((Trim(ReadFromFile("Client User")) = "EasyPublish") Or (rstClientAccount.Fields("Bal").Value <> "Null" And rstClientAccount.Fields("Bal").Value <> 0 And BalFlag = True)) And NotesFlag = 0 Then
+    'If ((Trim(ReadFromFile("Client User")) = "EasyPublish") And (rstClientAccount.Fields("Bal").Value <> "Null" And rstClientAccount.Fields("Bal").Value <> 0 And BalFlag = True)) And NotesFlag = 0 Then
+    If (Trim(ReadFromFile("Client User")) = "EasyPublish") Or (rstClientAccount.Fields("Bal").Value <> "Null" And rstClientAccount.Fields("Bal").Value <> 0) And BalFlag = True And NotesFlag = 0 Then
             VSFlexGrid1.Visible = True
             TDBNumber2.Visible = True
             Mh3dLabel4.Visible = True
@@ -376,6 +377,7 @@ Private Sub Form_Load()
             Mh3dLabel4.Visible = False
         End If
     Else
+        BalFlag = False
         VSFlexGrid1.Visible = False
         cmdDelete.Visible = False
         cmdSave.Visible = False
