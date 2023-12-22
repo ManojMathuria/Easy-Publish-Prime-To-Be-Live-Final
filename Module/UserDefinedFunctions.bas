@@ -1104,9 +1104,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-        
-        
-                Set WshShell = Nothing
+                                Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -1352,8 +1350,13 @@ End If
     CompAlias = rstCompanyMaster.Fields("Alias")
 
 'Update=01
+UpdateVersion = True
+    If rstEasyPublishVersion.RecordCount <> 0 Then rstEasyPublishVersion.MoveFirst
+    Do While Not rstEasyPublishVersion.EOF
+    If Trim(rstEasyPublishVersion.Fields("Version").Value) = "21.09.22" Then UpdateVersion = False: cnDatabase.Execute "Update EasyPublishVersion Set vUPDATE='UpdateMinor01' Where vUPDATE IS NULL AND Version='21.09.22'"
+    rstEasyPublishVersion.MoveNext
+    Loop
 If UpdateVersion = True Then
-
 Call UpdateMinor01
 'EasyPublishVersion
 cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.09.22') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,9,22,'21.09.22','UpdateMinor01')"
@@ -1368,7 +1371,7 @@ UpdateVersion = True
     rstEasyPublishVersion.MoveNext
     Loop
 If UpdateVersion = True Then
-Call UpdateMinor02
+    Call UpdateMinor02
 'EasyPublishVersion
     cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.09.23') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,09,23,'21.09.23','UpdateMinor02')"
 End If
@@ -1479,7 +1482,7 @@ End If
 '***************************************************************************************************************************************************************
 
 
-
+If UpdateMajor = True Then
 '***************************************************************************************************************************************************************
 'MajorUpdate=01
 If MsgBox("Do You Wants to Update '21.11.01 Version'" & vbCrLf & "[Update Account Child Master & Update Color Master] Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
@@ -1573,7 +1576,7 @@ End If
 '***************************************************************************************************************************************************************
 'MajorUpdate=07  Update BookPOChild08
 If MsgBox("Do You Wants to Update '21.11.07 Version'" & vbCrLf & "[Update BookPOChild08] Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
-UpdateMajor = True
+    UpdateMajor = True
     If rstEasyPublishVersion.RecordCount <> 0 Then rstEasyPublishVersion.MoveFirst
     Do While Not rstEasyPublishVersion.EOF
     If Trim(rstEasyPublishVersion.Fields("Version").Value) = "21.11.07" Then UpdateMajor = False: cnDatabase.Execute "Update EasyPublishVersion Set vUPDATE='UpdateMajor07' Where vUPDATE IS NULL AND Version='21.11.07'"
@@ -1585,7 +1588,9 @@ Call UpdateMajor07
     cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.11.07') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,11,07,'21.11.07','UpdateMajor07')"
 End If
 End If
+End If
 '***************************************************************************************************************************************************************
+
 MdiMainMenu.StatusBar1.Panels(2).Text = "Common Updates Going on!!! "
 'Common Update
     'Email
@@ -3238,27 +3243,27 @@ MdiMainMenu.StatusBar1.Panels(2).Text = "Plate Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*09003' OR Name='Nagative-One Pieces') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*09003','Nagative-One Pieces','Nagative-One Pieces','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Size Group Master-10
 MdiMainMenu.StatusBar1.Panels(2).Text = "Size Master Update Going on!!! "
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10022' OR Name='12.00X18.00-Digital') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10022','12.00X18.00-Digital','12.00X18.00-Digital','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10018' OR Name='Extra Large-28''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10018','Extra Large-28''''X40''''-(Card)','Extra Large-28''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10001' OR Name='Extra Large-28''''X40''''-A/P') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10001','Extra Large-28''''X40''''-A/P','Extra Large-28''''X40''''-A/P','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10002' OR Name='Extra Large-28''''X40''''-A/P_SPL') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10002','Extra Large-28''''X40''''-A/P_SPL','Extra Large-28''''X40''''-A/P_SPL','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10003' OR Name='Extra Large-30''''X40''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10003','Extra Large-30''''X40''''','Extra Large-30''''X40''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10004' OR Name='Extra Large-30''''X40''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10004','Extra Large-30''''X40''''-(A/P)','Extra Large-30''''X40''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10005' OR Name='Extra Large-30''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10005','Extra Large-30''''X40''''-(Card)','Extra Large-30''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10006' OR Name='LARGE-23''''X36''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10006','LARGE-23''''X36''''','LARGE-23''''X36''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10007' OR Name='LARGE-23''''X36''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10007','LARGE-23''''X36''''-(A/P)','LARGE-23''''X36''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10008' OR Name='LARGE-23''''X36''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10008','LARGE-23''''X36''''-(Card)','LARGE-23''''X36''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10019' OR Name='Little-11.50''''X18.00''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10019','Little-11.50''''X18.00''''','Little-11.50''''X18.00''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10021' OR Name='Little-11.50''''X18.00''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10021','Little-11.50''''X18.00''''-(A/P)','Little-11.50''''X18.00''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10020' OR Name='Little-11.50''''X18.00''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10020','Little-11.50''''X18.00''''-(Card)','Little-11.50''''X18.00''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10009' OR Name='Medium-20''''X30''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10009','Medium-20''''X30''''','Medium-20''''X30''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10010' OR Name='Medium-20''''X30''''(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10010','Medium-20''''X30''''(A/P)','Medium-20''''X30''''(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10011' OR Name='Medium-20''''X30''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10011','Medium-20''''X30''''(Card)','Medium-20''''X30''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10012' OR Name='Small-19''''X26''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10012','Small-19''''X26''''','Small-19''''X26''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10017' OR Name='Small-19''''X26''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10017','Small-19''''X26''''-(A/P)','Small-19''''X26''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10013' OR Name='Small-19''''X26''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10013','Small-19''''X26''''(Card)','Small-19''''X26''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10014' OR Name='Web-508mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10014','Web-508mm','Web-508mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10015' OR Name='Web-578mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10015','Web-578mm','Web-578mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10022' OR Name='12.00X18.00-Digital') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10022','12.00X18.00-Digital','12.00X18.00-Digital','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10018' OR Name='Extra Large-28''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10018','Extra Large-28''''X40''''-(Card)','Extra Large-28''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10001' OR Name='Extra Large-28''''X40''''-A/P') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10001','Extra Large-28''''X40''''-A/P','Extra Large-28''''X40''''-A/P','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10002' OR Name='Extra Large-28''''X40''''-A/P_SPL') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10002','Extra Large-28''''X40''''-A/P_SPL','Extra Large-28''''X40''''-A/P_SPL','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10003' OR Name='Extra Large-30''''X40''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10003','Extra Large-30''''X40''''','Extra Large-30''''X40''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10004' OR Name='Extra Large-30''''X40''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10004','Extra Large-30''''X40''''-(A/P)','Extra Large-30''''X40''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10005' OR Name='Extra Large-30''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10005','Extra Large-30''''X40''''-(Card)','Extra Large-30''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10006' OR Name='LARGE-23''''X36''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10006','LARGE-23''''X36''''','LARGE-23''''X36''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10007' OR Name='LARGE-23''''X36''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10007','LARGE-23''''X36''''-(A/P)','LARGE-23''''X36''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10008' OR Name='LARGE-23''''X36''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10008','LARGE-23''''X36''''-(Card)','LARGE-23''''X36''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10019' OR Name='Little-11.50''''X18.00''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10019','Little-11.50''''X18.00''''','Little-11.50''''X18.00''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10021' OR Name='Little-11.50''''X18.00''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10021','Little-11.50''''X18.00''''-(A/P)','Little-11.50''''X18.00''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10020' OR Name='Little-11.50''''X18.00''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10020','Little-11.50''''X18.00''''-(Card)','Little-11.50''''X18.00''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10009' OR Name='Medium-20''''X30''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10009','Medium-20''''X30''''','Medium-20''''X30''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10010' OR Name='Medium-20''''X30''''(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10010','Medium-20''''X30''''(A/P)','Medium-20''''X30''''(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10011' OR Name='Medium-20''''X30''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10011','Medium-20''''X30''''(Card)','Medium-20''''X30''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10012' OR Name='Small-19''''X26''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10012','Small-19''''X26''''','Small-19''''X26''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10017' OR Name='Small-19''''X26''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10017','Small-19''''X26''''-(A/P)','Small-19''''X26''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10013' OR Name='Small-19''''X26''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10013','Small-19''''X26''''(Card)','Small-19''''X26''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10014' OR Name='Web-508mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10014','Web-508mm','Web-508mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10015' OR Name='Web-578mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10015','Web-578mm','Web-578mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Finish Size Master_TYPE-11
 MdiMainMenu.StatusBar1.Panels(2).Text = "Finish Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11001' OR Name='05.25x10.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11001','05.25x10.00','05.25x10.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -4781,9 +4786,11 @@ cnDatabase.BeginTrans
     Call DROP_CONSTRAINT("MaterialSVChild", "Planning", True)
     Call DROP_CONSTRAINT("MaterialSVParent", "Type", True)
     Call Rename_Table("MaterialSVParent", "Type", "Code")
+    
     SQL = ""
     SQL = " (Code nvarchar(6) NOT NULL,Name nvarchar(10) NOT NULL,Date datetime NOT NULL,Account nvarchar(6) NOT NULL,ApprovedBy nvarchar(6) NULL,ApprovalDate datetime NULL,Remarks nvarchar(40) NULL,[Type]  nvarchar(1) NOT NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar(1) NOT NULL,Printstatus nvarchar(1) NOT NULL,FYCode nvarchar(6) NOT NULL DEFAULT ('''') , CONSTRAINT PK_MaterialSVParent PRIMARY KEY CLUSTERED ([Code] ASC) ON [PRIMARY],CONSTRAINT FK_MaterialSVParent_Account FOREIGN KEY(Account) REFERENCES AccountMaster (Code) ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY] "
     Call Create_Alter_Table("Create Table  ", "MaterialSVParent", SQL, "Type")
+    
     SQL = ""
     SQL = "INSERT INTO MaterialSVParent Select Code,Name,Date,Account,ApprovedBy,ApprovalDate,Remarks,''J'' AS TYPE,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn,Recordstatus,Printstatus,FYCode From MaterialSVParentT "
     Call Insert_Into("MaterialSVParentT", "MaterialSVParent", "Code", SQL)
@@ -4808,6 +4815,19 @@ cnDatabase.BeginTrans
     cnDatabase.Execute "IF COL_LENGTH('VchSeriesMaster', 'FYCode') IS NOT NULL PRINT 'Exists' ELSE Alter Table VchSeriesMaster Add FYCode nvarchar(6) NOT NULL  DEFAULT '" & FYCode & "'"
     cnDatabase.Execute "Update VchSeriesMaster Set FYCODE = '" & FYCode & "' Where Len(FYCODE)=0"
     cnDatabase.Execute "Update VchSeriesMaster Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+cnDatabase.CommitTrans
+    '***Bookmaster**SalePrice_PurPrice
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [SalePrice] [decimal](12, 2) NOT NULL  DEFAULT (0),[PurPrice] [decimal](12, 2) NOT NULL DEFAULT (0) "
+    Call Create_Alter_Table("Alter Table ", "Bookmaster", SQL, "SalePrice")
+cnDatabase.CommitTrans
+    '***Accountmaster
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [City] nvarchar(40) NULL  DEFAULT (''),[ContactPer] nvarchar(40) NULL  DEFAULT ('')"
+    Call Create_Alter_Table("Alter Table ", "Accountmaster", SQL, "City")
+    cnDatabase.Execute "Update AccountMaster Set City='' Where City is null"
 cnDatabase.CommitTrans
     Screen.MousePointer = vbNormal
     GeneralUpdate = True
@@ -5044,15 +5064,17 @@ ElseIf rstEasyPublishVersion.RecordCount <> 0 Then
                                   "End "
 End If
 End Function
-Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As String, ByVal Username As String, ByVal Password As String, ByVal ToEmail As Variant, ByVal Subject As String, ByVal MsgText As String, ByVal TaskComments As String, ByVal AssignBy As String, ByVal CompanyPrintName As String, ByVal CompanyPhone As String, ByVal CompanyEMail As String, ByVal AssignTo As Variant, ByVal ToName As Variant)
+Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As String, ByVal Username As String, ByVal Password As String, ByVal ToEmail As Variant, ByVal Subject As String, ByVal MsgText As String, ByVal TaskComments As String, ByVal AssignBy As String, ByVal CompanyPrintName As String, ByVal CompanyPhone As String, ByVal CompanyEMail As String, ByVal AssignTo As Variant, ByVal ToName As Variant, ByVal AttachmentPath As String)
+    On Error Resume Next
+    ' Create CDO message object
     Dim objMessage As Object
     Set objMessage = CreateObject("CDO.Message")
-
+    
     ' Configuration for the SMTP server (replace with your email server settings)
-    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = smtpserver '"smtp.example.com"
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = smtpserver 'smtpout.secureserver.net
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = smtpserverport '465
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2 ' cdoSendUsingPort
-    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout") = 60
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout") = 60 'smtp connection timeout
         
     ' Enable SSL/TLS encryption
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
@@ -5068,13 +5090,12 @@ Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As S
     objMessage.To = ToEmail '"recipient@example.com"
     'objMessage.TextBody = TextBody_SQL
     objMessage.HTMLBody = "<Font Face='Calibri' Size='3'>" & ToName & ",<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & " <Br><b><I>Task >> " & TaskComments & "<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & AssignBy & "<Br>" & CompanyPrintName & "<Br>Phone : " & CompanyPhone & "<Br>E-Mail : <a HRef='mailto:" & CompanyEMail & "'>" & CompanyEMail & "</a></Font>"
+    
     '"This is a test email sent using VB6 and CDO with SSL/TLS encryption."
-
     On Error Resume Next
     objMessage.Send
-    
     If Err.Number = 0 Then
-        MsgBox "Email Send To : " & ToEmail & " [ " & AssignTo & " ] ", vbInformation, "Email"
+        MsgBox "Email Sent To: " & " [ " & AssignTo & " ] " & vbCrLf & vbCrLf & "@ : " & ToEmail, vbInformation, "Email"
     Else
         MsgBox "Error sending email: " & Err.Description, vbExclamation
     End If

@@ -513,6 +513,7 @@ Private Sub Form_Load()
         ComboBox1.AddItem " January", 9
         ComboBox1.AddItem " February", 10
         ComboBox1.AddItem " March", 11
+        ComboFlag = False
         ComboBox1.ListIndex = 0
         
         ComboBox2.Visible = True
@@ -554,6 +555,7 @@ Dim NewDate As Date
 If ComboFlag = True Then If ComboBox2.ListIndex < ComboBox1.ListIndex Then If MsgBox("  End Month can't be lower than the Start Month. ", vbInformation) = vbOK Then ComboBox1.ListIndex = ComboBox2.ListIndex: Exit Sub
     Call AddDate(FinancialYearFrom, NewDate, ComboBox1.ListIndex)
     MhDateInput1.Value = NewDate
+    ComboFlag = False
 End Sub
 Private Sub ComboBox2_Change()
 Dim NewDate As Date

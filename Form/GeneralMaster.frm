@@ -233,6 +233,34 @@ Begin VB.Form FrmGeneralMaster
             FormatString    =   ""
             Caption         =   ""
             Picture         =   "GeneralMaster.frx":0060
+            Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
+               Height          =   330
+               Left            =   120
+               TabIndex        =   19
+               Top             =   735
+               Visible         =   0   'False
+               Width           =   1575
+               _Version        =   65536
+               _ExtentX        =   2778
+               _ExtentY        =   582
+               _StockProps     =   77
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               TintColor       =   16711935
+               Caption         =   " Conversion Units"
+               Alignment       =   0
+               FillColor       =   9164542
+               TextColor       =   0
+               Picture         =   "GeneralMaster.frx":007C
+               Picture         =   "GeneralMaster.frx":0098
+            End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
                Index           =   0
@@ -258,8 +286,8 @@ Begin VB.Form FrmGeneralMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "GeneralMaster.frx":007C
-               Picture         =   "GeneralMaster.frx":0098
+               Picture         =   "GeneralMaster.frx":00B4
+               Picture         =   "GeneralMaster.frx":00D0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -285,8 +313,8 @@ Begin VB.Form FrmGeneralMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "GeneralMaster.frx":00B4
-               Picture         =   "GeneralMaster.frx":00D0
+               Picture         =   "GeneralMaster.frx":00EC
+               Picture         =   "GeneralMaster.frx":0108
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -312,8 +340,8 @@ Begin VB.Form FrmGeneralMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "GeneralMaster.frx":00EC
-               Picture         =   "GeneralMaster.frx":0108
+               Picture         =   "GeneralMaster.frx":0124
+               Picture         =   "GeneralMaster.frx":0140
             End
             Begin VB.TextBox Text4 
                Appearance      =   0  'Flat
@@ -387,8 +415,8 @@ Begin VB.Form FrmGeneralMaster
                _Version        =   65536
                _ExtentX        =   9340
                _ExtentY        =   582
-               Calculator      =   "GeneralMaster.frx":0124
-               Caption         =   "GeneralMaster.frx":0144
+               Calculator      =   "GeneralMaster.frx":015C
+               Caption         =   "GeneralMaster.frx":017C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -398,9 +426,9 @@ Begin VB.Form FrmGeneralMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "GeneralMaster.frx":01B0
-               Keys            =   "GeneralMaster.frx":01CE
-               Spin            =   "GeneralMaster.frx":0218
+               DropDown        =   "GeneralMaster.frx":01E8
+               Keys            =   "GeneralMaster.frx":0206
+               Spin            =   "GeneralMaster.frx":0250
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -459,7 +487,7 @@ Begin VB.Form FrmGeneralMaster
                MaxCols         =   3
                ScrollBars      =   2
                SelectBlockOptions=   2
-               SpreadDesigner  =   "GeneralMaster.frx":0240
+               SpreadDesigner  =   "GeneralMaster.frx":0278
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
@@ -490,7 +518,7 @@ Begin VB.Form FrmGeneralMaster
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "GeneralMaster.frx":08A9
+               Picture         =   "GeneralMaster.frx":07DD
                Begin VB.CheckBox cbValue 
                   Caption         =   "Check1"
                   Height          =   210
@@ -526,8 +554,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":08C5
-            Picture         =   "GeneralMaster.frx":08E1
+            Picture         =   "GeneralMaster.frx":07F9
+            Picture         =   "GeneralMaster.frx":0815
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   300
@@ -554,8 +582,8 @@ Begin VB.Form FrmGeneralMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "GeneralMaster.frx":08FD
-            Picture         =   "GeneralMaster.frx":0919
+            Picture         =   "GeneralMaster.frx":0831
+            Picture         =   "GeneralMaster.frx":084D
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -693,6 +721,7 @@ Private Sub Form_Load()
     If MasterType = "5" Then Me.Caption = "Item Group Master"
     If MasterType = "11" Then Me.Caption = "Finish Size Master"
     If MasterType = "18" Then Me.Caption = "HSN Code Master"
+    If MasterType = "25" Then Me.Caption = "General Unit"
     If MasterType = "56" Then Me.Caption = "State Code Master"
     If MasterType = "1201" Then Me.Caption = "Selection List of Accounts"
     
@@ -719,12 +748,22 @@ Private Sub Form_Load()
         Mh3dLabel2.Caption = " Don't Use No in Calculation": Mh3dFrame4.Visible = True
         Mh3dLabel2.Width = 2400: Mh3dFrame4.Left = 2500: Mh3dFrame4.Width = 4470 '5295
         Text4.Visible = False: Text4.Locked = True
-    ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Or MasterType = "56" Then  'Paper Unit/Calc Mode/Color Master
-        Mh3dLabel2.Caption = IIf(MasterType = "15", " Sheets/Unit", IIf(MasterType = "20", " Value (0 if varies)", " Color")): MhRealInput1.Visible = True
+    ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Or MasterType = "25" Or MasterType = "56" Then  'Paper Unit/Calc Mode/Color Master
+        Mh3dLabel2.Caption = IIf(MasterType = "25", "Unit Qty.", IIf(MasterType = "15", " Sheets/Unit", IIf(MasterType = "20", " Value (0 if varies)", " Color"))): MhRealInput1.Visible = True
         DataGrid1.Columns(0).Caption = " Name "
-        DataGrid1.Columns(1).Caption = IIf(MasterType = "15", " Quantity/Unit", IIf(MasterType = "56", " State Code", IIf(MasterType = "20", " Value (0 if varies)", " Color")))
+        DataGrid1.Columns(1).Caption = IIf(MasterType = "15" Or MasterType = "25", " Quantity/Unit", IIf(MasterType = "56", " State Code", IIf(MasterType = "20", " Value (0 if varies)", " Color")))
         DataGrid1.Columns(0).Width = 3525: DataGrid1.Columns(1).Width = 3000
         If MasterType = "56" Then Mh3dLabel3.Caption = " Code": MhRealInput1.Visible = False: Mh3dLabel2.Visible = False: Mh3dFrame2.Height = 860 'State Master
+        If MasterType = "25" Then
+            Mh3dFrame2.Height = 1470
+            Mh3dLabel2.Caption = " Conversion Unit"
+            Text4.Visible = True
+            Text4.Top = 735
+            Mh3dLabel4.Visible = True
+            Mh3dLabel4.Top = 1035
+            Mh3dLabel4.Caption = " Con. Unit Value"
+            MhRealInput1.Top = 1035
+        End If
     Else
         Mh3dLabel2.Visible = False: Mh3dFrame2.Height = 860
         If MasterType = "56" Then Mh3dLabel3.Caption = " Code" 'State Master
@@ -740,7 +779,7 @@ Private Sub Form_Load()
         rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') AND (G.UnderGroup='" & oAccountGroup & "' OR G.Code='" & oAccountGroup & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
     ElseIf MasterType = "1201" Then   'Export Rate
         rstGeneralList.Open "SELECT G.Name,G.Code,0 As Value1,ISNULL([Group],'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,0 As UGroupValue1 FROM AccountMaster G Left Join GeneralMaster G1 on [Group]=G1.Code WHERE G1.Type IN ('12','26') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
-    ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Then  'Paper Unit/Calc Mode/Color Master
+    ElseIf MasterType = "15" Or MasterType = "20" Or MasterType = "23" Or MasterType = "25" Then  'Paper Unit/Calc Mode/Color Master
         rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G.Value1,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
     ElseIf MasterType = "56" Then  'Paper Unit/Calc Mode/Color Master
         rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G.PrintName,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
@@ -795,7 +834,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf ((Shift = 0 And KeyCode = vbKeyF8) Or (Shift = vbCtrlMask And KeyCode = vbKeyD)) And Toolbar1.Buttons.Item(3).Enabled Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
         KeyCode = 0
-    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyS And Toolbar1.Buttons.Item(4).Enabled Then
+    ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyS) Or (Shift = 0 And KeyCode = vbKeyF2) And Toolbar1.Buttons.Item(4).Enabled Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(4)
         KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyF5 And Toolbar1.Buttons.Item(6).Enabled Then
@@ -823,14 +862,14 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
         Else
             'Sendkeys "{TAB}"
             If Me.ActiveControl.Name = "Text4" Then
-                fpSpread1.GetText 1, fpSpread1.ActiveRow, UnderGroup: If MasterType <> "1" Then Text4.Text = UnderGroup
-                fpSpread1.GetText 3, fpSpread1.ActiveRow, UnderGroupCode
+                fpSpread1.GetText 1, fpSpread1.ActiveRow, UnderGroup: If MasterType <> "1" And UnderGroup <> "" Then Text4.Text = UnderGroup: fpSpread1.GetText 3, fpSpread1.ActiveRow, UnderGroupCode
+                If MasterType <> "25" Then Sendkeys "{TAB}": Sendkeys "{TAB}": Text4.SetFocus
+                If MasterType = "25" Then MhRealInput1.SetFocus
             ElseIf Me.ActiveControl.Name <> "fpSpread1" Then
                 Sendkeys "{TAB}":
             End If
         End If
-        'KeyCode = 0
-         oKeyCode = KeyCode
+         oKeyCode = KeyCode: KeyCode = 0
         If Me.ActiveControl.Name <> "fpSpread1" Then KeyCode = 0
     End If
 End Sub
@@ -1139,7 +1178,7 @@ Private Sub ViewRecord()
 End Sub
 Private Sub FindRecord()
     If rstGeneralMaster.State = adStateOpen Then rstGeneralMaster.Close
-    rstGeneralMaster.Open "SELECT * FROM GeneralMaster WHERE Code='" & FixQuote(rstGeneralList.Fields("Code").Value) & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+    rstGeneralMaster.Open "SELECT *,(Select Name From GeneralMaster UG Where UG.Code=G.UnderGroup) AS UnderGroupName FROM GeneralMaster G WHERE Code='" & FixQuote(rstGeneralList.Fields("Code").Value) & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     If rstGeneralMaster.RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
 End Sub
 Private Sub ClearFields()
@@ -1155,7 +1194,9 @@ Private Sub LoadFields()
         Text2.Text = .Fields("Name").Value
         Text3.Text = .Fields("PrintName").Value
         MhRealInput1.Value = .Fields("Value1").Value
+        
         If .Fields("Value1").Value > 1 Then cbValue.Value = 1 Else cbValue.Value = .Fields("Value1").Value
+        UnderGroup = .Fields("UnderGroupName").Value
         UnderGroupCode = .Fields("UnderGroup").Value
         If MasterType = "1" Then    'Size Master
             With rstchkRef
@@ -1163,7 +1204,7 @@ Private Sub LoadFields()
                 .Open "SELECT STUFF((SELECT ', '+(LTRIM(M.Name)) FROM SizeGroupChild C INNER JOIN GeneralMaster M ON C.Code=M.Code WHERE [Size]='" & rstGeneralMaster.Fields("Code").Value & "' ORDER BY M.Name FOR XML PATH('')),1,1,'') As Name", cnDatabase, adOpenKeyset, adLockReadOnly
                 If .RecordCount > 0 Then Text4.Text = CheckNull(Trim(.Fields("Name").Value))
             End With
-        ElseIf MasterType = "12" Or MasterType = "5" Or MasterType = "12','26" Then  'Account Group Master
+        ElseIf MasterType = "12" Or MasterType = "25" Or MasterType = "5" Or MasterType = "12','26" Then  'Account Group Master
             With rstAccountGroup
                 If .State = adStateOpen Then rstAccountGroup.Close
                 .Open "SELECT M.Name FROM GeneralMaster M WHERE M.Code='" & UnderGroupCode & "' ORDER BY M.Name", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -1177,7 +1218,7 @@ Private Sub EditRecord()
     If rstGeneralMaster.RecordCount = 0 Then Exit Sub
     If rstGeneralMaster.State = adStateOpen Then rstGeneralMaster.Close
     rstGeneralMaster.CursorLocation = adUseServer
-    rstGeneralMaster.Open "SELECT * FROM GeneralMaster WHERE Code='" & FixQuote(rstGeneralList.Fields("Code").Value) & "'", cnDatabase, adOpenKeyset, adLockPessimistic
+    rstGeneralMaster.Open "SELECT * ,(Select Name From GeneralMaster UG Where UG.Code=G.UnderGroup) AS UnderGroupName FROM GeneralMaster G WHERE Code='" & FixQuote(rstGeneralList.Fields("Code").Value) & "'", cnDatabase, adOpenKeyset, adLockPessimistic
     MdiMainMenu.MousePointer = vbHourglass
     rstGeneralMaster.Fields("PrintStatus") = "N"
     MdiMainMenu.MousePointer = vbNormal
@@ -1218,7 +1259,7 @@ Private Sub SaveFields()
         .Fields("Type").Value = Left(MasterType, 2)
         .Fields("Value1").Value = IIf(MasterType = "7", cbValue.Value, MhRealInput1.Value)
         .Fields("PrintStatus").Value = "N"
-        .Fields("UnderGroup").Value = UnderGroupCode
+        .Fields("UnderGroup").Value = IIf(Trim(Text4.Text) <> "", UnderGroupCode, "")
     End With
 End Sub
 Private Sub AddToList()
@@ -1257,6 +1298,8 @@ Private Function CheckMandatoryFields() As Boolean
             DisplayError ("Sheets/Unit cann't be zero"): MhRealInput1.SetFocus: CheckMandatoryFields = True
         ElseIf MasterType = "23" Then 'Color Master
             DisplayError ("Color cann't be zero"): MhRealInput1.SetFocus: CheckMandatoryFields = True
+        ElseIf Trim(Text4.Text) <> "" And MasterType = "25" Then 'Color Master
+            DisplayError ("Conversion Units Value cann't be zero"): MhRealInput1.SetFocus: CheckMandatoryFields = True
         End If
     End If
 End Function
@@ -1304,8 +1347,8 @@ Private Sub SetMenuOptions(bVal As Boolean)
 End Sub
 Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Account Group
     Dim i As Long, cndn As String
-    If Not (MasterType = "1" Or MasterType = "5" Or MasterType = "7" Or MasterType = "12" Or MasterType = "12','26") Then Exit Sub
-    If KeyCode = vbKeySpace Or KeyCode = vbKeyDown Or KeyCode = 144 Then
+    If Not (MasterType = "1" Or MasterType = "25" Or MasterType = "5" Or MasterType = "7" Or MasterType = "12" Or MasterType = "12','26") Then Exit Sub
+    If (Shift = 0 And KeyCode = vbKeySpace) Or (Shift = 0 And KeyCode = vbKeyDown) Or (Shift = 0 And KeyCode = vbKeyReturn) Then
         On Error Resume Next
         Mh3dFrame2.Height = 4680
         fpSpread1.Visible = True
@@ -1320,11 +1363,13 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Accoun
                 cndn = "Type IN ('" & MasterType & "','26') AND Code NOT IN ('" & slCode & "','*26001','*26002','*26003')"
             ElseIf MasterType = "1" Then
                 cndn = "Type = 10"
+            ElseIf MasterType = "25" Then
+                cndn = "Type = '" & MasterType & "'"
             End If
     If oAccountGroup > "*99000" Then
-            .Open "SELECT Name As Col0,Code,Name,Value1,(SELECT Name FROM GeneralMaster WHERE Code=G.UnderGroup) As UGroup FROM GeneralMaster G  WHERE (G.UnderGroup='" & oAccountGroup & "' OR G.Code='" & oAccountGroup & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+            .Open "SELECT Name As Col0,Code,Name,Value1,(SELECT Name FROM GeneralMaster WHERE Code=G.UnderGroup) As UGroupName FROM GeneralMaster G  WHERE (G.UnderGroup='" & oAccountGroup & "' OR G.Code='" & oAccountGroup & "') ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     Else
-            .Open "SELECT Name As Col0,Code,Name,Value1,(SELECT Name FROM GeneralMaster WHERE Code=G.UnderGroup) As UGroup FROM GeneralMaster G  WHERE " & cndn & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+            .Open "SELECT Name As Col0,Code,Name,Value1,(SELECT Name FROM GeneralMaster WHERE Code=G.UnderGroup) As UGroupName FROM GeneralMaster G  WHERE " & cndn & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     End If
             If .RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
         End With
@@ -1336,7 +1381,7 @@ Private Sub Text4_KeyDown(KeyCode As Integer, Shift As Integer) 'Item And Accoun
             Do Until rstAccountGroup.EOF
                 i = i + 1
                 .SetText 1, i, rstAccountGroup.Fields("Name").Value
-                .SetText 2, i, rstAccountGroup.Fields("UGroup").Value
+                .SetText 2, i, rstAccountGroup.Fields("UGroupName").Value
                 .SetText 3, i, rstAccountGroup.Fields("Code").Value
                 rstAccountGroup.MoveNext
             Loop

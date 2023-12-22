@@ -684,7 +684,7 @@ Begin VB.Form FrmProjectAssigner
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "ProjectAssigner.frx":2CB7
+            Picture         =   "ProjectAssigner.frx":2C93
             Begin VB.TextBox Text7 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -794,8 +794,8 @@ Begin VB.Form FrmProjectAssigner
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectAssigner.frx":2CD3
-               Picture         =   "ProjectAssigner.frx":2CEF
+               Picture         =   "ProjectAssigner.frx":2CAF
+               Picture         =   "ProjectAssigner.frx":2CCB
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -822,8 +822,8 @@ Begin VB.Form FrmProjectAssigner
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectAssigner.frx":2D0B
-               Picture         =   "ProjectAssigner.frx":2D27
+               Picture         =   "ProjectAssigner.frx":2CE7
+               Picture         =   "ProjectAssigner.frx":2D03
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -850,8 +850,8 @@ Begin VB.Form FrmProjectAssigner
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectAssigner.frx":2D43
-               Picture         =   "ProjectAssigner.frx":2D5F
+               Picture         =   "ProjectAssigner.frx":2D1F
+               Picture         =   "ProjectAssigner.frx":2D3B
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
@@ -879,8 +879,8 @@ Begin VB.Form FrmProjectAssigner
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ProjectAssigner.frx":2D7B
-            Picture         =   "ProjectAssigner.frx":2D97
+            Picture         =   "ProjectAssigner.frx":2D57
+            Picture         =   "ProjectAssigner.frx":2D73
          End
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
@@ -905,8 +905,8 @@ Begin VB.Form FrmProjectAssigner
             Caption         =   " &Export "
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectAssigner.frx":2DB3
-            Picture         =   "ProjectAssigner.frx":2DCF
+            Picture         =   "ProjectAssigner.frx":2D8F
+            Picture         =   "ProjectAssigner.frx":2DAB
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
@@ -931,8 +931,8 @@ Begin VB.Form FrmProjectAssigner
             Caption         =   " &Print"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectAssigner.frx":2DEB
-            Picture         =   "ProjectAssigner.frx":2E07
+            Picture         =   "ProjectAssigner.frx":2DC7
+            Picture         =   "ProjectAssigner.frx":2DE3
          End
          Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
             Height          =   330
@@ -943,8 +943,8 @@ Begin VB.Form FrmProjectAssigner
             _Version        =   65536
             _ExtentX        =   2143
             _ExtentY        =   582
-            Calculator      =   "ProjectAssigner.frx":2E23
-            Caption         =   "ProjectAssigner.frx":2E43
+            Calculator      =   "ProjectAssigner.frx":2DFF
+            Caption         =   "ProjectAssigner.frx":2E1F
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -954,9 +954,9 @@ Begin VB.Form FrmProjectAssigner
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "ProjectAssigner.frx":2EA7
-            Keys            =   "ProjectAssigner.frx":2EC5
-            Spin            =   "ProjectAssigner.frx":2F0F
+            DropDown        =   "ProjectAssigner.frx":2E83
+            Keys            =   "ProjectAssigner.frx":2EA1
+            Spin            =   "ProjectAssigner.frx":2EEB
             AlignHorizontal =   2
             AlignVertical   =   0
             Appearance      =   1
@@ -1016,8 +1016,8 @@ Begin VB.Form FrmProjectAssigner
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectAssigner.frx":2F37
-            Picture         =   "ProjectAssigner.frx":2F53
+            Picture         =   "ProjectAssigner.frx":2F13
+            Picture         =   "ProjectAssigner.frx":2F2F
          End
          Begin VB.Label Label1 
             Alignment       =   2  'Center
@@ -1729,7 +1729,7 @@ Private Function UpdateMaterialList(ByVal ActionType As String) As Boolean
         Else
             TaskComments = "Assignment:" & CellVal(3) & ">>> " & "Status:" & CellVal(2) & ">>> " & "Target Date:" & CellVal(4) & ">>>"
         End If
-    If CellVal(10) = "" Or CellVal(10) = " " Then Call Send_email(rstCompanyMaster.Fields("SmtpServer").Value, rstCompanyMaster.Fields("Port").Value, rstCompanyMaster.Fields("UserName").Value, rstCompanyMaster.Fields("Password").Value, ToEmail, MsgSubject, MsgText, TaskComments, (IIf(IsNull(rstItemList.Fields("AssignBy").Value), Username, rstItemList.Fields("AssignBy").Value)), Trim(rstCompanyMaster.Fields("PrintName").Value), Trim(rstCompanyMaster.Fields("Phone").Value), Trim(rstCompanyMaster.Fields("EMail").Value), CellVal(12), "Dear " + rstMemberList.Fields("AssignTo").Value)        ' SendEmail
+    If CellVal(10) = "" Or CellVal(10) = " " Then Call Send_email(rstCompanyMaster.Fields("SmtpServer").Value, rstCompanyMaster.Fields("Port").Value, rstCompanyMaster.Fields("UserName").Value, rstCompanyMaster.Fields("Password").Value, ToEmail, MsgSubject, MsgText, TaskComments, (IIf(IsNull(rstItemList.Fields("AssignBy").Value), Username, rstItemList.Fields("AssignBy").Value)), Trim(rstCompanyMaster.Fields("PrintName").Value), Trim(rstCompanyMaster.Fields("Phone").Value), Trim(rstCompanyMaster.Fields("EMail").Value), CellVal(12), "Dear " + rstMemberList.Fields("AssignTo").Value, "")       ' SendEmail
     End If
     Exit Function
 ErrorHandler:

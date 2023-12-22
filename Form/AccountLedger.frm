@@ -1077,7 +1077,7 @@ Private Sub cmdRefresh_Click()
         If rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
         'Month-wise-summary
         mSQL = "WITH Months AS (SELECT TOP 12 CASE WHEN ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) <= 3 THEN ROW_NUMBER() OVER (ORDER BY (SELECT NULL )) +12 Else ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) END AS mCode FROM master.dbo.spt_values) "
-        mSQL = mSQL + "SELECT '' Date,'' VchType,'' VchBillNo,FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'MMMM') MonthYear,ISNULL(SUM(TBL.Debit), 0) AS Debit,ISNULL(SUM(TBL.Credit), 0) AS Credit,'' ShortNarration,'' LongNarration,''Type,''Code,ISNULL(TBL.AccountName,'') As AccountName,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(month, m.mCode - 4, DATEADD(YEAR,-1,'" & FinancialYearFrom & "')), 'dd-MMM-yyyy') Else FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'), 'dd-MMM-yyyy') END AS FromDate,CASE WHEN m.mCode <= 12 THEN   FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, DATEADD(YEAR,-1,'" & FinancialYearFrom & "'))), 'dd-MMM-yyyy') Else FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') END AS ToDate,'' Account,CASE WHEN m.mCode <= 3 THEN m.mCode + 12 ELSE m.mCode END AS mCode FROM Months m LEFT JOIN ( "
+        mSQL = mSQL + "SELECT '' Date,'' VchType,'' VchBillNo,FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'MMMM') MonthYear,'' cCode,ISNULL(SUM(TBL.Debit), 0) AS Debit,ISNULL(SUM(TBL.Credit), 0) AS Credit,'' ShortNarration,'' LongNarration,''Type,''Code,ISNULL(TBL.AccountName,'') As AccountName,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(month, m.mCode - 4, DATEADD(YEAR,-1,'" & FinancialYearFrom & "')), 'dd-MMM-yyyy') Else FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'), 'dd-MMM-yyyy') END AS FromDate,CASE WHEN m.mCode <= 12 THEN   FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, DATEADD(YEAR,-1,'" & FinancialYearFrom & "'))), 'dd-MMM-yyyy') Else FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') END AS ToDate,'' Account,CASE WHEN m.mCode <= 3 THEN m.mCode + 12 ELSE m.mCode END AS mCode FROM Months m LEFT JOIN ( "
         sSQL = "Select IIF(FORMAT(Date, 'MM') > 3, FORMAT(Date, 'MM'), FORMAT(Date, 'MM') + 12) AS mCode,Debit AS Debit,Credit AS Credit,AccountName FROM ( "
         
         If VchType = 2 Then
@@ -1550,14 +1550,13 @@ OutputTo = ""
 End Sub
 Public Sub PrintLedger(ByVal OutputType As String)
     On Error Resume Next
-    'Screen.MousePointer = vbHourglass
+    Screen.MousePointer = vbHourglass
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
     rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstCompanyMaster.ActiveConnection = Nothing
         If rstCompanyMaster.RecordCount = 0 Then On Error GoTo 0: Exit Sub
         If rstAccountLedger.RecordCount = 0 Then On Error GoTo 0: Exit Sub
         rstAccountLedger.ActiveConnection = Nothing
-        
         rstAccountLedger.MoveFirst
         rptAccountsLedger.Database.SetDataSource rstAccountLedger, 3, 1
         rptAccountsLedger.Database.SetDataSource rstAccountOpening, 3, 2
@@ -1628,35 +1627,33 @@ Public Sub PrintLedger(ByVal OutputType As String)
             Screen.MousePointer = vbNormal
             Set FrmReportViewer.Report = rptAccountsLedger: FrmReportViewer.Show vbModal
         ElseIf OutputType = "P" Then
+            Screen.MousePointer = vbNormal
             rptAccountsLedger.PaperSource = crPRBinAuto
             rptAccountsLedger.PrintOut
         Else
-
             Dim oOutlookMsg As Outlook.MailItem, FileName As String
             If rstAccountOpening.State = adStateOpen Then rstAccountOpening.Close
             rstAccountOpening.Open "Select * From AccountMaster Where Code IN (" & AccountList & ") ", cnDatabase, adOpenKeyset, adLockReadOnly
             
             If rstAccountOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
             rstAccountOpening.MoveFirst
+            MsgSubject = IIf(VchType = 1, "Accounts Summary", "Account Ledger") + " from " + Format(GetDate(MhDateInput1.Text), "dd-MMM-yyyy") + " to " + Format(GetDate(MhDateInput2.Text), "dd-MMM-yyyy")
+            MsgText = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please find attached herewith " & "Account Ledger from " + Format(GetDate(MhDateInput1.Text), "dd-MMM-yyyy") + " to " + Format(GetDate(MhDateInput2.Text), "dd-MMM-yyyy") & " for doing the needful at your end.<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>Accounts Department<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
             ' Export report to PDF
-            rptAccountsLedger.ExportOptions.FormatType = crEFTPortableDocFormat
+            rptAccountsLedger.ExportOptions.FormatType = crEFTPortableDocFormat ' Set the Export Format As .Pdf
             rptAccountsLedger.ExportOptions.DestinationType = crEDTDiskFile
             FileName = FixAPIString(GetTemporaryFileName): FileName = Mid(FileName, 1, Len(FileName) - 4) & ".Pdf"
             rptAccountsLedger.ExportOptions.DiskFileName = FileName
             rptAccountsLedger.Export False
+            
             If MsgBox("Do You want's to Send Account Ledger by Outlook email", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbNo Then
                     Send_email rstCompanyMaster.Fields("SmtpServer").Value, rstCompanyMaster.Fields("Port").Value, rstCompanyMaster.Fields("UserName").Value, rstCompanyMaster.Fields("Password").Value, rstAccountOpening.Fields("EMail").Value, MsgSubject, MsgText, "", "Accounts Department", Trim(rstCompanyMaster.Fields("PrintName").Value), Trim(rstCompanyMaster.Fields("Phone").Value), Trim(rstCompanyMaster.Fields("EMail").Value), Trim(rstAccountOpening.Fields("Name").Value), "", FileName
             Else
                     Set oOutlookMsg = oOutlook.CreateItem(olMailItem)
                     With oOutlookMsg
                         .To = rstAccountOpening.Fields("EMail").Value
-                        .Subject = "Account Ledger"
-                        .HTMLBody = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please find attached herewith " & "Account Ledger from " + Format(GetDate(MhDateInput1.Text), "dd-MMM-yyyy") + " to " + Format(GetDate(MhDateInput2.Text), "dd-MMM-yyyy") & " for doing the needful at your end.<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>Accounts Department<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
-                        rptAccountsLedger.ExportOptions.FormatType = crEFTPortableDocFormat    ' Set the Export Format As .Pdf
-                        rptAccountsLedger.ExportOptions.DestinationType = crEDTDiskFile
-                        FileName = FixAPIString(GetTemporaryFileName): FileName = Mid(FileName, 1, Len(FileName) - 4) & ".Pdf"
-                        rptAccountsLedger.ExportOptions.DiskFileName = FileName
-                        rptAccountsLedger.Export False
+                        .Subject = MsgSubject
+                        .HTMLBody = MsgText
                         .Attachments.Add (FileName)
                         .Importance = olImportanceHigh
                         .ReadReceiptRequested = True
@@ -1674,45 +1671,41 @@ Public Sub PrintLedger(ByVal OutputType As String)
 End Sub
 Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As String, ByVal Username As String, ByVal Password As String, ByVal ToEmail As Variant, ByVal Subject As String, ByVal MsgText As String, ByVal TaskComments As String, ByVal AssignBy As String, ByVal CompanyPrintName As String, ByVal CompanyPhone As String, ByVal CompanyEMail As String, ByVal AssignTo As Variant, ByVal ToName As Variant, ByVal AttachmentPath As String)
     On Error Resume Next
-
-    ' Create CDO message object
+' Create CDO message object
     Dim objMessage As Object
     Set objMessage = CreateObject("CDO.Message")
-
-    ' Configuration for the SMTP server
+' Configuration for the SMTP server
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = smtpserver
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = smtpserverport
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2 ' cdoSendUsingPort
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout") = 60
-
-    ' Enable SSL/TLS encryption
+' Enable SSL/TLS encryption
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1 ' cdoBasic
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = Username
     objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = Password
     objMessage.Configuration.Fields.Update
-
-    ' Email settings
-    objMessage.Subject = IIf(VchType = 1, "Accounts Summary", "Account Ledger") + " from " + Format(GetDate(MhDateInput1.Text), "dd-MMM-yyyy") + " to " + Format(GetDate(MhDateInput2.Text), "dd-MMM-yyyy")  'Subject
+' Email settings
+    objMessage.Subject = Subject
     objMessage.From = Username
     objMessage.To = ToEmail
-    'objMessage.HTMLBody = "<Font Face='Calibri' Size='3'>" & ToName & ",<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & " <Br><b><I>Task >> " & TaskComments & "<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & AssignBy & "<Br>" & CompanyPrintName & "<Br>Phone : " & CompanyPhone & "<Br>E-Mail : <a HRef='mailto:" & CompanyEMail & "'>" & CompanyEMail & "</a></Font>"
     objMessage.HTMLBody = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please find attached herewith " & "Account Ledger from " + Format(GetDate(MhDateInput1.Text), "dd-MMM-yyyy") + " to " + Format(GetDate(MhDateInput2.Text), "dd-MMM-yyyy") & " for doing the needful at your end.<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>Accounts Department<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
     On Error Resume Next
     ' Attach the file
     If AttachmentPath <> "" Then
         objMessage.AddAttachment AttachmentPath
+    End If
         objMessage.Importance = olImportanceHigh
         objMessage.ReadReceiptRequested = True
+    If CheckEmpty(objMessage.To, False) Then
+        objMessage.To = ToEmail = InputBox("", "Send To Email ID", ToEmail)
+    Else
+        objMessage.Send
     End If
-
-    objMessage.Send
-    
     If Err.Number = 0 Then
-        MsgBox "Email Sent To: " & " [ " & AssignTo & " ] " & vbCrLf & vbCrLf & "@ : " & ToEmail, vbInformation, "Email"
+        MsgBox "Email Sent To: " & " [ " & AssignTo & " ] " & vbCrLf & vbCrLf & "@" & ToEmail, vbInformation, "Email"
     Else
         MsgBox "Error sending email: " & Err.Description & " (" & Err.Number & ")", vbExclamation
     End If
     Set objMessage = Nothing
 End Function
-

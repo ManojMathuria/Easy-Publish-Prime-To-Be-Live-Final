@@ -660,6 +660,9 @@ Begin VB.MDIForm MdiMainMenu
          Caption         =   "Std. Narration"
          Tag             =   "01180000"
       End
+      Begin VB.Menu mnuUnitMaster 
+         Caption         =   "&General Unit"
+      End
       Begin VB.Menu MnuLine15 
          Caption         =   "-"
       End
@@ -2066,7 +2069,7 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu MnuAdd1 
          Caption         =   "Account Summary"
          Index           =   17
-         Shortcut        =   ^A
+         Shortcut        =   ^M
       End
       Begin VB.Menu MnuAdd1 
          Caption         =   "Account Ledger         "
@@ -2270,14 +2273,12 @@ Else
     If Err.Number <> 364 Then FrmUFGLedger.Show
 End If
 End Sub
-
 Private Sub MnuAccountSummary_Click(Index As Integer)
     On Error Resume Next
     FrmAccountSelectionList.VchType = Trim(Index)
     Load FrmAccountSelectionList
     If Err.Number <> 364 Then FrmAccountSelectionList.Show
 End Sub
-
 Private Sub MnuIssueReceiptAnalysis_Click(Index As Integer)
     On Error Resume Next
     FrmItemSelectionList.VchType = "0448" 'Trim(Index)
@@ -2473,7 +2474,7 @@ If bVal Then
     MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
     If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = bVal: MnuHelp(4).Visible = bVal
 
-    
+'Customer Type <General>
     If Trim(ReadFromFile("Customer Type")) = "General" Then
         MenuFG_UFGLedger.Enabled = False: MenuFG_UFGLedger.Visible = False:
         mnuProjectManagementParent.Enabled = False: mnuProjectManagementParent.Visible = False
@@ -2532,6 +2533,13 @@ End Sub
 Private Sub mnuStateMaster_Click()
     On Error Resume Next
     FrmGeneralMaster.MasterType = "56"
+    FrmGeneralMaster.SL = False
+    Load FrmGeneralMaster
+    If Err.Number <> 364 Then FrmGeneralMaster.Show
+End Sub
+Private Sub mnuUnitMaster_Click()
+    On Error Resume Next
+    FrmGeneralMaster.MasterType = "25"
     FrmGeneralMaster.SL = False
     Load FrmGeneralMaster
     If Err.Number <> 364 Then FrmGeneralMaster.Show
