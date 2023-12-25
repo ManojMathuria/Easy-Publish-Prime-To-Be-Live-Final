@@ -29,6 +29,7 @@ Begin VB.Form frmSalesVoucher
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
+   MDIChild        =   -1  'True
    ScaleHeight     =   9075
    ScaleWidth      =   13740
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -1736,8 +1737,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":222E
-               Picture         =   "SalesVoucher.frx":224A
+               Picture         =   "SalesVoucher.frx":21E6
+               Picture         =   "SalesVoucher.frx":2202
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1763,8 +1764,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":2266
-               Picture         =   "SalesVoucher.frx":2282
+               Picture         =   "SalesVoucher.frx":221E
+               Picture         =   "SalesVoucher.frx":223A
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
                Height          =   525
@@ -1794,7 +1795,7 @@ Begin VB.Form frmSalesVoucher
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "SalesVoucher.frx":229E
+               Picture         =   "SalesVoucher.frx":2256
                Begin VB.CommandButton btnNotes 
                   Caption         =   " Notes"
                   BeginProperty Font 
@@ -1859,8 +1860,8 @@ Begin VB.Form frmSalesVoucher
                   Alignment       =   0
                   FillColor       =   9164542
                   TextColor       =   0
-                  Picture         =   "SalesVoucher.frx":22BA
-                  Picture         =   "SalesVoucher.frx":22D6
+                  Picture         =   "SalesVoucher.frx":2272
+                  Picture         =   "SalesVoucher.frx":228E
                End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
@@ -1890,7 +1891,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":22F2
+                  Picture         =   "SalesVoucher.frx":22AA
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1974,8 +1975,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":230E
-            Picture         =   "SalesVoucher.frx":232A
+            Picture         =   "SalesVoucher.frx":22C6
+            Picture         =   "SalesVoucher.frx":22E2
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2002,8 +2003,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":2346
-            Picture         =   "SalesVoucher.frx":2362
+            Picture         =   "SalesVoucher.frx":22FE
+            Picture         =   "SalesVoucher.frx":231A
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2124,7 +2125,7 @@ Public VchCode As String 'Vch to Modify
 Public VchType As String, oVchType As String 'SF-Sales Voucher PF-Purchase Voucher TF-Sales Return Voucher OF-Purchase Return Voucher
 Public PtgType As String 'IIf(PtgType = 1, "Sales Invoice", IIf(PtgType = 2, "Tax Invoice", IIf(PtgType = 3, "Speciman Challan", "Delivery Challan")))
 Dim cnSalesVoucher As New ADODB.Connection, cnTally As New ADODB.Connection
-Dim rstCompanyMaster As New ADODB.Recordset
+Dim rstCompanyMaster As New ADODB.Recordset, rstTransportList As New ADODB.Recordset
 Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
 Dim rstSalesVoucherList As New ADODB.Recordset, rstSalesVoucherParent As New ADODB.Recordset, rstSalesVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
 Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oVchDate As Date, SalesTypeCode As String
@@ -2134,7 +2135,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
-    Me.Top = 1200
+    Me.Top = 500
     WheelHook DataGrid1
     BusySystemIndicator True
     oVchType = VchType
@@ -2427,6 +2428,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             HiLiteRecord = True
         ElseIf Button.Index = 4 Then
             If CheckMandatoryFields Then Exit Sub
+            Load_TransportList
             frmSalesTptDetails.Show vbModal
             If MsgBox("Are you sure to save the voucher?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Save !") = vbNo Then Exit Sub
             SaveFields
@@ -2536,6 +2538,30 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             Text1.SetFocus
         End If
     End With
+End Sub
+Private Sub Load_TransportList()
+        If rstTransportList.State = adStateOpen Then rstTransportList.Close
+            rstTransportList.Open "SELECT * FROM AccountMaster Where Code='" & PartyCode & "'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        Dim i As Integer
+        On Error GoTo ErrorHandler
+    With rstTransportList
+        .ActiveConnection = Nothing
+        If .RecordCount > 0 Then .MoveFirst
+            frmSalesTptDetails.ComboFlag = False
+'ComboBox1
+            frmSalesTptDetails.ComboBox1.Clear
+            If Not IsNull(.Fields("Transporter").Value) Then frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter").Value, i
+            If Not IsNull(.Fields("Transporter2").Value) Then i = i + 1: frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter2").Value, i
+            If Not IsNull(.Fields("Transporter3").Value) Then i = i + 1: frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter3").Value, i
+            If Not IsNull(.Fields("Transporter4").Value) Then i = i + 1: frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter4").Value, i
+'ComboBox2
+            frmSalesTptDetails.ComboBox2.Clear
+            If Not IsNull(.Fields("City").Value) Then frmSalesTptDetails.ComboBox2.AddItem .Fields("City").Value, 0
+            frmSalesTptDetails.ComboFlag = True
+    End With
+    Exit Sub
+ErrorHandler:
+    DisplayError ("Failed to Load Transport List")
 End Sub
 Private Sub DataGrid1_DblClick()
     If Toolbar1.Buttons.Item(2).Enabled Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(2)
@@ -3267,6 +3293,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     If LoadSelected Then
     On Error Resume Next
 '        rstItemList.Open "SELECT I.Name As Col0,FORMAT(dbo.ufnGetItemStock('" & MaterialCentreCode & "',I.Code,'" & Left(VchPrefix, 2) & "','" & CheckNull(rstSalesVoucherParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Code As HSNCode,H.Name As HSNName FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+If MsgBox("Do you want's Item List Display With closing Stock", vbInformation + vbDefaultButton2 + vbYesNo) = vbYes Then
         rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0," & _
                 "FORMAT((ISNULL((SELECT SUM(OPBAL) FROM BookChild C WHERE C.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0) " & _
                 "+ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code And SubString(P.Type,3,2)='10'),0)" & _
@@ -3284,6 +3311,13 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
                 "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+Else
+        rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0," & _
+                "FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
+                " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
+                "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+
+End If
     If Err.Number = -2147217871 Then MsgBox "Due To Query Timeout. Unable To Fetch Stock !!!", vbInformation: rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName  FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     Else
         rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly

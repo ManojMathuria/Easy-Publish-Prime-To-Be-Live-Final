@@ -2,6 +2,7 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
+Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Begin VB.Form FrmDespatchDetails 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Transport Details"
@@ -44,6 +45,7 @@ Begin VB.Form FrmDespatchDetails
       _ExtentX        =   13176
       _ExtentY        =   3228
       _StockProps     =   77
+      Enabled         =   0   'False
       TintColor       =   16711935
       Alignment       =   0
       AutoSize        =   0   'False
@@ -100,7 +102,7 @@ Begin VB.Form FrmDespatchDetails
          MaxLength       =   40
          TabIndex        =   4
          Top             =   1070
-         Width           =   5070
+         Width           =   4800
       End
       Begin VB.TextBox Text3 
          Appearance      =   0  'Flat
@@ -160,7 +162,7 @@ Begin VB.Form FrmDespatchDetails
          MaxLength       =   40
          TabIndex        =   0
          Top             =   120
-         Width           =   5070
+         Width           =   4800
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
@@ -475,6 +477,38 @@ Begin VB.Form FrmDespatchDetails
          Value           =   44420
          CenturyMode     =   0
       End
+      Begin MSForms.ComboBox ComboBox1 
+         Height          =   375
+         Left            =   2310
+         TabIndex        =   17
+         Top             =   115
+         Width           =   5070
+         VariousPropertyBits=   746604571
+         DisplayStyle    =   3
+         Size            =   "8943;661"
+         MatchEntry      =   1
+         ShowDropButtonWhen=   2
+         FontName        =   "Arial"
+         FontHeight      =   165
+         FontCharSet     =   0
+         FontPitchAndFamily=   2
+      End
+      Begin MSForms.ComboBox ComboBox2 
+         Height          =   375
+         Left            =   2310
+         TabIndex        =   16
+         Top             =   1050
+         Width           =   5070
+         VariousPropertyBits=   746604571
+         DisplayStyle    =   3
+         Size            =   "8943;661"
+         MatchEntry      =   1
+         ShowDropButtonWhen=   2
+         FontName        =   "Arial"
+         FontHeight      =   165
+         FontCharSet     =   0
+         FontPitchAndFamily=   2
+      End
    End
 End
 Attribute VB_Name = "FrmDespatchDetails"
@@ -483,6 +517,13 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Public oPartyCode As String, ComboFlag As Boolean
+Private Sub ComboBox1_Change()
+If ComboFlag = True Then Text1.Text = ComboBox1.Text
+End Sub
+Private Sub ComboBox2_Change()
+If ComboFlag = True Then Text4.Text = ComboBox2.Text
+End Sub
 Private Sub Form_Load()
     CenterForm Me
 End Sub

@@ -361,7 +361,8 @@ Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
     Text1.SetFocus
 End Sub
 Private Sub DataGrid1_DblClick()
-On Error Resume Next
+    On Error Resume Next
+    Dim GoodsType As String
     With rstCompanyList
         If (Not .EOF) And (Not .BOF) Then
             CompCode = .Fields("Col03").Value
@@ -373,6 +374,10 @@ On Error Resume Next
             BusyIntegration = .Fields("BusyIntegration").Value
             FYCode = .Fields("FYCode").Value
             CostCenter = .Fields("Col05").Value
+            If Trim(ReadFromFile("Goods Type")) = "" Then
+               GoodsType = InputBox("Good Types", , "Goods")
+               WriteToFile "Goods Type", GoodsType
+            End If
         End If
     End With
     Call CloseForm(Me)

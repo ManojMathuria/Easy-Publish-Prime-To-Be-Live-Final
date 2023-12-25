@@ -104,6 +104,7 @@ Begin VB.Form FrmTaxMaster
          TabPicture(1)   =   "TaxMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -490,7 +491,7 @@ Begin VB.Form FrmTaxMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   257097733
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -928,6 +929,7 @@ Private Sub Form_Unload(Cancel As Integer)
     ShowProgressInStatusBar False
     MdiMainMenu.mnuTaxMaster.Enabled = True
 End Sub
+
 Private Sub Text1_Change()
     On Error Resume Next
     With rstTaxList

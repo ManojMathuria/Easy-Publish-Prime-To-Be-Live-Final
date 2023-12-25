@@ -953,7 +953,6 @@ Public Function SelectedItems(ByVal lvwName As ListView, Optional ByVal lvwWithC
         End If
     Next i
     SelectedItems = IIf(SelectedItems = "", "''", SelectedItems)
-
 End Function
 Public Function DisableCloseButton(frm As Form) As Boolean
     Dim lHndSysMenu As Long, lAns1 As Long, lAns2 As Long
@@ -3366,7 +3365,7 @@ MdiMainMenu.StatusBar1.Panels(2).Text = "Account Group Master Update Going on!!!
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*12002' OR Name='Account Group') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*12002','Account Group','Account Group','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26031')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99996' OR Name='Transporter') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99996','Transporter','Transporter','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99997' OR Name='Packer') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99997','Packer','Transporter','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99998' OR Name='Deliverer') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99998','Deliverer','Deliverer','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99998' OR Name='Street Vendor') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99998','Street Vendor','Street Vendor','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99999' OR Name='Material Centre') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99999','Material Centre','Material Centre','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99995' OR Name='Sales Executive') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99995','Sales Executive','Sales Executive','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*12001' OR Name='Binders') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*12001','Binders','Binders','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
@@ -4825,9 +4824,15 @@ cnDatabase.CommitTrans
     '***Accountmaster
 cnDatabase.BeginTrans
     SQL = ""
-    SQL = " Add [City] nvarchar(40) NULL  DEFAULT (''),[ContactPer] nvarchar(40) NULL  DEFAULT ('')"
+    SQL = " Add [City] nvarchar(40) NULL  DEFAULT (''),[ContactPer] nvarchar(40) NULL  DEFAULT (''),[Transporter] nvarchar(40) NULL  DEFAULT (''),[Transporter2] nvarchar(40) NULL,[Transporter3] nvarchar(40) NULL,[Transporter4] nvarchar(40) NULL"
     Call Create_Alter_Table("Alter Table ", "Accountmaster", SQL, "City")
     cnDatabase.Execute "Update AccountMaster Set City='' Where City is null"
+cnDatabase.CommitTrans
+    '***VchSeriesMaster
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [StartNo] [decimal](12, 0) NOT NULL  DEFAULT (1),CreatedBy nvarchar(6) NULL,CreatedOn datetime NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar (1),Printstatus nvarchar (1) "
+    Call Create_Alter_Table("Alter Table ", "VchSeriesMaster", SQL, "StartNo")
 cnDatabase.CommitTrans
     Screen.MousePointer = vbNormal
     GeneralUpdate = True

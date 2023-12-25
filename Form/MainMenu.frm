@@ -46,7 +46,7 @@ Begin VB.MDIForm MdiMainMenu
             Object.ToolTipText     =   "Ctrl+F2 >>Add Item "
          EndProperty
          BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Caption         =   "F3 >>Add Master                   "
+            Caption         =   "Shift+F3 >>Add Master                   "
             Key             =   "F3"
             Object.ToolTipText     =   "F3 >>Add Master"
          EndProperty
@@ -663,6 +663,9 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu mnuUnitMaster 
          Caption         =   "&General Unit"
       End
+      Begin VB.Menu mnuVchSeriesMaster 
+         Caption         =   "VchSeriesMaster"
+      End
       Begin VB.Menu MnuLine15 
          Caption         =   "-"
       End
@@ -704,7 +707,7 @@ Begin VB.MDIForm MdiMainMenu
             Tag             =   "01210100"
          End
          Begin VB.Menu mnuDespatchManagement 
-            Caption         =   "Deliverer"
+            Caption         =   "Street Vendor"
             Index           =   2
             Tag             =   "01210200"
          End
@@ -2004,7 +2007,7 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu MnuAdd1 
          Caption         =   " Add Master"
          Index           =   4
-         Shortcut        =   {F3}
+         Shortcut        =   +{F3}
       End
       Begin VB.Menu MnuAdd1 
          Caption         =   " Add Voucher"
@@ -2477,6 +2480,7 @@ If bVal Then
 'Customer Type <General>
     If Trim(ReadFromFile("Customer Type")) = "General" Then
         MenuFG_UFGLedger.Enabled = False: MenuFG_UFGLedger.Visible = False:
+        mnuRepairBookMaster.Enabled = False: mnuRepairBookMaster.Visible = False
         mnuProjectManagementParent.Enabled = False: mnuProjectManagementParent.Visible = False
         mnuRateMaster.Enabled = False: mnuRateMaster.Visible = False:
         mnuBindingTypeMaster.Enabled = False: mnuBindingTypeMaster.Visible = False:
@@ -2490,7 +2494,7 @@ If bVal Then
         mnuOutsourceItemMaster.Enabled = False: mnuOutsourceItemMaster.Visible = False:
         mnuProjectManagementMaster.Enabled = False: mnuProjectManagementMaster.Visible = False:
         mnuMachineMaster.Enabled = False: mnuMachineMaster.Visible = False:
-        mnuDespatchManagementParent.Enabled = False: mnuDespatchManagementParent.Visible = False:
+'        mnuDespatchManagementParent.Enabled = False: mnuDespatchManagementParent.Visible = False:
         mnuPrintPlanningModule.Enabled = False: mnuPrintPlanningModule.Visible = False:
         mnuPurchaseQuotationJW.Enabled = False: mnuPurchaseQuotationJW.Visible = False:
         mnuSalesQuotationJW.Enabled = False: mnuSalesQuotationJW.Visible = False
@@ -2544,6 +2548,13 @@ Private Sub mnuUnitMaster_Click()
     Load FrmGeneralMaster
     If Err.Number <> 364 Then FrmGeneralMaster.Show
 End Sub
+Private Sub mnuVchSeriesMaster_Click()
+    On Error Resume Next
+    FrmVchSeriesMaster.SL = False
+    Load FrmVchSeriesMaster
+    If Err.Number <> 364 Then FrmVchSeriesMaster.Show
+End Sub
+
 Private Sub MnuYouTube_Click()
            Dim R As Long
               R = ShellExecute(0, "open", "https://www.youtube.com/channel/UCW5RVD8qIBTGzCSRM03U7Cw/featured", 0, 0, 1)
