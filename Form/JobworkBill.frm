@@ -99,9 +99,9 @@ Begin VB.Form frmJobworkBill
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "JobworkBill.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "Mh3dLabel55"
          Tab(1).Control(1)=   "Mh3dFrame2"
-         Tab(1).Control(2)=   "Mh3dLabel55"
+         Tab(1).Control(2)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   3
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel55 
             Height          =   330

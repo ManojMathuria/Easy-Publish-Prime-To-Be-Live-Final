@@ -355,18 +355,18 @@ Begin VB.Form FrmBookMaster
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   5
+            ColumnCount     =   11
             BeginProperty Column00 
-               DataField       =   "ItemGroup"
-               Caption         =   "Group"
+               DataField       =   "RowNo"
+               Caption         =   "S.No"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
-                  Type            =   0
-                  Format          =   ""
+                  Type            =   1
+                  Format          =   "0"
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
-                  LCID            =   1033
-                  SubFormatType   =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
                EndProperty
             EndProperty
             BeginProperty Column01 
@@ -396,6 +396,19 @@ Begin VB.Form FrmBookMaster
                EndProperty
             EndProperty
             BeginProperty Column03 
+               DataField       =   "ItemGroup"
+               Caption         =   "Group"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column04 
                DataField       =   "BusyCode"
                Caption         =   "Alias"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -408,7 +421,7 @@ Begin VB.Form FrmBookMaster
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column04 
+            BeginProperty Column05 
                DataField       =   "ISBN"
                Caption         =   "ISBN"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -417,8 +430,73 @@ Begin VB.Form FrmBookMaster
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
-                  LCID            =   1033
+                  LCID            =   16393
                   SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column06 
+               DataField       =   "Unit"
+               Caption         =   " Unit"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column07 
+               DataField       =   "MFDC"
+               Caption         =   " MFDC"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column08 
+               DataField       =   "PurPrice"
+               Caption         =   "Pur. Price"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0.00"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
+               EndProperty
+            EndProperty
+            BeginProperty Column09 
+               DataField       =   "SalePrice"
+               Caption         =   "Sales Price"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0.00"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
+               EndProperty
+            EndProperty
+            BeginProperty Column10 
+               DataField       =   "Price"
+               Caption         =   "Cash Price"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0.00"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   1033
+                  SubFormatType   =   1
                EndProperty
             EndProperty
             SplitCount      =   1
@@ -429,9 +507,8 @@ Begin VB.Form FrmBookMaster
                AllowSizing     =   0   'False
                Locked          =   -1  'True
                BeginProperty Column00 
-                  ColumnAllowSizing=   0   'False
-                  Locked          =   -1  'True
-                  ColumnWidth     =   2564.788
+                  Alignment       =   1
+                  ColumnWidth     =   764.787
                EndProperty
                BeginProperty Column01 
                   ColumnAllowSizing=   0   'False
@@ -442,11 +519,33 @@ Begin VB.Form FrmBookMaster
                   ColumnWidth     =   4199.811
                EndProperty
                BeginProperty Column03 
-                  ColumnAllowSizing=   0   'False
-                  Locked          =   -1  'True
-                  ColumnWidth     =   1890.142
+                  ColumnWidth     =   3330.142
                EndProperty
                BeginProperty Column04 
+                  Alignment       =   1
+                  ColumnAllowSizing=   0   'False
+                  Locked          =   -1  'True
+                  ColumnWidth     =   1695.118
+               EndProperty
+               BeginProperty Column05 
+                  Alignment       =   1
+               EndProperty
+               BeginProperty Column06 
+                  Alignment       =   2
+               EndProperty
+               BeginProperty Column07 
+                  Alignment       =   1
+               EndProperty
+               BeginProperty Column08 
+                  Alignment       =   1
+                  ColumnWidth     =   1934.929
+               EndProperty
+               BeginProperty Column09 
+                  Alignment       =   1
+                  ColumnWidth     =   2264.882
+               EndProperty
+               BeginProperty Column10 
+                  Alignment       =   1
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
                   ColumnWidth     =   2280.189
@@ -2307,7 +2406,7 @@ Private Sub Form_Load()
     BusySystemIndicator True
     Me.Caption = IIf(ItemType = "F", "Item Master [Finished]", "Item Master [Unfinished]")
     cnItemMaster.CursorLocation = adUseClient: cnItemMaster.Open cnDatabase.ConnectionString
-    rstItemList.Open "SELECT P.Name,P.PrintName,BusyCode As Alias,ISBN,C.Name As ItemGroup,P.Code,Format(P.Price,'##00.00') As Price,Format(P.salePrice,'##00.00') As SalePrice,Format(P.PurPrice,'##00.00') AS PurPrice FROM BookMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE P.Type='" & ItemType & "' ORDER BY P.Name", cnItemMaster, adOpenKeyset, adLockOptimistic
+    rstItemList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Name) AS RowNo,P.Name,P.PrintName,BusyCode As Alias,ISBN,C.Name As ItemGroup,P.Code,(Select Name From GeneralMaster Where Type=25 AND  Code=IntegrationUnit) As Unit,'' AS MFDC,Format(P.Price,'##00.00') As Price,Format(P.salePrice,'##00.00') As SalePrice,Format(P.PurPrice,'##00.00') AS PurPrice FROM BookMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE P.Type='" & ItemType & "' ORDER BY P.Name", cnItemMaster, adOpenKeyset, adLockOptimistic
     LoadMasterList
     rstItemMaster.CursorLocation = adUseClient
     rstItemList.Filter = adFilterNone
@@ -2315,6 +2414,15 @@ Private Sub Form_Load()
         rstItemList.MoveFirst
         If Not CheckEmpty(MasterCode, False) Then rstItemList.Find "[Code]='" & MasterCode & "'"
     End If
+    
+    'Data Grid
+        DataGrid1.Columns(0).Caption = "S.No."
+        DataGrid1.Columns(0).Width = 500
+        DataGrid1.Columns(6).Width = 1180
+        DataGrid1.Columns(7).Width = 1100
+        DataGrid1.Columns(8).Width = 950
+        DataGrid1.Columns(9).Width = 950
+        DataGrid1.Columns(10).Width = 950
     Set DataGrid1.DataSource = rstItemList
     BusySystemIndicator False
     SSTab1.Tab = 0
@@ -2329,6 +2437,13 @@ Private Sub Form_Load()
             SSTab1.TabCaption(i) = " "
             SSTab1.TabHeight = 300
         Next
+    'Data Grid
+        DataGrid1.Columns(1).Width = 1000
+        DataGrid1.Columns(1).Caption = "Item Code"
+        DataGrid1.Columns(2).Width = 4680
+        DataGrid1.Columns(3).Width = 4100
+        DataGrid1.Columns(4).Visible = False
+        DataGrid1.Columns(5).Visible = False
     End If
     If Not (rstItemList.EOF Or rstItemList.BOF) Then
         With DataGrid1.SelBookmarks
@@ -2344,6 +2459,7 @@ ErrorHandler:
     Unload Me
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+    DataGrid1.Columns(2).Visible = False
     If Shift = 0 And KeyCode = vbKeyEscape Then
         EditMode = False
         If SSTab1.Tab = 0 Then

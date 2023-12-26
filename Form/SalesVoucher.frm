@@ -1737,8 +1737,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":22EA
-               Picture         =   "SalesVoucher.frx":2306
+               Picture         =   "SalesVoucher.frx":21E6
+               Picture         =   "SalesVoucher.frx":2202
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1764,8 +1764,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":2322
-               Picture         =   "SalesVoucher.frx":233E
+               Picture         =   "SalesVoucher.frx":221E
+               Picture         =   "SalesVoucher.frx":223A
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
                Height          =   525
@@ -1795,7 +1795,7 @@ Begin VB.Form frmSalesVoucher
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "SalesVoucher.frx":235A
+               Picture         =   "SalesVoucher.frx":2256
                Begin VB.CommandButton btnNotes 
                   Caption         =   " Notes"
                   BeginProperty Font 
@@ -1860,8 +1860,8 @@ Begin VB.Form frmSalesVoucher
                   Alignment       =   0
                   FillColor       =   9164542
                   TextColor       =   0
-                  Picture         =   "SalesVoucher.frx":2376
-                  Picture         =   "SalesVoucher.frx":2392
+                  Picture         =   "SalesVoucher.frx":2272
+                  Picture         =   "SalesVoucher.frx":228E
                End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
@@ -1891,7 +1891,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":23AE
+                  Picture         =   "SalesVoucher.frx":22AA
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1975,8 +1975,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":23CA
-            Picture         =   "SalesVoucher.frx":23E6
+            Picture         =   "SalesVoucher.frx":22C6
+            Picture         =   "SalesVoucher.frx":22E2
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2003,8 +2003,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":2402
-            Picture         =   "SalesVoucher.frx":241E
+            Picture         =   "SalesVoucher.frx":22FE
+            Picture         =   "SalesVoucher.frx":231A
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2128,7 +2128,7 @@ Dim cnSalesVoucher As New ADODB.Connection, cnTally As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstTransportList As New ADODB.Recordset
 Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
 Dim rstSalesVoucherList As New ADODB.Recordset, rstSalesVoucherParent As New ADODB.Recordset, rstSalesVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
-Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oVchDate As Date, SalesTypeCode As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, StartNo As String, oVchDate As Date, SalesTypeCode As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, VchSeries As String
 Dim frmSalesTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
@@ -2427,6 +2427,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             SSTab1.Tab = 0
             HiLiteRecord = True
         ElseIf Button.Index = 4 Then
+            Sendkeys "{TAB}"
             If CheckMandatoryFields Then Exit Sub
             Load_TransportList
             frmSalesTptDetails.Show vbModal
@@ -2678,19 +2679,46 @@ Private Sub Text6_Validate(Cancel As Boolean)
         rstVchSeriesList.MoveFirst
         rstVchSeriesList.Find "[Code] = '" & VchSeriesCode & "'"
         VchNumbering = rstVchSeriesList.Fields("VchNumbering").Value
+        StartNo = rstVchSeriesList.Fields("StartNo").Value
         If VchNumbering = "A" Then Text2.Locked = True Else Text2.Locked = False
         If Not blnRecordExist Then 'Vch-New
             If VchNumbering = "A" Then
                 AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
                 Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+            Else
+                AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
+                If Trim(AutoVchNo) > StartNo Then
+                    Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+                Else
+                    AutoVchNo = StartNo
+                    AutoVchNo = Pad(AutoVchNo, " ", 10, "L")
+                    Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+                End If
             End If
         Else 'Vch-Old
-            If VchSeriesCode = oVchSeriesCode Then
-                Text2.Text = oVchNo
+            If VchNumbering = "A" Then
+                If VchSeriesCode = oVchSeriesCode Then
+                    Text2.Text = oVchNo
+                Else
+                    If VchNumbering = "A" Then
+                        AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
+                        Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+                    End If
+                End If
             Else
-                If VchNumbering = "A" Then
-                    AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
+                If VchSeriesCode = oVchSeriesCode Then
+                    AutoVchNo = GetNumValue(Trim(Text2.Text))
+                    AutoVchNo = Pad(AutoVchNo, " ", 10, "L")
                     Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+                Else
+                    AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
+                    If Trim(AutoVchNo) > StartNo Then
+                        Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+                    Else
+                        AutoVchNo = StartNo
+                        AutoVchNo = Pad(AutoVchNo, " ", 10, "L")
+                        Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+                    End If
                 End If
             End If
         End If
@@ -3057,6 +3085,7 @@ Private Function CheckMandatoryFields() As Boolean
     ElseIf CheckEmpty(Text5.Text, False) Then 'Tax
         Text5.SetFocus:   CheckMandatoryFields = True: Exit Function
     End If
+        Call Text6_Validate(False)
 End Function
 Private Sub LoadItemList(ByVal strOrderCode As String)
     Dim i As Integer
@@ -3343,7 +3372,7 @@ End If
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code,StartNo FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub LoadOrderList()

@@ -1103,7 +1103,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-                                Set WshShell = Nothing
+                                        Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -5115,4 +5115,12 @@ Public Function Get_oVchType(ByVal strInput As String) As String
 If Len(strInput) > 2 Then
     Get_oVchType = Left(strInput, Len(strInput) - 2)
 End If
+End Function
+Public Function GetNumValue(ByVal inputString As String) As String
+Dim startIndex As Integer
+For startIndex = 1 To Len(inputString)
+    If IsNumeric(Mid(inputString, startIndex, 1)) Then
+  GetNumValue = GetNumValue + Mid(inputString, startIndex, 1)
+    End If
+Next
 End Function
