@@ -1737,8 +1737,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":21E6
-               Picture         =   "SalesVoucher.frx":2202
+               Picture         =   "SalesVoucher.frx":22EA
+               Picture         =   "SalesVoucher.frx":2306
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1764,8 +1764,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":221E
-               Picture         =   "SalesVoucher.frx":223A
+               Picture         =   "SalesVoucher.frx":2322
+               Picture         =   "SalesVoucher.frx":233E
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
                Height          =   525
@@ -1795,7 +1795,7 @@ Begin VB.Form frmSalesVoucher
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "SalesVoucher.frx":2256
+               Picture         =   "SalesVoucher.frx":235A
                Begin VB.CommandButton btnNotes 
                   Caption         =   " Notes"
                   BeginProperty Font 
@@ -1860,8 +1860,8 @@ Begin VB.Form frmSalesVoucher
                   Alignment       =   0
                   FillColor       =   9164542
                   TextColor       =   0
-                  Picture         =   "SalesVoucher.frx":2272
-                  Picture         =   "SalesVoucher.frx":228E
+                  Picture         =   "SalesVoucher.frx":2376
+                  Picture         =   "SalesVoucher.frx":2392
                End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
@@ -1891,7 +1891,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":22AA
+                  Picture         =   "SalesVoucher.frx":23AE
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1975,8 +1975,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":22C6
-            Picture         =   "SalesVoucher.frx":22E2
+            Picture         =   "SalesVoucher.frx":23CA
+            Picture         =   "SalesVoucher.frx":23E6
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2003,8 +2003,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":22FE
-            Picture         =   "SalesVoucher.frx":231A
+            Picture         =   "SalesVoucher.frx":2402
+            Picture         =   "SalesVoucher.frx":241E
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2540,25 +2540,44 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     End With
 End Sub
 Private Sub Load_TransportList()
-        If rstTransportList.State = adStateOpen Then rstTransportList.Close
-            rstTransportList.Open "SELECT * FROM AccountMaster Where Code='" & PartyCode & "'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
-        Dim i As Integer
-        On Error GoTo ErrorHandler
-    With rstTransportList
-        .ActiveConnection = Nothing
-        If .RecordCount > 0 Then .MoveFirst
-            frmSalesTptDetails.ComboFlag = False
+        Dim i As Integer, j As Integer
 'ComboBox1
+        If rstTransportList.State = adStateOpen Then rstTransportList.Close
+            rstTransportList.Open "SELECT Transport      As Transporter From JobworkBVParent Where Party='" & PartyCode & "' UNION " & _
+                                                "SELECT Transporter   As Transporter FROM AccountMaster Where Code='" & PartyCode & "' UNION " & _
+                                                "SELECT Transporter2 As Transporter  FROM AccountMaster Where Code='" & PartyCode & "' UNION " & _
+                                                "SELECT Transporter3 As Transporter  FROM AccountMaster Where Code='" & PartyCode & "' UNION " & _
+                                                "SELECT Transporter4 As Transporter  FROM AccountMaster Where Code='" & PartyCode & "'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        On Error GoTo ErrorHandler
+        frmSalesTptDetails.ComboFlag = False
+        rstTransportList.ActiveConnection = Nothing
+    With rstTransportList
+
             frmSalesTptDetails.ComboBox1.Clear
-            If Not IsNull(.Fields("Transporter").Value) Then frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter").Value, i
-            If Not IsNull(.Fields("Transporter2").Value) Then i = i + 1: frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter2").Value, i
-            If Not IsNull(.Fields("Transporter3").Value) Then i = i + 1: frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter3").Value, i
-            If Not IsNull(.Fields("Transporter4").Value) Then i = i + 1: frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter4").Value, i
-'ComboBox2
-            frmSalesTptDetails.ComboBox2.Clear
-            If Not IsNull(.Fields("City").Value) Then frmSalesTptDetails.ComboBox2.AddItem .Fields("City").Value, 0
-            frmSalesTptDetails.ComboFlag = True
+            If .RecordCount > 0 Then .MoveFirst
+        Do While Not .EOF
+            If Not IsNull(.Fields("Transporter").Value) Then If Trim(.Fields("Transporter").Value) <> "" Then frmSalesTptDetails.ComboBox1.AddItem .Fields("Transporter").Value, i: i = i + 1
+            .MoveNext
+        Loop
     End With
+'ComboBox2
+        If rstTransportList.State = adStateOpen Then rstTransportList.Close
+            rstTransportList.Open "SELECT Station  AS City From JobworkBVParent Where Party='" & PartyCode & "' UNION " & _
+                                                "SELECT City                    FROM AccountMaster Where Code='" & PartyCode & "' UNION " & _
+                                                "SELECT City                    FROM AccountMaster Where Code='" & PartyCode & "' UNION " & _
+                                                "SELECT City                    FROM AccountMaster Where Code='" & PartyCode & "' UNION " & _
+                                                "SELECT City                    FROM AccountMaster Where Code='" & PartyCode & "'", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        On Error GoTo ErrorHandler
+        rstTransportList.ActiveConnection = Nothing
+    With rstTransportList
+            frmSalesTptDetails.ComboBox2.Clear
+            If .RecordCount > 0 Then .MoveFirst
+        Do While Not .EOF
+            If Not IsNull(.Fields("City").Value) Then If Trim(.Fields("City").Value) <> "" Then frmSalesTptDetails.ComboBox2.AddItem .Fields("City").Value, 0: j = j + 1
+            .MoveNext
+        Loop
+    End With
+            frmSalesTptDetails.ComboFlag = True
     Exit Sub
 ErrorHandler:
     DisplayError ("Failed to Load Transport List")
@@ -3490,7 +3509,7 @@ Public Sub PrintSalesVoucher(ByVal VchCode As String, ByVal VchType As String, O
     rstCompanyMaster.ActiveConnection = Nothing
     rstSalesVoucherChild.Open "SELECT LTrim(P1.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "'  As BillNo,P1.Date As BillDate,A.PrintName As Party,A.Address1 As PartyAddress1,A.Address2 As PartyAddress2,A.Address3 As PartyAddress3,A.Address4 As PartyAddress4,A.TIN As PartyGSTIN,A.Mobile As Mobile,A.eMail As eMail,IIf(Right(P1.Type, 2) = 'SF',C.PrintName, IIf(Right(P1.Type, 2) = 'PF',C.PrintName, IIf(Right(P1.Type, 2) = 'TF',C.PrintName,C.PrintName))) As Consignee,IIf(Right(P1.Type, 2) = 'SF',C.Address1, IIf(Right(P1.Type, 2) = 'PF',C.Address1,IIf(Right(P1.Type, 2) = 'TF',C.Address1,C.Address1))) As ConsigneeAddress1,IIf(Right(P1.Type, 2) = 'SF',C.Address2, IIf(Right(P1.Type, 2) = 'PF',C.Address2, IIf(Right(P1.Type, 2) = 'TF',C.Address2,C.Address2))) As ConsigneeAddress2," & _
                                                 "IIf(Right(P1.Type, 2) = 'SF',C.Address3, IIf(Right(P1.Type, 2) = 'PF',C.Address3, IIf(Right(P1.Type, 2) = 'TF',C.Address3,C.Address3))) As ConsigneeAddress3,IIf(Right(P1.Type, 2) = 'SF',C.Address4, IIf(Right(P1.Type, 2) = 'PF',C.Address4,IIf(Right(P1.Type, 2) = 'TF',C.Address4,C.Address4))) As ConsigneeAddress4,IIf(Right(P1.Type, 2) = 'SF',C.TIN, IIf(Right(P1.Type, 2) = 'PF',C.TIN, IIf(Right(P1.Type, 2) = 'TF',C.TIN,C.TIN))) As ConsigneeGSTIN,C.Mobile As CMobile,C.eMail As CeMail,P1.[Rebate%],P1.Rebate,P1.Freight,P1.Adjustment,P1.TaxableAmount,P1.[IGST%],P1.IGST,P1.[SGST%],P1.SGST,P1.[CGST%],P1.CGST,P1.Amount As TotalAmount,P1.Remarks,'' As Narration,I.PrintName As Item,H.PrintName As HSNCode," & _
-                                                "C1.Quantity,C1.Rate,C1.Amount,N.Name As SrNo,'' As cmbTitle,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref,C1.[Disc%] AS Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,M.PrintName As MC FROM (((((((JobworkBVParent P1 INNER JOIN JobworkBVChild C1 ON P1.Code=C1.Code)INNER JOIN BookMaster I ON C1.Item=I.Code)INNER JOIN AccountMaster A ON P1.Party=A.Code)INNER JOIN AccountMaster C ON P1.Consignee=C.Code)LEFT JOIN AccountMaster M ON P1.MaterialCentre=M.Code)LEFT JOIN GeneralMaster N ON C1.Narration=N.Code)LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code)LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE P1.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName,N.Name", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+                                                "C1.Quantity,C1.Rate,C1.Amount,N.Name As SrNo,'' As cmbTitle,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref,C1.[Disc%] AS Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,M.PrintName As MC,Transport,Station,ISNULL(eWayBill +'dt.'+ Convert(nvarchar,eWayBillDate),'') as eWayBill,ISNULL(GRNo +'dt.'+ Convert(nvarchar,GRDate),'') as GRNO FROM (((((((JobworkBVParent P1 INNER JOIN JobworkBVChild C1 ON P1.Code=C1.Code)INNER JOIN BookMaster I ON C1.Item=I.Code)INNER JOIN AccountMaster A ON P1.Party=A.Code)INNER JOIN AccountMaster C ON P1.Consignee=C.Code)LEFT JOIN AccountMaster M ON P1.MaterialCentre=M.Code)LEFT JOIN GeneralMaster N ON C1.Narration=N.Code)LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code)LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE P1.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName,N.Name", cnSalesVoucher, adOpenKeyset, adLockOptimistic
     If rstSalesVoucherChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstSalesVoucherChild.ActiveConnection = Nothing
         With rptSalesOrderVoucher
@@ -3514,7 +3533,7 @@ Public Sub PrintSalesVoucher(ByVal VchCode As String, ByVal VchType As String, O
             .Picture1.BottomLineStyle = crLSNoLine
         End If
     End With
-    If Left(VchType, 2) = "SF" Then Load FrmDialog: Screen.MousePointer = vbNormal: FrmDialog.Flag = 1: FrmDialog.Caption = "": FrmDialog.Command1.Caption = "Sales Invoice": FrmDialog.Command2.Caption = "Tax Invoice": FrmDialog.Command3.Caption = "Speciman Challan": FrmDialog.Command4.Caption = "Delivery Challan": FrmDialog.Show vbModal
+    If Left(VchType, 2) = "SF" Then Load FrmDialog: Screen.MousePointer = vbNormal: FrmDialog.Flag = 1: FrmDialog.Caption = "":  FrmDialog.Command1.Caption = "Sales Invoice": FrmDialog.Command2.Caption = "Tax Invoice": FrmDialog.Command3.Caption = "Speciman Challan": FrmDialog.Command4.Caption = "Delivery Challan": FrmDialog.Command5.Visible = False: FrmDialog.Show vbModal
     If FrmDialog.Flag = 1 And PtgType > 0 Then
         rptSalesOrderVoucher.Text1.SetText IIf(PtgType = 1, "Sales Invoice", IIf(PtgType = 2, "Tax Invoice", IIf(PtgType = 3, "Speciman Challan", "Delivery Challan")))
         FrmDialog.Flag = 0: PtgType = 0
@@ -3547,6 +3566,10 @@ Public Sub PrintSalesVoucher(ByVal VchCode As String, ByVal VchType As String, O
     'If Left(VchType, 2) <> "SF" Then rptSalesOrderVoucher.Text33.SetText ""
     'If Left(VchType, 2) <> "OF" Then
     rptSalesOrderVoucher.Text36.SetText (rstSalesVoucherChild.Fields("MC").Value)
+    rptSalesOrderVoucher.Text44.SetText CheckNull(rstSalesVoucherChild.Fields("Transport").Value)
+    rptSalesOrderVoucher.Text49.SetText CheckNull(rstSalesVoucherChild.Fields("Station").Value)
+    rptSalesOrderVoucher.Text46.SetText CheckNull(rstSalesVoucherChild.Fields("eWayBill").Value)
+    rptSalesOrderVoucher.Text51.SetText CheckNull(rstSalesVoucherChild.Fields("GRNO").Value)
     rptSalesOrderVoucher.Database.SetDataSource rstSalesVoucherChild, 3, 1
     rptSalesOrderVoucher.DiscardSavedData
     Screen.MousePointer = vbNormal

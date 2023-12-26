@@ -45,7 +45,6 @@ Begin VB.Form FrmDespatchDetails
       _ExtentX        =   13176
       _ExtentY        =   3228
       _StockProps     =   77
-      Enabled         =   0   'False
       TintColor       =   16711935
       Alignment       =   0
       AutoSize        =   0   'False
