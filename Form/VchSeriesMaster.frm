@@ -906,7 +906,7 @@ Private Sub Form_Load()
     BusySystemIndicator True
     CxnVchSeriesMaster.CursorLocation = adUseClient
     CxnVchSeriesMaster.Open cnDatabase.ConnectionString
-    rstVchSeriesList.Open "Select Name,Code,Prefix,Suffix,VchNumbering,VchName From VchSeriesMaster Order By VchType,Name", CxnVchSeriesMaster, adOpenKeyset, adLockOptimistic
+    rstVchSeriesList.Open "Select Name,Code,Prefix,Suffix,VchNumbering,VchName,StartNo From VchSeriesMaster Order By VchType,Name", CxnVchSeriesMaster, adOpenKeyset, adLockOptimistic
     rstCompanyList.Open "SELECT * FROM CompanyMaster Where FYCode='" & FYCode & "'", CxnVchSeriesMaster, adOpenKeyset, adLockReadOnly
     rstVchSeriesMaster.CursorLocation = adUseClient
     rstVchSeriesList.Filter = adFilterNone
@@ -1003,7 +1003,10 @@ Dim i As Integer
         If ComboBox3.Text = rstVchSeriesMaster.Fields("VchName").Value Then Exit For
     Next
     'EditMode
-    If Not ComboFlag Then ComboBox1.Enabled = False: ComboBox2.Enabled = False: ComboBox3.Enabled = False: Text5.Enabled = False: Text6.Enabled = False
+    If chkVchSeries Then
+    MsgBox "You can Edit only [Prefix,Suffix,Numbering Type] " & vbCrLf & "Due to Transaction Generated Against this Voucher Series", vbInformation + vbDefaultButton1
+        ComboBox1.Enabled = False: ComboBox2.Enabled = False: ComboBox3.Enabled = False: Text5.Enabled = False: Text6.Enabled = False
+    End If
 End Sub
 Private Sub Form_Activate()
     MdiMainMenu.mnuVchSeriesMaster.Enabled = False
@@ -1426,6 +1429,7 @@ Private Sub Text4_Validate(Cancel As Boolean)
 '    If CheckEmpty(Text4.Text, False) Then Cancel = True
 End Sub
 Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+On Error Resume Next
     Dim HiLiteRecord As Boolean
     If Button.Index = 1 Then
         If rstVchSeriesMaster.State = adStateOpen Then
@@ -1442,8 +1446,14 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         End If
     ElseIf Button.Index = 2 Then
         If rstVchSeriesList.RecordCount = 0 Then Exit Sub
+        'If chkVchSeries Then DisplayError ("You can Edit only [Prefix,Suffix,Numbering Type] ,Due to Transaction Generated Against this Voucher Series")
         SSTab1.Tab = 1
         EditRecord
+'        If Not chkVchSeries Then
+'            ComboBox1.Enabled = True: ComboBox2.Enabled = True: ComboBox3.Enabled = True
+'        Else
+'            ComboBox1.Enabled = True: ComboBox2.Enabled = False: ComboBox3.Enabled = False: MhRealInput1.Visible = False
+'        End If
     ElseIf Button.Index = 3 Then
         If rstVchSeriesList.RecordCount = 0 Then Exit Sub
         If AllowMastersDeletion = 0 Then

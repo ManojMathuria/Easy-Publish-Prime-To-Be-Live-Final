@@ -3196,9 +3196,24 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                     rstItemList.MoveFirst: rstItemList.Find "[Code] ='" & slCode & "'"
                     .GetText 5, .ActiveRow, Item 'Price
                     If Val(Item) = 0 Then
-                        .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                        If Left(VchType, 1) = "S" Then
+                            .SetText 5, .ActiveRow, Val(rstItemList.Fields("SalePrice").Value)
+                        ElseIf Left(VchType, 1) = "P" Then
+                            .SetText 5, .ActiveRow, Val(rstItemList.Fields("PurPrice").Value)
+                        Else
+                            .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                        End If
                     ElseIf Val(Item) <> Val(rstItemList.Fields("Price").Value) Then
-                        If MsgBox("Variation in Current (" & Format(Item, "#0.00") & ") and Master (" & Format(rstItemList.Fields("Price").Value, "#0.00") & ") Rate ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                        If MsgBox("Variation in Current (" & Format(Item, "#0.00") & ") and Master (" & Format(rstItemList.Fields("Price").Value, "#0.00") & ") Rate ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then
+    '                            .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                            If Left(VchType, 1) = "S" Then
+                                .SetText 5, .ActiveRow, Val(rstItemList.Fields("SalePrice").Value)
+                            ElseIf Left(VchType, 1) = "P" Then
+                                .SetText 5, .ActiveRow, Val(rstItemList.Fields("PurPrice").Value)
+                            Else
+                                .SetText 5, .ActiveRow, Val(rstItemList.Fields("Price").Value)
+                            End If
+                        End If
                     End If
                     .GetText 9, .ActiveRow, Item 'HSN Code
                     If CheckEmpty(Item, False) Then .SetText 2, .ActiveRow, rstItemList.Fields("HSNName").Value: .SetText 9, .ActiveRow, rstItemList.Fields("HSNCode").Value
@@ -3215,12 +3230,19 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
                 With FrmItemSearchList
                     Set .rstItemSearchList = rstItemList
                     Load FrmItemSearchList
+                    .fpSpread1.SetActiveCell 3, 1
                     .Show vbModal
                     If .LoadItems Then
                         For i = 1 To .fpSpread1.DataRowCnt
                             .fpSpread1.GetText 1, i, cVal(1) 'Item
                             .fpSpread1.GetText 3, i, cVal(2) 'Quantity
+                        If Left(VchType, 1) = "S" Then
+                            .fpSpread1.GetText 9, i, cVal(3) 'Price
+                        ElseIf Left(VchType, 1) = "P" Then
+                            .fpSpread1.GetText 8, i, cVal(3) 'Price
+                        Else
                             .fpSpread1.GetText 4, i, cVal(3) 'Price
+                        End If
                             .fpSpread1.GetText 5, i, cVal(4) 'Item Code
                             .fpSpread1.GetText 6, i, cVal(5) 'HSN Code
                             .fpSpread1.GetText 7, i, cVal(6) 'HSN
@@ -3356,19 +3378,18 @@ If MsgBox("Do you want's Item List Display With closing Stock", vbInformation + 
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
-                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
+                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName ,I.PurPrice,I.SalePrice " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
 Else
         rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0," & _
-                "FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
+                "FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName,I.PurPrice,I.SalePrice " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
-
 End If
     If Err.Number = -2147217871 Then MsgBox "Due To Query Timeout. Unable To Fetch Stock !!!", vbInformation: rstItemList.Open "SELECT * FROM(SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName  FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     Else
-        rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+        rstItemList.Open "SELECT I.Name As Col0,FORMAT(0,'#0') As Col1,0 As Quantity,I.Price,I.Code,H.Name As HSNName,H.Code As HSNCode,I.PurPrice,I.SalePrice FROM BookMaster I INNER JOIN GeneralMaster H ON I.HSNCode=H.Code WHERE I.Type='F' ORDER BY I.Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close

@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmItemSearchList 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "List of Items..."
@@ -51,7 +51,7 @@ Begin VB.Form FrmItemSearchList
          Strikethrough   =   0   'False
       EndProperty
       GridColor       =   4227327
-      MaxCols         =   7
+      MaxCols         =   9
       MaxRows         =   1000
       ScrollBars      =   2
       SpreadDesigner  =   "ItemSearchList.frx":0000
@@ -114,11 +114,11 @@ Begin VB.Form FrmItemSearchList
       BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
          NumListImages   =   2
          BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "ItemSearchList.frx":091A
+            Picture         =   "ItemSearchList.frx":0B19
             Key             =   ""
          EndProperty
          BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-            Picture         =   "ItemSearchList.frx":0A2C
+            Picture         =   "ItemSearchList.frx":0C2B
             Key             =   ""
          EndProperty
       EndProperty
@@ -149,8 +149,8 @@ Begin VB.Form FrmItemSearchList
       Caption         =   " Find"
       Alignment       =   0
       FillColor       =   9164542
-      Picture         =   "ItemSearchList.frx":0B3E
-      Picture         =   "ItemSearchList.frx":0B5A
+      Picture         =   "ItemSearchList.frx":0D3D
+      Picture         =   "ItemSearchList.frx":0D59
    End
    Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
       Height          =   330
@@ -177,8 +177,8 @@ Begin VB.Form FrmItemSearchList
       Alignment       =   0
       FillColor       =   8421504
       TextColor       =   16777215
-      Picture         =   "ItemSearchList.frx":0B76
-      Picture         =   "ItemSearchList.frx":0B92
+      Picture         =   "ItemSearchList.frx":0D75
+      Picture         =   "ItemSearchList.frx":0D91
    End
 End
 Attribute VB_Name = "FrmItemSearchList"
@@ -220,6 +220,7 @@ Private Sub Text1_Change()
             .Filter = adFilterNone: .MoveFirst
             PrevStr = ""
         End If
+'        fpSpread1.SetActiveCell 3, 1
     End With
 End Sub
 Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)

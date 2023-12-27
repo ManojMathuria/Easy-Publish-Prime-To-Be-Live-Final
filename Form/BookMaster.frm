@@ -507,8 +507,8 @@ Begin VB.Form FrmBookMaster
                AllowSizing     =   0   'False
                Locked          =   -1  'True
                BeginProperty Column00 
-                  Alignment       =   1
-                  ColumnWidth     =   764.787
+                  Alignment       =   2
+                  ColumnWidth     =   494.929
                EndProperty
                BeginProperty Column01 
                   ColumnAllowSizing=   0   'False
@@ -516,10 +516,10 @@ Begin VB.Form FrmBookMaster
                   ColumnWidth     =   4440.189
                EndProperty
                BeginProperty Column02 
-                  ColumnWidth     =   4199.811
+                  ColumnWidth     =   4680
                EndProperty
                BeginProperty Column03 
-                  ColumnWidth     =   3330.142
+                  ColumnWidth     =   2550.047
                EndProperty
                BeginProperty Column04 
                   Alignment       =   1
@@ -532,23 +532,25 @@ Begin VB.Form FrmBookMaster
                EndProperty
                BeginProperty Column06 
                   Alignment       =   2
+                  ColumnWidth     =   1184.882
                EndProperty
                BeginProperty Column07 
                   Alignment       =   1
+                  ColumnWidth     =   1094.74
                EndProperty
                BeginProperty Column08 
                   Alignment       =   1
-                  ColumnWidth     =   1934.929
+                  ColumnWidth     =   945.071
                EndProperty
                BeginProperty Column09 
                   Alignment       =   1
-                  ColumnWidth     =   2264.882
+                  ColumnWidth     =   945.071
                EndProperty
                BeginProperty Column10 
                   Alignment       =   1
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   2280.189
+                  ColumnWidth     =   945.071
                EndProperty
             EndProperty
          End
@@ -2418,11 +2420,13 @@ Private Sub Form_Load()
     'Data Grid
         DataGrid1.Columns(0).Caption = "S.No."
         DataGrid1.Columns(0).Width = 500
-        DataGrid1.Columns(6).Width = 1180
-        DataGrid1.Columns(7).Width = 1100
-        DataGrid1.Columns(8).Width = 950
+        DataGrid1.Columns(4).Width = 1300
+        DataGrid1.Columns(6).Width = 1035
+        DataGrid1.Columns(7).Width = 1094
+        DataGrid1.Columns(8).Width = 884
         DataGrid1.Columns(9).Width = 950
         DataGrid1.Columns(10).Width = 950
+        DataGrid1.Columns(2).Visible = False
     Set DataGrid1.DataSource = rstItemList
     BusySystemIndicator False
     SSTab1.Tab = 0
@@ -2440,7 +2444,8 @@ Private Sub Form_Load()
     'Data Grid
         DataGrid1.Columns(1).Width = 1000
         DataGrid1.Columns(1).Caption = "Item Code"
-        DataGrid1.Columns(2).Width = 4680
+        DataGrid1.Columns(2).Width = 4844
+        DataGrid1.Columns(2).Visible = True
         DataGrid1.Columns(3).Width = 4100
         DataGrid1.Columns(4).Visible = False
         DataGrid1.Columns(5).Visible = False
@@ -2459,7 +2464,7 @@ ErrorHandler:
     Unload Me
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-    DataGrid1.Columns(2).Visible = False
+'        DataGrid1.Columns(2).Width = 4844
     If Shift = 0 And KeyCode = vbKeyEscape Then
         EditMode = False
         If SSTab1.Tab = 0 Then
