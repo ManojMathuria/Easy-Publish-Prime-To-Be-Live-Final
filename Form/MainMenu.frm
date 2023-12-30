@@ -8,7 +8,7 @@ Begin VB.MDIForm MdiMainMenu
    ClientHeight    =   9045
    ClientLeft      =   165
    ClientTop       =   1005
-   ClientWidth     =   19920
+   ClientWidth     =   11400
    Icon            =   "MainMenu.frx":0000
    LinkTopic       =   "MdiMainMenu"
    LockControls    =   -1  'True
@@ -16,7 +16,7 @@ Begin VB.MDIForm MdiMainMenu
    Begin MSComctlLib.Toolbar Toolbar2 
       Align           =   4  'Align Right
       Height          =   8010
-      Left            =   17550
+      Left            =   9030
       TabIndex        =   6
       Top             =   360
       Width           =   2370
@@ -161,8 +161,8 @@ Begin VB.MDIForm MdiMainMenu
       Left            =   0
       TabIndex        =   3
       Top             =   0
-      Width           =   19920
-      _ExtentX        =   35137
+      Width           =   11400
+      _ExtentX        =   20108
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -344,11 +344,11 @@ Begin VB.MDIForm MdiMainMenu
       Height          =   375
       Left            =   0
       ScaleHeight     =   345
-      ScaleWidth      =   19890
+      ScaleWidth      =   11370
       TabIndex        =   1
       Top             =   8370
       Visible         =   0   'False
-      Width           =   19920
+      Width           =   11400
       Begin VB.PictureBox picOriginal 
          Height          =   5055
          Left            =   1800
@@ -389,36 +389,36 @@ Begin VB.MDIForm MdiMainMenu
       Left            =   0
       TabIndex        =   0
       Top             =   8745
-      Width           =   19920
-      _ExtentX        =   35137
+      Width           =   11400
+      _ExtentX        =   20108
       _ExtentY        =   529
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   5
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   8978
+            Object.Width           =   6306
             MinWidth        =   6306
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
             AutoSize        =   1
-            Object.Width           =   8978
+            Object.Width           =   6306
             MinWidth        =   6306
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   7029
+            Object.Width           =   4357
             MinWidth        =   4357
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   5318
+            Object.Width           =   2646
             MinWidth        =   2646
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   4173
+            Object.Width           =   1501
             MinWidth        =   1501
          EndProperty
       EndProperty
@@ -745,6 +745,11 @@ Begin VB.MDIForm MdiMainMenu
             Caption         =   "Spread Form Format"
             Index           =   2
             Tag             =   "02010200"
+         End
+         Begin VB.Menu mnuPrintPlanning 
+            Caption         =   "Ledger Date-wise"
+            Index           =   3
+            Shortcut        =   ^N
          End
       End
       Begin VB.Menu mnuPurchaseQuotation 
@@ -1539,6 +1544,10 @@ Begin VB.MDIForm MdiMainMenu
             Index           =   19
          End
       End
+      Begin VB.Menu MenuQuery 
+         Caption         =   "Query On Transactions"
+         Shortcut        =   ^Q
+      End
    End
    Begin VB.Menu MenuFG_UFGLedger 
       Caption         =   "&Notebook Division"
@@ -2244,6 +2253,12 @@ Private Sub MenuPendingBillingJobworkDirect_Click(Index As Integer)
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
+Private Sub MenuQuery_Click()
+    On Error Resume Next
+        Load FrmQuery
+        If Err.Number <> 364 Then FrmQuery.Show
+End Sub
+
 Private Sub MenuUFGLedger_Click(Index As Integer)
     On Error Resume Next
 If Trim(Index) = 0 Then
@@ -3569,27 +3584,27 @@ ErrHandler:
 End Function
 Private Sub mnuPrintPlanning_Click(Index As Integer)
     On Error Resume Next
-    FrmPrintPlanning.PlanningType = Choose(Index, "1", "2")
+    FrmPrintPlanning.PlanningType = Choose(Index, "1", "2", "3")
     Load FrmPrintPlanning
     If Err.Number <> 364 Then FrmPrintPlanning.Show
 End Sub
 Private Sub mnuBookPrintPlanningRegister_Click()
     On Error Resume Next
-    If Not IsFormLoaded("Print Planning Register [Book]") Then
-        Dim FrmBookPrintPlanningRegister As New FrmPrintPlanningRegister
-        FrmBookPrintPlanningRegister.PlanningType = "1"
-        Load FrmBookPrintPlanningRegister
-        If Err.Number <> 364 Then FrmBookPrintPlanningRegister.Show
-    End If
+'    If Not IsFormLoaded("Print Planning Register [Book]") Then
+'        Dim FrmBookPrintPlanningRegister As New FrmPrintPlanningRegister
+'        FrmBookPrintPlanningRegister.PlanningType = "1"
+'        Load FrmBookPrintPlanningRegister
+'        If Err.Number <> 364 Then FrmBookPrintPlanningRegister.Show
+'    End If
 End Sub
 Private Sub mnuTitlePrintPlanningRegister_Click()
     On Error Resume Next
-    If Not IsFormLoaded("Print Planning Register [Title]") Then
-        Dim FrmTitlePrintPlanningRegister As New FrmPrintPlanningRegister
-        FrmTitlePrintPlanningRegister.PlanningType = "2"
-        Load FrmTitlePrintPlanningRegister
-        If Err.Number <> 364 Then FrmTitlePrintPlanningRegister.Show
-    End If
+'    If Not IsFormLoaded("Print Planning Register [Title]") Then
+'        Dim FrmTitlePrintPlanningRegister As New FrmPrintPlanningRegister
+'        FrmTitlePrintPlanningRegister.PlanningType = "2"
+'        Load FrmTitlePrintPlanningRegister
+'        If Err.Number <> 364 Then FrmTitlePrintPlanningRegister.Show
+'    End If
 End Sub
 Private Sub mnuFinishSizeMaster_Click()
     On Error Resume Next

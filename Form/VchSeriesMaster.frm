@@ -989,11 +989,11 @@ Dim i As Integer
         ComboBox1.ListIndex = 1
     End If
     VchCode = Left(rstVchSeriesMaster.Fields("VchType").Value, 2)
-    If VchCode < 7 Then
+    If VchCode >= 1 And VchCode <= 7 Then
         ComboBox2.ListIndex = Choose(VchCode, 0, 1, 2, 3, 4, 6, 7)
-    ElseIf VchCode > 17 And VchCode <= 24 Then
+    ElseIf VchCode >= 17 And VchCode <= 24 Then
         ComboBox2.ListIndex = Choose(VchCode - 16, 8, 9, 10, 11, 12, 13, 14, 15)
-    ElseIf VchCode > 51 And VchCode <= 56 Then
+    ElseIf VchCode >= 51 And VchCode <= 56 Then
         ComboBox2.ListIndex = Choose(VchCode - 50, 16, 17, 18, 19, 20, 21)
     End If
     rstVchSeriesMaster.MoveFirst
@@ -1022,14 +1022,13 @@ Private Sub VchTypeUpdate() 'ComboBox2
 If ComboFlag = False Then Exit Sub
 If ComboBox2.ListIndex >= 0 And ComboBox2.ListIndex <= 7 Then
     VchCode = ComboBox2.ListIndex + 1
-ElseIf ComboBox2.ListIndex >= 17 And ComboBox2.ListIndex <= 24 Then
+ElseIf ComboBox2.ListIndex >= 8 And ComboBox2.ListIndex <= 15 Then
     VchCode = ComboBox2.ListIndex + 9
-ElseIf ComboBox2.ListIndex >= 51 And ComboBox2.ListIndex <= 56 Then
+ElseIf ComboBox2.ListIndex >= 16 And ComboBox2.ListIndex <= 21 Then
     VchCode = ComboBox2.ListIndex + 35
 End If
     VchCode = Format(VchCode, "00")
     Text6.Text = VchCode
-    'Text6.Text = Format(VchCode, "00")
 Call LoadVchType
 End Sub
 Private Sub LoadVchType()

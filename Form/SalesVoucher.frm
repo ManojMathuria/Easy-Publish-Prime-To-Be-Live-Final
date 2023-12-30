@@ -99,8 +99,8 @@ Begin VB.Form frmSalesVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesVoucher.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -1028,7 +1028,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   330498053
+               ValueVT         =   37552133
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1266,7 +1266,7 @@ Begin VB.Form frmSalesVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput6 
                Height          =   645
-               Left            =   5235
+               Left            =   5475
                TabIndex        =   15
                Top             =   6810
                Width           =   1095
@@ -1327,9 +1327,9 @@ Begin VB.Form frmSalesVoucher
                Left            =   4515
                TabIndex        =   38
                Top             =   6810
-               Width           =   735
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1296
+               _ExtentX        =   1720
                _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1522,12 +1522,12 @@ Begin VB.Form frmSalesVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   645
-               Left            =   6315
+               Left            =   6555
                TabIndex        =   41
                Top             =   6810
-               Width           =   1095
+               Width           =   975
                _Version        =   65536
-               _ExtentX        =   1931
+               _ExtentX        =   1720
                _ExtentY        =   1138
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1549,12 +1549,12 @@ Begin VB.Form frmSalesVoucher
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   645
-               Left            =   7395
+               Left            =   7515
                TabIndex        =   16
                Top             =   6810
-               Width           =   1050
+               Width           =   930
                _Version        =   65536
-               _ExtentX        =   1852
+               _ExtentX        =   1640
                _ExtentY        =   1138
                Calculator      =   "SalesVoucher.frx":11B0
                Caption         =   "SalesVoucher.frx":11D0
@@ -2128,7 +2128,7 @@ Dim cnSalesVoucher As New ADODB.Connection, cnTally As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstTransportList As New ADODB.Recordset
 Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
 Dim rstSalesVoucherList As New ADODB.Recordset, rstSalesVoucherParent As New ADODB.Recordset, rstSalesVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
-Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, StartNo As String, oVchDate As Date, SalesTypeCode As String
+Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oAutoVchNo As String, StartNo As String, oVchDate As Date, SalesTypeCode As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, VchSeries As String
 Dim frmSalesTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
@@ -2141,6 +2141,8 @@ Private Sub Form_Load()
     oVchType = VchType
     Mh3dLabel15.Caption = IIf(InStr(1, "SF_TF", VchType) > 0, " Sales", " Purchase") + " Type"
     Me.Caption = IIf(VchType = "SF", "Sales", IIf(VchType = "PF", "Purchase", IIf(VchType = "TF", "Sales Return", "Purchase Return"))) & "-Supply " & IIf(VchType = "SF", "Outward", IIf(VchType = "PF", "Inward", IIf(VchType = "TF", "Outward Return", "Inward Return"))) & "-Finished Goods"
+    Mh3dLabel7.Caption = IIf(VchType = "SF", "Packing & Forwarding", IIf(VchType = "PF", "Freight", IIf(VchType = "TF", "Unpacking & Freight", "Packing & Forwarding")))
+    
     cnSalesVoucher.CursorLocation = adUseClient: cnSalesVoucher.Open cnDatabase.ConnectionString: cnTally.CursorLocation = adUseClient
     rstSalesVoucherParent.CursorLocation = adUseClient
     LoadMasterList
@@ -2686,7 +2688,9 @@ Private Sub Text6_Validate(Cancel As Boolean)
                 AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
                 Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
             Else
+                oAutoVchNo = GetNumValue(Trim(Text2.Text))
                 AutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  JobworkBVParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
+                If oAutoVchNo <> AutoVchNo And oAutoVchNo <> "" Then AutoVchNo = oAutoVchNo
                 If Trim(AutoVchNo) > StartNo Then
                     Text2.Text = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(AutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
                 Else
@@ -2732,6 +2736,7 @@ Private Sub Text2_Validate(Cancel As Boolean) 'Vch No.
         ElseIf CheckDuplicate(cnSalesVoucher, "JobworkBVParent", "Code", "[Name]+RIGHT(Type,2)+VchSeries", Trim(Text2.Text) & VchType & VchSeriesCode, .Fields("Code").Value, False, FYCode) Then
             Cancel = True
         End If
+        Text6_Validate (True)
     End With
 End Sub
 Private Sub MhDateInput1_Validate(Cancel As Boolean)    'Vch Date

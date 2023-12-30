@@ -115,12 +115,11 @@ Begin VB.Form FrmBookMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel6"
-         Tab(1).Control(1)=   "btnNotes"
-         Tab(1).Control(2)=   "txtNotes"
-         Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(4)=   "Mh3dLabel1(1)"
-         Tab(1).ControlCount=   5
+         Tab(1).Control(0)=   "btnNotes"
+         Tab(1).Control(1)=   "txtNotes"
+         Tab(1).Control(2)=   "Mh3dFrame2"
+         Tab(1).Control(3)=   "Mh3dLabel1(1)"
+         Tab(1).ControlCount=   4
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
          Tab(2).ControlEnabled=   0   'False
@@ -231,36 +230,6 @@ Begin VB.Form FrmBookMaster
             _ExtentX        =   847
             _ExtentY        =   847
             _Version        =   393216
-         End
-         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
-            Height          =   960
-            Left            =   -74755
-            TabIndex        =   59
-            Top             =   1220
-            Visible         =   0   'False
-            Width           =   15720
-            _Version        =   65536
-            _ExtentX        =   27728
-            _ExtentY        =   1693
-            _StockProps     =   77
-            ForeColor       =   0
-            BackColor       =   9164542
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Calibri"
-               Size            =   15.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            TintColor       =   16711935
-            Caption         =   " Item Description"
-            FillColor       =   9164542
-            ShadowColor     =   0
-            TextColor       =   0
-            Picture         =   "BookMaster.frx":2230
-            Picture         =   "BookMaster.frx":224C
          End
          Begin VB.CommandButton btnNotes 
             Caption         =   " Notes"
@@ -583,11 +552,41 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":2268
+            Picture         =   "BookMaster.frx":2230
+            Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
+               Height          =   980
+               Left            =   120
+               TabIndex        =   64
+               Top             =   720
+               Visible         =   0   'False
+               Width           =   15720
+               _Version        =   65536
+               _ExtentX        =   27728
+               _ExtentY        =   1729
+               _StockProps     =   77
+               ForeColor       =   0
+               BackColor       =   9164542
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Calibri"
+                  Size            =   15.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               TintColor       =   16711935
+               Caption         =   " Item Description"
+               FillColor       =   9164542
+               ShadowColor     =   0
+               TextColor       =   0
+               Picture         =   "BookMaster.frx":224C
+               Picture         =   "BookMaster.frx":2268
+            End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
                Left            =   8160
-               TabIndex        =   61
+               TabIndex        =   60
                Top             =   3570
                Width           =   1815
                _Version        =   65536
@@ -1603,7 +1602,7 @@ Begin VB.Form FrmBookMaster
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   330
                Left            =   120
-               TabIndex        =   60
+               TabIndex        =   59
                Top             =   3570
                Width           =   1575
                _Version        =   65536
@@ -2192,7 +2191,7 @@ Begin VB.Form FrmBookMaster
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
             Left            =   14040
-            TabIndex        =   62
+            TabIndex        =   61
             Top             =   8445
             Width           =   1005
             _Version        =   65536
@@ -2218,7 +2217,7 @@ Begin VB.Form FrmBookMaster
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
             Left            =   12980
-            TabIndex        =   63
+            TabIndex        =   62
             Top             =   8445
             Width           =   1005
             _Version        =   65536
@@ -2244,7 +2243,7 @@ Begin VB.Form FrmBookMaster
          Begin Mh3dlblLib.Mh3dLabel CmdLabel 
             Height          =   330
             Left            =   15090
-            TabIndex        =   64
+            TabIndex        =   63
             Top             =   8445
             Width           =   1005
             _Version        =   65536
@@ -2430,6 +2429,7 @@ Private Sub Form_Load()
     Set DataGrid1.DataSource = rstItemList
     BusySystemIndicator False
     SSTab1.Tab = 0
+
     SortCol = "Name"
     If Trim(ReadFromFile("Customer Type")) = "General" Then
         Mh3dLabel6.Visible = True
@@ -2437,7 +2437,7 @@ Private Sub Form_Load()
         Text10.TabStop = False
         Dim i As Integer
         For i = 2 To 7
-            SSTab1.TabEnabled(i) = False
+           SSTab1.TabEnabled(i) = False
             SSTab1.TabCaption(i) = " "
             SSTab1.TabHeight = 300
         Next
