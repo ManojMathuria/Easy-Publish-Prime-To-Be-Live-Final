@@ -57,6 +57,36 @@ Begin VB.Form FrmQuery
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "Query.frx":0000
+      Begin MSComctlLib.ImageList ImageList1 
+         Left            =   240
+         Top             =   1320
+         _ExtentX        =   1005
+         _ExtentY        =   1005
+         BackColor       =   -2147483643
+         ImageWidth      =   16
+         ImageHeight     =   16
+         MaskColor       =   12632256
+         _Version        =   393216
+         BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+            NumListImages   =   4
+            BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":001C
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":0560
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":0674
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":0786
+               Key             =   ""
+            EndProperty
+         EndProperty
+      End
       Begin MSComDlg.CommonDialog CommonDialog1 
          Left            =   8400
          Top             =   3000
@@ -88,8 +118,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":001C
-         Picture         =   "Query.frx":0038
+         Picture         =   "Query.frx":0898
+         Picture         =   "Query.frx":08B4
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput2 
          Height          =   330
@@ -101,8 +131,8 @@ Begin VB.Form FrmQuery
          _Version        =   65536
          _ExtentX        =   1270
          _ExtentY        =   582
-         Calculator      =   "Query.frx":0054
-         Caption         =   "Query.frx":0074
+         Calculator      =   "Query.frx":08D0
+         Caption         =   "Query.frx":08F0
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -112,9 +142,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":00E0
-         Keys            =   "Query.frx":00FE
-         Spin            =   "Query.frx":0148
+         DropDown        =   "Query.frx":095C
+         Keys            =   "Query.frx":097A
+         Spin            =   "Query.frx":09C4
          AlignHorizontal =   1
          AlignVertical   =   2
          Appearance      =   0
@@ -153,7 +183,7 @@ Begin VB.Form FrmQuery
       Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
          Height          =   330
          Left            =   13320
-         TabIndex        =   20
+         TabIndex        =   19
          TabStop         =   0   'False
          ToolTipText     =   " Quantity Total"
          Top             =   8100
@@ -161,8 +191,8 @@ Begin VB.Form FrmQuery
          _Version        =   65536
          _ExtentX        =   2064
          _ExtentY        =   582
-         Calculator      =   "Query.frx":0170
-         Caption         =   "Query.frx":0190
+         Calculator      =   "Query.frx":09EC
+         Caption         =   "Query.frx":0A0C
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -172,9 +202,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":01FC
-         Keys            =   "Query.frx":021A
-         Spin            =   "Query.frx":0264
+         DropDown        =   "Query.frx":0A78
+         Keys            =   "Query.frx":0A96
+         Spin            =   "Query.frx":0AE0
          AlignHorizontal =   1
          AlignVertical   =   2
          Appearance      =   0
@@ -221,8 +251,8 @@ Begin VB.Form FrmQuery
          _Version        =   65536
          _ExtentX        =   2064
          _ExtentY        =   582
-         Calculator      =   "Query.frx":028C
-         Caption         =   "Query.frx":02AC
+         Calculator      =   "Query.frx":0B08
+         Caption         =   "Query.frx":0B28
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -232,9 +262,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":0318
-         Keys            =   "Query.frx":0336
-         Spin            =   "Query.frx":0380
+         DropDown        =   "Query.frx":0B94
+         Keys            =   "Query.frx":0BB2
+         Spin            =   "Query.frx":0BFC
          AlignHorizontal =   1
          AlignVertical   =   2
          Appearance      =   0
@@ -294,45 +324,15 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":03A8
-         Picture         =   "Query.frx":03C4
+         Picture         =   "Query.frx":0C24
+         Picture         =   "Query.frx":0C40
          Begin VB.CheckBox Check1 
             Height          =   225
             Left            =   720
-            TabIndex        =   21
+            TabIndex        =   20
             Top             =   40
             Width           =   225
          End
-      End
-      Begin MSComctlLib.ImageList ImageList1 
-         Left            =   8280
-         Top             =   3600
-         _ExtentX        =   1005
-         _ExtentY        =   1005
-         BackColor       =   -2147483643
-         ImageWidth      =   16
-         ImageHeight     =   16
-         MaskColor       =   12632256
-         _Version        =   393216
-         BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-            NumListImages   =   4
-            BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Query.frx":03E0
-               Key             =   ""
-            EndProperty
-            BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Query.frx":0924
-               Key             =   ""
-            EndProperty
-            BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Query.frx":0A38
-               Key             =   ""
-            EndProperty
-            BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
-               Picture         =   "Query.frx":0E13
-               Key             =   ""
-            EndProperty
-         EndProperty
       End
       Begin VB.TextBox Text1 
          Appearance      =   0  'Flat
@@ -353,12 +353,12 @@ Begin VB.Form FrmQuery
          Width           =   10815
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Height          =   7400
+         Height          =   7395
          Left            =   120
          TabIndex        =   12
          Top             =   720
-         Width           =   16665
-         _ExtentX        =   29395
+         Width           =   17145
+         _ExtentX        =   30242
          _ExtentY        =   13044
          _Version        =   393216
          AllowUpdate     =   0   'False
@@ -613,8 +613,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0F25
-         Picture         =   "Query.frx":0F41
+         Picture         =   "Query.frx":0C5C
+         Picture         =   "Query.frx":0C78
       End
       Begin MSMask.MaskEdBox MhDateInput1 
          Height          =   330
@@ -759,11 +759,11 @@ Begin VB.Form FrmQuery
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " &Export List"
+         Caption         =   "Export List"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0F5D
-         Picture         =   "Query.frx":0F79
+         Picture         =   "Query.frx":0C94
+         Picture         =   "Query.frx":0CB0
       End
       Begin Mh3dlblLib.Mh3dLabel CmdPrint 
          Height          =   330
@@ -785,11 +785,11 @@ Begin VB.Form FrmQuery
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " &Print List"
+         Caption         =   " Print List"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0F95
-         Picture         =   "Query.frx":0FB1
+         Picture         =   "Query.frx":0CCC
+         Picture         =   "Query.frx":0CE8
       End
       Begin Mh3dlblLib.Mh3dLabel CmdLabel 
          Height          =   330
@@ -811,16 +811,16 @@ Begin VB.Form FrmQuery
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   " &Label Print"
+         Caption         =   " Print Vch."
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0FCD
-         Picture         =   "Query.frx":0FE9
+         Picture         =   "Query.frx":0D04
+         Picture         =   "Query.frx":0D20
       End
       Begin MSForms.ComboBox ComboBox3 
          Height          =   330
          Left            =   15240
-         TabIndex        =   22
+         TabIndex        =   21
          Top             =   8700
          Width           =   1575
          VariousPropertyBits=   612390939
@@ -900,13 +900,12 @@ Begin VB.Form FrmQuery
       End
    End
    Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   19
+      TabIndex        =   22
       Top             =   0
-      Width           =   16980
-      _ExtentX        =   29951
+      Width           =   2505
+      _ExtentX        =   4419
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -914,52 +913,73 @@ Begin VB.Form FrmQuery
       ImageList       =   "ImageList1"
       _Version        =   393216
       BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   19
+         NumButtons      =   7
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Print Preview"
+            Object.ToolTipText     =   "Print Preview [Alt+V]"
             ImageIndex      =   1
          EndProperty
          BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Print"
+            Object.ToolTipText     =   "Print [Alt+P] "
             ImageIndex      =   2
          EndProperty
          BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Exit"
-            ImageIndex      =   4
+            Object.ToolTipText     =   "Mail [Alt+M]"
+            ImageIndex      =   3
          EndProperty
          BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Exit [Escape]"
+            ImageIndex      =   4
          EndProperty
          BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Export [Alt+E]"
          EndProperty
          BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Key             =   "Refresh [F5]"
          EndProperty
          BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Cancel [Escape]"
          EndProperty
       EndProperty
+      Begin VB.CommandButton cmdRefresh 
+         Height          =   375
+         Left            =   1680
+         Picture         =   "Query.frx":0D3C
+         Style           =   1  'Graphical
+         TabIndex        =   26
+         ToolTipText     =   "Refresh [F5]"
+         Top             =   0
+         Width           =   375
+      End
+      Begin VB.CommandButton Refresh 
+         Height          =   375
+         Left            =   1680
+         Picture         =   "Query.frx":0E86
+         Style           =   1  'Graphical
+         TabIndex        =   25
+         ToolTipText     =   "Refresh [F5]"
+         Top             =   0
+         Width           =   375
+      End
+      Begin VB.CommandButton cmdCancel 
+         Height          =   375
+         Left            =   2040
+         Picture         =   "Query.frx":0FD0
+         Style           =   1  'Graphical
+         TabIndex        =   24
+         ToolTipText     =   "Cancel  [Escape]"
+         Top             =   0
+         Width           =   375
+      End
+      Begin VB.CommandButton Export 
+         Height          =   375
+         Left            =   1320
+         Picture         =   "Query.frx":10D2
+         Style           =   1  'Graphical
+         TabIndex        =   23
+         ToolTipText     =   "Export [Alt+E]"
+         Top             =   0
+         Width           =   375
+      End
    End
 End
 Attribute VB_Name = "FrmQuery"
@@ -968,11 +988,20 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Public PtgType As String 'IIf(PtgType = 1, "Print Selection Voucher Format-1", IIf(PtgType = 2, "Print Selection Voucher Format-2", IIf(PtgType = 3, "Print All Voucher Of Data Grid", "Print Data Grid")))
 Dim cnQuery As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstQueryList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstQueryDetails As New ADODB.Recordset
 Dim OutputTo As String, AutoMode As Boolean
 Dim PrevStr As String, SortCol As String, SortOrder As String, HiLiteRecord  As Boolean, i As Double, ATotal As Double, QTotal As Double, VchCode As String
 Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String, PrintFlag As Boolean
+Dim VchType, vDate, vtType, vtCode, vtNo As String
+Public dSortBy As Boolean
+Private Sub cmdCancel_Click()
+    Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
+End Sub
+Private Sub cmdRefresh_Click()
+    Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
+End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
@@ -1087,9 +1116,21 @@ Private Sub Form_Load()
     DataGrid1.Columns(10).Alignment = dbgRight
     DataGrid1.Height = 7400
     MhRealInput1 = GetTotal()
+    rstQueryList.Filter = adFilterNone
+    If rstQueryList.RecordCount > 0 Then
+        rstQueryList.MoveFirst
+        If Not CheckEmpty(vtCode, False) Then rstQueryList.Find "[Code]='" & vtCode & "'"
+    End If
     Set DataGrid1.DataSource = rstQueryList
     SortCol = "PartyName"
     BusySystemIndicator False
+    If Not (rstQueryList.EOF Or rstQueryList.BOF) Then
+        With DataGrid1.SelBookmarks
+            If .Count <> 0 Then .Remove 0
+            .Add DataGrid1.Bookmark
+        End With
+    End If
+    rstQueryList.ActiveConnection = Nothing
     AutoMode = True
 Exit Sub
 ErrorHandler:
@@ -1179,7 +1220,7 @@ Private Sub LoadMasterList()
 Dim AC As String
 
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-        rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnQuery, adOpenKeyset, adLockReadOnly
+        rstCompanyMaster.Open "Select * FROM CompanyMaster Where FYCode='" & FYCode & "'", cnQuery, adOpenKeyset, adLockReadOnly
     rstCompanyMaster.ActiveConnection = Nothing
     
     AC = ComboBox1.Text: AC = "'" + Mid(Right(AC, 8), 2, 6) + "'"
@@ -1193,11 +1234,6 @@ Dim AC As String
         AC = ""
     End If
     
-'If (VchCode >= 1 And VchCode <= 8) Or (VchCode >= 17 And VchCode <= 24) Then
-'    If rstAccountList.State = adStateOpen Then rstAccountList.Close
-'        rstAccountList.Open "SELECT Distinct PrintName+' ['+A.Code+']' AS PrintName,PrintName AS Name,A.Code From JobworkBVParent P Left Join AccountMaster A ON A.code=P.Party Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "'  " & AC & "  Order By PrintName ", cnQuery, adOpenKeyset, adLockPessimistic
-'    rstAccountList.ActiveConnection = Nothing
-'ElseIf VchCode >= 51 And VchCode <= 56 Then
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
         rstAccountList.Open "Select PrintName+' ['+Code+']' AS PrintName,PrintName AS Name,Code FROM AccountMaster Order By PrintName", cnQuery, adOpenKeyset, adLockPessimistic
     rstAccountList.ActiveConnection = Nothing
@@ -1210,39 +1246,180 @@ If (VchCode >= 1 And VchCode <= 8) Or (VchCode >= 17 And VchCode <= 24) Then
 ElseIf VchCode >= 51 And VchCode <= 56 Then
     If rstQueryList.State = adStateOpen Then rstQueryList.Close
         rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select PrintName From AccountMaster Where Code=C.Account) AS PartyName,C.Debit AS Quantity,C.Credit AS Amount, P.LongNarration AS Remark,C.Account From DebitCreditParent P INNER JOIN DebitCreditChild C ON P.Code=C.code LEFT JOIN VchSeriesMaster V ON V.Code=P.VchSeries Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "'  " & AC & "  Order By Date ", cnQuery, adOpenKeyset, adLockPessimistic
-    rstQueryList.ActiveConnection = Nothing
+        rstQueryList.ActiveConnection = Nothing
 End If
 If AutoMode Then MhRealInput1 = GetTotal(): Text1.SetFocus
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-    If KeyCode = vbKeyReturn Then
-       Sendkeys "{TAB}", True
-       KeyCode = 0
-    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
+VchType = "": vDate = "": vtType = "": vtCode = "": vtNo = "":
+    If Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
         KeyCode = 0
     ElseIf Shift = vbAltMask And KeyCode = vbKeyE Then
-        cmdexport_click
-    KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(2)
+        Export_Click
         KeyCode = 0
     ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(1)
         KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(2)
+        KeyCode = 0
      ElseIf Shift = 0 And KeyCode = vbKeyF5 And Toolbar1.Buttons.Item(6).Enabled Then 'Refresh
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF And Toolbar1.Buttons.Item(1).Enabled Then 'First
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(13): KeyCode = 0
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(13)
+        KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyP And Toolbar1.Buttons.Item(1).Enabled Then 'Previous
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(14): KeyCode = 0
+        'Toolbar1_ButtonClick Toolbar1.Buttons.Item(14)
+        KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyN And Toolbar1.Buttons.Item(1).Enabled Then 'Next
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(15): KeyCode = 0
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(15)
+        KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyL And Toolbar1.Buttons.Item(1).Enabled Then 'Last
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(16): KeyCode = 0
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(16)
+        KeyCode = 0
+
+'Open Transection
+    ElseIf ((Shift = 0 And KeyCode = vbKeyReturn) Or (Shift = 0 And KeyCode = vbKeyF8) Or (Shift = 0 And KeyCode = vbKeyF12)) Then      'Open Transection
+'Get vtCode,vtType,vtNo,vDate
+If rstQueryList.EOF Then Exit Sub
+            vDate = FixQuote(rstQueryList.Fields("VchDate").Value): vDate = Format(vDate, "dd-MMM-yyyy")
+            vtCode = FixQuote(rstQueryList.Fields("VchCode").Value)
+            vtType = FixQuote(rstQueryList.Fields("VchType").Value): vtType = Right(vtType, 2)
+            vtNo = FixQuote(rstQueryList.Fields("VchNo").Value)
+'ChecK vch FY
+            If vDate = "" Then Exit Sub
+            If FinancialYearFrom > vDate Or vDate = "" Then
+                If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
+'Order FG AND Jobwork
+            ElseIf vtType = "FP" Or vtType = "FS" Then
+            dSortBy = True
+                    On Error Resume Next
+                    FrmBookPrintOrder.BookPOType = vtType
+                    If Err.Number <> 364 Then FrmBookPrintOrder.Show
+                    FrmBookPrintOrder.Text1 = vtCode
+                        KeyCode = vbKeyE
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    FrmBookPrintOrder.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyE Then 'Edir
+                    FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(2)
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(3)
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    FrmBookPrintOrder.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                End If
+'Purchase Order,Sale Order,Stock Transfer
+            ElseIf vtType = "PO" Or vtType = "SO" Or vtType = "ST" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmSalesOrderVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmSalesOrderVoucher.Show
+                    frmSalesOrderVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmSalesOrderVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmSalesOrderVoucher.Toolbar1_ButtonClick frmSalesOrderVoucher.Toolbar1.Buttons.Item(3)
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmSalesOrderVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+'                    Call cmdRefresh_Click
+                End If
+'Stock Journal Voucher
+            ElseIf vtType = "JR" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmStockJournalVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmStockJournalVoucher.Show
+                    frmStockJournalVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmStockJournalVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(3)
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmStockJournalVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                End If
+'Sale Voucher
+            ElseIf vtType = "SF" Or vtType = "PF" Or vtType = "TF" Or vtType = "OF" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmSalesVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmSalesVoucher.Show
+                    frmSalesVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmSalesVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmSalesVoucher.Toolbar1_ButtonClick frmSalesVoucher.Toolbar1.Buttons.Item(3)
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmSalesVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                End If
+'Sale Challan Voucher
+            ElseIf vtType = "RF" Or vtType = "IF" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmSalesChallanVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmSalesChallanVoucher.Show
+                    frmSalesChallanVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmSalesChallanVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmSalesChallanVoucher.Toolbar1_ButtonClick frmSalesChallanVoucher.Toolbar1.Buttons.Item(3)
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmSalesChallanVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                End If
+'Jobwork Sale Challan Voucher
+            ElseIf vtType = "FR" Or vtType = "FI" Then
+            vtType = IIf(vtType = "FR", "R", "I")
+            dSortBy = True
+                    On Error Resume Next
+                    frmItemIssueReceiptVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmItemIssueReceiptVoucher.Show
+                    frmItemIssueReceiptVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmItemIssueReceiptVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmItemIssueReceiptVoucher.Toolbar1_ButtonClick frmItemIssueReceiptVoucher.Toolbar1.Buttons.Item(3)
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmItemIssueReceiptVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                End If
+'Jobwork Sale Voucher
+            ElseIf vtType = "SU" Or vtType = "SC" Or vtType = "SJ" Or vtType = "PU" Or vtType = "PC" Or vtType = "PJ" Then
+                vtType = IIf(vtType = "SU", 1, IIf(vtType = "SC", 2, IIf(vtType = "SJ", 3, IIf(vtType = "PU", 4, IIf(vtType = "PC", 5, IIf(vtType = "PJ", 6, ""))))))
+                dSortBy = True
+                    On Error Resume Next
+                    frmJobworkBill.VchType = vtType
+                    If Err.Number <> 364 Then frmJobworkBill.Show
+                    frmJobworkBill.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmJobworkBill.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmJobworkBill.Toolbar1_ButtonClick frmJobworkBill.Toolbar1.Buttons.Item(3)
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmJobworkBill.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                End If
+            End If
+        KeyCode = 0
     End If
 End Sub
 Private Sub DataGrid1_DblClick()
+On Error Resume Next
     If Toolbar1.Buttons.Item(17).Enabled Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(17)
 End Sub
 Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
@@ -1293,6 +1470,7 @@ On Error Resume Next
     If Check1.Value Then MhRealInput1 = GetTotal()
 End Sub
 Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
+On Error Resume Next
     Dim KeyProcessed As Boolean
     If rstQueryList.RecordCount = 0 Then Exit Sub
     If Shift = 0 And KeyCode = vbKeyUp Then
@@ -1337,6 +1515,12 @@ Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
             If .EOF Then .MoveLast
         End With
         KeyProcessed = True
+    ElseIf Shift = 0 And KeyCode = vbKeyF5 Then
+        With rstQueryList
+            .MoveLast
+            If .EOF Then .MoveLast
+        End With
+        KeyProcessed = True
     End If
     If KeyProcessed Then
         With DataGrid1.SelBookmarks
@@ -1374,18 +1558,21 @@ End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     On Error Resume Next
     If Button.Index = 1 Then
-        OutputTo = "S"
-        CmdLabel_Click
-'        PrintPrintPlanningRegister
+        Load FrmDialog: Screen.MousePointer = vbNormal: FrmDialog.Flag = 6: FrmDialog.Caption = "Format":  FrmDialog.Command1.Caption = "Print Selection Voucher Format-1": FrmDialog.Command2.Caption = "Print Selection Voucher Format-2": FrmDialog.Command3.Caption = "Print Data Grid All Vouchers [Format-1] ": FrmDialog.Command4.Caption = "Print Data Grid All Vouchers [Format-2] ": FrmDialog.Command5.Visible = False: FrmDialog.Show vbModal
+        If PtgType = 1 Then ComboBox3.ListIndex = 0: PrintFlag = False: Call PrintLabel
+        If PtgType = 2 Then ComboBox3.ListIndex = 0: PrintFlag = False: Call PrintLabel
+        If PtgType = 3 Then ComboBox3.ListIndex = 1: PrintFlag = False: Call PrintLabel: ComboBox3.ListIndex = 0
+        If PtgType = 4 Then ComboBox3.ListIndex = 1: PrintFlag = False: Call PrintLabel: ComboBox3.ListIndex = 0
     ElseIf Button.Index = 2 Then
-        OutputTo = "P"
-''        PrintPrintPlanningRegister
-        CmdPrint_Click
+        Load FrmDialog: Screen.MousePointer = vbNormal: FrmDialog.Flag = 6: FrmDialog.Caption = "Format":  FrmDialog.Command1.Caption = "Print Selection Voucher Format-1": FrmDialog.Command2.Caption = "Print Selection Voucher Format-2": FrmDialog.Command3.Caption = "Print Data Grid All Vouchers [Format-1] ": FrmDialog.Command4.Caption = "Print Data Grid All Vouchers [Format-2] ": FrmDialog.Command5.Visible = False: FrmDialog.Show vbModal
+        If PtgType = 1 Then ComboBox3.ListIndex = 0: PrintFlag = True: Call PrintLabel
+        If PtgType = 2 Then ComboBox3.ListIndex = 0: PrintFlag = True: Call PrintLabel
+        If PtgType = 3 Then ComboBox3.ListIndex = 1: PrintFlag = True: Call PrintLabel: ComboBox3.ListIndex = 0
+        If PtgType = 4 Then ComboBox3.ListIndex = 1: PrintFlag = True: Call PrintLabel: ComboBox3.ListIndex = 0
     ElseIf Button.Index = 3 Then
         Unload Me
     ElseIf Button.Index = 6 Then 'Refresh Button
         Set DataGrid1.DataSource = Nothing
-        'RefreshData rstQueryList
         LoadMasterList
         Set DataGrid1.DataSource = rstQueryList
         HiLiteRecord = True
@@ -1425,14 +1612,14 @@ End Sub
 Private Sub CmdPrint_Click()
 PrintFlag = True
 On Error GoTo errHandler_print
-cmdexport_click
+Export_Click
     On Error GoTo 0
 Exit Sub
 errHandler_print:
   On Error GoTo 0
   Exit Sub
 End Sub
-Private Sub cmdexport_click()
+Private Sub Export_Click()
 Screen.MousePointer = vbHourglass
 On Error Resume Next
 Dim oExcel As Object
@@ -1468,7 +1655,7 @@ Dim j As Integer, i As Integer, Cnt As Long
             EndColumn = "L"
             EndRow = rstQueryList.RecordCount + 1
             oBook.Activate
-            oExcel.Visible = True
+            If PrintFlag = False Then oExcel.Visible = True
         For i = 0 To DataGrid1.Columns.Count - 1
                     oBook.Worksheets("sheet1").Cells(2, i + 1).Value = DataGrid1.Columns(i).Caption
         Next
@@ -1490,6 +1677,7 @@ Dim j As Integer, i As Integer, Cnt As Long
             
             If PrintFlag Then
             .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
+           Screen.MousePointer = vbDefault
                 With CommonDialog1
                     .Copies = 1
                     .flags = &H0&
@@ -1499,7 +1687,6 @@ Dim j As Integer, i As Integer, Cnt As Long
             End If
    End With
    PrintFlag = False
-
    Set oBook = Nothing
    Set oSheet = Nothing
    Set oExcel = Nothing
@@ -1516,6 +1703,7 @@ End Sub
 Private Sub CmdLabel_Click()
 On Error Resume Next
     PrintFlag = True
+    PtgType = 2
     Call PrintLabel
 End Sub
 Public Sub PrintLabel()
@@ -1551,19 +1739,23 @@ Public Sub PrintLabel()
     End With
    With oExcel
         oBook.Activate
-'        oExcel.Visible = True
+    If PrintFlag = False Then oExcel.Visible = True
     End With
     If ComboBox3.ListIndex = 1 Then rstQueryList.MoveFirst
     Do While Not rstQueryList.EOF
     With rstQueryDetails
         If .State = adStateOpen Then .Close
-        .Open "SELECT P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,A.PrintName AS AccountName,A.Name AS AccountAlias,A.Code As AccountCode,A.Address1+' '+A.Address2+' '+A.Address3+' '+A.City+' '+A.Address4+' '+  (Select Name From GeneralMaster Where Code=State) AS Address,I.Name AS ItemCode,I.PrintName AS ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,Rate,ABS(C.Quantity) AS Quantity,ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark From JobworkBVParent P INNER JOIN JobworkBVChild C ON C.Code=P.Code Left Join AccountMaster A On A.Code=P.Party Left JOIN BookMaster I ON C.Item=I.Code Left JOIN VchSeriesMaster V ON V.Code=P.VchSeries WHERE P.Code='" & FixQuote(rstQueryList.Fields("VchCode").Value) & "'  Order By P.Code ", cnQuery, adOpenKeyset, adLockOptimistic
+        .Open "SELECT P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,A.PrintName AS AccountName,A.Name AS AccountAlias,A.Code As AccountCode,A.Address1+' '+A.Address2+' '+A.Address3+' '+A.City+IIF(A.Address4<>'',' -'+A.Address4,'')+' '+IIF(State='*56000','',IIF(State='','',',State :'+(Select Name From GeneralMaster Where Code=State)))+' '+IIF(Station<>'',',Station :'+Station,'')+IIF(Mobile<>'',' Mobile : '+Mobile,'') AS Address," & _
+                    "I.Name AS ItemCode,I.PrintName AS ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,Rate,ABS(C.Quantity) AS Quantity,ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,P.Transport,C1.*  From JobworkBVParent P INNER JOIN JobworkBVChild C ON C.Code=P.Code Left Join AccountMaster A On A.Code=P.Party Left JOIN BookMaster I ON C.Item=I.Code Left JOIN VchSeriesMaster V ON V.Code=P.VchSeries LEFT JOIN CompChild C1 ON C1.VchType=Left(P.Type,2) WHERE P.Code='" & FixQuote(rstQueryList.Fields("VchCode").Value) & "'  Order By P.Code ", cnQuery, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
     
 'Loop Start
 'Header
     i = i + 1
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("VchName").Value & " Voucher"
+    End With
     With oSheet.Range("A" & i & ":H" & i)
         .Merge
         .HorizontalAlignment = xlCenter
@@ -1571,24 +1763,96 @@ Public Sub PrintLabel()
         .Font.Bold = True
         .Font.Size = 16
         .Font.Underline = xlUnderlineStyleDouble ' Use double underline
-        .Cells(1, 1).Value = rstQueryDetails.Fields("VchName").Value & " Voucher"
     End With
+
 'Vch. Info
-    j = 0
-    i = i + 1: j = j + 1
+If PtgType = 1 Or PtgType = 3 Then
+   i = i + 1: j = 0
    With oBook.Worksheets("sheet1").Rows(i)
-                       oBook.Worksheets("sheet1").Cells(i, j).Value = "Vch. No."
-         j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = rstQueryDetails.Fields("VchNo").Value
-         j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Party : [" + rstQueryDetails.Fields("AccountAlias").Value + "]" + rstQueryDetails.Fields("AccountName").Value
-         j = j + 3: oBook.Worksheets("sheet1").Cells(i, j).Value = "Date"
-         j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = rstQueryDetails.Fields("VchDate").Value
-         
+        j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Vch. No."
+        j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = rstQueryDetails.Fields("VchNo").Value
+        j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Party : [" + rstQueryDetails.Fields("AccountAlias").Value + "]" + rstQueryDetails.Fields("AccountName").Value
+        j = j + 3: oBook.Worksheets("sheet1").Cells(i, j).Value = "Date:"
+        j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = rstQueryDetails.Fields("VchDate").Value
    End With
-'Details Header
-    j = 0
-    i = i + 1: j = j + 1
+    With oSheet.Range("G" & i & ":H" & i)
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "dd-MM-yyyy"
+    End With
+   
+ElseIf PtgType = 2 Or PtgType = 4 Then
+   i = i + 1: j = 0
    With oBook.Worksheets("sheet1").Rows(i)
-                       oBook.Worksheets("sheet1").Cells(i, j).Value = "S. No."
+         j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Party :" + " [" + rstQueryDetails.Fields("AccountAlias").Value + "]" + rstQueryDetails.Fields("AccountName").Value
+         j = j + 1: 'oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+         j = j + 3: oBook.Worksheets("sheet1").Cells(i, j).Value = "Date :" + rstQueryDetails.Fields("VchDate").Value
+         j = j + 1: 'oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+   End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    With oSheet.Range("E" & i & ":G" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+   i = i + 1: j = 0
+   With oBook.Worksheets("sheet1").Rows(i)
+         j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Address :" + rstQueryDetails.Fields("Address").Value
+         j = j + 1: ' oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+         j = j + 3: oBook.Worksheets("sheet1").Cells(i, j).Value = "Vch. No. :" + rstQueryDetails.Fields("VchNo").Value
+         j = j + 1: 'oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+   End With
+    With oSheet.Range("A" & i & ":C" & i + 1)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    With oSheet.Range("E" & i & ":H" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+   
+   i = i + 1: j = 0
+   With oBook.Worksheets("sheet1").Rows(i)
+         j = j + 1: 'oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+         j = j + 1: 'oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+         j = j + 3: oBook.Worksheets("sheet1").Cells(i, j).Value = "Trp.: " + rstQueryDetails.Fields("Transport").Value
+         j = j + 1: 'oBook.Worksheets("sheet1").Cells(i, j).Value = ""
+   End With
+'    With oSheet.Range("A" & i & ":C" & i)
+'        .Merge
+'        .WrapText = True
+'        .HorizontalAlignment = xlLeft
+'        .VerticalAlignment = xlCenter
+'        .NumberFormat = "General"
+'    End With
+    With oSheet.Range("E" & i & ":H" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+End If
+
+'Details Header
+    
+    i = i + 1: j = 0
+   With oBook.Worksheets("sheet1").Rows(i)
+         j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "S. No."
          j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Item Alias"
          j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Item Description"
          j = j + 1: oBook.Worksheets("sheet1").Cells(i, j).Value = "Qty."
@@ -1642,6 +1906,115 @@ Public Sub PrintLabel()
         .TintAndShade = 0
         .Weight = xlThin
     End With
+    
+    rstQueryDetails.MoveFirst
+    
+    
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration01").Value
+        oBook.Worksheets("sheet1").Cells(i, 5).Value = "Bank :" + rstCompanyMaster.Fields("BankName").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    With oSheet.Range("E" & i & ":H" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration02").Value
+        oBook.Worksheets("sheet1").Cells(i, 5).Value = "Account No :" + rstCompanyMaster.Fields("AccountNo").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    With oSheet.Range("E" & i & ":H" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration03").Value
+        oBook.Worksheets("sheet1").Cells(i, 5).Value = "IFSC CODE :" + rstCompanyMaster.Fields("IFSC").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    With oSheet.Range("E" & i & ":H" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration04").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration05").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration06").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    i = i + 1:
+    With oBook.Worksheets("sheet1").Rows(i)
+        oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration07").Value
+    End With
+    With oSheet.Range("A" & i & ":C" & i)
+        .Merge
+        .WrapText = True
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .NumberFormat = "General"
+    End With
+    
     i = i + 1
 If ComboBox3.ListIndex = 0 Then Exit Do
 rstQueryList.MoveNext
@@ -1667,7 +2040,7 @@ Loop
             StartColumn = "A"
             StartRow = 1
             EndColumn = "H"
-            EndRow = i
+            If i <> 0 Then EndRow = i
             .ActiveSheet.pagesetup.PrintArea = StartColumn & StartRow & ":" & EndColumn & EndRow
             .ActiveSheet.pagesetup.Zoom = False
             .ActiveSheet.pagesetup.FitToPagesTall = 1000
@@ -1684,6 +2057,7 @@ Loop
                 End With
             End If
    End With
+   PtgType = 0
    PrintFlag = False
    Set oBook = Nothing
    Set oSheet = Nothing
@@ -1692,6 +2066,7 @@ Loop
    Exit Sub
 errcode:
    MsgBox Err.Description, , Err.Source
+   PtgType = 0
    PrintFlag = False
    Set oBook = Nothing
    Set oSheet = Nothing

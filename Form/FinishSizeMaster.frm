@@ -104,6 +104,7 @@ Begin VB.Form FrmFinishSizeMaster
          TabPicture(1)   =   "FinishSizeMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -389,8 +390,8 @@ Begin VB.Form FrmFinishSizeMaster
             Caption         =   "Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save"
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "FinishSizeMaster.frx":09D8
-            Picture         =   "FinishSizeMaster.frx":09F4
+            Picture         =   "FinishSizeMaster.frx":092B
+            Picture         =   "FinishSizeMaster.frx":0947
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat

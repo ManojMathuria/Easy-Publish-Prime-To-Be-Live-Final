@@ -143,15 +143,19 @@ Option Explicit
 Public Flag As Long, uInput As Variant
 Private Sub Command1_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 1: Me.ActiveControl.SetFocus: Unload Me
+If Flag = 6 Then FrmQuery.PtgType = 1: Me.ActiveControl.SetFocus: Unload Me
 End Sub
 Private Sub Command2_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 2: Me.ActiveControl.SetFocus: Unload Me
+If Flag = 6 Then FrmQuery.PtgType = 2: Me.ActiveControl.SetFocus: Unload Me
 End Sub
 Private Sub Command3_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 3: Me.ActiveControl.SetFocus: Unload Me
+If Flag = 6 Then FrmQuery.PtgType = 3: Me.ActiveControl.SetFocus: Unload Me
 End Sub
 Private Sub Command4_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 4: Me.ActiveControl.SetFocus: Unload Me
+If Flag = 6 Then FrmQuery.PtgType = 4: Me.ActiveControl.SetFocus: Unload Me
 End Sub
 Private Sub Command5_Click()
 Me.ActiveControl.SetFocus: Unload Me
@@ -198,6 +202,9 @@ CenterForm Me
             ComboBox1.AddItem "E-Commerce GST (Yes)", 0  'Yes
             ComboBox1.AddItem "E-Commerce GST (No)", 1  'No
             ComboBox1.ListIndex = 1
+        ElseIf Flag = 6 Then
+            ComboBox1.Visible = False
+            Command5.Visible = False
         End If
 ErrorHandler:
     BusySystemIndicator False

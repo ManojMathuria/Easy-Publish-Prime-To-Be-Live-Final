@@ -2409,8 +2409,8 @@ With fpSpread1
             KeyCode = 0
     ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) Then
         If sMcCode = "" Then Exit Sub
-        If VchType = 25 Then VchType = 7 'One Item-Party-wise 'Sales Ok
         If VchType = 26 Then VchType = 8 'One Item-Party-wise 'Sales Return
+        If VchType = 25 Then VchType = 7 'One Item-Party-wise 'Sales Ok
         If VchType = 27 Then VchType = 9 'One Item-Party-wise 'Sales And Sales Return
         If VchType = 28 Then VchType = 10 'One Item-Party-wise 'Net Sales
             SCode = ""
