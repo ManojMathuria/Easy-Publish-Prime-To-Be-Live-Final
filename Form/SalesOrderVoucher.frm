@@ -97,13 +97,13 @@ Begin VB.Form frmSalesOrderVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesOrderVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "btnNotes"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
          Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "txtNotes"
          Tab(1).Control(1).Enabled=   0   'False
-         Tab(1).Control(2)=   "txtNotes"
+         Tab(1).Control(2)=   "Mh3dFrame2"
          Tab(1).Control(2).Enabled=   0   'False
-         Tab(1).Control(3)=   "Mh3dLabel1(1)"
+         Tab(1).Control(3)=   "btnNotes"
          Tab(1).Control(3).Enabled=   0   'False
          Tab(1).ControlCount=   4
          Begin VB.CommandButton btnNotes 
@@ -831,8 +831,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":13EB
-               Picture         =   "SalesOrderVoucher.frx":1407
+               Picture         =   "SalesOrderVoucher.frx":130B
+               Picture         =   "SalesOrderVoucher.frx":1327
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -858,8 +858,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1423
-               Picture         =   "SalesOrderVoucher.frx":143F
+               Picture         =   "SalesOrderVoucher.frx":1343
+               Picture         =   "SalesOrderVoucher.frx":135F
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput8 
                Height          =   330
@@ -871,8 +871,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1508
                _ExtentY        =   582
-               Calculator      =   "SalesOrderVoucher.frx":145B
-               Caption         =   "SalesOrderVoucher.frx":147B
+               Calculator      =   "SalesOrderVoucher.frx":137B
+               Caption         =   "SalesOrderVoucher.frx":139B
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -882,9 +882,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":14E7
-               Keys            =   "SalesOrderVoucher.frx":1505
-               Spin            =   "SalesOrderVoucher.frx":154F
+               DropDown        =   "SalesOrderVoucher.frx":1407
+               Keys            =   "SalesOrderVoucher.frx":1425
+               Spin            =   "SalesOrderVoucher.frx":146F
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -930,8 +930,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1005
                _ExtentY        =   582
-               Calculator      =   "SalesOrderVoucher.frx":1577
-               Caption         =   "SalesOrderVoucher.frx":1597
+               Calculator      =   "SalesOrderVoucher.frx":1497
+               Caption         =   "SalesOrderVoucher.frx":14B7
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -941,9 +941,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1603
-               Keys            =   "SalesOrderVoucher.frx":1621
-               Spin            =   "SalesOrderVoucher.frx":166B
+               DropDown        =   "SalesOrderVoucher.frx":1523
+               Keys            =   "SalesOrderVoucher.frx":1541
+               Spin            =   "SalesOrderVoucher.frx":158B
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1003,8 +1003,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1693
-               Picture         =   "SalesOrderVoucher.frx":16AF
+               Picture         =   "SalesOrderVoucher.frx":15B3
+               Picture         =   "SalesOrderVoucher.frx":15CF
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput11 
                Height          =   645
@@ -1016,8 +1016,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   2055
                _ExtentY        =   1147
-               Calculator      =   "SalesOrderVoucher.frx":16CB
-               Caption         =   "SalesOrderVoucher.frx":16EB
+               Calculator      =   "SalesOrderVoucher.frx":15EB
+               Caption         =   "SalesOrderVoucher.frx":160B
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1027,9 +1027,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1757
-               Keys            =   "SalesOrderVoucher.frx":1775
-               Spin            =   "SalesOrderVoucher.frx":17BF
+               DropDown        =   "SalesOrderVoucher.frx":1677
+               Keys            =   "SalesOrderVoucher.frx":1695
+               Spin            =   "SalesOrderVoucher.frx":16DF
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1075,8 +1075,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   1147
-               Calculator      =   "SalesOrderVoucher.frx":17E7
-               Caption         =   "SalesOrderVoucher.frx":1807
+               Calculator      =   "SalesOrderVoucher.frx":1707
+               Caption         =   "SalesOrderVoucher.frx":1727
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1086,9 +1086,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1873
-               Keys            =   "SalesOrderVoucher.frx":1891
-               Spin            =   "SalesOrderVoucher.frx":18DB
+               DropDown        =   "SalesOrderVoucher.frx":1793
+               Keys            =   "SalesOrderVoucher.frx":17B1
+               Spin            =   "SalesOrderVoucher.frx":17FB
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1148,8 +1148,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1903
-               Picture         =   "SalesOrderVoucher.frx":191F
+               Picture         =   "SalesOrderVoucher.frx":1823
+               Picture         =   "SalesOrderVoucher.frx":183F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
                Height          =   330
@@ -1175,8 +1175,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":193B
-               Picture         =   "SalesOrderVoucher.frx":1957
+               Picture         =   "SalesOrderVoucher.frx":185B
+               Picture         =   "SalesOrderVoucher.frx":1877
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
@@ -1188,8 +1188,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1508
                _ExtentY        =   582
-               Calculator      =   "SalesOrderVoucher.frx":1973
-               Caption         =   "SalesOrderVoucher.frx":1993
+               Calculator      =   "SalesOrderVoucher.frx":1893
+               Caption         =   "SalesOrderVoucher.frx":18B3
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1199,9 +1199,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":19FF
-               Keys            =   "SalesOrderVoucher.frx":1A1D
-               Spin            =   "SalesOrderVoucher.frx":1A67
+               DropDown        =   "SalesOrderVoucher.frx":191F
+               Keys            =   "SalesOrderVoucher.frx":193D
+               Spin            =   "SalesOrderVoucher.frx":1987
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1247,8 +1247,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1005
                _ExtentY        =   582
-               Calculator      =   "SalesOrderVoucher.frx":1A8F
-               Caption         =   "SalesOrderVoucher.frx":1AAF
+               Calculator      =   "SalesOrderVoucher.frx":19AF
+               Caption         =   "SalesOrderVoucher.frx":19CF
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1258,9 +1258,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1B1B
-               Keys            =   "SalesOrderVoucher.frx":1B39
-               Spin            =   "SalesOrderVoucher.frx":1B83
+               DropDown        =   "SalesOrderVoucher.frx":1A3B
+               Keys            =   "SalesOrderVoucher.frx":1A59
+               Spin            =   "SalesOrderVoucher.frx":1AA3
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1305,8 +1305,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   1147
-               Calculator      =   "SalesOrderVoucher.frx":1BAB
-               Caption         =   "SalesOrderVoucher.frx":1BCB
+               Calculator      =   "SalesOrderVoucher.frx":1ACB
+               Caption         =   "SalesOrderVoucher.frx":1AEB
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1316,9 +1316,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1C37
-               Keys            =   "SalesOrderVoucher.frx":1C55
-               Spin            =   "SalesOrderVoucher.frx":1C9F
+               DropDown        =   "SalesOrderVoucher.frx":1B57
+               Keys            =   "SalesOrderVoucher.frx":1B75
+               Spin            =   "SalesOrderVoucher.frx":1BBF
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1378,8 +1378,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1CC7
-               Picture         =   "SalesOrderVoucher.frx":1CE3
+               Picture         =   "SalesOrderVoucher.frx":1BE7
+               Picture         =   "SalesOrderVoucher.frx":1C03
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   650
@@ -1405,8 +1405,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1CFF
-               Picture         =   "SalesOrderVoucher.frx":1D1B
+               Picture         =   "SalesOrderVoucher.frx":1C1F
+               Picture         =   "SalesOrderVoucher.frx":1C3B
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput4 
                Height          =   650
@@ -1417,8 +1417,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1005
                _ExtentY        =   1147
-               Calculator      =   "SalesOrderVoucher.frx":1D37
-               Caption         =   "SalesOrderVoucher.frx":1D57
+               Calculator      =   "SalesOrderVoucher.frx":1C57
+               Caption         =   "SalesOrderVoucher.frx":1C77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1428,9 +1428,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1DC3
-               Keys            =   "SalesOrderVoucher.frx":1DE1
-               Spin            =   "SalesOrderVoucher.frx":1E2B
+               DropDown        =   "SalesOrderVoucher.frx":1CE3
+               Keys            =   "SalesOrderVoucher.frx":1D01
+               Spin            =   "SalesOrderVoucher.frx":1D4B
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1490,8 +1490,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1E53
-               Picture         =   "SalesOrderVoucher.frx":1E6F
+               Picture         =   "SalesOrderVoucher.frx":1D73
+               Picture         =   "SalesOrderVoucher.frx":1D8F
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput5 
                Height          =   650
@@ -1503,8 +1503,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1508
                _ExtentY        =   1147
-               Calculator      =   "SalesOrderVoucher.frx":1E8B
-               Caption         =   "SalesOrderVoucher.frx":1EAB
+               Calculator      =   "SalesOrderVoucher.frx":1DAB
+               Caption         =   "SalesOrderVoucher.frx":1DCB
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1514,9 +1514,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":1F17
-               Keys            =   "SalesOrderVoucher.frx":1F35
-               Spin            =   "SalesOrderVoucher.frx":1F7F
+               DropDown        =   "SalesOrderVoucher.frx":1E37
+               Keys            =   "SalesOrderVoucher.frx":1E55
+               Spin            =   "SalesOrderVoucher.frx":1E9F
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1576,8 +1576,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":1FA7
-               Picture         =   "SalesOrderVoucher.frx":1FC3
+               Picture         =   "SalesOrderVoucher.frx":1EC7
+               Picture         =   "SalesOrderVoucher.frx":1EE3
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
                Height          =   645
@@ -1588,8 +1588,8 @@ Begin VB.Form frmSalesOrderVoucher
                _Version        =   65536
                _ExtentX        =   1852
                _ExtentY        =   1138
-               Calculator      =   "SalesOrderVoucher.frx":1FDF
-               Caption         =   "SalesOrderVoucher.frx":1FFF
+               Calculator      =   "SalesOrderVoucher.frx":1EFF
+               Caption         =   "SalesOrderVoucher.frx":1F1F
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1599,9 +1599,9 @@ Begin VB.Form frmSalesOrderVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "SalesOrderVoucher.frx":206B
-               Keys            =   "SalesOrderVoucher.frx":2089
-               Spin            =   "SalesOrderVoucher.frx":20D3
+               DropDown        =   "SalesOrderVoucher.frx":1F8B
+               Keys            =   "SalesOrderVoucher.frx":1FA9
+               Spin            =   "SalesOrderVoucher.frx":1FF3
                AlignHorizontal =   1
                AlignVertical   =   2
                Appearance      =   0
@@ -1661,8 +1661,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":20FB
-               Picture         =   "SalesOrderVoucher.frx":2117
+               Picture         =   "SalesOrderVoucher.frx":201B
+               Picture         =   "SalesOrderVoucher.frx":2037
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1688,8 +1688,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":2133
-               Picture         =   "SalesOrderVoucher.frx":214F
+               Picture         =   "SalesOrderVoucher.frx":2053
+               Picture         =   "SalesOrderVoucher.frx":206F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -1715,8 +1715,8 @@ Begin VB.Form frmSalesOrderVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesOrderVoucher.frx":216B
-               Picture         =   "SalesOrderVoucher.frx":2187
+               Picture         =   "SalesOrderVoucher.frx":208B
+               Picture         =   "SalesOrderVoucher.frx":20A7
             End
             Begin VB.Line Line3 
                X1              =   0
@@ -1762,8 +1762,8 @@ Begin VB.Form frmSalesOrderVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesOrderVoucher.frx":21A3
-            Picture         =   "SalesOrderVoucher.frx":21BF
+            Picture         =   "SalesOrderVoucher.frx":20C3
+            Picture         =   "SalesOrderVoucher.frx":20DF
          End
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
@@ -1813,8 +1813,8 @@ Begin VB.Form frmSalesOrderVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesOrderVoucher.frx":21DB
-            Picture         =   "SalesOrderVoucher.frx":21F7
+            Picture         =   "SalesOrderVoucher.frx":20FB
+            Picture         =   "SalesOrderVoucher.frx":2117
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1965,11 +1965,10 @@ Private Sub Form_Load()
         BusySystemIndicator False
         SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
-'        SortOrder = "Name"
         If Not (.EOF Or .BOF) Then
             With DataGrid1.SelBookmarks
                 If .Count <> 0 Then .Remove 0

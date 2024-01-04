@@ -429,8 +429,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07E7
-               Picture         =   "StockJournalVoucher.frx":0803
+               Picture         =   "StockJournalVoucher.frx":080B
+               Picture         =   "StockJournalVoucher.frx":0827
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -457,8 +457,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":081F
-               Picture         =   "StockJournalVoucher.frx":083B
+               Picture         =   "StockJournalVoucher.frx":0843
+               Picture         =   "StockJournalVoucher.frx":085F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -484,8 +484,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":0857
-               Picture         =   "StockJournalVoucher.frx":0873
+               Picture         =   "StockJournalVoucher.frx":087B
+               Picture         =   "StockJournalVoucher.frx":0897
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -511,8 +511,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":088F
-               Picture         =   "StockJournalVoucher.frx":08AB
+               Picture         =   "StockJournalVoucher.frx":08B3
+               Picture         =   "StockJournalVoucher.frx":08CF
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -523,8 +523,8 @@ Begin VB.Form frmStockJournalVoucher
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournalVoucher.frx":08C7
-               Caption         =   "StockJournalVoucher.frx":09DF
+               Calendar        =   "StockJournalVoucher.frx":08EB
+               Caption         =   "StockJournalVoucher.frx":0A03
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -534,9 +534,9 @@ Begin VB.Form frmStockJournalVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournalVoucher.frx":0A4B
-               Keys            =   "StockJournalVoucher.frx":0A69
-               Spin            =   "StockJournalVoucher.frx":0AC7
+               DropDown        =   "StockJournalVoucher.frx":0A6F
+               Keys            =   "StockJournalVoucher.frx":0A8D
+               Spin            =   "StockJournalVoucher.frx":0AEB
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -616,7 +616,7 @@ Begin VB.Form frmStockJournalVoucher
                GridColor       =   4227327
                MaxCols         =   6
                MaxRows         =   2000
-               SpreadDesigner  =   "StockJournalVoucher.frx":0AEF
+               SpreadDesigner  =   "StockJournalVoucher.frx":0B13
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -642,8 +642,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":126A
-               Picture         =   "StockJournalVoucher.frx":1286
+               Picture         =   "StockJournalVoucher.frx":12B2
+               Picture         =   "StockJournalVoucher.frx":12CE
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -669,8 +669,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":12A2
-               Picture         =   "StockJournalVoucher.frx":12BE
+               Picture         =   "StockJournalVoucher.frx":12EA
+               Picture         =   "StockJournalVoucher.frx":1306
             End
             Begin VB.Line Line3 
                X1              =   0
@@ -716,8 +716,8 @@ Begin VB.Form frmStockJournalVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "StockJournalVoucher.frx":12DA
-            Picture         =   "StockJournalVoucher.frx":12F6
+            Picture         =   "StockJournalVoucher.frx":1322
+            Picture         =   "StockJournalVoucher.frx":133E
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -867,9 +867,9 @@ Private Sub Form_Load()
         BusySystemIndicator False
         SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
         If Not (.EOF Or .BOF) Then
             With DataGrid1.SelBookmarks

@@ -98,13 +98,13 @@ Begin VB.Form frmSalesChallanVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesChallanVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "txtNotes"
          Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "btnNotes"
          Tab(1).Control(1).Enabled=   0   'False
-         Tab(1).Control(2)=   "btnNotes"
+         Tab(1).Control(2)=   "Mh3dFrame2"
          Tab(1).Control(2).Enabled=   0   'False
-         Tab(1).Control(3)=   "txtNotes"
+         Tab(1).Control(3)=   "Mh3dLabel1(1)"
          Tab(1).Control(3).Enabled=   0   'False
          Tab(1).ControlCount=   4
          Begin VB.TextBox txtNotes 
@@ -2003,8 +2003,8 @@ Begin VB.Form frmSalesChallanVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesChallanVoucher.frx":25B0
-               Picture         =   "SalesChallanVoucher.frx":25CC
+               Picture         =   "SalesChallanVoucher.frx":25D4
+               Picture         =   "SalesChallanVoucher.frx":25F0
             End
             Begin MSForms.ComboBox cmbChallanType 
                Height          =   330
@@ -2070,8 +2070,8 @@ Begin VB.Form frmSalesChallanVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesChallanVoucher.frx":25E8
-            Picture         =   "SalesChallanVoucher.frx":2604
+            Picture         =   "SalesChallanVoucher.frx":260C
+            Picture         =   "SalesChallanVoucher.frx":2628
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2098,8 +2098,8 @@ Begin VB.Form frmSalesChallanVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesChallanVoucher.frx":2620
-            Picture         =   "SalesChallanVoucher.frx":263C
+            Picture         =   "SalesChallanVoucher.frx":2644
+            Picture         =   "SalesChallanVoucher.frx":2660
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2246,9 +2246,9 @@ Private Sub Form_Load()
         BusySystemIndicator False
         SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
 '        SortOrder = "Name"
         If Not (.EOF Or .BOF) Then

@@ -1,10 +1,10 @@
 VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
+Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
-Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "MSMASK32.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form FrmQuery 
@@ -32,7 +32,7 @@ Begin VB.Form FrmQuery
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   9180
       Left            =   120
-      TabIndex        =   8
+      TabIndex        =   6
       Top             =   345
       Width           =   16890
       _Version        =   65536
@@ -97,7 +97,7 @@ Begin VB.Form FrmQuery
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
          Left            =   1140
-         TabIndex        =   14
+         TabIndex        =   12
          Top             =   8100
          Width           =   1095
          _Version        =   65536
@@ -124,7 +124,7 @@ Begin VB.Form FrmQuery
       Begin TDBNumber6Ctl.TDBNumber MhRealInput2 
          Height          =   330
          Left            =   435
-         TabIndex        =   16
+         TabIndex        =   14
          TabStop         =   0   'False
          Top             =   8100
          Width           =   720
@@ -183,7 +183,7 @@ Begin VB.Form FrmQuery
       Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
          Height          =   330
          Left            =   13320
-         TabIndex        =   19
+         TabIndex        =   17
          TabStop         =   0   'False
          ToolTipText     =   " Quantity Total"
          Top             =   8100
@@ -243,7 +243,7 @@ Begin VB.Form FrmQuery
       Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
          Height          =   330
          Left            =   14475
-         TabIndex        =   15
+         TabIndex        =   13
          TabStop         =   0   'False
          ToolTipText     =   " Amount Total"
          Top             =   8100
@@ -303,7 +303,7 @@ Begin VB.Form FrmQuery
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
          Left            =   12120
-         TabIndex        =   13
+         TabIndex        =   11
          Top             =   8100
          Width           =   1215
          _Version        =   65536
@@ -329,7 +329,7 @@ Begin VB.Form FrmQuery
          Begin VB.CheckBox Check1 
             Height          =   225
             Left            =   720
-            TabIndex        =   20
+            TabIndex        =   18
             Top             =   40
             Width           =   225
          End
@@ -355,10 +355,10 @@ Begin VB.Form FrmQuery
       Begin MSDataGridLib.DataGrid DataGrid1 
          Height          =   7395
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   10
          Top             =   720
-         Width           =   17145
-         _ExtentX        =   30242
+         Width           =   16665
+         _ExtentX        =   29395
          _ExtentY        =   13044
          _Version        =   393216
          AllowUpdate     =   0   'False
@@ -386,7 +386,7 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ColumnCount     =   12
+         ColumnCount     =   14
          BeginProperty Column00 
             DataField       =   ""
             Caption         =   ""
@@ -543,6 +543,32 @@ Begin VB.Form FrmQuery
                SubFormatType   =   0
             EndProperty
          EndProperty
+         BeginProperty Column12 
+            DataField       =   ""
+            Caption         =   ""
+            BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+               Type            =   0
+               Format          =   ""
+               HaveTrueFalseNull=   0
+               FirstDayOfWeek  =   0
+               FirstWeekOfYear =   0
+               LCID            =   16393
+               SubFormatType   =   0
+            EndProperty
+         EndProperty
+         BeginProperty Column13 
+            DataField       =   ""
+            Caption         =   ""
+            BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+               Type            =   0
+               Format          =   ""
+               HaveTrueFalseNull=   0
+               FirstDayOfWeek  =   0
+               FirstWeekOfYear =   0
+               LCID            =   16393
+               SubFormatType   =   0
+            EndProperty
+         EndProperty
          SplitCount      =   1
          BeginProperty Split0 
             MarqueeStyle    =   3
@@ -585,18 +611,23 @@ Begin VB.Form FrmQuery
                ColumnWidth     =   3569.953
             EndProperty
             BeginProperty Column11 
-               ColumnWidth     =   1500.095
+            EndProperty
+            BeginProperty Column12 
+               ColumnWidth     =   4124.977
+            EndProperty
+            BeginProperty Column13 
+               ColumnWidth     =   3929.953
             EndProperty
          EndProperty
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Left            =   12480
-         TabIndex        =   9
+         TabIndex        =   7
          Top             =   120
-         Width           =   855
+         Width           =   735
          _Version        =   65536
-         _ExtentX        =   1508
+         _ExtentX        =   1296
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -616,34 +647,10 @@ Begin VB.Form FrmQuery
          Picture         =   "Query.frx":0C5C
          Picture         =   "Query.frx":0C78
       End
-      Begin MSMask.MaskEdBox MhDateInput1 
-         Height          =   330
-         Left            =   13320
-         TabIndex        =   3
-         Top             =   120
-         Width           =   1215
-         _ExtentX        =   2143
-         _ExtentY        =   582
-         _Version        =   393216
-         Appearance      =   0
-         BackColor       =   16777215
-         MaxLength       =   10
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Mask            =   "##-##-####"
-         PromptChar      =   " "
-      End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
-         Left            =   14760
-         TabIndex        =   10
+         Left            =   14640
+         TabIndex        =   8
          Top             =   120
          Width           =   765
          _Version        =   65536
@@ -664,35 +671,13 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-      End
-      Begin MSMask.MaskEdBox MhDateInput2 
-         Height          =   330
-         Left            =   15510
-         TabIndex        =   4
-         Top             =   120
-         Width           =   1215
-         _ExtentX        =   2143
-         _ExtentY        =   582
-         _Version        =   393216
-         Appearance      =   0
-         BackColor       =   16777215
-         MaxLength       =   10
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Mask            =   "##-##-####"
-         PromptChar      =   " "
+         Picture         =   "Query.frx":0C94
+         Picture         =   "Query.frx":0CB0
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
          Left            =   120
-         TabIndex        =   11
+         TabIndex        =   9
          Top             =   120
          Width           =   1455
          _Version        =   65536
@@ -713,11 +698,13 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
+         Picture         =   "Query.frx":0CCC
+         Picture         =   "Query.frx":0CE8
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
-         Left            =   7920
-         TabIndex        =   18
+         Left            =   7680
+         TabIndex        =   16
          Top             =   120
          Width           =   1455
          _Version        =   65536
@@ -738,11 +725,13 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
+         Picture         =   "Query.frx":0D04
+         Picture         =   "Query.frx":0D20
       End
       Begin Mh3dlblLib.Mh3dLabel CmdExport 
          Height          =   330
          Left            =   13150
-         TabIndex        =   6
+         TabIndex        =   4
          Top             =   8700
          Width           =   1005
          _Version        =   65536
@@ -762,13 +751,13 @@ Begin VB.Form FrmQuery
          Caption         =   "Export List"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0C94
-         Picture         =   "Query.frx":0CB0
+         Picture         =   "Query.frx":0D3C
+         Picture         =   "Query.frx":0D58
       End
       Begin Mh3dlblLib.Mh3dLabel CmdPrint 
          Height          =   330
          Left            =   12120
-         TabIndex        =   5
+         TabIndex        =   3
          Top             =   8700
          Width           =   1005
          _Version        =   65536
@@ -788,13 +777,13 @@ Begin VB.Form FrmQuery
          Caption         =   " Print List"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0CCC
-         Picture         =   "Query.frx":0CE8
+         Picture         =   "Query.frx":0D74
+         Picture         =   "Query.frx":0D90
       End
       Begin Mh3dlblLib.Mh3dLabel CmdLabel 
          Height          =   330
          Left            =   14200
-         TabIndex        =   7
+         TabIndex        =   5
          Top             =   8700
          Width           =   1005
          _Version        =   65536
@@ -814,13 +803,137 @@ Begin VB.Form FrmQuery
          Caption         =   " Print Vch."
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0D04
-         Picture         =   "Query.frx":0D20
+         Picture         =   "Query.frx":0DAC
+         Picture         =   "Query.frx":0DC8
+      End
+      Begin TDBDate6Ctl.TDBDate MhDateInput1 
+         Height          =   330
+         Left            =   13200
+         TabIndex        =   25
+         Top             =   120
+         Width           =   1455
+         _Version        =   65536
+         _ExtentX        =   2566
+         _ExtentY        =   582
+         Calendar        =   "Query.frx":0DE4
+         Caption         =   "Query.frx":0EFC
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         DropDown        =   "Query.frx":0F68
+         Keys            =   "Query.frx":0F86
+         Spin            =   "Query.frx":0FE4
+         AlignHorizontal =   0
+         AlignVertical   =   0
+         Appearance      =   0
+         BackColor       =   16777215
+         BorderStyle     =   1
+         BtnPositioning  =   0
+         ClipMode        =   0
+         CursorPosition  =   0
+         DataProperty    =   0
+         DisplayFormat   =   "dd-mm-yyyy"
+         EditMode        =   1
+         Enabled         =   -1
+         ErrorBeep       =   0
+         FirstMonth      =   1
+         ForeColor       =   -2147483640
+         Format          =   "dd-mm-yyyy"
+         HighlightText   =   0
+         IMEMode         =   3
+         MarginBottom    =   1
+         MarginLeft      =   1
+         MarginRight     =   1
+         MarginTop       =   1
+         MaxDate         =   2958465
+         MinDate         =   -657434
+         MousePointer    =   0
+         MoveOnLRKey     =   0
+         OLEDragMode     =   0
+         OLEDropMode     =   0
+         PromptChar      =   " "
+         ReadOnly        =   0
+         ShowContextMenu =   1
+         ShowLiterals    =   0
+         TabAction       =   0
+         Text            =   "  -  -    "
+         ValidateMode    =   0
+         ValueVT         =   1
+         Value           =   39849
+         CenturyMode     =   0
+      End
+      Begin TDBDate6Ctl.TDBDate MhDateInput2 
+         Height          =   330
+         Left            =   15390
+         TabIndex        =   26
+         Top             =   120
+         Width           =   1455
+         _Version        =   65536
+         _ExtentX        =   2566
+         _ExtentY        =   582
+         Calendar        =   "Query.frx":100C
+         Caption         =   "Query.frx":1124
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         DropDown        =   "Query.frx":1190
+         Keys            =   "Query.frx":11AE
+         Spin            =   "Query.frx":120C
+         AlignHorizontal =   0
+         AlignVertical   =   0
+         Appearance      =   0
+         BackColor       =   16777215
+         BorderStyle     =   1
+         BtnPositioning  =   0
+         ClipMode        =   0
+         CursorPosition  =   0
+         DataProperty    =   0
+         DisplayFormat   =   "dd-mm-yyyy"
+         EditMode        =   1
+         Enabled         =   -1
+         ErrorBeep       =   0
+         FirstMonth      =   1
+         ForeColor       =   -2147483640
+         Format          =   "dd-mm-yyyy"
+         HighlightText   =   0
+         IMEMode         =   3
+         MarginBottom    =   1
+         MarginLeft      =   1
+         MarginRight     =   1
+         MarginTop       =   1
+         MaxDate         =   2958465
+         MinDate         =   -657434
+         MousePointer    =   0
+         MoveOnLRKey     =   0
+         OLEDragMode     =   0
+         OLEDropMode     =   0
+         PromptChar      =   " "
+         ReadOnly        =   0
+         ShowContextMenu =   1
+         ShowLiterals    =   0
+         TabAction       =   0
+         Text            =   "  -  -    "
+         ValidateMode    =   0
+         ValueVT         =   1
+         Value           =   39849
+         CenturyMode     =   0
       End
       Begin MSForms.ComboBox ComboBox3 
          Height          =   330
          Left            =   15240
-         TabIndex        =   21
+         TabIndex        =   19
          Top             =   8700
          Width           =   1575
          VariousPropertyBits=   612390939
@@ -835,13 +948,13 @@ Begin VB.Form FrmQuery
       End
       Begin MSForms.ComboBox ComboBox2 
          Height          =   330
-         Left            =   9360
+         Left            =   9120
          TabIndex        =   2
          Top             =   120
-         Width           =   3015
-         VariousPropertyBits=   612390939
+         Width           =   3375
+         VariousPropertyBits=   612915227
          DisplayStyle    =   3
-         Size            =   "5318;582"
+         Size            =   "5953;582"
          MatchEntry      =   1
          ShowDropButtonWhen=   2
          FontName        =   "Comic Sans MS"
@@ -872,7 +985,7 @@ Begin VB.Form FrmQuery
          ForeColor       =   &H80000009&
          Height          =   330
          Left            =   120
-         TabIndex        =   17
+         TabIndex        =   15
          Top             =   8700
          Width           =   1095
       End
@@ -887,10 +1000,10 @@ Begin VB.Form FrmQuery
          Left            =   1560
          TabIndex        =   1
          Top             =   120
-         Width           =   3735
-         VariousPropertyBits=   1686132763
+         Width           =   4695
+         VariousPropertyBits=   1686657051
          DisplayStyle    =   3
-         Size            =   "6588;582"
+         Size            =   "8281;582"
          MatchEntry      =   1
          ShowDropButtonWhen=   2
          FontName        =   "Comic Sans MS"
@@ -902,7 +1015,7 @@ Begin VB.Form FrmQuery
    Begin MSComctlLib.Toolbar Toolbar1 
       Height          =   330
       Left            =   0
-      TabIndex        =   22
+      TabIndex        =   20
       Top             =   0
       Width           =   2505
       _ExtentX        =   4419
@@ -943,9 +1056,9 @@ Begin VB.Form FrmQuery
       Begin VB.CommandButton cmdRefresh 
          Height          =   375
          Left            =   1680
-         Picture         =   "Query.frx":0D3C
+         Picture         =   "Query.frx":1234
          Style           =   1  'Graphical
-         TabIndex        =   26
+         TabIndex        =   24
          ToolTipText     =   "Refresh [F5]"
          Top             =   0
          Width           =   375
@@ -953,9 +1066,9 @@ Begin VB.Form FrmQuery
       Begin VB.CommandButton Refresh 
          Height          =   375
          Left            =   1680
-         Picture         =   "Query.frx":0E86
+         Picture         =   "Query.frx":137E
          Style           =   1  'Graphical
-         TabIndex        =   25
+         TabIndex        =   23
          ToolTipText     =   "Refresh [F5]"
          Top             =   0
          Width           =   375
@@ -963,9 +1076,9 @@ Begin VB.Form FrmQuery
       Begin VB.CommandButton cmdCancel 
          Height          =   375
          Left            =   2040
-         Picture         =   "Query.frx":0FD0
+         Picture         =   "Query.frx":14C8
          Style           =   1  'Graphical
-         TabIndex        =   24
+         TabIndex        =   22
          ToolTipText     =   "Cancel  [Escape]"
          Top             =   0
          Width           =   375
@@ -973,9 +1086,9 @@ Begin VB.Form FrmQuery
       Begin VB.CommandButton Export 
          Height          =   375
          Left            =   1320
-         Picture         =   "Query.frx":10D2
+         Picture         =   "Query.frx":15CA
          Style           =   1  'Graphical
-         TabIndex        =   23
+         TabIndex        =   21
          ToolTipText     =   "Export [Alt+E]"
          Top             =   0
          Width           =   375
@@ -991,7 +1104,7 @@ Option Explicit
 Public PtgType As String 'IIf(PtgType = 1, "Print Selection Voucher Format-1", IIf(PtgType = 2, "Print Selection Voucher Format-2", IIf(PtgType = 3, "Print All Voucher Of Data Grid", "Print Data Grid")))
 Dim cnQuery As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstQueryList As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstQueryDetails As New ADODB.Recordset
-Dim OutputTo As String, AutoMode As Boolean
+Dim AutoMode As Boolean, EditMode As Boolean
 Dim PrevStr As String, SortCol As String, SortOrder As String, HiLiteRecord  As Boolean, i As Double, ATotal As Double, QTotal As Double, VchCode As String
 Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String, PrintFlag As Boolean
 Dim VchType, vDate, vtType, vtCode, vtNo As String
@@ -1016,7 +1129,7 @@ Private Sub Form_Load()
         MhDateInput2.Text = Format(Date, "dd-mm-yyyy")
     End If
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-        rstAccountList.Open "Select PrintName+' ['+Code+']' AS PrintName,PrintName AS Name,Code FROM AccountMaster Order By PrintName", cnQuery, adOpenKeyset, adLockPessimistic
+        rstAccountList.Open "Select IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') AS PrintName,PrintName AS Name,Code FROM AccountMaster Order By PrintName+Name", cnQuery, adOpenKeyset, adLockPessimistic
     rstAccountList.ActiveConnection = Nothing
 'ComboBox1 Accounts
     ComboBox1.Clear
@@ -1093,6 +1206,10 @@ Private Sub Form_Load()
     DataGrid1.Columns(9).Caption = "Amount"
     DataGrid1.Columns(10).Caption = "Remark"
     DataGrid1.Columns(11).Caption = "Account Code"
+If Not Trim(ReadFromFile("Customer Type")) = "General" Then
+    DataGrid1.Columns(12).Caption = "Item"
+    DataGrid1.Columns(13).Caption = "Binding Type"
+End If
 'DataGrid1_Data_Field
     DataGrid1.Columns(0).DataField = "RowNo"
     DataGrid1.Columns(1).DataField = "VchCode"
@@ -1106,6 +1223,8 @@ Private Sub Form_Load()
     DataGrid1.Columns(9).DataField = "Amount"
     DataGrid1.Columns(10).DataField = "Remark"
     DataGrid1.Columns(11).DataField = "Account"
+    DataGrid1.Columns(12).DataField = "Item"
+    DataGrid1.Columns(13).DataField = "BindingType"
 'DataGrid1_Data_Alinement
     DataGrid1.Columns(0).Alignment = dbgCenter
     DataGrid1.Columns(1).Alignment = dbgCenter
@@ -1144,9 +1263,11 @@ End Sub
 Private Sub ComboBox1_Click()
     Text1.Text = ""
     FocusSelect Me.ActiveControl
+    EditMode = True
 End Sub
 Private Sub ComboBox2_Change()
 If Not AutoMode Then Exit Sub
+EditMode = True
 Me.Caption = ComboBox2.Text + " Query Ledger"
     Text1.Text = ""
     ComboBox2_Validate (True)
@@ -1235,13 +1356,18 @@ Dim AC As String
     End If
     
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-        rstAccountList.Open "Select PrintName+' ['+Code+']' AS PrintName,PrintName AS Name,Code FROM AccountMaster Order By PrintName", cnQuery, adOpenKeyset, adLockPessimistic
+        rstAccountList.Open "Select IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') AS PrintName,PrintName AS Name,Code FROM AccountMaster Order By PrintName", cnQuery, adOpenKeyset, adLockPessimistic
     rstAccountList.ActiveConnection = Nothing
 'End If
     
 If (VchCode >= 1 And VchCode <= 8) Or (VchCode >= 17 And VchCode <= 24) Then
     If rstQueryList.State = adStateOpen Then rstQueryList.Close
-        rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select PrintName From AccountMaster Where Code=Party) AS PartyName,(Select ISNULL(SUM(Quantity),0) From JobworkBVChild C Where C.Code=P.Code) AS Quantity, ISNULL(Amount,0) AS Amount,P.Remarks AS Remark,Party AS Account From JobworkBVParent P LEFT JOIN VchSeriesMaster V ON V.Code=P.VchSeries Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "'  " & AC & "  Order By RowNo ", cnQuery, adOpenKeyset, adLockPessimistic
+    If Not Trim(ReadFromFile("Customer Type")) = "General" Then
+        rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select PrintName From AccountMaster Where Code=Party) AS PartyName,(Select ISNULL(SUM(Quantity),0) From JobworkBVChild C Where C.Code=P.Code) AS Quantity, ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,Party AS Account,(Select PrintName From BookMaster Where Code=C.Item) Item,(Select Name From GeneralMaster Where Code=(Select BindingType From BookMaster Where Code=C.Item)) As BindingType,(Select Top (1) Date From JobworkBVParent P1 LEFT JOIN  JobworkbvChild C1 ON P1.Code=C1.Code Where C1.Item=C.Item AND P.Code<>P1.Code AND P.Party=P1.Party) PreTrDate " & _
+                                       "From JobworkBVParent P  LEFT JOIN  JobworkbvChild C ON P.Code=C.Code LEFT JOIN VchSeriesMaster V ON V.Code=P.VchSeries Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "'  " & AC & "  Order By RowNo ", cnQuery, adOpenKeyset, adLockPessimistic
+    Else
+        rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select PrintName From AccountMaster Where Code=Party) AS PartyName,(Select ISNULL(SUM(Quantity),0) From JobworkBVChild C Where C.Code=P.Code) AS Quantity, ISNULL(Amount,0) AS Amount,P.Remarks AS Remark,Party AS Account,'' Item,'' As BindingType,(Select Top (1) Date From JobworkBVParent P1 LEFT JOIN  JobworkbvChild C1 ON P1.Code=C1.Code Where C1.Item=C.Item AND P.Code<>P1.Code AND P.Party=P1.Party) PreTrDate From JobworkBVParent P LEFT JOIN VchSeriesMaster V ON V.Code=P.VchSeries Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "'  " & AC & "  Order By RowNo ", cnQuery, adOpenKeyset, adLockPessimistic
+    End If
     rstQueryList.ActiveConnection = Nothing
 ElseIf VchCode >= 51 And VchCode <= 56 Then
     If rstQueryList.State = adStateOpen Then rstQueryList.Close
@@ -1278,9 +1404,8 @@ VchType = "": vDate = "": vtType = "": vtCode = "": vtNo = "":
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyL And Toolbar1.Buttons.Item(1).Enabled Then 'Last
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(16)
         KeyCode = 0
-
 'Open Transection
-    ElseIf ((Shift = 0 And KeyCode = vbKeyReturn) Or (Shift = 0 And KeyCode = vbKeyF8) Or (Shift = 0 And KeyCode = vbKeyF12)) Then      'Open Transection
+    ElseIf InStr(1, "DataGrid1", Me.ActiveControl.Name) > 0 And ((Shift = 0 And KeyCode = vbKeyReturn) Or (Shift = vbCtrlMask And KeyCode = vbKeyE) Or (Shift = 0 And KeyCode = vbKeyF8) Or (Shift = 0 And KeyCode = vbKeyF12)) Then   'Open Transection
 'Get vtCode,vtType,vtNo,vDate
 If rstQueryList.EOF Then Exit Sub
             vDate = FixQuote(rstQueryList.Fields("VchDate").Value): vDate = Format(vDate, "dd-MMM-yyyy")
@@ -1301,7 +1426,7 @@ If rstQueryList.EOF Then Exit Sub
                         KeyCode = vbKeyE
                 If Shift = 0 And KeyCode = vbKeyReturn Then 'View
                     FrmBookPrintOrder.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyE Then 'Edir
+                ElseIf Shift = vbCtrlMask And KeyCode = vbKeyE Then 'Edit
                     FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(2)
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(3)
@@ -1635,7 +1760,11 @@ Dim j As Integer, i As Integer, Cnt As Long
         .Font.Bold = True
         .Font.Size = 16
         oBook.Worksheets("sheet1").Cells(1, j + 1).Value = Me.Caption
+        If Not Trim(ReadFromFile("Customer Type")) = "General" Then
+        .Range("A1:N1").Merge
+        Else
         .Range("A1:L1").Merge
+        End If
         .HorizontalAlignment = xlCenter
         .VerticalAlignment = xlCenter
         oBook.Worksheets("sheet1").Rows(2).Font.Bold = True
@@ -1746,7 +1875,7 @@ Public Sub PrintLabel()
     With rstQueryDetails
         If .State = adStateOpen Then .Close
         .Open "SELECT P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,A.PrintName AS AccountName,A.Name AS AccountAlias,A.Code As AccountCode,A.Address1+' '+A.Address2+' '+A.Address3+' '+A.City+IIF(A.Address4<>'',' -'+A.Address4,'')+' '+IIF(State='*56000','',IIF(State='','',',State :'+(Select Name From GeneralMaster Where Code=State)))+' '+IIF(Station<>'',',Station :'+Station,'')+IIF(Mobile<>'',' Mobile : '+Mobile,'') AS Address," & _
-                    "I.Name AS ItemCode,I.PrintName AS ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,Rate,ABS(C.Quantity) AS Quantity,ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,P.Transport,C1.*  From JobworkBVParent P INNER JOIN JobworkBVChild C ON C.Code=P.Code Left Join AccountMaster A On A.Code=P.Party Left JOIN BookMaster I ON C.Item=I.Code Left JOIN VchSeriesMaster V ON V.Code=P.VchSeries LEFT JOIN CompChild C1 ON C1.VchType=Left(P.Type,2) WHERE P.Code='" & FixQuote(rstQueryList.Fields("VchCode").Value) & "'  Order By P.Code ", cnQuery, adOpenKeyset, adLockOptimistic
+                    "I.Name AS ItemCode,I.PrintName AS ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,Rate,ABS(C.Quantity) AS Quantity,ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,P.Transport,(Select Name From GeneralMaster Where Code=Tax) AS Tax,Freight,Adjustment,TaxableAmount,IGST,SGST,CGST,P.Amount As GTotal,(Select Top (1) Date From JobworkBVParent P1 LEFT JOIN  JobworkbvChild C1 ON P1.Code=C1.Code Where C1.Item=C.Item AND P.Code<>P1.Code AND P.Party=P1.Party) PreTrDate,C1.*  From JobworkBVParent P INNER JOIN JobworkBVChild C ON C.Code=P.Code Left Join AccountMaster A On A.Code=P.Party Left JOIN BookMaster I ON C.Item=I.Code Left JOIN VchSeriesMaster V ON V.Code=P.VchSeries LEFT JOIN CompChild C1 ON C1.VchType=Left(P.Type,2) WHERE P.Code='" & FixQuote(rstQueryList.Fields("VchCode").Value) & "'  Order By P.Code ", cnQuery, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
     
@@ -1887,18 +2016,41 @@ End If
             If rstQueryDetails.Fields("Unit").Value <> "" Then oBook.Worksheets("sheet1").Cells(i, 5).Value = rstQueryDetails.Fields("Unit").Value
             If rstQueryDetails.Fields("Rate").Value <> "" Then oBook.Worksheets("sheet1").Cells(i, 6).Value = Val(Format(rstQueryDetails.Fields("Rate").Value, "###0.00"))
             If rstQueryDetails.Fields("Amount").Value <> "" Then oBook.Worksheets("sheet1").Cells(i, 7).Value = Val(Format(rstQueryDetails.Fields("Amount").Value, "###0.00")): ASum = ASum + Val(rstQueryDetails.Fields("Amount").Value)
+            If rstQueryDetails.Fields("PreTrDate").Value <> "" Then oBook.Worksheets("sheet1").Cells(i, 8).Value = " dt. " + Format(rstQueryDetails.Fields("PreTrDate").Value, "dd-MM-yyyy")
         rstQueryDetails.MoveNext
     Loop
-            i = i + 1
-            oBook.Worksheets("sheet1").Cells(i, 2).Value = "Total :"
-            oBook.Worksheets("sheet1").Cells(i, 4).Value = Format(QSum, "###0.00")
-            oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(ASum, "###0.00")
     End With
+            i = i + 1
    With oSheet.Range("A" & i & ":H" & i).Borders(xlEdgeTop)
         .LineStyle = xlContinuous
         .ColorIndex = 0
         .TintAndShade = 0
         .Weight = xlThin
+    End With
+    With oExcel
+'    If PtgType = 1 Or PtgType = 3 Then
+                    oBook.Worksheets("sheet1").Cells(i, 2).Value = "Units Total :"
+                    oBook.Worksheets("sheet1").Cells(i, 4).Value = Format(QSum, "###0.00")
+'                    oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(ASum, "###0.00")
+'    ElseIf PtgType = 2 Or PtgType = 4 Then
+    rstQueryDetails.MoveFirst
+                If rstQueryDetails.Fields("Freight").Value <> 0 Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Packing & Forwarding :"
+                If rstQueryDetails.Fields("Freight").Value <> 0 Then oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("Freight").Value), "###0.00")
+                'If rstQueryDetails.Fields("TaxableAmount").Value <> rstQueryDetails.Fields("GTotal").Value Then
+                i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Taxable Amount :"
+                'If rstQueryDetails.Fields("TaxableAmount").Value <> rstQueryDetails.Fields("GTotal").Value Then
+                oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("TaxableAmount").Value), "###0.00")
+                If rstQueryDetails.Fields("Adjustment").Value <> 0 Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Adjustment :"
+                If rstQueryDetails.Fields("Adjustment").Value <> 0 Then oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("Adjustment").Value), "###0.00")
+                If rstQueryDetails.Fields("IGST").Value <> 0 Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Tax IGST:"
+                If rstQueryDetails.Fields("IGST").Value <> 0 Then oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("IGST").Value), "###0.00")
+                If rstQueryDetails.Fields("CGST").Value <> 0 Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Tax CGST:"
+                If rstQueryDetails.Fields("CGST").Value <> 0 Then oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("CGST").Value), "###0.00")
+                If rstQueryDetails.Fields("SGST").Value <> 0 Then i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Tax SGST:"
+                If rstQueryDetails.Fields("SGST").Value <> 0 Then oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("SGST").Value), "###0.00")
+                i = i + 1: oBook.Worksheets("sheet1").Cells(i, 2).Value = "Amount Total:"
+                oBook.Worksheets("sheet1").Cells(i, 7).Value = Format(Val(rstQueryDetails.Fields("GTotal").Value), "###0.00")
+'    End If
     End With
     With oSheet.Range("A" & i & ":H" & i).Borders(xlEdgeBottom)
         .LineStyle = xlContinuous
@@ -1906,10 +2058,9 @@ End If
         .TintAndShade = 0
         .Weight = xlThin
     End With
-    
+    If PtgType = 2 Or PtgType = 4 Then
     rstQueryDetails.MoveFirst
-    
-    
+
     i = i + 1:
     With oBook.Worksheets("sheet1").Rows(i)
         oBook.Worksheets("sheet1").Cells(i, 1).Value = rstQueryDetails.Fields("Declaration01").Value
@@ -2014,7 +2165,7 @@ End If
         .VerticalAlignment = xlCenter
         .NumberFormat = "General"
     End With
-    
+End If
     i = i + 1
 If ComboBox3.ListIndex = 0 Then Exit Do
 rstQueryList.MoveNext
@@ -2049,6 +2200,7 @@ Loop
             .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
             Screen.MousePointer = vbDefault
             If PrintFlag Then
+            On Error Resume Next
                 With CommonDialog1
                     .Copies = 1
                     .flags = &H0&

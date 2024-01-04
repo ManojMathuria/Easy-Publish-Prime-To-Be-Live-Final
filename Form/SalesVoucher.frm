@@ -99,8 +99,8 @@ Begin VB.Form frmSalesVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesVoucher.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -505,7 +505,7 @@ Begin VB.Form frmSalesVoucher
                   ReadOnly        =   1
                   Separator       =   ""
                   ShowContextMenu =   1
-                  ValueVT         =   5
+                  ValueVT         =   360185861
                   Value           =   0
                   MaxValueVT      =   5
                   MinValueVT      =   5
@@ -1028,7 +1028,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   37552133
+               ValueVT         =   360251397
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1087,7 +1087,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   360251397
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1200,7 +1200,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   360251397
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1429,7 +1429,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   360251397
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1600,7 +1600,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   360251397
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1737,8 +1737,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":21E6
-               Picture         =   "SalesVoucher.frx":2202
+               Picture         =   "SalesVoucher.frx":220A
+               Picture         =   "SalesVoucher.frx":2226
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1764,8 +1764,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":221E
-               Picture         =   "SalesVoucher.frx":223A
+               Picture         =   "SalesVoucher.frx":2242
+               Picture         =   "SalesVoucher.frx":225E
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
                Height          =   525
@@ -1795,7 +1795,7 @@ Begin VB.Form frmSalesVoucher
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "SalesVoucher.frx":2256
+               Picture         =   "SalesVoucher.frx":227A
                Begin VB.CommandButton btnNotes 
                   Caption         =   " Notes"
                   BeginProperty Font 
@@ -1860,8 +1860,8 @@ Begin VB.Form frmSalesVoucher
                   Alignment       =   0
                   FillColor       =   9164542
                   TextColor       =   0
-                  Picture         =   "SalesVoucher.frx":2272
-                  Picture         =   "SalesVoucher.frx":228E
+                  Picture         =   "SalesVoucher.frx":2296
+                  Picture         =   "SalesVoucher.frx":22B2
                End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
@@ -1891,7 +1891,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":22AA
+                  Picture         =   "SalesVoucher.frx":22CE
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1975,8 +1975,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":22C6
-            Picture         =   "SalesVoucher.frx":22E2
+            Picture         =   "SalesVoucher.frx":22EA
+            Picture         =   "SalesVoucher.frx":2306
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2003,8 +2003,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":22FE
-            Picture         =   "SalesVoucher.frx":231A
+            Picture         =   "SalesVoucher.frx":2322
+            Picture         =   "SalesVoucher.frx":233E
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2147,7 +2147,7 @@ Private Sub Form_Load()
     rstSalesVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,Amount,IntegrationStatus FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,IIF(P.Name=P.PrintName,P.Name,' ['+P.Name+']'+P.PrintName) As PartyName,IIF(C.Name=C.PrintName,C.Name,' ['+C.Name+']'+C.PrintName) As ConsigneeName,Amount,IntegrationStatus FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -2157,7 +2157,7 @@ Private Sub Form_Load()
         Me.DataGrid1.Columns(6).Caption = IIf(TallyIntegration = True, "Tally Integration", "Busy Integration")
         BusySystemIndicator False
         SSTab1.Tab = 0
-    If FrmStockLedger.dSortBy = True Or FrmAccountLedger.dSortBy = True Then
+    If FrmStockLedger.dSortBy = True Or FrmAccountLedger.dSortBy = True Or FrmQuery.dSortBy = True Then
         SortOrder = "Code"
     ElseIf FrmAccountLedger.dSortBy = True Then
         SortOrder = "Code"

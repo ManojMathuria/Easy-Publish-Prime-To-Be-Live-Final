@@ -109,11 +109,11 @@ Begin VB.Form FrmBookPrintOrder
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookPrintOrder.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame6"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "Mh3dFrame7"
+         Tab(1).Control(1)=   "Mh3dFrame3"
          Tab(1).Control(2)=   "Mh3dFrame5"
-         Tab(1).Control(3)=   "Mh3dFrame3"
-         Tab(1).Control(4)=   "Mh3dFrame7"
+         Tab(1).Control(3)=   "Mh3dFrame2"
+         Tab(1).Control(4)=   "Mh3dFrame6"
          Tab(1).ControlCount=   5
          Begin MSComDlg.CommonDialog CommonDialog1 
             Left            =   2280
@@ -4193,11 +4193,11 @@ Private Sub Form_Load()
     SSTab1.Tab = 0
 '    SortOrder = "Name"
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     ElseIf frmJobworkBill.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "NAME"
+        SortOrder = "NAME"
     End If
     DisplayListType = "O"
     Call RefreshList("")
