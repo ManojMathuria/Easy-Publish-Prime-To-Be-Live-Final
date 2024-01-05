@@ -104,6 +104,7 @@ Begin VB.Form FrmVchSeriesMaster
          TabPicture(1)   =   "VchSeriesMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -651,7 +652,7 @@ Begin VB.Form FrmVchSeriesMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1869873157
+               ValueVT         =   5
                Value           =   1
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1652,8 +1653,8 @@ Private Function CheckMandatoryFields() As Boolean
         Text2.SetFocus
         CheckMandatoryFields = True
     ElseIf CheckEmpty(Text3.Text, False) Then
-        Text3.SetFocus
-        CheckMandatoryFields = True
+'        Text3.SetFocus
+'        CheckMandatoryFields = True
     ElseIf CheckEmpty(Text4.Text, False) Then   'UOM
         SSTab1.Tab = 1: Text4.SetFocus: CheckMandatoryFields = True
     End If

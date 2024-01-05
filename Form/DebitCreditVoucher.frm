@@ -206,11 +206,11 @@ Begin VB.Form frmDebitCreditVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "DebitCreditVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtAccount"
-         Tab(1).Control(1)=   "btnNotes"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(2)=   "txtNotes"
-         Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(4)=   "Mh3dLabel1(1)"
+         Tab(1).Control(3)=   "btnNotes"
+         Tab(1).Control(4)=   "txtAccount"
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtAccount 
             Appearance      =   0  'Flat
@@ -903,8 +903,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0DDB
-               Picture         =   "DebitCreditVoucher.frx":0DF7
+               Picture         =   "DebitCreditVoucher.frx":0D93
+               Picture         =   "DebitCreditVoucher.frx":0DAF
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
@@ -930,8 +930,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0E13
-               Picture         =   "DebitCreditVoucher.frx":0E2F
+               Picture         =   "DebitCreditVoucher.frx":0DCB
+               Picture         =   "DebitCreditVoucher.frx":0DE7
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -971,9 +971,9 @@ Begin VB.Form frmDebitCreditVoucher
             AutoSize        =   -1  'True
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "DebitCreditVoucher.frx":0E4B
+            Picture         =   "DebitCreditVoucher.frx":0E03
             Multiline       =   -1  'True
-            Picture         =   "DebitCreditVoucher.frx":0E67
+            Picture         =   "DebitCreditVoucher.frx":0E1F
          End
          Begin MSComctlLib.Toolbar Toolbar2 
             Height          =   630

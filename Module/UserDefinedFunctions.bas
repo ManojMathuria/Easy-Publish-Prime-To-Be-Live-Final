@@ -4818,13 +4818,13 @@ cnDatabase.CommitTrans
     '***Bookmaster**SalePrice_PurPrice
 cnDatabase.BeginTrans
     SQL = ""
-    SQL = " Add [SalePrice] [decimal](12, 2) NOT NULL  DEFAULT (0),[PurPrice] [decimal](12, 2) NOT NULL DEFAULT (0) "
+    SQL = " Add [SalePrice] [decimal](12, 2) NOT NULL  DEFAULT (0),[PurPrice] [decimal](12, 2) NOT NULL DEFAULT (0) ,[ItemMarks] nvarchar(6) NULL"
     Call Create_Alter_Table("Alter Table ", "Bookmaster", SQL, "SalePrice")
 cnDatabase.CommitTrans
     '***Accountmaster
 cnDatabase.BeginTrans
     SQL = ""
-    SQL = " Add [City] nvarchar(40) NULL  DEFAULT (''),[ContactPer] nvarchar(40) NULL  DEFAULT (''),[Transporter] nvarchar(40) NULL  DEFAULT (''),[Transporter2] nvarchar(40) NULL,[Transporter3] nvarchar(40) NULL,[Transporter4] nvarchar(40) NULL "
+    SQL = " Add [City] nvarchar(40) NULL  DEFAULT (''),[ContactPer] nvarchar(40) NULL  DEFAULT (''),[Transporter] nvarchar(40) NULL ,[Transporter2] nvarchar(40) NULL,[Transporter3] nvarchar(40) NULL,[Transporter4] nvarchar(40) NULL "
     Call Create_Alter_Table("Alter Table ", "Accountmaster", SQL, "City")
     cnDatabase.Execute "Update AccountMaster Set City='' Where City is null"
 cnDatabase.CommitTrans
@@ -4871,9 +4871,10 @@ Public Function Create_Alter_Table(ByVal ActionType As String, ByVal Table_Name 
           "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName AND COLUMN_NAME = @ColName) BEGIN  PRINT 'Col_Exist' END " & _
           "Else " & _
           "BEGIN " & _
-          "SELECT @sql = @Action +' '+ @tableName + @Tsql+ ';'; " & _
+          "SELECT @sql = @Action +' '+ @tableName + @Tsql+ ';' " & _
           "EXEC sp_executesql @sql ; " & _
           "End "
+'          "SELECT @sql = @Action +' '+ @tableName + @Tsql+ ';'; "
 End Function
 Public Function Rename_Table(ByVal Table_Name As String, Col_Name As String, Col2_Name As String)
   cnDatabase.Execute "DECLARE @sql NVARCHAR(MAX), @tableName NVARCHAR(100), @ColName NVARCHAR(100), @Col2Name NVARCHAR(100); " & _

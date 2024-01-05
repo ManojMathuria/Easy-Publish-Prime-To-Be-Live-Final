@@ -115,11 +115,9 @@ Begin VB.Form FrmBookMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "btnNotes"
+         Tab(1).Control(0)=   "Mh3dFrame2"
          Tab(1).Control(1)=   "txtNotes"
-         Tab(1).Control(2)=   "Mh3dFrame2"
-         Tab(1).Control(3)=   "Mh3dLabel1(1)"
-         Tab(1).ControlCount=   4
+         Tab(1).ControlCount=   2
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
          Tab(2).ControlEnabled=   0   'False
@@ -231,23 +229,6 @@ Begin VB.Form FrmBookMaster
             _ExtentY        =   847
             _Version        =   393216
          End
-         Begin VB.CommandButton btnNotes 
-            Caption         =   " Notes"
-            BeginProperty Font 
-               Name            =   "Calibri"
-               Size            =   12
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   345
-            Left            =   -74880
-            TabIndex        =   19
-            Top             =   8400
-            Width           =   1455
-         End
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -262,12 +243,12 @@ Begin VB.Form FrmBookMaster
                Strikethrough   =   0   'False
             EndProperty
             Height          =   345
-            Left            =   -73440
+            Left            =   -73080
             MaxLength       =   40
             MultiLine       =   -1  'True
             TabIndex        =   54
             ToolTipText     =   "Open Notes"
-            Top             =   8400
+            Top             =   8280
             Visible         =   0   'False
             Width           =   5175
          End
@@ -287,7 +268,7 @@ Begin VB.Form FrmBookMaster
             Left            =   720
             TabIndex        =   24
             Top             =   8445
-            Width           =   10320
+            Width           =   12240
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
             Height          =   7440
@@ -524,7 +505,7 @@ Begin VB.Form FrmBookMaster
             EndProperty
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   4020
+            Height          =   8340
             Left            =   -74880
             TabIndex        =   26
             TabStop         =   0   'False
@@ -532,7 +513,7 @@ Begin VB.Form FrmBookMaster
             Width           =   15960
             _Version        =   65536
             _ExtentX        =   28152
-            _ExtentY        =   7091
+            _ExtentY        =   14711
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -553,10 +534,95 @@ Begin VB.Form FrmBookMaster
             FormatString    =   ""
             Caption         =   ""
             Picture         =   "BookMaster.frx":2230
+            Begin VB.TextBox Text8 
+               Appearance      =   0  'Flat
+               BackColor       =   &H00FFFFFF&
+               DataSource      =   "Adodc1"
+               BeginProperty Font 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   330
+               Left            =   1680
+               Locked          =   -1  'True
+               MaxLength       =   40
+               TabIndex        =   12
+               Top             =   2310
+               Width           =   6495
+            End
+            Begin Mh3dlblLib.Mh3dLabel Mh3dLabel30 
+               Height          =   330
+               Left            =   8160
+               TabIndex        =   66
+               Top             =   2310
+               Width           =   1815
+               _Version        =   65536
+               _ExtentX        =   3201
+               _ExtentY        =   582
+               _StockProps     =   77
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               TintColor       =   16711935
+               Caption         =   " Item Marks"
+               Alignment       =   0
+               FillColor       =   9164542
+               TextColor       =   0
+               Picture         =   "BookMaster.frx":224C
+               Picture         =   "BookMaster.frx":2268
+            End
+            Begin VB.TextBox Text17 
+               Appearance      =   0  'Flat
+               BackColor       =   &H00FFFFFF&
+               DataSource      =   "Adodc1"
+               BeginProperty Font 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   400
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   330
+               Left            =   9960
+               MaxLength       =   255
+               TabIndex        =   13
+               Top             =   2310
+               Width           =   5880
+            End
+            Begin VB.CommandButton btnNotes 
+               Caption         =   " Notes"
+               BeginProperty Font 
+                  Name            =   "Calibri"
+                  Size            =   12
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               Height          =   345
+               Left            =   240
+               TabIndex        =   64
+               Top             =   7800
+               Width           =   1455
+            End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   980
                Left            =   120
-               TabIndex        =   64
+               TabIndex        =   63
                Top             =   720
                Visible         =   0   'False
                Width           =   15720
@@ -580,13 +646,13 @@ Begin VB.Form FrmBookMaster
                FillColor       =   9164542
                ShadowColor     =   0
                TextColor       =   0
-               Picture         =   "BookMaster.frx":224C
-               Picture         =   "BookMaster.frx":2268
+               Picture         =   "BookMaster.frx":2284
+               Picture         =   "BookMaster.frx":22A0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
                Left            =   8160
-               TabIndex        =   60
+               TabIndex        =   59
                Top             =   3570
                Width           =   1815
                _Version        =   65536
@@ -607,8 +673,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2284
-               Picture         =   "BookMaster.frx":22A0
+               Picture         =   "BookMaster.frx":22BC
+               Picture         =   "BookMaster.frx":22D8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -635,8 +701,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":22BC
-               Picture         =   "BookMaster.frx":22D8
+               Picture         =   "BookMaster.frx":22F4
+               Picture         =   "BookMaster.frx":2310
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
                Height          =   330
@@ -662,8 +728,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":22F4
-               Picture         =   "BookMaster.frx":2310
+               Picture         =   "BookMaster.frx":232C
+               Picture         =   "BookMaster.frx":2348
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
@@ -689,8 +755,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":232C
-               Picture         =   "BookMaster.frx":2348
+               Picture         =   "BookMaster.frx":2364
+               Picture         =   "BookMaster.frx":2380
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
@@ -716,8 +782,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2364
-               Picture         =   "BookMaster.frx":2380
+               Picture         =   "BookMaster.frx":239C
+               Picture         =   "BookMaster.frx":23B8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
                Height          =   330
@@ -743,8 +809,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":239C
-               Picture         =   "BookMaster.frx":23B8
+               Picture         =   "BookMaster.frx":23D4
+               Picture         =   "BookMaster.frx":23F0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
@@ -770,8 +836,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":23D4
-               Picture         =   "BookMaster.frx":23F0
+               Picture         =   "BookMaster.frx":240C
+               Picture         =   "BookMaster.frx":2428
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
@@ -797,8 +863,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":240C
-               Picture         =   "BookMaster.frx":2428
+               Picture         =   "BookMaster.frx":2444
+               Picture         =   "BookMaster.frx":2460
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
@@ -824,8 +890,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2444
-               Picture         =   "BookMaster.frx":2460
+               Picture         =   "BookMaster.frx":247C
+               Picture         =   "BookMaster.frx":2498
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   330
@@ -851,8 +917,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":247C
-               Picture         =   "BookMaster.frx":2498
+               Picture         =   "BookMaster.frx":24B4
+               Picture         =   "BookMaster.frx":24D0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -878,8 +944,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":24B4
-               Picture         =   "BookMaster.frx":24D0
+               Picture         =   "BookMaster.frx":24EC
+               Picture         =   "BookMaster.frx":2508
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -973,8 +1039,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5195
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":24EC
-               Caption         =   "BookMaster.frx":250C
+               Calculator      =   "BookMaster.frx":2524
+               Caption         =   "BookMaster.frx":2544
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -984,9 +1050,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2578
-               Keys            =   "BookMaster.frx":2596
-               Spin            =   "BookMaster.frx":25E0
+               DropDown        =   "BookMaster.frx":25B0
+               Keys            =   "BookMaster.frx":25CE
+               Spin            =   "BookMaster.frx":2618
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1038,29 +1104,8 @@ Begin VB.Form FrmBookMaster
                Height          =   330
                Left            =   1680
                MaxLength       =   255
-               TabIndex        =   14
+               TabIndex        =   15
                Top             =   2940
-               Width           =   14160
-            End
-            Begin VB.TextBox Text8 
-               Appearance      =   0  'Flat
-               BackColor       =   &H00FFFFFF&
-               DataSource      =   "Adodc1"
-               BeginProperty Font 
-                  Name            =   "Calibri"
-                  Size            =   9.75
-                  Charset         =   0
-                  Weight          =   400
-                  Underline       =   0   'False
-                  Italic          =   0   'False
-                  Strikethrough   =   0   'False
-               EndProperty
-               Height          =   330
-               Left            =   1680
-               Locked          =   -1  'True
-               MaxLength       =   40
-               TabIndex        =   12
-               Top             =   2310
                Width           =   14160
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
@@ -1087,8 +1132,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2608
-               Picture         =   "BookMaster.frx":2624
+               Picture         =   "BookMaster.frx":2640
+               Picture         =   "BookMaster.frx":265C
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
                Height          =   330
@@ -1100,8 +1145,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   11456
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2640
-               Caption         =   "BookMaster.frx":2660
+               Calculator      =   "BookMaster.frx":2678
+               Caption         =   "BookMaster.frx":2698
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1111,9 +1156,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":26CC
-               Keys            =   "BookMaster.frx":26EA
-               Spin            =   "BookMaster.frx":2734
+               DropDown        =   "BookMaster.frx":2704
+               Keys            =   "BookMaster.frx":2722
+               Spin            =   "BookMaster.frx":276C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1186,7 +1231,7 @@ Begin VB.Form FrmBookMaster
                Left            =   1680
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   13
+               TabIndex        =   14
                ToolTipText     =   "Finish Size"
                Top             =   2630
                Width           =   14160
@@ -1236,8 +1281,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":275C
-               Picture         =   "BookMaster.frx":2778
+               Picture         =   "BookMaster.frx":2794
+               Picture         =   "BookMaster.frx":27B0
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput15 
                Height          =   330
@@ -1250,8 +1295,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5715
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2794
-               Caption         =   "BookMaster.frx":27B4
+               Calculator      =   "BookMaster.frx":27CC
+               Caption         =   "BookMaster.frx":27EC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1261,9 +1306,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2820
-               Keys            =   "BookMaster.frx":283E
-               Spin            =   "BookMaster.frx":2888
+               DropDown        =   "BookMaster.frx":2858
+               Keys            =   "BookMaster.frx":2876
+               Spin            =   "BookMaster.frx":28C0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1310,8 +1355,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5205
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":28B0
-               Caption         =   "BookMaster.frx":28D0
+               Calculator      =   "BookMaster.frx":28E8
+               Caption         =   "BookMaster.frx":2908
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1321,9 +1366,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":293C
-               Keys            =   "BookMaster.frx":295A
-               Spin            =   "BookMaster.frx":29A4
+               DropDown        =   "BookMaster.frx":2974
+               Keys            =   "BookMaster.frx":2992
+               Spin            =   "BookMaster.frx":29DC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1370,8 +1415,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5768
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":29CC
-               Caption         =   "BookMaster.frx":29EC
+               Calculator      =   "BookMaster.frx":2A04
+               Caption         =   "BookMaster.frx":2A24
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1381,9 +1426,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2A58
-               Keys            =   "BookMaster.frx":2A76
-               Spin            =   "BookMaster.frx":2AC0
+               DropDown        =   "BookMaster.frx":2A90
+               Keys            =   "BookMaster.frx":2AAE
+               Spin            =   "BookMaster.frx":2AF8
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1443,8 +1488,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2AE8
-               Picture         =   "BookMaster.frx":2B04
+               Picture         =   "BookMaster.frx":2B20
+               Picture         =   "BookMaster.frx":2B3C
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput17 
                Height          =   330
@@ -1456,8 +1501,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   10372
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2B20
-               Caption         =   "BookMaster.frx":2B40
+               Calculator      =   "BookMaster.frx":2B58
+               Caption         =   "BookMaster.frx":2B78
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1467,9 +1512,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2BAC
-               Keys            =   "BookMaster.frx":2BCA
-               Spin            =   "BookMaster.frx":2C14
+               DropDown        =   "BookMaster.frx":2BE4
+               Keys            =   "BookMaster.frx":2C02
+               Spin            =   "BookMaster.frx":2C4C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1529,8 +1574,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2C3C
-               Picture         =   "BookMaster.frx":2C58
+               Picture         =   "BookMaster.frx":2C74
+               Picture         =   "BookMaster.frx":2C90
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel29 
                Height          =   330
@@ -1556,8 +1601,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2C74
-               Picture         =   "BookMaster.frx":2C90
+               Picture         =   "BookMaster.frx":2CAC
+               Picture         =   "BookMaster.frx":2CC8
             End
             Begin VB.TextBox Text15 
                Appearance      =   0  'Flat
@@ -1575,7 +1620,7 @@ Begin VB.Form FrmBookMaster
                Height          =   330
                Left            =   1680
                MaxLength       =   60
-               TabIndex        =   15
+               TabIndex        =   16
                Top             =   3260
                Width           =   6490
             End
@@ -1595,14 +1640,14 @@ Begin VB.Form FrmBookMaster
                Height          =   330
                Left            =   9960
                MaxLength       =   255
-               TabIndex        =   16
+               TabIndex        =   17
                Top             =   3260
                Width           =   5880
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   330
                Left            =   120
-               TabIndex        =   59
+               TabIndex        =   58
                Top             =   3570
                Width           =   1575
                _Version        =   65536
@@ -1623,21 +1668,21 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2CAC
-               Picture         =   "BookMaster.frx":2CC8
+               Picture         =   "BookMaster.frx":2CE4
+               Picture         =   "BookMaster.frx":2D00
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
                Height          =   330
                Left            =   9945
-               TabIndex        =   18
+               TabIndex        =   19
                ToolTipText     =   "Printing Form"
                Top             =   3570
                Width           =   5895
                _Version        =   65536
                _ExtentX        =   10398
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2CE4
-               Caption         =   "BookMaster.frx":2D04
+               Calculator      =   "BookMaster.frx":2D1C
+               Caption         =   "BookMaster.frx":2D3C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1647,9 +1692,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2D70
-               Keys            =   "BookMaster.frx":2D8E
-               Spin            =   "BookMaster.frx":2DD8
+               DropDown        =   "BookMaster.frx":2DA8
+               Keys            =   "BookMaster.frx":2DC6
+               Spin            =   "BookMaster.frx":2E10
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1688,15 +1733,15 @@ Begin VB.Form FrmBookMaster
             Begin TDBNumber6Ctl.TDBNumber MhRealInput2 
                Height          =   330
                Left            =   1680
-               TabIndex        =   17
+               TabIndex        =   18
                ToolTipText     =   "Printing Form"
                Top             =   3570
                Width           =   6495
                _Version        =   65536
                _ExtentX        =   11456
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2E00
-               Caption         =   "BookMaster.frx":2E20
+               Calculator      =   "BookMaster.frx":2E38
+               Caption         =   "BookMaster.frx":2E58
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1706,9 +1751,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2E8C
-               Keys            =   "BookMaster.frx":2EAA
-               Spin            =   "BookMaster.frx":2EF4
+               DropDown        =   "BookMaster.frx":2EC4
+               Keys            =   "BookMaster.frx":2EE2
+               Spin            =   "BookMaster.frx":2F2C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1744,6 +1789,34 @@ Begin VB.Form FrmBookMaster
                MaxValueVT      =   5
                MinValueVT      =   5
             End
+            Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+               Height          =   330
+               Index           =   1
+               Left            =   6960
+               TabIndex        =   65
+               Top             =   7800
+               Width           =   8775
+               _Version        =   65536
+               _ExtentX        =   15478
+               _ExtentY        =   582
+               _StockProps     =   77
+               BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                  Name            =   "Calibri"
+                  Size            =   9.75
+                  Charset         =   0
+                  Weight          =   700
+                  Underline       =   0   'False
+                  Italic          =   0   'False
+                  Strikethrough   =   0   'False
+               EndProperty
+               TintColor       =   16711935
+               Caption         =   " Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save  F5-> Refresh-> F12-> Create Duplicate Item Master"
+               Alignment       =   0
+               FillColor       =   8421504
+               TextColor       =   16777215
+               Picture         =   "BookMaster.frx":2F54
+               Picture         =   "BookMaster.frx":2F70
+            End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
             Height          =   8300
@@ -1774,7 +1847,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":2F1C
+            Picture         =   "BookMaster.frx":2F8C
             Begin FPSpreadADO.fpSpread fpSpread1 
                Height          =   8085
                Left            =   120
@@ -1800,7 +1873,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   4227327
                MaxCols         =   4
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":2F38
+               SpreadDesigner  =   "BookMaster.frx":2FA8
             End
             Begin VB.TextBox Text99 
                Appearance      =   0  'Flat
@@ -1854,7 +1927,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":35AC
+            Picture         =   "BookMaster.frx":35F8
             Begin FPSpreadADO.fpSpread fpSpread3 
                Height          =   8085
                Left            =   120
@@ -1879,7 +1952,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   4227327
                MaxCols         =   7
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":35C8
+               SpreadDesigner  =   "BookMaster.frx":3614
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame7 
@@ -1911,7 +1984,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":3CAA
+            Picture         =   "BookMaster.frx":3CD2
             Begin FPSpreadADO.fpSpread fpSpread4 
                Height          =   8085
                Left            =   120
@@ -1937,7 +2010,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   25
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":3CC6
+               SpreadDesigner  =   "BookMaster.frx":3CEE
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame8 
@@ -1969,7 +2042,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":4D52
+            Picture         =   "BookMaster.frx":4D56
             Begin FPSpreadADO.fpSpread fpSpread5 
                Height          =   8085
                Left            =   120
@@ -1995,7 +2068,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   12
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":4D6E
+               SpreadDesigner  =   "BookMaster.frx":4D72
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame9 
@@ -2027,7 +2100,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":5767
+            Picture         =   "BookMaster.frx":5747
             Begin VB.CommandButton cmdLoadElement 
                Caption         =   ".."
                BeginProperty Font 
@@ -2071,7 +2144,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   13
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":5783
+               SpreadDesigner  =   "BookMaster.frx":5763
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
@@ -2103,7 +2176,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":61B7
+            Picture         =   "BookMaster.frx":6173
             Begin FPSpreadADO.fpSpread fpSpread2 
                Height          =   8085
                Left            =   120
@@ -2129,7 +2202,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   24
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":61D3
+               SpreadDesigner  =   "BookMaster.frx":618F
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
@@ -2157,41 +2230,13 @@ Begin VB.Form FrmBookMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookMaster.frx":73B8
-            Picture         =   "BookMaster.frx":73D4
-         End
-         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
-            Height          =   330
-            Index           =   1
-            Left            =   -67680
-            TabIndex        =   58
-            Top             =   8400
-            Width           =   8775
-            _Version        =   65536
-            _ExtentX        =   15478
-            _ExtentY        =   582
-            _StockProps     =   77
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Calibri"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            TintColor       =   16711935
-            Caption         =   " Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save  F5-> Refresh-> F12-> Create Duplicate Item Master"
-            Alignment       =   0
-            FillColor       =   8421504
-            TextColor       =   16777215
-            Picture         =   "BookMaster.frx":73F0
-            Picture         =   "BookMaster.frx":740C
+            Picture         =   "BookMaster.frx":7350
+            Picture         =   "BookMaster.frx":736C
          End
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
             Left            =   14040
-            TabIndex        =   61
+            TabIndex        =   60
             Top             =   8445
             Width           =   1005
             _Version        =   65536
@@ -2211,13 +2256,13 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Export List"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":7428
-            Picture         =   "BookMaster.frx":7444
+            Picture         =   "BookMaster.frx":7388
+            Picture         =   "BookMaster.frx":73A4
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
             Left            =   12980
-            TabIndex        =   62
+            TabIndex        =   61
             Top             =   8445
             Width           =   1005
             _Version        =   65536
@@ -2237,13 +2282,13 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Print List"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":7460
-            Picture         =   "BookMaster.frx":747C
+            Picture         =   "BookMaster.frx":73C0
+            Picture         =   "BookMaster.frx":73DC
          End
          Begin Mh3dlblLib.Mh3dLabel CmdLabel 
             Height          =   330
             Left            =   15090
-            TabIndex        =   63
+            TabIndex        =   62
             Top             =   8445
             Width           =   1005
             _Version        =   65536
@@ -2263,8 +2308,8 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Label Print"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":7498
-            Picture         =   "BookMaster.frx":74B4
+            Picture         =   "BookMaster.frx":73F8
+            Picture         =   "BookMaster.frx":7414
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2432,6 +2477,8 @@ Private Sub Form_Load()
 
     SortCol = "Name"
     If Trim(ReadFromFile("Customer Type")) = "General" Then
+        Mh3dLabel1(0).Caption = " Item Code"
+        Mh3dLabel3.Caption = " Item Description"
         Mh3dLabel6.Visible = True
         Text5.TabStop = False
         Text10.TabStop = False
@@ -2443,7 +2490,7 @@ Private Sub Form_Load()
         Next
     'Data Grid
         DataGrid1.Columns(1).Width = 1000
-        DataGrid1.Columns(1).Caption = "Item Code"
+        DataGrid1.Columns(1).Caption = " Item Code"
         DataGrid1.Columns(2).Width = 4844
         DataGrid1.Columns(2).Visible = True
         DataGrid1.Columns(3).Width = 4100
@@ -3798,6 +3845,7 @@ Private Sub ClearFields()
     Text13.Text = ""
     Text15.Text = ""
     Text16.Text = "": IntegrationUnitCode = ""
+    Text17.Text = ""
     MhRealInput15.Value = 0
     MhRealInput16.Value = 0
     MhRealInput7.Value = 0
@@ -3839,6 +3887,7 @@ Private Sub LoadFields()
             If Not rstBindingTypeList.EOF Then Text10.Text = rstBindingTypeList.Fields("Col0").Value
         End If
         If Not IsNull(.Fields("Remarks").Value) Then Text13.Text = .Fields("Remarks").Value
+        If Not IsNull(.Fields("ItemMarks").Value) Then Text17.Text = .Fields("ItemMarks").Value
         Text15.Text = .Fields("ItemIntegrationName").Value
         If Not IsNull(.Fields("IntegrationUnit").Value) Then IntegrationUnitCode = .Fields("IntegrationUnit").Value
         If rstUnitList.RecordCount > 0 Then rstUnitList.MoveFirst
@@ -4034,6 +4083,7 @@ Private Sub SaveFields()
         .Fields("FinishSize").Value = IIf(CheckEmpty(FinishSizeCode1, False), "*11098", FinishSizeCode1) 'FinishSizeCode1
         .Fields("BindingType").Value = IIf(CheckEmpty(BindingTypeCode, False), Null, BindingTypeCode)
         .Fields("Remarks").Value = Trim(Text13.Text)
+        .Fields("ItemMarks").Value = Trim(Text17.Text)
         .Fields("ItemIntegrationName").Value = Trim(Text15.Text)
         .Fields("Type").Value = ItemType
         .Fields("IntegrationUnit").Value = IntegrationUnitCode
