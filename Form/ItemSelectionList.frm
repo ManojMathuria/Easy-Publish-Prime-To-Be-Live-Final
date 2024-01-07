@@ -101,7 +101,7 @@ Begin VB.Form FrmItemSelectionList
       EndProperty
    End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   9250
+      Height          =   9255
       Left            =   0
       TabIndex        =   10
       TabStop         =   0   'False
@@ -109,7 +109,7 @@ Begin VB.Form FrmItemSelectionList
       Width           =   9675
       _Version        =   65536
       _ExtentX        =   17066
-      _ExtentY        =   16316
+      _ExtentY        =   16325
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -130,15 +130,15 @@ Begin VB.Form FrmItemSelectionList
       Caption         =   ""
       Picture         =   "ItemSelectionList.frx":087C
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
-         Height          =   300
+         Height          =   540
          Index           =   2
          Left            =   105
          TabIndex        =   16
-         Top             =   8880
-         Width           =   9460
+         Top             =   8640
+         Width           =   9465
          _Version        =   65536
-         _ExtentX        =   16686
-         _ExtentY        =   529
+         _ExtentX        =   16695
+         _ExtentY        =   952
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
@@ -150,18 +150,22 @@ Begin VB.Form FrmItemSelectionList
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   "  Ctrl+A->Select ALL  Ctrl+D->Deselect ALL  Alt+V->Print Preview  Alt+P->Print Alt+E->Email  Escape->Exit"
-         Alignment       =   0
+         Caption         =   $"ItemSelectionList.frx":0898
+         AutoSize        =   -1  'True
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "ItemSelectionList.frx":0898
-         Picture         =   "ItemSelectionList.frx":08B4
+         WallPaper       =   2
+         Picture         =   "ItemSelectionList.frx":097B
+         Multiline       =   -1  'True
+         NoPrefix        =   -1  'True
+         GlobalMem       =   -1  'True
+         Picture         =   "ItemSelectionList.frx":0997
       End
       Begin MSComctlLib.ListView ListView4 
          Height          =   4020
          Left            =   4830
          TabIndex        =   8
-         Top             =   4800
+         Top             =   4560
          Width           =   4845
          _ExtentX        =   8546
          _ExtentY        =   7091
@@ -214,8 +218,8 @@ Begin VB.Form FrmItemSelectionList
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ItemSelectionList.frx":08D0
-         Picture         =   "ItemSelectionList.frx":08EC
+         Picture         =   "ItemSelectionList.frx":09B3
+         Picture         =   "ItemSelectionList.frx":09CF
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
@@ -241,8 +245,8 @@ Begin VB.Form FrmItemSelectionList
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ItemSelectionList.frx":0908
-         Picture         =   "ItemSelectionList.frx":0924
+         Picture         =   "ItemSelectionList.frx":09EB
+         Picture         =   "ItemSelectionList.frx":0A07
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
@@ -254,8 +258,8 @@ Begin VB.Form FrmItemSelectionList
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "ItemSelectionList.frx":0940
-         Caption         =   "ItemSelectionList.frx":0A58
+         Calendar        =   "ItemSelectionList.frx":0A23
+         Caption         =   "ItemSelectionList.frx":0B3B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -265,9 +269,9 @@ Begin VB.Form FrmItemSelectionList
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ItemSelectionList.frx":0AC4
-         Keys            =   "ItemSelectionList.frx":0AE2
-         Spin            =   "ItemSelectionList.frx":0B40
+         DropDown        =   "ItemSelectionList.frx":0BA7
+         Keys            =   "ItemSelectionList.frx":0BC5
+         Spin            =   "ItemSelectionList.frx":0C23
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -316,8 +320,8 @@ Begin VB.Form FrmItemSelectionList
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "ItemSelectionList.frx":0B68
-         Caption         =   "ItemSelectionList.frx":0C80
+         Calendar        =   "ItemSelectionList.frx":0C4B
+         Caption         =   "ItemSelectionList.frx":0D63
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -327,9 +331,9 @@ Begin VB.Form FrmItemSelectionList
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ItemSelectionList.frx":0CEC
-         Keys            =   "ItemSelectionList.frx":0D0A
-         Spin            =   "ItemSelectionList.frx":0D68
+         DropDown        =   "ItemSelectionList.frx":0DCF
+         Keys            =   "ItemSelectionList.frx":0DED
+         Spin            =   "ItemSelectionList.frx":0E4B
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -370,13 +374,13 @@ Begin VB.Form FrmItemSelectionList
          CenturyMode     =   0
       End
       Begin MSComctlLib.ListView ListView1 
-         Height          =   4500
+         Height          =   4260
          Left            =   0
          TabIndex        =   5
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
-         _ExtentY        =   7938
+         _ExtentY        =   7514
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -462,7 +466,7 @@ Begin VB.Form FrmItemSelectionList
          Height          =   4020
          Left            =   0
          TabIndex        =   7
-         Top             =   4800
+         Top             =   4560
          Width           =   9675
          _ExtentX        =   17066
          _ExtentY        =   7091
@@ -491,13 +495,13 @@ Begin VB.Form FrmItemSelectionList
          NumItems        =   0
       End
       Begin MSComctlLib.ListView ListView2 
-         Height          =   4500
+         Height          =   4260
          Left            =   4830
          TabIndex        =   6
          Top             =   315
          Width           =   4845
          _ExtentX        =   8546
-         _ExtentY        =   7938
+         _ExtentY        =   7514
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -647,23 +651,23 @@ Private Sub Form_Load()
 
     If VchType <= 10 Then
         Me.Caption = "Selection List...." + Choose(IIf(VchType = 0, VchType + 1, VchType + 1), "Physical Stock Audit Item-Wise", "Inventory Movement Ledger Item-Wise", "Stock Status Item-Wise", "Sales Analysis Item-Wise", "Sales Return Analysis Item-Wise", "Sales And Sales Return Analysis Item-Wise", "Net Sales Analysis Item-Wise", "Sales Analysis One Party Item-Wise", "Sales Return Analysis One Party Item-Wise", "Sales And Sales Return Analysis One Party Item-Wise", "Net Sales Analysis One Party Item-Wise", "Paper Receipt Party-Wise")
-        Me.Height = 9630
+        Me.Height = 10065
     ElseIf VchType <= 20 And VchType >= 11 Then
-        Me.Height = 9630
+        Me.Height = 10065
         Me.Caption = "Selection List...." + Choose((VchType - 10), "Paper Receipt Party-Wise", "Paper Receipt Order-Wise", "Paer Receipt  Without-Order", "Paper Issue Party-Wise", "Paper Issue Order-Wise", "Paper Issue Without-Order", "Paper Transfer Party-Wise", "Paper Pending Order Party-Wise")
     ElseIf Right(VchType, 2) >= 21 And Right(VchType, 2) <= 48 And VchType <> 31 Then
         Me.Caption = "Selection List...." + Choose(Right(VchType, 2) - 20, "Sales Analysis Party-Wise", "Sales Return Analysis Party-Wise", "Sales And Sales Return Analysis Party-Wise", "Net Sales Analysis Party-Wise", "Sales Analysis One-Item Party-Wise", "Sales Return Analysis One-Item Party-Wise", "Sales And Sales Return Analysis One-Item Party-Wise", "Net Sales One-Item Party-Wise", "Sales Voucher-Wise", "30", "Sales Voucher-Wise", "32", "Short-Item Analysis Item-Wise", "34", "Purchase Orders-Party-Wise-Detailed", "Purchase Orders-Party-wise-Summarised", "Sales Orders-Party-Wise-Detailed", "Sales Orders-Party-wise-Summarised", "Purchase Orders Order-Wise", "Purchase Orders Party-wise", "Purchase Orders Item-wise", "Sale Orders Order-wise", "Sale Orders Party-wise", "Sale Orders Item-wise", "45", " Pending Sales Order", "Pending Sales Order Party-Wise", "Sales Voucher-Wise")
-        Me.Height = 9630
+        Me.Height = 10065
     ElseIf VchType >= 53 And VchType <= 69 Then
         Me.Caption = "Selection List...." + Choose(VchType - 52, "Purchase Analysis Item-Wise", "Purchase Return Analysis Item-Wise", "Purchase And Purchase Return Analysis Item-Wise", "Net Purchase Analysis Item-Wise", "Purchase Analysis One Party Item-Wise", "Purchase Return Analysis One Party Item-Wise", "Purchase And Purchase Return Analysis One Party Item-Wise", "Net Purchase Analysis One Party Item-Wise", "Purchase Analysis Party-Wise", "Purchase Return Analysis Party-Wise", "Purchase And Purchase Return Analysis Party-Wise", "Net Purchase Analysis Party-Wise", "Purchase Analysis One-Item Party-Wise", "Purchase Return Analysis One-Item Party-Wise", "Purchase And Purchase Return Analysis One-Item Party-Wise", "Net Purchase One-Item Party-Wise", "Purchase Voucher-Wise")
-        Me.Height = 9630
+        Me.Height = 10065
     ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then
         Me.Caption = "Selection List...." + Choose(VchType - 102, "WIP Pending Ledger Item-Wise", "RM Pending Ledger Item-Wise", "RM AND WIP Pending Ledger Item-Wise")
-        Me.Height = 9630
+        Me.Height = 10065
     ElseIf VchType = 49 Then
         Me.Caption = "Item Ledger Summarize": Me.Height = 10065 '9630
     Else
-        Me.Caption = "Item Ledger Date-Wise": Me.Height = 9630
+        Me.Caption = "Item Ledger Date-Wise": Me.Height = 10065
     End If
 If (VchType <= 20 And VchType >= 18) Then: ListView1.Width = 9655
 If VchType = 103 Or VchType = 104 Or VchType = 105 Then: ListView3.Width = 9655
@@ -697,7 +701,7 @@ End If
         rstVchSeriesList.Open "SELECT Name+'-'+VchName AS Name,Code FROM VchSeriesMaster Where Left(VchType,2)='" & Left(VchType, 2) & "' ORDER BY Name+'-'+VchName", cnDatabase, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
     If rstItemList.State = adStateOpen Then rstItemList.Close
-        rstItemList.Open "SELECT Name,Code FROM BookMaster Where Type='F' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstItemList.Open "SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') AS Name,Code FROM BookMaster Where Type='F' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstItemList.ActiveConnection = Nothing
     If rstMatCList.State = adStateOpen Then rstMatCList.Close
         rstMatCList.Open "SELECT Name,Code FROM AccountMaster Where [Group]='*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -868,7 +872,9 @@ Dim i As Integer
         
         Load FrmStockLedger
         FrmStockLedger.Show
-        Sendkeys "{TAB}", True:        Sendkeys "{TAB}", True
+        FrmStockLedger.fpSpread1.SetActiveCell 1, 1
+        Sendkeys "{TAB}", True
+        'Sendkeys "{TAB}", True
         CloseForm (Me)
 End Sub
 Private Sub PrintPaperLedger()
@@ -889,7 +895,7 @@ If Right(VchType, 2) = 48 Then
 Else
     If rstItemList.State = adStateOpen Then rstItemList.Close
 '    rstItemList.Open "SELECT Name,Code FROM BookMaster " & IIf(SelectAll, " Where Type='F' ", "Where Type='F' AND [Group] IN (" & SelectedItems(ListView2) & ")") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
-    rstItemList.Open "WITH ItemGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('5') AND Code IN (" & SelectedItems(ListView2) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN ItemGroupMaster C ON P.UnderGroup=C.Code) SELECT Name,Code FROM BookMaster WHERE [Group] IN (SELECT Code FROM ItemGroupMaster)  ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstItemList.Open "WITH ItemGroupMaster AS (SELECT Name,Code FROM GeneralMaster WHERE Type IN ('5') AND Code IN (" & SelectedItems(ListView2) & ") UNION ALL SELECT P.Name,P.Code FROM GeneralMaster P INNER JOIN ItemGroupMaster C ON P.UnderGroup=C.Code) SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') As Name,Code FROM BookMaster WHERE [Group] IN (SELECT Code FROM ItemGroupMaster)  ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstItemList.ActiveConnection = Nothing
     ListView3.ListItems.Clear
     Call FillList(ListView3, "List of Items...", rstItemList)

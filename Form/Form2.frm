@@ -35,14 +35,14 @@ Begin VB.Form spreadpreview
       AppearanceStyle =   0
    End
    Begin FPSpreadADO.fpSpreadPreview fpSpreadPreview1 
-      Height          =   8715
+      Height          =   10635
       Left            =   0
       TabIndex        =   0
       Top             =   480
-      Width           =   19850
+      Width           =   19845
       _Version        =   524288
-      _ExtentX        =   35013
-      _ExtentY        =   15372
+      _ExtentX        =   35004
+      _ExtentY        =   18759
       _StockProps     =   96
       AllowUserZoom   =   -1  'True
       GrayAreaColor   =   16121836
@@ -305,10 +305,7 @@ Sub UpdatePageCount()
     fpSpread1.Row = 1
     fpSpread1.Col = 14
     fpSpread1.Text = "Page " & fpSpreadPreview1.PageCurrent & " of " & frm.fpSpread1.PrintPageCount
-    
 End Sub
-
-
 Private Sub fpSpread1_TextTipFetch(ByVal Col As Long, ByVal Row As Long, MultiLine As FPSpreadADO.TextTipFetchMultilineConstants, TipWidth As Long, TipText As String, ShowTip As Boolean)
     With fpSpread1
         .Col = Col
@@ -321,9 +318,7 @@ Private Sub fpSpread1_TextTipFetch(ByVal Col As Long, ByVal Row As Long, MultiLi
             TipText = .Text
         End If
     End With
-
 End Sub
-
 Private Sub fpSpreadPreview1_PageChange(ByVal Page As Long)
     UpdatePageCount
 End Sub

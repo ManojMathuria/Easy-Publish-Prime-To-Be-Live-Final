@@ -144,10 +144,12 @@ Public Flag As Long, uInput As Variant
 Private Sub Command1_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 1: Me.ActiveControl.SetFocus: Unload Me
 If Flag = 6 Then FrmQuery.PtgType = 1: Me.ActiveControl.SetFocus: Unload Me
+If Flag = 7 Then FrmQuery.PtgType = 0: Me.ActiveControl.SetFocus: Unload Me
 End Sub
 Private Sub Command2_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 2: Me.ActiveControl.SetFocus: Unload Me
 If Flag = 6 Then FrmQuery.PtgType = 2: Me.ActiveControl.SetFocus: Unload Me
+If Flag = 7 Then FrmQuery.PtgType = 1: Me.ActiveControl.SetFocus: Unload Me
 End Sub
 Private Sub Command3_Click()
 If Flag = 1 Then frmSalesVoucher.PtgType = 3: Me.ActiveControl.SetFocus: Unload Me
@@ -202,7 +204,7 @@ CenterForm Me
             ComboBox1.AddItem "E-Commerce GST (Yes)", 0  'Yes
             ComboBox1.AddItem "E-Commerce GST (No)", 1  'No
             ComboBox1.ListIndex = 1
-        ElseIf Flag = 6 Then
+        ElseIf Flag = 6 Or Flag = 7 Then
             ComboBox1.Visible = False
             Command5.Visible = False
         End If
@@ -251,6 +253,7 @@ ElseIf Flag = 5 Then
 End If
 End Function
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+On Error Resume Next
 Get_Code
 Me.ActiveControl.SetFocus: Unload Me
 End Sub
