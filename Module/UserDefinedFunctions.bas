@@ -4824,7 +4824,7 @@ cnDatabase.CommitTrans
     '***Accountmaster
 cnDatabase.BeginTrans
     SQL = ""
-    SQL = " Add [City] nvarchar(40) NULL  DEFAULT (''),[ContactPer] nvarchar(40) NULL  DEFAULT (''),[Transporter] nvarchar(40) NULL ,[Transporter2] nvarchar(40) NULL,[Transporter3] nvarchar(40) NULL,[Transporter4] nvarchar(40) NULL "
+    SQL = " Add [City] nvarchar(40) NULL,[ContactPer] nvarchar(40) NULL,[Transporter] nvarchar(40) NULL ,[Transporter2] nvarchar(40) NULL,[Transporter3] nvarchar(40) NULL,[Transporter4] nvarchar(40) NULL "
     Call Create_Alter_Table("Alter Table ", "Accountmaster", SQL, "City")
     cnDatabase.Execute "Update AccountMaster Set City='' Where City is null"
 cnDatabase.CommitTrans

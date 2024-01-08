@@ -82,6 +82,7 @@ Begin VB.Form FrmStockLedger
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
             NumButtons      =   7
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Print Preview [Alt+V]"
                Object.ToolTipText     =   "Print Preview [Alt+V]"
                ImageIndex      =   1
             EndProperty
@@ -90,20 +91,23 @@ Begin VB.Form FrmStockLedger
                ImageIndex      =   2
             EndProperty
             BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Mail [Alt+M]"
                Object.ToolTipText     =   "Mail [Alt+M]"
                ImageIndex      =   3
             EndProperty
             BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Exit [Escape]"
+               Key             =   "Export [Alt+E]"
+               Object.ToolTipText     =   "Export [Alt+E]"
                ImageIndex      =   4
             EndProperty
             BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Export [Alt+E]"
+               Key             =   "Refresh [F5]"
+               Object.ToolTipText     =   "Refresh [F5]"
                ImageIndex      =   5
             EndProperty
             BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Key             =   "Refresh [F5]"
-               Object.ToolTipText     =   "Refresh [F5]"
+               Key             =   "Exit [Escape]"
+               Object.ToolTipText     =   "Exit [Escape]"
                ImageIndex      =   6
             EndProperty
             BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
@@ -148,6 +152,7 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   16680
          TabIndex        =   5
+         ToolTipText     =   "Print [Alt+P]"
          Top             =   8850
          Width           =   975
       End
@@ -156,6 +161,7 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   17760
          TabIndex        =   6
+         ToolTipText     =   "Export Excel [Alt+E]"
          Top             =   8850
          Width           =   1095
       End
@@ -397,6 +403,7 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   15360
          TabIndex        =   4
+         ToolTipText     =   "Print Preview [Alt+V]"
          Top             =   8850
          Width           =   1215
       End
@@ -1195,11 +1202,6 @@ Public sMcCode As Variant, SCode As Variant, oSCode As Variant, vTypeCode As Var
 Dim oVchType As String, Header1 As String, VchCode As String, PartyH As String, ItemH As String, OrderH As String, OrderF As Double, INWardF As Double, OUTWardF As Double, AmountF As Double, SNo As Long, aSNO As Long, pSNO As Long
 Dim OrderGTF As Double, INWardGTF As Double, OUTWardGTF As Double, AmountGTF As Double
 Dim OrderPGTF As Double, INWardPGTF As Double, OUTWardPGTF As Double, AmountPGTF As Double, ClearFlag As Boolean, unClearFlag As Boolean
-
-Private Sub Command6_Click()
-
-End Sub
-
 Private Sub Form_Load()
 If VchType <> 34 And VchType <> 45 And VchType <> 30 Then VchCode = ""
 If VchType = 35 Or VchType = 36 Or VchType = 39 Or VchType = 40 Or VchType = 41 Then VchCode = "S"
@@ -1443,7 +1445,7 @@ Private Sub cmdRefresh_Click()
                 ") As Tbl ORDER BY " & Choose(Combo1.ListIndex + 1, "Item ASC,MRP,ItemGroup", "Item DESC,MRP,ItemGroup", "ItemGroup ASC,Item,MRP", "ItemGroup DESC,Item,MRP", "MRP ASC,Item,ItemGroup", "MRP DESC,Item,ItemGroup", "Item ASC,MRP,ItemGroup") & ""
     ElseIf (VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60) Then 'Item-Wise'( Sale And Purchase Ledger)
     SQL = "SELECT * FROM (" & _
-                "SELECT " & IIf(((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)), "(select name from AccountMaster where code=" & IIf(sMcCode <> "", sMcCode, AccountList) & ")", "''") & " as OneParty,I.Name As Item,I.Price  As MRP,G.Name As ItemGroup,I.Code As code,'' As HSNCode," & _
+                "SELECT " & IIf(((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)), "(select name from AccountMaster where code=" & IIf(sMcCode <> "", sMcCode, AccountList) & ")", "''") & " as OneParty,IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) As Item,I.Price  As MRP,G.Name As ItemGroup,I.Code As code,'' As HSNCode," & _
                 SQL & _
                 "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)  As Purchase," & _
                 "ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)  As PurchaseAmount," & _
@@ -1457,7 +1459,7 @@ Private Sub cmdRefresh_Click()
                 ") As Tbl ORDER BY " & Choose(Combo1.ListIndex + 1, "Item ASC,MRP,ItemGroup", "Item DESC,MRP,ItemGroup", "ItemGroup ASC,Item,MRP", "ItemGroup DESC,Item,MRP", "MRP ASC,Item,ItemGroup", "MRP DESC,Item,ItemGroup", "Item ASC,MRP,ItemGroup") & ""
     ElseIf (VchType >= 21 And VchType <= 28) Or (VchType >= 61 And VchType <= 68) Then 'Party-Wise'( Sale And Purchase Ledger)
     SQL = "SELECT * FROM (" & _
-              "SELECT " & IIf(((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)), "(select name from BookMaster where code=" & IIf(SCode <> "", SCode, ItemList) & ")", "''") & " as OneItem,I.Name As Item,'' As MRP,G.Name As ItemGroup,I.Code As Code,'' As HSNCode," & _
+              "SELECT " & IIf(((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)), "(select name from BookMaster where code=" & IIf(SCode <> "", SCode, ItemList) & ")", "''") & " as OneItem,IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) As Item,'' As MRP,G.Name As ItemGroup,I.Code As Code,'' As HSNCode," & _
               "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As Purchase," & _
               "ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As PurchaseAmount," & _
               "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As PurchaseReturn," & _
@@ -2446,9 +2448,6 @@ With fpSpread1
             If SCode <> 0 Then unClearFlag = True: ClearQty (True): MsgBox " ( " & SCode & " )  Order Quantity Retrieve !!!", vbCritical, "   Retrieve Pending Order !!!": SCode = "": unClearFlag = False:: Form_Load: Exit Sub
         End If
 '********
-    
-    
-    
     If (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) Then
         If VchType = 3 Then oVchType = VchType: VchType = 25 'One Item-Party-wise 'Sales Ok
         If VchType = 4 Then oVchType = VchType: VchType = 26 'One Item-Party-wise 'Sales Returns
@@ -2497,8 +2496,6 @@ With fpSpread1
             SCode = ""
             Form_Load
             KeyCode = 0
-
-
 'vbKeyEscape
     ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 34 Or VchType = 45) And SCode <> "" Then
         If VchType = 34 Then VchType = oVchType: If oVchType = 30 Then SCode = oSCode 'Party-wise Order Status Sumarized
@@ -2531,11 +2528,8 @@ With fpSpread1
         sMcCode = ""
         Form_Load
         KeyCode = 0
-    
-
 'vbKeyReturn Go To Next Report
     ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And (VchType = 2 Or VchType = 1 Or VchType = 30 Or VchType = 32 Or VchType = 33 Or VchType = 49) Then   'One-Item Pending
-        
         LR = fpSpread1.ActiveRow
         If (VchType = 1 Or VchType = 2) And fpSpread1.ActiveCol = 6 Or fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19 Or fpSpread1.ActiveCol = 24 Then
             If VchType = 30 Then fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): 'fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub

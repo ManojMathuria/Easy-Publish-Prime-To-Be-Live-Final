@@ -687,9 +687,9 @@ End If
         MhDateInput2.Text = Format(FinancialYearTo, "dd-mm-yyyy")
     End If
     If rstSupplierList.State = adStateOpen Then rstSupplierList.Close
-        rstSupplierList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 6, "[Group]='*99999'", IIf(VchType = 31, "[Group]='*99999'", "[Group]<>'*99999'")) & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstSupplierList.Open "SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') AS Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 6, "[Group]='*99999'", IIf(VchType = 31, "[Group]='*99999'", "[Group]<>'*99999'")) & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-        rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 2 Or VchType = 31 Or VchType = 49 Or VchType = 33, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstAccountList.Open "SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') As Name,Code FROM AccountMaster WHERE " & IIf(VchType <= 2 Or VchType = 31 Or VchType = 49 Or VchType = 33, "[Group]='*99999'", "[Group]<>'*99999'") & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     If rstItemGroupList.State = adStateOpen Then rstItemGroupList.Close
         rstItemGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
@@ -704,7 +704,7 @@ End If
         rstItemList.Open "SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') AS Name,Code FROM BookMaster Where Type='F' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstItemList.ActiveConnection = Nothing
     If rstMatCList.State = adStateOpen Then rstMatCList.Close
-        rstMatCList.Open "SELECT Name,Code FROM AccountMaster Where [Group]='*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstMatCList.Open "SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') As Name,Code FROM AccountMaster Where [Group]='*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstMatCList.ActiveConnection = Nothing
     If Right(VchType, 2) = 48 Then
         Call FillList(ListView1, "List of Accounts...", rstAccountList)
@@ -818,9 +818,12 @@ Dim i As Integer
         FrmStockLedger.eDate = MhDateInput2.Text
         FrmStockLedger.AccountList = SelectedItems(ListView1)
         
-        If VchType = 0 And (Len(FrmStockLedger.AccountList) > 10 Or Len(FrmStockLedger.AccountList) < 8) Then
-            If Len(FrmStockLedger.AccountList) < 8 Then MsgBox ("Please Select One-Godown"), vbCritical
-            If Len(FrmStockLedger.AccountList) > 10 Then MsgBox ("Please Select One-Godown-Only"), vbCritical
+        If VchType >= 6 And (Len(FrmStockLedger.AccountList) > 10 Or Len(FrmStockLedger.AccountList) < 8) Then
+            If VchType = 0 And Len(FrmStockLedger.AccountList) < 8 Then MsgBox ("Please Select One-Godown"), vbCritical
+            If VchType = 0 And Len(FrmStockLedger.AccountList) > 10 Then MsgBox ("Please Select One-Godown-Only"), vbCritical
+            If VchType > 0 And VchType >= 6 And Len(FrmStockLedger.AccountList) < 8 Then MsgBox ("Please Select One-Party"), vbCritical
+            If VchType > 0 And VchType >= 6 And Len(FrmStockLedger.AccountList) > 10 Then MsgBox ("Please Select One-Party-Only"), vbCritical
+            
             For i = 1 To ListView1.ListItems.Count
                 ListView1.ListItems(i).Checked = False
             Next i

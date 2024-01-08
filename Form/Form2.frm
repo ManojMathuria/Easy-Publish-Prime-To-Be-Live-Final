@@ -297,6 +297,10 @@ Private Sub fpSpread1_ButtonClicked(ByVal Col As Long, ByVal Row As Long, ByVal 
              
             Case 16 'Close
                 Unload Me
+'                With FrmStockLedger.Toolbar1.Buttons
+'                    FrmStockLedger.Toolbar1_ButtonClick FrmStockLedger.Toolbar1.Buttons.Item(5) 'FrmStockLedger.Toolbar1_ButtonClick .Item(5)
+'                End With
+'                'FrmStockLedger.Toolbar1_ButtonClick FrmStockLedger.Toolbar1.Buttons.Item(5)
         End Select
     End If
 End Sub

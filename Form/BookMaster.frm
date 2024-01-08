@@ -115,8 +115,8 @@ Begin VB.Form FrmBookMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "txtNotes"
+         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
@@ -275,7 +275,7 @@ Begin VB.Form FrmBookMaster
             Left            =   120
             TabIndex        =   23
             TabStop         =   0   'False
-            Top             =   450
+            Top             =   480
             Width           =   15960
             _ExtentX        =   28152
             _ExtentY        =   13123
@@ -1927,7 +1927,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":35F8
+            Picture         =   "BookMaster.frx":361C
             Begin FPSpreadADO.fpSpread fpSpread3 
                Height          =   8085
                Left            =   120
@@ -1952,7 +1952,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   4227327
                MaxCols         =   7
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":3614
+               SpreadDesigner  =   "BookMaster.frx":3638
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame7 
@@ -1984,7 +1984,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":3CD2
+            Picture         =   "BookMaster.frx":3D1A
             Begin FPSpreadADO.fpSpread fpSpread4 
                Height          =   8085
                Left            =   120
@@ -2010,7 +2010,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   25
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":3CEE
+               SpreadDesigner  =   "BookMaster.frx":3D36
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame8 
@@ -2042,7 +2042,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":4D56
+            Picture         =   "BookMaster.frx":4DC2
             Begin FPSpreadADO.fpSpread fpSpread5 
                Height          =   8085
                Left            =   120
@@ -2068,7 +2068,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   12
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":4D72
+               SpreadDesigner  =   "BookMaster.frx":4DDE
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame9 
@@ -2100,7 +2100,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":5747
+            Picture         =   "BookMaster.frx":57D7
             Begin VB.CommandButton cmdLoadElement 
                Caption         =   ".."
                BeginProperty Font 
@@ -2144,7 +2144,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   13
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":5763
+               SpreadDesigner  =   "BookMaster.frx":57F3
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
@@ -2176,7 +2176,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":6173
+            Picture         =   "BookMaster.frx":6227
             Begin FPSpreadADO.fpSpread fpSpread2 
                Height          =   8085
                Left            =   120
@@ -2202,7 +2202,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   24
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":618F
+               SpreadDesigner  =   "BookMaster.frx":6243
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
@@ -2230,8 +2230,8 @@ Begin VB.Form FrmBookMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookMaster.frx":7350
-            Picture         =   "BookMaster.frx":736C
+            Picture         =   "BookMaster.frx":7428
+            Picture         =   "BookMaster.frx":7444
          End
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
@@ -2256,8 +2256,8 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Export List"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":7388
-            Picture         =   "BookMaster.frx":73A4
+            Picture         =   "BookMaster.frx":7460
+            Picture         =   "BookMaster.frx":747C
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
@@ -2282,8 +2282,8 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Print List"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":73C0
-            Picture         =   "BookMaster.frx":73DC
+            Picture         =   "BookMaster.frx":7498
+            Picture         =   "BookMaster.frx":74B4
          End
          Begin Mh3dlblLib.Mh3dLabel CmdLabel 
             Height          =   330
@@ -2308,8 +2308,8 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Label Print"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":73F8
-            Picture         =   "BookMaster.frx":7414
+            Picture         =   "BookMaster.frx":74D0
+            Picture         =   "BookMaster.frx":74EC
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2452,7 +2452,7 @@ Private Sub Form_Load()
     BusySystemIndicator True
     Me.Caption = IIf(ItemType = "F", "Item Master [Finished]", "Item Master [Unfinished]")
     cnItemMaster.CursorLocation = adUseClient: cnItemMaster.Open cnDatabase.ConnectionString
-    rstItemList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Name) AS RowNo,P.Name,P.PrintName,BusyCode As Alias,ISBN,C.Name As ItemGroup,P.Code,(Select Name From GeneralMaster Where Type=25 AND  Code=IntegrationUnit) As Unit,'' AS MFDC,Format(P.Price,'##00.00') As Price,Format(P.salePrice,'##00.00') As SalePrice,Format(P.PurPrice,'##00.00') AS PurPrice FROM BookMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE P.Type='" & ItemType & "' ORDER BY P.Name", cnItemMaster, adOpenKeyset, adLockOptimistic
+    rstItemList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Name) AS RowNo,P.Name,P.PrintName,BusyCode As Alias,ISBN,C.Name As ItemGroup,P.Code,(Select PrintName From GeneralMaster Where Type=25 AND  Code=IntegrationUnit) As Unit,'' AS MFDC,Format(P.Price,'##00.00') As Price,Format(P.salePrice,'##00.00') As SalePrice,Format(P.PurPrice,'##00.00') AS PurPrice FROM BookMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE P.Type='" & ItemType & "' ORDER BY P.Name", cnItemMaster, adOpenKeyset, adLockOptimistic
     LoadMasterList
     rstItemMaster.CursorLocation = adUseClient
     rstItemList.Filter = adFilterNone

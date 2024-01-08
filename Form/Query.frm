@@ -32,7 +32,7 @@ Begin VB.Form FrmQuery
    Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
       Height          =   330
       Left            =   5070
-      TabIndex        =   28
+      TabIndex        =   24
       Top             =   -60
       Visible         =   0   'False
       Width           =   6855
@@ -95,21 +95,33 @@ Begin VB.Form FrmQuery
          MaskColor       =   12632256
          _Version        =   393216
          BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
-            NumListImages   =   4
+            NumListImages   =   7
             BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
                Picture         =   "Query.frx":0054
-               Key             =   ""
+               Key             =   "Alt+V"
             EndProperty
             BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
                Picture         =   "Query.frx":0598
-               Key             =   ""
+               Key             =   "Alt+P"
             EndProperty
             BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
                Picture         =   "Query.frx":06AC
-               Key             =   ""
+               Key             =   "Alt+M"
             EndProperty
             BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
                Picture         =   "Query.frx":07BE
+               Key             =   ""
+            EndProperty
+            BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":0B99
+               Key             =   "Alt+F5"
+            EndProperty
+            BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":0CF3
+               Key             =   "Escap"
+            EndProperty
+            BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+               Picture         =   "Query.frx":0E05
                Key             =   ""
             EndProperty
          EndProperty
@@ -145,8 +157,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":08D0
-         Picture         =   "Query.frx":08EC
+         Picture         =   "Query.frx":0F17
+         Picture         =   "Query.frx":0F33
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput2 
          Height          =   330
@@ -158,8 +170,8 @@ Begin VB.Form FrmQuery
          _Version        =   65536
          _ExtentX        =   1270
          _ExtentY        =   582
-         Calculator      =   "Query.frx":0908
-         Caption         =   "Query.frx":0928
+         Calculator      =   "Query.frx":0F4F
+         Caption         =   "Query.frx":0F6F
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -169,9 +181,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":0994
-         Keys            =   "Query.frx":09B2
-         Spin            =   "Query.frx":09FC
+         DropDown        =   "Query.frx":0FDB
+         Keys            =   "Query.frx":0FF9
+         Spin            =   "Query.frx":1043
          AlignHorizontal =   1
          AlignVertical   =   2
          Appearance      =   0
@@ -209,7 +221,7 @@ Begin VB.Form FrmQuery
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
          Height          =   330
-         Left            =   13320
+         Left            =   11500
          TabIndex        =   17
          TabStop         =   0   'False
          ToolTipText     =   " Quantity Total"
@@ -218,8 +230,8 @@ Begin VB.Form FrmQuery
          _Version        =   65536
          _ExtentX        =   2064
          _ExtentY        =   582
-         Calculator      =   "Query.frx":0A24
-         Caption         =   "Query.frx":0A44
+         Calculator      =   "Query.frx":106B
+         Caption         =   "Query.frx":108B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -229,9 +241,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":0AB0
-         Keys            =   "Query.frx":0ACE
-         Spin            =   "Query.frx":0B18
+         DropDown        =   "Query.frx":10F7
+         Keys            =   "Query.frx":1115
+         Spin            =   "Query.frx":115F
          AlignHorizontal =   1
          AlignVertical   =   2
          Appearance      =   0
@@ -269,7 +281,7 @@ Begin VB.Form FrmQuery
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
          Height          =   330
-         Left            =   14475
+         Left            =   12650
          TabIndex        =   13
          TabStop         =   0   'False
          ToolTipText     =   " Amount Total"
@@ -278,8 +290,8 @@ Begin VB.Form FrmQuery
          _Version        =   65536
          _ExtentX        =   2064
          _ExtentY        =   582
-         Calculator      =   "Query.frx":0B40
-         Caption         =   "Query.frx":0B60
+         Calculator      =   "Query.frx":1187
+         Caption         =   "Query.frx":11A7
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -289,9 +301,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":0BCC
-         Keys            =   "Query.frx":0BEA
-         Spin            =   "Query.frx":0C34
+         DropDown        =   "Query.frx":1213
+         Keys            =   "Query.frx":1231
+         Spin            =   "Query.frx":127B
          AlignHorizontal =   1
          AlignVertical   =   2
          Appearance      =   0
@@ -329,7 +341,7 @@ Begin VB.Form FrmQuery
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
-         Left            =   12120
+         Left            =   10300
          TabIndex        =   11
          Top             =   8100
          Width           =   1215
@@ -351,8 +363,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0C5C
-         Picture         =   "Query.frx":0C78
+         Picture         =   "Query.frx":12A3
+         Picture         =   "Query.frx":12BF
          Begin VB.CheckBox Check1 
             Height          =   225
             Left            =   720
@@ -608,10 +620,10 @@ Begin VB.Form FrmQuery
                ColumnWidth     =   645.165
             EndProperty
             BeginProperty Column01 
-               ColumnWidth     =   900.284
+               ColumnWidth     =   0
             EndProperty
             BeginProperty Column02 
-               ColumnWidth     =   929.764
+               ColumnWidth     =   0
             EndProperty
             BeginProperty Column03 
                ColumnWidth     =   1200.189
@@ -649,7 +661,7 @@ Begin VB.Form FrmQuery
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
-         Left            =   13200
+         Left            =   13560
          TabIndex        =   7
          Top             =   120
          Width           =   615
@@ -671,12 +683,12 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0C94
-         Picture         =   "Query.frx":0CB0
+         Picture         =   "Query.frx":12DB
+         Picture         =   "Query.frx":12F7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
-         Left            =   15000
+         Left            =   15120
          TabIndex        =   8
          Top             =   120
          Width           =   645
@@ -698,8 +710,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0CCC
-         Picture         =   "Query.frx":0CE8
+         Picture         =   "Query.frx":1313
+         Picture         =   "Query.frx":132F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -725,8 +737,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0D04
-         Picture         =   "Query.frx":0D20
+         Picture         =   "Query.frx":134B
+         Picture         =   "Query.frx":1367
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -752,8 +764,8 @@ Begin VB.Form FrmQuery
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0D3C
-         Picture         =   "Query.frx":0D58
+         Picture         =   "Query.frx":1383
+         Picture         =   "Query.frx":139F
       End
       Begin Mh3dlblLib.Mh3dLabel CmdExport 
          Height          =   330
@@ -778,8 +790,8 @@ Begin VB.Form FrmQuery
          Caption         =   "Export List"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0D74
-         Picture         =   "Query.frx":0D90
+         Picture         =   "Query.frx":13BB
+         Picture         =   "Query.frx":13D7
       End
       Begin Mh3dlblLib.Mh3dLabel CmdPrint 
          Height          =   330
@@ -804,8 +816,8 @@ Begin VB.Form FrmQuery
          Caption         =   " Print List"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0DAC
-         Picture         =   "Query.frx":0DC8
+         Picture         =   "Query.frx":13F3
+         Picture         =   "Query.frx":140F
       End
       Begin Mh3dlblLib.Mh3dLabel CmdLabel 
          Height          =   330
@@ -830,20 +842,20 @@ Begin VB.Form FrmQuery
          Caption         =   " Print Vch."
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "Query.frx":0DE4
-         Picture         =   "Query.frx":0E00
+         Picture         =   "Query.frx":142B
+         Picture         =   "Query.frx":1447
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
-         Left            =   13800
-         TabIndex        =   25
+         Left            =   14160
+         TabIndex        =   21
          Top             =   120
-         Width           =   1215
+         Width           =   975
          _Version        =   65536
-         _ExtentX        =   2143
+         _ExtentX        =   1720
          _ExtentY        =   582
-         Calendar        =   "Query.frx":0E1C
-         Caption         =   "Query.frx":0F34
+         Calendar        =   "Query.frx":1463
+         Caption         =   "Query.frx":157B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -853,9 +865,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":0FA0
-         Keys            =   "Query.frx":0FBE
-         Spin            =   "Query.frx":101C
+         DropDown        =   "Query.frx":15E7
+         Keys            =   "Query.frx":1605
+         Spin            =   "Query.frx":1663
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -897,15 +909,15 @@ Begin VB.Form FrmQuery
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
-         Left            =   15630
-         TabIndex        =   26
+         Left            =   15750
+         TabIndex        =   22
          Top             =   120
-         Width           =   1215
+         Width           =   975
          _Version        =   65536
-         _ExtentX        =   2143
+         _ExtentX        =   1720
          _ExtentY        =   582
-         Calendar        =   "Query.frx":1044
-         Caption         =   "Query.frx":115C
+         Calendar        =   "Query.frx":168B
+         Caption         =   "Query.frx":17A3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -915,9 +927,9 @@ Begin VB.Form FrmQuery
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "Query.frx":11C8
-         Keys            =   "Query.frx":11E6
-         Spin            =   "Query.frx":1244
+         DropDown        =   "Query.frx":180F
+         Keys            =   "Query.frx":182D
+         Spin            =   "Query.frx":188B
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -963,7 +975,7 @@ Begin VB.Form FrmQuery
          TabIndex        =   1
          Top             =   120
          Width           =   4695
-         VariousPropertyBits=   1686657051
+         VariousPropertyBits=   1688229915
          DisplayStyle    =   3
          Size            =   "8281;582"
          MatchEntry      =   1
@@ -976,7 +988,7 @@ Begin VB.Form FrmQuery
       Begin MSForms.ComboBox ComboBox4 
          Height          =   330
          Left            =   6240
-         TabIndex        =   27
+         TabIndex        =   23
          Top             =   120
          Visible         =   0   'False
          Width           =   2535
@@ -1011,10 +1023,10 @@ Begin VB.Form FrmQuery
          Left            =   10440
          TabIndex        =   2
          Top             =   120
-         Width           =   2775
+         Width           =   3135
          VariousPropertyBits=   612915227
-         DisplayStyle    =   3
-         Size            =   "4895;582"
+         DisplayStyle    =   7
+         Size            =   "5530;582"
          MatchEntry      =   1
          ShowDropButtonWhen=   2
          FontName        =   "Comic Sans MS"
@@ -1084,59 +1096,23 @@ Begin VB.Form FrmQuery
             ImageIndex      =   3
          EndProperty
          BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Exit [Escape]"
+            Object.ToolTipText     =   "Export [Alt+E]"
             ImageIndex      =   4
          EndProperty
          BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Export [Alt+E]"
+            Object.ToolTipText     =   "Rfresh [F5]"
+            ImageIndex      =   5
          EndProperty
          BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Key             =   "Refresh [F5]"
+            Object.ToolTipText     =   "Exit [Escape]"
+            ImageIndex      =   6
          EndProperty
          BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Object.ToolTipText     =   "Cancel [Escape]"
+            ImageIndex      =   7
          EndProperty
       EndProperty
-      Begin VB.CommandButton cmdRefresh 
-         Height          =   375
-         Left            =   1680
-         Picture         =   "Query.frx":126C
-         Style           =   1  'Graphical
-         TabIndex        =   24
-         ToolTipText     =   "Refresh [F5]"
-         Top             =   0
-         Width           =   375
-      End
-      Begin VB.CommandButton Refresh 
-         Height          =   375
-         Left            =   1680
-         Picture         =   "Query.frx":13B6
-         Style           =   1  'Graphical
-         TabIndex        =   23
-         ToolTipText     =   "Refresh [F5]"
-         Top             =   0
-         Width           =   375
-      End
-      Begin VB.CommandButton cmdCancel 
-         Height          =   375
-         Left            =   2040
-         Picture         =   "Query.frx":1500
-         Style           =   1  'Graphical
-         TabIndex        =   22
-         ToolTipText     =   "Cancel  [Escape]"
-         Top             =   0
-         Width           =   375
-      End
-      Begin VB.CommandButton Export 
-         Height          =   375
-         Left            =   1320
-         Picture         =   "Query.frx":1602
-         Style           =   1  'Graphical
-         TabIndex        =   21
-         ToolTipText     =   "Export [Alt+E]"
-         Top             =   0
-         Width           =   375
-      End
    End
 End
 Attribute VB_Name = "FrmQuery"
@@ -1182,7 +1158,7 @@ Else
         Me.Caption = ComboBox4.Text
         Mh3dLabel14.Caption = ComboBox4.Text
 End If
-Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
+Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
 End Sub
 Private Sub Formating()
     i = 0
@@ -1258,8 +1234,8 @@ Private Sub FormatDataGrid()
 Mh3dLabel14.Top = 0
     'DataGrid1_Width
     DataGrid1.Columns(0).Width = 645
-    DataGrid1.Columns(1).Width = IIf(ComboBox4.ListIndex = 0, 900, 0)
-    DataGrid1.Columns(2).Width = IIf(ComboBox4.ListIndex = 0, 930, 0)
+    DataGrid1.Columns(1).Width = 0 ' IIf(ComboBox4.ListIndex = 0, 900, 0)
+    DataGrid1.Columns(2).Width = 0 'IIf(ComboBox4.ListIndex = 0, 930, 0)
     DataGrid1.Columns(3).Width = 1200
     DataGrid1.Columns(4).Width = 1710
     DataGrid1.Columns(5).Width = 1200
@@ -1267,10 +1243,10 @@ Mh3dLabel14.Top = 0
     DataGrid1.Columns(7).Width = IIf(ComboBox4.ListIndex = 0, 3525, 3000)
     DataGrid1.Columns(8).Width = 1155
     DataGrid1.Columns(9).Width = 1155
-    DataGrid1.Columns(10).Width = IIf(ComboBox4.ListIndex = 0, 3535, 1155)
-    DataGrid1.Columns(11).Width = IIf(ComboBox4.ListIndex = 0, 1500, 900)
-    DataGrid1.Columns(12).Width = IIf(ComboBox4.ListIndex = 0, 4125, 1155)
-    DataGrid1.Columns(13).Width = IIf(ComboBox4.ListIndex = 0, 3925, 3000)
+    DataGrid1.Columns(10).Width = IIf(ComboBox4.ListIndex = 0, 3535, 1155) + 900
+    DataGrid1.Columns(11).Width = 0 'IIf(ComboBox4.ListIndex = 0, 1500, 900)
+    DataGrid1.Columns(12).Width = 0 'IIf(ComboBox4.ListIndex = 0, 4125, 1155)
+    DataGrid1.Columns(13).Width = 0 'IIf(ComboBox4.ListIndex = 0, 3925, 3000)
 
 'DataGrid1_Caption
     DataGrid1.Columns(0).Caption = "S. No."
@@ -1286,11 +1262,11 @@ Mh3dLabel14.Top = 0
     DataGrid1.Columns(10).Caption = IIf(ComboBox4.ListIndex = 0, "Remark", "Daily Balance")
     DataGrid1.Columns(11).Caption = IIf(ComboBox4.ListIndex = 0, "Account Code", "Rate")
 If Not Trim(ReadFromFile("Customer Type")) = "General" Then
-    DataGrid1.Columns(12).Caption = IIf(ComboBox4.ListIndex = 0, "Item", "Rate")
-    DataGrid1.Columns(13).Caption = IIf(ComboBox4.ListIndex = 0, "Binding Type", "Amount")
+    DataGrid1.Columns(12).Caption = "Item"
+    DataGrid1.Columns(13).Caption = "Binding Type"
 Else
-    DataGrid1.Columns(12).Caption = IIf(ComboBox4.ListIndex = 0, "Item", "Amount")
-    DataGrid1.Columns(13).Caption = IIf(ComboBox4.ListIndex = 0, "Binding Type", "Item Name")
+    DataGrid1.Columns(12).Caption = "Rate"
+    DataGrid1.Columns(13).Caption = "Amount"
 End If
 
 'DataGrid1_Data_Field
@@ -1327,12 +1303,6 @@ If Not ComboBox4.ListIndex = 0 Then
 End If
     DataGrid1.Height = 7400
     If AutoMode Then Set DataGrid1.DataSource = rstQueryList
-End Sub
-Private Sub cmdCancel_Click()
-    Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
-End Sub
-Private Sub cmdRefresh_Click()
-    Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
 End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
@@ -1498,7 +1468,7 @@ If ComboBox4.ListIndex = 0 Then
 Else
 
 End If
-    If AutoMode Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
+    If AutoMode Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
 End Sub
 Private Sub LoadMasterList()
 Dim AC, MC, oMC As String
@@ -1551,7 +1521,7 @@ If ComboBox4.ListIndex = 0 Then
     If (VchCode >= 1 And VchCode <= 8) Or (VchCode >= 17 And VchCode <= 24) Then
         If rstQueryList.State = adStateOpen Then rstQueryList.Close
             If Not Trim(ReadFromFile("Customer Type")) = "General" Then
-                rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code=Party) AS PartyName,(Select ISNULL(SUM(Quantity),0) From JobworkBVChild C Where C.Code=P.Code) AS Quantity, ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,Party AS Account,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) Item,(Select Name From GeneralMaster Where Code=(Select BindingType From BookMaster Where Code=C.Item)) As BindingType " & _
+                rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code=Party) AS PartyName,(Select ISNULL(SUM(Quantity),0) From JobworkBVChild C Where C.Code=P.Code) AS Quantity, ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,Party AS Account,ISNULL((Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item),LongNarration01) Item,(Select Name From GeneralMaster Where Code=(Select BindingType From BookMaster Where Code=C.Item)) As BindingType " & _
                                                "From JobworkBVParent P  LEFT JOIN  JobworkbvChild C ON P.Code=C.Code LEFT JOIN VchSeriesMaster V ON V.Code=P.VchSeries Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  Order By RowNo ", cnQuery, adOpenKeyset, adLockPessimistic
             Else
                 rstQueryList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Date) AS RowNo,P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) From AccountMaster Where Code=Party) AS PartyName,(Select ISNULL(SUM(Quantity),0) From JobworkBVChild C Where C.Code=P.Code) AS Quantity, ISNULL(Amount,0) AS Amount,P.Remarks AS Remark,Party AS Account,'' Item,'' As BindingType From JobworkBVParent P LEFT JOIN VchSeriesMaster V ON V.Code=P.VchSeries Where Left(Type,2)= '" & VchCode & "' AND P.FYCode='" & FYCode & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  Order By RowNo ", cnQuery, adOpenKeyset, adLockPessimistic
@@ -1565,18 +1535,18 @@ If ComboBox4.ListIndex = 0 Then
 Else
                     If rstQueryList.State = adStateOpen Then rstQueryList.Close
             rstQueryList.Open "WITH Results AS (" & _
-                               "SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " AND   SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM')  " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND " & oMC & "   AND   C.Quantity<0  " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND   C.Quantity>0 " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND " & oMC & "   AND   C.Quantity<0 " & _
-            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND   C.Quantity>0 " & _
+                               "SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " AND   SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM')  " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,0 As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & " AND " & MC & " " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND " & oMC & "   AND   C.Quantity<0  " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND   C.Quantity>0 " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND " & oMC & "   AND   C.Quantity<0 " & _
+            "UNION ALL SELECT C.SrNo,C.Code As VchCode,P.Date As VchDate,P.VchSeries,P.Name As VchBillNo,IIF((Quantity)<0,0,ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) From BookMaster I Where Code=C.Item) As ItemName,C.Item ,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.Party) As Party,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName)  From AccountMaster Where Code= P.MaterialCentre ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & AC & "  AND   C.Quantity>0 " & _
             ") " & _
                       "SELECT ROW_NUMBER() OVER (ORDER BY VchDate) AS RowNo,VchCode,VchType,(Select Name From VchSeriesMaster Where Code=VchSeries) As VchSeries,VchBillNo As VchNo,VchDate,Type AS VchName,Party AS PartyName,INWard,OutWard,(SELECT SUM(INWard) - SUM(OutWard) FROM Results WHERE VchCode <= Result.VchCode AND Item=Result.Item AND " & AC & "  ) AS RuningBalance,Rate,Format((Rate * ISNULL((SELECT SUM(INWard) - SUM(OutWard) FROM Results WHERE VchCode <= Result.VchCode AND Item=Result.Item AND " & AC & "  ), 0)),'###0.00') AS Amount,ItemName,MaterialCentre,BOM FROM Results Result Where " & AC & "  ORDER BY  ItemName,VchCode,VchDate ", cnQuery, adOpenKeyset, adLockPessimistic
     End If
@@ -1585,21 +1555,29 @@ End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
 VchType = "": vDate = "": vtType = "": vtCode = "": vtNo = "":
     If Shift = 0 And KeyCode = vbKeyEscape Then
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(6) 'Exit
         KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyE Then
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyE Then 'Export
         Export_Click
         KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then 'Print Preview
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(1)
         KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then 'Print
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(2)
         KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyM Then 'Mail
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
+        KeyCode = 0
     ElseIf InStr(1, "Combo1", Me.ActiveControl.Name) > 0 And (Shift = 0 And KeyCode = vbKeyReturn) Then
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
-    ElseIf Shift = 0 And KeyCode = vbKeyF5 And Toolbar1.Buttons.Item(6).Enabled Then 'Refresh
-        Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
+        KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyE And Toolbar1.Buttons.Item(4).Enabled Then 'Export
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(4)
+        KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyF5 And Toolbar1.Buttons.Item(5).Enabled Then 'Refresh
+        Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
+        KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF And Toolbar1.Buttons.Item(1).Enabled Then 'First
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(13)
         KeyCode = 0
@@ -1641,7 +1619,7 @@ If rstQueryList.EOF Then Exit Sub
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     FrmBookPrintOrder.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 End If
 'Purchase Order,Sale Order,Stock Transfer
             ElseIf vtType = "PO" Or vtType = "SO" Or vtType = "ST" Then
@@ -1654,7 +1632,7 @@ If rstQueryList.EOF Then Exit Sub
                     frmSalesOrderVoucher.SSTab1.Tab = 1
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     frmSalesOrderVoucher.Toolbar1_ButtonClick frmSalesOrderVoucher.Toolbar1.Buttons.Item(3)
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     frmSalesOrderVoucher.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
@@ -1671,11 +1649,11 @@ If rstQueryList.EOF Then Exit Sub
                     frmStockJournalVoucher.SSTab1.Tab = 1
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(3)
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     frmStockJournalVoucher.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 End If
 'Sale Voucher
             ElseIf vtType = "SF" Or vtType = "PF" Or vtType = "TF" Or vtType = "OF" Then
@@ -1688,11 +1666,11 @@ If rstQueryList.EOF Then Exit Sub
                     frmSalesVoucher.SSTab1.Tab = 1
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     frmSalesVoucher.Toolbar1_ButtonClick frmSalesVoucher.Toolbar1.Buttons.Item(3)
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     frmSalesVoucher.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 End If
 'Sale Challan Voucher
             ElseIf vtType = "RF" Or vtType = "IF" Then
@@ -1705,11 +1683,11 @@ If rstQueryList.EOF Then Exit Sub
                     frmSalesChallanVoucher.SSTab1.Tab = 1
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     frmSalesChallanVoucher.Toolbar1_ButtonClick frmSalesChallanVoucher.Toolbar1.Buttons.Item(3)
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     frmSalesChallanVoucher.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 End If
 'Jobwork Sale Challan Voucher
             ElseIf vtType = "FR" Or vtType = "FI" Then
@@ -1723,11 +1701,11 @@ If rstQueryList.EOF Then Exit Sub
                     frmItemIssueReceiptVoucher.SSTab1.Tab = 1
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     frmItemIssueReceiptVoucher.Toolbar1_ButtonClick frmItemIssueReceiptVoucher.Toolbar1.Buttons.Item(3)
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     frmItemIssueReceiptVoucher.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 End If
 'Jobwork Sale Voucher
             ElseIf vtType = "SU" Or vtType = "SC" Or vtType = "SJ" Or vtType = "PU" Or vtType = "PC" Or vtType = "PJ" Then
@@ -1741,11 +1719,11 @@ If rstQueryList.EOF Then Exit Sub
                     frmJobworkBill.SSTab1.Tab = 1
                 ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
                     frmJobworkBill.Toolbar1_ButtonClick frmJobworkBill.Toolbar1.Buttons.Item(3)
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
                     frmJobworkBill.SSTab1.Tab = 1
                     If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(6): KeyCode = 0
+                            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): KeyCode = 0
                 End If
             End If
         KeyCode = 0
@@ -1769,6 +1747,11 @@ Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
     Text1.Text = ""
     Text1.SetFocus
 End Sub
+
+Private Sub Refresh_Click()
+
+End Sub
+
 Private Sub Text1_Change()
 On Error Resume Next
     If rstQueryList.RecordCount = 0 Then Exit Sub
@@ -1904,13 +1887,17 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         If PtgType = 3 Then ComboBox3.ListIndex = 1: PrintFlag = True: Call PrintLabel: ComboBox3.ListIndex = 0
         If PtgType = 4 Then ComboBox3.ListIndex = 1: PrintFlag = True: Call PrintLabel: ComboBox3.ListIndex = 0
     ElseIf Button.Index = 3 Then
-        Unload Me
-    ElseIf Button.Index = 6 Then 'Refresh Button
+
+    ElseIf Button.Index = 4 Then
+        Export_Click
+    ElseIf Button.Index = 5 Then 'Refresh Button
         Set DataGrid1.DataSource = Nothing
         AutoMode = True
         LoadMasterList
         Set DataGrid1.DataSource = rstQueryList
         HiLiteRecord = True
+    ElseIf Button.Index = 6 Or Button.Index = 7 Then 'Exit Button
+        Unload Me
     ElseIf Button.Index = 7 Then 'Filter Button
         With FrmFilter
             .Combo1.AddItem "Name", 0
@@ -2086,7 +2073,7 @@ Public Sub PrintLabel()
         If .State = adStateOpen Then .Close
         .Open "SELECT P.Code VchCode,P.Type VchType,V.Name As VchSeries,P.Name As VchNo,Format(Date,'dd-MM-yyyy') VchDate,V.VchName,A.PrintName AS AccountName,A.Name AS AccountAlias,A.Code As AccountCode,A.Address1+' '+A.Address2+' '+A.Address3+' '+A.City+IIF(A.Address4<>'',' -'+A.Address4,'')+' '+IIF(State='*56000','',IIF(State='','',',State :'+(Select Name From GeneralMaster Where Code=State)))+' '+IIF(Station<>'',',Station :'+Station,'')+IIF(Mobile<>'',' Mobile : '+Mobile,'') AS Address," & _
                     "I.Name AS ItemCode,IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) AS ItemName,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,Rate,ABS(C.Quantity) AS Quantity,ISNULL(C.Amount,0) AS Amount,P.Remarks AS Remark,P.Transport,(Select Name From GeneralMaster Where Code=Tax) AS Tax,Freight,Adjustment,TaxableAmount,IGST,SGST,CGST,P.Amount As GTotal,(Select Top (1) Date From JobworkBVParent P1 LEFT JOIN  JobworkbvChild C1 ON P1.Code=C1.Code Where C1.Item=C.Item AND P.Code<>P1.Code AND P.Party=P1.Party) PreTrDate,C1.*  From JobworkBVParent P INNER JOIN JobworkBVChild C ON C.Code=P.Code Left Join AccountMaster A On A.Code=P.Party Left JOIN BookMaster I ON C.Item=I.Code Left JOIN VchSeriesMaster V ON V.Code=P.VchSeries LEFT JOIN CompChild C1 ON C1.VchType=Left(P.Type,2) WHERE P.Code='" & FixQuote(rstQueryList.Fields("VchCode").Value) & "'  Order By P.Code ", cnQuery, adOpenKeyset, adLockOptimistic
-        If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
+        If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
     End With
     
 'Loop Start

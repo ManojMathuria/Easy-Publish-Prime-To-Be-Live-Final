@@ -100,7 +100,9 @@ Begin VB.Form frmSalesVoucher
          TabPicture(1)   =   "SalesVoucher.frx":0044
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -1343,10 +1345,10 @@ Begin VB.Form frmSalesVoucher
                EndProperty
                TintColor       =   16711935
                Caption         =   " Freight"
-               Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
                Picture         =   "SalesVoucher.frx":0E98
+               Multiline       =   -1  'True
                Picture         =   "SalesVoucher.frx":0EB4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
@@ -1532,7 +1534,7 @@ Begin VB.Form frmSalesVoucher
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
-                  Size            =   9.75
+                  Size            =   8.25
                   Charset         =   0
                   Weight          =   400
                   Underline       =   0   'False
@@ -1540,11 +1542,11 @@ Begin VB.Form frmSalesVoucher
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Round Off"
-               Alignment       =   0
+               Caption         =   " T.Adjustment"
                FillColor       =   9164542
                TextColor       =   0
                Picture         =   "SalesVoucher.frx":1178
+               Multiline       =   -1  'True
                Picture         =   "SalesVoucher.frx":1194
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput12 
@@ -1737,8 +1739,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":220A
-               Picture         =   "SalesVoucher.frx":2226
+               Picture         =   "SalesVoucher.frx":22EA
+               Picture         =   "SalesVoucher.frx":2306
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -1764,8 +1766,8 @@ Begin VB.Form frmSalesVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesVoucher.frx":2242
-               Picture         =   "SalesVoucher.frx":225E
+               Picture         =   "SalesVoucher.frx":2322
+               Picture         =   "SalesVoucher.frx":233E
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
                Height          =   525
@@ -1795,7 +1797,7 @@ Begin VB.Form frmSalesVoucher
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "SalesVoucher.frx":227A
+               Picture         =   "SalesVoucher.frx":235A
                Begin VB.CommandButton btnNotes 
                   Caption         =   " Notes"
                   BeginProperty Font 
@@ -1860,8 +1862,8 @@ Begin VB.Form frmSalesVoucher
                   Alignment       =   0
                   FillColor       =   9164542
                   TextColor       =   0
-                  Picture         =   "SalesVoucher.frx":2296
-                  Picture         =   "SalesVoucher.frx":22B2
+                  Picture         =   "SalesVoucher.frx":2376
+                  Picture         =   "SalesVoucher.frx":2392
                End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
@@ -1891,7 +1893,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":22CE
+                  Picture         =   "SalesVoucher.frx":23AE
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1975,8 +1977,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":22EA
-            Picture         =   "SalesVoucher.frx":2306
+            Picture         =   "SalesVoucher.frx":23CA
+            Picture         =   "SalesVoucher.frx":23E6
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -2003,8 +2005,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":2322
-            Picture         =   "SalesVoucher.frx":233E
+            Picture         =   "SalesVoucher.frx":2402
+            Picture         =   "SalesVoucher.frx":241E
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2141,7 +2143,7 @@ Private Sub Form_Load()
     oVchType = VchType
     Mh3dLabel15.Caption = IIf(InStr(1, "SF_TF", VchType) > 0, " Sales", " Purchase") + " Type"
     Me.Caption = IIf(VchType = "SF", "Sales", IIf(VchType = "PF", "Purchase", IIf(VchType = "TF", "Sales Return", "Purchase Return"))) & "-Supply " & IIf(VchType = "SF", "Outward", IIf(VchType = "PF", "Inward", IIf(VchType = "TF", "Outward Return", "Inward Return"))) & "-Finished Goods"
-    Mh3dLabel7.Caption = IIf(VchType = "SF", "Packing & Forwarding", IIf(VchType = "PF", "Freight", IIf(VchType = "TF", "Unpacking & Freight", "Packing & Forwarding")))
+    Mh3dLabel7.Caption = IIf(VchType = "SF", "Packing && Forwarding", IIf(VchType = "PF", "Freight", IIf(VchType = "TF", "Unpacking && Freight", "Packing && Forwarding")))
     
     cnSalesVoucher.CursorLocation = adUseClient: cnSalesVoucher.Open cnDatabase.ConnectionString: cnTally.CursorLocation = adUseClient
     rstSalesVoucherParent.CursorLocation = adUseClient
@@ -3098,14 +3100,15 @@ Private Sub LoadItemList(ByVal strOrderCode As String)
     With rstSalesVoucherChild
         If .State = adStateOpen Then .Close
         If cmbBillType.ListIndex = 0 Then 'Direct
-            .Open "SELECT I.Code As ItemCode,I.Name As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+            .Open "SELECT I.Code As ItemCode,IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName)+'  Unit: '+(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         Else
-            .Open "SELECT I.Code As ItemCode,I.Name As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+            .Open "SELECT I.Code As ItemCode,IIF(I.ItemMarks<>'',I.ItemMarks+' ','')+IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName)+'  Unit: '+(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As ItemName,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05 FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
         End If
         .ActiveConnection = Nothing
         If .RecordCount > 0 Then .MoveFirst
         i = 0
         Do While Not .EOF
+        
             i = i + 1
             fpSpread1.SetText 1, i, .Fields("ItemName").Value
             fpSpread1.SetText 2, i, .Fields("HSNName").Value

@@ -538,7 +538,7 @@ Private Sub Form_Load()
     rstCompList.Open "SELECT TOP 1 FinancialYearFrom  FROM CompanyMaster WHERE FYCode='" & FYCode & "' ORDER BY FYCode", cnDatabase, adOpenForwardOnly, adLockReadOnly
     MhDateInput1.Text = Format(rstCompList.Fields("FinancialYearFrom").Value, "dd-mm-yyyy")
     MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))
-    rstAccountList.Open "SELECT Name,Code FROM AccountMaster WHERE [Group]<>'*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "SELECT IIF(PrintName<>Name,Name+' '+PrintName+' ['+Code+']',PrintName+' ['+Code+']') As Name,Code FROM AccountMaster WHERE [Group]<>'*99999' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type IN ('12','26') ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     If VchType >= 0 And VchType <= 30 Then
         Call FillList(ListView1, "List of Accounts Groups...", rstAccountGroupList)
