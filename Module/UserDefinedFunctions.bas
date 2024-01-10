@@ -4739,7 +4739,7 @@ If Dir(DestinationFile, vbDirectory) <> "" Then
     DestinationFileVersion = FileVersion
 End If
 
-    If DestinationFileVersion <> SourceFileVersion Then
+    If DestinationFileVersion < SourceFileVersion Then
     
     If MsgBox(" Latest Version : EasyPublish | Rel " & SourceFileVersion & Chr(13) & " is Now Available !!! " & Chr(13) & " Do you wants to Update Now ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Call Update_Open
     
@@ -4833,6 +4833,12 @@ cnDatabase.BeginTrans
     SQL = ""
     SQL = " Add [StartNo] [decimal](12, 0) NOT NULL  DEFAULT (1),CreatedBy nvarchar(6) NULL,CreatedOn datetime NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar (1),Printstatus nvarchar (1) "
     Call Create_Alter_Table("Alter Table ", "VchSeriesMaster", SQL, "StartNo")
+cnDatabase.CommitTrans
+    '***ItemPicChild
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = "(Code nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,PicName    nvarchar(10) NOT NULL,PicData   varbinary(MAX) NULL,PicType nvarchar(4) NULL CONSTRAINT FK_ItemPicChild_BookMaster FOREIGN KEY(Code) REFERENCES dbo.BookMaster(Code) ON UPDATE  CASCADE ON DELETE  CASCADE ) ON [PRIMARY]"
+    Call Create_Alter_Table("Create Table ", "ItemPicChild", SQL, "PicName")
 cnDatabase.CommitTrans
     Screen.MousePointer = vbNormal
     GeneralUpdate = True

@@ -4,6 +4,7 @@ Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
+Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
@@ -115,8 +116,8 @@ Begin VB.Form FrmBookMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtNotes"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "txtNotes"
          Tab(1).ControlCount=   2
          TabCaption(2)   =   "&BOM"
          TabPicture(2)   =   "BookMaster.frx":0054
@@ -228,29 +229,6 @@ Begin VB.Form FrmBookMaster
             _ExtentX        =   847
             _ExtentY        =   847
             _Version        =   393216
-         End
-         Begin VB.TextBox txtNotes 
-            Appearance      =   0  'Flat
-            BackColor       =   &H00FFFFFF&
-            DataSource      =   "Adodc1"
-            BeginProperty Font 
-               Name            =   "Calibri"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   345
-            Left            =   -73080
-            MaxLength       =   40
-            MultiLine       =   -1  'True
-            TabIndex        =   54
-            ToolTipText     =   "Open Notes"
-            Top             =   8280
-            Visible         =   0   'False
-            Width           =   5175
          End
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -534,6 +512,137 @@ Begin VB.Form FrmBookMaster
             FormatString    =   ""
             Caption         =   ""
             Picture         =   "BookMaster.frx":2230
+            Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame6 
+               Height          =   4215
+               Left            =   9960
+               TabIndex        =   67
+               Top             =   4005
+               Width           =   5895
+               _Version        =   65536
+               _ExtentX        =   10398
+               _ExtentY        =   7435
+               _StockProps     =   77
+               Alignment       =   0
+               AutoSize        =   0   'False
+               BevelSize       =   0
+               BevelStyle      =   0
+               BorderColor     =   -2147483642
+               BorderStyle     =   1
+               FillColor       =   -2147483633
+               FontStyle       =   0
+               FontTransparent =   0   'False
+               LightColor      =   -2147483643
+               ShadowColor     =   -2147483632
+               TextColor       =   -2147483640
+               WallPaper       =   0
+               NoPrefix        =   0   'False
+               FormatString    =   ""
+               Caption         =   ""
+               Picture         =   "BookMaster.frx":224C
+               Begin VB.CommandButton Next 
+                  Height          =   375
+                  Left            =   960
+                  Picture         =   "BookMaster.frx":2268
+                  Style           =   1  'Graphical
+                  TabIndex        =   74
+                  TabStop         =   0   'False
+                  ToolTipText     =   "Next"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin VB.CommandButton Previous 
+                  Height          =   375
+                  Left            =   600
+                  Picture         =   "BookMaster.frx":236A
+                  Style           =   1  'Graphical
+                  TabIndex        =   73
+                  TabStop         =   0   'False
+                  ToolTipText     =   "Previous"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin VB.CommandButton cmdView 
+                  Height          =   375
+                  Left            =   4875
+                  Picture         =   "BookMaster.frx":246C
+                  Style           =   1  'Graphical
+                  TabIndex        =   72
+                  TabStop         =   0   'False
+                  ToolTipText     =   "View Image"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin VB.CommandButton cmdUpload 
+                  Height          =   375
+                  Left            =   4485
+                  Picture         =   "BookMaster.frx":299E
+                  Style           =   1  'Graphical
+                  TabIndex        =   71
+                  TabStop         =   0   'False
+                  ToolTipText     =   "Upload New Image"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin VB.CommandButton cmdDelete 
+                  Height          =   375
+                  Left            =   5280
+                  Picture         =   "BookMaster.frx":2CE0
+                  Style           =   1  'Graphical
+                  TabIndex        =   70
+                  TabStop         =   0   'False
+                  ToolTipText     =   "Delete This Item  Pic"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin VB.CommandButton First 
+                  Height          =   375
+                  Left            =   240
+                  Picture         =   "BookMaster.frx":2DE2
+                  Style           =   1  'Graphical
+                  TabIndex        =   69
+                  TabStop         =   0   'False
+                  ToolTipText     =   "First"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin VB.CommandButton Last 
+                  Height          =   375
+                  Left            =   1320
+                  Picture         =   "BookMaster.frx":2EE4
+                  Style           =   1  'Graphical
+                  TabIndex        =   68
+                  TabStop         =   0   'False
+                  ToolTipText     =   "Last"
+                  Top             =   3720
+                  Width           =   375
+               End
+               Begin MSForms.Image Image1 
+                  Height          =   3255
+                  Left            =   240
+                  Top             =   240
+                  Width           =   5415
+                  BorderColor     =   9164542
+                  BackColor       =   9164542
+                  Size            =   "9551;5741"
+                  VariousPropertyBits=   19
+               End
+               Begin VB.Shape Shape1 
+                  BorderColor     =   &H008BD6FE&
+                  FillColor       =   &H008BD6FE&
+                  FillStyle       =   0  'Solid
+                  Height          =   3495
+                  Left            =   120
+                  Top             =   120
+                  Width           =   5655
+               End
+            End
+            Begin MSComDlg.CommonDialog cdUpload 
+               Left            =   720
+               Top             =   6480
+               _ExtentX        =   847
+               _ExtentY        =   847
+               _Version        =   393216
+            End
             Begin VB.TextBox Text8 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -579,8 +688,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":224C
-               Picture         =   "BookMaster.frx":2268
+               Picture         =   "BookMaster.frx":2FE6
+               Picture         =   "BookMaster.frx":3002
             End
             Begin VB.TextBox Text17 
                Appearance      =   0  'Flat
@@ -646,8 +755,8 @@ Begin VB.Form FrmBookMaster
                FillColor       =   9164542
                ShadowColor     =   0
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2284
-               Picture         =   "BookMaster.frx":22A0
+               Picture         =   "BookMaster.frx":301E
+               Picture         =   "BookMaster.frx":303A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
@@ -673,8 +782,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":22BC
-               Picture         =   "BookMaster.frx":22D8
+               Picture         =   "BookMaster.frx":3056
+               Picture         =   "BookMaster.frx":3072
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -701,8 +810,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":22F4
-               Picture         =   "BookMaster.frx":2310
+               Picture         =   "BookMaster.frx":308E
+               Picture         =   "BookMaster.frx":30AA
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
                Height          =   330
@@ -728,8 +837,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":232C
-               Picture         =   "BookMaster.frx":2348
+               Picture         =   "BookMaster.frx":30C6
+               Picture         =   "BookMaster.frx":30E2
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
                Height          =   330
@@ -755,8 +864,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2364
-               Picture         =   "BookMaster.frx":2380
+               Picture         =   "BookMaster.frx":30FE
+               Picture         =   "BookMaster.frx":311A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
@@ -782,8 +891,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":239C
-               Picture         =   "BookMaster.frx":23B8
+               Picture         =   "BookMaster.frx":3136
+               Picture         =   "BookMaster.frx":3152
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
                Height          =   330
@@ -809,8 +918,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":23D4
-               Picture         =   "BookMaster.frx":23F0
+               Picture         =   "BookMaster.frx":316E
+               Picture         =   "BookMaster.frx":318A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
@@ -836,8 +945,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":240C
-               Picture         =   "BookMaster.frx":2428
+               Picture         =   "BookMaster.frx":31A6
+               Picture         =   "BookMaster.frx":31C2
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                Height          =   330
@@ -863,8 +972,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2444
-               Picture         =   "BookMaster.frx":2460
+               Picture         =   "BookMaster.frx":31DE
+               Picture         =   "BookMaster.frx":31FA
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
@@ -890,8 +999,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":247C
-               Picture         =   "BookMaster.frx":2498
+               Picture         =   "BookMaster.frx":3216
+               Picture         =   "BookMaster.frx":3232
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   330
@@ -917,8 +1026,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":24B4
-               Picture         =   "BookMaster.frx":24D0
+               Picture         =   "BookMaster.frx":324E
+               Picture         =   "BookMaster.frx":326A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -944,8 +1053,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":24EC
-               Picture         =   "BookMaster.frx":2508
+               Picture         =   "BookMaster.frx":3286
+               Picture         =   "BookMaster.frx":32A2
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -1039,8 +1148,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5195
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2524
-               Caption         =   "BookMaster.frx":2544
+               Calculator      =   "BookMaster.frx":32BE
+               Caption         =   "BookMaster.frx":32DE
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1050,9 +1159,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":25B0
-               Keys            =   "BookMaster.frx":25CE
-               Spin            =   "BookMaster.frx":2618
+               DropDown        =   "BookMaster.frx":334A
+               Keys            =   "BookMaster.frx":3368
+               Spin            =   "BookMaster.frx":33B2
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1132,8 +1241,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2640
-               Picture         =   "BookMaster.frx":265C
+               Picture         =   "BookMaster.frx":33DA
+               Picture         =   "BookMaster.frx":33F6
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
                Height          =   330
@@ -1145,8 +1254,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   11456
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2678
-               Caption         =   "BookMaster.frx":2698
+               Calculator      =   "BookMaster.frx":3412
+               Caption         =   "BookMaster.frx":3432
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1156,9 +1265,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2704
-               Keys            =   "BookMaster.frx":2722
-               Spin            =   "BookMaster.frx":276C
+               DropDown        =   "BookMaster.frx":349E
+               Keys            =   "BookMaster.frx":34BC
+               Spin            =   "BookMaster.frx":3506
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1281,8 +1390,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2794
-               Picture         =   "BookMaster.frx":27B0
+               Picture         =   "BookMaster.frx":352E
+               Picture         =   "BookMaster.frx":354A
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput15 
                Height          =   330
@@ -1295,8 +1404,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5715
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":27CC
-               Caption         =   "BookMaster.frx":27EC
+               Calculator      =   "BookMaster.frx":3566
+               Caption         =   "BookMaster.frx":3586
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1306,9 +1415,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2858
-               Keys            =   "BookMaster.frx":2876
-               Spin            =   "BookMaster.frx":28C0
+               DropDown        =   "BookMaster.frx":35F2
+               Keys            =   "BookMaster.frx":3610
+               Spin            =   "BookMaster.frx":365A
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1355,8 +1464,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5205
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":28E8
-               Caption         =   "BookMaster.frx":2908
+               Calculator      =   "BookMaster.frx":3682
+               Caption         =   "BookMaster.frx":36A2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1366,9 +1475,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2974
-               Keys            =   "BookMaster.frx":2992
-               Spin            =   "BookMaster.frx":29DC
+               DropDown        =   "BookMaster.frx":370E
+               Keys            =   "BookMaster.frx":372C
+               Spin            =   "BookMaster.frx":3776
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1399,7 +1508,7 @@ Begin VB.Form FrmBookMaster
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1783693317
+               ValueVT         =   93716485
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1415,8 +1524,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   5768
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2A04
-               Caption         =   "BookMaster.frx":2A24
+               Calculator      =   "BookMaster.frx":379E
+               Caption         =   "BookMaster.frx":37BE
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1426,9 +1535,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2A90
-               Keys            =   "BookMaster.frx":2AAE
-               Spin            =   "BookMaster.frx":2AF8
+               DropDown        =   "BookMaster.frx":382A
+               Keys            =   "BookMaster.frx":3848
+               Spin            =   "BookMaster.frx":3892
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1488,8 +1597,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2B20
-               Picture         =   "BookMaster.frx":2B3C
+               Picture         =   "BookMaster.frx":38BA
+               Picture         =   "BookMaster.frx":38D6
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput17 
                Height          =   330
@@ -1501,8 +1610,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   10372
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2B58
-               Caption         =   "BookMaster.frx":2B78
+               Calculator      =   "BookMaster.frx":38F2
+               Caption         =   "BookMaster.frx":3912
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1512,9 +1621,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2BE4
-               Keys            =   "BookMaster.frx":2C02
-               Spin            =   "BookMaster.frx":2C4C
+               DropDown        =   "BookMaster.frx":397E
+               Keys            =   "BookMaster.frx":399C
+               Spin            =   "BookMaster.frx":39E6
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1574,8 +1683,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2C74
-               Picture         =   "BookMaster.frx":2C90
+               Picture         =   "BookMaster.frx":3A0E
+               Picture         =   "BookMaster.frx":3A2A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel29 
                Height          =   330
@@ -1601,8 +1710,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2CAC
-               Picture         =   "BookMaster.frx":2CC8
+               Picture         =   "BookMaster.frx":3A46
+               Picture         =   "BookMaster.frx":3A62
             End
             Begin VB.TextBox Text15 
                Appearance      =   0  'Flat
@@ -1668,8 +1777,8 @@ Begin VB.Form FrmBookMaster
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookMaster.frx":2CE4
-               Picture         =   "BookMaster.frx":2D00
+               Picture         =   "BookMaster.frx":3A7E
+               Picture         =   "BookMaster.frx":3A9A
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
                Height          =   330
@@ -1681,8 +1790,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   10398
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2D1C
-               Caption         =   "BookMaster.frx":2D3C
+               Calculator      =   "BookMaster.frx":3AB6
+               Caption         =   "BookMaster.frx":3AD6
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1692,9 +1801,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2DA8
-               Keys            =   "BookMaster.frx":2DC6
-               Spin            =   "BookMaster.frx":2E10
+               DropDown        =   "BookMaster.frx":3B42
+               Keys            =   "BookMaster.frx":3B60
+               Spin            =   "BookMaster.frx":3BAA
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1740,8 +1849,8 @@ Begin VB.Form FrmBookMaster
                _Version        =   65536
                _ExtentX        =   11456
                _ExtentY        =   582
-               Calculator      =   "BookMaster.frx":2E38
-               Caption         =   "BookMaster.frx":2E58
+               Calculator      =   "BookMaster.frx":3BD2
+               Caption         =   "BookMaster.frx":3BF2
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1751,9 +1860,9 @@ Begin VB.Form FrmBookMaster
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookMaster.frx":2EC4
-               Keys            =   "BookMaster.frx":2EE2
-               Spin            =   "BookMaster.frx":2F2C
+               DropDown        =   "BookMaster.frx":3C5E
+               Keys            =   "BookMaster.frx":3C7C
+               Spin            =   "BookMaster.frx":3CC6
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1790,19 +1899,19 @@ Begin VB.Form FrmBookMaster
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
-               Height          =   330
+               Height          =   2250
                Index           =   1
-               Left            =   6960
+               Left            =   120
                TabIndex        =   65
-               Top             =   7800
-               Width           =   8775
+               Top             =   3960
+               Width           =   1575
                _Version        =   65536
-               _ExtentX        =   15478
-               _ExtentY        =   582
+               _ExtentX        =   2778
+               _ExtentY        =   3969
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
-                  Size            =   9.75
+                  Size            =   11.25
                   Charset         =   0
                   Weight          =   700
                   Underline       =   0   'False
@@ -1811,11 +1920,11 @@ Begin VB.Form FrmBookMaster
                EndProperty
                TintColor       =   16711935
                Caption         =   " Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save  F5-> Refresh-> F12-> Create Duplicate Item Master"
-               Alignment       =   0
                FillColor       =   8421504
                TextColor       =   16777215
-               Picture         =   "BookMaster.frx":2F54
-               Picture         =   "BookMaster.frx":2F70
+               Picture         =   "BookMaster.frx":3CEE
+               Multiline       =   -1  'True
+               Picture         =   "BookMaster.frx":3D0A
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
@@ -1847,7 +1956,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":2F8C
+            Picture         =   "BookMaster.frx":3D26
             Begin FPSpreadADO.fpSpread fpSpread1 
                Height          =   8085
                Left            =   120
@@ -1873,7 +1982,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   4227327
                MaxCols         =   4
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":2FA8
+               SpreadDesigner  =   "BookMaster.frx":3D42
             End
             Begin VB.TextBox Text99 
                Appearance      =   0  'Flat
@@ -1927,7 +2036,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":361C
+            Picture         =   "BookMaster.frx":43B6
             Begin FPSpreadADO.fpSpread fpSpread3 
                Height          =   8085
                Left            =   120
@@ -1952,7 +2061,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   4227327
                MaxCols         =   7
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":3638
+               SpreadDesigner  =   "BookMaster.frx":43D2
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame7 
@@ -1984,7 +2093,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":3D1A
+            Picture         =   "BookMaster.frx":4AB4
             Begin FPSpreadADO.fpSpread fpSpread4 
                Height          =   8085
                Left            =   120
@@ -2010,7 +2119,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   25
                MaxRows         =   100
-               SpreadDesigner  =   "BookMaster.frx":3D36
+               SpreadDesigner  =   "BookMaster.frx":4AD0
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame8 
@@ -2042,7 +2151,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":4DC2
+            Picture         =   "BookMaster.frx":5B5C
             Begin FPSpreadADO.fpSpread fpSpread5 
                Height          =   8085
                Left            =   120
@@ -2068,7 +2177,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   12
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":4DDE
+               SpreadDesigner  =   "BookMaster.frx":5B78
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame9 
@@ -2100,7 +2209,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":57D7
+            Picture         =   "BookMaster.frx":6571
             Begin VB.CommandButton cmdLoadElement 
                Caption         =   ".."
                BeginProperty Font 
@@ -2144,7 +2253,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   13
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":57F3
+               SpreadDesigner  =   "BookMaster.frx":658D
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
@@ -2176,7 +2285,7 @@ Begin VB.Form FrmBookMaster
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookMaster.frx":6227
+            Picture         =   "BookMaster.frx":6FC1
             Begin FPSpreadADO.fpSpread fpSpread2 
                Height          =   8085
                Left            =   120
@@ -2202,7 +2311,7 @@ Begin VB.Form FrmBookMaster
                GridColor       =   33023
                MaxCols         =   24
                MaxRows         =   99
-               SpreadDesigner  =   "BookMaster.frx":6243
+               SpreadDesigner  =   "BookMaster.frx":6FDD
             End
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
@@ -2230,8 +2339,8 @@ Begin VB.Form FrmBookMaster
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookMaster.frx":7428
-            Picture         =   "BookMaster.frx":7444
+            Picture         =   "BookMaster.frx":81C2
+            Picture         =   "BookMaster.frx":81DE
          End
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
             Height          =   330
@@ -2256,8 +2365,8 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Export List"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":7460
-            Picture         =   "BookMaster.frx":747C
+            Picture         =   "BookMaster.frx":81FA
+            Picture         =   "BookMaster.frx":8216
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
@@ -2282,8 +2391,8 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Print List"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":7498
-            Picture         =   "BookMaster.frx":74B4
+            Picture         =   "BookMaster.frx":8232
+            Picture         =   "BookMaster.frx":824E
          End
          Begin Mh3dlblLib.Mh3dLabel CmdLabel 
             Height          =   330
@@ -2308,8 +2417,31 @@ Begin VB.Form FrmBookMaster
             Caption         =   " &Label Print"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "BookMaster.frx":74D0
-            Picture         =   "BookMaster.frx":74EC
+            Picture         =   "BookMaster.frx":826A
+            Picture         =   "BookMaster.frx":8286
+         End
+         Begin VB.TextBox txtNotes 
+            Appearance      =   0  'Flat
+            BackColor       =   &H00FFFFFF&
+            DataSource      =   "Adodc1"
+            BeginProperty Font 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   345
+            Left            =   -74640
+            MaxLength       =   40
+            MultiLine       =   -1  'True
+            TabIndex        =   54
+            ToolTipText     =   "Open Notes"
+            Top             =   8280
+            Visible         =   0   'False
+            Width           =   1455
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2436,6 +2568,8 @@ Dim rstBdgList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstIt
 Dim HSNCode As String, ItemGroupCode As String, FinishSizeCode1 As String, FinishSizeCode2 As Variant, BindingTypeCode As String, GeneralItemCode As Variant, PaperCode As Variant, UnfinishedItemCode As Variant, ElementCode As String, OperationCode As Variant, SizeCode As String, CalcModeCode As Variant, BinderyProcessCode As Variant, PrintingSizeCode As Variant, ColorCode As Variant, TextSizeCode As String, TitleSizeCode As String, IntegrationUnitCode As String
 Dim PrevStr As String, blnRecordExist As Boolean, SortCol As String, SortOrder As String, EditMode As Boolean
 Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String, PrintFlag As Boolean
+Dim srmPicMgr As New ADODB.Stream, imgFile As String, imgNo As Long, imgNoLast As Long, imgNoFirst As Long
+Dim rstPicList As New ADODB.Recordset, rstPicMaster As New ADODB.Recordset
 Private Sub btnNotes_Click()
     frmNotes.NotesFlag = 2
     frmNotes.Label1.Caption = "Notes : " & Text2.Text
@@ -2511,7 +2645,7 @@ ErrorHandler:
     Unload Me
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-'        DataGrid1.Columns(2).Width = 4844
+cmdUpload.Enabled = True
     If Shift = 0 And KeyCode = vbKeyEscape Then
         EditMode = False
         If SSTab1.Tab = 0 Then
@@ -2573,6 +2707,8 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstItemList)
+    Call CloseRecordset(rstPicList)
+    Call CloseRecordset(rstPicMaster)
     Call CloseRecordset(rstUnitList)
     Call CloseRecordset(rstItemMaster)
     Call CloseRecordset(rstHSNCodeList)
@@ -3825,6 +3961,7 @@ Private Sub FindRecord()
         .Open "SELECT * FROM BookMaster WHERE Code='" & FixQuote(rstItemList.Fields("Code").Value) & "'", cnItemMaster, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
+    LoadMasterList
 End Sub
 Private Sub ClearFields()
     Text2.Text = ""
@@ -3858,6 +3995,7 @@ Private Sub ClearFields()
     fpSpread2.ClearRange 1, 1, fpSpread2.MaxCols, fpSpread2.MaxRows, True: fpSpread2.SetActiveCell 1, 1
     fpSpread5.ClearRange 1, 1, fpSpread5.MaxCols, fpSpread5.MaxRows, True: fpSpread5.SetActiveCell 1, 1
     fpSpread6.ClearRange 1, 1, fpSpread6.MaxCols, fpSpread6.MaxRows, True: fpSpread6.SetActiveCell 1, 1
+    imgFile = "": cmdUpload.Enabled = True: 'Image1.Picture = Nothing
 End Sub
 Private Sub LoadFields()
     With rstItemMaster
@@ -3898,6 +4036,8 @@ Private Sub LoadFields()
         MhRealInput3.Value = .Fields("PurPrice").Value
         Call LoadItemList(.Fields("Code").Value)
         Call CalculateTotalForms
+        If Dir(App.Path & "\Pic\Item [" & CompCode & "]", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic\Item [" & CompCode & "]"
+        If Not CheckEmpty(rstPicMaster.Fields("PicData"), False) Then imgFile = App.Path & "\Pic\Item [" & CompCode & "]" & "\" & rstPicMaster.Fields("PicName").Value & "." & rstPicMaster.Fields("PicType").Value: RetrievePic rstPicMaster.Fields("PicData").Value, imgFile, srmPicMgr: Call cmdView_Click
     End With
 End Sub
 Private Sub LoadItemList(ByVal MasterCode As String)
@@ -4091,6 +4231,37 @@ Private Sub SaveFields()
         .Fields("Notes").Value = txtNotes.Text
         .Fields("SalePrice").Value = MhRealInput2.Value
         .Fields("PurPrice").Value = MhRealInput3.Value
+'        If Not CheckEmpty(imgFile, False) Then
+'            If srmPicMgr.State = adStateOpen Then srmPicMgr.Close
+'            srmPicMgr.Type = adTypeBinary
+'            srmPicMgr.Open
+'            srmPicMgr.LoadFromFile imgFile
+'    If srmPicMgr.Size > 0 Then
+'        rstPicList.MoveFirst
+'        rstPicList.Find "[Code] = '" & rstItemMaster.Fields("Code").Value & "'"
+'        If rstPicList.EOF Then rstPicList.AddNew
+'        rstPicList.Fields("Code").Value = "000001"
+'        rstPicList.Fields("Item").Value = rstItemMaster.Fields("Code").Value
+'        rstPicList.Fields("PicName").Value = "A01-0321SM"
+'        rstPicList.Fields("PicData").Value = srmPicMgr.Read
+'        rstPicList.Fields("PicType").Value = "jpg"
+'        rstPicList.Update
+'        'rstPicList.Sort = SortCol & " " & SortOrder
+'        rstPicList.Find "[Code] = '" & rstItemMaster.Fields("Code").Value & "'"
+'        rstPicList.MoveFirst
+'
+'
+''            cnItemMaster.Execute "INSERT INTO ItemPicChild VALUES ('" & rstPicList.Fields("Code").Value & "','" & rstPicList.Fields("Item").Value & "','" & rstPicList.Fields("PicName").Value & "','" & rstPicList.Fields("PicData").Value & "','" & rstPicList.Fields("PicType").Value & "')"
+'           End If
+''           "INSERT INTO ItemPicChild VALUES ('000001','" & rstItemMaster.Fields("Code").Value & "','" & imgFile & "','" & imgFile & "'," & imgFile & ")"
+'            rstPicList.Fields("PicData").Value = srmPicMgr.Read:
+'            rstPicList.Fields("PicType").Value = UCase(FSO.GetExtensionName(FSO.GetFileName(imgFile)))
+'            Else
+'            rstPicList.Fields("PicData").Value = Null: rstPicList.Fields("PicType").Value = Null
+'            End If
+'    Else
+'            .Fields("PicData").Value = Null: .Fields("PicType").Value = Null
+'    End If
     End With
 End Sub
 Private Function UpdateItemList(ByVal ActionType As String) As Boolean
@@ -4214,7 +4385,8 @@ Private Sub AddToList()
     With rstItemList
         .MoveFirst
         .Find "[Code] = '" & rstItemMaster.Fields("Code").Value & "'"
-        If .EOF Then .AddNew
+        If .EOF Then
+        .AddNew
         .Fields("Code").Value = rstItemMaster.Fields("Code").Value
         .Fields("Name").Value = rstItemMaster.Fields("Name").Value
         .Fields("Alias").Value = rstItemMaster.Fields("BusyCode").Value
@@ -4222,6 +4394,7 @@ Private Sub AddToList()
         .Update
         .Sort = SortCol & " " & SortOrder
         .Find "[Code] = '" & rstItemMaster.Fields("Code").Value & "'"
+        End If
     End With
 End Sub
 Private Function ValidateForm() As Boolean
@@ -4445,7 +4618,13 @@ Private Sub LoadMasterList()
     If rstSizeList.State = adStateOpen Then rstSizeList.Close
     rstSizeList.Open "SELECT Name As Col0,Code FROM GeneralMaster WHERE Type IN ('1','11') ORDER BY Name", cnItemMaster, adOpenKeyset, adLockReadOnly
     rstSizeList.ActiveConnection = Nothing
-End Sub
+    If rstPicList.State = adStateOpen Then rstPicList.Close
+    rstPicList.Open "SELECT * FROM ItemPicChild WHERE Item='" & FixQuote(rstItemList.Fields("Code").Value) & "'", cnItemMaster, adOpenKeyset, adLockReadOnly
+    rstPicList.ActiveConnection = Nothing
+    If rstPicMaster.State = adStateOpen Then rstPicMaster.Close
+    rstPicMaster.Open "SELECT * FROM ItemPicChild WHERE Item='" & FixQuote(rstItemList.Fields("Code").Value) & "'", cnItemMaster, adOpenKeyset, adLockOptimistic
+    rstPicList.ActiveConnection = Nothing
+    End Sub
 Private Sub cmdLoadElement_Click()
     If fpSpread6.DataRowCnt > 0 Then Exit Sub
     Dim i As Integer, n As Integer, CurVal(1 To 6) As Variant
@@ -4702,5 +4881,104 @@ errcode:
     Call CloseRecordset(rstItemMaster)
     On Error GoTo 0
 End Sub
+Private Sub First_Click()
+rstPicList.MoveFirst
+        If Not CheckEmpty(rstPicList.Fields("PicData"), False) Then imgFile = App.Path & "\Pic\Item [" & CompCode & "]" & "\" & rstPicList.Fields("PicName").Value & "." & rstPicList.Fields("PicType").Value: RetrievePic rstPicList.Fields("PicData").Value, imgFile, srmPicMgr: Call cmdView_Click
+End Sub
+Private Sub Last_Click()
+rstPicList.MoveLast
+        If Not CheckEmpty(rstPicList.Fields("PicData"), False) Then imgFile = App.Path & "\Pic\Item [" & CompCode & "]" & "\" & rstPicList.Fields("PicName").Value & "." & rstPicList.Fields("PicType").Value: RetrievePic rstPicList.Fields("PicData").Value, imgFile, srmPicMgr: Call cmdView_Click
+End Sub
+Private Sub Next_Click()
+On Error Resume Next
+rstPicList.MoveNext
+If Not (rstPicList.EOF) Then
+        If Not CheckEmpty(rstPicList.Fields("PicData"), False) Then imgFile = App.Path & "\Pic\Item [" & CompCode & "]" & "\" & rstPicList.Fields("PicName").Value & "." & rstPicList.Fields("PicType").Value: RetrievePic rstPicList.Fields("PicData").Value, imgFile, srmPicMgr: Call cmdView_Click
+End If
+End Sub
+Private Sub Previous_Click()
+On Error Resume Next
+rstPicList.MovePrevious
+If Not (rstPicList.BOF) Then
+        If Not CheckEmpty(rstPicList.Fields("PicData"), False) Then imgFile = App.Path & "\Pic\Item [" & CompCode & "]" & "\" & rstPicList.Fields("PicName").Value & "." & rstPicList.Fields("PicType").Value: RetrievePic rstPicList.Fields("PicData").Value, imgFile, srmPicMgr: Call cmdView_Click
+End If
+End Sub
+Private Sub cmdView_Click() 'View Pic
+If CheckEmpty(imgFile, False) Then DisplayError ("No image exists")
+Image1.Picture = LoadPicture(imgFile)
+Image1.PictureSizeMode = fmPictureSizeModeZoom
+Image1.AutoSize = True
+Image1.PictureAlignment = fmPictureAlignmentCenter
+Image1.SpecialEffect = fmSpecialEffectBump
+End Sub
+Private Sub cmdUpload_Click() 'Load Pic
+    On Error GoTo ErrorHandler
+    With cdUpload
+        .CancelError = True
+        .DialogTitle = "Open Image"
+        .Filter = "All Picture Files|*.jpg;*.jpeg;*.bmp;*.gif;*.png"
+        .ShowOpen
+        If Err.Number = 0 Then imgFile = .FileName 'Ok Selected
+        If CheckEmpty(imgFile, False) Then DisplayError ("No image exists")
+            Image1.Picture = LoadPicture(imgFile)
+            Image1.PictureSizeMode = fmPictureSizeModeZoom
+            Image1.AutoSize = True
+            Image1.PictureAlignment = fmPictureAlignmentCenter
+            Image1.SpecialEffect = fmSpecialEffectBump
+End With
 
 
+With rstPicMaster
+        If Not CheckEmpty(imgFile, False) Then
+                If srmPicMgr.State = adStateOpen Then srmPicMgr.Close
+                    srmPicMgr.Type = adTypeBinary
+                    srmPicMgr.Open
+                        srmPicMgr.LoadFromFile imgFile
+            If srmPicMgr.Size > 0 Then
+                    If blnRecordExist And AllowMastersModification = 0 Then
+                        Call DisplayError("You don't have the rights to Edit this Master")
+                        Exit Sub
+                    End If
+'                rstPicMaster.MoveFirst
+                rstPicList.Find "[Code] = '" & rstItemMaster.Fields("Code").Value & "'"
+                If rstPicList.EOF Then rstPicMaster.AddNew
+                rstPicMaster.Fields("Code").Value = GenerateCode(cnItemMaster, "SELECT MAX(Code) FROM ItemPicChild", 6, "0")
+                rstPicMaster.Fields("Item").Value = rstItemMaster.Fields("Code").Value
+                rstPicMaster.Fields("PicType").Value = UCase(FSO.GetExtensionName(FSO.GetFileName(imgFile)))
+                rstPicMaster.Fields("PicData").Value = srmPicMgr.Read
+                imgFile = cdUpload.FileTitle
+                imgFile = "'" & Left(imgFile, InStr(1, UCase(imgFile), ".") - 1) & "'"
+                rstPicMaster.Fields("PicName").Value = rstPicMaster.Fields("Code").Value
+                rstPicMaster.Update
+                imgFile = cdUpload.FileName
+            End If
+        End If
+            Call MsgBox("Item Pic Record updated !!!", vbInformation, App.Title)
+    End With
+'cnItemMaster.Execute "INSERT INTO ItemPicChild VALUES ('" & rstPicMaster.Fields("Code").Value & "','" & rstPicMaster.Fields("Item").Value & "','" & rstPicMaster.Fields("PicName").Value & "'," & rstPicMaster.Fields("PicData").Value & ",'" & rstPicMaster.Fields("PicType").Value & "')"
+
+'            If UpdateRecord(rstPicMaster) Then
+'                Call UpdateUserAction("Item Pic Child", IIf(blnRecordExist, "M", "A"), Trim(Date), cnDatabase)
+'            End If
+'            If rstPicMaster.State = adStateOpen Then
+'                rstPicMaster.Close
+'            End If
+'            rstPicMaster.CursorLocation = adUseClient
+'            ShowProgressInStatusBar True
+'            Timer1.Enabled = True
+
+'        Else
+'            DisplayError ("Failed to save the record")
+        
+        LoadMasterList
+Exit Sub
+ErrorHandler:
+MsgBox (Err.Description)
+Err.Clear
+
+End Sub
+Private Sub cmdDelete_Click() 'Delete Pic
+    If Not CheckEmpty(imgFile, False) Then
+        If MsgBox("Are you sure to delete the Picture?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then imgFile = "": cmdUpload.Enabled = True
+    End If
+End Sub
