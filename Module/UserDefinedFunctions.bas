@@ -4837,7 +4837,7 @@ cnDatabase.CommitTrans
     '***ItemPicChild
 cnDatabase.BeginTrans
     SQL = ""
-    SQL = "(Code nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,PicName    nvarchar(10) NOT NULL,PicData   varbinary(MAX) NULL,PicType nvarchar(4) NULL CONSTRAINT FK_ItemPicChild_BookMaster FOREIGN KEY(Code) REFERENCES dbo.BookMaster(Code) ON UPDATE  CASCADE ON DELETE  CASCADE ) ON [PRIMARY]"
+    SQL = "(Code nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,PicName    nvarchar(25) NOT NULL,PicData   varbinary(MAX) NULL,PicType nvarchar(4) NULL CONSTRAINT FK_ItemPicChild_BookMaster FOREIGN KEY(Code) REFERENCES dbo.BookMaster(Code) ON UPDATE  CASCADE ON DELETE  CASCADE ) ON [PRIMARY]"
     Call Create_Alter_Table("Create Table ", "ItemPicChild", SQL, "PicName")
 cnDatabase.CommitTrans
     Screen.MousePointer = vbNormal
