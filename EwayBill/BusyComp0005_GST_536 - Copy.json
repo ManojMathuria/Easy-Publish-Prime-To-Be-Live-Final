@@ -1,0 +1,67 @@
+
+"GSTIN":"09AAFCA0569A1Z1",
+"SupplyType":"O",
+"SubType":"1",
+"DocType":"INV",
+
+"DocNo":"536",
+"DocDate":"20230302",
+"SupGSTIN":"09AAFCA0569A1Z1",
+"SupName":"Alankar Graphics Pvt Ltd",
+"SupAdd1":"84- Udyog Kendra-1 Greater Noida",
+"SupAdd2":"PIN CODE-201308","SupCity":"Greater Noida",
+"SupState":"09",
+"SupPincode":"201308",
+
+"RecGSTIN":"10AJAPS2676M1Z2",
+"RecName":"Dhanraj Printing Press",
+"RecAdd1":"Kun Kun Singh Lane",
+"RecAdd2":"Patna - 800004",
+"Reccity":"Patna",
+"RecState":"10",
+"Recpincode":"800004",
+
+"TransMode":"1",
+"TransporterId":"09AAQPY2517A1ZJ",
+"TransporterName":"Ankur Carrier",
+"TransDistance":1003,
+"TransDocNo":null,
+"TransDocDate":null,
+"VehicleType":"R",
+"VehicleNo":"UP84T3167",
+
+
+"ProductName":"Book Work Finished Job Work",
+"ProductDesc":"Book",
+"HSNCode":"9988",
+"Quantity":79480,
+"QtyUnit":"PCS",
+"TaxableValue":377530,
+"IGSTRate":5,"IGSTValue":18876.5,
+"CGSTRate":0,"CGSTValue":0,
+"SGSTRate":0,"SGSTValue":0,
+"CessRate":0,"CessValue":0,
+"CessAdvol":0,
+
+"EWBUserName":"09AAFCA056_API_agp",
+"EWBPassword":"1234567890busy",
+"CessNonAdvol":0,
+"SubSupplyDesc":"",
+
+"ShipFromStateCode":"09",
+"ShipToStateCode":"10",
+"TotalInvoiceValue":396406.5,
+"CessNonAdvolValue":0,
+"OtherValue":0,
+
+"ShipFromGSTIN":"09AAFCA0569A1Z1",
+"ShipFromTradeName":"Alankar Graphics Pvt Ltd",
+
+"ShipToGSTIN":"10AJAPS2676M1Z2",
+"ShipToTradeName":"Dhanraj Printing Press",
+
+"IsBillFromShipFromSame":0,
+"IsBillToShipToSame":1,
+"IsGSTINSEZ":0
+
+}],"Year":2023,"Month":3,"EFUserName":"busyNew","EFPassword":"busy@321#","CDKey":"1450945"}

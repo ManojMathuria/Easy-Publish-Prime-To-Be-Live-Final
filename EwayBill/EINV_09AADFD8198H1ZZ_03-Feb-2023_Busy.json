@@ -1,0 +1,31 @@
+[
+{"Version":"1.1",
+"TranDtls":{"TaxSch":"GST",
+"SupTyp":"B2B",
+"IgstOnIntra":"N",
+"RegRev":"N","EcmGstin":null},
+"DocDtls":{"Typ":"INV","No":"DTC/0877/22-23",
+"Dt":"03/02/2023"},
+"SellerDtls":{"Gstin":"09AADFD8198H1ZZ",
+"LglNm":"M/S Deep Trading Company NOIDA",
+"TrdNm":"M/S Deep Trading Company NOIDA",
+"Addr1":"H-203 Sector-63 NOIDA - 201301",
+"Addr2":"TIN 09766200848",
+"Loc":"Utter Pradesh",
+"Pin":201301,
+"Stcd":"09",
+"Ph":null,"Em":null},
+"BuyerDtls":{"Gstin":"07AAAFD5294K1Z8",
+"LglNm":"Deepak Trading Co",
+"TrdNm":"Deepak Trading Co",
+"Pos":"07","Addr1":"2632 NAI SARAK ROSHAN PURA","Addr2":"CHAWRI BAZAR DELHI-110006",
+"Loc":"DELHI",
+"Pin":110006,
+"Stcd":"07",
+"Ph":null,"Em":null
+},"DispDtls":null,"ShipDtls":null,
+"ValDtls":{"AssVal":260575,"IgstVal":46903.5,"CgstVal":0,"SgstVal":0,"CesVal":0,"StCesVal":0,"Discount":0,"OthChrg":30.5,"RndOffAmt":0,"TotInvVal":307509},"ExpDtls":{"ShipBNo":null,"ShipBDt":null,"Port":null,"RefClm":null,"ForCur":null,"CntCode":null,"ExpDuty":0},"EwbDtls":null,
+
+"ItemList":
+[
+{"SlNo":"1","PrdDesc":"DIARY PRINTED - 2023","IsServc":"N","HsnCd":"482010","Barcde":null,"Qty":2150,"FreeQty":0,"Unit":"PCS","UnitPrice":121.2,"TotAmt":260575,"Discount":0,"PreTaxVal":0,"AssAmt":260575,"GstRt":18,"IgstAmt":46903.5,"CgstAmt":0,"SgstAmt":0,"CesRt":0,"CesAmt":0,"CesNonAdvlAmt":0,"StateCesRt":0,"StateCesAmt":0,"StateCesNonAdvlAmt":0,"OthChrg":0,"TotItemVal":307478.5,"BchDtls":null}]}]
