@@ -1034,13 +1034,76 @@ SCode = "": TypeCode = ""
    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then 'Exit/Cancel
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(7): KeyCode = 0
    ElseIf KeyCode = vbKeyF And Shift = vbCtrlMask Then 'Find
-   
         cmdFilter_Click
         KeyCode = 0
    ElseIf KeyCode = vbKeyS And Shift = vbCtrlMask Then 'Search
         Search_Click
         KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyF5 Then
+    'AddPayment_Click
+    frmDebitCreditVoucher.VchType = "PI"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyF6 Then
+    'AddReceipt_Click
+    frmDebitCreditVoucher.VchType = "PR"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        KeyCode = 0
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyF7 Then
+    'AddJournal_Click
+    frmDebitCreditVoucher.VchType = "JE"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        KeyCode = 0
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
+    'AddCountra_Click
+    frmDebitCreditVoucher.VchType = "CE"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        KeyCode = 0
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
+        'AddDebitNote_Click
+    frmDebitCreditVoucher.VchType = "DN"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        KeyCode = 0
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
+    'AddCreditNote_Click
+    frmDebitCreditVoucher.VchType = "CN"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyF10 Then
+        Shell "calc.exe", vbNormalFocus
    End If
+End Sub
+Private Sub Toolbar2_ButtonClick(ByVal Button As MSComctlLib.Button)
+    On Error Resume Next
+    If Button.Index = 1 Then
+        'MnuHelp_Click (1)
+    ElseIf Button.Index >= 6 And Button.Index <= 11 Then
+        If Me.Name <> "frmDebitCreditVoucher" Then
+            frmDebitCreditVoucher.VchType = Choose(Button.Index - 5, "PI", "PR", "JE", "CE", "DN", "CN")
+            Load frmDebitCreditVoucher
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        Else
+            Call CloseForm(frmDebitCreditVoucher)
+            frmDebitCreditVoucher.VchType = Choose(Button.Index - 5, "PI", "PR", "JE", "CE", "DN", "CN")
+            Load frmDebitCreditVoucher
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        End If
+    
+    End If
 End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     If Button.Index = 1 Then 'Crystal Preview

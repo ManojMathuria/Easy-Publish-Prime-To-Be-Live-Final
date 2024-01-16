@@ -31,7 +31,7 @@ Begin VB.Form frmDebitCreditVoucher
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   8820
       Left            =   -105
-      TabIndex        =   0
+      TabIndex        =   25
       TabStop         =   0   'False
       Top             =   0
       Width           =   19830
@@ -71,7 +71,7 @@ Begin VB.Form frmDebitCreditVoucher
          EndProperty
          Height          =   345
          Left            =   17040
-         TabIndex        =   28
+         TabIndex        =   17
          Top             =   420
          Visible         =   0   'False
          Width           =   2655
@@ -89,7 +89,7 @@ Begin VB.Form frmDebitCreditVoucher
          EndProperty
          Height          =   345
          Left            =   17040
-         TabIndex        =   27
+         TabIndex        =   18
          Top             =   780
          Visible         =   0   'False
          Width           =   2655
@@ -107,7 +107,7 @@ Begin VB.Form frmDebitCreditVoucher
          EndProperty
          Height          =   345
          Left            =   17040
-         TabIndex        =   26
+         TabIndex        =   19
          Top             =   1140
          Visible         =   0   'False
          Width           =   2655
@@ -125,7 +125,7 @@ Begin VB.Form frmDebitCreditVoucher
          EndProperty
          Height          =   345
          Left            =   17040
-         TabIndex        =   25
+         TabIndex        =   21
          Top             =   1860
          Visible         =   0   'False
          Width           =   2655
@@ -143,7 +143,7 @@ Begin VB.Form frmDebitCreditVoucher
          EndProperty
          Height          =   345
          Left            =   17040
-         TabIndex        =   24
+         TabIndex        =   20
          Top             =   1500
          Visible         =   0   'False
          Width           =   2655
@@ -161,7 +161,7 @@ Begin VB.Form frmDebitCreditVoucher
          EndProperty
          Height          =   345
          Left            =   17040
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   2220
          Visible         =   0   'False
          Width           =   2655
@@ -169,7 +169,7 @@ Begin VB.Form frmDebitCreditVoucher
       Begin TabDlg.SSTab SSTab1 
          Height          =   8595
          Left            =   120
-         TabIndex        =   2
+         TabIndex        =   27
          TabStop         =   0   'False
          Top             =   120
          Width           =   17625
@@ -206,11 +206,12 @@ Begin VB.Form frmDebitCreditVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "DebitCreditVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "txtAccount"
+         Tab(1).Control(0).Enabled=   0   'False
+         Tab(1).Control(1)=   "btnNotes"
          Tab(1).Control(2)=   "txtNotes"
-         Tab(1).Control(3)=   "btnNotes"
-         Tab(1).Control(4)=   "txtAccount"
+         Tab(1).Control(3)=   "Mh3dFrame2"
+         Tab(1).Control(4)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtAccount 
             Appearance      =   0  'Flat
@@ -229,7 +230,8 @@ Begin VB.Form frmDebitCreditVoucher
             Left            =   -61560
             MaxLength       =   40
             MultiLine       =   -1  'True
-            TabIndex        =   22
+            TabIndex        =   16
+            TabStop         =   0   'False
             ToolTipText     =   "Open Notes"
             Top             =   7320
             Visible         =   0   'False
@@ -248,7 +250,7 @@ Begin VB.Form frmDebitCreditVoucher
             EndProperty
             Height          =   345
             Left            =   -61560
-            TabIndex        =   21
+            TabIndex        =   6
             Top             =   8070
             Width           =   1455
          End
@@ -290,7 +292,7 @@ Begin VB.Form frmDebitCreditVoucher
             Height          =   330
             Left            =   1080
             MaxLength       =   40
-            TabIndex        =   4
+            TabIndex        =   0
             Top             =   8180
             Width           =   7380
          End
@@ -298,7 +300,7 @@ Begin VB.Form frmDebitCreditVoucher
             Bindings        =   "DebitCreditVoucher.frx":0054
             Height          =   7665
             Left            =   120
-            TabIndex        =   3
+            TabIndex        =   28
             Top             =   450
             Width           =   17385
             _ExtentX        =   30665
@@ -471,7 +473,7 @@ Begin VB.Form frmDebitCreditVoucher
             Height          =   330
             Index           =   2
             Left            =   8500
-            TabIndex        =   6
+            TabIndex        =   10
             Top             =   8175
             Width           =   8295
             _Version        =   65536
@@ -498,7 +500,7 @@ Begin VB.Form frmDebitCreditVoucher
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
             Height          =   7935
             Left            =   -74880
-            TabIndex        =   8
+            TabIndex        =   29
             TabStop         =   0   'False
             Top             =   480
             Width           =   13260
@@ -542,7 +544,7 @@ Begin VB.Form frmDebitCreditVoucher
                Height          =   570
                Left            =   1740
                MaxLength       =   100
-               TabIndex        =   14
+               TabIndex        =   5
                Top             =   7210
                Width           =   11415
             End
@@ -563,7 +565,7 @@ Begin VB.Form frmDebitCreditVoucher
                Height          =   390
                Left            =   7500
                MaxLength       =   25
-               TabIndex        =   13
+               TabIndex        =   2
                Top             =   105
                Width           =   1830
             End
@@ -585,14 +587,14 @@ Begin VB.Form frmDebitCreditVoucher
                Left            =   1320
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   9
+               TabIndex        =   1
                Top             =   105
                Width           =   1890
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   525
                Left            =   120
-               TabIndex        =   10
+               TabIndex        =   11
                Top             =   6420
                Width           =   13035
                _Version        =   65536
@@ -618,8 +620,7 @@ Begin VB.Form frmDebitCreditVoucher
                Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
                   Height          =   525
                   Left            =   5910
-                  TabIndex        =   11
-                  TabStop         =   0   'False
+                  TabIndex        =   8
                   Top             =   0
                   Width           =   1470
                   _Version        =   65536
@@ -677,8 +678,7 @@ Begin VB.Form frmDebitCreditVoucher
                Begin TDBNumber6Ctl.TDBNumber MhRealInput2 
                   Height          =   525
                   Left            =   7365
-                  TabIndex        =   12
-                  TabStop         =   0   'False
+                  TabIndex        =   9
                   Top             =   0
                   Width           =   1470
                   _Version        =   65536
@@ -737,7 +737,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   390
                Left            =   6060
-               TabIndex        =   15
+               TabIndex        =   13
                Top             =   105
                Width           =   1470
                _Version        =   65536
@@ -764,7 +764,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   570
                Left            =   120
-               TabIndex        =   16
+               TabIndex        =   15
                Top             =   7210
                Width           =   1695
                _Version        =   65536
@@ -791,7 +791,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   390
                Left            =   11460
-               TabIndex        =   17
+               TabIndex        =   3
                Top             =   105
                Width           =   1695
                _Version        =   65536
@@ -853,7 +853,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin FPSpreadADO.fpSpread fpSpread1 
                Height          =   5715
                Left            =   120
-               TabIndex        =   18
+               TabIndex        =   4
                Top             =   750
                Width           =   13035
                _Version        =   524288
@@ -882,7 +882,7 @@ Begin VB.Form frmDebitCreditVoucher
                Height          =   390
                Index           =   0
                Left            =   10260
-               TabIndex        =   19
+               TabIndex        =   14
                Top             =   105
                Width           =   1215
                _Version        =   65536
@@ -909,7 +909,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
                Left            =   120
-               TabIndex        =   20
+               TabIndex        =   12
                Top             =   105
                Width           =   1215
                _Version        =   65536
@@ -950,7 +950,7 @@ Begin VB.Form frmDebitCreditVoucher
             Height          =   810
             Index           =   1
             Left            =   -61485
-            TabIndex        =   29
+            TabIndex        =   23
             Top             =   480
             Width           =   3975
             _Version        =   65536
@@ -978,10 +978,10 @@ Begin VB.Form frmDebitCreditVoucher
          Begin MSComctlLib.Toolbar Toolbar2 
             Height          =   630
             Left            =   0
-            TabIndex        =   30
+            TabIndex        =   24
             Top             =   0
-            Width           =   0
-            _ExtentX        =   0
+            Width           =   30
+            _ExtentX        =   53
             _ExtentY        =   1111
             ButtonWidth     =   3625
             ButtonHeight    =   1005
@@ -1085,7 +1085,7 @@ Begin VB.Form frmDebitCreditVoucher
             ForeColor       =   &H80000008&
             Height          =   330
             Left            =   120
-            TabIndex        =   5
+            TabIndex        =   30
             Top             =   8175
             Width           =   975
          End
@@ -1095,7 +1095,7 @@ Begin VB.Form frmDebitCreditVoucher
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   1
+      TabIndex        =   26
       Top             =   0
       Width           =   17715
       _ExtentX        =   31247
@@ -1843,9 +1843,12 @@ End Sub
 Private Sub MhDateInput1_Validate(Cancel As Boolean)    'Vch Date
     If Not IsDate(GetDate(MhDateInput1.Text)) Then
         Cancel = True
+        Sendkeys "{ENTER}"
     ElseIf Format(GetDate(MhDateInput1.Text), "yyyymmdd") < Format(FinancialYearFrom, "yyyymmdd") Or Format(GetDate(MhDateInput1.Text), "yyyymmdd") > Format(FinancialYearTo, "yyyymmdd") Then
         Cancel = True
+        Sendkeys "{ENTER}"
     End If
+    Sendkeys "{ENTER}"
 End Sub
 Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
 '    If KeyCode = vbKeySpace Then
@@ -1939,7 +1942,7 @@ Private Sub ClearFields()
     Text2.Text = "" 'Vch No.
     MhDateInput1.Text = Format(Date, "dd-MM-yyyy")
     Text4.Text = "" 'Remarks
-    fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 1, 1
+    fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 0, 1
     MhRealInput1.Value = 0
     MhRealInput2.Value = 0
      VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = "": AccountCode = "":
@@ -2059,7 +2062,7 @@ Private Sub LoadItemList(ByVal strOrderCode As String)
     On Error GoTo ErrorHandler
     With rstDebitCreditVoucherChild
         If .State = adStateOpen Then .Close
-        .Open "SELECT T.Code,TOA,A.Code As AccountCode,A.Name As AccountName,(T.Debit) As Debit,(T.Credit) As Credit,T.ShortNarration,T.RefCode,T.SrNo FROM DebitCreditChild T INNER JOIN AccountMaster A ON T.Account=A.Code WHERE T.Code='" & strOrderCode & "'  ORDER BY SrNo", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
+        .Open "SELECT T.Code,TOA,A.Code As AccountCode,IIF(A.Name<>A.PrintName,A.Name+' '+A.PrintName,A.Name) As AccountName,(T.Debit) As Debit,(T.Credit) As Credit,T.ShortNarration,T.RefCode,T.SrNo FROM DebitCreditChild T INNER JOIN AccountMaster A ON T.Account=A.Code WHERE T.Code='" & strOrderCode & "'  ORDER BY SrNo", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
         .ActiveConnection = Nothing
         If .RecordCount > 0 Then .MoveFirst
         i = 0
@@ -2253,7 +2256,8 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
         ElseIf Col = 5 Then  'TOA
         .GetText 1, .ActiveRow + 1, cVal(1) 'Next Row TOA
             If dDCFlag = 0 Then
-            fpSpread1.SetActiveCell .ActiveCol, .ActiveRow: Text4.SetFocus
+            'fpSpread1.SetActiveCell .ActiveCol, .ActiveRow: Text4.SetFocus
+            Text4.SetFocus: fpSpread1.SetActiveCell 0, .ActiveRow + 1
             ElseIf dDCFlag <= 0 And cVal(1) = "" Then
                 .SetText 1, Row + 1, "D": .SetActiveCell 2, .ActiveRow + 1: CalculateTotal
             ElseIf dDCFlag > 0 And cVal(1) = "" Then
@@ -2369,7 +2373,7 @@ Public Sub PrintDebitCreditVoucher(ByVal VchCode As String, ByVal VchType As Str
 End Sub
 Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "SELECT Name As Col0,Code FROM AccountMaster Where [Group] NOT IN ('*26007','*26004') ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "SELECT IIF(Name<>PrintName,Name+' '+PrintName,Name) As Col0,Code FROM AccountMaster Where [Group] NOT IN ('*26007','*26004') ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     
     If rstSelfAccountList.State = adStateOpen Then rstSelfAccountList.Close

@@ -118,6 +118,7 @@ Begin VB.Form FrmAccountMaster
          TabPicture(1)   =   "AccountMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2(0)"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          TabCaption(2)   =   "&Details"
          TabPicture(2)   =   "AccountMaster.frx":0054
@@ -130,37 +131,40 @@ Begin VB.Form FrmAccountMaster
          TabCaption(4)   =   "&Details"
          TabPicture(4)   =   "AccountMaster.frx":008C
          Tab(4).ControlEnabled=   0   'False
-         Tab(4).Control(0)=   "Command9"
+         Tab(4).Control(0)=   "Mh3dLabel1(9)"
          Tab(4).Control(1)=   "Mh3dFrame2(3)"
-         Tab(4).Control(2)=   "Mh3dLabel1(9)"
+         Tab(4).Control(2)=   "Command9"
          Tab(4).ControlCount=   3
          TabCaption(5)   =   "&Details"
          TabPicture(5)   =   "AccountMaster.frx":00A8
          Tab(5).ControlEnabled=   0   'False
-         Tab(5).Control(0)=   "Command8"
+         Tab(5).Control(0)=   "Mh3dLabel1(10)"
          Tab(5).Control(1)=   "Mh3dFrame2(4)"
-         Tab(5).Control(2)=   "Mh3dLabel1(10)"
+         Tab(5).Control(2)=   "Command8"
          Tab(5).ControlCount=   3
          TabCaption(6)   =   "&Details"
          TabPicture(6)   =   "AccountMaster.frx":00C4
          Tab(6).ControlEnabled=   0   'False
-         Tab(6).Control(0)=   "Command6"
+         Tab(6).Control(0)=   "Mh3dLabel1(11)"
          Tab(6).Control(1)=   "Mh3dFrame2(5)"
-         Tab(6).Control(2)=   "Mh3dLabel1(11)"
+         Tab(6).Control(2)=   "Command6"
          Tab(6).ControlCount=   3
          TabCaption(7)   =   "&Details"
          TabPicture(7)   =   "AccountMaster.frx":00E0
          Tab(7).ControlEnabled=   0   'False
-         Tab(7).Control(0)=   "Command7"
+         Tab(7).Control(0)=   "Mh3dLabel1(12)"
          Tab(7).Control(1)=   "Mh3dFrame2(6)"
-         Tab(7).Control(2)=   "Mh3dLabel1(12)"
+         Tab(7).Control(2)=   "Command7"
          Tab(7).ControlCount=   3
          TabCaption(8)   =   "&Details"
          TabPicture(8)   =   "AccountMaster.frx":00FC
          Tab(8).ControlEnabled=   0   'False
-         Tab(8).Control(0)=   "Command10"
+         Tab(8).Control(0)=   "Mh3dLabel1(8)"
+         Tab(8).Control(0).Enabled=   0   'False
          Tab(8).Control(1)=   "Mh3dFrame2(7)"
-         Tab(8).Control(2)=   "Mh3dLabel1(8)"
+         Tab(8).Control(1).Enabled=   0   'False
+         Tab(8).Control(2)=   "Command10"
+         Tab(8).Control(2).Enabled=   0   'False
          Tab(8).ControlCount=   3
          TabCaption(9)   =   "&Op.Bal."
          TabPicture(9)   =   "AccountMaster.frx":0118
@@ -447,10 +451,10 @@ Begin VB.Form FrmAccountMaster
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   5
+            ColumnCount     =   6
             BeginProperty Column00 
                DataField       =   "Name"
-               Caption         =   "Name"
+               Caption         =   " Name"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   0
                   Format          =   ""
@@ -463,7 +467,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             BeginProperty Column01 
                DataField       =   "PrintName"
-               Caption         =   "Description"
+               Caption         =   " Description"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   0
                   Format          =   ""
@@ -476,7 +480,7 @@ Begin VB.Form FrmAccountMaster
             EndProperty
             BeginProperty Column02 
                DataField       =   "AccountGroup"
-               Caption         =   "Group"
+               Caption         =   " Group"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   0
                   Format          =   ""
@@ -488,8 +492,8 @@ Begin VB.Form FrmAccountMaster
                EndProperty
             EndProperty
             BeginProperty Column03 
-               DataField       =   "Alias"
-               Caption         =   "Alias"
+               DataField       =   "City"
+               Caption         =   " City"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   0
                   Format          =   ""
@@ -501,8 +505,21 @@ Begin VB.Form FrmAccountMaster
                EndProperty
             EndProperty
             BeginProperty Column04 
+               DataField       =   "Alias"
+               Caption         =   " Alias"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column05 
                DataField       =   "StateName"
-               Caption         =   "State"
+               Caption         =   " State"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   0
                   Format          =   ""
@@ -531,12 +548,15 @@ Begin VB.Form FrmAccountMaster
                BeginProperty Column02 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   2505.26
+                  ColumnWidth     =   1800
                EndProperty
                BeginProperty Column03 
-                  ColumnWidth     =   1335.118
+                  ColumnWidth     =   1244.976
                EndProperty
                BeginProperty Column04 
+                  ColumnWidth     =   1335.118
+               EndProperty
+               BeginProperty Column05 
                   DividerStyle    =   0
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
@@ -1412,7 +1432,7 @@ Begin VB.Form FrmAccountMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1776156677
+               ValueVT         =   1780482053
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -4917,7 +4937,7 @@ Me.Top = 1200
     End If
     'If AccountType <> "Account" Then Mh3dLabel1(5).Caption = " Ctrl+C -> Copy Duplicate Rates -> > Ctrl+I -> Import Rates From other Account": Mh3dLabel1(5).Width = 6375: Mh3dLabel1(5).Left = 7920
     cnAccountMaster.CursorLocation = adUseClient: cnAccountMaster.Open cnDatabase.ConnectionString
-    rstAccountList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Name) AS RowNo,P.Name,P.PrintName,Alias,C.Name As AccountGroup,P.Code,State,(Select Name From GeneralMaster Where Code=State) As StateName,(Select Name From GeneralMaster Where ISNULL(C.UnderGroup,[Group])=Code) As PrimaryGroup,Address1,Address2,Address3,Address4,Phone,Mobile,TIN,eMail FROM AccountMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE " & AccountGroup & " ORDER BY P.Name", cnAccountMaster, adOpenKeyset, adLockPessimistic
+    rstAccountList.Open "SELECT ROW_NUMBER() OVER (ORDER BY P.Name) AS RowNo,P.Name,P.PrintName,LTrim(P.City) AS City,Alias,C.Name As AccountGroup,P.Code,State,(Select Name From GeneralMaster Where Code=State) As StateName,(Select Name From GeneralMaster Where ISNULL(C.UnderGroup,[Group])=Code) As PrimaryGroup,Address1,Address2,Address3,Address4,Phone,Mobile,TIN,eMail FROM AccountMaster P INNER JOIN GeneralMaster C ON P.[Group]=C.Code WHERE " & AccountGroup & " ORDER BY P.Name", cnAccountMaster, adOpenKeyset, adLockPessimistic
     LoadMasterList
     rstAccountMaster.CursorLocation = adUseClient
     rstAccountList.Filter = adFilterNone
@@ -4937,8 +4957,10 @@ Me.Top = 1200
         DataGrid1.Columns(0).Width = 1500
         DataGrid1.Columns(0).Caption = " Account Code"
         DataGrid1.Columns(1).Width = 5500
-        DataGrid1.Columns(2).Width = 3100
-        DataGrid1.Columns(4).Width = 2000
+        DataGrid1.Columns(2).Width = 2000
+        DataGrid1.Columns(3).Width = 1700
+        DataGrid1.Columns(4).Width = 1000
+        DataGrid1.Columns(5).Width = 1750
     End If
     If Not (rstAccountList.EOF Or rstAccountList.BOF) Then
         With DataGrid1.SelBookmarks
