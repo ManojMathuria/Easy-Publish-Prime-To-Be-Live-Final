@@ -99,8 +99,8 @@ Begin VB.Form frmSalesVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesVoucher.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dLabel1(1)"
-         Tab(1).Control(1)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(1)=   "Mh3dLabel1(1)"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -496,7 +496,7 @@ Begin VB.Form frmSalesVoucher
                   MarginRight     =   1
                   MarginTop       =   1
                   MaxValue        =   9999999999
-                  MinValue        =   0
+                  MinValue        =   -9999999999
                   MousePointer    =   0
                   MoveOnLRKey     =   0
                   NegativeColor   =   255
@@ -505,7 +505,7 @@ Begin VB.Form frmSalesVoucher
                   ReadOnly        =   1
                   Separator       =   ""
                   ShowContextMenu =   1
-                  ValueVT         =   360185861
+                  ValueVT         =   200015877
                   Value           =   0
                   MaxValueVT      =   5
                   MinValueVT      =   5
@@ -555,7 +555,7 @@ Begin VB.Form frmSalesVoucher
                   MarginRight     =   1
                   MarginTop       =   1
                   MaxValue        =   9999999999.99
-                  MinValue        =   0
+                  MinValue        =   -9999999999.99
                   MousePointer    =   0
                   MoveOnLRKey     =   0
                   NegativeColor   =   255
@@ -1087,7 +1087,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   360251397
+               ValueVT         =   5
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -3098,9 +3098,17 @@ Private Sub LoadItemList(ByVal strOrderCode As String)
     With rstSalesVoucherChild
 If .State = adStateOpen Then .Close
         If cmbBillType.ListIndex = 0 Then 'Direct
-    .Open "SELECT I.Code As ItemCode,I.ItemMarks+SPACE(5-Len(RTrim(Ltrim(I.ItemMarks))))+I.PrintName As ItemName,I.Name,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05  FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    If VchType = "SF" Then
+        .Open "SELECT I.Code As ItemCode,I.ItemMarks+SPACE(5-Len(RTrim(Ltrim(I.ItemMarks))))+I.PrintName As ItemName,I.Name,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,(T.Quantity*-1) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05  FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    Else
+        .Open "SELECT I.Code As ItemCode,I.ItemMarks+SPACE(5-Len(RTrim(Ltrim(I.ItemMarks))))+I.PrintName As ItemName,I.Name,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND RIGHT(VchType,2)='" & IIf(VchType = "SF", "SO", IIf(VchType = "PF", "PO", "")) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05  FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    End If
 Else
-    .Open "SELECT I.Code As ItemCode,I.ItemMarks+SPACE(5-Len(RTrim(Ltrim(I.ItemMarks))))+I.PrintName As ItemName,I.Name,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05  FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    If VchType = "SF" Then
+        .Open "SELECT I.Code As ItemCode,I.ItemMarks+SPACE(5-Len(RTrim(Ltrim(I.ItemMarks))))+I.PrintName As ItemName,I.Name,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,(T.Quantity*-1) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05  FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    Else
+        .Open "SELECT I.Code As ItemCode,I.ItemMarks+SPACE(5-Len(RTrim(Ltrim(I.ItemMarks))))+I.PrintName As ItemName,I.Name,(Select PrintName From GeneralMaster Where Code=I.IntegrationUnit) As Unit,H.Code As HSNCode,H.Name As HSNName,T.Ref As RefOrderCode,(SELECT LTRIM(VchNo) FROM JobworkBVRef WHERE RefCode=T.Ref AND LEFT(VchType,2)+RIGHT(VchType,2)='" & IIf(VchType = "SF", "08IF", IIf(VchType = "PF", "05RF", IIf(VchType = "TF", "07RF", "06IF"))) & "') As RefOrderNo,ABS(T.Quantity) As Quantity,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.Ref AND VchCode<>'" & strOrderCode & "')*1) As BalQty,T.Rate,T.[Disc%],T.Amount,T.RefCode,SrNo,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05  FROM (JobworkBVChild T INNER JOIN BookMaster I ON T.Item=I.Code) LEFT JOIN GeneralMaster H ON T.HSNCode=H.Code WHERE T.Code='" & strOrderCode & "' ORDER BY T.SrNo", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+    End If
 End If
         .ActiveConnection = Nothing
         If .RecordCount > 0 Then .MoveFirst
@@ -3159,7 +3167,7 @@ Private Function UpdateItemList(ByVal ActionType As String, ByVal SrNo As Intege
             .GetText 17, .ActiveRow, CellVal(12) 'Long Narration V
         End With
         'For child
-        CellVal(1) = IIf(InStr(1, "SF_OF", VchType) > 0, 0 - Val(CellVal(1)), Val(CellVal(1))) '-ve for SF/OF & +ve for PF/TF
+            CellVal(1) = IIf(InStr(1, "SF_OF", VchType) > 0, 0 - Val(CellVal(1)), Val(CellVal(1))) '-ve for SF/OF & +ve for PF/TF
         cnSalesVoucher.Execute "INSERT INTO JobworkBVChild VALUES ('" & rstSalesVoucherParent.Fields("Code").Value & "','" & CellVal(7) & "','" & VchPrefix & "FI" & "','" & CellVal(5) & "','" & CellVal(6) & "'," & Val(CellVal(1)) & "," & Val(CellVal(2)) & "," & Val(CellVal(4)) & ",Null," & SrNo & ",'" & CellVal(8) & "','" & CellVal(9) & "','" & CellVal(10) & "','" & CellVal(11) & "','" & CellVal(12) & "'," & Val(CellVal(3)) & ",'')"
         If Not CheckEmpty(CellVal(7), False) Then 'for ref
             CellVal(1) = IIf(Abs(Val(CellVal(1))) > BalQty, BalQty, Abs(Val(CellVal(1))))
@@ -3567,7 +3575,7 @@ Public Sub PrintSalesVoucher(ByVal VchCode As String, ByVal VchType As String, O
     rstCompanyMaster.ActiveConnection = Nothing
     rstSalesVoucherChild.Open "SELECT LTrim(P1.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "'  As BillNo,P1.Date As BillDate,A.PrintName As Party,A.Address1 As PartyAddress1,A.Address2 As PartyAddress2,A.Address3 As PartyAddress3,A.Address4 As PartyAddress4,A.TIN As PartyGSTIN,A.Mobile As Mobile,A.eMail As eMail,IIf(Right(P1.Type, 2) = 'SF',C.PrintName, IIf(Right(P1.Type, 2) = 'PF',C.PrintName, IIf(Right(P1.Type, 2) = 'TF',C.PrintName,C.PrintName))) As Consignee,IIf(Right(P1.Type, 2) = 'SF',C.Address1, IIf(Right(P1.Type, 2) = 'PF',C.Address1,IIf(Right(P1.Type, 2) = 'TF',C.Address1,C.Address1))) As ConsigneeAddress1,IIf(Right(P1.Type, 2) = 'SF',C.Address2, IIf(Right(P1.Type, 2) = 'PF',C.Address2, IIf(Right(P1.Type, 2) = 'TF',C.Address2,C.Address2))) As ConsigneeAddress2," & _
                                                 "IIf(Right(P1.Type, 2) = 'SF',C.Address3, IIf(Right(P1.Type, 2) = 'PF',C.Address3, IIf(Right(P1.Type, 2) = 'TF',C.Address3,C.Address3))) As ConsigneeAddress3,IIf(Right(P1.Type, 2) = 'SF',C.Address4, IIf(Right(P1.Type, 2) = 'PF',C.Address4,IIf(Right(P1.Type, 2) = 'TF',C.Address4,C.Address4))) As ConsigneeAddress4,IIf(Right(P1.Type, 2) = 'SF',C.TIN, IIf(Right(P1.Type, 2) = 'PF',C.TIN, IIf(Right(P1.Type, 2) = 'TF',C.TIN,C.TIN))) As ConsigneeGSTIN,C.Mobile As CMobile,C.eMail As CeMail,P1.[Rebate%],P1.Rebate,P1.Freight,P1.Adjustment,P1.TaxableAmount,P1.[IGST%],P1.IGST,P1.[SGST%],P1.SGST,P1.[CGST%],P1.CGST,P1.Amount As TotalAmount,P1.Remarks,'' As Narration,I.PrintName As Item,H.PrintName As HSNCode," & _
-                                                "C1.Quantity,C1.Rate,C1.Amount,N.Name As SrNo,'' As cmbTitle,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref,C1.[Disc%] AS Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,M.PrintName As MC,Transport,Station,ISNULL(eWayBill +'dt.'+ Convert(nvarchar,eWayBillDate),'') as eWayBill,ISNULL(GRNo +'dt.'+ Convert(nvarchar,GRDate),'') as GRNO FROM (((((((JobworkBVParent P1 INNER JOIN JobworkBVChild C1 ON P1.Code=C1.Code)INNER JOIN BookMaster I ON C1.Item=I.Code)INNER JOIN AccountMaster A ON P1.Party=A.Code)INNER JOIN AccountMaster C ON P1.Consignee=C.Code)LEFT JOIN AccountMaster M ON P1.MaterialCentre=M.Code)LEFT JOIN GeneralMaster N ON C1.Narration=N.Code)LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code)LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE P1.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName,N.Name", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+                            "IIf(Right(P1.Type, 2) = 'SF',C1.Quantity*-1,C1.Quantity) AS Quantity,C1.Rate,C1.Amount,N.Name As SrNo,'' As cmbTitle,LTRIM(C1.Code)+LTRIM(C1.SrNo) As Ref,C1.[Disc%] AS Disc,LongNarration01,LongNarration02,LongNarration03,LongNarration04,LongNarration05,M.PrintName As MC,Transport,Station,ISNULL(eWayBill +'dt.'+ Convert(nvarchar,eWayBillDate),'') as eWayBill,ISNULL(GRNo +'dt.'+ Convert(nvarchar,GRDate),'') as GRNO,Right(P1.Type, 2) As VchType FROM (((((((JobworkBVParent P1 INNER JOIN JobworkBVChild C1 ON P1.Code=C1.Code)INNER JOIN BookMaster I ON C1.Item=I.Code)INNER JOIN AccountMaster A ON P1.Party=A.Code)INNER JOIN AccountMaster C ON P1.Consignee=C.Code)LEFT JOIN AccountMaster M ON P1.MaterialCentre=M.Code)LEFT JOIN GeneralMaster N ON C1.Narration=N.Code)LEFT JOIN GeneralMaster H ON C1.HSNCode=H.Code)LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE P1.Code='" + Left(VchCode, 6) + "' ORDER BY I.PrintName,N.Name", cnSalesVoucher, adOpenKeyset, adLockOptimistic
     If rstSalesVoucherChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstSalesVoucherChild.ActiveConnection = Nothing
         With rptSalesOrderVoucher
