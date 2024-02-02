@@ -105,8 +105,8 @@ Begin VB.Form FrmGeneralMaster
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "GeneralMaster.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -784,7 +784,11 @@ Private Sub Form_Load()
     ElseIf MasterType = "56" Then  'Paper Unit/Calc Mode/Color Master
         rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G.PrintName,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
     Else
-        rstGeneralList.Open "SELECT IIF(G.Name<>G.PrintName,G.Name+'   '+G.PrintName,G.Name) As Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+        If Trim(ReadFromFile("Customer Type")) = "General" Then
+            rstGeneralList.Open "SELECT IIF(G.Name<>G.PrintName,LTrim(G.Name)+SPACE(10-Len(G.Name))+G.PrintName,G.Name) As Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+        Else
+            rstGeneralList.Open "SELECT G.Name,G.Code,G.Value1,ISNULL(G.UnderGroup,'') As UGroupCode,ISNULL(G1.Name,'') As UGroupName,ISNULL(G1.Value1,0) As UGroupValue1 FROM GeneralMaster G Left Join GeneralMaster G1 on G.UnderGroup=G1.Code WHERE G.Type IN ('" & IIf(MasterType = "12", "12" & "','" & "26", MasterType) & "') ORDER BY G.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+        End If
     End If
     rstGeneralMaster.CursorLocation = adUseClient
     rstGeneralList.Filter = adFilterNone

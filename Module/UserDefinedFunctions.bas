@@ -4818,8 +4818,14 @@ cnDatabase.CommitTrans
     '***Bookmaster**SalePrice_PurPrice
 cnDatabase.BeginTrans
     SQL = ""
-    SQL = " Add [SalePrice] [decimal](12, 2) NOT NULL  DEFAULT (0),[PurPrice] [decimal](12, 2) NOT NULL DEFAULT (0) ,[ItemMarks] nvarchar(6) NULL"
+    SQL = " Add [SalePrice] [decimal](12, 2) NOT NULL  DEFAULT (0),[PurPrice] [decimal](12, 2) NOT NULL DEFAULT (0) ,[ItemMarks] nvarchar(6) NULL,[MFCD] nvarchar(6) NULL,[s_no] nvarchar(6) NULL"
     Call Create_Alter_Table("Alter Table ", "Bookmaster", SQL, "SalePrice")
+cnDatabase.CommitTrans
+    '***Bookmaster**Pur.Date
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [PurDate] [Date] NULL,RoomA [decimal](2, 0) NULL,RoomB [decimal](2, 0) NULL "
+    Call Create_Alter_Table("Alter Table ", "Bookmaster", SQL, "PurDate")
 cnDatabase.CommitTrans
     '***Accountmaster
 cnDatabase.BeginTrans

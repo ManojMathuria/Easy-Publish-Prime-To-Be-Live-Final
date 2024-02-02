@@ -206,12 +206,12 @@ Begin VB.Form frmDebitCreditVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "DebitCreditVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "txtAccount"
-         Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "btnNotes"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(2)=   "txtNotes"
-         Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(4)=   "Mh3dLabel1(1)"
+         Tab(1).Control(3)=   "btnNotes"
+         Tab(1).Control(4)=   "txtAccount"
+         Tab(1).Control(4).Enabled=   0   'False
          Tab(1).ControlCount=   5
          Begin VB.TextBox txtAccount 
             Appearance      =   0  'Flat
@@ -903,8 +903,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0D93
-               Picture         =   "DebitCreditVoucher.frx":0DAF
+               Picture         =   "DebitCreditVoucher.frx":0DB7
+               Picture         =   "DebitCreditVoucher.frx":0DD3
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
@@ -930,8 +930,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0DCB
-               Picture         =   "DebitCreditVoucher.frx":0DE7
+               Picture         =   "DebitCreditVoucher.frx":0DEF
+               Picture         =   "DebitCreditVoucher.frx":0E0B
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -971,9 +971,9 @@ Begin VB.Form frmDebitCreditVoucher
             AutoSize        =   -1  'True
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "DebitCreditVoucher.frx":0E03
+            Picture         =   "DebitCreditVoucher.frx":0E27
             Multiline       =   -1  'True
-            Picture         =   "DebitCreditVoucher.frx":0E1F
+            Picture         =   "DebitCreditVoucher.frx":0E43
          End
          Begin MSComctlLib.Toolbar Toolbar2 
             Height          =   630
@@ -1430,27 +1430,27 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
                If Me.ActiveControl.Name <> "fpSpread1" Then Sendkeys "{TAB}"
             End If
             If Me.ActiveControl.Name <> "fpSpread1" Then KeyCode = 0
-        ElseIf Shift = vbAltMask And KeyCode = vbKeyF5 Then
+        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
             'AddPayment_Click
             Toolbar2_ButtonClick .Item(6)
             KeyCode = 0
-        ElseIf Shift = vbAltMask And KeyCode = vbKeyF6 Then
+        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
             'AddReceipt_Click
             Toolbar2_ButtonClick .Item(7)
             KeyCode = 0
-        ElseIf Shift = vbAltMask And KeyCode = vbKeyF7 Then
+        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
             Toolbar2_ButtonClick .Item(8)
             'AddJournal_Click
             KeyCode = 0
-        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
+        ElseIf Shift = vbShiftMask And KeyCode = vbKeyF5 Then
             'AddCountra_Click
             Toolbar2_ButtonClick .Item(9)
             KeyCode = 0
-        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
+        ElseIf Shift = vbShiftMask And KeyCode = vbKeyF6 Then
             Toolbar2_ButtonClick .Item(10)
             'AddDebitNote_Click
             KeyCode = 0
-        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
+        ElseIf Shift = vbShiftMask And KeyCode = vbKeyF7 Then
         Toolbar2_ButtonClick .Item(11)
             'AddCreditNote_Click
             KeyCode = 0

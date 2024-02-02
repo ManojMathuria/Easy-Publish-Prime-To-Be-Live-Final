@@ -109,11 +109,11 @@ Begin VB.Form FrmBookPrintOrder
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookPrintOrder.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame7"
-         Tab(1).Control(1)=   "Mh3dFrame3"
+         Tab(1).Control(0)=   "Mh3dFrame6"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(2)=   "Mh3dFrame5"
-         Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(4)=   "Mh3dFrame6"
+         Tab(1).Control(3)=   "Mh3dFrame3"
+         Tab(1).Control(4)=   "Mh3dFrame7"
          Tab(1).ControlCount=   5
          Begin MSComDlg.CommonDialog CommonDialog1 
             Left            =   2280
@@ -7225,7 +7225,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
     End If
     If OrderType = "TL" Or OrderType = "ALL" Then
         If rstBookPOChild07.State = adStateOpen Then rstBookPOChild07.Close
-            rstBookPOChild07.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+            rstBookPOChild07.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.PrintName As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
                                                                "FROM ((((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Laminator='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
         If rstBookPOChild07.RecordCount = 0 Then
                 rptBookPrintOrder02.Section20.Suppress = True
@@ -7275,7 +7275,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         End If
         If OrderType = "BB" Or OrderType = "ALL" Then
             If rstBookPOChild08.State = adStateOpen Then rstBookPOChild08.Close
-                rstBookPOChild08.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,'/ '+M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+                rstBookPOChild08.Open "SELECT E.Name As Element,O.Name As Operation,Format(IIF(O.Value1 =0,[Number],Quantity/C.CalcValue),'#0.000') As Number,OS.PrintName As [Size],Quantity,'/ '+M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
                                                                    "FROM ((((((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN BookMaster E ON C.SubItem=E.Code) INNER JOIN GeneralMaster O ON C.BinderyProcess=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild08.RecordCount = 0 Then
                     rptBookPrintOrder02.Section22.Suppress = True

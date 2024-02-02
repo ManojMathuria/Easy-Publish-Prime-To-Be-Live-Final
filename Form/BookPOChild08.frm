@@ -1632,47 +1632,37 @@ Private Function FetchOperationRate(ByVal xBinderyProcess As String, ByVal xCalc
                         rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND AreaRange>=" & xAreaRange & " AND SectionRange>=" & xSectionRange & " AND QtyRange>=" & xQtyRange & " ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
         rstFetchOperationRate.ActiveConnection = Nothing
     End If
+   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-'To Be Remove After 07 & 08 Marger
+'To Be Remove After 07 & 08 Merger
     'PartyCode
     If rstFetchOperationRate.RecordCount = 0 Then
     If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-        rstFetchOperationRate.Open "IF EXISTS (SELECT *FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE C.Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & "   AND QtyRange>=" & xQtyRange & ") " & _
-                                                                        "SELECT TOP 1 Rate FROM AccountChild08 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & "  AND QtyRange>=" & xQtyRange & "  " & _
+        rstFetchOperationRate.Open "IF EXISTS (SELECT *FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE C.Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & "   AND QtyRange>=" & xQtyRange & ") " & _
+                                                                        "SELECT TOP 1 Rate FROM AccountChild08 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & "  AND QtyRange>=" & xQtyRange & "  " & _
                                                         "Else " & _
-                                                                        "SELECT TOP 1 Rate FROM AccountChild08 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND QtyRange>=" & xQtyRange & " ", cnDatabase, adOpenKeyset, adLockReadOnly
+                                                                        "SELECT TOP 1 Rate FROM AccountChild08 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND QtyRange>=" & xQtyRange & " ", cnDatabase, adOpenKeyset, adLockReadOnly
     rstFetchOperationRate.ActiveConnection = Nothing
     End If
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                         rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild08 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & "  AND  QtyRange>=" & xQtyRange & " ORDER BY (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Type IN(1,11))  ", cnDatabase, adOpenKeyset, adLockReadOnly
+                         rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild08 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & "  AND  QtyRange>=" & xQtyRange & " ORDER BY (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Type IN(1,11))  ", cnDatabase, adOpenKeyset, adLockReadOnly
         End If
     
     
     'PartyCode Not Found
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-        rstFetchOperationRate.Open "IF EXISTS (SELECT *FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & ")" & _
-                                                                        "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & "   " & _
+        rstFetchOperationRate.Open "IF EXISTS (SELECT *FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & ")" & _
+                                                                        "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & "   " & _
                                                         "Else " & _
-                                                                        "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & " ", cnDatabase, adOpenKeyset, adLockReadOnly
+                                                                        "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & " ", cnDatabase, adOpenKeyset, adLockReadOnly
     rstFetchOperationRate.ActiveConnection = Nothing
     End If
     
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                        rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(PrintName,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & "  ", cnDatabase, adOpenKeyset, adLockReadOnly
+                        rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild08 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xBinderyProcess & "' AND CalcMode='" & xCalcMode & "' AND (Select Convert(Real,Left(Name,5))*Convert(Real,SubString(Name,7,5)) From GeneralMaster Where Code='" & xSize & "')>=" & xAreaRange & " AND  QtyRange>=" & xQtyRange & "  ", cnDatabase, adOpenKeyset, adLockReadOnly
         rstFetchOperationRate.ActiveConnection = Nothing
     End If
     

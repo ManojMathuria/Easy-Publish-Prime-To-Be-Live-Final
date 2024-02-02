@@ -235,8 +235,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1B8F
-         Picture         =   "AccountLedger.frx":1BAB
+         Picture         =   "AccountLedger.frx":1B6B
+         Picture         =   "AccountLedger.frx":1B87
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -262,8 +262,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":1BC7
-         Picture         =   "AccountLedger.frx":1BE3
+         Picture         =   "AccountLedger.frx":1BA3
+         Picture         =   "AccountLedger.frx":1BBF
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -274,8 +274,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":1BFF
-         Caption         =   "AccountLedger.frx":1D17
+         Calendar        =   "AccountLedger.frx":1BDB
+         Caption         =   "AccountLedger.frx":1CF3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -285,9 +285,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1D83
-         Keys            =   "AccountLedger.frx":1DA1
-         Spin            =   "AccountLedger.frx":1DFF
+         DropDown        =   "AccountLedger.frx":1D5F
+         Keys            =   "AccountLedger.frx":1D7D
+         Spin            =   "AccountLedger.frx":1DDB
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -336,8 +336,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "AccountLedger.frx":1E27
-         Caption         =   "AccountLedger.frx":1F3F
+         Calendar        =   "AccountLedger.frx":1E03
+         Caption         =   "AccountLedger.frx":1F1B
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -347,9 +347,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":1FAB
-         Keys            =   "AccountLedger.frx":1FC9
-         Spin            =   "AccountLedger.frx":2027
+         DropDown        =   "AccountLedger.frx":1F87
+         Keys            =   "AccountLedger.frx":1FA5
+         Spin            =   "AccountLedger.frx":2003
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -415,8 +415,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":204F
-         Picture         =   "AccountLedger.frx":206B
+         Picture         =   "AccountLedger.frx":202B
+         Picture         =   "AccountLedger.frx":2047
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -428,8 +428,8 @@ Begin VB.Form FrmAccountLedger
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "AccountLedger.frx":2087
-         Caption         =   "AccountLedger.frx":20A7
+         Calculator      =   "AccountLedger.frx":2063
+         Caption         =   "AccountLedger.frx":2083
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -439,9 +439,9 @@ Begin VB.Form FrmAccountLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountLedger.frx":210B
-         Keys            =   "AccountLedger.frx":2129
-         Spin            =   "AccountLedger.frx":2173
+         DropDown        =   "AccountLedger.frx":20E7
+         Keys            =   "AccountLedger.frx":2105
+         Spin            =   "AccountLedger.frx":214F
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -501,8 +501,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":219B
-         Picture         =   "AccountLedger.frx":21B7
+         Picture         =   "AccountLedger.frx":2177
+         Picture         =   "AccountLedger.frx":2193
       End
       Begin Mh3dlblLib.Mh3dLabel Print_Data_Grid 
          Height          =   330
@@ -528,8 +528,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   " Print Data &Grid"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":21D3
-         Picture         =   "AccountLedger.frx":21EF
+         Picture         =   "AccountLedger.frx":21AF
+         Picture         =   "AccountLedger.frx":21CB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -555,8 +555,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":220B
-         Picture         =   "AccountLedger.frx":2227
+         Picture         =   "AccountLedger.frx":21E7
+         Picture         =   "AccountLedger.frx":2203
       End
       Begin Mh3dlblLib.Mh3dLabel Import_Data 
          Height          =   330
@@ -583,8 +583,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "&Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":2243
-         Picture         =   "AccountLedger.frx":225F
+         Picture         =   "AccountLedger.frx":221F
+         Picture         =   "AccountLedger.frx":223B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
@@ -610,8 +610,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":227B
-         Picture         =   "AccountLedger.frx":2297
+         Picture         =   "AccountLedger.frx":2257
+         Picture         =   "AccountLedger.frx":2273
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -637,8 +637,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":22B3
-         Picture         =   "AccountLedger.frx":22CF
+         Picture         =   "AccountLedger.frx":228F
+         Picture         =   "AccountLedger.frx":22AB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -664,8 +664,8 @@ Begin VB.Form FrmAccountLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":22EB
-         Picture         =   "AccountLedger.frx":2307
+         Picture         =   "AccountLedger.frx":22C7
+         Picture         =   "AccountLedger.frx":22E3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
@@ -690,8 +690,8 @@ Begin VB.Form FrmAccountLedger
          Caption         =   "Report Header"
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "AccountLedger.frx":2323
-         Picture         =   "AccountLedger.frx":233F
+         Picture         =   "AccountLedger.frx":22FF
+         Picture         =   "AccountLedger.frx":231B
       End
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
@@ -737,7 +737,7 @@ Begin VB.Form FrmAccountLedger
          Begin VB.CommandButton Export 
             Height          =   375
             Left            =   1320
-            Picture         =   "AccountLedger.frx":235B
+            Picture         =   "AccountLedger.frx":2337
             Style           =   1  'Graphical
             TabIndex        =   27
             ToolTipText     =   "Export [Alt+E]"
@@ -747,7 +747,7 @@ Begin VB.Form FrmAccountLedger
          Begin VB.CommandButton cmdCancel 
             Height          =   375
             Left            =   2040
-            Picture         =   "AccountLedger.frx":2726
+            Picture         =   "AccountLedger.frx":2702
             Style           =   1  'Graphical
             TabIndex        =   26
             ToolTipText     =   "Cancel  [Escape]"
@@ -757,7 +757,7 @@ Begin VB.Form FrmAccountLedger
          Begin VB.CommandButton Refresh 
             Height          =   375
             Left            =   1680
-            Picture         =   "AccountLedger.frx":2828
+            Picture         =   "AccountLedger.frx":2804
             Style           =   1  'Graphical
             TabIndex        =   25
             ToolTipText     =   "Refresh [F5]"
@@ -767,7 +767,7 @@ Begin VB.Form FrmAccountLedger
          Begin VB.CommandButton cmdRefresh 
             Height          =   375
             Left            =   1680
-            Picture         =   "AccountLedger.frx":2972
+            Picture         =   "AccountLedger.frx":294E
             Style           =   1  'Graphical
             TabIndex        =   24
             ToolTipText     =   "Refresh [F5]"
@@ -1039,42 +1039,42 @@ SCode = "": TypeCode = ""
    ElseIf KeyCode = vbKeyS And Shift = vbCtrlMask Then 'Search
         Search_Click
         KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyF5 Then
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
     'AddPayment_Click
     frmDebitCreditVoucher.VchType = "PI"
     Load frmDebitCreditVoucher
     If Err.Number <> 364 Then frmDebitCreditVoucher.Show
     frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
         KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyF6 Then
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
     'AddReceipt_Click
     frmDebitCreditVoucher.VchType = "PR"
     Load frmDebitCreditVoucher
     If Err.Number <> 364 Then frmDebitCreditVoucher.Show
     frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
         KeyCode = 0
-    ElseIf Shift = vbAltMask And KeyCode = vbKeyF7 Then
+    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
     'AddJournal_Click
     frmDebitCreditVoucher.VchType = "JE"
     Load frmDebitCreditVoucher
     If Err.Number <> 364 Then frmDebitCreditVoucher.Show
     frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
         KeyCode = 0
-    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
+    ElseIf Shift = vbShiftMask And KeyCode = vbKeyF5 Then
     'AddCountra_Click
     frmDebitCreditVoucher.VchType = "CE"
     Load frmDebitCreditVoucher
     If Err.Number <> 364 Then frmDebitCreditVoucher.Show
     frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
         KeyCode = 0
-    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
+    ElseIf Shift = vbShiftMask And KeyCode = vbKeyF6 Then
         'AddDebitNote_Click
     frmDebitCreditVoucher.VchType = "DN"
     Load frmDebitCreditVoucher
     If Err.Number <> 364 Then frmDebitCreditVoucher.Show
     frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
         KeyCode = 0
-    ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
+    ElseIf Shift = vbShiftMask And KeyCode = vbKeyF7 Then
     'AddCreditNote_Click
     frmDebitCreditVoucher.VchType = "CN"
     Load frmDebitCreditVoucher
