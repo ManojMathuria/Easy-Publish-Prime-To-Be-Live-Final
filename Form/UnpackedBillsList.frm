@@ -7,7 +7,7 @@ Begin VB.Form FrmUnpackedBillsList
    Caption         =   "List of Bills..."
    ClientHeight    =   5790
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4845
    BeginProperty Font 
       Name            =   "Arial"
@@ -181,8 +181,8 @@ Begin VB.Form FrmUnpackedBillsList
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "UnpackedBillsList.frx":0784
-         Picture         =   "UnpackedBillsList.frx":07A0
+         Picture         =   "UnpackedBillsList.frx":08AC
+         Picture         =   "UnpackedBillsList.frx":08C8
       End
       Begin VB.Line Line2 
          X1              =   0
@@ -214,7 +214,7 @@ Private Sub Form_Load()
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If Shift = 0 And KeyCode = vbKeyReturn Then
-        If Me.ActiveControl.Name <> "Text1" Then SendKeys "{TAB}": KeyCode = 0
+        If Me.ActiveControl.Name <> "Text1" Then Sendkeys "{TAB}": KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         cmdExit_Click
         KeyCode = 0

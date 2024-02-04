@@ -5,14 +5,108 @@ Begin VB.MDIForm MdiMainMenu
    AutoShowChildren=   0   'False
    BackColor       =   &H8000000C&
    Caption         =   "Easy Publish  21|Rel 05 | 06.29 Version |Production & Inventory Management System"
-   ClientHeight    =   8625
-   ClientLeft      =   165
-   ClientTop       =   705
-   ClientWidth     =   11280
+   ClientHeight    =   9045
+   ClientLeft      =   -5280
+   ClientTop       =   1245
+   ClientWidth     =   19395
    Icon            =   "MainMenu.frx":0000
    LinkTopic       =   "MdiMainMenu"
    LockControls    =   -1  'True
    WindowState     =   2  'Maximized
+   Begin MSComctlLib.Toolbar Toolbar2 
+      Align           =   4  'Align Right
+      Height          =   8010
+      Left            =   17025
+      TabIndex        =   6
+      Top             =   360
+      Width           =   2370
+      _ExtentX        =   4180
+      _ExtentY        =   14129
+      ButtonWidth     =   4154
+      ButtonHeight    =   582
+      AllowCustomize  =   0   'False
+      Appearance      =   1
+      TextAlignment   =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   23
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "F1 >> Help "
+            Key             =   "F1"
+            Object.ToolTipText     =   "F1 >> Help"
+            Object.Tag             =   "F!"
+         EndProperty
+         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Alt+F1 >> Add Account "
+            Key             =   "Alt+F1"
+            Object.ToolTipText     =   "Alt+F1 >> Add Account "
+         EndProperty
+         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Alt+F2 >>Add Item "
+            Key             =   "Alt+F2"
+            Object.ToolTipText     =   "Alt+F2 >>Add Item "
+         EndProperty
+         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Alt+F5 >>Add Payment "
+            Key             =   "Alt+F5"
+            Object.ToolTipText     =   "Alt+F5 >>Add Payment "
+         EndProperty
+         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Alt+F6 >>Add Receipt "
+            Key             =   "Alt+F6"
+            Object.ToolTipText     =   "Alt+F6 >>Add Receipt "
+         EndProperty
+         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Alt+F7 >>Add Journal "
+            Key             =   "Alt+F7"
+            Object.ToolTipText     =   "Alt+F7 >>Add Journal"
+         EndProperty
+         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Ctrl+F5 >>Add Countra "
+            Key             =   "Ctrl+F5"
+            Object.ToolTipText     =   "Ctrl+F5 >>Add Countra "
+         EndProperty
+         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Ctrl+F6 >>Add Debit "
+            Key             =   "Ctrl+F6"
+            Object.ToolTipText     =   "Ctrl+F6 >>Add DebitNote"
+         EndProperty
+         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "Ctrl+F7 >>Add Credit "
+            Key             =   "Ctrl+F7"
+            Object.ToolTipText     =   "Ctrl+F7 >>Add Credit "
+         EndProperty
+         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button22 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         EndProperty
+         BeginProperty Button23 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Caption         =   "F10>> Calculator "
+         EndProperty
+      EndProperty
+   End
    Begin VB.Timer Timer2 
       Interval        =   60000
       Left            =   5880
@@ -44,8 +138,8 @@ Begin VB.MDIForm MdiMainMenu
       Left            =   0
       TabIndex        =   3
       Top             =   0
-      Width           =   11280
-      _ExtentX        =   19897
+      Width           =   19395
+      _ExtentX        =   34211
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -227,11 +321,11 @@ Begin VB.MDIForm MdiMainMenu
       Height          =   375
       Left            =   0
       ScaleHeight     =   345
-      ScaleWidth      =   11250
+      ScaleWidth      =   19365
       TabIndex        =   1
-      Top             =   7950
+      Top             =   8370
       Visible         =   0   'False
-      Width           =   11280
+      Width           =   19395
       Begin VB.PictureBox picOriginal 
          Height          =   5055
          Left            =   1800
@@ -271,37 +365,37 @@ Begin VB.MDIForm MdiMainMenu
       Height          =   300
       Left            =   0
       TabIndex        =   0
-      Top             =   8325
-      Width           =   11280
-      _ExtentX        =   19897
+      Top             =   8745
+      Width           =   19395
+      _ExtentX        =   34211
       _ExtentY        =   529
       _Version        =   393216
       BeginProperty Panels {8E3867A5-8586-11D1-B16A-00C0F0283628} 
          NumPanels       =   5
          BeginProperty Panel1 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   6306
+            Object.Width           =   8793
             MinWidth        =   6306
          EndProperty
          BeginProperty Panel2 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             Alignment       =   1
             AutoSize        =   1
-            Object.Width           =   6306
+            Object.Width           =   8793
             MinWidth        =   6306
          EndProperty
          BeginProperty Panel3 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   4357
+            Object.Width           =   6844
             MinWidth        =   4357
          EndProperty
          BeginProperty Panel4 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   2646
+            Object.Width           =   5133
             MinWidth        =   2646
          EndProperty
          BeginProperty Panel5 {8E3867AB-8586-11D1-B16A-00C0F0283628} 
             AutoSize        =   1
-            Object.Width           =   1501
+            Object.Width           =   3988
             MinWidth        =   1501
          EndProperty
       EndProperty
@@ -322,21 +416,27 @@ Begin VB.MDIForm MdiMainMenu
    End
    Begin VB.Menu MnuCompany 
       Caption         =   "&Company"
+      Tag             =   "00000000"
       Begin VB.Menu MnuOpen 
          Caption         =   "Open"
+         Tag             =   "00010000"
       End
       Begin VB.Menu mnuCreate 
          Caption         =   "Create"
+         Tag             =   "00020000"
          Begin VB.Menu mnuCreate01 
             Caption         =   "With Masters"
+            Tag             =   "00020100"
          End
          Begin VB.Menu mnuCreate02 
             Caption         =   "Without Masters"
+            Tag             =   "00020200"
          End
       End
       Begin VB.Menu MnuClose 
          Caption         =   "Close"
          Enabled         =   0   'False
+         Tag             =   "00030000"
       End
       Begin VB.Menu MnuLine57 
          Caption         =   "-"
@@ -344,10 +444,12 @@ Begin VB.MDIForm MdiMainMenu
       Begin VB.Menu mnuEdit 
          Caption         =   "Edit"
          Enabled         =   0   'False
+         Tag             =   "00040000"
       End
       Begin VB.Menu MnuCompanyChild 
          Caption         =   "Edit Voucher Prifix"
          Enabled         =   0   'False
+         Tag             =   "00050000"
       End
       Begin VB.Menu MnuLine6 
          Caption         =   "-"
@@ -355,60 +457,76 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuDelete 
          Caption         =   "Delete"
+         Tag             =   "00060000"
       End
       Begin VB.Menu MnuLine4 
          Caption         =   "-"
       End
       Begin VB.Menu MnuBackup 
          Caption         =   "Backup"
+         Tag             =   "00070000"
       End
       Begin VB.Menu MnuRestore 
          Caption         =   "Restore"
+         Tag             =   "00080000"
       End
       Begin VB.Menu MnuLicenceAgreement 
          Caption         =   "License Agreement"
+         Tag             =   "00090000"
       End
       Begin VB.Menu MnuYouTube 
          Caption         =   "Help Videos (You Tube)"
       End
       Begin VB.Menu MnuRemoteSupprort 
          Caption         =   "Remote Support Software"
+         Tag             =   "00100000"
       End
       Begin VB.Menu MnuLine344 
          Caption         =   "-"
       End
       Begin VB.Menu MnuExit 
          Caption         =   "E&xit"
+         Tag             =   "00110000"
       End
    End
    Begin VB.Menu MnuMasters 
       Caption         =   "&Masters"
-      Enabled         =   0   'False
-      Tag             =   "0100"
+      Tag             =   "01000000"
       Begin VB.Menu mnuAccountMaster 
          Caption         =   "Account"
-         Tag             =   "0101"
+         Tag             =   "01010000"
       End
       Begin VB.Menu mnuAccountGroupMaster 
          Caption         =   "Account Group"
+         Tag             =   "01020000"
       End
       Begin VB.Menu mnuRateMaster 
          Caption         =   "Rate"
+         Tag             =   "01030000"
          Begin VB.Menu mnuRate 
             Caption         =   "Printing"
             Index           =   1
+            Tag             =   "01030100"
          End
          Begin VB.Menu mnuRate 
             Caption         =   "Misc Operation"
             Index           =   2
+            Tag             =   "01030200"
          End
          Begin VB.Menu mnuRate 
             Caption         =   "Binding Process"
             Index           =   3
+            Tag             =   "01030300"
          End
          Begin VB.Menu mnuRate 
             Caption         =   "Processing"
             Index           =   4
+            Tag             =   "01030400"
+         End
+         Begin VB.Menu mnuRate 
+            Caption         =   "Plates "
+            Index           =   5
+            Tag             =   "01030500"
          End
       End
       Begin VB.Menu mnuLine7 
@@ -416,109 +534,129 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuBook 
          Caption         =   "Item"
-         Tag             =   "0102"
+         Tag             =   "01040000"
          Begin VB.Menu mnuFreshBookMaster 
             Caption         =   "FG"
+            Tag             =   "01040100"
          End
          Begin VB.Menu mnuRepairBookMaster 
             Caption         =   "UFG"
+            Tag             =   "01040200"
          End
       End
       Begin VB.Menu mnuItemGroupMaster 
          Caption         =   "Item Group"
-         Tag             =   "0106"
+         Tag             =   "01050000"
       End
       Begin VB.Menu mnuBindingTypeMaster 
          Caption         =   "Binding Type"
-         Tag             =   "0107"
+         Tag             =   "01060000"
       End
       Begin VB.Menu mnuOperationMaster 
          Caption         =   "Misc. Operation"
-         Tag             =   "0108"
+         Tag             =   "01070000"
       End
       Begin VB.Menu MnuLine5 
          Caption         =   "-"
       End
       Begin VB.Menu mnuSizeMaster 
          Caption         =   "Size"
-         Tag             =   "0109"
+         Tag             =   "01080000"
       End
       Begin VB.Menu mnuFinishSizeMaster 
          Caption         =   "Finish Size"
+         Tag             =   "01090000"
       End
       Begin VB.Menu mnuSizeGroupMaster 
          Caption         =   "Size Group"
+         Tag             =   "01100000"
       End
       Begin VB.Menu MnuLine8 
          Caption         =   "-"
       End
       Begin VB.Menu mnuPaperMaster 
          Caption         =   "Paper"
-         Tag             =   "0110"
+         Tag             =   "01110000"
          Begin VB.Menu mnuPaper 
             Caption         =   "Sheet"
             Index           =   1
+            Tag             =   "01110100"
          End
          Begin VB.Menu mnuPaper 
             Caption         =   "Reel"
             Index           =   2
+            Tag             =   "01110200"
          End
       End
       Begin VB.Menu mnuPaperUnitMaster 
          Caption         =   "Paper Unit"
+         Tag             =   "01120000"
       End
       Begin VB.Menu mnuLine11 
          Caption         =   "-"
       End
+      Begin VB.Menu mnuColorMaster 
+         Caption         =   "Color"
+         Tag             =   "01130000"
+      End
+      Begin VB.Menu mnuLine13 
+         Caption         =   "-"
+      End
       Begin VB.Menu mnuMaterialCentreMaster 
          Caption         =   "Material Centre"
+         Tag             =   "01140000"
+      End
+      Begin VB.Menu mnuSalesExecutiveMaster 
+         Caption         =   "Sales Executive"
       End
       Begin VB.Menu mnu777 
          Caption         =   "-"
       End
+      Begin VB.Menu mnuStateMaster 
+         Caption         =   "State"
+      End
       Begin VB.Menu mnuTaxMaster 
          Caption         =   "Tax"
+         Tag             =   "01150000"
       End
       Begin VB.Menu mnuLine9 
          Caption         =   "-"
       End
       Begin VB.Menu mnuOutsourceItemMaster 
          Caption         =   "BOM Item"
-         Tag             =   "0111"
+         Tag             =   "01160000"
       End
       Begin VB.Menu MnuLine58 
          Caption         =   "-"
       End
       Begin VB.Menu mnuHSNCodeMaster 
          Caption         =   "HSN Code"
+         Tag             =   "01170000"
       End
       Begin VB.Menu mnuBillingNarrationMaster 
          Caption         =   "Std. Narration"
+         Tag             =   "01180000"
       End
       Begin VB.Menu MnuLine15 
          Caption         =   "-"
       End
-      Begin VB.Menu mnuProjectManagementParent 
+      Begin VB.Menu mnuProjectManagementMaster 
          Caption         =   "Project Management"
+         Tag             =   "01190000"
          Begin VB.Menu mnuProjectManagement 
             Caption         =   "Department"
             Index           =   1
+            Tag             =   "01190100"
          End
          Begin VB.Menu mnuProjectManagement 
             Caption         =   "Designation"
             Index           =   2
+            Tag             =   "01190200"
          End
          Begin VB.Menu mnuProjectManagement 
             Caption         =   "Project Member"
             Index           =   3
-         End
-         Begin VB.Menu mnuProjectManagement 
-            Caption         =   "Project Assigner"
-            Index           =   4
-         End
-         Begin VB.Menu mnuProjectManagement 
-            Caption         =   "Project Tracker"
-            Index           =   5
+            Tag             =   "01190300"
          End
       End
       Begin VB.Menu MnuLine1500 
@@ -526,27 +664,33 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuMachineMaster 
          Caption         =   "Machine"
+         Tag             =   "01200000"
       End
       Begin VB.Menu mnuLine676 
          Caption         =   "-"
       End
       Begin VB.Menu mnuDespatchManagementParent 
          Caption         =   "Despatch Management"
+         Tag             =   "01210000"
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Packer"
             Index           =   1
+            Tag             =   "01210100"
          End
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Deliverer"
             Index           =   2
+            Tag             =   "01210200"
          End
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Transporter"
             Index           =   3
+            Tag             =   "01210300"
          End
          Begin VB.Menu mnuDespatchManagement 
             Caption         =   "Booking Route"
             Index           =   4
+            Tag             =   "01210400"
          End
       End
       Begin VB.Menu mnuLine001 
@@ -554,135 +698,204 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuUserMaster 
          Caption         =   "User"
-         Tag             =   "0112"
+         Tag             =   "01220000"
       End
    End
    Begin VB.Menu MnuTransactions 
       Caption         =   "&Transactions"
-      Enabled         =   0   'False
-      Tag             =   "0200"
+      Tag             =   "02000000"
       Begin VB.Menu mnuPrintPlanningModule 
          Caption         =   "Print Planning"
-         Tag             =   "0201"
+         Tag             =   "02010000"
          Begin VB.Menu mnuPrintPlanning 
             Caption         =   "Multi Form Format"
             Index           =   1
+            Tag             =   "02010100"
          End
          Begin VB.Menu mnuPrintPlanning 
             Caption         =   "Spread Form Format"
             Index           =   2
+            Tag             =   "02010200"
          End
       End
-      Begin VB.Menu mnuPurchasesOrder 
-         Caption         =   "Purchase Order"
-         Tag             =   "0202"
-         Begin VB.Menu mnuPurchaseOrderJobWork 
+      Begin VB.Menu mnuPurchaseQuotation 
+         Caption         =   "Purchase Quotation"
+         Tag             =   "02020000"
+         Begin VB.Menu mnuPurchaseQuotationJW 
             Caption         =   "Job Work"
-            Begin VB.Menu mnuPurchaseOrderJobWorkFinishedItem 
-               Caption         =   "FG Item"
+            Tag             =   "02020100"
+            Begin VB.Menu mnuPurchaseQuotationJobWork 
+               Caption         =   "Unit Cost"
+               Index           =   10
+               Tag             =   "02020101"
             End
-            Begin VB.Menu mnuPurchaseOrderJobWorkUnfinishedItem 
-               Caption         =   "UFG Item"
+            Begin VB.Menu mnuPurchaseQuotationJobWork 
+               Caption         =   "Job Work Unit Cost"
+               Index           =   11
+               Tag             =   "02020102"
+            End
+            Begin VB.Menu mnuPurchaseQuotationJobWork 
+               Caption         =   "Job Work"
+               Index           =   12
+               Tag             =   "02020103"
             End
          End
-         Begin VB.Menu mnuPurchaseOrderSupplyInward 
+         Begin VB.Menu mnuQuotationSupplyInwardFinishedItem 
             Caption         =   "Supply Inward"
-            Begin VB.Menu mnuPurchaseOrderSupplyInwardFinishedItem 
-               Caption         =   "FG Item"
-            End
-            Begin VB.Menu mnuPurchaseOrderSupplyInwardBOMItem 
-               Caption         =   "BOM Item"
-            End
+            Tag             =   "02020200"
          End
       End
-      Begin VB.Menu mnuQuotation 
-         Caption         =   "Quotation"
-         Begin VB.Menu mnuQuotationJW 
+      Begin VB.Menu mnuSalesQuotation 
+         Caption         =   "Sale Quotation"
+         Tag             =   "02030000"
+         Begin VB.Menu mnuSalesQuotationJW 
             Caption         =   "Job Work"
-            Begin VB.Menu mnuQuotationJobWork 
+            Tag             =   "02030100"
+            Begin VB.Menu mnuSalesQuotationJobWork 
                Caption         =   "Unit Cost"
                Index           =   7
+               Tag             =   "02030101"
             End
-            Begin VB.Menu mnuQuotationJobWork 
+            Begin VB.Menu mnuSalesQuotationJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   8
+               Tag             =   "02030102"
             End
-            Begin VB.Menu mnuQuotationJobWork 
+            Begin VB.Menu mnuSalesQuotationJobWork 
                Caption         =   "Job Work"
                Index           =   9
+               Tag             =   "02030103"
             End
          End
          Begin VB.Menu mnuQuotationSupplyOutwardFinishedItem 
             Caption         =   "Supply Outward"
+            Tag             =   "02030200"
+         End
+      End
+      Begin VB.Menu mnuPurchasesOrder 
+         Caption         =   "Purchase Order"
+         Tag             =   "02040000"
+         Begin VB.Menu mnuPurchaseOrderJobWork 
+            Caption         =   "Job Work"
+            Tag             =   "02040100"
+            Begin VB.Menu mnuPurchaseOrderJobWorkFinishedItem 
+               Caption         =   "FG Item"
+               Tag             =   "02040101"
+            End
+            Begin VB.Menu mnuPurchaseOrderJobWorkUnfinishedItem 
+               Caption         =   "UFG Item"
+               Tag             =   "02040102"
+            End
+            Begin VB.Menu mnuPurchaseOrderJobWorkDigital 
+               Caption         =   "Digital"
+               Tag             =   "02040103"
+            End
+         End
+         Begin VB.Menu mnuPurchaseOrderSupplyInward 
+            Caption         =   "Supply Inward"
+            Tag             =   "02040200"
+            Begin VB.Menu mnuPurchaseOrderSupplyInwardFinishedItem 
+               Caption         =   "FG Item"
+               Tag             =   "02040201"
+            End
+            Begin VB.Menu mnuPurchaseOrderSupplyInwardBOMItem 
+               Caption         =   "BOM Item"
+               Tag             =   "02040202"
+            End
          End
       End
       Begin VB.Menu mnuSalesOrder 
          Caption         =   "Sales Order"
+         Tag             =   "02050000"
          Begin VB.Menu mnuSalesOrderJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02050100"
             Begin VB.Menu mnuSalesOrderJobWorkFinishedItem 
                Caption         =   "FG Item"
+               Tag             =   "02050101"
             End
             Begin VB.Menu mnuSalesOrderJobWorkUnfinishedItem 
                Caption         =   "UFG Item"
+               Tag             =   "02050102"
+            End
+            Begin VB.Menu mnuSalesOrderJobWorkDigital 
+               Caption         =   "Digital"
+               Tag             =   "02050103"
             End
          End
          Begin VB.Menu mnuSalesOrderSupplyOutwardFinishedItem 
             Caption         =   "Supply Outward"
+            Tag             =   "02050200"
          End
       End
       Begin VB.Menu mnuSales 
          Caption         =   "Sales"
+         Tag             =   "02060000"
          Begin VB.Menu mnuSalesJW 
             Caption         =   "Job Work"
+            Tag             =   "02060100"
             Begin VB.Menu mnuSalesJobWork 
                Caption         =   "Unit Cost"
                Index           =   1
+               Tag             =   "02060101"
             End
             Begin VB.Menu mnuSalesJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   2
+               Tag             =   "02060102"
             End
             Begin VB.Menu mnuSalesJobWork 
                Caption         =   "Job Work"
                Index           =   3
+               Tag             =   "02060103"
             End
          End
          Begin VB.Menu mnuSalesSupplyOutwardFinishedItem 
             Caption         =   "Supply Outward"
+            Tag             =   "02060200"
          End
       End
       Begin VB.Menu mnuSalesReturn 
          Caption         =   "Sales Return"
+         Tag             =   "02070000"
          Begin VB.Menu mnuSalesReturnSupplyOutwardReturnFinishedItem 
             Caption         =   "Supply Outward Return"
+            Tag             =   "02070100"
          End
       End
       Begin VB.Menu mnuPurchase 
          Caption         =   "Purchase"
+         Tag             =   "02080000"
          Begin VB.Menu mnuPurchaseJW 
             Caption         =   "Job Work"
+            Tag             =   "02080100"
             Begin VB.Menu mnuPurchaseJobWork 
                Caption         =   "Unit Cost"
                Index           =   4
+               Tag             =   "02080101"
             End
             Begin VB.Menu mnuPurchaseJobWork 
                Caption         =   "Job Work Unit Cost"
                Index           =   5
+               Tag             =   "02080102"
             End
             Begin VB.Menu mnuPurchaseJobWork 
                Caption         =   "Jobwork"
                Index           =   6
+               Tag             =   "02080103"
             End
          End
          Begin VB.Menu mnuPurchaseSupplyInwardFinishedItem 
             Caption         =   "Supply Inward"
+            Tag             =   "02080200"
          End
       End
       Begin VB.Menu mnuPurchaseReturn 
          Caption         =   "Purchase Return"
+         Tag             =   "02090000"
          Begin VB.Menu mnuPurchaseReturnSupplyInwardReturnFinishedItem 
             Caption         =   "Supply Inward Return"
+            Tag             =   "02090100"
          End
       End
       Begin VB.Menu MnuLine3 
@@ -690,29 +903,36 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuFinanceModuleParent 
          Caption         =   "Finance"
+         Tag             =   "02100000"
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Payment"
             Index           =   1
+            Tag             =   "02100100"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Receipt"
             Index           =   2
+            Tag             =   "02100200"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Journal"
             Index           =   3
+            Tag             =   "02100300"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Contra"
             Index           =   4
+            Tag             =   "02100400"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Debit Note"
             Index           =   5
+            Tag             =   "02100500"
          End
          Begin VB.Menu mnuFinanceModule 
             Caption         =   "Credit Note"
             Index           =   6
+            Tag             =   "02100600"
          End
       End
       Begin VB.Menu MnuLine324 
@@ -720,58 +940,71 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuStockTranferFinishedItem 
          Caption         =   "Stock Tranfer"
+         Tag             =   "02110000"
       End
       Begin VB.Menu mnuMaterialIn 
          Caption         =   "Material In"
+         Tag             =   "02120000"
          Begin VB.Menu mnuMaterialInJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02120100"
          End
          Begin VB.Menu mnuMaterialInSupplyInward 
             Caption         =   "Supply Inward"
+            Tag             =   "02120200"
          End
       End
       Begin VB.Menu mnuMaterialOut 
          Caption         =   "Material Out"
+         Tag             =   "02130000"
          Begin VB.Menu mnuMaterialOutJobWork 
             Caption         =   "Job Work"
+            Tag             =   "02130100"
          End
          Begin VB.Menu mnuMaterialOutSupplyOutward 
             Caption         =   "Supply Outward"
+            Tag             =   "02130200"
          End
       End
       Begin VB.Menu mnuBookProcessOrder 
          Caption         =   "Item Processing Order"
-         Tag             =   "0204"
+         Tag             =   "02140000"
       End
       Begin VB.Menu MnuLine12 
          Caption         =   "-"
       End
       Begin VB.Menu mnuPaperModuleParent 
          Caption         =   "Paper"
+         Tag             =   "02150000"
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Purchase Order"
             Index           =   1
+            Tag             =   "02150100"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Issue"
             Index           =   2
+            Tag             =   "02150200"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Receipt"
             Index           =   3
+            Tag             =   "02150300"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Transfer"
             Index           =   4
-            Tag             =   "0210"
+            Tag             =   "02150400"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Debit Note"
             Index           =   5
+            Tag             =   "02150500"
          End
          Begin VB.Menu mnuPaperModule 
             Caption         =   "Credit Note"
             Index           =   6
+            Tag             =   "02150600"
          End
       End
       Begin VB.Menu mnuLine10 
@@ -779,23 +1012,25 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuMaterialIssueOrder 
          Caption         =   "Material Issue Order"
-         Tag             =   "0213"
+         Tag             =   "02160000"
       End
       Begin VB.Menu MnuMaterialMovement 
          Caption         =   "BOM Item Movement"
-         Tag             =   "0214"
+         Tag             =   "02170000"
       End
       Begin VB.Menu MnuLine16 
          Caption         =   "-"
       End
       Begin VB.Menu mnuStockJournal 
          Caption         =   "Stock Journal"
-         Tag             =   "0215"
+         Tag             =   "02180000"
          Begin VB.Menu mnuStockJournalRawMaterial 
             Caption         =   "Raw Material"
+            Tag             =   "02180100"
          End
          Begin VB.Menu mnuStockJournalFinishedGoods 
             Caption         =   "Finished Goods"
+            Tag             =   "02180200"
          End
       End
       Begin VB.Menu mnu000 
@@ -803,86 +1038,140 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuPackingSlip 
          Caption         =   "Packing Slip"
+         Tag             =   "02190000"
       End
    End
    Begin VB.Menu MnuDisplay 
       Caption         =   "&Display"
-      Enabled         =   0   'False
-      Tag             =   "0700"
+      Tag             =   "03000000"
       Begin VB.Menu MnuFinalResult 
          Caption         =   "Final Result"
+         Tag             =   "03010000"
       End
       Begin VB.Menu MnuTrialBalance 
          Caption         =   "Trial Balance"
+         Tag             =   "03020000"
       End
       Begin VB.Menu MnuAccountBooks 
          Caption         =   "Account Books"
+         Tag             =   "03030000"
          Begin VB.Menu MnuDay 
             Caption         =   "Day Book"
+            Tag             =   "03030100"
          End
          Begin VB.Menu MnuLedger 
             Caption         =   "Ledger"
+            Tag             =   "03030200"
             Begin VB.Menu MnuAccountWise 
                Caption         =   "Account-Wise"
                Index           =   23
+               Tag             =   "03030201"
             End
          End
       End
       Begin VB.Menu MnuAccountSummary 
          Caption         =   "Account Summary"
+         Tag             =   "03040000"
       End
       Begin VB.Menu MnuCostCentre 
          Caption         =   "Cost Centre Report"
+         Tag             =   "03050000"
       End
       Begin VB.Menu MnuOutStandingAnalysis 
          Caption         =   "Outstanding Analysis"
+         Tag             =   "03060000"
       End
       Begin VB.Menu MnuInterestCalculation 
          Caption         =   "Interest Calculation"
+         Tag             =   "03070000"
       End
       Begin VB.Menu MnuProduction 
          Caption         =   "Production Scheduling"
+         Tag             =   "03080000"
          Begin VB.Menu MnuProductionScheduling 
-            Caption         =   "Production Scheduling"
+            Caption         =   "Print Production Scheduling"
+            Index           =   1
+            Tag             =   "03080100"
          End
-         Begin VB.Menu MnuProductionSchedule 
+         Begin VB.Menu MnuProductionScheduling 
+            Caption         =   "Plate Production Scheduling"
+            Index           =   2
+            Tag             =   "03080200"
+         End
+         Begin VB.Menu MnuProductionScheduling 
+            Caption         =   "Paper Cutting Scheduling"
+            Index           =   3
+            Tag             =   "03080300"
+         End
+         Begin VB.Menu MnuProductionScheduling 
+            Caption         =   "Update Dispatch"
+            Index           =   4
+            Tag             =   "03080400"
+            Visible         =   0   'False
+         End
+         Begin VB.Menu MnuProductionScheduling 
             Caption         =   "Production Schedule Print"
+            Index           =   5
+            Tag             =   "03080500"
          End
       End
       Begin VB.Menu MnuStockStatus 
          Caption         =   "Stock Status"
+         Tag             =   "03090000"
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Physical Stock Audit"
             Index           =   0
+            Tag             =   "03090100"
          End
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Inventory Ledger "
             Index           =   1
+            Tag             =   "03090200"
          End
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Closing Stock Alphabetical "
             Index           =   2
+            Tag             =   "03090300"
          End
          Begin VB.Menu MnuStockLedger 
             Caption         =   "Stock List - Short Item Analysis "
             Index           =   33
+            Tag             =   "03090400"
          End
       End
       Begin VB.Menu MnuLine59 
          Caption         =   "-"
          Index           =   1
       End
+      Begin VB.Menu MenuPendingBilling 
+         Caption         =   "Order Processing(Jobwork)"
+         Tag             =   "03140000"
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Sales Order-Wise"
+            Index           =   46
+            Tag             =   "03140100"
+         End
+         Begin VB.Menu MenuPendingBillingJobworkDirect 
+            Caption         =   "Pending Sales Party-Wise"
+            Index           =   47
+            Tag             =   "03140200"
+         End
+      End
       Begin VB.Menu MnuOrderProcessingStatus 
          Caption         =   "Order Status"
+         Tag             =   "03100000"
          Begin VB.Menu MnuOrdersSJW 
             Caption         =   "Job-Work"
+            Tag             =   "03100100"
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Purchase Orders-Party-Wise-Detailed"
                Index           =   35
+               Tag             =   "03100101"
             End
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Purchase Orders-Party-wise-Summarised"
                Index           =   36
+               Tag             =   "03100102"
             End
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "-"
@@ -891,60 +1180,75 @@ Begin VB.MDIForm MdiMainMenu
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Sales Orders-Party-Wise-Detailed"
                Index           =   38
+               Tag             =   "03100103"
             End
             Begin VB.Menu MnuOrdersPartyWise 
                Caption         =   "Sales Orders-Party-wise-Summarised"
                Index           =   39
+               Tag             =   "03100104"
             End
          End
          Begin VB.Menu MnuOrdersSIW 
             Caption         =   "Supply IN-Ward"
+            Tag             =   "03100200"
             Begin VB.Menu MnuPOrdersPartyWise 
                Caption         =   "Purchase Orders Order-Wise"
                Index           =   39
+               Tag             =   "03100201"
             End
             Begin VB.Menu MnuPOrdersPartyWise 
                Caption         =   "Purchase Orders Party-wise"
                Index           =   40
+               Tag             =   "03100202"
             End
             Begin VB.Menu MnuPOrdersPartyWise 
                Caption         =   "Purchase Orders Item-wise"
                Index           =   41
+               Tag             =   "03100203"
             End
          End
          Begin VB.Menu MnuOrdersSOW 
             Caption         =   "Supply Out-Ward"
+            Tag             =   "03100300"
             Begin VB.Menu MnuSOrdersPartyWise 
                Caption         =   "Sale Orders Order-wise"
                Index           =   42
+               Tag             =   "03100301"
             End
             Begin VB.Menu MnuSOrdersPartyWise 
                Caption         =   "Sale Orders Party-wise"
                Index           =   43
+               Tag             =   "03100302"
             End
             Begin VB.Menu MnuSOrdersPartyWise 
                Caption         =   "Sale Orders Item-wise"
                Index           =   44
+               Tag             =   "03100303"
             End
          End
       End
       Begin VB.Menu MenuSaleAnalysis 
          Caption         =   "Sales Analysis"
+         Tag             =   "03110000"
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Item-Wise"
             Index           =   3
+            Tag             =   "03110100"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return Item-Wise"
             Index           =   4
+            Tag             =   "03110200"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return Item-Wise"
             Index           =   5
+            Tag             =   "03110300"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales Item-Wise"
             Index           =   6
+            Tag             =   "03110400"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -953,18 +1257,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales One Party Item-Wise"
             Index           =   8
+            Tag             =   "03110500"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return One Party Item-Wise"
             Index           =   9
+            Tag             =   "03110600"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return One Party Item-Wise"
             Index           =   10
+            Tag             =   "03110700"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales One Party Item-Wise"
             Index           =   11
+            Tag             =   "03110800"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -973,18 +1281,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Party-Wise"
             Index           =   22
+            Tag             =   "03110900"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return Party-Wise"
             Index           =   23
+            Tag             =   "03111000"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return Party-Wise"
             Index           =   24
+            Tag             =   "03111100"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales Party-Wise"
             Index           =   25
+            Tag             =   "03111200"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -993,18 +1305,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales One Item Party-Wise"
             Index           =   27
+            Tag             =   "03111300"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Return One Item Party-Wise"
             Index           =   28
+            Tag             =   "03111400"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales And Sales Return One Item Party-Wise"
             Index           =   29
+            Tag             =   "03111500"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Net Sales One Item Party-Wise"
             Index           =   30
+            Tag             =   "03111600"
          End
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "-"
@@ -1013,25 +1329,31 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuSaleLedger 
             Caption         =   "Sales Voucher-Wise"
             Index           =   32
+            Tag             =   "03111700"
          End
       End
       Begin VB.Menu MenuPurchaseAnalysis 
          Caption         =   "Purchase Analysis"
+         Tag             =   "03120000"
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Item-Wise"
             Index           =   53
+            Tag             =   "03120100"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return Item-Wise"
             Index           =   54
+            Tag             =   "03120200"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return Item-Wise"
             Index           =   55
+            Tag             =   "03120300"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase Item-Wise"
             Index           =   56
+            Tag             =   "03120400"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1040,18 +1362,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase One Party Item-Wise"
             Index           =   58
+            Tag             =   "03120500"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return One Party Item-Wise"
             Index           =   59
+            Tag             =   "03120600"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return One Party Item-Wise"
             Index           =   60
+            Tag             =   "03120700"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase One Party Item-Wise"
             Index           =   61
+            Tag             =   "03120800"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1060,18 +1386,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Party-Wise"
             Index           =   63
+            Tag             =   "03120900"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return Party-Wise"
             Index           =   64
+            Tag             =   "03121000"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return Party-Wise"
             Index           =   65
+            Tag             =   "03121100"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase Party-Wise"
             Index           =   66
+            Tag             =   "03121200"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1080,18 +1410,22 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase One Item Party-Wise"
             Index           =   68
+            Tag             =   "03121300"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Return One Item Party-Wise"
             Index           =   69
+            Tag             =   "03121400"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase And Purchase Return One Item Party-Wise"
             Index           =   70
+            Tag             =   "03121500"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Net Purchase One Item Party-Wise"
             Index           =   71
+            Tag             =   "03121600"
          End
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "-"
@@ -1100,79 +1434,163 @@ Begin VB.MDIForm MdiMainMenu
          Begin VB.Menu MenuPurchaseLedger 
             Caption         =   "Purchase Voucher-Wise"
             Index           =   73
+            Tag             =   "03121700"
          End
       End
-      Begin VB.Menu MnuLine60 
-         Caption         =   "-"
-         Index           =   2
+      Begin VB.Menu MnuIssueReceipt 
+         Caption         =   "Issue-Receipt Analysis"
+         Index           =   1
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item-wise"
+            Index           =   48
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Party-wise"
+            Index           =   49
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Group-wise"
+            Index           =   50
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Voucher-wise"
+            Index           =   51
+         End
+         Begin VB.Menu MnuIssueReceiptAnalysis 
+            Caption         =   "Item Date-wise"
+            Index           =   52
+         End
       End
       Begin VB.Menu MenuPaperIssueReceipt 
          Caption         =   "Paper Ledger"
+         Tag             =   "03130000"
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Receipt Party-Wise"
             Index           =   11
+            Tag             =   "03130100"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Receipt Order-Wise"
             Index           =   12
+            Tag             =   "03130200"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Receipt Without-Order"
             Index           =   13
+            Tag             =   "03130300"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Issue Party-Wise"
             Index           =   14
+            Tag             =   "03130400"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Issue Order-Wise"
             Index           =   15
+            Tag             =   "03130500"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Issue Without-Order"
             Index           =   16
+            Tag             =   "03130600"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Paper Transfer Ledger"
             Index           =   17
+            Tag             =   "03130700"
          End
          Begin VB.Menu MenuPaperLedger 
             Caption         =   "Paper Pending Order"
             Index           =   18
+            Tag             =   "03130800"
          End
+         Begin VB.Menu MenuPaperLedger 
+            Caption         =   "Paper Stock Ledger"
+            Index           =   19
+         End
+      End
+   End
+   Begin VB.Menu MenuFG_UFGLedger 
+      Caption         =   "&Notebook Division"
+      Tag             =   "08000000"
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "Pending Orders"
+         Index           =   0
+         Tag             =   "08010000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "WIP Ledger"
+         Index           =   1
+         Tag             =   "08020000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "RM Ledger"
+         Index           =   2
+         Tag             =   "08030000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "WIP Pending Ledger"
+         Index           =   3
+         Tag             =   "08040000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "RM Pending Ledger"
+         Index           =   4
+         Tag             =   "08050000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "RM && WIP Pending Ledger [PSS]"
+         Index           =   5
+         Tag             =   "08060000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "Raw Materials Consumption"
+         Index           =   6
+         Tag             =   "08070000"
+      End
+      Begin VB.Menu MenuUFGLedger 
+         Caption         =   "Sales Order"
+         Index           =   7
+         Tag             =   "08080000"
       End
    End
    Begin VB.Menu MnuReports 
       Caption         =   "&Reports"
-      Enabled         =   0   'False
-      Tag             =   "0300"
+      Tag             =   "04000000"
       Begin VB.Menu MnuPrintPlanningRegister 
          Caption         =   "Print Planning Register"
-         Tag             =   "0301"
+         Tag             =   "04010000"
          Begin VB.Menu MnuBookPrintPlanningRegister 
             Caption         =   "Multi Form Format"
+            Tag             =   "04010100"
          End
          Begin VB.Menu MnuTitlePrintPlanningRegister 
             Caption         =   "Single Form Format"
+            Tag             =   "04010200"
          End
       End
       Begin VB.Menu MnuPOStatusRegister 
          Caption         =   "Order Status Register"
-         Tag             =   "0302"
+         Tag             =   "04020000"
          Begin VB.Menu MnuPOStatusRegister01 
             Caption         =   "Itemwise"
+            Tag             =   "04020100"
          End
          Begin VB.Menu MnuPOStatusRegister05 
             Caption         =   "Orderwise"
+            Tag             =   "04020200"
          End
          Begin VB.Menu MnuPOStatusRegister03 
             Caption         =   "Multi Form Partywise"
+            Tag             =   "04020300"
          End
          Begin VB.Menu MnuPOStatusRegister02 
             Caption         =   "Spread Form Partywise"
+            Tag             =   "04020400"
          End
          Begin VB.Menu MnuPOStatusRegister04 
             Caption         =   "Binding Partywise"
+            Tag             =   "04020500"
          End
       End
       Begin VB.Menu MnuLine50 
@@ -1180,26 +1598,29 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuPaperIssueRegister 
          Caption         =   "Paper Purchase Ledger"
-         Tag             =   "0303"
+         Tag             =   "04030000"
       End
       Begin VB.Menu MnuPaperStockRegister 
          Caption         =   "Paper Stock Ledger"
-         Tag             =   "0304"
+         Tag             =   "04040000"
       End
       Begin VB.Menu MnuOpBal 
          Caption         =   "Paper Opening Balance"
+         Tag             =   "04050000"
       End
       Begin VB.Menu MnuLine51 
          Caption         =   "-"
       End
       Begin VB.Menu MnuMaterialStockRegister 
          Caption         =   "BOM Item Stock Register"
-         Tag             =   "0305"
+         Tag             =   "04060000"
          Begin VB.Menu MnuMaterialStockRegister01 
             Caption         =   "Godownwise/Itemwise/BOM Itemwise"
+            Tag             =   "04060100"
          End
          Begin VB.Menu MnuMaterialStockRegister02 
             Caption         =   "Godownwise/BOM Itemwise"
+            Tag             =   "04060200"
          End
       End
       Begin VB.Menu MnuLine52 
@@ -1207,20 +1628,25 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuPOStatusReg 
          Caption         =   "Purchase Order Status"
-         Tag             =   "0306"
+         Tag             =   "04070000"
          Begin VB.Menu MnuPOStatusReg02 
             Caption         =   "BOM Item"
+            Tag             =   "04070100"
          End
          Begin VB.Menu MnuPOStatusReg03 
             Caption         =   "Printed Items (BOM)"
+            Tag             =   "04070200"
             Begin VB.Menu MnuPOStatusReg0301 
                Caption         =   "FG Item"
+               Tag             =   "04070201"
             End
             Begin VB.Menu MnuPOStatusReg0302 
                Caption         =   "UFG Item"
+               Tag             =   "04070202"
             End
             Begin VB.Menu MnuPOStatusReg0303 
                Caption         =   "Spread Format"
+               Tag             =   "04070204"
             End
          End
       End
@@ -1229,112 +1655,135 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu mnuOrderLedger 
          Caption         =   "Order Ledger"
+         Tag             =   "04080000"
          Begin VB.Menu mnuPurchaseOrder 
             Caption         =   "Purchase Order"
+            Tag             =   "04080100"
             Begin VB.Menu MnuPOLedgerParty 
                Caption         =   "Party-Wise- Detailed"
                Index           =   11
+               Tag             =   "04080101"
             End
             Begin VB.Menu MnuPOLedgerParty 
                Caption         =   "Party-Wise- Summrised"
                Index           =   12
+               Tag             =   "04080102"
             End
          End
          Begin VB.Menu mnuSaleOrder 
             Caption         =   "Sale Order"
+            Tag             =   "04080200"
             Begin VB.Menu MnuSOLedgerParty 
                Caption         =   "Party-Wise- Detailed"
                Index           =   21
-               Tag             =   "0307"
+               Tag             =   "04080201"
             End
             Begin VB.Menu MnuSOLedgerParty 
                Caption         =   "Party-Wise- Summrised"
                Index           =   22
+               Tag             =   "04080202"
             End
          End
       End
       Begin VB.Menu MnuOrderProcessing 
          Caption         =   "Order Status"
+         Tag             =   "04090000"
          Begin VB.Menu MnuPendingOrders 
             Caption         =   "Job-Work"
             Index           =   1
+            Tag             =   "04090100"
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Purchase Orders-Party-Wise-Detailed"
                Index           =   11
+               Tag             =   "04090101"
             End
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Purchase Orders-Party-wise-Summarised"
                Index           =   12
+               Tag             =   "04090102"
             End
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Sale Orders-Party-wise-Detailed"
                Index           =   21
+               Tag             =   "04090103"
             End
             Begin VB.Menu MnuPurchaseSaleOrderParty 
                Caption         =   "Sale Orders-Party-wise-Summarised"
                Index           =   22
+               Tag             =   "04090104"
             End
          End
          Begin VB.Menu MnuPendingOrdersPO 
             Caption         =   "Supply INward"
             Index           =   2
+            Tag             =   "04090200"
             Begin VB.Menu MnuPurchaseSaleOrderPartyPO 
                Caption         =   "Purchase Orders Order-Wise"
                Index           =   13
+               Tag             =   "04090201"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartyPO 
                Caption         =   "Purchase Orders-Party-wise"
                Index           =   14
+               Tag             =   "04090202"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartyPO 
                Caption         =   "Purchase Orders-Item-wise"
                Index           =   15
+               Tag             =   "04090203"
             End
          End
          Begin VB.Menu MnuPendingOrdersSO 
             Caption         =   "Supply Outward"
             Index           =   3
+            Tag             =   "04090300"
             Begin VB.Menu MnuPurchaseSaleOrderPartySO 
                Caption         =   "Sale Orders Order-wise"
                Index           =   23
+               Tag             =   "04090301"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartySO 
                Caption         =   "Sale Orders-Party-wise"
                Index           =   24
+               Tag             =   "04090302"
             End
             Begin VB.Menu MnuPurchaseSaleOrderPartySO 
                Caption         =   "Sale Orders-Item-wise"
                Index           =   25
+               Tag             =   "04090303"
             End
          End
-      End
-      Begin VB.Menu MenuQuotation 
-         Caption         =   "Quotation Processing"
       End
       Begin VB.Menu MnuLine1 
          Caption         =   "-"
       End
-      Begin VB.Menu MnuIssueReceipt 
+      Begin VB.Menu MnuIssueReceipts 
          Caption         =   "Issue-Receipt Analysis"
+         Tag             =   "04110000"
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item-wise"
             Index           =   16
+            Tag             =   "04110100"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Party-wise"
             Index           =   17
+            Tag             =   "04110200"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Group-wise"
             Index           =   18
+            Tag             =   "04110300"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Voucher-wise"
             Index           =   19
+            Tag             =   "04110400"
          End
          Begin VB.Menu MnuItemIssueReceipt 
             Caption         =   "Item Date-wise"
             Index           =   20
+            Tag             =   "04110500"
          End
       End
       Begin VB.Menu MnuLine56 
@@ -1342,77 +1791,91 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuPendingPaymentRegister 
          Caption         =   "Pending Payment Register"
-         Tag             =   "0308"
-         Visible         =   0   'False
+         Tag             =   "04120000"
       End
       Begin VB.Menu MnuPendingDNRegister 
          Caption         =   "Pending Debit Notes Register"
-         Tag             =   "0309"
+         Tag             =   "04130000"
       End
       Begin VB.Menu MnuLine54 
          Caption         =   "-"
       End
       Begin VB.Menu MnuBookList1 
          Caption         =   "List of Items"
-         Tag             =   "0310"
+         Tag             =   "04140000"
          Begin VB.Menu MnuBookList 
             Caption         =   "Items Details"
             Index           =   1
+            Tag             =   "04140100"
          End
          Begin VB.Menu MnuBookList 
             Caption         =   "Items Weight"
             Index           =   2
+            Tag             =   "04140200"
          End
       End
       Begin VB.Menu MnuCorrectionList 
          Caption         =   "Project Status Report"
-         Tag             =   "0311"
+         Tag             =   "04150000"
       End
       Begin VB.Menu MnuLine55 
          Caption         =   "-"
       End
       Begin VB.Menu MnuProductionPlanning 
          Caption         =   "Production Fore-Casting"
-         Tag             =   "0313"
+         Tag             =   "04160000"
          Begin VB.Menu MnuProductionPlanning01 
             Caption         =   "Main Orders"
+            Tag             =   "04160100"
          End
          Begin VB.Menu MnuProductionPlanning02 
             Caption         =   "Supplement Orders"
+            Tag             =   "04160200"
          End
       End
    End
    Begin VB.Menu MnuUtilities 
       Caption         =   "&Utilities"
-      Enabled         =   0   'False
+      Tag             =   "05000000"
+      Begin VB.Menu MnuEmailUtilities 
+         Caption         =   "Email Profile"
+         Tag             =   "05010000"
+      End
       Begin VB.Menu MnuPrintUtilities 
          Caption         =   "Print Utilities"
-         Tag             =   "0315"
+         Tag             =   "05020000"
          Begin VB.Menu MnuBookPOPrintUtility1 
             Caption         =   "Item Order"
+            Tag             =   "05020100"
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Jobwork And Unit Cost"
                Index           =   1
+               Tag             =   "05020101"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "JobCard"
                Index           =   2
+               Tag             =   "05020102"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Plate Orders"
                Index           =   3
+               Tag             =   "05020103"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Paper-Requisition-Slip"
                Index           =   4
+               Tag             =   "05020104"
             End
             Begin VB.Menu MnuBookPOPrintUtility 
                Caption         =   "Quotation Format"
                Index           =   5
+               Tag             =   "05020105"
             End
          End
          Begin VB.Menu MnuPaperPOPrintUtility 
             Caption         =   "Paper Order"
+            Tag             =   "05020200"
          End
       End
       Begin VB.Menu MnuLine44 
@@ -1420,28 +1883,92 @@ Begin VB.MDIForm MdiMainMenu
       End
       Begin VB.Menu MnuBookReceiptBusy 
          Caption         =   "Item Receipt (Busy)"
-         Tag             =   "0206"
+         Tag             =   "05030000"
       End
       Begin VB.Menu mnuCostSheet 
          Caption         =   "Cost Estimation"
+         Tag             =   "05040000"
       End
       Begin VB.Menu mnuItemOpBal 
          Caption         =   "Mat Centrewise Item Op Bal"
+         Tag             =   "05050000"
       End
       Begin VB.Menu mnuDiscount 
          Caption         =   "Discount Structure"
+         Tag             =   "05060000"
       End
       Begin VB.Menu MnuImportBal 
          Caption         =   "Import Balances"
+         Tag             =   "05070000"
          Begin VB.Menu MnuImportBal01 
             Caption         =   "Order"
+            Tag             =   "05070100"
          End
          Begin VB.Menu MnuImportBal02 
             Caption         =   "Paper"
+            Tag             =   "05070200"
          End
          Begin VB.Menu MnuImportBal03 
             Caption         =   "BOM Item"
+            Tag             =   "05070300"
          End
+      End
+   End
+   Begin VB.Menu mnuProjectManagementParent 
+      Caption         =   "&Project Management"
+      Tag             =   "06000000"
+      Begin VB.Menu mnuEditorial 
+         Caption         =   "Editorial"
+         Tag             =   "06010000"
+         Begin VB.Menu mnuProject 
+            Caption         =   "Project Assigner"
+            Index           =   1
+            Tag             =   "06000100"
+         End
+         Begin VB.Menu mnuProject 
+            Caption         =   "Project Tracker"
+            Index           =   2
+            Tag             =   "06000200"
+         End
+      End
+   End
+   Begin VB.Menu MnuHelpm 
+      Caption         =   "&Help"
+      Tag             =   "07000000"
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Users Manual – Easy Publish"
+         Index           =   1
+         Shortcut        =   {F1}
+         Tag             =   "07010000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Easy Publish Application Folder "
+         Index           =   2
+         Tag             =   "07020000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Application Version Updates"
+         Index           =   3
+         Tag             =   "07030000"
+      End
+      Begin VB.Menu MnuHelp 
+         Caption         =   "Create New Financial Year"
+         Index           =   4
+         Tag             =   "07040000"
+      End
+   End
+   Begin VB.Menu MnuAdd 
+      Caption         =   $"MainMenu.frx":2140
+      WindowList      =   -1  'True
+      Begin VB.Menu MnuAdd1 
+         Caption         =   $"MainMenu.frx":2219
+         Index           =   1
+         Shortcut        =   %{BKSP}
+      End
+      Begin VB.Menu MnuAdd1 
+         Caption         =   "Add2"
+         Index           =   2
+	 Shortcut        =   %{F1}	
       End
    End
 End
@@ -1452,13 +1979,117 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim iCount As Long
-Public Version As String
+Public Version As String, exitFlage As Boolean
 Private WithEvents oHuffman As clsHuffman
 Attribute oHuffman.VB_VarHelpID = -1
 Private oRegistry As New clsRegistry
 Private Developer As String
 Dim rstDBList As New ADODB.Recordset
 Dim Decrypt As Variant
+Private Sub MDIForm_Load()
+Version = "EasyPublish |Rel " & Format(App.Major, "00") & "." & Format(App.Minor, "00") & " Ver " & App.Minor & "." & App.Revision & " |Production & Inventory Management System"
+MdiMainMenu.Caption = Version
+If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
+    If GetSystemMetrics(SM_CXSCREEN) < 800 Or GetSystemMetrics(SM_CYSCREEN) < 600 Then Call MsgBox("Easy Publish requires atleast 800 x 600 screen resolution.", vbInformation, "Cannot Continue !"): Call CloseForm(MdiMainMenu): Exit Sub
+    DatabaseType = Trim(ReadFromFile("Database Type"))
+        If Dir(App.Path & "\Costing", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Costing"
+        If Dir(App.Path & "\Database", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Database"
+        If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+        If Dir(App.Path & "\Imposition", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Imposition"
+        If Dir(App.Path & "\Pic", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic"
+        If Dir(App.Path & "\Report", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Report"
+        If Dir(App.Path & "\JSON", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\JSON"
+    If DatabaseType = "MS Access" Then
+        If Dir(App.Path & "\EasyPublish.ini") = "" Then WriteToFile "Database Path", App.Path & "\Database": WriteToFile "Database Name", ""
+        DatabasePath = Trim(ReadFromFile("Database Path"))
+    ElseIf DatabaseType = "MS SQL" Then
+        If Dir(App.Path & "\EasyPublish.ini") = "" Then WriteToFile "Server Name", "": WriteToFile "Server Password", ""
+    End If
+    If Decrypted(Trim(ReadFromFile("Server Name")), Decrypt) Then
+        ServerName = Decrypt
+    End If
+    If Decrypted(Trim(ReadFromFile("Server User")), Decrypt) Then
+        ServerUser = Decrypt
+    End If
+    If Decrypted(Trim(ReadFromFile("Server Password")), Decrypt) Then
+        ServerPassword = Decrypt
+    End If
+
+    If Trim(ReadFromFile("Super User")) <> "EasyPublish" Then Call Command1_Click
+    If FileExist(App.Path & "\Icon\EasyPublish.jpeg") Then Developer = "Developed by Easy Info Solutions International Mobile- +91-987-342-2907   Email ID - Easyinfosolutionsi@gmail.com " & Space(150)
+            ServerID = Trim(ReadFromFile("Server ID"))
+            If Trim(ReadFromFile("Server ID")) = "" Then WriteToFile "Server ID", "E3R82#I12S0#SM2E1#IA2P6#EP000#"
+    Do While Trim(ReadFromFile("Server ID")) = "" Or dueDate = "" Or UniqueDate <> "28-SEP-2016" Or DaysLeft <= 0
+             If Trim(ReadFromFile("Server ID")) <> "" Then
+                     dYear = "20" + Mid(Trim(ReadFromFile("Server ID")), 9, 1) + Mid(Trim(ReadFromFile("Server ID")), 15, 1)
+                    dMonth = Mid(Trim(ReadFromFile("Server ID")), 14, 1) + Mid(Trim(ReadFromFile("Server ID")), 20, 1) + Mid(Trim(ReadFromFile("Server ID")), 3, 1)
+                     dDay = Mid(Trim(ReadFromFile("Server ID")), 2, 1) + Mid(Trim(ReadFromFile("Server ID")), 8, 1)
+                     dueDate = dDay + "-" + dMonth + "-" + dYear
+                     
+                     dYear = Mid(Trim(ReadFromFile("Server ID")), 5, 1) + Mid(Trim(ReadFromFile("Server ID")), 11, 1) + Mid(Trim(ReadFromFile("Server ID")), 17, 1) + Mid(Trim(ReadFromFile("Server ID")), 23, 1)
+                    dMonth = Mid(Trim(ReadFromFile("Server ID")), 10, 1) + Mid(Trim(ReadFromFile("Server ID")), 16, 1) + Mid(Trim(ReadFromFile("Server ID")), 22, 1)
+                     dDay = Mid(Trim(ReadFromFile("Server ID")), 21, 1) + Mid(Trim(ReadFromFile("Server ID")), 4, 1)
+                     UniqueDate = dDay + "-" + dMonth + "-" + dYear
+             Else
+                     frmLicenceAgreement.cmdOK.Visible = False: frmLicenceAgreement.Show vbModal: If LaterFlag = True Then Unload Me: If LaterFlag = True Then Exit Sub: LaterFlag = False
+             End If
+             ServerID = Trim(ReadFromFile("Server ID"))
+    
+                     DaysLeft = DateDiff("d", Format(Date, "dd-MMM-yyyy"), dueDate)
+                    
+             If DaysLeft <= 0 Then
+                     Call MsgBox("You are using a Demo/Unlicened Version or Subscription of" & Chr(13) & "Easy Publish ERP that is expired." & Chr(13) & "If you would like to purchase or continue to Subcribe, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title)
+                    frmLicenceAgreement.cmdOK.Visible = False: frmLicenceAgreement.Show vbModal: If LaterFlag = True Then Unload Me: If LaterFlag = True Then Exit Sub: LaterFlag = False
+             ElseIf DaysLeft <= 30 Then
+                    Call MsgBox("You have  " & DaysLeft & " Days Left..." & Chr(13) & "You are using a Demo/Unlicened Version or Subscription of" & Chr(13) & "Easy Publish ERP that will be expired soon." & Chr(13) & "If you would like to purchase or continue to Subcribe, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title)
+             End If
+            
+    Loop
+            If RenewFlag = True Then Call MsgBox("Your Easy Publish ERP Subscription is renewed now " & Chr(13) & " till  :" & dueDate & ". " & Chr(13) & "If you would have any query, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title): RenewFlag = False
+    MnuCompany.Enabled = True
+    MnuMasters.Enabled = False
+    MnuTransactions.Enabled = False
+    MnuDisplay.Enabled = False
+    MenuFG_UFGLedger.Enabled = False: MenuFG_UFGLedger.Visible = False
+    MnuReports.Enabled = False
+    MnuUtilities.Enabled = False
+    mnuProjectManagementParent.Enabled = False: mnuProjectManagementParent.Visible = False
+    MnuHelpm = True
+End Sub
+Private Sub MDIForm_Resize()
+    On Error Resume Next
+    Dim client_rect As RECT
+    Dim client_hwnd As Long
+    If Not Trim(ReadFromFile("Customer Type")) = "General" Then
+            MenuFG_UFGLedger.Visible = True: mnuProjectManagementParent.Visible = True
+    End If
+    If Trim(ReadFromFile("Client ID")) = "Publisher" Then
+    picOriginal.Picture = LoadPicture(App.Path & "\Icon\EasyPublish.jpeg")
+    ElseIf Trim(ReadFromFile("Client ID")) = "Printer" Then
+    picOriginal.Picture = LoadPicture(App.Path & "\Icon\EasyPrint.jpeg")
+    End If
+    picStretched.Move 0, 0, ScaleWidth, ScaleHeight
+    picStretched.PaintPicture picOriginal.Picture, -20, -40, picStretched.ScaleWidth, picStretched.ScaleHeight, -8, -8, picOriginal.ScaleWidth, picOriginal.ScaleHeight
+    Picture = picStretched.Image
+    client_hwnd = FindWindowEx(Me.hwnd, 0, "MDIClient", vbNullChar)
+    GetClientRect client_hwnd, client_rect
+    InvalidateRect client_hwnd, client_rect, 1
+    If Me.WindowState <> vbMinimized Then Me.WindowState = vbMaximized
+End Sub
+Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+    If Not MnuOpen.Enabled Then MsgBox "           Cannot Quit till You have Company Open." & vbCrLf & "Kindly make sure to Close the Company before Quitting !!!", vbExclamation, "Cannot Close !": Cancel = 1: Exit Sub Else Call CloseForm(MdiMainMenu)
+End Sub
+Private Sub MDIForm_Unload(Cancel As Integer)
+    On Error GoTo ErrorHandler
+    Set oHuffman = Nothing
+    Set FSO = Nothing
+    Set oRegistry = Nothing
+    CloseMainConnection
+    If Not cnDatabase Is Nothing Then Set cnDatabase = Nothing
+    Call AnimateWindow(Me.hwnd, CInt(500), AW_HIDE Or AW_BLEND)
+    Exit Sub
+ErrorHandler:
+End Sub
 Private Sub Command1_Click()
     Dim R As Long
         R = ShellExecute(0, "open", "https://www.youtube.com/channel/UCW5RVD8qIBTGzCSRM03U7Cw", 0, 0, 1)
@@ -1471,6 +2102,65 @@ Private Sub Command1_Click()
         For iCount = 1 To 100000
         iCount = iCount + 1
         Next
+End Sub
+Private Sub MenuPendingBillingJobworkDirect_Click(Index As Integer)
+    On Error Resume Next
+    FrmItemSelectionList.VchType = Trim(Index)
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+End Sub
+Private Sub MenuUFGLedger_Click(Index As Integer)
+    On Error Resume Next
+If Trim(Index) = 0 Then
+    FrmItemSelectionList.VchType = "43"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 3 Then
+    FrmItemSelectionList.VchType = "103"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 4 Then
+    FrmItemSelectionList.VchType = "104"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 5 Then
+    FrmItemSelectionList.VchType = "105"
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
+ElseIf Trim(Index) = 6 Then
+    Load FrmRMConsumed
+    If Err.Number <> 364 Then FrmRMConsumed.Show
+ElseIf Trim(Index) = 7 Then
+    frmSalesOrderVoucher.VchType = "SO"
+    Load FrmRMConsumed
+    Load frmSalesOrderVoucher
+    If Err.Number <> 364 Then frmSalesOrderVoucher.Show
+Else
+    FrmUFGLedger.VchType = Trim(Index)
+    Load FrmUFGLedger
+    If Err.Number <> 364 Then FrmUFGLedger.Show
+End If
+End Sub
+Private Sub MnuAdd1_Click(Index As Integer)
+    On Error Resume Next
+    Dim R As Long
+    If Trim(Index) = 1 Then
+        If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+        End If
+    ElseIf Trim(Index) >= 2 And Trim(Index) <= 7 Then
+        frmDebitCreditVoucher.VchType = Choose(Index, "PI", "PR", "JE", "CE", "DN", "CN")
+        Load frmDebitCreditVoucher
+        If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    End If
+End Sub
+Private Sub MnuIssueReceiptAnalysis_Click(Index As Integer)
+    On Error Resume Next
+    FrmItemSelectionList.VchType = "0448" 'Trim(Index)
+    Load FrmItemSelectionList
+    If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
 Private Sub MnuLicenceAgreement_Click()
     On Error Resume Next
@@ -1516,102 +2206,16 @@ Private Function Decrypted(Encrypt As Variant, Decrypt)
     Next j
     Decrypted = True
 End Function
-Private Sub MDIForm_Load()
-Version = "EasyPublish |Rel 21.05 Ver " & App.Minor & "." & App.Revision & " |Production & Inventory Management System"
-MdiMainMenu.Caption = Version
-If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
-    If GetSystemMetrics(SM_CXSCREEN) < 800 Or GetSystemMetrics(SM_CYSCREEN) < 600 Then Call MsgBox("Easy Publish requires atleast 800 x 600 screen resolution.", vbInformation, "Cannot Continue !"): Call CloseForm(MdiMainMenu): Exit Sub
-    DatabaseType = Trim(ReadFromFile("Database Type"))
-        If Dir(App.Path & "\Costing", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Costing"
-        If Dir(App.Path & "\Database", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Database"
-        If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
-        If Dir(App.Path & "\Imposition", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Imposition"
-        If Dir(App.Path & "\Pic", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic"
-        If Dir(App.Path & "\Report", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Report"
-    If DatabaseType = "MS Access" Then
-        If Dir(App.Path & "\EasyPublish.ini") = "" Then WriteToFile "Database Path", App.Path & "\Database": WriteToFile "Database Name", ""
-        DatabasePath = Trim(ReadFromFile("Database Path"))
-    ElseIf DatabaseType = "MS SQL" Then
-        If Dir(App.Path & "\EasyPublish.ini") = "" Then WriteToFile "Server Name", "": WriteToFile "Server Password", ""
-    End If
-    If Decrypted(Trim(ReadFromFile("Server Name")), Decrypt) Then
-        ServerName = Decrypt
-    End If
-    If Decrypted(Trim(ReadFromFile("Server User")), Decrypt) Then
-        ServerUser = Decrypt
-    End If
-    If Decrypted(Trim(ReadFromFile("Server Password")), Decrypt) Then
-        ServerPassword = Decrypt
-    End If
-
-    If Trim(ReadFromFile("Super User")) <> "EasyPublish" Then Call Command1_Click
-    If FileExist(App.Path & "\Icon\EasyPublish.jpeg") Then Developer = "Developed by Easy Info Solutions International Mobile- +91-987-342-2907   Email ID - Easyinfosolutionsi@gmail.com " & Space(150)
-            ServerID = Trim(ReadFromFile("Server ID"))
-            If Trim(ReadFromFile("Server ID")) = "" Then WriteToFile "Server ID", "E3R82#I12S0#SM2E1#IA2P6#EP000#"
-    Do While Trim(ReadFromFile("Server ID")) = "" Or dueDate = "" Or UniqueDate <> "28-SEP-2016" Or DaysLeft <= 0
-             If Trim(ReadFromFile("Server ID")) <> "" Then
-                     dYear = "20" + Mid(Trim(ReadFromFile("Server ID")), 9, 1) + Mid(Trim(ReadFromFile("Server ID")), 15, 1)
-                    dMonth = Mid(Trim(ReadFromFile("Server ID")), 14, 1) + Mid(Trim(ReadFromFile("Server ID")), 20, 1) + Mid(Trim(ReadFromFile("Server ID")), 3, 1)
-                     dDay = Mid(Trim(ReadFromFile("Server ID")), 2, 1) + Mid(Trim(ReadFromFile("Server ID")), 8, 1)
-                     dueDate = dDay + "-" + dMonth + "-" + dYear
-                     
-                     dYear = Mid(Trim(ReadFromFile("Server ID")), 5, 1) + Mid(Trim(ReadFromFile("Server ID")), 11, 1) + Mid(Trim(ReadFromFile("Server ID")), 17, 1) + Mid(Trim(ReadFromFile("Server ID")), 23, 1)
-                    dMonth = Mid(Trim(ReadFromFile("Server ID")), 10, 1) + Mid(Trim(ReadFromFile("Server ID")), 16, 1) + Mid(Trim(ReadFromFile("Server ID")), 22, 1)
-                     dDay = Mid(Trim(ReadFromFile("Server ID")), 21, 1) + Mid(Trim(ReadFromFile("Server ID")), 4, 1)
-                     UniqueDate = dDay + "-" + dMonth + "-" + dYear
-             Else
-                     frmLicenceAgreement.cmdOK.Visible = False: frmLicenceAgreement.Show vbModal: If LaterFlag = True Then Unload Me: If LaterFlag = True Then Exit Sub: LaterFlag = False
-             End If
-             ServerID = Trim(ReadFromFile("Server ID"))
-    
-                     DaysLeft = DateDiff("d", Format(Date, "dd-MMM-yyyy"), dueDate)
-                    
-             If DaysLeft <= 0 Then
-                     Call MsgBox("You are using a Demo/Unlicened Version or Subscription of" & Chr(13) & "Easy Publish ERP that is expired." & Chr(13) & "If you would like to purchase or continue to Subcribe, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title)
-                    frmLicenceAgreement.cmdOK.Visible = False: frmLicenceAgreement.Show vbModal: If LaterFlag = True Then Unload Me: If LaterFlag = True Then Exit Sub: LaterFlag = False
-             ElseIf DaysLeft <= 30 Then
-                    Call MsgBox("You have  " & DaysLeft & " Days Left..." & Chr(13) & "You are using a Demo/Unlicened Version or Subscription of" & Chr(13) & "Easy Publish ERP that will be expired soon." & Chr(13) & "If you would like to purchase or continue to Subcribe, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title)
-             End If
-             
-    Loop
-            If RenewFlag = True Then Call MsgBox("Your Easy Publish ERP Subscription is renewed now " & Chr(13) & " till  :" & dueDate & ". " & Chr(13) & "If you would have any query, Please contact" & Chr(13) & "Easy Info Solutions International" & Chr(13) & "E-Mail:sales@easyinfosolution.com" & Chr(13) & "Mobile:+91-987-342-2907", vbInformation, App.Title): RenewFlag = False
-End Sub
-Private Sub MDIForm_Resize()
-    On Error Resume Next
-    Dim client_rect As RECT
-    Dim client_hwnd As Long
-    If Trim(ReadFromFile("Client ID")) = "Publisher" Then
-    picOriginal.Picture = LoadPicture(App.Path & "\Icon\EasyPublish.jpeg")
-    ElseIf Trim(ReadFromFile("Client ID")) = "Printer" Then
-    picOriginal.Picture = LoadPicture(App.Path & "\Icon\EasyPrint.jpeg")
-    End If
-    picStretched.Move 0, 0, ScaleWidth, ScaleHeight
-    picStretched.PaintPicture picOriginal.Picture, -20, -40, picStretched.ScaleWidth, picStretched.ScaleHeight, -8, -8, picOriginal.ScaleWidth, picOriginal.ScaleHeight
-    Picture = picStretched.Image
-    client_hwnd = FindWindowEx(Me.hwnd, 0, "MDIClient", vbNullChar)
-    GetClientRect client_hwnd, client_rect
-    InvalidateRect client_hwnd, client_rect, 1
-    If Me.WindowState <> vbMinimized Then Me.WindowState = vbMaximized
-End Sub
-Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-    If Not MnuOpen.Enabled Then MsgBox "           Cannot Quit till You have Company Open." & vbCrLf & "Kindly make sure to Close the Company before Quitting !!!", vbExclamation, "Cannot Close !": Cancel = 1: Exit Sub Else Call CloseForm(MdiMainMenu)
-End Sub
-Private Sub MDIForm_Unload(Cancel As Integer)
-    On Error GoTo ErrorHandler
-    Set oHuffman = Nothing
-    Set FSO = Nothing
-    Set oRegistry = Nothing
-    CloseMainConnection
-    If Not cnDatabase Is Nothing Then Set cnDatabase = Nothing
-    Call AnimateWindow(Me.hwnd, CInt(500), AW_HIDE Or AW_BLEND)
-    Exit Sub
-ErrorHandler:
-End Sub
 Private Sub MenuPaperLedger_Click(Index As Integer)
     On Error Resume Next
+If Trim(Index) = 19 Then
+    Load FrmPaperStockRegister
+    If Err.Number <> 364 Then FrmPaperStockRegister.Show
+Else
     FrmItemSelectionList.VchType = Trim(Index)
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
+End If
 End Sub
 Private Sub mnuExit_Click()
     If MnuClose.Enabled Then mnuClose_Click
@@ -1620,11 +2224,21 @@ End Sub
 Private Sub mnuOpen_Click()
     Dim rstCompanyMaster As New ADODB.Recordset
     On Error GoTo OpenError
+    If Decrypted(Trim(ReadFromFile("Server User")), Decrypt) Then
+        ServerUser = Decrypt
+    End If
     Load FrmCompanyList
     FrmCompanyList.Show vbModal
     If CompCode <> "" Then
         BusySystemIndicator True
         CloseMainConnection
+        cnClientAccount.CursorLocation = adUseClient
+    If DatabaseType = "MS SQL" Then
+        cnClientAccount.CommandTimeout = 300
+        ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=sa;Initial Catalog=Company ;Data Source=" & ServerName
+        If cnClientAccount.State = 1 Then cnClientAccount.Close
+        cnClientAccount.Open ConnectionString
+    End If
         cnDatabase.CursorLocation = adUseClient
         If DatabaseType = "MS SQL" Then
             cnDatabase.CommandTimeout = 300
@@ -1640,10 +2254,15 @@ Private Sub mnuOpen_Click()
         Load FrmLogin
         FrmLogin.Show vbModal
         If LoginSuccess Then
-            StatusBar1.Panels(3).Text = "User Name : " & Trim(UserName)
+            StatusBar1.Panels(3).Text = "User Name : " & Trim(Username)
             SetMenuOptions (True)
-            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-') FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
-            MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"                       '"Easy Publish  21|Rel 05 | 06.29 Version |Production & Inventory Management System [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
+            rstCompanyMaster.Open "SELECT Name,'-Financial Year From '+REPLACE(CONVERT(VARCHAR(11),FinancialYearFrom,106),' ','-')+' To '+REPLACE(CONVERT(VARCHAR(11),FinancialYearTo,106),' ','-'),* FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+            MdiMainMenu.Caption = Version & " [" & Trim(rstCompanyMaster.Fields("Name").Value) & Trim(rstCompanyMaster.Fields(1).Value) & "]"
+            CompStateCode = Trim(rstCompanyMaster.Fields("State").Value)
+                Call CustomSettings
+               Call Update_Running_Version_Data
+               If exitFlage = True Then exitFlage = False: Call mnuExit_Click: Exit Sub
+               Call btnNotes
             Call CloseRecordset(rstCompanyMaster)
             Exit Sub
         End If
@@ -1690,26 +2309,110 @@ Private Sub SetMenuOptions(bVal As Boolean)
         rstUserChild.Open "Select [Module] From UserChild Where Code = '" & FixQuote(UserCode) & "' Order by [Module]", cnDatabase, adOpenKeyset, adLockReadOnly
         For Each Object In Me
             If TypeName(Object) = "Menu" Then
+            On Error Resume Next
                 If Object.Tag <> "" Then
                     If UserLevel <> "1" Then
                         rstUserChild.MoveFirst
                         rstUserChild.Find "[Module] = '" & Trim(Object.Tag) & "'"
-                        Object.Enabled = IIf(rstUserChild.EOF, False, True)
                         Object.Visible = IIf(rstUserChild.EOF, False, True)
+                        Object.Enabled = IIf(rstUserChild.EOF, False, True)
                     Else
+                        Object.Visible = True
                         Object.Enabled = True
                     End If
                 End If
             End If
         Next
     Else
+        MnuCompany.Enabled = bVal
         MnuMasters.Enabled = bVal
-        MnuDisplay.Enabled = bVal
         MnuTransactions.Enabled = bVal
+        MnuDisplay.Enabled = bVal
+        MenuFG_UFGLedger.Enabled = bVal
         MnuReports.Enabled = bVal
+        MnuUtilities.Enabled = bVal
+        mnuProjectManagementParent.Enabled = bVal
+        MnuHelpm.Enabled = bVal
     End If
+
+    Call CloseRecordset(rstUserChild)
+If bVal Then
+    MnuCompany.Enabled = bVal: MnuCompany.Visible = bVal
+    MnuOpen.Enabled = False: MnuOpen.Visible = True
+    MnuClose.Enabled = bVal: MnuClose.Visible = bVal
+    MnuLicenceAgreement.Enabled = bVal: MnuLicenceAgreement.Visible = bVal
+    MnuYouTube.Enabled = bVal: MnuYouTube.Visible = bVal
+    MnuRemoteSupprort.Enabled = bVal: MnuRemoteSupprort.Visible = bVal
+    MnuExit.Enabled = bVal: MnuExit.Visible = bVal
+    MnuHelpm.Enabled = bVal: MnuHelpm.Visible = bVal
+    MnuHelp(1).Enabled = bVal: MnuHelp(1).Visible = bVal
+    MnuHelp(2).Enabled = bVal: MnuHelp(2).Visible = bVal
+    MnuHelp(3).Enabled = bVal: MnuHelp(3).Visible = bVal
+    MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
+    If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = bVal: MnuHelp(4).Visible = bVal
+
+    
+    If Trim(ReadFromFile("Customer Type")) = "General" Then
+        MenuFG_UFGLedger.Enabled = False: MenuFG_UFGLedger.Visible = False:
+        mnuProjectManagementParent.Enabled = False: mnuProjectManagementParent.Visible = False
+        mnuRateMaster.Enabled = False: mnuRateMaster.Visible = False:
+        mnuBindingTypeMaster.Enabled = False: mnuBindingTypeMaster.Visible = False:
+        mnuOperationMaster.Enabled = False: mnuOperationMaster.Visible = False:
+        mnuSizeMaster.Enabled = False: mnuSizeMaster.Visible = False:
+        mnuFinishSizeMaster.Enabled = False: mnuFinishSizeMaster.Visible = False:
+        mnuSizeGroupMaster.Enabled = False: mnuSizeGroupMaster.Visible = False:
+        mnuPaperMaster.Enabled = False: mnuPaperMaster.Visible = False:
+        mnuPaperUnitMaster.Enabled = False: mnuPaperUnitMaster.Visible = False:
+        mnuColorMaster.Enabled = False: mnuColorMaster.Visible = False:
+        mnuOutsourceItemMaster.Enabled = False: mnuOutsourceItemMaster.Visible = False:
+        mnuProjectManagementMaster.Enabled = False: mnuProjectManagementMaster.Visible = False:
+        mnuMachineMaster.Enabled = False: mnuMachineMaster.Visible = False:
+        mnuDespatchManagementParent.Enabled = False: mnuDespatchManagementParent.Visible = False:
+        mnuPrintPlanningModule.Enabled = False: mnuPrintPlanningModule.Visible = False:
+        mnuPurchaseQuotationJW.Enabled = False: mnuPurchaseQuotationJW.Visible = False:
+        mnuSalesQuotationJW.Enabled = False: mnuSalesQuotationJW.Visible = False
+        mnuPurchaseOrderJobWork.Enabled = False: mnuPurchaseOrderJobWork.Visible = False
+        mnuSalesOrderJobWork.Enabled = False: mnuSalesOrderJobWork.Visible = False
+        mnuSalesJW.Enabled = False: mnuSalesJW.Visible = False
+        mnuPurchaseJW.Enabled = False: mnuPurchaseJW.Visible = False
+        mnuMaterialInJobWork.Enabled = False: mnuMaterialInJobWork.Visible = False
+        mnuMaterialOutJobWork.Enabled = False: mnuMaterialOutJobWork.Visible = False
+        mnuBookProcessOrder.Enabled = False: mnuBookProcessOrder.Visible = False
+        mnuPaperModuleParent.Enabled = False: mnuPaperModuleParent.Visible = False
+        MnuMaterialIssueOrder.Enabled = False: MnuMaterialIssueOrder.Visible = False
+        MnuMaterialMovement.Enabled = False: MnuMaterialMovement.Visible = False
+        mnuStockJournalRawMaterial.Enabled = False: mnuStockJournalRawMaterial.Visible = False
+        MnuProduction.Enabled = False: MnuProduction.Visible = False
+        MenuPendingBilling.Enabled = False: MenuPendingBilling.Visible = False
+        MnuOrdersSJW.Enabled = False: MnuOrdersSJW.Visible = False
+        MenuPaperIssueReceipt.Enabled = False: MenuPaperIssueReceipt.Visible = False
+        MnuReports.Enabled = False: MnuReports.Visible = False
+        
+        MnuPrintUtilities.Enabled = False: MnuPrintUtilities.Visible = False
+        MnuBookReceiptBusy.Enabled = False: MnuBookReceiptBusy.Visible = False
+        mnuCostSheet.Enabled = False: mnuCostSheet.Visible = False
+        MnuImportBal.Enabled = False: MnuImportBal.Visible = False
+    End If
+Else
+    MnuCompany.Enabled = True: MnuCompany.Visible = True
+    MnuOpen.Enabled = True: MnuOpen.Visible = True
+    MnuHelpm.Enabled = True: MnuHelpm.Visible = True
+    MnuHelp(1).Enabled = True: MnuHelp(1).Visible = True
+    MnuHelp(2).Enabled = True: MnuHelp(2).Visible = True
+    MnuHelp(3).Enabled = True: MnuHelp(3).Visible = True
+    MnuHelp(4).Enabled = False: MnuHelp(4).Visible = False
+    If Trim(ReadFromFile("Super User")) = "EasyPublish" Then MnuHelp(4).Enabled = True: MnuHelp(4).Visible = True
+End If
+Exit Sub
 ErrorHandler:
     Call CloseRecordset(rstUserChild)
+End Sub
+Private Sub mnuStateMaster_Click()
+    On Error Resume Next
+    FrmGeneralMaster.MasterType = "56"
+    FrmGeneralMaster.SL = False
+    Load FrmGeneralMaster
+    If Err.Number <> 364 Then FrmGeneralMaster.Show
 End Sub
 Private Sub MnuYouTube_Click()
            Dim R As Long
@@ -1736,21 +2439,6 @@ Private Sub Timer2_Timer()
     If T / 60000 = 60 Then
         mnuBookReceiptBusy_Click
         T = 0
-    End If
-End Sub
-Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
-    If Button.Index <= 17 Then
-        If ActiveForm.Toolbar1.Buttons.Item(Button.Index).Enabled Then
-            ActiveForm.Toolbar1_ButtonClick ActiveForm.Toolbar1.Buttons.Item(Button.Index)
-        End If
-    Else
-        If Toolbar1.Buttons(1).Enabled Then 'Company Open
-            If ActiveForm.Toolbar1.Buttons.Item(Button.Index).Enabled Then
-                ActiveForm.Toolbar1_ButtonClick ActiveForm.Toolbar1.Buttons.Item(Button.Index)
-            End If
-        Else
-            mnuExit_Click
-        End If
     End If
 End Sub
 Private Sub oCreate_PercentDone(ByVal Percent As Integer)
@@ -1880,10 +2568,28 @@ End Sub
 '    Load FrmDayBook
 '    If Err.Number <> 364 Then FrmDayBook.Show
 'End Sub
-Private Sub mnuProductionScheduling_Click()
+Private Sub mnuProductionScheduling_Click(Index As Integer)
     On Error Resume Next
-    Load FrmProductionScheduling
-    If Err.Number <> 364 Then FrmProductionScheduling.Show
+    If Trim(Index) = 1 Then
+        FrmProductionScheduling.VchType = Trim(Index)
+        FrmProductionScheduling.Caption = "Print Production Scheduling"
+        Load FrmProductionScheduling
+        If Err.Number <> 364 Then FrmProductionScheduling.Show
+    ElseIf Trim(Index) = 2 Then
+        FrmProductionScheduling.Caption = "Plate Production Scheduling"
+        FrmProductionScheduling.VchType = Trim(Index)
+        Load FrmProductionScheduling
+        If Err.Number <> 364 Then FrmProductionScheduling.Show
+    ElseIf Trim(Index) = 3 Then
+        FrmProductionScheduling.Caption = "Paper Cutting Scheduling"
+        FrmProductionScheduling.VchType = Trim(Index)
+        Load FrmProductionScheduling
+        If Err.Number <> 364 Then FrmProductionScheduling.Show
+    Else
+        FrmProductionSchedule.VchType = Trim(Index)
+        Load FrmProductionSchedule
+        If Err.Number <> 364 Then FrmProductionSchedule.Show
+    End If
 End Sub
 Private Sub mnuStockLedger_Click(Index As Integer)
     On Error Resume Next
@@ -2186,12 +2892,6 @@ End Sub
 '    Load FrmBillRegister
 '    If Err.Number <> 364 Then FrmBillRegister.Show
 'End Sub
-
-Private Sub mnuProductionSchedule_Click()
-    On Error Resume Next
-    Load FrmProductionSchedule
-    If Err.Number <> 364 Then FrmProductionSchedule.Show
-End Sub
 Private Sub mnuPurchaseSaleOrderParty_Click(Index As Integer)
     On Error Resume Next
     FrmOrderProcessing.VchCodeType = Trim(Index)
@@ -2216,7 +2916,6 @@ Private Sub MnuItemIssueReceipt_Click(Index As Integer)
     Load FrmOrderProcessing
     If Err.Number <> 364 Then FrmOrderProcessing.Show
 End Sub
-
 'Private Sub mnuSaleOrderPartyDetailed_Click()
 '    On Error Resume Next
 '    FrmOrderProcessing.VchCodeType = "P1"
@@ -2241,7 +2940,6 @@ End Sub
 '    Load FrmOrderProcessing
 '    If Err.Number <> 364 Then FrmOrderProcessing.Show
 'End Sub
-
 Private Sub mnuBookPOPrintUtility_Click(Index As Integer)
     On Error Resume Next
     FrmBookPOPrintUtility.VchCode = Trim(Index)
@@ -2265,7 +2963,7 @@ Private Sub mnuOpBal_Click()
     End If
     Screen.MousePointer = vbHourglass
     If rstPaperOpBal.State = adStateOpen Then rstPaperOpBal.Close
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstPaperOpBal.Open "SELECT M2.Name As GodownName,TRIM(M1.Name)+' (UOM : '+TRIM(U.Name)+')' As PaperName,[Weight/Unit],C.OpBalOther,C.OpBalSheets,C.OpBalTat,U.Value1 As SPU FROM ((PaperChild C INNER JOIN PaperMaster M1 ON M1.Code=C.Code) INNER JOIN AccountMaster M2 ON M2.Code=C.Account) INNER JOIN GeneralMaster U ON M1.UOM=U.Code ORDER BY M2.Name,M1.Name", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstPaperOpBal.RecordCount = 0 Then
         Screen.MousePointer = vbNormal
@@ -2333,7 +3031,7 @@ Private Sub mnuImportBal01_Click()  'Print Order
     Dim SQL As String
     On Error GoTo ErrorHandler
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             rstCompanyMaster.ActiveConnection = Nothing
@@ -2482,7 +3180,7 @@ Private Sub mnuImportBal02_Click()
     Dim ClBal As Double
     On Error GoTo ErrorHandler
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             CxnImporter.CursorLocation = adUseClient
@@ -2552,7 +3250,7 @@ Private Sub mnuImportBal03_Click()
     On Error GoTo ErrorHandler
     
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select CreatedFrom FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         If MsgBox("Are you sure to Proceed?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
             CxnImporter.CursorLocation = adUseClient
@@ -2712,7 +3410,8 @@ Private Function CreateCompany(ByVal WithMasters As Boolean)
     MdiMainMenu.MousePointer = vbHourglass
     FSO.CopyFile strSource, strDestination
     End If
-     If UpdateComp(strSource, WithMasters, True, False) Then
+     If UpdateComp(strSource, WithMasters, True, False, False) Then
+     'ByVal CompanyCode As String, ByVal WithMasters As Boolean, ByVal CreateComp As Boolean, ByVal UpdateVersion As Boolean, ByVal UpdateMajor As Boolean
         Call MsgBox("Successfully Created the Company !", vbInformation, App.Title)
     Else
         DisplayError ("Failed to Create the Company")
@@ -2727,1026 +3426,6 @@ ErrHandler:
     MdiMainMenu.MousePointer = vbNormal
     Call CloseForm(FrmCompanyMaster)
 End Function
-'Private Function UpdateCompany(ByVal CompanyCode As String, ByVal WithMasters As Boolean) As Boolean
-'    On Error GoTo ErrorHandler
-'    UpdateCompany = True
-'    cnDatabase.CursorLocation = adUseClient
-'    If cnDatabase.State = adStateOpen Then cnDatabase.Close
-'    If DatabaseType = "MS SQL" Then
-'    ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=" & ServerUser & ";Initial Catalog=EP" & CompCode & ";Data Source=" & ServerName
-'    cnDatabase.Open ConnectionString
-'    ElseIf DatabaseType = "MS Access" Then
-'    cnDatabase.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & DatabasePath & "\EasyPublish." & CompanyCode & ";Persist Security Info=False;Jet OLEDB:Database Password=pubprint123!@#"
-'    End If
-'    cnDatabase.BeginTrans
-'    If DatabaseType = "MS SQL" Then
-'    'BackUpDatabse
-'        cnDatabase.Execute "BACKUP DATABASE [EP" & CompCode & "] TO  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Backup\EP" & CompCode & "_LogBackup_temp.bak' WITH NOFORMAT, NOINIT,  NAME = N'EP" & CompCode & " -Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10"
-'    'RestoreDatabse
-'        cnDatabase.Execute "RESTORE DATABASE [EP" & CompanyCode & "] FROM  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL13.MSSQLSERVER\MSSQL\Backup\EP" & CompCode & "_LogBackup_temp.bak' WITH  FILE = 1,  MOVE N'EPM' TO N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\EP" & CompanyCode & "M.mdf',  MOVE N'EPL' TO N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\EP" & CompanyCode & "L.ldf',  NOUNLOAD,  STATS = 5"
-'    End If
-'    cnDatabase.CommitTrans
-'    CloseMainConnection
-'    CompCode = CompanyCode
-'    cnDatabase.CursorLocation = adUseClient
-'    If cnDatabase.State = adStateOpen Then cnDatabase.Close
-'    If DatabaseType = "MS SQL" Then
-'        ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=" & ServerUser & ";Initial Catalog=EP" & CompCode & ";Data Source=" & ServerName
-'    cnDatabase.Open ConnectionString
-'    End If
-'    cnDatabase.BeginTrans
-'    cnDatabase.Execute "DELETE FROM CompanyMaster"
-'        cnDatabase.Execute "INSERT INTO CompanyMaster (Code,Name,PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,Fax,eMail,Website,GSTIN,CreatedFrom,MCGroup,MCPrimary,MCRepair,FinancialYearFrom,FinancialYearTo,Printstatus,TitleCombo,BankName,AccountNo,IFSC,TallyIntegration,BusyIntegration,FYCode,Alias) VALUES ('000001','" & Trim(FrmCompanyMaster.Text1.Text) & "','" & Trim(FrmCompanyMaster.Text2.Text) & "','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text12.Text) & "'" & _
-'                                          ",'" & Trim(FrmCompanyMaster.Text8.Text) & "','" & Trim(FrmCompanyMaster.Text9.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & CompCode & "','0','0','0','" & Format(GetDate(FrmCompanyMaster.MhDateInput1.Text), "mm-dd-yyyy") & "','" & Format(GetDate(FrmCompanyMaster.MhDateInput2.Text), "mm-dd-yyyy") & "','N','1','" & Trim(FrmCompanyMaster.Text18.Text) & "','" & Trim(FrmCompanyMaster.Text19.Text) & "','" & Trim(FrmCompanyMaster.Text20.Text) & "','" & Trim(FrmCompanyMaster.Option1.Value) & "','" & Trim(FrmCompanyMaster.Option2.Value) & "','" & Trim(FrmCompanyMaster.Text16.Text) & "','" & Trim(FrmCompanyMaster.Text15.Text) & "')"
-'
-'    'Transactions 44_Tables
-'        cnDatabase.Execute "DELETE FROM BookDNChild"
-'        cnDatabase.Execute "DELETE FROM BookDNParent"
-'        cnDatabase.Execute "DELETE FROM BookOOChild"
-'        cnDatabase.Execute "DELETE FROM BookOOParent"
-'        cnDatabase.Execute "DELETE FROM BookPOChild05"
-'        cnDatabase.Execute "DELETE FROM BookPOChild0501"
-'        cnDatabase.Execute "DELETE FROM BookPOChild06"
-'        cnDatabase.Execute "DELETE FROM BookPOChild07"
-'        cnDatabase.Execute "DELETE FROM BookPOChild08"
-'        cnDatabase.Execute "DELETE FROM BookPOChild0801"
-'        cnDatabase.Execute "DELETE FROM BookPOChild09"
-'        cnDatabase.Execute "DELETE FROM BookPOChild0901"
-'        cnDatabase.Execute "DELETE FROM BookPOParent"
-'        cnDatabase.Execute "DELETE FROM BookRVChild"
-'        cnDatabase.Execute "DELETE FROM BookRVParent"
-'        cnDatabase.Execute "DELETE FROM DebitCreditParent"
-'        cnDatabase.Execute "DELETE FROM DebitCreditChild"
-'        cnDatabase.Execute "DELETE FROM DebitCreditOthInf"
-'        cnDatabase.Execute "DELETE FROM DebitCreditRef"
-'        cnDatabase.Execute "DELETE FROM JobworkBVChild"
-'        cnDatabase.Execute "DELETE FROM JobworkBVOthInf"
-'        cnDatabase.Execute "DELETE FROM JobworkBVRef"
-'        cnDatabase.Execute "DELETE FROM JobworkBVParent"
-'        cnDatabase.Execute "DELETE FROM MaterialIOChild"
-'        cnDatabase.Execute "DELETE FROM MaterialIOParent"
-'        cnDatabase.Execute "DELETE FROM MaterialMVChild"
-'        cnDatabase.Execute "DELETE FROM MaterialMVParent"
-'        cnDatabase.Execute "DELETE FROM MaterialSVChild"
-'        cnDatabase.Execute "DELETE FROM MaterialSVParent"
-'        cnDatabase.Execute "DELETE FROM OutsourceItemPOChild"
-'        cnDatabase.Execute "DELETE FROM OutsourceItemPOParent"
-'        cnDatabase.Execute "DELETE FROM PackingSlipChild"
-'        cnDatabase.Execute "DELETE FROM PackingSlipParent"
-'        cnDatabase.Execute "DELETE FROM PaperDNChild"
-'        cnDatabase.Execute "DELETE FROM PaperDNParent"
-'        cnDatabase.Execute "DELETE FROM PaperIOChild"
-'        cnDatabase.Execute "DELETE FROM PaperMVChild"
-'        cnDatabase.Execute "DELETE FROM PaperMVParent"
-'        cnDatabase.Execute "DELETE FROM PaperPOChild"
-'        cnDatabase.Execute "DELETE FROM PaperPOParent"
-'        cnDatabase.Execute "DELETE FROM PrintPVChild"
-'        cnDatabase.Execute "DELETE FROM PrintPVParent"
-'        cnDatabase.Execute "DELETE FROM TatRVChild"
-'        cnDatabase.Execute "DELETE FROM TatRVParent"
-''Without Masters
-'    If Not WithMasters Then    'Delete Master
-'    'Accounts Master
-'        cnDatabase.Execute "DELETE FROM AccountChild04 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-'        cnDatabase.Execute "DELETE FROM AccountChild05 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-'        cnDatabase.Execute "DELETE FROM AccountChild06 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-'        cnDatabase.Execute "DELETE FROM AccountChild07 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-'        cnDatabase.Execute "DELETE FROM AccountChild08 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-'        cnDatabase.Execute "DELETE FROM AccountChild0801 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-'        cnDatabase.Execute "DELETE FROM AccountMaster "
-'    'BookingRouteMaster
-'        cnDatabase.Execute "DELETE FROM BookingRouteMaster "
-'    'Book Master
-'        cnDatabase.Execute "DELETE FROM BookChild01 Where Left(Code,1)<>'*'"
-'        cnDatabase.Execute "DELETE FROM BookChild02 Where Left(Code,1)<>'*'"
-'        cnDatabase.Execute "DELETE FROM BookChild03 Where Left(Code,1)<>'*'"
-'        cnDatabase.Execute "DELETE FROM BookChild05 Where Left(Code,1)<>'*'"
-'        cnDatabase.Execute "DELETE FROM BookChild06 Where Left(Code,1)<>'*'"
-'        cnDatabase.Execute "DELETE FROM BookChild07 Where Left(Code,1)<>'*'"
-'        'cnDatabase.Execute "DELETE FROM BookChild08 Where Left(Code,1)<>'*'"
-'        cnDatabase.Execute "DELETE FROM BookMaster "
-'    'Other Masters
-'        cnDatabase.Execute "DELETE FROM DiscountMaster "
-'        cnDatabase.Execute "DELETE FROM ElementMaster "
-'        If MsgBox("Do You Wants to Delete 'Finish Size Masters' Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
-'        cnDatabase.Execute "DELETE FROM FinishSizeChild "
-'        End If
-'        cnDatabase.Execute "DELETE GeneralMaster "
-'        cnDatabase.Execute "DELETE FROM OutsourceItemMaster "
-'        If MsgBox("Do You Wants to Delete 'Paper Master' Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
-'        cnDatabase.Execute "DELETE FROM PaperMaster "
-'        End If
-'        If MsgBox("Do You Wants to Delete 'Size Group Masters' Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
-'        cnDatabase.Execute "DELETE FROM SizeGroupChild "
-'        End If
-'        cnDatabase.Execute "DELETE FROM TaxMaster "
-'        cnDatabase.Execute "DELETE FROM TeamMemberMaster "
-'        cnDatabase.Execute "DELETE FROM VchSeriesMaster "
-'    Else
-'        cnDatabase.Execute "UPDATE AccountMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N',Opening='0'"
-'        cnDatabase.Execute "UPDATE BookMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N'"
-'        cnDatabase.Execute "UPDATE PaperMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N'"
-'        cnDatabase.Execute "UPDATE OutsourceItemMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N'"
-'        cnDatabase.Execute "UPDATE TaxMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N'"
-'        cnDatabase.Execute "UPDATE TeamMemberMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N'"
-'        cnDatabase.Execute "UPDATE GeneralMaster SET CreatedOn=GETDate(), ModifiedBy=Null, ModifiedOn=Null, Recordstatus='N', Printstatus='N'"
-'    End If
-'
-'
-'    cnDatabase.Execute "DELETE FROM BookChild"
-'    cnDatabase.Execute "DELETE FROM PaperChild"
-'    cnDatabase.Execute "DELETE FROM UserChild Where Code NOT IN (Select Code from UserMaster Where Level<>1)"
-'    cnDatabase.Execute "DELETE FROM UserMaster Where Level<>1"
-'    cnDatabase.Execute "DELETE FROM UserAction"
-'    cnDatabase.Execute "DELETE FROM VchSeriesMaster Where Left(Code,1)='*'"
-'    cnDatabase.Execute "UPDATE AccountMaster SET Opening='0'"
-''Default Masters
-''General Accounts
-'    cnDatabase.Execute "DELETE FROM AccountMaster Where Left(Code,1)='*'"
-'''Account Masters
-'    cnDatabase.Execute "DELETE FROM AccountMaster Where Code ='000000' Or Left(Code,1)='*'"
-'    cnDatabase.Execute "Insert Into AccountMaster VALUES ('000000','" & Trim(FrmCompanyMaster.Text1.Text) & "','" & Trim(FrmCompanyMaster.Text2.Text) & "','000000','*12002','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-'    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00001','Rate Master','Rate Master','1002','*12002','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-'    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00002','Main Godown','Main Godown','1003','*99999','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-'    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00003','Self Transport','Self Transport','1004','*99996','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-'    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00004','Self Packer','Self Packer','1005','*99997','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-'    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00005','Direct','Direct','1006','*99998','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-
-''Finance Account
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01001','Cash','Cash','1001','*26007','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01002','Development Tax','Development Tax','1002','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01003','Edu. Cess on TDS','Edu. Cess on TDS','1003','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01004','Excise Duty','Excise Duty','1004','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01005','KKC on Service Tax','KKC on Service Tax','1005','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01006','SBC on Service Tax','SBC on Service Tax','1006','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01007','Service Tax','Service Tax','1007','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01008','SHE Cess on TDS','SHE Cess on TDS','1008','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01009','TDS (Commission or Brokerage)','TDS (Commission or Brokerage)','1009','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01010','TDS (Contracts to Individuals/HUF)','TDS (Contracts to Individuals/HUF)','1010','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01011','TDS (Contracts to Others)','TDS (Contracts to Others)','1011','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01012','TDS (Contracts to Transporter)','TDS (Contracts to Transporter)','1012','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01013','TDS (Interest from a Banking Co)','TDS (Interest from a Banking Co)','1013','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01014','TDS (Interest from a NonBanking Co)','TDS (Interest from a NonBanking Co)','1014','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01015','TDS (Professionals Services)','TDS (Professionals Services)','1015','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01016','TDS (Rent of Land)','TDS (Rent of Land)','1016','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01017','TDS (Rent of Plant & Machinery)','TDS (Rent of Plant & Machinery)','1017','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01018','TDS (Salary)','TDS (Salary)','1018','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01019','Advertisement & Publicity','Advertisement & Publicity','1019','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01020','Bad Debts Written Off','Bad Debts Written Off','1020','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01021','Bank Charges','Bank Charges','1021','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01022','Books & Periodicals','Books & Periodicals','1022','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01023','Charity & Donations','Charity & Donations','1023','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01024','Commission on Sales','Commission on Sales','1024','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01025','Conveyance Expenses','Conveyance Expenses','1025','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01026','Customer Entertainment Expenses','Customer Entertainment Expenses','1026','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01027','Depreciation A/c','Depreciation A/c','1027','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01028','Freight & Forwarding Charges','Freight & Forwarding Charges','1028','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01029','Legal Expenses','Legal Expenses','1029','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01030','Miscellaneous Expenses','Miscellaneous Expenses','1030','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01031','Office Maintenance Expenses','Office Maintenance Expenses','1031','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01032','Office Rent','Office Rent','1032','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01033','Postal Expenses','Postal Expenses','1033','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01034','Printing & Stationery','Printing & Stationery','1034','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01035','Rounded Off','Rounded Off','1035','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01036','Salary','Salary','1036','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01037','Sales Promotion Expenses','Sales Promotion Expenses','1037','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01038','Service Charges Paid','Service Charges Paid','1038','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01039','Staff Welfare Expenses','Staff Welfare Expenses','1039','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01040','Telephone Expenses','Telephone Expenses','1040','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01041','Travelling Expenses','Travelling Expenses','1041','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01042','Water & Electricity Expenses','Water & Electricity Expenses','1042','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01043','Capital Equipments','Capital Equipments','1043','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01044','Computers','Computers','1044','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01045','Furniture & Fixture','Furniture & Fixture','1045','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01046','Office Equipments','Office Equipments','1046','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01047','Plant & Machinery','Plant & Machinery','1047','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01048','Service Charges Receipts','Service Charges Receipts','1048','*26018','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01049','Profit & Loss','Profit & Loss','1049','*26001','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01050','Salary & Bonus Payable','Salary & Bonus Payable','1050','*26024','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01051','Purchase','Purchase','1051','*26025','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01052','Sales','Sales','1052','*26027','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01053','Earnest Money','Earnest Money','1053','*26029','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01054','Stock','Stock','1054','*26003','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01055','Easy Info Solutions International','Easy Info Solutions International','1055','*26030','E-461, Vijay Marg,Jagjeet Nagar','Delhi-110053','','','','+91-987-342-2907','','sales@easyinfosolution.com ','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'        cnDatabase.Execute "Insert Into AccountMaster VALUES ('*01056','XXX Bank','XXX Bank','1056','*26004','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0)"
-'
-''Booking Route Master
-'        cnDatabase.Execute "DELETE FROM BookingRouteMaster Where Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into BookingRouteMaster VALUES ('*00001','NOIDA-NOIDA','NOIDA-NOIDA','24.5','N')"
-'        cnDatabase.Execute "Insert Into BookingRouteMaster VALUES ('*00002','NOIDA-DELHI','NOIDA-DELHI','40','N')"
-'        cnDatabase.Execute "Insert Into BookingRouteMaster VALUES ('*00003','DELHI-DELHI','DELHI-DELHI','30','N')"
-'
-''Element Master
-'    cnDatabase.Execute "DELETE FROM ElementMaster Where Left(Code,1)='*'"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00011','Text-1','Text-1','Single Sheet','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00012','Text-2','Text-2','Multi Forms','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00013','Text-3','Text-3','Multi Forms','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00014','Single Form','Single Form','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00015','Combo Form','Combo Form','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00016','FG','FG','FG','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00017','UFG','UFG','UFG','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00018','Separator','Separator','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00019','End Paper','End Paper','Single Sheet','4','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00020','Cover','Cover','Single Sheet','4','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00027','Title','Title','Single Sheet','4','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00028','Title(GateFold)','Title(GateFold)','Single Sheet','6','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00029','PLC','PLC','Single Sheet','4','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00030','Calendar Fly Leaf','Calendar Fly Leaf','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00031','Calendar Leaf','Calendar Leaf','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00032','Annual Report','Annual Report','Multi Forms','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00033','Label','Label','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00034','Letter Head','Letter Head','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00035','Leaflet','Leaflet','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00036','Poster','Poster','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00037','Sticker','Sticker','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00038','Folders','Folders','Single Sheet','4','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00039','Dust Cover','Dust Cover','Single Sheet','6','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00040','Danglar','Danglar','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00041','Carton','Carton','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00042','Carton [Inner]','Carton [Inner]','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00043','Carton [Outer]','Carton [Outer]','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00044','Card','Card','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'    cnDatabase.Execute "Insert Into ElementMaster VALUES ('*00045','Envelope','Envelope','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-'
-''Finish Size Master
-'    cnDatabase.Execute "DELETE FROM FinishSizeChild Where Left(Code,1)='*'"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11011','*01039','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11012','*01030','16','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11012','*01064','32','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11013','*01039','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11014','*01039','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11015','*01055','16','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11016','*01048','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11017','*01051','16','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11018','*01058','16','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11019','*01056','16','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11020','*01028','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11020','*01060','16','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11021','*01067','16','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11033','*01039','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11023','*01031','8','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11023','*01067','16','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11024','*01033','8','16','*01033')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11024','*01068','16','16','*01033')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11025','*01068','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11026','*01037','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11026','*01070','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11027','*01054','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11028','*01072','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11029','*01038','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11029','*01072','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11030','*01055','12','24','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11031','*01039','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11032','*01046','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11034','*01048','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11035','*01063','12','24','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11036','*01048','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11037','*01048','8','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11038','*01055','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11039','*01067','12','24','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11040','*01050','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11041','*01058','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11042','*01027','4','8','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11043','*01070','12','24','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11044','*01060','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11046','*01060','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11047','*01039','6','12','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11049','*01073','16','16','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11050','*01068','8','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11051','*01055','6','12','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11052','*01072','6','12','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11053','*01060','4','8','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11054','*01068','4','8','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11055','*01070','6','12','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11004','*01073','4','8','*01017')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11004','*01039','2','2','*01012')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11004','*01012','1','1','*01012')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11057','*01055','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11048','*01028','4','8','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11048','*01059','8','16','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11058','*01058','8','16','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11045','*01063','8','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11085','*01060','12','24','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11005','*01011','2','2','*01011')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11092','*01065','8','16','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11091','*01028','4','8','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11091','*01067','8','16','*01029')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11094','*01028','8','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11094','*01068','16','16','*01028')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11022','*01072','16','16','*01031')"
-'    cnDatabase.Execute "Insert Into FinishSizeChild VALUES ('*11095','*01045','8','8','*01047')"
-'
-''Genral Master
-''Size Master_Type-1
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='1' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01001','05.25X10.00','05.25X10.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01002','10.00X29.00','10.00X29.00','1','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01003','11.00X14.00','11.00X14.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01004','11.50X18.00','11.50X18.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01005','12.00X18.00','12.00X18.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01006','12.00X23.00','12.00X23.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01007','12.50X18.00','12.50X18.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01008','13.00X19.00','13.00X19.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01009','14.00X19.00','14.00X19.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01010','14.00X22.00','14.00X22.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01011','15.00X10.00 (CARD)','15.00X10.00 (CARD)','1','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01012','15.00X20.00 (CARD)','15.00X20.00 (CARD)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01013','15.00X21.00','15.00X21.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01014','15.00X27.50','15.00X27.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01015','15.50X20.00','15.50X20.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01016','15.50X20.50','15.50X20.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01017','15.50X21.00','15.50X21.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01018','15.50X21.50','15.50X21.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01019','16.00X20.00','16.00X20.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01020','16.00X20.50','16.00X20.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01021','16.00X22.00','16.00X22.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01022','16.00X24.00','16.00X24.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01023','16.00X25.00','16.00X25.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01024','16.00X30.00','16.00X30.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01025','16.50X10.50','16.50X10.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01026','17.00X22.00','17.00X22.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01027','17.00X24.00','17.00X24.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01028','18.00X23.00','18.00X23.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01029','18.00X23.00 (Card)','18.00X23.00 (Card)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01030','18.00X24.00','18.00X24.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01031','18.00X25.00','18.00X25.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01032','19.00X20.00','19.00X20.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01033','19.00X25.00','19.00X25.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01034','19.00X38.00','19.00X38.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01035','20.00X24.00','20.00X24.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01036','20.00X25.00','20.00X25.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01037','20.00X26.00','20.00X26.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01038','20.00X28.00','20.00X28.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01039','20.00X30.00','20.00X30.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01040','20.00X30.00(A/P)','20.00X30.00(A/P)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01041','20.00X30.00(Card)','20.00X30.00(Card)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01042','20.00X31.00','20.00X31.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01043','20.50X24.00','20.50X24.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01044','20.50X31.00','20.50X31.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01045','21.00X29.70 (A4)','21.00X29.70 (A4)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01046','21.00X30.00','21.00X30.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01047','21.00X30.00(CARD)','21.00X30.00(CARD)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01048','21.00X31.00','21.00X31.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01049','21.00X32.00','21.00X32.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01050','21.00X33.00','21.00X33.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01051','21.00X34.00','21.00X34.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01052','21.00X35.00','21.00X35.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01053','21.50X28.50','21.50X28.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01054','22.00X28.00','22.00X28.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01055','22.00X32.00','22.00X32.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01056','22.00X34.00','22.00X34.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01057','23.00X30.00','23.00X30.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01058','23.00X33.00','23.00X33.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01059','23.00X35.00','23.00X35.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01060','23.00X36.00','23.00X36.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01061','23.00X36.00(A/P)','23.00X36.00(A/P)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01062','23.00X36.00(Card)','23.00X36.00(Card)','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01063','24.00X34.00','24.00X34.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01064','24.00X36.00','24.00X36.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01065','24.13X24.13','24.13X24.13','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01066','25.00X30.00','25.00X30.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01067','25.00X36.00','25.00X36.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01068','25.00X38.00','25.00X38.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01069','26.00X38.00','26.00X38.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01070','26.00X40.00','26.00X40.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01071','28.00X35.00','28.00X35.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01072','28.00X40.00','28.00X40.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01073','30.00X40.00','30.00X40.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*01074','31.50X41.50','31.50X41.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'
-''Item Group Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='5' AND Left(Code,1)='*'"
-'If Trim(ReadFromFile("Client ID")) = "Publisher" Then
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05001','Activity Book','Activity Book','5','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05002','Box','Box','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05003','CARD','CARD','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05004','CATALOGUE','CATALOGUE','5','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05005','General','General','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05006','GRADE 1','GRADE 1','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05007','GRADE 2','GRADE 2','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05008','GRADE 3','GRADE 3','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05009','GRADE 4','GRADE 4','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05010','GRADE 5','GRADE 5','5','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05011','JUNIOR','JUNIOR','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05012','LEVEL 1','LEVEL 1','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05013','LEVEL 2','LEVEL 2','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05014','LEVEL 3','LEVEL 3','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05015','LEVEL 4','LEVEL 4','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05016','LEVEL 5','LEVEL 5','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05017','LEVEL A','LEVEL A','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05018','LEVEL B','LEVEL B','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05019','LEVEL C','LEVEL C','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05020','NURSERY','NURSERY','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05021','SECONDARY STD VI','SECONDARY STD','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05022','SENIOR','SENIOR','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05023','SET 1','SET 1','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'End If
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*05024','Item Group','Item Group','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'
-''Binding Type
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='6' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06001','Die_Cutting','Die_Cutting','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06002','Die_Perforation','Die_Perforation','6','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06003','Hard Bound','Hard Bound','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06004','Perfect Binding With Sewing','Perfect Binding With Sewing','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06005','Perfect Binding With Sewing(CD-Insert)','Perfect Binding With Sewing(CD-Insert)','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06006','Spiral Binding','Spiral Binding','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06007','Wirro Binding','Wirro Binding','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06008','Cutting & Packing','Cutting & Packing','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06009','Cutting Only','Cutting Only','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06010','Half Die Cut','Half Die Cut','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06011','Loose','Loose','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06012','Pad Gumming','Pad Gumming','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06013','Pakki Binding','Pakki Binding','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06014','Kachchi Binding','Kachchi Binding','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06015','Center Pinning (BOX)','Center Pinning (BOX)','6','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06016','Center Pin Binding','Center Pin Binding','6','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06017','None','None','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*06018','Perfect Binding','Perfect Binding','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Finishing Type
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='7' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07001','BOPP Gloss','BOPP Gloss','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07002','BOPP Matt','BOPP Matt','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07003','Box Packing','Box Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07004','Center Pin Binding','Center Pin Binding','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07005','Counting & Fabrication','Counting & Fabrication','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07006','Creasing+Folding+Packing','Creasing+Folding+Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07007','Cutting and Packing','Cutting and Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07008','Cutting Leaflet Only','Cutting Leaflet Only','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07009','Die Cutting Charges','Die Cutting Charges','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07010','Die Making Charges','Die Making Charges','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07011','Digital Print','Digital Print','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07012','Embossing','Embossing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07013','Foiling Charges','Foiling Charges','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07014','Folding & Packing','Folding & Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07015','Graning','Graning','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07016','Half Die Cutting Charges','Half Die Cutting Charges','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07017','Hardbound Binding','Hardbound Binding','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07018','Hologram','Hologram','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07019','Matt + Spot UV','Matt + Spot UV','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07020','Matt + Spot UV + Foiling + Embossing','Matt + Spot UV + Foiling + Embossing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07021','Matt + Spot UV+Glitter UV','Matt + Spot UV+Glitter UV','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07022','Matt Both Side','Matt Both Side','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07023','MINI Offset JOB','MINI Offset JOB','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07024','None','None','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07025','Packing Shrink','Packing Shrink','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07026','Paper Cost','Paper Cost','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07027','Pasting Charges','Pasting Charges','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07028','Perfect Binding','Perfect Binding','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07029','Plate','Plate','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07030','Printing 4 Col','Printing 4 Col','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07031','PVC','PVC','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07032','Spot UV','Spot UV','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07033','Thermal Matt','Thermal Matt','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07034','UV Hybraid','UV Hybraid','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*07035','Varnising','Varnising','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Project Member/Editorial Team Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='8' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08002','Author_ABC','Author_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08003','DTP_ABC','DTP_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08005','Editor_ABC','Editor_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08007','Graphic_ABC','Graphic_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08008','PPQ_ABC','PPQ_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08009','Processing_S.R.K','Processing_S.R.K','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08010','Proof Reader_ABC','Proof Reader_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*08011','Type Setting_ABC','Type Setting_Sanjay Khanna','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Plate Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='9' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*09001','CTP_Plates','CTP_Plates','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*09002','Nagative-Cut Pieces','Nagative-Cut Pieces','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*09003','Nagative-One Pieces','Nagative-One Pieces','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Size Group Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='10' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10016','Extra Large-28''''X40''''','Extra Large-28''''X40''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10018','Extra Large-28''''X40''''-(Card)','Extra Large-28''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10001','Extra Large-28''''X40''''-A/P','Extra Large-28''''X40''''-A/P','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10002','Extra Large-28''''X40''''-A/P_SPL','Extra Large-28''''X40''''-A/P_SPL','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10003','Extra Large-30''''X40''''','Extra Large-30''''X40''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10004','Extra Large-30''''X40''''-(A/P)','Extra Large-30''''X40''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10005','Extra Large-30''''X40''''-(Card)','Extra Large-30''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10006','LARGE-23''''X36''''','LARGE-23''''X36''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10007','LARGE-23''''X36''''-(A/P)','LARGE-23''''X36''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10008','LARGE-23''''X36''''-(Card)','LARGE-23''''X36''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10019','Little-11.50''''X18.00''''','Little-11.50''''X18.00''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10021','Little-11.50''''X18.00''''-(A/P)','Little-11.50''''X18.00''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10020','Little-11.50''''X18.00''''-(Card)','Little-11.50''''X18.00''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10009','Medium-20''''X30''''','Medium-20''''X30''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10010','Medium-20''''X30''''(A/P)','Medium-20''''X30''''(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10011','Medium-20''''X30''''(Card)','Medium-20''''X30''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10012','Small-19''''X26''''','Small-19''''X26''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10017','Small-19''''X26''''-(A/P)','Small-19''''X26''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10013','Small-19''''X26''''(Card)','Small-19''''X26''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10014','Web-508mm','Web-508mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*10015','Web-578mm','Web-578mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Finish Size Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='11' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11001','05.25x10.00','05.25x10.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11002','12.00X18.00','12.00X18.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11003','12.00X23.00','12.00X23.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11004','14.00X19.00','14.00X19.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11005','15.00X10.00 (CARD)','15.00X10.00 (CARD)','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11006','15.50X20.50','15.50X20.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11007','16.00x20.00','16.00x20.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11008','16.00X24.00','16.00X24.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11009','16.50X10.50','16.50X10.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11010','17.00X22.00','17.00X22.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11011','04.00X06.87','04.00X06.87','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11012','04.25X05.50','04.25X05.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11013','04.25X07.00','04.25X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11014','04.37X07.00','04.37X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11015','04.72X07.48','04.72X07.48','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11016','05.00X07.00','05.00X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11017','05.00X08.00','05.00X08.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11018','05.06X07.81','05.06X07.81','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11019','05.25X08.00','05.25X08.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11020','05.50X08.50','05.50X08.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11021','05.83X08.27','05.83X08.27','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11022','06.00X08.25','06.00X08.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11023','06.00X08.50','06.00X08.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11024','06.00X09.00','06.00X09.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11025','06.14X09.21','06.14X09.21','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11026','06.25X09.50','06.25X09.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11027','06.63X10.25','06.63X10.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11028','06.69X09.61','06.69X09.61','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11029','06.75X09.50','06.75X09.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11030','07.00X07.00','07.00X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11031','07.00X09.00','07.00X09.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11032','07.00X10.00','07.00X10.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11033','07.25X09.50','07.25X09.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11034','07.44X09.69','07.44X09.69','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11035','07.50X07.50','07.50X07.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11036','07.50X09.25','07.50X09.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11037','07.50X09.50','07.50X09.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11038','07.75X10.50','07.75X10.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11039','08.00X08.00','08.00X08.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11040','08.00X10.00','08.00X10.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11041','08.00X10.88','08.00X10.88','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11042','08.00X11.25','08.00X11.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11043','08.25X08.25','08.25X08.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11044','08.25X11.00','08.25X11.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11045','08.27X11.69','08.27X11.69','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11046','08.50X08.50','08.50X08.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11047','08.50X09.00','08.50X09.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11048','08.50X11.00','08.50X11.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11049','09.00X07.00','09.00X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11050','09.00X12.00','09.00X12.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11051','10.00X10.00','10.00X10.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11052','11.00X13.00','11.00X13.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11053','11.00X17.00','11.00X17.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11054','11.00X18.00','11.00X18.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11055','12.00X12.00','12.00X12.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11056','18.00X23.00','18.00X23.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11057','07.75X11.25','07.75X11.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11058','08.00X11.00','08.00X11.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11059','04.50X01.75','04.50X01.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11060','11.00x15.75','11.00x15.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11061','11.00X16.00','11.00X16.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11062','08.25X11.75','08.25X11.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11063','04.00X06.00','04.00X06.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11064','20.00X30.00','20.00X30.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11065','17.50X22.50','17.50X22.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11066','11.50X08.00','11.50X08.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11067','21.00X31.00','21.00X31.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11068','05.30X08.30','05.30X08.30','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11069','11.50X10.75','11.50X10.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11070','08.50X10.75','08.50X10.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11071','02.00X03.00','02.00X03.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11072','11.50X07.00','11.50X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11073','05.50X19.00','05.50X19.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11074','10.25X07.50','10.25X07.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11075','07.50X13.75','07.50X13.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11076','07.00X02.50','07.00X02.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11077','06.50X09.50','06.50X09.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11078','04.00x07.50','04.00x07.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11079','23.00X36.00','23.00X36.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11080','15.00X20.00','15.00X20.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11081','25.00X36.00','25.00X36.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11082','09.00X14.00','09.00X14.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11083','05.25X07.00','05.25X07.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11084','08.00X10.50','08.00X10.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11085','07.50X08.50','07.50X08.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11086','03.25X04.75','03.25X04.75','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11087','09.75X11.00','09.75X11.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11088','13.50X18.00','13.50X18.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11089','07.62X11.00','07.62X11.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11090','07.36X11.00','07.36X11.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11091','08.26X11.69','08.26X11.69','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11092','09.50X09.50','09.50X09.50','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11093','11.69X05.20','11.69X05.20','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11094','05.75X08.25','05.75X08.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*11095','21.00X29.70','21.00X29.70','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Genral Accounts Groups
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='12' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12002','Account Group','Account Group','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26031')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*99996','Transporter','Transporter','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*99997','Packer','Transporter','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*99998','Deliverer','Deliverer','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*99999','Material Centre','Material Centre','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12001','Binders','Binders','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12003','Box Supplier','Box Supplier','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12004','CD Suppliers','CD Suppliers','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12005','FG Godown','FG Godown','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12006','Laminator','Laminator','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12007','Packaging Supplier','Packaging Supplier','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12008','Paper Suppliers','Paper Suppliers','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12009','Printer','Printer','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12010','Printer & Binder','Printer & Binder','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12011','Printer, Binder & Laminator','Printer, Binder & Laminator','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12012','Processor & Printer','Processor & Printer','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12013','Processor, Printer & Laminator','Processor, Printer & Laminator','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12014','UFG Godown','UFG Godown','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12015','Publisher','Publisher','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26031')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12016','Clients','Clients','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26031')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12017','Cons. Supplier','Cons. Supplier','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*12018','Plate Maker','Plate Maker','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-''Departments
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='13' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13001','Editorial Department','Editorial Department','13','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13002','Production Department','Production Department','13','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13003','Sales Department','Sales Department','13','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13004','Contracts Department and Legal Department','Contracts Department and Legal Department','13','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13005','Managing Editorial and Production','Managing Editorial and Production','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13006','Creative Departments','Creative Departments','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13007','Subsidiary Rights Departments','Subsidiary Rights Departments','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13008','Marketing, Promotion, and Advertising Departments','Marketing, Promotion, and Advertising Departments','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13009','Publicity Department','Publicity Department','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13010','Publisher Website Maintenance','Publisher Website Maintenance','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13011','Finance and Accounting','Finance and Accounting','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13012','Information Technology (IT)','Information Technology (IT)','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*13013','Human Resources (HR)','Human Resources (HR)','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Designation
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='14' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14001','Editor-in-Chief','Editor-in-Chief','14','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14002','Managing editor','Managing editor','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14003','Editors','Editors','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14004','Author/Writers','Author/Writers','14','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14005','Fact-checkers','Fact-checkers','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14006','Graphic Designer','Graphic Designer','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14007','Production manager','Production manager','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14008','DTP-Operator','DTP-Operator','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*14009','Proof Reader','Proof Reader','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Paper Unit Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='15' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15001','Gross','Gross','15','144','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15002','Packet(100)','Packet(100)','15','100','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15003','Packet(150)','Packet(150)','15','150','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15004','Ream','Ream','15','500','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15005','Reel','Reel','15','500','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15006','Bundle (700)','Bundle (700)','15','700','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15007','Packet(200)','Packet(200)','15','200','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15008','PACKET','PACKET','15','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15009','Sheet','Sheet','15','1','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*15010','Packet (250)','Packet (250)','15','250','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-''Paper Quality Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='16' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*16001','Coated Matt','Coated Matt','16','0.95','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*16002','Coated Gloss','Coated Gloss','16','0.9','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*16003','Uncoated','Uncoated','16','1.35','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*16004','High Bulk','High Bulk','16','1.4','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Narration
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='17' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17001','1. Printing & Finishing Charges of','Printing & Finishing Charges of','17','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17002','1. Text Printing Charges of','Text Printing Charges of','17','2','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17003','2. Title Printing Charges of','Title Printing Charges of','17','3','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17004','3. Combo Title Printing Charges of','Combo Title Printing Charges of','17','4','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17005','4. Finishing Charges of','Finishing Charges of','17','5','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17006','5. Binding Charges of','Binding Charges of','17','6','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17007','7. Title Printing & Finishing Charges of','Title Printing & Finishing Charges of','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17008','6. Text Printing & Finishing Charges of','Text Printing & Finishing Charges of','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17009','8. Unit Cost Charges of','Unit Cost Charges of','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17010','9. Unit Cost','.','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17011','10 Lamination Charges','Lamination Charges','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*17012','11 Printed Book','Printed Book','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''HSN MASTER
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='18' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*18001','998812','998812','18','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*18002','998912','998912','18','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*18003','4901','4901','18','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*18004','49011010','49011010','18','0','000001',GetDate(),'NULL',NULL,'M','N','NULL')"
-''Elements MASTER
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='19'"
-'        'eLEMENT mASTER mOVED TO eLEMENT mASTER
-''Calculation Units MASTER
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='20' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*20001','Per Unit','Per Unit','20','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*20002','Per Inch²','Per Inch²','20','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*20003','100 Inch²','100 Inch²','20','100','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*20004','1000 Inch²','1000 Inch²','20','1000','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*20005','Per 1000','Per 1000','20','1000','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Machine Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='21' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*21046','Machine To Be Decide','Machine To Be Decide','21','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*21047','RYOBI - 4 Col','RYOBI - 4 Col','21','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*21048','SM 102 28x40','SM 102 28x40','21','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*21049','SM 74 20x29','SM 74 20x29','21','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*21050','Heidel 2 Col','Heidel 2 Col','21','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''General  Unit Master
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='25' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25001','Kilogram','kg.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25002','Gram','gm.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25003','Milligram','mg.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25004','Liter','ltr.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25005','Milliliter','ml.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25006','Feet','ft.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25007','Inch','in.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25008','Meter','mtr.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25009','Centimeter','cm.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25010','Millimeter','mm.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25011','Piece','pec.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25012','Bags','bags','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25013','Roll','roll','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25014','Sets','sets','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25015','Packets','packets','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25016','Gross','gross','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25017','Dozen','dozen','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*25018','Tonn','tonn','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-''Account Group
-'        cnDatabase.Execute "DELETE FROM GeneralMaster Where Type ='26' AND Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26001','Profit & Loss','Profit & Loss','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26002','Revenue Accounts','Revenue Accounts','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26003','Stock-in-hand','Stock-in-hand','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26004','Bank Accounts','Bank Accounts','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26005','Bank O/D Account','Bank O/D Account','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26022')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26006','Capital Account','Capital Account','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26007','Cash-in-hand','Cash-in-hand','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26008','Current Assets','Current Assets','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26009','Current Liabilities','Current Liabilities','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26010','Depreciation Res On Machine','Depreciation Res On Machine','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26016')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26011','Duties & Taxes','Duties & Taxes','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26009')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26012','Expenses (Direct/Mfg.)','Expenses (Direct/Mfg.)','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26002')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26013','Expenses (Indirect/Admn.)','Expenses (Indirect/Admn.)','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26002')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26014','File-Sundry Creditors','File-Sundry Creditors','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26015','File-Sundry Debtors','File-Sundry Debtors','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26031')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26016','Fixed Assets','Fixed Assets','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26017','Income (Direct/Opr.)','Income (Direct/Opr.)','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26002')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26018','Income (Indirect)','Income (Indirect)','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26002')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26019','Income Tax Advance','Income Tax Advance','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26021')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26020','Investments','Investments','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26021','Loans & Advances (Asset)','Loans & Advances (Asset)','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26022','Loans (Liability)','Loans (Liability)','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26023','Pre-Operative Expenses','Pre-Operative Expenses','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26024','Provisions/Expenses Payable','Provisions/Expenses Payable','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26009')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26025','Purchase','Purchase','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26002')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26026','Reserves & Surplus','Reserves & Surplus','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26006')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26027','Sale','Sale','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26002')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26028','Secured Loans','Secured Loans','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26022')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26029','Securities & Deposits (Asset)','Securities & Deposits (Asset)','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26030','Sundry Creditors','Sundry Creditors','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26009')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26031','Sundry Debtors','Sundry Debtors','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26032','Suspense Account','Suspense Account','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-'        cnDatabase.Execute "Insert Into GeneralMaster VALUES ('*26033','Unsecured Loans','Unsecured Loans','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26022')"
-''Paper Master
-'        cnDatabase.Execute "DELETE FROM PaperMaster Where Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00001','Art Card-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-Gloss','Art Card-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-Gloss','S','B','50.8','76.2','20','30','*15002','200','Art Card','Gloss','7.742','6','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00002','Art Card-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-Gloss','Art Card-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-Gloss','S','B','50.8','76.2','20','30','*15002','210','Art Card','Gloss','8.129','6','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00003','Art Card-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-Gloss','Art Card-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-Gloss','S','B','50.8','76.2','20','30','*15002','220','Art Card','Gloss','8.516','6','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00004','Art Card-250gsm-20.00X30.00in²-(50.80X76.20cm²)-9.677kg-Gloss','Art Card-250gsm-20.00X30.00in²-(50.80X76.20cm²)-9.677kg-Gloss','S','B','50.8','76.2','20','30','*15002','250','Art Card','Gloss','9.677','5','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00005','Art Card-200gsm-23.00X36.00in²-(58.42X91.44cm²)-10.684kg-Gloss','Art Card-200gsm-23.00X36.00in²-(58.42X91.44cm²)-10.684kg-Gloss','S','B','58.42','91.44','23','36','*15002','200','Art Card','Gloss','10.684','5','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00006','Art Card-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-Gloss','Art Card-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-Gloss','S','B','58.42','91.44','23','36','*15002','210','Art Card','Gloss','11.218','4','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00007','Art Card-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-Gloss','Art Card-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-Gloss','S','B','58.42','91.44','23','36','*15002','220','Art Card','Gloss','11.752','4','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00008','Art Card-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-Gloss','Art Card-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-Gloss','S','B','58.42','91.44','23','36','*15002','250','Art Card','Gloss','13.355','4','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00009','Art Paper-70gsm-20.00X30.00in²-(50.80X76.20cm²)-13.548kg-Gloss','Art Paper-70gsm-20.00X30.00in²-(50.80X76.20cm²)-13.548kg-Gloss','S','P','50.8','76.2','20','30','*15004','70','Art Paper','Gloss','13.548','4','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00010','Art Paper-80gsm-20.00X30.00in²-(50.80X76.20cm²)-15.484kg-Gloss','Art Paper-80gsm-20.00X30.00in²-(50.80X76.20cm²)-15.484kg-Gloss','S','P','50.8','76.2','20','30','*15004','80','Art Paper','Gloss','15.484','3','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00011','Art Paper-90gsm-20.00X30.00in²-(50.80X76.20cm²)-17.419kg-Gloss','Art Paper-90gsm-20.00X30.00in²-(50.80X76.20cm²)-17.419kg-Gloss','S','P','50.8','76.2','20','30','*15004','90','Art Paper','Gloss','17.419','3','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00012','Art Paper-100gsm-20.00X30.00in²-(50.80X76.20cm²)-19.355kg-Gloss','Art Paper-100gsm-20.00X30.00in²-(50.80X76.20cm²)-19.355kg-Gloss','S','P','50.8','76.2','20','30','*15004','100','Art Paper','Gloss','19.355','3','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00013','Art Paper-130gsm-20.00X30.00in²-(50.80X76.20cm²)-25.161kg-Gloss','Art Paper-130gsm-20.00X30.00in²-(50.80X76.20cm²)-25.161kg-Gloss','S','P','50.8','76.2','20','30','*15004','130','Art Paper','Gloss','25.161','2','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00014','Art Paper-170gsm-20.00X30.00in²-(50.80X76.20cm²)-32.903kg-Gloss','Art Paper-170gsm-20.00X30.00in²-(50.80X76.20cm²)-32.903kg-Gloss','S','P','50.8','76.2','20','30','*15004','170','Art Paper','Gloss','32.903','2','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00015','Art Paper-70gsm-23.00X36.00in²-(58.42X91.44cm²)-18.697kg-Gloss','Art Paper-70gsm-23.00X36.00in²-(58.42X91.44cm²)-18.697kg-Gloss','S','P','58.42','91.44','23','36','*15004','70','Art Paper','Gloss','18.697','3','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00016','Art Paper-80gsm-23.00X36.00in²-(58.42X91.44cm²)-21.368kg-Gloss','Art Paper-80gsm-23.00X36.00in²-(58.42X91.44cm²)-21.368kg-Gloss','S','P','58.42','91.44','23','36','*15004','80','Art Paper','Gloss','21.368','2','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00017','Art Paper-90gsm-23.00X36.00in²-(58.42X91.44cm²)-24.039kg-Gloss','Art Paper-90gsm-23.00X36.00in²-(58.42X91.44cm²)-24.039kg-Gloss','S','P','58.42','91.44','23','36','*15004','90','Art Paper','Gloss','24.039','2','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00018','Art Paper-100gsm-23.00X36.00in²-(58.42X91.44cm²)-26.71kg-Gloss','Art Paper-100gsm-23.00X36.00in²-(58.42X91.44cm²)-26.71kg-Gloss','S','P','58.42','91.44','23','36','*15004','100','Art Paper','Gloss','26.71','2','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00019','Art Paper-130gsm-23.00X36.00in²-(58.42X91.44cm²)-34.723kg-Gloss','Art Paper-130gsm-23.00X36.00in²-(58.42X91.44cm²)-34.723kg-Gloss','S','P','58.42','91.44','23','36','*15004','130','Art Paper','Gloss','34.723','1','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00020','Art Paper-170gsm-23.00X36.00in²-(58.42X91.44cm²)-45.406kg-Gloss','Art Paper-170gsm-23.00X36.00in²-(58.42X91.44cm²)-45.406kg-Gloss','S','P','58.42','91.44','23','36','*15004','170','Art Paper','Gloss','45.406','1','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00021','Paper-60gsm-20.00X30.00in²-(50.80X76.20cm²)-11.613kg-Maplitho','Paper-60gsm-20.00X30.00in²-(50.80X76.20cm²)-11.613kg-Maplitho','S','P','50.8','76.2','20','30','*15004','60','Paper','Maplitho','11.613','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00022','Paper-64gsm-20.00X30.00in²-(50.80X76.20cm²)-12.387kg-Maplitho','Paper-64gsm-20.00X30.00in²-(50.80X76.20cm²)-12.387kg-Maplitho','S','P','50.8','76.2','20','30','*15004','64','Paper','Maplitho','12.387','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00023','Paper-70gsm-20.00X30.00in²-(50.80X76.20cm²)-13.548kg-Maplitho','Paper-70gsm-20.00X30.00in²-(50.80X76.20cm²)-13.548kg-Maplitho','S','P','50.8','76.2','20','30','*15004','70','Paper','Maplitho','13.548','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00024','Paper-80gsm-20.00X30.00in²-(50.80X76.20cm²)-15.484kg-Maplitho','Paper-80gsm-20.00X30.00in²-(50.80X76.20cm²)-15.484kg-Maplitho','S','P','50.8','76.2','20','30','*15004','80','Paper','Maplitho','15.484','3','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00025','Paper-90gsm-20.00X30.00in²-(50.80X76.20cm²)-17.419kg-Maplitho','Paper-90gsm-20.00X30.00in²-(50.80X76.20cm²)-17.419kg-Maplitho','S','P','50.8','76.2','20','30','*15004','90','Paper','Maplitho','17.419','3','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00026','Paper-100gsm-20.00X30.00in²-(50.80X76.20cm²)-19.355kg-Maplitho','Paper-100gsm-20.00X30.00in²-(50.80X76.20cm²)-19.355kg-Maplitho','S','P','50.8','76.2','20','30','*15004','100','Paper','Maplitho','19.355','3','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00027','Paper-120gsm-20.00X30.00in²-(50.80X76.20cm²)-23.226kg-Maplitho','Paper-120gsm-20.00X30.00in²-(50.80X76.20cm²)-23.226kg-Maplitho','S','P','50.8','76.2','20','30','*15004','120','Paper','Maplitho','23.226','2','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00028','Paper-60gsm-23.00X36.00in²-(58.42X91.44cm²)-16.026kg-Maplitho','Paper-60gsm-23.00X36.00in²-(58.42X91.44cm²)-16.026kg-Maplitho','S','P','58.42','91.44','23','36','*15004','60','Paper','Maplitho','16.026','3','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00029','Paper-64gsm-23.00X36.00in²-(58.42X91.44cm²)-17.094kg-Maplitho','Paper-64gsm-23.00X36.00in²-(58.42X91.44cm²)-17.094kg-Maplitho','S','P','58.42','91.44','23','36','*15004','64','Paper','Maplitho','17.094','3','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00030','Paper-70gsm-23.00X36.00in²-(58.42X91.44cm²)-18.697kg-Maplitho','Paper-70gsm-23.00X36.00in²-(58.42X91.44cm²)-18.697kg-Maplitho','S','P','58.42','91.44','23','36','*15004','70','Paper','Maplitho','18.697','3','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00031','Paper-80gsm-23.00X36.00in²-(58.42X91.44cm²)-21.368kg-Maplitho','Paper-80gsm-23.00X36.00in²-(58.42X91.44cm²)-21.368kg-Maplitho','S','P','58.42','91.44','23','36','*15004','80','Paper','Maplitho','21.368','2','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00032','Paper-90gsm-23.00X36.00in²-(58.42X91.44cm²)-24.039kg-Maplitho','Paper-90gsm-23.00X36.00in²-(58.42X91.44cm²)-24.039kg-Maplitho','S','P','58.42','91.44','23','36','*15004','90','Paper','Maplitho','24.039','2','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00033','Paper-100gsm-23.00X36.00in²-(58.42X91.44cm²)-26.71kg-Maplitho','Paper-100gsm-23.00X36.00in²-(58.42X91.44cm²)-26.71kg-Maplitho','S','P','58.42','91.44','23','36','*15004','100','Paper','Maplitho','26.71','2','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00034','Paper-120gsm-23.00X36.00in²-(58.42X91.44cm²)-32.052kg-Maplitho','Paper-120gsm-23.00X36.00in²-(58.42X91.44cm²)-32.052kg-Maplitho','S','P','58.42','91.44','23','36','*15004','120','Paper','Maplitho','32.052','2','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00035','SBS-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-C1S','SBS-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-C1S','S','B','50.8','76.2','20','30','*15002','200','SBS','C1S','7.742','6','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00036','SBS-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-C1S','SBS-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-C1S','S','B','50.8','76.2','20','30','*15002','210','SBS','C1S','8.129','6','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00037','SBS-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-C1S','SBS-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-C1S','S','B','50.8','76.2','20','30','*15002','220','SBS','C1S','8.516','6','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00038','SBS-250gsm-20.00X30.00in²-(50.80X76.20cm²)-9.677kg-C1S','SBS-250gsm-20.00X30.00in²-(50.80X76.20cm²)-9.677kg-C1S','S','B','50.8','76.2','20','30','*15002','250','SBS','C1S','9.677','5','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00039','SBS-200gsm-23.00X36.00in²-(58.42X91.44cm²)-10.684kg-C1S','SBS-200gsm-23.00X36.00in²-(58.42X91.44cm²)-10.684kg-C1S','S','B','58.42','91.44','23','36','*15002','200','SBS','C1S','10.684','5','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00040','SBS-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-C1S','SBS-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-C1S','S','B','58.42','91.44','23','36','*15002','210','SBS','C1S','11.218','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00041','SBS-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-C1S','SBS-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-C1S','S','B','58.42','91.44','23','36','*15002','220','SBS','C1S','11.752','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into PaperMaster VALUES ('*00042','SBS-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-C1S','SBS-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-C1S','S','B','58.42','91.44','23','36','*15002','250','SBS','C1S','13.355','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N')"
-'
-''Size Group Master
-'        cnDatabase.Execute "DELETE FROM SizeGroupChild Where Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10003','*01067')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10003','*01068')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10003','*01070')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10003','*01072')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10003','*01073')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10007','*01061')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10011','*01047')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01050')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01051')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01056')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01058')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01060')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01063')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01064')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10006','*01059')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01017')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01020')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01021')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01027')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01028')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01030')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01031')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01033')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10012','*01013')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10013','*01012')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10013','*01015')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10013','*01016')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10013','*01019')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10013','*01029')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10013','*01018')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10018','*01069')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01036')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01037')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01038')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01039')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01046')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01048')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01054')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10009','*01057')"
-'        cnDatabase.Execute "Insert Into SizeGroupChild VALUES ('*10020','*01011')"
-''Tax Master
-'        cnDatabase.Execute "DELETE FROM TaxMaster Where Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00001','Local GST 12%','Local GST 12%','L','6','6',0,'000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00002','IGST 12%','IGST 12%','I','0','0',12,'000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00003','IGST 5%','IGST 5%','I','0','0',5,'000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00004','Local GST 5%','Local GST 5%','L','2.5','2.5',0,'000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00005','Local GST 18%','Local GST 18%','L','9','9',0,'000006',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00006','IGST 18%','IGST 18%','I','0','0',18,'000006',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00007','Local GST NIL','Local GST NIL','L','0','0',0,'000001',GetDate(),'NULL',NULL,'N','N')"
-'        cnDatabase.Execute "Insert Into TaxMaster VALUES ('*00008','IGST NIL','IGST NIL','I','0','0',0,'000001',GetDate(),'NULL',NULL,'N','N')"
-''Vch Series Master
-'        cnDatabase.Execute "DELETE FROM VchSeriesMaster Where Left(Code,1)='*'"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00101','Main','01PF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/Purc','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00102','Main','01PU','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrJU','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00103','Main','01PC','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrJC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00104','Main','01PJ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00201','Main','02OF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrRt','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00202','Main','02OU','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrRtJU','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00203','Main','02OC','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrRtJC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00204','Main','02OJ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrRtJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00301','Main','03TF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlRt','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00302','Main','03TU','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlRtJU','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00303','Main','03TC','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlRtJC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00304','Main','03TJ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlRtJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00401','Main','04SF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/Sale','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00402','Main','04SU','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlJU','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00403','Main','04SC','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlJC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00404','Main','04SJ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00501','Main','05RF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/MtRc','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00502','Main','05FR','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/MtRcJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00601','Main','06IF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrRtC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00602','Main','06FI','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PrRtCJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00701','Main','07RF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlRtC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00702','Main','07FR','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SlRtCJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00801','Main','08IF','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/MtIs','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*00802','Main','08FI','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/MtIsJW','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*01701','Main','17PO','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PO','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*01801','Main','18SO','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SO','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*01901','Main','19ST','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/STrn','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02001','Main','20JR','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SJrnl','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02101','Main','21JR','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SJrnl','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02201','Main','22JR','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SJrnl','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02301','Main','23PQ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PQ','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02302','Main','23ZU','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PQU','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02303','Main','23ZC','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PQC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02304','Main','23ZJ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/PQJ','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02305','Main','24SQ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SQ','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02306','Main','24QU','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SQU','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02307','Main','24QC','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SQC','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*02308','Main','24QJ','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/SQJ','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*05101','Main','51PI','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/Pymt','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*05201','Main','52PR','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/Rcpt','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*05301','Main','53JE','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/Jrnl','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*05401','Main','54CE','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/Cntr','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*05501','Main','55CN','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/CrNt','A')"
-'        cnDatabase.Execute "Insert Into VchSeriesMaster VALUES ('*05601','Main','56DN','" & Trim(FrmCompanyMaster.Text15.Text) & "/" & "','/DrNt','A')"
-''CompChild
-'        cnDatabase.Execute "DELETE FROM CompChild "
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','01','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','SEPL/Pur/','/20-21','Purchase')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','02','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','SEPL/PR/','/20-21','Purchase Return')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','03','1. All disputes are subject to Our Jurisdiction Only','2. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection.','3. Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','','','SEPL/SR/','/20-21','Sale Return')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','04','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/Sale/','/20-21','Sale')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','05','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','SEPL/PC/','/20-21','Purchase Challan IN')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','06','','','','','','','','SEPL/PRC/','/20-21','Purchase Challan Out')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','07','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SRC/','/20-21','Sale Challan IN')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','08','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SC/','/20-21','Sale Challan Out')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','09','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SJ/','/20-21','Sale Jobwork')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','10','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SC/','/20-21','Sale Jobwork Unit Cost')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','11','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/DN/','/20-21','Challan Revesal IN')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','12','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Delhi Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SFAPL/PU/','/20-21','Challan Revesal Out')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','13','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SC/','/20-21','Challan TO Be Billed IN')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','14','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SC/','/20-21','Challan TO Be Billed OUT')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','15','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SC/','/20-21','Challan Not TO Be Billed IN')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','16','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SC/','/20-21','Challan Not TO Be Billed IOUT')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','17','1. The Deliverables shall be delivered or performed on the ','date and at the place specified in the Purchase Order.','2. Prices shall be as specified in the  Purchase  Order.','3. No increase in price shall be made or accepted unless ',' agreed in writing by Accenture.','4. The  Deliverables must conform in all respects with the','   Specifications and must be of sound.','SEPL/PO/','/20-21','Purchase Order')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','18','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SO/','/20-21','Sale Order')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','19','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/ST/','/20-21','Stock Tranfer')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','20','','','','','','','','SEPL/RN/','/20-21','Stock Genral')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','21','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Delhi Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SFAPL/SU/','/20-21','Promotional Sale Challan Out')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','22','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','SEPL/SQ/','/20-21','--')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','23','1. The price set for in Supplier’s Quotation (“Price”) are',' in  INDIA INR.','2. All Taxes shall be paid by Customer in addition to the ',' Price.','3.  Quotation (“Prices”) are valid for 30 days only.','','','SEPL/QP/','/20-21','Purchase Quotation')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','24','1. The price set for in Supplier’s Quotation (“Price”) are',' in  INDIA INR.','2. All Taxes shall be paid by Customer in addition to the ',' Price.','3.  Quotation (“Prices”) are valid for 30 days only.','','','SEPL/QS/','/20-21','Sales Quotation')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','25','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','26','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','27','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','28','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','29','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','30','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','31','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','32','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','33','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','34','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','35','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','36','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','37','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','38','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','39','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','40','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','41','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','42','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','43','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','44','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','45','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','46','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','47','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','48','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','49','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','50','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','51','','','','','','','','SEPL/PI/','/20-21','Payment')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','52','','','','','','','','SEPL/PR/','/20-21','Receipt')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','53','','','','','','','','SEPL/JE/','/20-21','Journal')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','54','','','','','','','','SEPL/CE/','/20-21','Contra')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','55','','','','','','','','SEPL/DN/','/20-21','Debit Note')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','56','','','','','','','','SEPL/CN/','/20-21','Credit Note')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','57','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','58','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','59','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','60','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','61','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','62','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','63','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','64','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','65','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','66','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','67','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','68','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','69','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','70','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','71','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','72','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','73','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','74','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','75','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','76','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','77','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','78','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','79','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','80','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','81','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','82','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','83','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','84','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','85','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','86','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','87','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','88','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','89','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','90','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','91','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','92','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','93','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','94','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','95','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','96','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','97','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','98','','','','','','','','','','')"
-'        cnDatabase.Execute "Insert Into CompChild VALUES ('000001','99','','','','','','','','','','')"
-'    cnDatabase.CommitTrans
-'    CloseMainConnection
-'    Exit Function
-'ErrorHandler:
-'    UpdateCompany = False
-'    cnDatabase.RollbackTrans
-'    CloseMainConnection
-'End Function
 Private Sub mnuPrintPlanning_Click(Index As Integer)
     On Error Resume Next
     FrmPrintPlanning.PlanningType = Choose(Index, "1", "2")
@@ -3819,6 +3498,12 @@ Private Sub mnuPurchaseOrderJobWorkUnfinishedItem_Click()
     Load FrmBookPrintOrder
     If Err.Number <> 364 Then FrmBookPrintOrder.Show
 End Sub
+Private Sub mnuPurchaseOrderJobWorkDigital_Click()
+    On Error Resume Next
+    FrmBookPrintOrder.BookPOType = "DP"
+    Load FrmBookPrintOrder
+    If Err.Number <> 364 Then FrmBookPrintOrder.Show
+End Sub
 Private Sub mnuPurchaseOrderSupplyInwardFinishedItem_Click()
     On Error Resume Next
     frmSalesOrderVoucher.VchType = "PO"
@@ -3839,6 +3524,12 @@ End Sub
 Private Sub mnuSalesOrderJobWorkUnfinishedItem_Click()
     On Error Resume Next
     FrmBookPrintOrder.BookPOType = "RS"
+    Load FrmBookPrintOrder
+    If Err.Number <> 364 Then FrmBookPrintOrder.Show
+End Sub
+Private Sub mnuSalesOrderJobWorkDigital_Click()
+    On Error Resume Next
+    FrmBookPrintOrder.BookPOType = "DS"
     Load FrmBookPrintOrder
     If Err.Number <> 364 Then FrmBookPrintOrder.Show
 End Sub
@@ -3942,11 +3633,20 @@ Private Sub mnuAccountMaster_Click()
     Load FrmAccountMaster
     If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
 End Sub
+'Private Sub mnuRate_Click(Index As Integer)
+'    On Error Resume Next
+'    FrmAccountMaster.AccountType = Choose(Index, "04", "05", "06", "07", "08")
+'    FrmAccountMaster.AccountGroup = ""
+'    FrmAccountMaster.RateType = "S"
+'    FrmAccountMaster.SL = False
+'    Load FrmAccountMaster
+'    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+'End Sub
 Private Sub mnuRate_Click(Index As Integer)
     On Error Resume Next
-    FrmAccountMaster.AccountType = Choose(Index, "05", "07", "08", "04")
+    FrmAccountMaster.AccountType = Choose(Index, "05", "07", "08", "04", "06")
     FrmAccountMaster.SL = False
-    FrmAccountMaster.Caption = Choose(Index, "Printing", "Misc Operation", "Binding", "Processing") & " Rate Master"
+    FrmAccountMaster.Caption = Choose(Index, "Printing", "Misc Operation", "Binding", "Processing", "Plates") & " Rate Master"
     Load FrmAccountMaster
     If Err.Number <> 364 Then FrmAccountMaster.Show
 End Sub
@@ -3955,6 +3655,14 @@ Private Sub mnuMaterialCentreMaster_Click()
     FrmAccountMaster.AccountType = "01"
     FrmAccountMaster.SL = False
     FrmAccountMaster.AccountGroup = "*99999" 'Material Centre
+    Load FrmAccountMaster
+    If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
+End Sub
+Private Sub mnuSalesExecutiveMaster_Click()
+    On Error Resume Next
+    FrmAccountMaster.AccountType = "01"
+    FrmAccountMaster.SL = False
+    FrmAccountMaster.AccountGroup = "*99995" 'Material Centre
     Load FrmAccountMaster
     If Err.Number <> 364 Then FrmAccountMaster.Show vbModal
 End Sub
@@ -4015,21 +3723,21 @@ Private Sub mnuBillingNarrationMaster_Click()
 End Sub
 Private Sub mnuMachineMaster_Click()
     On Error Resume Next
-    FrmGeneralMaster.MasterType = "21"
-    FrmGeneralMaster.SL = False
-    Load FrmGeneralMaster
-    If Err.Number <> 364 Then FrmGeneralMaster.Caption = "Machine Master": FrmGeneralMaster.Show
+    'FrmGeneralMaster.MasterType = "21"
+    FrmMachineMaster.SL = False
+    Load FrmMachineMaster
+    If Err.Number <> 364 Then FrmMachineMaster.Caption = "Machine Master": FrmMachineMaster.Show
 End Sub
 Private Sub mnuFreshBookMaster_Click()
     On Error Resume Next
-    FrmBookMaster.BookType = "F"
+    FrmBookMaster.ItemType = "F"
     FrmBookMaster.SL = False
     Load FrmBookMaster
     If Err.Number <> 364 Then FrmBookMaster.Show
 End Sub
 Private Sub mnuRepairBookMaster_Click()
     On Error Resume Next
-    FrmBookMaster.BookType = "R"
+    FrmBookMaster.ItemType = "R"
     FrmBookMaster.SL = False
     Load FrmBookMaster
     If Err.Number <> 364 Then FrmBookMaster.Show
@@ -4055,6 +3763,12 @@ Private Sub mnuPaperModule_Click(Index As Integer)
         If Err.Number <> 364 Then FrmPaperDebitNote.Show
     End If
 End Sub
+Private Sub mnuQuotationSupplyInwardFinishedItem_Click()
+    On Error Resume Next
+    frmSalesOrderVoucher.VchType = "PQ"
+    Load frmSalesOrderVoucher
+    If Err.Number <> 364 Then frmSalesOrderVoucher.Show
+End Sub
 Private Sub mnuQuotationSupplyOutwardFinishedItem_Click()
     On Error Resume Next
     frmSalesOrderVoucher.VchType = "SQ"
@@ -4067,7 +3781,13 @@ Private Sub MnuAccountWise_Click(Index As Integer)
     Load FrmAccountSelectionList
     If Err.Number <> 364 Then FrmAccountSelectionList.Show
 End Sub
-Private Sub mnuQuotationJobWork_Click(Index As Integer)
+Private Sub mnuPurchaseQuotationJobWork_Click(Index As Integer)
+    On Error Resume Next
+    frmJobworkBill.VchType = Trim(Index)
+    Load frmJobworkBill
+    If Err.Number <> 364 Then frmJobworkBill.Show
+End Sub
+Private Sub mnuSalesQuotationJobWork_Click(Index As Integer)
     On Error Resume Next
     frmJobworkBill.VchType = Trim(Index)
     Load frmJobworkBill
@@ -4105,10 +3825,20 @@ Private Sub mnuProjectManagement_Click(Index As Integer)
     ElseIf Index = 3 Then
         Load FrmTeamMemberMaster
         If Err.Number <> 364 Then FrmTeamMemberMaster.Show
-    ElseIf Index = 4 Then
+'    ElseIf Index = 4 Then
+'        Load FrmProjectAssigner
+'        If Err.Number <> 364 Then FrmProjectAssigner.Show
+'    ElseIf Index = 5 Then
+'        Load FrmProjectTracker
+'        If Err.Number <> 364 Then FrmProjectTracker.Show
+    End If
+End Sub
+Private Sub mnuProject_Click(Index As Integer)
+    On Error Resume Next
+    If Index = 1 Then
         Load FrmProjectAssigner
         If Err.Number <> 364 Then FrmProjectAssigner.Show
-    ElseIf Index = 5 Then
+    ElseIf Index = 2 Then
         Load FrmProjectTracker
         If Err.Number <> 364 Then FrmProjectTracker.Show
     End If
@@ -4128,13 +3858,13 @@ Private Sub mnuDespatchManagement_Click(Index As Integer)
 End Sub
 Private Sub MenuSaleLedger_Click(Index As Integer)
     On Error Resume Next
-    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 6, Trim(Index), IIf(Trim(Index) >= 7 And Trim(Index) <= 11, (Trim(Index) - 1), IIf(Trim(Index) >= 21 And Trim(Index) <= 25, (Trim(Index) - 1), IIf(Trim(Index) = 32, (Trim(Index) - 3), (Trim(Index) - 2)))))
+    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 6, Trim(Index), IIf(Trim(Index) >= 7 And Trim(Index) <= 11, (Trim(Index) - 1), IIf(Trim(Index) >= 21 And Trim(Index) <= 25, (Trim(Index) - 1), IIf(Trim(Index) = 32, "0448", (Trim(Index) - 2)))))
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
 Private Sub MenuPurchaseLedger_Click(Index As Integer)
     On Error Resume Next
-    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 56, Trim(Index), IIf(Trim(Index) >= 57 And Trim(Index) <= 61, (Trim(Index) - 1), IIf(Trim(Index) >= 62 And Trim(Index) <= 66, (Trim(Index) - 2), IIf(Trim(Index) = 73, (Trim(Index) - 4), (Trim(Index) - 3)))))
+    FrmItemSelectionList.VchType = IIf(Trim(Index) <= 56, Trim(Index), IIf(Trim(Index) >= 57 And Trim(Index) <= 61, (Trim(Index) - 1), IIf(Trim(Index) >= 62 And Trim(Index) <= 66, (Trim(Index) - 2), IIf(Trim(Index) = 73, "0148", (Trim(Index) - 3)))))
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
 End Sub
@@ -4155,4 +3885,88 @@ Private Sub MnuSOrdersPartyWise_Click(Index As Integer)
     FrmItemSelectionList.VchType = Trim(Index)
     Load FrmItemSelectionList
     If Err.Number <> 364 Then FrmItemSelectionList.Show
+End Sub
+Private Sub mnuColorMaster_Click()
+    On Error Resume Next
+    FrmGeneralMaster.MasterType = "23"
+    FrmGeneralMaster.SL = False
+    Load FrmGeneralMaster
+    If Err.Number <> 364 Then FrmGeneralMaster.Caption = "Color Master": FrmGeneralMaster.Show
+End Sub
+Private Sub MnuEmailUtilities_Click()
+    On Error Resume Next
+    Load FrmEmailing
+    If Err.Number <> 364 Then FrmEmailing.Caption = "Emailing ": FrmEmailing.Show
+End Sub
+Private Sub MnuHelp_Click(Index As Integer)
+    
+    On Error Resume Next
+    Dim R As Long
+    Dim Foldername As String
+    Foldername = App.Path
+    If Trim(Index) = 1 Then
+        If Dir(App.Path & "\HelpFiles\Easy Publish Prime v22.chm", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\HelpFiles\Easy Publish Prime v22.chm", 0, 0, 1)
+        End If
+    ElseIf Trim(Index) = 2 Then
+        Shell "C:\WINDOWS\explorer.exe """ & Foldername & "", vbNormalFocus
+    ElseIf Trim(Index) = 3 Then
+        If Dir(App.Path & "\VersionUpdate.exe", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\VersionUpdate.exe", 0, 0, 1)
+                mnuExit_Click
+        End If
+    ElseIf Trim(Index) = 4 Then
+        If CompCode <> "" Then
+            Load FrmFY: Screen.MousePointer = vbNormal:  FrmFY.Show vbModal
+        Else
+            MsgBox "Please Login Company First", vbExclamation
+        End If
+    End If
+End Sub
+Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+    If Button.Index <= 17 Then
+        If ActiveForm.Toolbar1.Buttons.Item(Button.Index).Enabled Then
+            ActiveForm.Toolbar1_ButtonClick ActiveForm.Toolbar1.Buttons.Item(Button.Index)
+        End If
+    Else
+        If Toolbar1.Buttons(1).Enabled Then 'Company Open
+            If ActiveForm.Toolbar1.Buttons.Item(Button.Index).Enabled Then
+                ActiveForm.Toolbar1_ButtonClick ActiveForm.Toolbar1.Buttons.Item(Button.Index)
+            End If
+        Else
+            mnuExit_Click
+        End If
+    End If
+End Sub
+Private Sub Toolbar2_ButtonClick(ByVal Button As MSComctlLib.Button)
+    On Error Resume Next
+    If Button.Index = 1 Then
+        MnuHelp_Click (1)
+    ElseIf Button.Index >= 6 And Button.Index <= 11 Then
+        If ActiveForm.Name <> "frmDebitCreditVoucher" Then
+            mnuFinanceModule_Click (Button.Index - 5)
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        Else
+            Call CloseForm(frmDebitCreditVoucher)
+            mnuFinanceModule_Click (Button.Index - 5)
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        End If
+    
+    End If
+End Sub
+Private Sub MDIForm_KeyDown(KeyCode As Integer, Shift As Integer)
+    ' Check for specific keys
+    If Shift = vbAltMask Then
+        ' Alt key is pressed
+        Select Case KeyCode
+            Case vbKeyF5
+                ' Handle F5 key press (example: open a new child form)
+                Dim TaxMaster As New FrmTaxMaster
+                TaxMaster.Show
+        End Select
+    End If
 End Sub

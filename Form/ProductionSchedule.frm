@@ -402,7 +402,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
     BusySystemIndicator True
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Option3.Value = True
     MhDateInput1.Text = Format(FinancialYearFrom, "dd-mm-yyyy")
     MhDateInput2.Text = IIf(Format(FinancialYearTo, "yyyymmdd") < Format(Date, "yyyymmdd"), Format(FinancialYearTo, "dd-mm-yyyy"), Format(Date, "dd-mm-yyyy"))

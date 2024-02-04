@@ -1,12 +1,13 @@
 VERSION 5.00
 Object = "{C4847593-972C-11D0-9567-00A0C9273C2A}#8.0#0"; "crviewer.dll"
+Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Begin VB.Form FrmReportViewer 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Report Viewer"
-   ClientHeight    =   7275
+   ClientHeight    =   9195
    ClientLeft      =   45
    ClientTop       =   615
-   ClientWidth     =   6300
+   ClientWidth     =   15045
    BeginProperty Font 
       Name            =   "Comic Sans MS"
       Size            =   8.25
@@ -17,18 +18,55 @@ Begin VB.Form FrmReportViewer
       Strikethrough   =   0   'False
    EndProperty
    KeyPreview      =   -1  'True
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
-   ScaleHeight     =   7275
-   ScaleWidth      =   6300
+   ScaleHeight     =   9195
+   ScaleWidth      =   15045
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
+   Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+      Height          =   330
+      Index           =   2
+      Left            =   7995
+      TabIndex        =   2
+      Top             =   60
+      Width           =   1575
+      _Version        =   65536
+      _ExtentX        =   2778
+      _ExtentY        =   582
+      _StockProps     =   77
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Calibri"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      TintColor       =   16711935
+      Caption         =   "  ALT+ F4-> Exit Report"
+      Alignment       =   0
+      FillColor       =   8421504
+      TextColor       =   16777215
+      Picture         =   "ReportViewer.frx":0000
+      Picture         =   "ReportViewer.frx":001C
+   End
+   Begin VB.CommandButton Command1 
+      Height          =   375
+      Left            =   7560
+      Picture         =   "ReportViewer.frx":0038
+      Style           =   1  'Graphical
+      TabIndex        =   1
+      ToolTipText     =   "Alt+F4 ->> Exit Report"
+      Top             =   40
+      Width           =   375
+   End
    Begin CRVIEWERLibCtl.CRViewer CRViewer1 
-      Height          =   7000
+      Height          =   9165
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   5800
+      Width           =   14925
       DisplayGroupTree=   0   'False
       DisplayToolbar  =   -1  'True
       EnableGroupTree =   0   'False
@@ -68,9 +106,13 @@ Public Message As String
 Public EMailID As String
 Public CCID As String
 Public Attachment As String
-Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-   If Shift = 0 And KeyCode = vbKeyF1 Then ' Close
+
+Private Sub Command1_Click()
        Call CloseForm(FrmReportViewer)
+End Sub
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+   If Shift = vbAltMask And KeyCode = vbKeyF1 Then ' Close
+       Call Command1_Click
    End If
 End Sub
 Private Sub Form_Load()

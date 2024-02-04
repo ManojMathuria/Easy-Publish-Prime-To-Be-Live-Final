@@ -2,15 +2,16 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
+Object = "{C115893A-A3BF-43AF-B28D-69DB846077F3}#1.0#0"; "vsflex8u.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
 Begin VB.Form FrmPaperLedger 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   " Paper Ledger"
+   Caption         =   "w2"
    ClientHeight    =   9495
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   20085
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,13 +25,12 @@ Begin VB.Form FrmPaperLedger
    KeyPreview      =   -1  'True
    LinkTopic       =   "FrmLogin"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9495
    ScaleWidth      =   20085
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
       Height          =   9270
       Left            =   120
-      TabIndex        =   5
+      TabIndex        =   6
       TabStop         =   0   'False
       Top             =   120
       Width           =   19890
@@ -56,20 +56,196 @@ Begin VB.Form FrmPaperLedger
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "PaperLedger.frx":0000
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
+         Height          =   330
+         Left            =   3600
+         TabIndex        =   23
+         Top             =   8880
+         Width           =   615
+         _Version        =   65536
+         _ExtentX        =   1085
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Find"
+         Alignment       =   0
+         FillColor       =   9164542
+         TextColor       =   0
+         Picture         =   "PaperLedger.frx":001C
+         Picture         =   "PaperLedger.frx":0038
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
+         Height          =   330
+         Left            =   2400
+         TabIndex        =   29
+         Top             =   8880
+         Width           =   1215
+         _Version        =   65536
+         _ExtentX        =   2143
+         _ExtentY        =   582
+         _StockProps     =   77
+         BackColor       =   -2147483630
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   ""
+         Alignment       =   0
+         BorderColor     =   16777215
+         TextColor       =   0
+         Picture         =   "PaperLedger.frx":0054
+         Picture         =   "PaperLedger.frx":0070
+      End
+      Begin VB.CheckBox Check4 
+         Caption         =   "Check1"
+         Height          =   255
+         Left            =   14400
+         TabIndex        =   28
+         Top             =   158
+         Visible         =   0   'False
+         Width           =   255
+      End
+      Begin VB.CheckBox Check1 
+         Caption         =   "Check1"
+         Height          =   255
+         Left            =   8400
+         TabIndex        =   27
+         Top             =   158
+         Visible         =   0   'False
+         Width           =   255
+      End
+      Begin VSFlex8UCtl.VSFlexGrid VSFlexGrid1 
+         Height          =   8175
+         Left            =   120
+         TabIndex        =   4
+         Top             =   645
+         Width           =   19695
+         _cx             =   34740
+         _cy             =   14420
+         Appearance      =   1
+         BorderStyle     =   1
+         Enabled         =   -1  'True
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         MousePointer    =   0
+         BackColor       =   -2147483643
+         ForeColor       =   -2147483640
+         BackColorFixed  =   -2147483633
+         ForeColorFixed  =   -2147483630
+         BackColorSel    =   128
+         ForeColorSel    =   -2147483634
+         BackColorBkg    =   -2147483636
+         BackColorAlternate=   -2147483643
+         GridColor       =   -2147483633
+         GridColorFixed  =   -2147483632
+         TreeColor       =   -2147483632
+         FloodColor      =   192
+         SheetBorder     =   -2147483642
+         FocusRect       =   1
+         HighLight       =   1
+         AllowSelection  =   -1  'True
+         AllowBigSelection=   -1  'True
+         AllowUserResizing=   0
+         SelectionMode   =   0
+         GridLines       =   14
+         GridLinesFixed  =   2
+         GridLineWidth   =   1
+         Rows            =   50
+         Cols            =   10
+         FixedRows       =   1
+         FixedCols       =   1
+         RowHeightMin    =   0
+         RowHeightMax    =   0
+         ColWidthMin     =   0
+         ColWidthMax     =   0
+         ExtendLastCol   =   0   'False
+         FormatString    =   ""
+         ScrollTrack     =   0   'False
+         ScrollBars      =   3
+         ScrollTips      =   0   'False
+         MergeCells      =   0
+         MergeCompare    =   0
+         AutoResize      =   -1  'True
+         AutoSizeMode    =   0
+         AutoSearch      =   0
+         AutoSearchDelay =   2
+         MultiTotals     =   -1  'True
+         SubtotalPosition=   0
+         OutlineBar      =   0
+         OutlineCol      =   0
+         Ellipsis        =   0
+         ExplorerBar     =   0
+         PicturesOver    =   0   'False
+         FillStyle       =   0
+         RightToLeft     =   0   'False
+         PictureType     =   0
+         TabBehavior     =   0
+         OwnerDraw       =   0
+         Editable        =   0
+         ShowComboButton =   1
+         WordWrap        =   0   'False
+         TextStyle       =   0
+         TextStyleFixed  =   0
+         OleDragMode     =   0
+         OleDropMode     =   0
+         DataMode        =   0
+         VirtualData     =   -1  'True
+         DataMember      =   ""
+         ComboSearch     =   3
+         AutoSizeMouse   =   -1  'True
+         FrozenRows      =   0
+         FrozenCols      =   0
+         AllowUserFreezing=   0
+         BackColorFrozen =   0
+         ForeColorFrozen =   0
+         WallPaperAlignment=   9
+         AccessibleName  =   ""
+         AccessibleDescription=   ""
+         AccessibleValue =   ""
+         AccessibleRole  =   24
+         Begin VB.Timer Timer1 
+            Enabled         =   0   'False
+            Interval        =   4
+            Left            =   0
+            Top             =   0
+         End
+      End
       Begin VB.CommandButton Preview 
          Caption         =   "&Print Preview"
          Height          =   330
          Left            =   15960
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   8880
          Width           =   1215
       End
       Begin VB.CommandButton Search 
          Height          =   320
          Left            =   11040
-         Picture         =   "PaperLedger.frx":001C
+         Picture         =   "PaperLedger.frx":008C
          Style           =   1  'Graphical
-         TabIndex        =   24
+         TabIndex        =   25
          ToolTipText     =   "Search"
          Top             =   8880
          Width           =   375
@@ -88,19 +264,19 @@ Begin VB.Form FrmPaperLedger
             Strikethrough   =   0   'False
          EndProperty
          Height          =   330
-         Left            =   3240
+         Left            =   4200
          MaxLength       =   100
-         TabIndex        =   19
+         TabIndex        =   20
          ToolTipText     =   "Find And Search"
          Top             =   8880
-         Width           =   7230
+         Width           =   6270
       End
       Begin VB.CommandButton cmdFilter 
          Height          =   320
          Left            =   10560
-         Picture         =   "PaperLedger.frx":035E
+         Picture         =   "PaperLedger.frx":03CE
          Style           =   1  'Graphical
-         TabIndex        =   18
+         TabIndex        =   19
          ToolTipText     =   "Filter"
          Top             =   8880
          Width           =   375
@@ -108,7 +284,7 @@ Begin VB.Form FrmPaperLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
          Left            =   14000
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   120
          Width           =   1095
          _Version        =   65536
@@ -129,8 +305,8 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":06A0
-         Picture         =   "PaperLedger.frx":06BC
+         Picture         =   "PaperLedger.frx":0710
+         Picture         =   "PaperLedger.frx":072C
       End
       Begin VB.CheckBox Check2 
          Caption         =   "Show Billing Details"
@@ -145,16 +321,16 @@ Begin VB.Form FrmPaperLedger
          EndProperty
          Height          =   225
          Left            =   12000
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   158
          Width           =   1950
       End
       Begin VB.CommandButton cmdCancel 
          Height          =   375
          Left            =   19380
-         Picture         =   "PaperLedger.frx":06D8
+         Picture         =   "PaperLedger.frx":0748
          Style           =   1  'Graphical
-         TabIndex        =   11
+         TabIndex        =   12
          ToolTipText     =   "Cancel"
          Top             =   90
          Width           =   375
@@ -162,29 +338,12 @@ Begin VB.Form FrmPaperLedger
       Begin VB.CommandButton cmdRefresh 
          Height          =   375
          Left            =   19000
-         Picture         =   "PaperLedger.frx":07DA
+         Picture         =   "PaperLedger.frx":084A
          Style           =   1  'Graphical
-         TabIndex        =   10
+         TabIndex        =   11
          ToolTipText     =   "Refresh"
          Top             =   90
          Width           =   375
-      End
-      Begin VB.CheckBox Check3 
-         Caption         =   "Show Challan Details"
-         BeginProperty Font 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   225
-         Left            =   9900
-         TabIndex        =   9
-         Top             =   158
-         Width           =   2055
       End
       Begin VB.CheckBox Check0 
          Caption         =   "Show Paper Receipt Against 'PO' Only"
@@ -206,7 +365,7 @@ Begin VB.Form FrmPaperLedger
       Begin FPSpreadADO.fpSpread fpSpread1 
          Height          =   8145
          Left            =   120
-         TabIndex        =   4
+         TabIndex        =   5
          Top             =   660
          Width           =   19650
          _Version        =   524288
@@ -230,12 +389,12 @@ Begin VB.Form FrmPaperLedger
          MaxRows         =   1000
          SelectBlockOptions=   11
          ShadowColor     =   16775408
-         SpreadDesigner  =   "PaperLedger.frx":0924
+         SpreadDesigner  =   "PaperLedger.frx":0994
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
          Left            =   120
-         TabIndex        =   6
+         TabIndex        =   7
          Top             =   105
          Width           =   615
          _Version        =   65536
@@ -256,13 +415,13 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":19B2
-         Picture         =   "PaperLedger.frx":19CE
+         Picture         =   "PaperLedger.frx":1B4A
+         Picture         =   "PaperLedger.frx":1B66
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
          Left            =   1800
-         TabIndex        =   7
+         TabIndex        =   8
          Top             =   105
          Width           =   405
          _Version        =   65536
@@ -283,8 +442,8 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":19EA
-         Picture         =   "PaperLedger.frx":1A06
+         Picture         =   "PaperLedger.frx":1B82
+         Picture         =   "PaperLedger.frx":1B9E
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -295,8 +454,8 @@ Begin VB.Form FrmPaperLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "PaperLedger.frx":1A22
-         Caption         =   "PaperLedger.frx":1B3A
+         Calendar        =   "PaperLedger.frx":1BBA
+         Caption         =   "PaperLedger.frx":1CD2
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -306,9 +465,9 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "PaperLedger.frx":1BA6
-         Keys            =   "PaperLedger.frx":1BC4
-         Spin            =   "PaperLedger.frx":1C22
+         DropDown        =   "PaperLedger.frx":1D3E
+         Keys            =   "PaperLedger.frx":1D5C
+         Spin            =   "PaperLedger.frx":1DBA
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -357,8 +516,8 @@ Begin VB.Form FrmPaperLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "PaperLedger.frx":1C4A
-         Caption         =   "PaperLedger.frx":1D62
+         Calendar        =   "PaperLedger.frx":1DE2
+         Caption         =   "PaperLedger.frx":1EFA
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -368,9 +527,9 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "PaperLedger.frx":1DCE
-         Keys            =   "PaperLedger.frx":1DEC
-         Spin            =   "PaperLedger.frx":1E4A
+         DropDown        =   "PaperLedger.frx":1F66
+         Keys            =   "PaperLedger.frx":1F84
+         Spin            =   "PaperLedger.frx":1FE2
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -413,7 +572,7 @@ Begin VB.Form FrmPaperLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Left            =   3270
-         TabIndex        =   8
+         TabIndex        =   9
          Top             =   105
          Width           =   1260
          _Version        =   65536
@@ -434,13 +593,13 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1E72
-         Picture         =   "PaperLedger.frx":1E8E
+         Picture         =   "PaperLedger.frx":200A
+         Picture         =   "PaperLedger.frx":2026
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
          Left            =   18570
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   8860
          Width           =   1215
          _Version        =   65536
@@ -460,13 +619,13 @@ Begin VB.Form FrmPaperLedger
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1EAA
-         Picture         =   "PaperLedger.frx":1EC6
+         Picture         =   "PaperLedger.frx":2042
+         Picture         =   "PaperLedger.frx":205E
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
          Left            =   17280
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   8860
          Width           =   1215
          _Version        =   65536
@@ -486,20 +645,20 @@ Begin VB.Form FrmPaperLedger
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":1EE2
-         Picture         =   "PaperLedger.frx":1EFE
+         Picture         =   "PaperLedger.frx":207A
+         Picture         =   "PaperLedger.frx":2096
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
          Left            =   1200
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   8880
          Width           =   1215
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "PaperLedger.frx":1F1A
-         Caption         =   "PaperLedger.frx":1F3A
+         Calculator      =   "PaperLedger.frx":20B2
+         Caption         =   "PaperLedger.frx":20D2
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -509,9 +668,9 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "PaperLedger.frx":1F9E
-         Keys            =   "PaperLedger.frx":1FBC
-         Spin            =   "PaperLedger.frx":2006
+         DropDown        =   "PaperLedger.frx":2136
+         Keys            =   "PaperLedger.frx":2154
+         Spin            =   "PaperLedger.frx":219E
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -550,7 +709,7 @@ Begin VB.Form FrmPaperLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
          Left            =   120
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   8880
          Width           =   1095
          _Version        =   65536
@@ -571,20 +730,12 @@ Begin VB.Form FrmPaperLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "PaperLedger.frx":202E
-         Picture         =   "PaperLedger.frx":204A
+         Picture         =   "PaperLedger.frx":21C6
+         Picture         =   "PaperLedger.frx":21E2
       End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
-         Height          =   330
-         Left            =   2520
-         TabIndex        =   22
-         Top             =   8880
-         Width           =   735
-         _Version        =   65536
-         _ExtentX        =   1296
-         _ExtentY        =   582
-         _StockProps     =   77
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+      Begin VB.CheckBox Check3 
+         Caption         =   "Show Challan Details"
+         BeginProperty Font 
             Name            =   "Calibri"
             Size            =   9.75
             Charset         =   0
@@ -593,18 +744,16 @@ Begin VB.Form FrmPaperLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         TintColor       =   16711935
-         Caption         =   " Find"
-         Alignment       =   0
-         FillColor       =   9164542
-         TextColor       =   0
-         Picture         =   "PaperLedger.frx":2066
-         Picture         =   "PaperLedger.frx":2082
+         Height          =   225
+         Left            =   9900
+         TabIndex        =   10
+         Top             =   158
+         Width           =   2055
       End
       Begin MSForms.ComboBox Combo4 
          Height          =   330
          Left            =   11520
-         TabIndex        =   23
+         TabIndex        =   24
          Top             =   8880
          Width           =   4125
          VariousPropertyBits=   545282075
@@ -623,7 +772,7 @@ Begin VB.Form FrmPaperLedger
       Begin MSForms.ComboBox Combo3 
          Height          =   330
          Left            =   16650
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   120
          Width           =   2300
          VariousPropertyBits=   545282075
@@ -642,7 +791,7 @@ Begin VB.Form FrmPaperLedger
       Begin MSForms.ComboBox Combo2 
          Height          =   330
          Left            =   15080
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   120
          Width           =   1605
          VariousPropertyBits=   545282075
@@ -691,155 +840,160 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Public sDate As String, eDate As String, ItemList As String, PaperList As String, SupplierList As String, AccountList As String, VchType As String, LR As Integer
+Public sSQL, sDate As String, eDate As String, ItemList As String, PaperList As String, SupplierList As String, AccountList As String, VchType As String, LR As Integer
 Dim rstPaperLedger As New ADODB.Recordset, Reset As Long
+Dim nSort, VSFlexFlag, FrozenFlag As Boolean
 Dim rstCompanyMaster As New ADODB.Recordset
-Private Sub Combo1_Change()
-If Reset = 1 Then Call cmdRefresh_Click
-End Sub
-Private Sub Combo2_Change()
-If Reset = 1 Then Call cmdRefresh_Click
-End Sub
-Private Sub Combo3_Change()
-If Reset = 1 Then Call cmdRefresh_Click
-End Sub
+Dim i, C As Integer
 Private Sub Form_Load()
+    If VchType = 19 Then VSFlexFlag = True
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     Reset = 0:
     On Error GoTo ErrorHandler
     CenterForm Me
+  '  Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
     BusySystemIndicator True
+    If VchType = 19 Then Me.Caption = "Paper Stock Ladger"
+If VchType <> 19 Then
+        With fpSpread1
+        .Col = 1: .Row = SpreadHeader
+        .UserColAction = UserColActionSort
+        For C = 1 To 3
+                    .ColUserSortIndicator(C) = ColUserSortIndicatorDisabled
+        Next
+        For C = 4 To 30
+                    .ColUserSortIndicator(C) = ColUserSortIndicatorDescending
+        Next
+        End With
+        If VchType = 11 Then
+            Combo1.Clear
+            Combo1.AddItem "Receipt ", 0
+            Combo1.AddItem "Purchase ", 1
+            Combo1.AddItem "Both", 2
+            Combo1.ListIndex = 2
+            
+            Combo2.Clear
+            Combo2.AddItem "Show IN Units ", 0
+            Combo2.AddItem "Show IN Sheets ", 1
+            Combo2.AddItem "Show IN Kg. ", 2
+            Combo2.AddItem "All ", 3
+            Combo2.ListIndex = 0
+            
+            Combo3.Clear
+            Combo3.AddItem "Sort By Supplier Name", 0
+            Combo3.AddItem "Sort By Party Name", 1
+            Combo3.AddItem "Sort By Paper Name", 2
+            Combo3.AddItem "Sort By Voucher No", 3
+            Combo3.AddItem "Sort By All", 4
+            Combo3.ListIndex = 4
+        ElseIf VchType = 12 Or VchType = 13 Then
+            Combo1.Clear
+            Combo1.AddItem "Against Receipt ", 0
+            Combo1.AddItem "Against Purchase ", 1
+            Combo1.AddItem "Against Both", 2
+            Combo1.ListIndex = 2
+            
+            Combo2.Clear
+            Combo2.AddItem "Show IN Units ", 0
+            Combo2.AddItem "Show IN Sheets ", 1
+            Combo2.AddItem "Show IN Kg. ", 2
+            Combo2.AddItem "All ", 3
+            Combo2.ListIndex = 0
+            
+            Combo3.Clear
+            Combo3.AddItem "Sort By Supplier Name", 0
+            Combo3.AddItem "Sort By Party Name", 1
+            Combo3.AddItem "Sort By Paper Name", 2
+            Combo3.AddItem "Sort By Voucher No", 3
+            Combo3.AddItem "Sort By All", 4
+            Combo3.ListIndex = 4
+        ElseIf VchType = 14 Or VchType = 15 Or VchType = 16 Then
+            Combo1.Clear
+            Combo1.AddItem "Issue ", 0
+            Combo1.AddItem "Sale ", 1
+            Combo1.AddItem "Both", 2
+            Combo1.ListIndex = 2
+        ElseIf VchType = 17 Then
+            Combo1.Clear
+            Combo1.AddItem "Inward ", 0
+            Combo1.AddItem "Outward ", 1
+            Combo1.AddItem "Both", 2
+            Combo1.ListIndex = 2
+            
+            Combo2.Clear
+            Combo2.AddItem "Show IN Units ", 0
+            Combo2.AddItem "Show IN Sheets ", 1
+            Combo2.AddItem "Show IN Kg. ", 2
+            Combo2.AddItem "All ", 3
+            Combo2.ListIndex = 0
+            
+            Combo3.Clear
+            Combo3.AddItem "Sort By From Account Name", 0
+            Combo3.AddItem "Sort By To Account Name", 1
+            Combo3.AddItem "Sort By Paper Name", 2
+            Combo3.AddItem "Sort By Voucher No", 3
+            Combo3.AddItem "Sort By All", 4
+            Combo3.ListIndex = 4
+        ElseIf VchType = 18 Then
+            Combo1.Clear
+            Combo1.AddItem "Purchase Order ", 0
+            Combo1.AddItem "Pending Purchase Order ", 1
+            Combo1.AddItem "Both", 2
+            Combo1.ListIndex = 2
+            
+            Combo2.Clear
+            Combo2.AddItem "Show IN Units ", 0
+            Combo2.AddItem "Show IN Sheets ", 1
+            Combo2.AddItem "Show IN Kg. ", 2
+            Combo2.AddItem "All ", 3
+            Combo2.ListIndex = 0
+            
+            Combo3.Clear
+            Combo3.AddItem "Sort By Supplier Name", 0
+            Combo3.AddItem "Sort By Paper Name", 1
+            Combo3.AddItem "Sort By Voucher No", 2
+            Combo3.AddItem "Sort By All", 3
+            Combo3.ListIndex = 3
+    Else
+            Combo4.Clear
+            Combo4.AddItem "Party (Supplied From)", 0
+            Combo4.AddItem "Party (Supplied To)", 1
+            Combo4.AddItem "Challan No.", 2
+            Combo4.AddItem "Challan Date", 3
+            Combo4.AddItem "Bill No.", 4
+            Combo4.AddItem "Bill Date", 5
+            Combo4.AddItem "Paper Name", 6
+            Combo4.AddItem "Vch. No.", 7
+            Combo4.ListIndex = 0
+        End If
+    ElseIf VchType = 19 Then
+            Combo1.Clear
+            Combo1.AddItem " Sheets", 0
+            Combo1.AddItem " UOM", 1
+            Combo1.AddItem " KGs", 2
+            Combo1.AddItem " UOM . Sheet", 3
+            Combo1.ListIndex = 1
+End If
     
-fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader
-fpSpread1.UserColAction = UserColActionSort
-fpSpread1.ColUserSortIndicator(1) = ColUserSortIndicatorDisabled
-fpSpread1.ColUserSortIndicator(2) = ColUserSortIndicatorDisabled
-fpSpread1.ColUserSortIndicator(3) = ColUserSortIndicatorDisabled
-fpSpread1.ColUserSortIndicator(4) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(5) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(6) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(7) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(8) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(9) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(10) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(11) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(12) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(13) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(14) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(15) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(16) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(17) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(18) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(19) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(20) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(21) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(22) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(23) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(24) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(25) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(26) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(27) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(28) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(29) = ColUserSortIndicatorDescending
-fpSpread1.ColUserSortIndicator(30) = ColUserSortIndicatorDescending
-    
-    If VchType = 11 Then
-    Combo1.AddItem "Receipt ", 0
-    Combo1.AddItem "Purchase ", 1
-    Combo1.AddItem "Both", 2
-    Combo1.ListIndex = 2
-    Combo2.AddItem "Show IN Units ", 0
-    Combo2.AddItem "Show IN Sheets ", 1
-    Combo2.AddItem "Show IN Kg. ", 2
-    Combo2.AddItem "All ", 3
-    Combo2.ListIndex = 0
-    Combo3.AddItem "Sort By Supplier Name", 0
-    Combo3.AddItem "Sort By Party Name", 1
-    Combo3.AddItem "Sort By Paper Name", 2
-    Combo3.AddItem "Sort By Voucher No", 3
-    Combo3.AddItem "Sort By All", 4
-    Combo3.ListIndex = 4
-    ElseIf VchType = 12 Or VchType = 13 Then
-    Combo1.AddItem "Against Receipt ", 0
-    Combo1.AddItem "Against Purchase ", 1
-    Combo1.AddItem "Against Both", 2
-    Combo1.ListIndex = 2
-    Combo2.AddItem "Show IN Units ", 0
-    Combo2.AddItem "Show IN Sheets ", 1
-    Combo2.AddItem "Show IN Kg. ", 2
-    Combo2.AddItem "All ", 3
-    Combo2.ListIndex = 0
-    Combo3.AddItem "Sort By Supplier Name", 0
-    Combo3.AddItem "Sort By Party Name", 1
-    Combo3.AddItem "Sort By Paper Name", 2
-    Combo3.AddItem "Sort By Voucher No", 3
-    Combo3.AddItem "Sort By All", 4
-    Combo3.ListIndex = 4
-    ElseIf VchType = 14 Or VchType = 15 Or VchType = 16 Then
-    Combo1.AddItem "Issue ", 0
-    Combo1.AddItem "Sale ", 1
-    Combo1.AddItem "Both", 2
-    Combo1.ListIndex = 2
-    ElseIf VchType = 17 Then
-    Combo1.AddItem "Inward ", 0
-    Combo1.AddItem "Outward ", 1
-    Combo1.AddItem "Both", 2
-    Combo1.ListIndex = 2
-    Combo2.AddItem "Show IN Units ", 0
-    Combo2.AddItem "Show IN Sheets ", 1
-    Combo2.AddItem "Show IN Kg. ", 2
-    Combo2.AddItem "All ", 3
-    Combo2.ListIndex = 0
-    Combo3.AddItem "Sort By From Account Name", 0
-    Combo3.AddItem "Sort By To Account Name", 1
-    Combo3.AddItem "Sort By Paper Name", 2
-    Combo3.AddItem "Sort By Voucher No", 3
-    Combo3.AddItem "Sort By All", 4
-    Combo3.ListIndex = 4
-    ElseIf VchType = 18 Then
-    Combo1.AddItem "Purchase Order ", 0
-    Combo1.AddItem "Pending Purchase Order ", 1
-    Combo1.AddItem "Both", 2
-    Combo1.ListIndex = 2
-    Combo2.AddItem "Show IN Units ", 0
-    Combo2.AddItem "Show IN Sheets ", 1
-    Combo2.AddItem "Show IN Kg. ", 2
-    Combo2.AddItem "All ", 3
-    Combo2.ListIndex = 0
-    Combo3.AddItem "Sort By Supplier Name", 0
-    Combo3.AddItem "Sort By Paper Name", 1
-    Combo3.AddItem "Sort By Voucher No", 2
-    Combo3.AddItem "Sort By All", 3
-    Combo3.ListIndex = 3
-    End If
-    Combo4.AddItem "Party (Supplied From)", 0
-    Combo4.AddItem "Party (Supplied To)", 1
-    Combo4.AddItem "Challan No.", 2
-    Combo4.AddItem "Challan Date", 3
-    Combo4.AddItem "Bill No.", 4
-    Combo4.AddItem "Bill Date", 5
-    Combo4.AddItem "Paper Name", 6
-    Combo4.AddItem "Vch. No.", 7
-    Combo4.ListIndex = 0
-    
-    Reset = 1
-    If VchType = 11 Then Check0.Caption = "Show Paper Receipt Against 'PO' Only": Me.Caption = "Paper Receipt Party-Wise" '11-11
-    If VchType = 12 Then Combo1.Width = 2000: Check0.value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Order-Wise" '13-12
-    If VchType = 13 Then Combo1.Width = 2000: Check0.value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Without-Order" '15-13
-    If VchType = 14 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Party-Wise" '12-14
-    If VchType = 15 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Order-Wise" '14-15
-    If VchType = 16 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Without-Order" '16-16
-    If VchType = 17 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Transfer Party-Wise" '17
-    If VchType = 18 Then Combo1.Width = 2250: Check0.Left = 7000: Check0.Caption = "Show Paper Pending 'PO' Only": Check3.Visible = True: Check2.Visible = True: Me.Caption = "Paper Pending Order Supplier-Wise" '18
-    MhDateInput1.value = Format(sDate, "dd-MM-yyyy")
-    MhDateInput2.value = Format(eDate, "dd-MM-yyyy")
-    cmdRefresh_Click
-    BusySystemIndicator False
-    Exit Sub
+        If VchType = 11 Then Check0.Caption = "Show Paper Receipt Against 'PO' Only": Me.Caption = "Paper Receipt Party-Wise" '11-11
+        If VchType = 12 Then Combo1.Width = 2000: Check0.Value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Order-Wise" '13-12
+        If VchType = 13 Then Combo1.Width = 2000: Check0.Value = 1: Check0.Visible = False: Me.Caption = "Paper Receipt Without-Order" '15-13
+        If VchType = 14 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Party-Wise" '12-14
+        If VchType = 15 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Order-Wise" '14-15
+        If VchType = 16 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Issue Without-Order" '16-16
+        If VchType = 17 Then Check0.Caption = "Show Paper Issue Against 'SO' Only": Check2.Visible = False: Me.Caption = "Paper Transfer Party-Wise" '17
+        If VchType = 18 Then Combo1.Width = 2250: Check0.Left = 7000: Check0.Caption = "Show Paper Pending 'PO' Only": Check3.Visible = True: Check2.Visible = True: Me.Caption = "Paper Pending Order Supplier-Wise" '18
+        If VchType = 19 Then Combo1.Width = 1500: Check0.Value = 1: Check2.Value = 1: Check0.Left = 7000: Check0.Width = 2300: Check0.Caption = "Show Total Party-Wise": Check2.Left = 9300: Check2.Width = 2300: Check2.Visible = True: Check2.Caption = "Show Total Size-Wise": Check3.Left = 11600: Check3.Width = 2300: Check3.Visible = True: Check3.Caption = "Show Total UOM-Wise": Check1.Left = 13900: Check1.Width = 2300: Check1.Visible = True: Check1.Caption = "Show Total GSM-Wise": Check4.Left = 16200: Check4.Width = 2300: Check4.Visible = True: Check4.Caption = "Show Total Paper-Wise": Me.Caption = "Paper Stock Ledger": Combo2.Visible = False: Combo3.Visible = False: Combo4.Visible = True: Mh3dLabel4.Visible = False: Mh3dLabel1.Caption = "  A/C Statement Unit": Mh3dLabel1.Width = 1840: Combo1.Width = 1570: Combo1.Left = 5120
+        Reset = 1
+        MhDateInput1.Value = Format(sDate, "dd-MM-yyyy")
+        MhDateInput2.Value = Format(eDate, "dd-MM-yyyy")
+        cmdRefresh_Click
+        BusySystemIndicator False
+        Exit Sub
 ErrorHandler:
-    BusySystemIndicator False
-    Call CloseForm(Me)
+        BusySystemIndicator False
+        Call CloseForm(Me)
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If Shift = 0 And KeyCode = vbKeyReturn Then
@@ -847,6 +1001,21 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         cmdCancel_Click
         KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyF5 Then
+        Call cmdRefresh_Click
+        KeyCode = 0
+    ElseIf KeyCode = vbKeyF And Shift = vbCtrlMask Then
+            If Text1.Text = "" Then
+                MsgBox "Please Provide Search Input", vbInformation
+                Text1.SetFocus
+            ElseIf Text1.Text <> "" Then
+            Call Search_Click
+            End If
+        KeyCode = 0
+    ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyC) Or (Shift = 0 And KeyCode = vbKeyF12) Then
+        Call CopyToClipboard
+    ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyV) Or (Shift = 0 And KeyCode = vbKeyF12) Then
+        Call PasteFromClipboard
     End If
 End Sub
 Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
@@ -858,6 +1027,15 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 Private Sub cmdCancel_Click()
     Call CloseForm(Me)
+End Sub
+Private Sub Combo1_Change()
+If Reset = 1 Then Call cmdRefresh_Click
+End Sub
+Private Sub Combo2_Change()
+If Reset = 1 Then Call cmdRefresh_Click
+End Sub
+Private Sub Combo3_Change()
+If Reset = 1 Then Call cmdRefresh_Click
 End Sub
 Private Sub cmdRefresh_Click()
     On Error GoTo ErrHandler
@@ -916,12 +1094,17 @@ Private Sub cmdRefresh_Click()
                                  "AND Date<=#" & GetDate(MhDateInput2.Text) & "# AND Date>=#" & GetDate(MhDateInput1.Text) & "# AND P.Supplier IN (" & SupplierList & ") AND Paper IN (" & PaperList & ") AND " & Choose(Combo1.ListIndex + 1, "(Select ISNULL(sum(QuantitySheets),0) From PaperIOChild where Ref+Paper=C.Code+C.Paper)>=0 ", "(Select ISNULL(sum(QuantitySheets),0) From PaperIOChild where Ref+Paper=C.Code+C.Paper)=0 ", "1=1 ") & "" & _
                                  "Group By C.Code,C.Paper,P.Code,OrderType,[Weight/Unit],P.Supplier,P.Name,BillNO,P.BillDate,BiltyNo,BiltyDate,[Units/Bundle],TotalBundles,(Date),C.[Rate/Kg],C.[Rate/Unit],C.[Amount] " & _
                                  "ORDER BY " & Choose(Combo3.ListIndex + 1, "FromAccountName", "Paper", "VchNO", "FromAccountName,Paper,VchNO") & ""
+    ElseIf VchType = 19 Then
+                            SQL = sSQL 'Paper Stock Ledger from Paper Stock Register
     End If
+    
     If DatabaseType = "MS SQL" Then SQL = Replace(SQL, "#", "'")
     Screen.MousePointer = vbHourglass   'vbNormal
     If rstPaperLedger.State = adStateOpen Then rstPaperLedger.Close
     rstPaperLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
     If rstPaperLedger.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
+    
+    If VchType = 19 Then VSFlexFlag = True: GoTo NXT:
     With fpSpread1
         If VchType = 11 Or VchType = 12 Or VchType = 13 Then
             .ColWidth(2) = 28: .ColWidth(8) = 52.75: .ColWidth(11) = 7: .ColWidth(14) = 8.25: .ColWidth(13) = 8
@@ -986,7 +1169,7 @@ Private Sub cmdRefresh_Click()
             If Combo2.ListIndex = 2 Then .ColWidth(2) = 30: .ColWidth(8) = 59.75: .ColWidth(24) = 10: .Col = 16: .ColHidden = True: .Col = 22: .ColHidden = False: .Col = 26: .ColHidden = True
             If Combo2.ListIndex = 3 Then .ColWidth(2) = 25: .ColWidth(8) = 58.75: .Col = 13: .ColHidden = True: .Col = 14: .ColHidden = True: .Col = 15: .ColHidden = True: .Col = 16: .ColHidden = True: .Col = 19: .ColHidden = False: .Col = 20: .ColHidden = False: .Col = 21: .ColHidden = False: .Col = 25: .ColHidden = False: .Col = 22: .ColHidden = False: .Col = 26: .ColHidden = True
             End If
-        ElseIf VchType = 18 Or VchType = 19 Then
+        ElseIf VchType = 18 Then
             .Col = 3: .ColHidden = True 'Supplier
             .Col = 4: .ColHidden = True 'ChallanNo
             .Col = 5: .ColHidden = True 'ChallanDate
@@ -1023,91 +1206,75 @@ Private Sub cmdRefresh_Click()
         ElseIf VchType = 9 Then
         ElseIf VchType = 10 Then
         End If
+        
         If VchType = 11 Or VchType = 12 Or VchType = 18 Then
         Call Check0_Click
         Call Check2_Click
         Call Check3_Click
         End If
+        
         .ClearRange 1, 1, .MaxCols, .MaxRows, True
         rstPaperLedger.MoveFirst
         Do While Not rstPaperLedger.EOF
-            i = i + 1
-            .SetText 1, i, i 'S.No.
-            .SetText 2, i, rstPaperLedger.Fields("FromAccountName").value: If Len(rstPaperLedger.Fields("FromAccountName").value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
-            .SetText 3, i, rstPaperLedger.Fields("PartyAccountName").value: If Len(rstPaperLedger.Fields("PartyAccountName").value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
-            .SetText 4, i, rstPaperLedger.Fields("ChallanNo").value
-            .SetText 5, i, rstPaperLedger.Fields("ChallanDate").value
-            .SetText 6, i, rstPaperLedger.Fields("BillNO").value
-            .SetText 7, i, rstPaperLedger.Fields("BillDate").value
-            .SetText 8, i, rstPaperLedger.Fields("Paper").value: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: If Len(rstPaperLedger.Fields("Paper").value) > 75 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.TypeHAlign = TypeHAlignRight
-            .SetText 9, i, rstPaperLedger.Fields("VchRef").value
-            .SetText 10, i, rstPaperLedger.Fields("Date").value
-            .SetText 11, i, rstPaperLedger.Fields("Ref").value
-            .SetText 12, i, Val(rstPaperLedger.Fields("wtUOM").value)
-            .SetText 13, i, IIf(Val(rstPaperLedger.Fields("Quantity").value) = 0, "", Val(rstPaperLedger.Fields("Quantity").value))
-            .SetText 14, i, rstPaperLedger.Fields("UOM").value
-            .SetText 15, i, IIf(Val(rstPaperLedger.Fields("QuantitySheets").value) = 0, "", Val(rstPaperLedger.Fields("QuantitySheets").value))
-            .SetText 16, i, IIf(Val(rstPaperLedger.Fields("QuantityKg").value) = 0, "", Val(rstPaperLedger.Fields("QuantityKg").value))
-            .SetText 17, i, Val(rstPaperLedger.Fields("Units/Bundle").value)
-            .SetText 18, i, Val(rstPaperLedger.Fields("TotalBundles").value)
+                i = i + 1
+                .SetText 1, i, i 'S.No.
+                .SetText 2, i, rstPaperLedger.Fields("FromAccountName").Value: If Len(rstPaperLedger.Fields("FromAccountName").Value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
+                .SetText 3, i, rstPaperLedger.Fields("PartyAccountName").Value: If Len(rstPaperLedger.Fields("PartyAccountName").Value) > 25 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: fpSpread1.TypeHAlign = TypeHAlignRight
+                .SetText 4, i, rstPaperLedger.Fields("ChallanNo").Value
+                .SetText 5, i, rstPaperLedger.Fields("ChallanDate").Value
+                .SetText 6, i, rstPaperLedger.Fields("BillNO").Value
+                .SetText 7, i, rstPaperLedger.Fields("BillDate").Value
+                .SetText 8, i, rstPaperLedger.Fields("Paper").Value: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: If Len(rstPaperLedger.Fields("Paper").Value) > 75 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.TypeHAlign = TypeHAlignRight
+                .SetText 9, i, rstPaperLedger.Fields("VchRef").Value
+                .SetText 10, i, rstPaperLedger.Fields("Date").Value
+                .SetText 11, i, rstPaperLedger.Fields("Ref").Value
+                .SetText 12, i, Val(rstPaperLedger.Fields("wtUOM").Value)
+                .SetText 13, i, IIf(Val(rstPaperLedger.Fields("Quantity").Value) = 0, "", Val(rstPaperLedger.Fields("Quantity").Value))
+                .SetText 14, i, rstPaperLedger.Fields("UOM").Value
+                .SetText 15, i, IIf(Val(rstPaperLedger.Fields("QuantitySheets").Value) = 0, "", Val(rstPaperLedger.Fields("QuantitySheets").Value))
+                .SetText 16, i, IIf(Val(rstPaperLedger.Fields("QuantityKg").Value) = 0, "", Val(rstPaperLedger.Fields("QuantityKg").Value))
+                .SetText 17, i, Val(rstPaperLedger.Fields("Units/Bundle").Value)
+                .SetText 18, i, Val(rstPaperLedger.Fields("TotalBundles").Value)
             If VchType = 11 Or VchType = 12 Or VchType = 13 Or VchType = 18 Or VchType = 19 Then
-            .SetText 19, i, IIf(Val(rstPaperLedger.Fields("QuantityIssue").value) = 0, "", Val(rstPaperLedger.Fields("QuantityIssue").value))
-            .SetText 20, i, rstPaperLedger.Fields("UOM").value
-            .SetText 21, i, IIf(Val(rstPaperLedger.Fields("IssueQtySheets").value) = 0, "", Val(rstPaperLedger.Fields("IssueQtySheets").value))
-            .SetText 22, i, IIf(Val(rstPaperLedger.Fields("IssueQtyKg").value) = 0, "", Val(rstPaperLedger.Fields("IssueQtyKg").value))
+                .SetText 19, i, IIf(Val(rstPaperLedger.Fields("QuantityIssue").Value) = 0, "", Val(rstPaperLedger.Fields("QuantityIssue").Value))
+                .SetText 20, i, rstPaperLedger.Fields("UOM").Value
+                .SetText 21, i, IIf(Val(rstPaperLedger.Fields("IssueQtySheets").Value) = 0, "", Val(rstPaperLedger.Fields("IssueQtySheets").Value))
+                .SetText 22, i, IIf(Val(rstPaperLedger.Fields("IssueQtyKg").Value) = 0, "", Val(rstPaperLedger.Fields("IssueQtyKg").Value))
             End If
             If VchType = 18 Or VchType = 19 Then
-            .SetText 23, i, IIf(Val(rstPaperLedger.Fields("PendingQty").value) = 0, "", Val(rstPaperLedger.Fields("PendingQty").value))
-            .SetText 24, i, rstPaperLedger.Fields("UOM").value
-            .SetText 25, i, IIf(Val(rstPaperLedger.Fields("PendingQtySheets").value) = 0, "", Val(rstPaperLedger.Fields("PendingQtySheets").value))
-            .SetText 26, i, IIf(Val(rstPaperLedger.Fields("PendingQtyKG").value) = 0, "", Val(rstPaperLedger.Fields("PendingQtyKG").value))
-            .SetText 27, i, Val(rstPaperLedger.Fields("Rate/Kg").value)
-            .SetText 28, i, Val(rstPaperLedger.Fields("Rate/Unit").value)
-            .SetText 29, i, Val(rstPaperLedger.Fields("Amount").value)
+                .SetText 23, i, IIf(Val(rstPaperLedger.Fields("PendingQty").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQty").Value))
+                .SetText 24, i, rstPaperLedger.Fields("UOM").Value
+                .SetText 25, i, IIf(Val(rstPaperLedger.Fields("PendingQtySheets").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQtySheets").Value))
+                .SetText 26, i, IIf(Val(rstPaperLedger.Fields("PendingQtyKG").Value) = 0, "", Val(rstPaperLedger.Fields("PendingQtyKG").Value))
+                .SetText 27, i, Val(rstPaperLedger.Fields("Rate/Kg").Value)
+                .SetText 28, i, Val(rstPaperLedger.Fields("Rate/Unit").Value)
+                .SetText 29, i, Val(rstPaperLedger.Fields("Amount").Value)
             End If
             rstPaperLedger.MoveNext
         Loop
     .LockBackColor = RGB(245, 250, 250): Combo1.BackColor = RGB(245, 250, 250): Combo2.BackColor = RGB(245, 250, 250): Combo3.BackColor = RGB(245, 250, 250): MhDateInput1.BackColor = RGB(245, 250, 250): MhDateInput2.BackColor = RGB(245, 250, 250): 'TDBNumber1.BackColor = RGB(245, 250, 250): TDBNumber2.BackColor = RGB(245, 250, 250): Text1.BackColor = RGB(245, 250, 250):
     End With
 TDBNumber2 = i
+NXT:
+Call Print_Grid
     Screen.MousePointer = vbNormal
     Exit Sub
 ErrHandler:
     Screen.MousePointer = vbNormal
     DisplayError (Err.Description)
-    
-End Sub
-Private Sub Check2_Click() 'Show Bill Details
-    With fpSpread1
-            If Check2.value Then
-                .Col = 6: .ColHidden = False
-                .Col = 7: .ColHidden = False
-            Else
-                .Col = 6: .ColHidden = True
-                .Col = 7: .ColHidden = True
-            End If
-    End With
-End Sub
-Private Sub Check3_Click() 'Show Challan Details
-    With fpSpread1
-            If Check3.value Then
-                .Col = 4: .ColHidden = False
-                .Col = 5: .ColHidden = False
-            Else
-                .Col = 4: .ColHidden = True
-                .Col = 5: .ColHidden = True
-            End If
-    End With
 End Sub
 Private Sub Check0_Click() 'Show Paper PO
     Dim PO As Variant, i As Long
+If VSFlexFlag Then
+If Reset = 1 Then Call VSFlexGrid1_AfterDataRefresh
+Else
 If VchType = 18 Or VchType = 19 Then
         With fpSpread1
         For i = 1 To .DataRowCnt
-            If Check0.value Then
+            If Check0.Value Then
                 .GetText 26, i, PO
                 If PO = 0 Then .Row = i: .RowHidden = True Else .Row = i: .RowHidden = False
-            ElseIf Check0.value Then
+            ElseIf Check0.Value Then
                 .GetText 26, i, PO
                 If PO > 0 Then .Row = i: .RowHidden = False Else .Row = i: .RowHidden = True
             Else
@@ -1118,10 +1285,10 @@ If VchType = 18 Or VchType = 19 Then
 Else
     With fpSpread1
         For i = 1 To .DataRowCnt
-            If Check0.value Then
+            If Check0.Value Then
                 .GetText 11, i, PO
                 If Left(PO, 3) = "Pur" Then .Row = i: .RowHidden = False Else .Row = i: .RowHidden = True
-            ElseIf Check0.value Then
+            ElseIf Check0.Value Then
                 .GetText 11, i, PO
                 If Left(PO, 4) = "Sale" Then .Row = i: .RowHidden = False Else .Row = i: .RowHidden = True
             Else
@@ -1129,6 +1296,47 @@ Else
             End If
         Next
     End With
+End If
+End If
+End Sub
+Private Sub Check2_Click() 'Show Bill Details
+If VSFlexFlag Then
+If Reset = 1 Then Call VSFlexGrid1_AfterDataRefresh
+Else
+    With fpSpread1
+            If Check2.Value Then
+                .Col = 6: .ColHidden = False
+                .Col = 7: .ColHidden = False
+            Else
+                .Col = 6: .ColHidden = True
+                .Col = 7: .ColHidden = True
+            End If
+    End With
+End If
+End Sub
+Private Sub Check3_Click() 'Show Challan Details
+If VSFlexFlag Then
+If Reset = 1 Then Call VSFlexGrid1_AfterDataRefresh
+Else
+    With fpSpread1
+            If Check3.Value Then
+                .Col = 4: .ColHidden = False
+                .Col = 5: .ColHidden = False
+            Else
+                .Col = 4: .ColHidden = True
+                .Col = 5: .ColHidden = True
+            End If
+    End With
+End If
+End Sub
+Private Sub Check1_Click() 'Show GSM TOTAL
+If VSFlexFlag Then
+    If Reset = 1 Then Call VSFlexGrid1_AfterDataRefresh
+End If
+End Sub
+Private Sub Check4_Click() 'Show Paper TOTAL
+If VSFlexFlag Then
+    If Reset = 1 Then Call VSFlexGrid1_AfterDataRefresh
 End If
 End Sub
 Private Sub MhDateInput2_Validate(Cancel As Boolean)
@@ -1139,85 +1347,127 @@ Private Sub MhDateInput2_Validate(Cancel As Boolean)
     End If
 End Sub
 Private Sub Mh3dLabel5_Click()
-With fpSpread1
-.LockBackColor = vbWhite
-' These are 8.5" X 11" paper dimensions in TWIPS
+Dim PrintHeader As String
+    On Error GoTo ErrHandler
+Screen.MousePointer = vbHourglass
+
+' These are 8.25" X 11.75" paper dimensions in TWIPS
 Const PaperWidth = 12240
 Const PaperHeight = 15840
 Printer.PaperSize = vbPRPSA4
-' Set printing options for sheet
-fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
-fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy")
-fpSpread1.PrintHeader = "" ' "/cPrint Header/rPage # ./p/n2nd Line"
-fpSpread1.PrintFooter = "" ' "/cPrint Footer/rPage # ./p/n2nd Line"
-fpSpread1.PrintBorder = True
-fpSpread1.PrintColHeaders = True
-fpSpread1.PrintColor = True
-fpSpread1.PrintGrid = True
-fpSpread1.PrintMarginTop = 1000 '1440
-fpSpread1.PrintMarginBottom = 500 '1440
-fpSpread1.PrintMarginLeft = 100 '720
-fpSpread1.PrintMarginRight = 100 '720
-'fpSpread1.PrintType = SPRD_PRINT_ALL
-fpSpread1.PrintRowHeaders = True
-fpSpread1.PrintShadows = True
-fpSpread1.PrintUseDataMax = True
-' Center vertically
-fpSpread1.PrintCenterOnPageV = False
-' Center horizontally
-fpSpread1.PrintCenterOnPageH = True
-' Perform the printing action
-' Set the sheet to print
-fpSpread1.Sheet = 1
-' Set scaling method
-fpSpread1.PrintScalingMethod = PrintScalingMethodZoom
-' Set zoom factor
-fpSpread1.PrintZoomFactor = 0.75
-' Print
-'fpSpread1.PrintSheet 0
-fpSpread1.PrintOrientation = PrintOrientationLandscape
-fpSpread1.PrintSheet
-.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+
+PrintHeader = "Export Data Company : " & rstCompanyMaster.Fields("PrintName").Value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         "
+If VSFlexFlag = True Then
+    With Me.VSFlexGrid1
+    
+    .PrintGrid PrintHeader, True, PrintOrientationPortrait, 50, 50
+    
+    End With
+Else
+With fpSpread1
+    .LockBackColor = vbWhite
+    ' Set printing options for sheet
+    .PrintAbortMsg = "Printing - Click Cancel to .Quit"
+    .PrintJobName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy")
+    .PrintHeader = "" ' "/cPrint Header/rPage # ./p/n2nd Line"
+    .PrintFooter = "" ' "/cPrint Footer/rPage # ./p/n2nd Line"
+    .PrintBorder = True
+    .PrintColHeaders = True
+    .PrintColor = True
+    .PrintGrid = True
+    .PrintMarginTop = 1000 '1440
+    .PrintMarginBottom = 500 '1440
+    .PrintMarginLeft = 100 '720
+    .PrintMarginRight = 100 '720
+    '.PrintType = SPRD_PRINT_ALL
+    .PrintRowHeaders = True
+    .PrintShadows = True
+    .PrintUseDataMax = True
+    ' Center vertically
+    .PrintCenterOnPageV = False
+    ' Center horizontally
+    .PrintCenterOnPageH = True
+    ' Perform the printing action
+    ' Set the sheet to print
+    .Sheet = 1
+    ' Set scaling method
+    .PrintScalingMethod = PrintScalingMethodZoom
+    ' Set zoom factor
+    .PrintZoomFactor = 0.75
+    ' Print
+    '.PrintSheet 0
+    .PrintOrientation = PrintOrientationLandscape
+    .PrintSheet
+    .LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
  End With
+End If
+    Screen.MousePointer = vbNormal
+Exit Sub
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
 End Sub
 Private Sub Mh3dLabel6_Click()
-Dim x As Boolean, fileName As String, SheetName As String, LogFileName As String
+Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
 Dim R As Long, C As Long
-With fpSpread1
-If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then fpSpread1.InsertRows 1, 2 Else fpSpread1.InsertRows 1, 1
-                R = 1
-            For C = 1 To .MaxCols
-                .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter: '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-            Next
-                .SetText 1, 1, "S.NO.": .SetText 2, 1, "Party (Supplied From)": .SetText 3, 1, "Party (Supplied To)": .SetText 4, 1, "Challan No.": .SetText 5, 1, "Challan Date": .SetText 6, 1, "Bill No.": .SetText 7, 1, "Bill Date": .SetText 8, 1, "Paper Name": .SetText 9, 1, "Vch. No.": .SetText 10, 1, "Vch. Date": .SetText 11, 1, "Vch. Ref.": .SetText 12, 1, "Weight/Unit": .SetText 13, 1, "Quantity": .SetText 14, 1, "Unit": .SetText 15, 1, "Quantity (Sheets)": .SetText 16, 1, "Quantity (Kgs.)": .SetText 17, 1, "Bundles": .SetText 18, 1, "Total Bundles": .SetText 19, 1, "Quantity (IN)": .SetText 20, 1, " Unit": .SetText 21, 1, "Quantity IN (Sheets)": .SetText 22, 1, "Quantity IN (Kgs.)": .SetText 23, 1, "Pending Qty.": .SetText 24, 1, " Unit": .SetText 25, 1, "Pending Qty. (Sheets)": .SetText 26, 1, "Pending Qty. (Kgs.)": .SetText 27, 1, "Rate/Kg.": .SetText 28, 1, "Rate/Unit": .SetText 29, 1, "Amount": .ColHeadersShow = True
-                .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
-'If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then .SetText 1, 2, Header1: .Col = 1: .Row = 2: .FontBold = True: .FontSize = 14: .FontUnderline = True: .ForeColor = vbRed:
-End With
+On Error Resume Next
+Screen.MousePointer = vbHourglass
+If VSFlexFlag = True Then
+    With Me.VSFlexGrid1
+        If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+        FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+        SheetName = "Sheet1" '"(" & Me.Caption & ")"
+        .SaveGrid FileName, flexFileExcel, SaveExcelSettings.flexXLSaveFixedCells
+        If Dir(FileName, vbDirectory) <> "" Then x = True
+        If x = True Then
+        MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+        Shell "C:\WINDOWS\explorer.exe """ & FileName & "", vbNormalFocus
+        Else
+        MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+        End If
+    End With
+ElseIf VSFlexFlag = False Then
+    With fpSpread1
+        If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then fpSpread1.InsertRows 1, 2 Else fpSpread1.InsertRows 1, 1
+            R = 1
+        For C = 1 To .MaxCols
+            .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter: '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+        Next
+            .SetText 1, 1, "S.NO.": .SetText 2, 1, "Party (Supplied From)": .SetText 3, 1, "Party (Supplied To)": .SetText 4, 1, "Challan No.": .SetText 5, 1, "Challan Date": .SetText 6, 1, "Bill No.": .SetText 7, 1, "Bill Date": .SetText 8, 1, "Paper Name": .SetText 9, 1, "Vch. No.": .SetText 10, 1, "Vch. Date": .SetText 11, 1, "Vch. Ref.": .SetText 12, 1, "Weight/Unit": .SetText 13, 1, "Quantity": .SetText 14, 1, "Unit": .SetText 15, 1, "Quantity (Sheets)": .SetText 16, 1, "Quantity (Kgs.)": .SetText 17, 1, "Bundles": .SetText 18, 1, "Total Bundles": .SetText 19, 1, "Quantity (IN)": .SetText 20, 1, " Unit": .SetText 21, 1, "Quantity IN (Sheets)": .SetText 22, 1, "Quantity IN (Kgs.)": .SetText 23, 1, "Pending Qty.": .SetText 24, 1, " Unit": .SetText 25, 1, "Pending Qty. (Sheets)": .SetText 26, 1, "Pending Qty. (Kgs.)": .SetText 27, 1, "Rate/Kg.": .SetText 28, 1, "Rate/Unit": .SetText 29, 1, "Amount": .ColHeadersShow = True
+            .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
+    End With
+        '
+        ' Export Excel file and set result to x
+        FileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+        SheetName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")"
+        LogFileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
+        x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
+        ' Display result to user based on T/F value of x
+    If x = True Then
+        MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+            Dim oExcel As Object
+            Set oExcel = CreateObject("Excel.Application")
+            oExcel.Workbooks.Open (App.Path & "\" & FileName)
+            oExcel.Visible = True
+            Set oExcel = Nothing
+    Else
+        MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+    End If
 '
-' Export Excel file and set result to x
-fileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
-SheetName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")"
-LogFileName = "Export Data" & "(" & CompCode & "_Vch-" & VchType & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
-x = fpSpread1.ExportToExcelEx(fileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
-' Display result to user based on T/F value of x
-If x = True Then
-MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
-    Dim oExcel As Object
-    Set oExcel = CreateObject("Excel.Application")
-    oExcel.Workbooks.Open (App.Path & "\" & fileName)
-    oExcel.Visible = True
-    Set oExcel = Nothing
-Else
-MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+With fpSpread1
+    'Delete Header Row
+    If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then fpSpread1.DeleteRows 1, 2 Else: fpSpread1.DeleteRows 1, 1
+End With
 End If
-'
-With fpSpread1
-'Delete Header Row
-If VchType <= 10 And VchType >= 7 Or VchType <= 28 And VchType >= 25 Then fpSpread1.DeleteRows 1, 2 Else: fpSpread1.DeleteRows 1, 1
-End With
+Screen.MousePointer = vbNormal
+Exit Sub
+
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
 End Sub
 Private Sub cmdFilter_Click()
-     Dim i As Integer, cVal As Variant, n As Integer, C As Integer
+    Dim i, n, C, R As Integer, cVal As Variant
     Dim StockVal As Variant, StockTotal As Variant
     Dim PVal As Variant, PTotal As Variant
     Dim PRVal As Variant, PRTotal As Variant
@@ -1241,6 +1491,53 @@ Private Sub cmdFilter_Click()
     Dim SRAVal As Variant, SRAValTotal As Variant
     Dim NPAVal As Variant, NPAValTotal As Variant
     Dim NSAVal As Variant, NSAValTotal As Variant
+
+If VSFlexFlag = True Then
+    With Me.VSFlexGrid1
+        If VSFlexGrid1.Rows - 1 = 1 Then Exit Sub
+                If VSFlexGrid1.Rows - 1 = 0 Then Exit Sub
+                For i = 5 To VSFlexGrid1.Rows - 1 'Unhide All
+                    VSFlexGrid1.RowHidden(i) = False
+                Next
+                If Text1.Text = "" Then Exit Sub
+                If Combo4.Value = "" Then Combo4.ListIndex = 2
+                    R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
+                    LR = R
+                For i = 0 To VSFlexGrid1.RightCol  'Match Col Header
+                C = C + 1
+                cVal = VSFlexGrid1.TextMatrix(0, C)
+                If Combo4.Value = cVal Then Exit For
+                Next
+                
+                    For i = 5 To VSFlexGrid1.Rows - 1
+                    cVal = VSFlexGrid1.TextMatrix(i, C)
+                                If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                                VSFlexGrid1.RowHidden(i) = True
+                                Else
+                                VSFlexGrid1.RowHidden(i) = False
+                                End If
+                    Next
+    
+    'StockVal
+    .Subtotal flexSTSum, -1, 4, "(#,##0.00)", vbBlue, vbWhite, True, "Grand Total", , True
+    .Subtotal flexSTSum, -1, 5, "(#,##0)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 6, "(#,##0)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 7, "(#,##0)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 8, "(#,##0)", vbWhite, vbBlue, True, , , True
+    VSFlexGrid1.RowHidden(.Rows - 1) = False
+    'VSFlexGrid1.TextMatrix(.Rows - 1, 1) = "Grand Total"
+    StockVal = 0
+            For C = 4 To 8
+                For i = 7 To VSFlexGrid1.Rows - 2 'Match Col Header
+                If VSFlexGrid1.RowHidden(i) = False Then
+                    StockVal = StockVal + Val(VSFlexGrid1.TextMatrix(i, C)) 'Total
+                End If
+                Next
+                VSFlexGrid1.TextMatrix(VSFlexGrid1.Rows - 1, C) = StockVal
+                StockVal = 0
+            Next
+    End With
+Else
     With fpSpread1
     n = .DataRowCnt: StockVal = 0
         For i = 1 To .DataRowCnt 'Unhide All
@@ -1333,75 +1630,155 @@ Private Sub cmdFilter_Click()
         .SetActiveCell 1, 1
         .SetActiveCell 1, i - 1
     End With
+End If
+Screen.MousePointer = vbNormal
+Exit Sub
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
 End Sub
 Private Sub Preview_Click()
-Dim PrintHeader As String
+Dim PrintHeader As String, x As Boolean
+Dim SheetName, FileName As String
+Dim cVal As Variant, i, C As Integer
+On Error Resume Next
+If VSFlexFlag = True Then
+    With Me.VSFlexGrid1
+        If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+        FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+        SheetName = "Sheet1" '"(" & Me.Caption & ")"
+        .SaveGrid FileName, flexFileExcel, SaveExcelSettings.flexXLSaveFixedCells
+        If Dir(FileName, vbDirectory) <> "" Then x = True
+        If x = True Then
+        'MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+        'Shell "C:\WINDOWS\explorer.exe """ & FileName & "", vbNormalFocus
+        Else
+        MsgBox "File Not Exist", vbInformation, "Easy Publish...Import !!!"
+        End If
+    End With
+If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+
+FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+' Load an Excel-formatted file
+fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, False
+
+'MsgBox
+    'MsgBox "Import Processing....", vbInformation, "Easy Publish...Import !!! "
+fpSpread1.ImportExcelBook FileName, ""        '& "\EasyPublish.xls", ""
+End If
 '*********************************************************
 With fpSpread1
-.ColsFrozen = 0
-PrintHeader = Me.Caption
-.LockBackColor = vbWhite
-' These are 8.5" X 11" paper dimensions in TWIPS  12240  15840
-Const PaperWidth = 12240
-Const PaperHeight = 15840
-'Printer.PaperSize = vbPRPSA4
-' Set printing options for sheet
-fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
-fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
-'fpSpread1.PrintHeader = "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy"): fpSpread1.PrintHeader=: .Font = 20 '"/cPrint Header/rPage # ./p/n2nd Line"
-fpSpread1.PrintFooter = "        Export Data Company : " & rstCompanyMaster.Fields("PrintName").value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
-fpSpread1.PrintBorder = True
-fpSpread1.PrintColHeaders = True
-fpSpread1.PrintColor = True
-fpSpread1.PrintGrid = True
-fpSpread1.PrintMarginTop = 200 '750 '1440
-fpSpread1.PrintMarginBottom = 200 '500 '1440
-fpSpread1.PrintMarginLeft = 100 '720
-fpSpread1.PrintMarginRight = 100 '720
-'fpSpread1.PrintType = SPRD_PRINT_ALL
-fpSpread1.PrintRowHeaders = True
-fpSpread1.PrintShadows = True
-fpSpread1.PrintUseDataMax = True
-' Center vertically
-fpSpread1.PrintCenterOnPageV = False
-' Center horizontally
-fpSpread1.PrintCenterOnPageH = True
-' Perform the printing action
-' Set the sheet to print
-fpSpread1.Sheet = 1
-' Set scaling method
-fpSpread1.PrintScalingMethod = PrintScalingMethodZoom
-' Set zoom factor
-fpSpread1.PrintZoomFactor = 0.75
-' Print
-'fpSpread1.PrintSheet 0
-fpSpread1.PrintOrientation = PrintOrientationLandscape
-'fpSpread1.PrintSheet
-.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-   
-   'If a cell is currently active, turn off edit mode
-    If fpSpread1.EditMode = True Then
-        fpSpread1.EditMode = False
+    .ColsFrozen = 0
+    PrintHeader = Me.Caption
+    .LockBackColor = vbWhite
+    ' These are 8.5" X 11" paper dimensions in TWIPS  12240  15840
+    Const PaperWidth = 12240
+    Const PaperHeight = 15840
+    Printer.PaperSize = vbPRPSA4
+    ' Set printing options for sheet
+    .PrintAbortMsg = "Printing - Click Cancel to .Quit"
+    .PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
+    '.PrintHeader = "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy"): .PrintHeader=: .Font = 20 '"/cPrint Header/rPage # ./p/n2nd Line"
+    .PrintFooter = "        Export Data Company : " & rstCompanyMaster.Fields("PrintName").Value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": '.FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
+    .PrintBorder = True
+    If VchType <> 19 Then .PrintColHeaders = True Else .PrintColHeaders = False
+    .PrintColor = True
+    .PrintGrid = True
+    .PrintMarginTop = 200 '750 '1440
+    .PrintMarginBottom = 200 '500 '1440
+    .PrintMarginLeft = 100 '720
+    .PrintMarginRight = 100 '720
+    '.PrintType = SPRD_PRINT_ALL
+    If VchType <> 19 Then .PrintRowHeaders = True Else .PrintRowHeaders = False
+    .PrintShadows = True
+    .PrintUseDataMax = True
+    ' Center vertically
+    .PrintCenterOnPageV = False
+    ' Center horizontally
+    .PrintCenterOnPageH = True
+    ' Perform the printing action
+    ' Set the sheet to print
+    .Sheet = 1
+    ' Set scaling method
+    .PrintScalingMethod = PrintScalingMethodZoom
+    ' Set zoom factor
+    If VchType = 19 Then
+        .PrintZoomFactor = 0.95
+        C = 0
+        For i = 2 To 9
+            .GetText i, 1, cVal: .SetText i, 0, cVal
+        Next
+            .Col = 5: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 2
+            .Col = 6: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 0
+            .Col = 7: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 0
+            .Col = 8: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 0
+            .Col = 9: .CellType = CellTypeNumber: .TypeNumberDecPlaces = 0
+        .PrintRowHeaders = False
+        .PrintColHeaders = True
+        .PrintGrid = False
+        .DeleteRows 1, 1
+    Else
+        .PrintZoomFactor = 0.75
+    End If
+    ' Print
+    '.PrintSheet 0
+    If VchType = 19 Then
+        .PrintOrientation = PrintOrientationPortrait
+    Else
+        .PrintOrientation = PrintOrientationLandscape
+    End If
+    '.PrintSheet
+    .LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+       
+       'If a cell is currently active, turn off edit mode
+    If .EditMode = True Then
+        .EditMode = False
         DoEvents
     End If
-    Set spreadpreview.frm = Me
-    Set pagesetup.frmPageSetup = Me
-    Set PrintDlg.frmPrintDlg = Me
-    Set headerfooter.frmHeaderFooter = Me
-          spreadpreview.Show
+        Set spreadpreview.frm = Me
+        Set pagesetup.frmPageSetup = Me
+        Set PrintDlg.frmPrintDlg = Me
+        Set headerfooter.frmHeaderFooter = Me
+              spreadpreview.Show
  End With
 End Sub
 Private Sub Search_Click()
-              Dim i As Integer, cVal As Variant, R As Long
-        With fpSpread1
-                If Text1.Text = "" Then Exit Sub
-                If .DataRowCnt = 0 Then Exit Sub
+Dim i, C As Integer, cVal As Variant, R As Long
+  If VSFlexGrid1.Visible Then
+              C = 0
+            If VSFlexGrid1.BottomRow = 1 Then Exit Sub
+            If Text1.Text = "" Then Exit Sub
+                If VSFlexGrid1.BottomRow = 0 Then Exit Sub
+                For i = 1 To VSFlexGrid1.Rows - 1 'Unhide All
+                    VSFlexGrid1.RowHidden(i) = False
+                Next
+                For i = 1 To VSFlexGrid1.RightCol  'Match Col Header
+                C = C + 1
+                cVal = VSFlexGrid1.TextMatrix(0, C)
+                If Combo4.Value = cVal Then Exit For
+                Next
                 
-                For i = 1 To .DataRowCnt 'Unhide All
-                .Row = i: .RowHidden = False
+                R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
+                LR = R
+            For C = 1 To VSFlexGrid1.RightCol
+                For i = R To VSFlexGrid1.Rows - 1
+                cVal = VSFlexGrid1.TextMatrix(i, C)
+                            If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                            VSFlexGrid1.Row = i: VSFlexGrid1.Col = C: VSFlexGrid1.RowPosition(VSFlexGrid1.Row) = i: VSFlexGrid1.ColPosition(VSFlexGrid1.Col) = C
+                            Else
+                            VSFlexGrid1.Row = i: VSFlexGrid1.Col = C: VSFlexGrid1.TopRow = i: VSFlexGrid1.LeftCol = C: Exit Sub
+                            End If
+                Next
+           Next
+  Else
+        With fpSpread1
+                    If Text1.Text = "" Then Exit Sub
+                    If .DataRowCnt = 0 Then Exit Sub
+                
+                    For i = 1 To .DataRowCnt 'Unhide All
+                        .Row = i: .RowHidden = False
                     Next
-        
-                    
+            
                     R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
                     LR = R
                     For i = R To .DataRowCnt
@@ -1409,9 +1786,398 @@ Private Sub Search_Click()
                                 If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
                                 
                                 Else
-                                .SetActiveCell Combo4.ListIndex + 2, i: Exit Sub
+                                        .SetActiveCell Combo4.ListIndex + 2, i: Exit Sub
                                 End If
                     Next
-
         End With
+End If
+End Sub
+Public Function Print_Grid()
+Dim aSNO, pSNO, dPrint As Long
+Dim GodownNameH, SizeNameH, PaperNameH, UOMH, GSMH As String
+Dim INWardGTF, OUTWardGTF, BalGTF
+    On Error GoTo ErrHandler
+Dim i, C As Long
+dPrint = 0: pSNO = 0: aSNO = 0: GodownNameH = "": SizeNameH = "": PaperNameH = "": UOMH = "": GSMH = "": INWardGTF = 0: OUTWardGTF = 0: BalGTF = 0
+    MdiMainMenu.MousePointer = vbHourglass: ShowProgressInStatusBar True: Timer1.Enabled = True
+    If VchType = 19 Then
+           With VSFlexGrid1
+                    .Clear: .Cols = 16: .Rows = rstPaperLedger.RecordCount + 10
+                    rstPaperLedger.MoveFirst
+                    If VchType = 19 Then i = 6
+    Do While Not rstPaperLedger.EOF
+        C = 1: i = i + 1
+        If GodownNameH <> rstPaperLedger.Fields("GodownName").Value Then
+        'Party Header
+                aSNO = aSNO + 1
+                .TextMatrix(i, 0) = "A/C-" & aSNO
+                .TextMatrix(i, C) = rstPaperLedger.Fields("GodownName").Value: .RowHeight(i) = 400: .Cell(flexcpFontSize, i, C) = 12: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = True: .Cell(flexcpForeColor, i, C) = RGB(128, 0, 64)
+                 GodownNameH = rstPaperLedger.Fields("GodownName").Value
+                 
+                 .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
+                 .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
+                 .TextMatrix(i, 11) = rstPaperLedger.Fields("UOM").Value
+                 .TextMatrix(i, 12) = rstPaperLedger.Fields("GSM").Value
+                 .TextMatrix(i, 13) = rstPaperLedger.Fields("PaperName").Value
+                    i = i + 1
+                 .Rows = .Rows + 1
+         End If
+        If SizeNameH <> rstPaperLedger.Fields("SizeName").Value Then
+        'Size Header
+                .TextMatrix(i, C) = rstPaperLedger.Fields("SizeName").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = False: .Cell(flexcpForeColor, i, C) = RGB(113, 0, 113)
+                 SizeNameH = rstPaperLedger.Fields("SizeName").Value
+                 
+                 .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
+                 .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
+                 .TextMatrix(i, 11) = rstPaperLedger.Fields("UOM").Value
+                 .TextMatrix(i, 12) = rstPaperLedger.Fields("GSM").Value
+                 .TextMatrix(i, 13) = rstPaperLedger.Fields("PaperName").Value
+                 
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If UOMH <> rstPaperLedger.Fields("UOM").Value Then
+        'UOM Header
+                .TextMatrix(i, C) = rstPaperLedger.Fields("UOM").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontItalic, i, C) = True: .Cell(flexcpForeColor, i, C) = RGB(80, 80, 160)
+                 UOMH = rstPaperLedger.Fields("UOM").Value
+                 
+                 .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
+                 .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
+                 .TextMatrix(i, 11) = rstPaperLedger.Fields("UOM").Value
+                 .TextMatrix(i, 12) = rstPaperLedger.Fields("GSM").Value
+                 .TextMatrix(i, 13) = rstPaperLedger.Fields("PaperName").Value
+                 
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If GSMH <> rstPaperLedger.Fields("GSM").Value Then
+        'GSM Header
+                .TextMatrix(i, C) = "GSM : " & rstPaperLedger.Fields("GSM").Value: .Cell(flexcpFontSize, i, C) = 10: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = False: .Cell(flexcpForeColor, i, C) = vbRed
+                 GSMH = rstPaperLedger.Fields("GSM").Value
+                 
+                 .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
+                 .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
+                 .TextMatrix(i, 11) = rstPaperLedger.Fields("UOM").Value
+                 .TextMatrix(i, 12) = rstPaperLedger.Fields("GSM").Value
+                 .TextMatrix(i, 13) = rstPaperLedger.Fields("PaperName").Value
+                 
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+        If PaperNameH <> rstPaperLedger.Fields("PaperName").Value Then
+        'Paper Name Header
+                .TextMatrix(i, C) = rstPaperLedger.Fields("PaperName").Value: .Cell(flexcpFontSize, i, C) = 9: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = False: .Cell(flexcpForeColor, i, C) = RGB(0, 106, 106)
+                 PaperNameH = rstPaperLedger.Fields("PaperName").Value
+                 
+                 .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
+                 .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
+                 .TextMatrix(i, 11) = rstPaperLedger.Fields("UOM").Value
+                 .TextMatrix(i, 12) = rstPaperLedger.Fields("GSM").Value
+                 .TextMatrix(i, 13) = rstPaperLedger.Fields("PaperName").Value
+                 
+                 i = i + 1: .Rows = .Rows + 1
+         End If
+                C = 0
+                C = C + 1: .TextMatrix(i, C) = rstPaperLedger.Fields("VchType").Value + IIf(rstPaperLedger.Fields("VchNo").Value <> "", "-" + rstPaperLedger.Fields("VchNo").Value, "")
+                C = C + 1: .TextMatrix(i, C) = Format(rstPaperLedger.Fields("VchDate").Value, "dd-mm-yy")
+                C = C + 1: .TextMatrix(i, C) = rstPaperLedger.Fields("Particulars").Value: .WordWrap = True: .AutoSizeMode = flexAutoSizeRowHeight
+                C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Forms").Value), "###0.00")
+                C = C + 1: .TextMatrix(i, C) = Val(rstPaperLedger.Fields("BookQuantity").Value)
+'********************************IN
+            If InStr(1, "PI_SI_MI_CN_OB", StrConv(rstPaperLedger.Fields("VchType").Value, vbUpperCase)) > 0 And Val(rstPaperLedger.Fields("Quantity").Value) > 0 Then
+                    If Combo1.ListIndex = 0 Then
+                        C = C + 1: .TextMatrix(i, C) = Val(rstPaperLedger.Fields("Quantity").Value)
+                    ElseIf Combo1.ListIndex = 1 Then
+                        C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Quantity").Value) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                    ElseIf Combo1.ListIndex = 2 Then
+                        C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Quantity").Value) / Val(rstPaperLedger.Fields("SPU").Value) * Val(rstPaperLedger.Fields("Weight/Unit").Value), "###0.000") 'Weight/Unit
+                    ElseIf Combo1.ListIndex = 3 Then
+                        C = C + 1: .TextMatrix(i, C) = Format(Val(rstPaperLedger.Fields("Quantity").Value) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                        'C = C + 1: .TextMatrix(i, C) = Format(Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) + ((Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) - Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value))) * Val(rstPaperLedger.Fields("SPU").Value) / 1000, "####0.000")
+                    End If
+                C = C + 1
+'********************************OUT
+            Else
+                C = C + 1
+                If Combo1.ListIndex = 0 Then
+                    C = C + 1: .TextMatrix(i, C) = Val(Abs(rstPaperLedger.Fields("Quantity").Value))
+                ElseIf Combo1.ListIndex = 1 Then
+                    C = C + 1: .TextMatrix(i, C) = Format(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                ElseIf Combo1.ListIndex = 2 Then
+                    C = C + 1: .TextMatrix(i, C) = Format(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value) * Val(rstPaperLedger.Fields("Weight/Unit").Value), "###0.000") 'Weight/Unit
+                ElseIf Combo1.ListIndex = 3 Then
+                    C = C + 1: .TextMatrix(i, C) = Format(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value), "###0.000")
+                    'C = C + 1: .TextMatrix(i, C) = Format(Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) + ((Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value)) - Int(Val(Abs(rstPaperLedger.Fields("Quantity").Value)) / Val(rstPaperLedger.Fields("SPU").Value))) * Val(rstPaperLedger.Fields("SPU").Value) / 1000, "####0.000")
+                End If
+            End If
+'********************************Bal
+                C = C + 1:  .TextMatrix(i, C) = Format(Val(Val(.TextMatrix(i, C - 2)) - Val(.TextMatrix(i, C - 1))), "###0.000"): .Cell(flexcpForeColor, i, C) = vbWhite: pSNO = pSNO + 1
+'********************************
+                 .TextMatrix(i, 9) = rstPaperLedger.Fields("GodownName").Value
+                 .TextMatrix(i, 10) = rstPaperLedger.Fields("SizeName").Value
+                 .TextMatrix(i, 11) = rstPaperLedger.Fields("UOM").Value
+                 .TextMatrix(i, 12) = rstPaperLedger.Fields("GSM").Value
+                 .TextMatrix(i, 13) = rstPaperLedger.Fields("PaperName").Value
+                 .TextMatrix(i, 14) = rstPaperLedger.Fields("SPU").Value
+            dPrint = dPrint + 1
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstPaperLedger.RecordCount & " !!!"
+                rstPaperLedger.MoveNext
+            If MdiMainMenu.ProgressBar1.Value + Round((100 / rstPaperLedger.RecordCount), 2) <= 100 Then
+                MdiMainMenu.ProgressBar1.Value = MdiMainMenu.ProgressBar1.Value + Round((100 / rstPaperLedger.RecordCount), 2)
+            End If
+            Loop
+          .Rows = i + 1
+            End With
+    Else
+         Set VSFlexGrid1.DataSource = rstPaperLedger
+    End If
+    TDBNumber2.Value = pSNO
+
+Call VSFlexGrid_Format_Headers
+Call VSFlexGrid1_AfterDataRefresh
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    Exit Function
+ErrHandler:
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Function
+Private Function VSFlexGrid_Format_Headers()
+On Error GoTo ErrHandler
+Dim i As Long
+Dim C As Long
+        With VSFlexGrid1
+        .ColWidth(0) = 5
+            If VchType = 19 Then
+            C = 0
+                    C = C + 1: .TextMatrix(i, C) = "Vch No": .ColWidth(1) = 1020
+                    C = C + 1: .TextMatrix(i, C) = "Date": .ColWidth(2) = 850
+                    C = C + 1: .TextMatrix(i, C) = "Particulars": .ColWidth(3) = 5120
+                    C = C + 1: .TextMatrix(i, C) = "Forms": .ColWidth(4) = 600
+                    C = C + 1: .TextMatrix(i, C) = "Quantity": .ColWidth(5) = 700
+                    C = C + 1: .TextMatrix(i, C) = "IN": .ColWidth(6) = 990
+                    C = C + 1: .TextMatrix(i, C) = "OUT": .ColWidth(7) = 990
+                    C = C + 1: .TextMatrix(i, C) = "Balance": .ColWidth(8) = 990
+            End If
+        End With
+Screen.MousePointer = vbNormal
+Exit Function
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Function
+Private Sub VSFlexGrid1_AfterDataRefresh()
+    On Error GoTo ErrHandler
+Dim C As Variant
+Dim T As Long
+Dim GroupOn As Long
+Dim i As Integer
+    With VSFlexGrid1
+    If VchType = 19 Then
+        GroupOn = 9
+        .FrozenRows = 3
+    End If
+    'Subtotal
+nSort = False
+    .SubtotalPosition = flexSTBelow
+    .MultiTotals = True
+    .Subtotal flexSTClear
+    For i = 5 To VSFlexGrid1.Rows - 1 'Unhide All
+        VSFlexGrid1.RowHidden(i) = False
+    Next
+If Combo1.ListIndex = 0 Then
+    .Subtotal flexSTSum, -1, 4, "(#,##0.00)", vbBlue, vbWhite, True, "Grand Total", , True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+    .Subtotal flexSTSum, -1, 5, "(#,##0)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 6, "(#,##0)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 7, "(#,##0)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 8, "(#,##0)", vbWhite, vbBlue, True, , , True
+Else
+    .Subtotal flexSTSum, -1, 4, "(#,##0.00)", vbBlue, vbWhite, True, "Grand Total", , True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+    .Subtotal flexSTSum, -1, 5, "(#,##0.000)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 6, "(#,##0.000)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 7, "(#,##0.000)", vbWhite, vbBlue, True, , , True
+    .Subtotal flexSTSum, -1, 8, "(#,##0.000)", vbWhite, vbBlue, True, , , True
+End If
+'Party Total
+If Check0.Value Then
+    If Combo1.ListIndex = 0 Then
+        .Subtotal flexSTSum, 9, 4, "(#,##0.00)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 5, "(#,##0)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 6, "(#,##0)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 7, "(#,##0)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 8, "(#,##0)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .RowHidden(7) = True
+    Else
+        .Subtotal flexSTSum, 9, 4, "(#,##0.00)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 5, "(#,##0)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 6, "(#,##0.000)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 7, "(#,##0.000)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .Subtotal flexSTSum, 9, 8, "(#,##0.000)", &H8000000F, RGB(128, 0, 64), True, , 9, True
+        .RowHidden(7) = True
+    End If
+End If
+ 'Size Total
+If Check2.Value Then
+    'If FrmPaperStockRegister.Check6.Value Then
+    If Combo1.ListIndex = 0 Then
+        .Subtotal flexSTSum, 10, 4, "(#,##0.00)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 5, "(#,##0)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 6, "(#,##0)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 7, "(#,##0)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 8, "(#,##0)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .RowHidden(7) = True
+    Else
+        .Subtotal flexSTSum, 10, 4, "(#,##0.00)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 5, "(#,##0)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 6, "(#,##0.000)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 7, "(#,##0.000)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .Subtotal flexSTSum, 10, 8, "(#,##0.000)", &H8000000F, RGB(113, 0, 113), True, , 10, True
+        .RowHidden(7) = True
+    End If
+End If
+ 'UOM Total
+'If FrmPaperStockRegister.Check7.Value Then
+If Check3.Value Then
+    If Combo1.ListIndex = 0 Then
+        .Subtotal flexSTSum, 11, 4, "(#,##0.00)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 5, "(#,##0)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 6, "(#,##0)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 7, "(#,##0)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 8, "(#,##0)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .RowHidden(7) = True
+    Else
+        .Subtotal flexSTSum, 11, 4, "(#,##0.00)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 5, "(#,##0)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 6, "(#,##0.000)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 7, "(#,##0.000)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .Subtotal flexSTSum, 11, 8, "(#,##0.000)", &H8000000F, RGB(80, 80, 160), True, , 11, True
+        .RowHidden(7) = True
+    End If
+End If
+ 'GSM Total
+    'If FrmPaperStockRegister.Check5.Value Then
+If Check1.Value Then
+    If Combo1.ListIndex = 0 Then
+        .Subtotal flexSTSum, 12, 4, "(#,##0.00)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 5, "(#,##0)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 6, "(#,##0)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 7, "(#,##0)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 8, "(#,##0)", &H8000000F, vbRed, True, , 12, True
+        .RowHidden(7) = True
+    Else
+         .Subtotal flexSTSum, 12, 4, "(#,##0.00)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 5, "(#,##0)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 6, "(#,##0.000)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 7, "(#,##0.000)", &H8000000F, vbRed, True, , 12, True
+        .Subtotal flexSTSum, 12, 8, "(#,##0.000)", &H8000000F, vbRed, True, , 12, True
+        .RowHidden(7) = True
+    End If
+End If
+ 'Paper Total
+If Check4.Value Then
+        'If FrmPaperStockRegister.Check4.Value Then
+    If Combo1.ListIndex = 0 Then
+        .Subtotal flexSTSum, 13, 4, "(#,##0.00)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 5, "(#,##0)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 6, "(#,##0)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 7, "(#,##0)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 8, "(#,##0)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .RowHidden(7) = True
+    Else
+        .Subtotal flexSTSum, 13, 4, "(#,##0.00)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 5, "(#,##0)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 6, "(#,##0.000)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 7, "(#,##0.000)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .Subtotal flexSTSum, 13, 8, "(#,##0.000)", &H8000000F, RGB(0, 106, 106), True, , 13, True
+        .RowHidden(7) = True
+    End If
+End If
+
+    For C = 2 To (.Cols - 1)
+        .ExplorerBar = flexExSort
+        .ColSort(C) = flexSortCustom
+        .AllowUserResizing = flexResizeBoth
+    Next
+    
+    For C = 9 To (.Cols - 1)
+    .ColHidden(C) = True
+    Next
+     
+     .AutoSizeMode = flexAutoSizeRowHeight
+    C = .Rows - 1
+    .TextMatrix(C, 0) = ""
+    
+    For C = 1 To 3
+            .MergeCells = flexMergeSpill
+            .MergeCol(C) = False
+            .MergeRow(C) = True
+            .WordWrap = True
+            .RowHidden(C + 2) = True
+    Next
+
+    C = 3
+    i = 1
+    .TextMatrix(i, C) = "Paper Stock Register (" & IIf(FrmPaperStockRegister.Check2.Value, "              Summarised", "Detailed") & ")": .Cell(flexcpFontSize, i, C) = 12: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = True: .Cell(flexcpForeColor, i, C) = RGB(128, 0, 0): .Cell(flexcpAlignment, i, C) = flexAlignRightCenter 'CenterCenter
+    i = 2
+    .TextMatrix(i, C) = Trim(rstCompanyMaster.Fields("PrintName").Value): .RowHeight(i) = 500: .Cell(flexcpFontSize, i, C) = 18: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = False: .Cell(flexcpForeColor, i, C) = RGB(145, 0, 72): .Cell(flexcpAlignment, i, C) = flexAlignCenterCenter 'RGB(49, 120, 61)
+    i = 3
+    .TextMatrix(i, C) = "From [" + Format(GetDate(FrmPaperStockRegister.MhDateInput1.Text), "dd-mm-yyyy") + "] To [" + Format(GetDate(FrmPaperStockRegister.MhDateInput2.Text), "dd-mm-yyyy") + "] [" & IIf(FrmPaperStockRegister.Option1.Value, "Including In-Transit", IIf(FrmPaperStockRegister.Option2.Value, "Excluding In-Transit", "In-Transit Only")) & "]": .RowHeight(i) = 400: .Cell(flexcpFontSize, i, C) = 14: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = False: .Cell(flexcpForeColor, i, C) = RGB(80, 80, 160): .Cell(flexcpAlignment, i, C) = flexAlignCenterCenter
+    i = 6: C = 1
+    .TextMatrix(i, C) = "Paper A/C IN :" + Combo1.Value: .Cell(flexcpFontSize, i, C) = 12: .Cell(flexcpFontBold, i, C) = True: .Cell(flexcpBackColor, i, C) = vbWhite: .Cell(flexcpFontUnderline, i, C) = True: .Cell(flexcpForeColor, i, C) = vbRed: .Cell(flexcpFontItalic, i, C) = True 'RGB(128, 0, 0)
+    .AutoSize 1, 3
+    
+    For C = 1 To 8
+    'Combo4.AddItem
+    Combo4.AddItem .TextMatrix(0, C), C - 1
+    Next
+'    Combo4.ListIndex = 0
+    If Combo1.ListIndex = 3 Then Find_SubTotal_Row
+    End With
+Exit Sub
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Sub
+Sub Find_SubTotal_Row()
+Dim cVal, SPU, Col As Variant
+
+    For Col = 6 To 8
+        For i = 4 To VSFlexGrid1.Rows - 1
+            If Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) <> 0 Then
+            If Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000")) < 0 Then C = -1 Else C = 1
+                    cVal = Val(Format(VSFlexGrid1.TextMatrix(i, Col), "###0.000"))
+                    SPU = IIf(Val(VSFlexGrid1.TextMatrix(i, 14)) <> 0, Val(VSFlexGrid1.TextMatrix(i, 14)), Val(VSFlexGrid1.TextMatrix(i - 1, 14))): VSFlexGrid1.TextMatrix(i, 14) = SPU
+                    VSFlexGrid1.TextMatrix(i, Col) = Format(Format(Int(Abs(cVal)) + ((Abs(cVal) - Int(Abs(cVal))) * SPU / 1000), "####0.000") * C, "####0.000")
+            End If
+        Next
+    Next
+End Sub
+Private Sub CopyToClipboard()
+    Dim selectedData As String
+    Dim i As Integer
+    ' Get the selected data from the grid
+    For i = VSFlexGrid1.RowSel To VSFlexGrid1.Row
+        selectedData = selectedData & VSFlexGrid1.TextMatrix(i, VSFlexGrid1.ColSel) & vbCrLf
+    Next i
+    ' Copy the selected data to the clipboard
+    Clipboard.SetText selectedData
+End Sub
+Private Sub PasteFromClipboard()
+    Dim clipboardData As String
+    Dim dataRows() As String
+    Dim i As Integer
+    ' Get the data from the clipboard
+    clipboardData = Clipboard.GetText
+    ' Split the clipboard data into individual rows
+    dataRows = Split(clipboardData, vbCrLf)
+    ' Paste the data into the grid
+    For i = 0 To UBound(dataRows)
+        'VSFlexGrid1.TextMatrix(VSFlexGrid1.Row + i, VSFlexGrid1.Col) = dataRows(i)
+    Next i
+End Sub
+Private Sub VSFlexGrid1_BeforeRowColChange(ByVal OldRow As Long, ByVal OldCol As Long, ByVal NewRow As Long, ByVal NewCol As Long, Cancel As Boolean)
+Mh3dLabel9.Alignment = mhAlignmentCenter
+Mh3dLabel9.Caption = "Ln" & NewRow & " Col " & NewCol
 End Sub

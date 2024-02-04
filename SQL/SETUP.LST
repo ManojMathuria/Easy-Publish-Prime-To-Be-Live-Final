@@ -1,0 +1,272 @@
+[Bootstrap]
+SetupTitle=Install
+SetupText=Copying Files, please stand by.
+CabFile=EasyPublish.CAB
+Spawn=Setup1.exe
+Uninstal=st6unst.exe
+TmpDir=msftqws.pdw
+Cabs=1
+
+[Bootstrap Files]
+File1=@OLEPRO32.DLL,$(WinSysPathSysFile),$(DLLSelfRegister),,3/8/99 12:00:00 AM,164112,5.0.4275.1
+File2=@COMCAT.DLL,$(WinSysPathSysFile),$(DLLSelfRegister),,5/31/98 12:00:00 AM,22288,4.71.1460.1
+File3=@VB6STKIT.DLL,$(WinSysPathSysFile),,,7/15/00 12:00:00 AM,101888,6.0.84.50
+File4=@STDOLE2.TLB,$(WinSysPathSysFile),$(TLBRegister),,6/3/99 12:00:00 AM,17920,2.40.4275.1
+File5=@ASYCFILT.DLL,$(WinSysPathSysFile),,,3/8/99 12:00:00 AM,147728,2.40.4275.1
+File6=@OLEAUT32.DLL,$(WinSysPathSysFile),$(DLLSelfRegister),,4/12/00 12:00:00 AM,598288,2.40.4275.1
+File7=@msvbvm60.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,8/19/21 3:26:24 AM,1436032,6.0.98.48
+
+[IconGroups]
+Group0=Easy Publish
+PrivateGroup0=-1
+Parent0=$(Programs)
+
+[Easy Publish]
+Icon1="EasyPublish.exe"
+Title1=Easy Publish
+StartIn1=$(AppPath)
+
+[Setup]
+Title=Easy Publish Prime v23.06.08
+DefaultDir=$(ProgramFiles)\Easy Publish Prime
+AppExe=EasyPublish.exe
+AppToUninstall=EasyPublish.exe
+
+[Setup1 Files]
+File1=@0.REG,$(AppPath),0.REG,,6/9/23 12:03:16 AM,161,0.0.0.0
+File2=@CR9Deploy.reg,$(AppPath),,,5/17/02 11:57:24 AM,161,0.0.0.0
+File3=@keycode.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,$(dllSelfRegister),$(Shared),11/15/02 3:13:22 AM,221184,9.0.0.281
+File4=@u2fxml.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),8/14/02 10:33:28 PM,233472,9.2.0.557
+File5=@crtslv.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),2/7/21 3:51:24 PM,49223,8.5.0.144
+File6=@ExportModeller.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),2/7/21 3:51:24 PM,307200,8.5.0.35
+File7=@crxf_xls.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),6/8/05 12:19:06 AM,471107,9.2.1.686
+File8=@crxf_wordw.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),11/26/04 1:56:48 AM,167993,9.2.1.570
+File9=@exlate32.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),12/30/02 12:57:52 PM,671801,9.2.1.186
+File10=@querybuilder.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),6/8/05 11:27:14 PM,184391,9.2.1.526
+File11=@crdb_odbc.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),5/26/05 11:27:10 PM,394828,9.2.1.643
+File12=@crdb_dao.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),9/30/03 10:33:30 PM,221248,9.2.1.504
+File13=@crdb_ado.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),11/18/05 12:30:06 AM,380992,9.2.1.549
+File14=@crqe.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,$(dllSelfRegister),$(Shared),9/6/05 11:49:14 PM,1552457,9.2.1.1839
+File15=@u25samp1.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),11/15/02 5:23:40 AM,24576,9.2.2.15
+File16=@u2lfinra.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),11/15/02 5:23:30 AM,69632,9.2.2.4
+File17=@u2lexch.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),11/15/02 5:23:22 AM,28672,9.2.2.16
+File18=@u25dts.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,24576,8.0.0.0
+File19=@u252000.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,24576,8.0.0.0
+File20=@u2ldts.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:04 PM,24576,8.0.0.0
+File21=@u2lcom.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:04 PM,45056,8.0.0.0
+File22=@u2l2000.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,24576,8.0.0.0
+File23=@ufmanager.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),7/16/02 2:37:38 PM,225280,9.0.0.1
+File24=@crtowords_en.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,,$(Shared),11/15/02 4:23:48 AM,24576,9.2.2.14
+File25=@hh.exe,$(WinSysPath),,$(Shared),12/7/19 2:40:00 PM,16384,6.2.19041.1
+File26=@itircl.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),8/19/21 3:26:47 AM,156672,6.2.19041.746
+File27=@itss.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),12/7/19 2:40:00 PM,145408,6.2.19041.1
+File28=@hhctrl.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),8/19/21 3:26:47 AM,575488,6.2.19041.746
+File29=@Easy Publish Prime v22.chi,$(AppPath),,,3/15/22 11:53:53 AM,10701,0.0.0.0
+File30=@Easy Publish Prime v22.chm,$(AppPath),,,3/15/22 11:53:53 AM,10450218,0.0.0.0
+File31=@VersionUpdate.exe,$(AppPath),,,6/8/23 8:30:04 PM,65536,1.0.0.0
+File32=@setuppad.exe,$(AppPath),,,6/27/13 11:08:50 AM,2871168,4.0.0.950
+File33=@TeamViewer.exe,$(AppPath),,,3/15/22 2:38:08 PM,68709808,15.28.5.0
+File34=@EasyPrint.jpeg,$(AppPath),,,7/4/18 12:24:58 AM,44945,0.0.0.0
+File35=@u2frdef.dll,$(AppPath),,,2/7/21 3:52:03 PM,65536,8.0.0.0
+File36=@u2fdif.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,36864,8.5.0.1
+File37=@PG32CONV.DLL,$(AppPath),,,9/22/99 2:03:54 PM,100352,0.0.0.0
+File38=@p2sfs.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,77824,8.5.0.7
+File39=@P2lsql.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,98304,8.5.0.8
+File40=@p2lodbc.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,131072,8.5.0.19
+File41=@p2ixbse.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,245760,8.0.100.1
+File42=@u2dapp.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,28672,8.0.0.0
+File43=@u2dpost.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,102400,8.5.0.61
+File44=@u2ddisk.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,28672,8.5.0.1
+File45=@U2FTEXT.DLL,$(WinSysPath),,$(Shared),5/1/01 11:19:32 AM,98304,8.6.0.23
+File46=@u2fsepv.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,36864,8.0.0.9
+File47=@u2fcr.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,28672,8.5.0.3
+File48=@crxf_pdf.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,270336,8.5.0.37
+File49=@crxf_rtf.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,200755,8.5.0.32
+File50=@IMPLODE.DLL,$(WinSysPath),,$(Shared),8/24/98 9:31:44 AM,18944,1.0.0.1
+File51=@sscsdk80.dll,$(WinSysPath),,$(Shared),11/16/00 7:24:18 PM,1163264,2.2.9.4
+File52=@MSVCRT.DLL,$(WinSysPathSysFile),,,2/17/04 12:00:00 AM,278581,6.0.9782.0
+File53=@craxdrt9.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,$(dllSelfRegister),$(Shared),2/11/05 6:59:10 AM,6197313,9.2.3.1368
+File54=@crviewer9.dll,$(CommonFiles)\Crystal Decisions\2.0\bin,$(DLLSelfRegister),$(Shared),7/9/04 8:35:22 AM,802512,9.2.2.716
+File55=@u2lsamp1.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:04 PM,24576,8.0.0.1
+File56=@U2FXLS.DLL,$(WinSysPath),,$(Shared),3/19/01 11:30:04 AM,212992,8.6.0.6
+File57=@u2fwordw.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,106496,8.5.0.92
+File58=@u2fwks.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,40960,8.0.0.4
+File59=@u2frec.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,36864,8.5.0.27
+File60=@u2fodbc.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,49152,8.5.0.10
+File61=@u2fhtml.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,45056,8.5.0.77
+File62=@u2dvim.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,57344,8.0.0.0
+File63=@u2dnotes.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,53248,8.0.100.2
+File64=@u2dmapi.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:03 PM,40960,8.0.0.0
+File65=@p2soledb.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,204800,8.5.0.20
+File66=@p2ssyb10.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,159744,8.5.0.18
+File67=@p2sora7.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,167936,8.5.0.21
+File68=@p2sodbc.dll,$(WinSysPath),,$(Shared),5/30/01 12:51:10 AM,286720,8.6.0.8
+File69=@P2smon.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:06 PM,163840,8.5.0.12
+File70=@p2sifmx.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,167936,8.5.0.19
+File71=@p2irdao.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:06 PM,65536,8.5.0.6
+File72=@p2ctdao.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:06 PM,53248,8.5.0.6
+File73=@P2BXBSE.DLL,$(WinSysPath),,$(Shared),3/16/01 6:05:20 PM,249856,8.6.0.2
+File74=@p2bdao.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:06 PM,94208,8.5.0.7
+File75=@P2BBDE.DLL,$(WinSysPath),,$(Shared),3/29/01 2:59:04 AM,77824,8.6.0.4
+File76=@Crxlat32.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,24576,8.0.0.0
+File77=@mfc42.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),12/7/19 2:39:13 PM,1171456,6.6.8063.0
+File78=@Crpaig80.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:05 PM,618496,8.0.1.3
+File79=@p2ssql.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:02 PM,168000,8.5.0.19
+File80=@crpe32.dll,$(WinSysPath),,$(Shared),2/7/21 3:52:07 PM,4587577,8.5.0.217
+File81=@cpeaut32.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),2/7/21 3:52:04 PM,442368,8.5.0.9
+File82=@LOGO000.jpg,$(AppPath),,,7/20/21 9:49:20 PM,31872,0.0.0.0
+File83=@Production Planning.xlsx,$(AppPath),,,6/19/15 3:26:44 AM,15573,0.0.0.0
+File84=@Print Order Status Register.xlsx,$(AppPath),,,9/30/20 11:30:30 PM,213303,0.0.0.0
+File85=@Plate Usage Register.xlsx,$(AppPath),,,11/23/10 4:48:34 AM,10305,0.0.0.0
+File86=@Pending Payment Register.xlsx,$(AppPath),,,4/1/13 4:27:52 AM,10343,0.0.0.0
+File87=@Paper Stock Register.xlsx,$(AppPath),,,11/26/18 4:25:08 AM,13288,0.0.0.0
+File88=@Paper Issue Register.xlsx,$(AppPath),,,3/27/19 4:24:22 AM,9537,0.0.0.0
+File89=@Paper Confirmation Letter.xlsx,$(AppPath),,,11/23/18 11:50:58 PM,59694,0.0.0.0
+File90=@Opening Balance.xlsx,$(AppPath),,,11/24/18 12:40:54 AM,10028,0.0.0.0
+File91=@Manuscript Status Register.xlsx,$(AppPath),,,2/15/20 12:54:42 AM,9019,0.0.0.0
+File92=@Item Weight.xlsm,$(AppPath),,,10/26/21 10:32:43 AM,114862,0.0.0.0
+File93=@Item List.xlsx,$(AppPath),,,2/5/21 5:24:06 PM,12654,0.0.0.0
+File94=@Imposition.xlsm,$(AppPath),,,9/21/20 11:43:18 AM,466127,0.0.0.0
+File95=@Cost Sheet.xlsm,$(AppPath),,,7/29/20 12:52:26 PM,28988,0.0.0.0
+File96=@Budget Report.xls,$(AppPath),,,4/6/12 11:20:26 PM,23552,0.0.0.0
+File97=@Box Label.xls,$(AppPath),,,10/5/12 10:55:08 PM,20992,0.0.0.0
+File98=@Yellow.BMP,$(AppPath),,,12/31/96 10:50:02 AM,1136,0.0.0.0
+File99=@Upload.bmp,$(AppPath),,,6/26/18 4:20:20 AM,822,0.0.0.0
+File100=@Stop.bmp,$(AppPath),,,1/31/20 9:36:28 PM,822,0.0.0.0
+File101=@Start.bmp,$(AppPath),,,1/31/20 9:36:14 PM,822,0.0.0.0
+File102=@search.bmp,$(AppPath),,,7/7/21 3:17:02 PM,822,0.0.0.0
+File103=@Save.BMP,$(AppPath),,,4/23/98 11:30:00 AM,246,0.0.0.0
+File104=@Run.BMP,$(AppPath),,,4/7/98 1:41:16 AM,1458,0.0.0.0
+File105=@Refresh.ICO,$(AppPath),,,9/16/96 11:30:00 AM,318,0.0.0.0
+File106=@Red.BMP,$(AppPath),,,12/31/96 10:49:26 AM,1136,0.0.0.0
+File107=@Prior.BMP,$(AppPath),,,3/1/99 10:30:00 AM,246,0.0.0.0
+File108=@Print.BMP,$(AppPath),,,4/24/98 7:28:20 AM,246,0.0.0.0
+File109=@Preview.BMP,$(AppPath),,,4/24/98 7:28:16 AM,1318,0.0.0.0
+File110=@Pause.bmp,$(AppPath),,,1/31/20 9:35:42 PM,822,0.0.0.0
+File111=@Open.BMP,$(AppPath),,,4/23/98 11:30:00 AM,1318,0.0.0.0
+File112=@Next.BMP,$(AppPath),,,3/1/99 10:30:00 AM,246,0.0.0.0
+File113=@New.BMP,$(AppPath),,,4/23/98 11:30:00 AM,1318,0.0.0.0
+File114=@Mail.bmp,$(AppPath),,,1/9/96 1:03:06 AM,246,0.0.0.0
+File115=@LOGP541.jpg,$(AppPath),,,7/3/21 2:33:52 AM,2897,0.0.0.0
+File116=@Last.BMP,$(AppPath),,,3/1/99 10:30:00 AM,246,0.0.0.0
+File117=@ICON1.ico,$(AppPath),,,7/19/21 2:11:02 PM,34494,0.0.0.0
+File118=@ICON.png,$(AppPath),,,7/3/21 9:55:06 AM,7084,0.0.0.0
+File119=@ICON.ico,$(AppPath),,,7/3/21 10:10:56 AM,78071,0.0.0.0
+File120=@ICON.BMP,$(AppPath),,,7/3/21 2:33:52 AM,2897,0.0.0.0
+File121=@Green.BMP,$(AppPath),,,12/31/96 10:51:04 AM,1136,0.0.0.0
+File122=@First.BMP,$(AppPath),,,3/1/99 10:30:00 AM,246,0.0.0.0
+File123=@FilterCol.bmp,$(AppPath),,,7/7/21 3:03:26 PM,822,0.0.0.0
+File124=@Filter.Bmp,$(AppPath),,,4/7/98 5:12:28 AM,1318,0.0.0.0
+File125=@Exit.bmp,$(AppPath),,,6/1/01 7:39:20 PM,246,0.0.0.0
+File126=@Excel.jpg,$(AppPath),,,10/2/18 11:09:44 PM,959,0.0.0.0
+File127=@EasyPublish.jpeg,$(AppPath),,,7/4/18 12:24:58 AM,44945,0.0.0.0
+File128=@Delete.BMP,$(AppPath),,,4/24/98 7:28:20 AM,246,0.0.0.0
+File129=@Copy.BMP,$(AppPath),,,4/23/98 11:30:00 AM,1318,0.0.0.0
+File130=@Cancel.BMP,$(AppPath),,,4/23/98 11:30:00 AM,246,0.0.0.0
+File131=@EasyPublish.ini,$(AppPath),,,6/8/23 11:22:16 PM,1292,0.0.0.0
+File132=@AnyDesk.exe,$(AppPath),,,10/12/16 2:42:30 PM,1552544,2.5.0.0
+File133=@MSCOMCTL.SRG,$(AppPath),,,5/31/98 12:00:00 AM,111,0.0.0.0
+File134=@MSCOMCTL.DEP,$(AppPath),,,2/17/04 12:00:00 AM,2494,6.1.97.82
+File135=@MSCOMCTL.oca,$(AppPath),,,2/8/21 5:09:30 PM,267776,0.0.0.0
+File136=@MSSTDFMT.DEP,$(AppPath),,,2/23/04 12:00:00 AM,2494,6.1.97.82
+File137=@Mhrun32.dll,$(WinSysPath),,$(Shared),5/23/97 3:29:08 PM,34816,5.1.0.1
+File138=@mhrinp32.oca,$(AppPath),,,2/8/21 5:08:33 PM,31744,0.0.0.0
+File139=@mhlabl32.oca,$(AppPath),,,2/8/21 5:08:33 PM,27648,0.0.0.0
+File140=@MBBrowse.oca,$(AppPath),,,2/8/21 5:08:33 PM,51712,0.0.0.0
+File141=@crviewer.oca,$(AppPath),,,2/8/21 5:08:33 PM,57344,0.0.0.0
+File142=@mhfram32.oca,$(AppPath),,,2/8/21 5:08:32 PM,28160,0.0.0.0
+File143=@COMDLG32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 1:30:00 PM,152848,6.1.97.82
+File144=@MSCOMCTL.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/21/14 7:42:34 AM,1070152,6.1.98.34
+File145=@fpSPR80.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),5/6/09 4:15:00 PM,1660352,8.0.0.7
+File146=@MSMASK32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,167968,6.0.84.18
+File147=@FM20.DLL,$(WinSysPath),$(DLLSelfRegister),$(Shared),5/3/23 5:55:48 PM,1330504,16.0.16327.20100
+File148=@mhrinp32.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),7/7/18 12:30:36 AM,104960,5.1.0.1
+File149=@TABCTL32.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 1:30:00 PM,224016,6.1.97.82
+File150=@msstdfmt.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),11/8/07 8:19:22 AM,129024,6.1.98.4
+File151=@MSDATGRD.OCX,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/9/04 12:00:00 AM,275216,6.1.97.82
+File152=@mhlabl32.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),7/7/18 12:30:26 AM,65536,5.1.0.1
+File153=@MBBrowse.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),3/30/00 11:37:12 PM,151552,1.0.0.0
+File154=@msxml6.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),8/19/21 3:26:15 AM,1951384,6.30.19041.1081
+File155=@ieframe.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),5/1/23 1:59:55 PM,6503424,11.0.19041.2913
+File156=@vsvport8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),10/20/08 9:34:28 AM,222504,8.0.20082.148
+File157=@vsrpt8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),10/20/08 9:34:34 AM,521552,8.0.20082.171
+File158=@vsprint8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),10/20/08 9:34:26 AM,451880,8.0.20082.148
+File159=@vsflex8u.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),10/20/08 9:07:28 AM,628016,8.0.20081.253
+File160=@vsflex8n.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),10/20/08 9:07:28 AM,603440,8.0.20081.253
+File161=@BusyDDC16.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/10/17 11:58:24 AM,331776,16.5.0.22
+File162=@BusyCSC16.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),12/5/16 12:47:48 PM,344064,16.4.0.5
+File163=@Busy2LZ16.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/24/18 6:38:00 PM,36864,16.5.0.58
+File164=@Busy2LB16.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/24/18 6:41:56 PM,19865600,16.5.0.57
+File165=@Busy2LA16.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/24/18 6:40:42 PM,26501120,16.5.0.57
+File166=@Busy2L16.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/24/18 6:38:40 PM,12009472,16.5.0.58
+File167=@Busy200216.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/24/18 6:43:28 PM,8822784,16.5.0.54
+File168=@busy200116.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/24/18 6:42:58 PM,11472896,16.5.0.55
+File169=@EXCEL.EXE,$(AppPath),,,5/13/23 11:59:40 PM,51558784,16.0.16327.20248
+File170=@cdosys.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),8/19/21 3:26:52 AM,832512,6.6.19041.746
+File171=@tibase8.dll,$(WinSysPathSysFile),,,1/16/08 1:54:58 PM,554312,8.0.20081.27
+File172=@tishare8.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,1/16/08 1:54:58 PM,136512,8.0.20081.27
+File173=@titext8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/08 1:55:02 PM,337216,8.0.20081.27
+File174=@titime8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/08 1:55:04 PM,349504,8.0.20081.27
+File175=@VB5DB.DLL,$(WinSysPath),,$(Shared),6/18/98 12:00:00 AM,89360,6.0.81.69
+File176=@msjtes40.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,12/7/19 2:40:02 PM,290816,4.0.9801.0
+File177=@msrepl40.dll,$(WinSysPathSysFile),,,12/7/19 2:40:02 PM,616448,4.0.9801.0
+File178=@msrd3x40.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,8/19/21 3:26:52 AM,353792,4.0.9801.27
+File179=@msrd2x40.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,12/7/19 2:40:02 PM,313344,4.0.9801.18
+File180=@mswdat10.dll,$(WinSysPathSysFile),,,12/7/19 2:40:02 PM,866816,4.0.9801.0
+File181=@mswstr10.dll,$(WinSysPathSysFile),,,12/7/19 2:40:02 PM,640512,4.0.9801.1
+File182=@expsrv.dll,$(WinSysPathSysFile),,,12/7/19 2:39:29 PM,380957,6.0.72.9589
+File183=@vbajet32.dll,$(WinSysPathSysFile),,,12/7/19 2:39:29 PM,30749,6.0.1.9431
+File184=@msjint40.dll,$(WinSysPathSysFile),,,12/7/19 2:40:02 PM,8704,4.0.9801.1
+File185=@msjter40.dll,$(WinSysPathSysFile),,,12/7/19 2:40:02 PM,83968,4.0.9801.0
+File186=@msjet40.dll,$(WinSysPathSysFile),$(DLLSelfRegister),,10/14/21 9:57:32 PM,1317376,4.0.9801.32
+File187=@dao360.dll,$(MSDAOPath),$(DLLSelfRegister),$(Shared),12/7/19 2:40:02 PM,610304,3.60.9765.0
+File188=@MSOUTL.OLB,$(WinSysPath),,$(Shared),3/5/22 5:14:48 PM,443840,16.0.10001.10000
+File189=@tidate8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/08 1:54:58 PM,374080,8.0.20081.27
+File190=@tinumb8.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),1/16/08 1:55:00 PM,349512,8.0.20081.27
+File191=@crviewer.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),2/3/01 5:35:58 AM,664576,8.5.0.217
+File192=@craxdrt.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),2/11/05 11:00:20 PM,5206077,8.5.0.685
+File193=@craxddrt.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),2/9/01 11:17:40 PM,8646715,8.5.0.217
+File194=@scrrun.dll,$(WinSysPath),$(DLLSelfRegister),$(Shared),9/17/21 5:43:16 PM,186368,5.812.10240.16384
+File195=@msado28.tlb,$(WinSysPath),,$(Shared),12/7/19 2:40:02 PM,70656,6.2.19041.1
+File196=@mhfram32.ocx,$(WinSysPath),$(DLLSelfRegister),$(Shared),7/7/18 12:30:24 AM,58880,5.1.0.1
+File197=@shlwapi.dll,$(WinSysPath),,$(Shared),10/21/22 4:29:57 PM,276840,6.2.19041.2075
+File198=@EasyPublish.exe,$(AppPath),,,6/8/23 11:28:54 PM,19992576,23.1.0.18
+
+; The following lines may be deleted in order to obtain extra 
+; space for customizing this file on a full installation diskette.
+; 
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+; XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

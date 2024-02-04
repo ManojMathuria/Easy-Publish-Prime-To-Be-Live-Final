@@ -11,7 +11,7 @@ Begin VB.Form frmStockJournalVoucher
    Caption         =   "Stock Journal-Finished Goods"
    ClientHeight    =   8880
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   15675
    BeginProperty Font 
       Name            =   "Arial"
@@ -26,7 +26,6 @@ Begin VB.Form frmStockJournalVoucher
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8880
    ScaleWidth      =   15675
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -97,7 +96,6 @@ Begin VB.Form frmStockJournalVoucher
          TabPicture(1)   =   "StockJournalVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -431,8 +429,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07C3
-               Picture         =   "StockJournalVoucher.frx":07DF
+               Picture         =   "StockJournalVoucher.frx":080B
+               Picture         =   "StockJournalVoucher.frx":0827
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -459,8 +457,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":07FB
-               Picture         =   "StockJournalVoucher.frx":0817
+               Picture         =   "StockJournalVoucher.frx":0843
+               Picture         =   "StockJournalVoucher.frx":085F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -486,8 +484,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":0833
-               Picture         =   "StockJournalVoucher.frx":084F
+               Picture         =   "StockJournalVoucher.frx":087B
+               Picture         =   "StockJournalVoucher.frx":0897
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -513,8 +511,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":086B
-               Picture         =   "StockJournalVoucher.frx":0887
+               Picture         =   "StockJournalVoucher.frx":08B3
+               Picture         =   "StockJournalVoucher.frx":08CF
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -525,8 +523,8 @@ Begin VB.Form frmStockJournalVoucher
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournalVoucher.frx":08A3
-               Caption         =   "StockJournalVoucher.frx":09BB
+               Calendar        =   "StockJournalVoucher.frx":08EB
+               Caption         =   "StockJournalVoucher.frx":0A03
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -536,9 +534,9 @@ Begin VB.Form frmStockJournalVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournalVoucher.frx":0A27
-               Keys            =   "StockJournalVoucher.frx":0A45
-               Spin            =   "StockJournalVoucher.frx":0AA3
+               DropDown        =   "StockJournalVoucher.frx":0A6F
+               Keys            =   "StockJournalVoucher.frx":0A8D
+               Spin            =   "StockJournalVoucher.frx":0AEB
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -618,7 +616,7 @@ Begin VB.Form frmStockJournalVoucher
                GridColor       =   4227327
                MaxCols         =   6
                MaxRows         =   2000
-               SpreadDesigner  =   "StockJournalVoucher.frx":0ACB
+               SpreadDesigner  =   "StockJournalVoucher.frx":0B13
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -644,8 +642,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":1222
-               Picture         =   "StockJournalVoucher.frx":123E
+               Picture         =   "StockJournalVoucher.frx":12B2
+               Picture         =   "StockJournalVoucher.frx":12CE
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
@@ -671,8 +669,8 @@ Begin VB.Form frmStockJournalVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournalVoucher.frx":125A
-               Picture         =   "StockJournalVoucher.frx":1276
+               Picture         =   "StockJournalVoucher.frx":12EA
+               Picture         =   "StockJournalVoucher.frx":1306
             End
             Begin VB.Line Line3 
                X1              =   0
@@ -718,8 +716,8 @@ Begin VB.Form frmStockJournalVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "StockJournalVoucher.frx":1292
-            Picture         =   "StockJournalVoucher.frx":12AE
+            Picture         =   "StockJournalVoucher.frx":1322
+            Picture         =   "StockJournalVoucher.frx":133E
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -848,8 +846,10 @@ Dim igMaterialCentreCode As String, icMaterialCentreCode As String, MaterialCent
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
-    If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
+    'If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
+   ' Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    Me.Top = 1200
     WheelHook DataGrid1
     BusySystemIndicator True
     VchPrefix = "2010" '10-Stock affected
@@ -857,7 +857,7 @@ Private Sub Form_Load()
     rstStockJournalVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstStockJournalVoucherList
-        .Open "SELECT T.Code,T.Name,V.Name As VchSeriesName,Date,RIGHT(T.Type,2) As Type,M1.Name As igMaterialCentreName,M2.Name As icMaterialCentreName FROM ((JobworkBVParent T INNER JOIN AccountMaster M1 ON T.Party=M1.Code) INNER JOIN AccountMaster M2 ON T.MaterialCentre=M2.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnStockJournalVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Name As VchSeriesName,Date,RIGHT(T.Type,2) As Type,M1.Name As igMaterialCentreName,M2.Name As icMaterialCentreName FROM ((JobworkBVParent T INNER JOIN AccountMaster M1 ON T.Party=M1.Code) INNER JOIN AccountMaster M2 ON T.MaterialCentre=M2.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnStockJournalVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -867,9 +867,9 @@ Private Sub Form_Load()
         BusySystemIndicator False
         SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
         If Not (.EOF Or .BOF) Then
             With DataGrid1.SelBookmarks
@@ -1780,7 +1780,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
-                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Name As HSNName,I.HSNCode As HSNCode" & _
+                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
     
@@ -1789,7 +1789,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='20" & VchType & "' ORDER BY Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType ='20" & VchType & "' ORDER BY Name", cnStockJournalVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub DuplicateRecord()
@@ -1838,7 +1838,7 @@ Public Sub PrintStockJournalVoucher(ByVal VchCode As String, ByVal VchType As St
     If rstStockJournalVoucherChild.State = adStateOpen Then rstStockJournalVoucherChild.Close
     If DatabaseType = "MS SQL" Then
         rstStockJournalVoucherChild.Open "SELECT LTRIM(P.Name) As VchNo,P.[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.[PARTY]) As Godown,'FG ' AS Category,(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item)  As ItemName,CASE WHEN Quantity>=0 THEN 'Items Generated' ELSE 'Items Consumed' END As ItemType,Quantity,Remarks,'Piece' As UOMName, 'FG' As CategoryName FROM JobworkBVParent P INNER JOIN JobworkBVChild C ON P.Code=C.Code WHERE FYCode= " & FYCode & " AND P.Code='" & rstStockJournalVoucherList.Fields("Code").Value & "' ", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
-        rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode= " & FYCode & " ", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
+        rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode= " & FYCode & " FYCode='" & FYCode & "'", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
     Else
         rstStockJournalVoucherChild.Open "SELECT LTRIM(Name) As VchNo,[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Party) As Godown,'FG' as Category,(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item) As ItemName,IIF(C.Quantity>=0,'Items Generated','Items Consumed') As ItemType,C.Quantity,P.Remarks,'Piece' As UOMName, 'FG' As CategoryName FROM JobworkBVParent P Left Join JobworkBVChild C On (P.Code=C.Code And P.Code='" & rstStockJournalVoucherList.Fields("Code").Value & "' )", cnStockJournalVoucher, adOpenKeyset, adLockOptimistic
     End If

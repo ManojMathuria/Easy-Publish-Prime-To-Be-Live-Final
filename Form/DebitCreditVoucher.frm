@@ -12,8 +12,8 @@ Begin VB.Form frmDebitCreditVoucher
    Caption         =   "Voucher"
    ClientHeight    =   8835
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   19740
+   ClientTop       =   390
+   ClientWidth     =   17715
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -25,20 +25,18 @@ Begin VB.Form frmDebitCreditVoucher
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8835
-   ScaleWidth      =   19740
+   ScaleWidth      =   17715
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
       Height          =   8820
-      Left            =   15
-      TabIndex        =   0
+      Left            =   -105
+      TabIndex        =   25
       TabStop         =   0   'False
       Top             =   0
-      Width           =   19710
+      Width           =   19830
       _Version        =   65536
-      _ExtentX        =   34766
+      _ExtentX        =   34978
       _ExtentY        =   15557
       _StockProps     =   77
       BackColor       =   16776946
@@ -60,14 +58,122 @@ Begin VB.Form frmDebitCreditVoucher
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "DebitCreditVoucher.frx":0000
+      Begin VB.CommandButton AddPayment 
+         Caption         =   "Alt+ F5>> Add Payment"
+         BeginProperty Font 
+            Name            =   "Calibri Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   300
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         Left            =   17040
+         TabIndex        =   17
+         Top             =   420
+         Visible         =   0   'False
+         Width           =   2655
+      End
+      Begin VB.CommandButton AddReceipt 
+         Caption         =   " Alt+ F6>> Add Receipt"
+         BeginProperty Font 
+            Name            =   "Calibri Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   300
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         Left            =   17040
+         TabIndex        =   18
+         Top             =   780
+         Visible         =   0   'False
+         Width           =   2655
+      End
+      Begin VB.CommandButton AddJournal 
+         Caption         =   " Alt+ F7>> Add Journal"
+         BeginProperty Font 
+            Name            =   "Calibri Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   300
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         Left            =   17040
+         TabIndex        =   19
+         Top             =   1140
+         Visible         =   0   'False
+         Width           =   2655
+      End
+      Begin VB.CommandButton AddDebitNote 
+         Caption         =   "  Ctrl+ F6>> Add Debit Note"
+         BeginProperty Font 
+            Name            =   "Calibri Light"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   300
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         Left            =   17040
+         TabIndex        =   21
+         Top             =   1860
+         Visible         =   0   'False
+         Width           =   2655
+      End
+      Begin VB.CommandButton AddCountra 
+         Caption         =   " Ctrl+ F5>> Add Countra"
+         BeginProperty Font 
+            Name            =   "Calibri Light"
+            Size            =   12
+            Charset         =   0
+            Weight          =   300
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         Left            =   17040
+         TabIndex        =   20
+         Top             =   1500
+         Visible         =   0   'False
+         Width           =   2655
+      End
+      Begin VB.CommandButton AddCreditNote 
+         Caption         =   "  Ctrl+ F7>> Add Credit Note"
+         BeginProperty Font 
+            Name            =   "Calibri Light"
+            Size            =   11.25
+            Charset         =   0
+            Weight          =   300
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   345
+         Left            =   17040
+         TabIndex        =   22
+         Top             =   2220
+         Visible         =   0   'False
+         Width           =   2655
+      End
       Begin TabDlg.SSTab SSTab1 
          Height          =   8595
          Left            =   120
-         TabIndex        =   2
+         TabIndex        =   27
          TabStop         =   0   'False
          Top             =   120
-         Width           =   19485
-         _ExtentX        =   34369
+         Width           =   17625
+         _ExtentX        =   31089
          _ExtentY        =   15161
          _Version        =   393216
          Style           =   1
@@ -88,56 +194,25 @@ Begin VB.Form frmDebitCreditVoucher
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Label1"
          Tab(0).Control(0).Enabled=   0   'False
-         Tab(0).Control(1)=   "Mh3dLabel1(2)"
+         Tab(0).Control(1)=   "Toolbar2"
          Tab(0).Control(1).Enabled=   0   'False
-         Tab(0).Control(2)=   "DataGrid1"
+         Tab(0).Control(2)=   "Mh3dLabel1(2)"
          Tab(0).Control(2).Enabled=   0   'False
-         Tab(0).Control(3)=   "Text1"
+         Tab(0).Control(3)=   "DataGrid1"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).ControlCount=   4
+         Tab(0).Control(4)=   "Text1"
+         Tab(0).Control(4).Enabled=   0   'False
+         Tab(0).ControlCount=   5
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "DebitCreditVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "txtAccount"
          Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "txtNotes"
-         Tab(1).Control(1).Enabled=   0   'False
-         Tab(1).Control(2)=   "btnNotes"
-         Tab(1).Control(2).Enabled=   0   'False
-         Tab(1).Control(3)=   "txtAccount"
-         Tab(1).Control(3).Enabled=   0   'False
+         Tab(1).Control(1)=   "btnNotes"
+         Tab(1).Control(2)=   "txtNotes"
+         Tab(1).Control(3)=   "Mh3dFrame2"
          Tab(1).Control(4)=   "Mh3dLabel1(1)"
-         Tab(1).Control(4).Enabled=   0   'False
          Tab(1).ControlCount=   5
-         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
-            Height          =   570
-            Index           =   1
-            Left            =   -61560
-            TabIndex        =   23
-            Top             =   480
-            Width           =   5895
-            _Version        =   65536
-            _ExtentX        =   10398
-            _ExtentY        =   1005
-            _StockProps     =   77
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "Calibri"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            TintColor       =   16711935
-            Caption         =   " Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete-Row F8->Delete-Row  Ctrl+S->Save F2->Save  F12->Duplicate"
-            AutoSize        =   -1  'True
-            FillColor       =   8421504
-            TextColor       =   16777215
-            Picture         =   "DebitCreditVoucher.frx":0054
-            Multiline       =   -1  'True
-            Picture         =   "DebitCreditVoucher.frx":0070
-         End
          Begin VB.TextBox txtAccount 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -155,7 +230,8 @@ Begin VB.Form frmDebitCreditVoucher
             Left            =   -61560
             MaxLength       =   40
             MultiLine       =   -1  'True
-            TabIndex        =   22
+            TabIndex        =   16
+            TabStop         =   0   'False
             ToolTipText     =   "Open Notes"
             Top             =   7320
             Visible         =   0   'False
@@ -174,7 +250,7 @@ Begin VB.Form frmDebitCreditVoucher
             EndProperty
             Height          =   345
             Left            =   -61560
-            TabIndex        =   21
+            TabIndex        =   6
             Top             =   8070
             Width           =   1455
          End
@@ -216,18 +292,18 @@ Begin VB.Form frmDebitCreditVoucher
             Height          =   330
             Left            =   1080
             MaxLength       =   40
-            TabIndex        =   4
+            TabIndex        =   0
             Top             =   8180
-            Width           =   9900
+            Width           =   7380
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
-            Bindings        =   "DebitCreditVoucher.frx":008C
+            Bindings        =   "DebitCreditVoucher.frx":0054
             Height          =   7665
             Left            =   120
-            TabIndex        =   3
+            TabIndex        =   28
             Top             =   450
-            Width           =   19260
-            _ExtentX        =   33973
+            Width           =   17385
+            _ExtentX        =   30665
             _ExtentY        =   13520
             _Version        =   393216
             AllowUpdate     =   0   'False
@@ -375,7 +451,7 @@ Begin VB.Form frmDebitCreditVoucher
                BeginProperty Column03 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   5504.882
+                  ColumnWidth     =   4995.213
                EndProperty
                BeginProperty Column04 
                   Alignment       =   1
@@ -389,15 +465,15 @@ Begin VB.Form frmDebitCreditVoucher
                BeginProperty Column06 
                   ColumnAllowSizing=   0   'False
                   Locked          =   -1  'True
-                  ColumnWidth     =   5699.906
+                  ColumnWidth     =   4334.74
                EndProperty
             EndProperty
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   2
-            Left            =   11085
-            TabIndex        =   6
+            Left            =   8500
+            TabIndex        =   10
             Top             =   8175
             Width           =   8295
             _Version        =   65536
@@ -418,13 +494,13 @@ Begin VB.Form frmDebitCreditVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "DebitCreditVoucher.frx":009C
-            Picture         =   "DebitCreditVoucher.frx":00B8
+            Picture         =   "DebitCreditVoucher.frx":0064
+            Picture         =   "DebitCreditVoucher.frx":0080
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
             Height          =   7935
             Left            =   -74880
-            TabIndex        =   8
+            TabIndex        =   29
             TabStop         =   0   'False
             Top             =   480
             Width           =   13260
@@ -451,7 +527,7 @@ Begin VB.Form frmDebitCreditVoucher
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "DebitCreditVoucher.frx":00D4
+            Picture         =   "DebitCreditVoucher.frx":009C
             Begin VB.TextBox Text4 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -468,7 +544,7 @@ Begin VB.Form frmDebitCreditVoucher
                Height          =   570
                Left            =   1740
                MaxLength       =   100
-               TabIndex        =   14
+               TabIndex        =   5
                Top             =   7210
                Width           =   11415
             End
@@ -489,7 +565,7 @@ Begin VB.Form frmDebitCreditVoucher
                Height          =   390
                Left            =   7500
                MaxLength       =   25
-               TabIndex        =   13
+               TabIndex        =   2
                Top             =   105
                Width           =   1830
             End
@@ -511,14 +587,14 @@ Begin VB.Form frmDebitCreditVoucher
                Left            =   1320
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   9
+               TabIndex        =   1
                Top             =   105
                Width           =   1890
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   525
                Left            =   120
-               TabIndex        =   10
+               TabIndex        =   11
                Top             =   6420
                Width           =   13035
                _Version        =   65536
@@ -539,20 +615,19 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":00F0
-               Picture         =   "DebitCreditVoucher.frx":010C
+               Picture         =   "DebitCreditVoucher.frx":00B8
+               Picture         =   "DebitCreditVoucher.frx":00D4
                Begin TDBNumber6Ctl.TDBNumber MhRealInput1 
                   Height          =   525
                   Left            =   5910
-                  TabIndex        =   11
-                  TabStop         =   0   'False
+                  TabIndex        =   8
                   Top             =   0
                   Width           =   1470
                   _Version        =   65536
                   _ExtentX        =   2593
                   _ExtentY        =   926
-                  Calculator      =   "DebitCreditVoucher.frx":0128
-                  Caption         =   "DebitCreditVoucher.frx":0148
+                  Calculator      =   "DebitCreditVoucher.frx":00F0
+                  Caption         =   "DebitCreditVoucher.frx":0110
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   12
@@ -562,9 +637,9 @@ Begin VB.Form frmDebitCreditVoucher
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "DebitCreditVoucher.frx":01B4
-                  Keys            =   "DebitCreditVoucher.frx":01D2
-                  Spin            =   "DebitCreditVoucher.frx":021C
+                  DropDown        =   "DebitCreditVoucher.frx":017C
+                  Keys            =   "DebitCreditVoucher.frx":019A
+                  Spin            =   "DebitCreditVoucher.frx":01E4
                   AlignHorizontal =   1
                   AlignVertical   =   2
                   Appearance      =   0
@@ -603,15 +678,14 @@ Begin VB.Form frmDebitCreditVoucher
                Begin TDBNumber6Ctl.TDBNumber MhRealInput2 
                   Height          =   525
                   Left            =   7365
-                  TabIndex        =   12
-                  TabStop         =   0   'False
+                  TabIndex        =   9
                   Top             =   0
                   Width           =   1470
                   _Version        =   65536
                   _ExtentX        =   2593
                   _ExtentY        =   926
-                  Calculator      =   "DebitCreditVoucher.frx":0244
-                  Caption         =   "DebitCreditVoucher.frx":0264
+                  Calculator      =   "DebitCreditVoucher.frx":020C
+                  Caption         =   "DebitCreditVoucher.frx":022C
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                      Name            =   "Calibri"
                      Size            =   12
@@ -621,9 +695,9 @@ Begin VB.Form frmDebitCreditVoucher
                      Italic          =   0   'False
                      Strikethrough   =   0   'False
                   EndProperty
-                  DropDown        =   "DebitCreditVoucher.frx":02D0
-                  Keys            =   "DebitCreditVoucher.frx":02EE
-                  Spin            =   "DebitCreditVoucher.frx":0338
+                  DropDown        =   "DebitCreditVoucher.frx":0298
+                  Keys            =   "DebitCreditVoucher.frx":02B6
+                  Spin            =   "DebitCreditVoucher.frx":0300
                   AlignHorizontal =   1
                   AlignVertical   =   2
                   Appearance      =   0
@@ -663,7 +737,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   390
                Left            =   6060
-               TabIndex        =   15
+               TabIndex        =   13
                Top             =   105
                Width           =   1470
                _Version        =   65536
@@ -684,13 +758,13 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0360
-               Picture         =   "DebitCreditVoucher.frx":037C
+               Picture         =   "DebitCreditVoucher.frx":0328
+               Picture         =   "DebitCreditVoucher.frx":0344
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   570
                Left            =   120
-               TabIndex        =   16
+               TabIndex        =   15
                Top             =   7210
                Width           =   1695
                _Version        =   65536
@@ -711,20 +785,20 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0398
-               Picture         =   "DebitCreditVoucher.frx":03B4
+               Picture         =   "DebitCreditVoucher.frx":0360
+               Picture         =   "DebitCreditVoucher.frx":037C
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   390
                Left            =   11460
-               TabIndex        =   17
+               TabIndex        =   3
                Top             =   105
                Width           =   1695
                _Version        =   65536
                _ExtentX        =   2990
                _ExtentY        =   688
-               Calendar        =   "DebitCreditVoucher.frx":03D0
-               Caption         =   "DebitCreditVoucher.frx":04E8
+               Calendar        =   "DebitCreditVoucher.frx":0398
+               Caption         =   "DebitCreditVoucher.frx":04B0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   11.25
@@ -734,9 +808,9 @@ Begin VB.Form frmDebitCreditVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "DebitCreditVoucher.frx":0554
-               Keys            =   "DebitCreditVoucher.frx":0572
-               Spin            =   "DebitCreditVoucher.frx":05D0
+               DropDown        =   "DebitCreditVoucher.frx":051C
+               Keys            =   "DebitCreditVoucher.frx":053A
+               Spin            =   "DebitCreditVoucher.frx":0598
                AlignHorizontal =   2
                AlignVertical   =   0
                Appearance      =   0
@@ -779,7 +853,7 @@ Begin VB.Form frmDebitCreditVoucher
             Begin FPSpreadADO.fpSpread fpSpread1 
                Height          =   5715
                Left            =   120
-               TabIndex        =   18
+               TabIndex        =   4
                Top             =   750
                Width           =   13035
                _Version        =   524288
@@ -801,14 +875,14 @@ Begin VB.Form frmDebitCreditVoucher
                MaxCols         =   7
                MaxRows         =   1000
                ScrollBars      =   2
-               SpreadDesigner  =   "DebitCreditVoucher.frx":05F8
+               SpreadDesigner  =   "DebitCreditVoucher.frx":05C0
                VisibleCols     =   6
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   390
                Index           =   0
                Left            =   10260
-               TabIndex        =   19
+               TabIndex        =   14
                Top             =   105
                Width           =   1215
                _Version        =   65536
@@ -829,13 +903,13 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0DCB
-               Picture         =   "DebitCreditVoucher.frx":0DE7
+               Picture         =   "DebitCreditVoucher.frx":0DDB
+               Picture         =   "DebitCreditVoucher.frx":0DF7
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   390
                Left            =   120
-               TabIndex        =   20
+               TabIndex        =   12
                Top             =   105
                Width           =   1215
                _Version        =   65536
@@ -856,8 +930,8 @@ Begin VB.Form frmDebitCreditVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "DebitCreditVoucher.frx":0E03
-               Picture         =   "DebitCreditVoucher.frx":0E1F
+               Picture         =   "DebitCreditVoucher.frx":0E13
+               Picture         =   "DebitCreditVoucher.frx":0E2F
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -871,6 +945,127 @@ Begin VB.Form frmDebitCreditVoucher
                Y1              =   7080
                Y2              =   7080
             End
+         End
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+            Height          =   810
+            Index           =   1
+            Left            =   -61485
+            TabIndex        =   23
+            Top             =   480
+            Width           =   3975
+            _Version        =   65536
+            _ExtentX        =   7011
+            _ExtentY        =   1429
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete-Row F8->Delete-Row  Ctrl+S->Save F2->Save  F12->Duplicate"
+            AutoSize        =   -1  'True
+            FillColor       =   8421504
+            TextColor       =   16777215
+            Picture         =   "DebitCreditVoucher.frx":0E4B
+            Multiline       =   -1  'True
+            Picture         =   "DebitCreditVoucher.frx":0E67
+         End
+         Begin MSComctlLib.Toolbar Toolbar2 
+            Height          =   13170
+            Left            =   0
+            TabIndex        =   24
+            Top             =   0
+            Width           =   30
+            _ExtentX        =   53
+            _ExtentY        =   23230
+            ButtonWidth     =   3625
+            ButtonHeight    =   1005
+            AllowCustomize  =   0   'False
+            Appearance      =   1
+            _Version        =   393216
+            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+               NumButtons      =   23
+               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "F1 >> Help "
+                  Key             =   "F1"
+                  Object.ToolTipText     =   "F1 >> Help"
+                  Object.Tag             =   "F!"
+               EndProperty
+               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F1 >> Add Account "
+                  Key             =   "Alt+F1"
+                  Object.ToolTipText     =   "Alt+F1 >> Add Account "
+               EndProperty
+               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F2 >>Add Item "
+                  Key             =   "Alt+F2"
+                  Object.ToolTipText     =   "Alt+F2 >>Add Item "
+               EndProperty
+               BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F5 >>Add Payment "
+                  Key             =   "Alt+F5"
+                  Object.ToolTipText     =   "Alt+F5 >>Add Payment "
+               EndProperty
+               BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F6 >>Add Receipt "
+                  Key             =   "Alt+F6"
+                  Object.ToolTipText     =   "Alt+F6 >>Add Receipt "
+               EndProperty
+               BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Alt+F7 >>Add Journal "
+                  Key             =   "Alt+F7"
+                  Object.ToolTipText     =   "Alt+F7 >>Add Journal"
+               EndProperty
+               BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Ctrl+F5 >>Add Countra "
+                  Key             =   "Ctrl+F5"
+                  Object.ToolTipText     =   "Ctrl+F5 >>Add Countra "
+               EndProperty
+               BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Ctrl+F6 >>Add Debit "
+                  Key             =   "Ctrl+F6"
+                  Object.ToolTipText     =   "Ctrl+F6 >>Add DebitNote"
+               EndProperty
+               BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "Ctrl+F7 >>Add Credit "
+                  Key             =   "Ctrl+F7"
+                  Object.ToolTipText     =   "Ctrl+F7 >>Add Credit "
+               EndProperty
+               BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button22 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               EndProperty
+               BeginProperty Button23 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Caption         =   "F10>> Calculator "
+               EndProperty
+            EndProperty
          End
          Begin VB.Label Label1 
             Alignment       =   2  'Center
@@ -890,7 +1085,7 @@ Begin VB.Form frmDebitCreditVoucher
             ForeColor       =   &H80000008&
             Height          =   330
             Left            =   120
-            TabIndex        =   5
+            TabIndex        =   30
             Top             =   8175
             Width           =   975
          End
@@ -900,10 +1095,10 @@ Begin VB.Form frmDebitCreditVoucher
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   1
+      TabIndex        =   26
       Top             =   0
-      Width           =   19740
-      _ExtentX        =   34819
+      Width           =   17715
+      _ExtentX        =   31247
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -997,6 +1192,96 @@ Dim rstDebitCreditVoucherList As New ADODB.Recordset, rstDebitCreditVoucherParen
 Dim VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, AccountCode As String ', MaterialCentreCode As String, TaxCode As String
 Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, oDCFlag As Integer
 Dim oDebit As Variant, oCredit As Variant, dDCFlag As Long
+Private Sub AddPayment_Click()
+If EditMode Then
+    If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then
+        Me.ActiveControl.SetFocus
+    End If
+Else
+    If VchType = "PI" Then Exit Sub
+    CloseForm Me
+    frmDebitCreditVoucher.VchType = "PI"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(1)
+    Exit Sub
+End If
+End Sub
+Private Sub AddReceipt_Click()
+If EditMode Then
+    If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then
+        Me.ActiveControl.SetFocus
+    End If
+Else
+    If VchType = "PR" Then Exit Sub
+    CloseForm Me
+    frmDebitCreditVoucher.VchType = "PR"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(1)
+    Exit Sub
+End If
+End Sub
+Private Sub AddJournal_Click()
+If EditMode Then
+    If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then
+        Me.ActiveControl.SetFocus
+    End If
+Else
+    If VchType = "JE" Then Exit Sub
+    CloseForm Me
+    frmDebitCreditVoucher.VchType = "JE"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(1)
+    Exit Sub
+End If
+End Sub
+Private Sub AddCountra_Click()
+If EditMode Then
+    If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then
+        Me.ActiveControl.SetFocus
+    End If
+Else
+    If VchType = "CE" Then Exit Sub
+    CloseForm Me
+    frmDebitCreditVoucher.VchType = "CE"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(1)
+    Exit Sub
+End If
+End Sub
+Private Sub AddDebitNote_Click()
+If EditMode Then
+    If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then
+        Me.ActiveControl.SetFocus
+    End If
+Else
+    If VchType = "DN" Then Exit Sub
+    CloseForm Me
+    frmDebitCreditVoucher.VchType = "DN"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(1)
+    Exit Sub
+End If
+End Sub
+Private Sub AddCreditNote_Click()
+If EditMode Then
+    If MsgBox("Are you sure to Quit?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Quit !") <> vbYes Then
+        Me.ActiveControl.SetFocus
+    End If
+Else
+    If VchType = "CN" Then Exit Sub
+    CloseForm Me
+    frmDebitCreditVoucher.VchType = "CN"
+    Load frmDebitCreditVoucher
+    If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+    frmDebitCreditVoucher.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(1)
+    Exit Sub
+End If
+End Sub
 Private Sub btnNotes_Click()
     frmNotes.NotesFlag = 3
     frmNotes.Label1.Caption = "Notes : Voucher No.: " & Text2.Text
@@ -1005,6 +1290,8 @@ End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    Me.Left = 120
+    Me.Top = 1200
     WheelHook DataGrid1
     BusySystemIndicator True
         Dim Cols As Long, C As Long
@@ -1017,20 +1304,38 @@ Private Sub Form_Load()
     Me.Caption = IIf(VchType = "PI", "Payment Voucher", IIf(VchType = "PR", "Receipt Voucher", IIf(VchType = "JE", "Journal Voucher", IIf(VchType = "CE", "Contra Voucher", IIf(VchType = "DN", "Debit Note Voucher", "Credit Note Voucher")))))
     VchPrefix = IIf(VchType = "PI", "51", IIf(VchType = "PR", "52", IIf(VchType = "JE", "53", IIf(VchType = "CE", "54", IIf(VchType = "DN", "55", "56"))))) & IIf(VchType = "CE", "10", "01") '10-Contra not affected 01-affected
     DataGrid1.Caption = IIf(VchType = "PI", "List of Payment Vouchers", IIf(VchType = "PR", "List of Receipt Vouchers", IIf(VchType = "53", "List of Journal Vouchers", IIf(VchType = "54", "List of Contra Vouchers", IIf(VchType = "55", "List of Debit Note Vouchers", "List of Credit Note Vouchers")))))
-    cnDebitCreditVoucher.CursorLocation = adUseClient: cnDebitCreditVoucher.Open cnDatabase.ConnectionString
+    cnDebitCreditVoucher.CursorLocation = adUseClient
+    
+    If cnDebitCreditVoucher.State Then cnDebitCreditVoucher.Close
+    cnDebitCreditVoucher.Open cnDatabase.ConnectionString
+    
     rstDebitCreditVoucherParent.CursorLocation = adUseClient
     LoadMasterList
+    
     With rstDebitCreditVoucherList
-        .Open "SELECT T.Code As Code,T.Name,V.Name As VchSeriesName,Date,A.Name As Account, C.Debit,C.Credit,ShortNarration,T.Type FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.CODE", cnDebitCreditVoucher, adOpenKeyset, adLockPessimistic
+    If rstDebitCreditVoucherList.State Then rstDebitCreditVoucherList.Close
+        .Open "SELECT T.Code As Code,T.Name,V.Name As VchSeriesName,Date,A.Name As Account, C.Debit,C.Credit,ShortNarration,T.Type FROM DebitCreditParent T LEFT JOIN DebitCreditChild C On C.Code=T.Code LEFT JOIN VchSeriesMaster V ON T.VchSeries=V.Code LEFT JOIN AccountMaster A On C.Account=A.Code WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.CODE", cnDebitCreditVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
             If Not CheckEmpty(VchCode, False) Then .MoveFirst: .Find "[Code]='" & VchCode & "'"
         End If
-        Set DataGrid1.DataSource = rstDebitCreditVoucherList
+
+''        Set DataGrid1.DataSource = rstDebitCreditVoucherList
+
+If rstDebitCreditVoucherList.State = adStateOpen And Not rstDebitCreditVoucherList.EOF Then
+    Set DataGrid1.DataSource = rstDebitCreditVoucherList
+Else
+    ' Handle the case where the recordset is not in a valid state.
+End If
+
         BusySystemIndicator False
         SSTab1.Tab = 0
+    If FrmAccountLedger.dSortBy = True Then
+        SortOrder = "Code"
+    Else
         SortOrder = "Name"
+    End If
         If Not (.EOF Or .BOF) Then
             With DataGrid1.SelBookmarks
                 If .Count <> 0 Then .Remove 0
@@ -1081,12 +1386,14 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
             KeyCode = 0
         ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyD) Or (Shift = 0 And KeyCode = vbKeyF8)) And .Item(3).Enabled Then
             Toolbar1_ButtonClick .Item(3)
+            Toolbar1_ButtonClick .Item(6)
             KeyCode = 0
         ElseIf ((Shift = vbCtrlMask And KeyCode = vbKeyS) Or (Shift = 0 And KeyCode = vbKeyF2)) And .Item(4).Enabled Then 'Save
             If MhRealInput1.Value <> MhRealInput2.Value Then
             If MsgBox("Variation in Debit (" & MhRealInput1 & ") and Credit (" & MhRealInput2 & ") !!! Change?", vbCritical, "Confirm Change !") = vbYes Then fpSpread1.SetFocus: Exit Sub
             Else
             If Not EditMode Then Toolbar1_ButtonClick .Item(4)
+            Toolbar1_ButtonClick .Item(6)
             KeyCode = 0
             End If
         ElseIf Shift = 0 And KeyCode = vbKeyF5 And .Item(6).Enabled Then
@@ -1123,6 +1430,32 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
                If Me.ActiveControl.Name <> "fpSpread1" Then Sendkeys "{TAB}"
             End If
             If Me.ActiveControl.Name <> "fpSpread1" Then KeyCode = 0
+        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF5 Then
+            'AddPayment_Click
+            Toolbar2_ButtonClick .Item(6)
+            KeyCode = 0
+        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF6 Then
+            'AddReceipt_Click
+            Toolbar2_ButtonClick .Item(7)
+            KeyCode = 0
+        ElseIf Shift = vbCtrlMask And KeyCode = vbKeyF7 Then
+            Toolbar2_ButtonClick .Item(8)
+            'AddJournal_Click
+            KeyCode = 0
+        ElseIf Shift = vbShiftMask And KeyCode = vbKeyF5 Then
+            'AddCountra_Click
+            Toolbar2_ButtonClick .Item(9)
+            KeyCode = 0
+        ElseIf Shift = vbShiftMask And KeyCode = vbKeyF6 Then
+            Toolbar2_ButtonClick .Item(10)
+            'AddDebitNote_Click
+            KeyCode = 0
+        ElseIf Shift = vbShiftMask And KeyCode = vbKeyF7 Then
+        Toolbar2_ButtonClick .Item(11)
+            'AddCreditNote_Click
+            KeyCode = 0
+        ElseIf Shift = 0 And KeyCode = vbKeyF10 Then
+            Shell "calc.exe", vbNormalFocus
         End If
     End With
 End Sub
@@ -1220,6 +1553,7 @@ Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
     End With
 End Sub
 Private Sub SSTab1_Click(PreviousTab As Integer)
+    On Error Resume Next
     If Toolbar1.Buttons.Item(1).Enabled Then 'Add Button Enabled
         If SSTab1.Tab = 1 Then
             ViewRecord
@@ -1509,9 +1843,12 @@ End Sub
 Private Sub MhDateInput1_Validate(Cancel As Boolean)    'Vch Date
     If Not IsDate(GetDate(MhDateInput1.Text)) Then
         Cancel = True
+        Sendkeys "{ENTER}"
     ElseIf Format(GetDate(MhDateInput1.Text), "yyyymmdd") < Format(FinancialYearFrom, "yyyymmdd") Or Format(GetDate(MhDateInput1.Text), "yyyymmdd") > Format(FinancialYearTo, "yyyymmdd") Then
         Cancel = True
+        Sendkeys "{ENTER}"
     End If
+    Sendkeys "{ENTER}"
 End Sub
 Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
 '    If KeyCode = vbKeySpace Then
@@ -1605,7 +1942,7 @@ Private Sub ClearFields()
     Text2.Text = "" 'Vch No.
     MhDateInput1.Text = Format(Date, "dd-MM-yyyy")
     Text4.Text = "" 'Remarks
-    fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 1, 1
+    fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 0, 1
     MhRealInput1.Value = 0
     MhRealInput2.Value = 0
      VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = "": AccountCode = "":
@@ -1725,7 +2062,7 @@ Private Sub LoadItemList(ByVal strOrderCode As String)
     On Error GoTo ErrorHandler
     With rstDebitCreditVoucherChild
         If .State = adStateOpen Then .Close
-        .Open "SELECT T.Code,TOA,A.Code As AccountCode,A.Name As AccountName,(T.Debit) As Debit,(T.Credit) As Credit,T.ShortNarration,T.RefCode,T.SrNo FROM DebitCreditChild T INNER JOIN AccountMaster A ON T.Account=A.Code WHERE T.Code='" & strOrderCode & "'  ORDER BY SrNo", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
+        .Open "SELECT T.Code,TOA,A.Code As AccountCode,IIF(A.Name<>A.PrintName,A.Name+' '+A.PrintName,A.Name) As AccountName,(T.Debit) As Debit,(T.Credit) As Credit,T.ShortNarration,T.RefCode,T.SrNo FROM DebitCreditChild T INNER JOIN AccountMaster A ON T.Account=A.Code WHERE T.Code='" & strOrderCode & "'  ORDER BY SrNo", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
         .ActiveConnection = Nothing
         If .RecordCount > 0 Then .MoveFirst
         i = 0
@@ -1919,7 +2256,8 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
         ElseIf Col = 5 Then  'TOA
         .GetText 1, .ActiveRow + 1, cVal(1) 'Next Row TOA
             If dDCFlag = 0 Then
-            fpSpread1.SetActiveCell .ActiveCol, .ActiveRow: Text4.SetFocus
+            'fpSpread1.SetActiveCell .ActiveCol, .ActiveRow: Text4.SetFocus
+            Text4.SetFocus: fpSpread1.SetActiveCell 0, .ActiveRow + 1
             ElseIf dDCFlag <= 0 And cVal(1) = "" Then
                 .SetText 1, Row + 1, "D": .SetActiveCell 2, .ActiveRow + 1: CalculateTotal
             ElseIf dDCFlag > 0 And cVal(1) = "" Then
@@ -2035,7 +2373,7 @@ Public Sub PrintDebitCreditVoucher(ByVal VchCode As String, ByVal VchType As Str
 End Sub
 Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
-    rstAccountList.Open "SELECT Name As Col0,Code FROM AccountMaster Where [Group] NOT IN ('*26007','*26004') ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
+    rstAccountList.Open "SELECT IIF(Name<>PrintName,Name+' '+PrintName,Name) As Col0,Code FROM AccountMaster Where [Group] NOT IN ('*26007','*26004') ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     
     If rstSelfAccountList.State = adStateOpen Then rstSelfAccountList.Close
@@ -2047,6 +2385,27 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstJEAccountList.ActiveConnection = Nothing
     
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & IIf(VchType = "PI", "51", IIf(VchType = "PR", "52", IIf(VchType = "JE", "53", IIf(VchType = "CE", "54", IIf(VchType = "CN", "55", "56"))))) & VchType & "' ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType= '" & IIf(VchType = "PI", "51", IIf(VchType = "PR", "52", IIf(VchType = "JE", "53", IIf(VchType = "CE", "54", IIf(VchType = "CN", "55", "56"))))) & VchType & "' ORDER BY Name", cnDebitCreditVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
+Private Sub Toolbar2_ButtonClick(ByVal Button As MSComctlLib.Button)
+    On Error Resume Next
+    If Button.Index = 1 Then
+        'MnuHelp_Click (1)
+    ElseIf Button.Index >= 6 And Button.Index <= 11 Then
+        If Me.Name <> "frmDebitCreditVoucher" Then
+            frmDebitCreditVoucher.VchType = Choose(Button.Index - 5, "PI", "PR", "JE", "CE", "DN", "CN")
+            Load frmDebitCreditVoucher
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        Else
+            Call CloseForm(frmDebitCreditVoucher)
+            frmDebitCreditVoucher.VchType = Choose(Button.Index - 5, "PI", "PR", "JE", "CE", "DN", "CN")
+            Load frmDebitCreditVoucher
+            If Err.Number <> 364 Then frmDebitCreditVoucher.Show
+            frmDebitCreditVoucher.Toolbar1_ButtonClick frmDebitCreditVoucher.Toolbar1.Buttons.Item(1)
+        End If
+    
+    End If
+End Sub
+

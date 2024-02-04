@@ -1,0 +1,13 @@
+MdiMainMenu = 104, 101, 915, 554, , 26, 26, 837, 476, C
+FrmChangePassword = 52, 52, 901, 506, C, 156, 156, 967, 606, C
+FrmCompanyList = 156, 156, 970, 522, C, 182, 182, 993, 632, C
+FrmLogin = 78, 78, 947, 560, C, 208, 208, 1019, 658, C
+FrmSelectionList = -209, 188, 977, 545, C, 0, 0, 811, 450, C
+FrmUserMaster = 0, 0, 901, 357, C, 26, 26, 837, 476, C
+ModUserDefinedFunctions = 52, 52, 872, 502, 
+clsBlowFish = 0, 0, 901, 357, C
+clsHuffman = 52, 52, 904, 526, C
+clsRegistry = 78, 78, 890, 435, C
+FrmFilter = 52, 52, 512, 534, C, 52, 52, 863, 502, C
+FrmPaperMaster = 26, 26, 927, 383, , 78, 78, 889, 528, C
+FrmGeneralMaster = 26, 26, 927, 383, C, 104, 104, 915, 554, C

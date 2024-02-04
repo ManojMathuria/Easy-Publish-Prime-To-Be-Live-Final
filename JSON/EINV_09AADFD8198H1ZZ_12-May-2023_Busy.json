@@ -1,0 +1,132 @@
+	[
+		{
+		"Version":"1.1",
+		"TranDtls":
+			{
+			"TaxSch":"GST",
+			"SupTyp":"B2B",
+			"IgstOnIntra":"N",
+			"RegRev":"N",
+			"EcmGstin":null
+			},
+
+		"DocDtls":
+			{
+			"Typ":"INV",
+			"No":"DTC/0158/23-24",
+			"Dt":"12/05/2023"
+			},
+		"SellerDtls":
+			{
+			"Gstin":"09AADFD8198H1ZZ",
+			"LglNm":"M/S Deep Trading Company NOIDA",
+			"TrdNm":"M/S Deep Trading Company NOIDA",
+			"Addr1":"H-203 Sector-63 NOIDA - 201301",
+			"Addr2":"TIN 09766200848",
+			"Loc":"Utter Pradesh",
+			"Pin":201301,
+			"Stcd":"09",
+			"Ph":null,
+			"Em":null
+			},
+		"BuyerDtls":
+			{
+			"Gstin":"07AABCF8475E1ZJ",
+			"LglNm":"ORANGE HOUSE PVT LTD",
+			"TrdNm":"ORANGE HOUSE PVT LTD",
+			"Pos":"07",
+			"Addr1":"9 PART OF 2ND FLOOR BASEMENT AND 3RD FLOOR NEAR LIC OFFICE",
+			"Addr2":"DARYAGANJ Delhi 110002",
+			"Loc":"DARYAGANJ",
+			"Pin":110002,
+			"Stcd":"07",
+			"Ph":null,
+			"Em":null
+			},
+		"DispDtls":null,
+		"ShipDtls":null,
+		"ValDtls":
+			{
+			"AssVal":15000,
+			"IgstVal":750,
+			"CgstVal":0,
+			"SgstVal":0,
+			"CesVal":0,
+			"StCesVal":0,
+			"Discount":0,
+			"OthChrg":0,
+			"RndOffAmt":0,
+			"TotInvVal":15750
+			},
+		"ExpDtls":
+			{
+			"ShipBNo":null,
+			"ShipBDt":null,
+			"Port":null,
+			"RefClm":null,
+			"ForCur":null,
+			"CntCode":null,
+			"ExpDuty":0
+			},
+		"EwbDtls":null,
+		"ItemList":
+			[
+				{
+				"SlNo":"1",
+				"PrdDesc":"BOOK AFTER JOB WORK 998832",
+				"IsServc":"Y",
+				"HsnCd":"998832",
+				"Barcde":null,
+				"Qty":500,
+				"FreeQty":0,
+				"Unit":"NOS",
+				"UnitPrice":30,
+				"TotAmt":15000,
+				"Discount":0,
+				"PreTaxVal":0,
+				"AssAmt":15000,
+				"GstRt":5,
+				"IgstAmt":750,
+				"CgstAmt":0,
+				"SgstAmt":0,
+				"CesRt":0,
+				"CesAmt":0,
+				"CesNonAdvlAmt":0,
+				"StateCesRt":0,
+				"StateCesAmt":0,
+				"StateCesNonAdvlAmt":0,
+				"OthChrg":0,
+				"TotItemVal":15750,
+				"BchDtls":null
+				},
+				{
+					"SlNo":"1",
+					"PrdDesc":"BOOK AFTER JOB WORK 998832",
+					"IsServc":"Y",
+					"HsnCd":"998832",
+					"Barcde":null,
+					"Qty":500,
+					"FreeQty":0,
+					"Unit":"NOS",
+					"UnitPrice":30,
+					"TotAmt":15000,
+					"Discount":0,
+					"PreTaxVal":0,
+					"AssAmt":15000,
+					"GstRt":5,
+					"IgstAmt":750,
+					"CgstAmt":0,
+					"SgstAmt":0,
+					"CesRt":0,
+					"CesAmt":0,
+					"CesNonAdvlAmt":0,
+					"StateCesRt":0,
+					"StateCesAmt":0,
+					"StateCesNonAdvlAmt":0,
+					"OthChrg":0,
+					"TotItemVal":15750,
+					"BchDtls":null
+					}	
+			]
+		}
+	]

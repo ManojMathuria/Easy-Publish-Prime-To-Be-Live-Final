@@ -3,16 +3,16 @@ Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmPaperIssueReceiptVoucher 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Paper Receipt Voucher"
    ClientHeight    =   8265
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -27,7 +27,6 @@ Begin VB.Form frmPaperIssueReceiptVoucher
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8265
    ScaleWidth      =   13740
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -93,12 +92,33 @@ Begin VB.Form frmPaperIssueReceiptVoucher
          Tab(0).Control(2).Enabled=   0   'False
          Tab(0).Control(3)=   "Text1"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).ControlCount=   4
+         Tab(0).Control(4)=   "Option1"
+         Tab(0).Control(4).Enabled=   0   'False
+         Tab(0).Control(5)=   "Option2"
+         Tab(0).Control(5).Enabled=   0   'False
+         Tab(0).ControlCount=   6
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "PaperIssueReceiptVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
          Tab(1).ControlCount=   1
+         Begin VB.OptionButton Option2 
+            Caption         =   " Reel"
+            Height          =   210
+            Left            =   2640
+            TabIndex        =   31
+            Top             =   0
+            Width           =   855
+         End
+         Begin VB.OptionButton Option1 
+            Caption         =   " Sheet"
+            Height          =   210
+            Left            =   1680
+            TabIndex        =   30
+            Top             =   20
+            Value           =   -1  'True
+            Width           =   855
+         End
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -152,7 +172,7 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   6
+            ColumnCount     =   7
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "        Vch No."
@@ -223,12 +243,25 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Caption         =   "Challan Date"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   1
+                  Format          =   "dd-MMM-yyyy"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   3
+               EndProperty
+            EndProperty
+            BeginProperty Column06 
+               DataField       =   "Ref"
+               Caption         =   "Ref"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
                   Format          =   "dd-MM-yyyy"
                   HaveTrueFalseNull=   0
                   FirstDayOfWeek  =   0
                   FirstWeekOfYear =   0
                   LCID            =   1033
-                  SubFormatType   =   3
+                  SubFormatType   =   0
                EndProperty
             EndProperty
             SplitCount      =   1
@@ -257,11 +290,14 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                EndProperty
                BeginProperty Column04 
                   Locked          =   -1  'True
-                  ColumnWidth     =   2429.858
+                  ColumnWidth     =   1590.236
                EndProperty
                BeginProperty Column05 
+                  ColumnWidth     =   1154.835
+               EndProperty
+               BeginProperty Column06 
                   Locked          =   -1  'True
-                  ColumnWidth     =   1080
+                  ColumnWidth     =   764.787
                EndProperty
             EndProperty
          End
@@ -466,7 +502,7 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                   MarginLeft      =   1
                   MarginRight     =   1
                   MarginTop       =   1
-                  MaxValue        =   9999999
+                  MaxValue        =   99999999
                   MinValue        =   0
                   MousePointer    =   0
                   MoveOnLRKey     =   0
@@ -798,8 +834,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":1284
-               Picture         =   "PaperIssueReceiptVoucher.frx":12A0
+               Picture         =   "PaperIssueReceiptVoucher.frx":1388
+               Picture         =   "PaperIssueReceiptVoucher.frx":13A4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -825,8 +861,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":12BC
-               Picture         =   "PaperIssueReceiptVoucher.frx":12D8
+               Picture         =   "PaperIssueReceiptVoucher.frx":13C0
+               Picture         =   "PaperIssueReceiptVoucher.frx":13DC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -852,8 +888,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":12F4
-               Picture         =   "PaperIssueReceiptVoucher.frx":1310
+               Picture         =   "PaperIssueReceiptVoucher.frx":13F8
+               Picture         =   "PaperIssueReceiptVoucher.frx":1414
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -864,8 +900,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calendar        =   "PaperIssueReceiptVoucher.frx":132C
-               Caption         =   "PaperIssueReceiptVoucher.frx":1444
+               Calendar        =   "PaperIssueReceiptVoucher.frx":1430
+               Caption         =   "PaperIssueReceiptVoucher.frx":1548
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -875,9 +911,9 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperIssueReceiptVoucher.frx":14B0
-               Keys            =   "PaperIssueReceiptVoucher.frx":14CE
-               Spin            =   "PaperIssueReceiptVoucher.frx":152C
+               DropDown        =   "PaperIssueReceiptVoucher.frx":15B4
+               Keys            =   "PaperIssueReceiptVoucher.frx":15D2
+               Spin            =   "PaperIssueReceiptVoucher.frx":1630
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -941,8 +977,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":1554
-               Picture         =   "PaperIssueReceiptVoucher.frx":1570
+               Picture         =   "PaperIssueReceiptVoucher.frx":1658
+               Picture         =   "PaperIssueReceiptVoucher.frx":1674
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   330
@@ -968,8 +1004,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "PaperIssueReceiptVoucher.frx":158C
-               Picture         =   "PaperIssueReceiptVoucher.frx":15A8
+               Picture         =   "PaperIssueReceiptVoucher.frx":1690
+               Picture         =   "PaperIssueReceiptVoucher.frx":16AC
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput14 
                Height          =   330
@@ -980,8 +1016,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                _Version        =   65536
                _ExtentX        =   1931
                _ExtentY        =   582
-               Calculator      =   "PaperIssueReceiptVoucher.frx":15C4
-               Caption         =   "PaperIssueReceiptVoucher.frx":15E4
+               Calculator      =   "PaperIssueReceiptVoucher.frx":16C8
+               Caption         =   "PaperIssueReceiptVoucher.frx":16E8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -991,9 +1027,9 @@ Begin VB.Form frmPaperIssueReceiptVoucher
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "PaperIssueReceiptVoucher.frx":1650
-               Keys            =   "PaperIssueReceiptVoucher.frx":166E
-               Spin            =   "PaperIssueReceiptVoucher.frx":16B8
+               DropDown        =   "PaperIssueReceiptVoucher.frx":1754
+               Keys            =   "PaperIssueReceiptVoucher.frx":1772
+               Spin            =   "PaperIssueReceiptVoucher.frx":17BC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -1088,8 +1124,8 @@ Begin VB.Form frmPaperIssueReceiptVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "PaperIssueReceiptVoucher.frx":16E0
-            Picture         =   "PaperIssueReceiptVoucher.frx":16FC
+            Picture         =   "PaperIssueReceiptVoucher.frx":17E4
+            Picture         =   "PaperIssueReceiptVoucher.frx":1800
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1219,10 +1255,10 @@ Private Sub Form_Load()
     cnPaperIRVch.Open cnDatabase.ConnectionString
     Me.Caption = "Paper " & IIf(VchType = "T", "Transfer", IIf(VchType = "I", "Issue", "Receipt")) & " Voucher"
     If VchType <> "R" Then DataGrid1.Columns(2).Caption = " Source": DataGrid1.Columns(3).Caption = " Destination": Mh3dLabel3.Caption = " Source": Mh3dLabel2.Caption = " Destination"
-    If VchType = "R" Then
-        rstPaperIRVList.Open "SELECT DISTINCT P.Code,P.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate FROM ((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON C.Account=M1.Code) INNER JOIN AccountMaster M2 ON P.Supplier=M2.Code WHERE OrderType='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY P.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
+    If VchType = "R" Then '(Select Name From PaperPOParent Where Code=Ref) As Ref
+        rstPaperIRVList.Open "SELECT DISTINCT P.Code,P.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate,'' As Ref FROM ((PaperPOParent P Left JOIN PaperIOChild C ON P.Code=C.Code) Left JOIN AccountMaster M1 ON C.Account=M1.Code) Left JOIN AccountMaster M2 ON P.Supplier=M2.Code WHERE OrderType='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY P.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
     Else
-        rstPaperIRVList.Open "SELECT DISTINCT T.Code,T.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate FROM (PaperMVParent T INNER JOIN AccountMaster M1 ON T.AccountFrom=M1.Code) INNER JOIN AccountMaster M2 ON T.AccountTo=M2.Code WHERE [Type]='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
+        rstPaperIRVList.Open "SELECT DISTINCT T.Code,T.Name,Date,M1.Name As Account1Name,M2.Name As Account2Name,BiltyNo As ChallanNo,BiltyDate As ChallanDate,'' As Ref  FROM (PaperMVParent T INNER JOIN AccountMaster M1 ON T.AccountFrom=M1.Code) INNER JOIN AccountMaster M2 ON T.AccountTo=M2.Code WHERE [Type]='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
     End If
     rstPaperIRVParent.CursorLocation = adUseClient
     rstPaperIRVList.Filter = adFilterNone
@@ -1467,6 +1503,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             MdiMainMenu.MousePointer = vbHourglass
             cnPaperIRVch.BeginTrans
             cnPaperIRVch.Execute "DELETE FROM " & IIf(VchType = "R", "PaperPOParent", "PaperMVParent") & " WHERE Code='" & rstPaperIRVList.Fields("Code").Value & "'"
+            cnPaperIRVch.Execute "DELETE FROM " & IIf(VchType = "R", "PaperIOChild", "PaperIOChild") & " WHERE Code='" & rstPaperIRVList.Fields("Code").Value & "'"
             MdiMainMenu.MousePointer = vbNormal
             If Err.Number = 0 Then
                 rstPaperIRVList.Delete
@@ -1487,6 +1524,11 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         HiLiteRecord = True
     ElseIf Button.Index = 4 Then
         If CheckMandatoryFields Then Exit Sub
+        If blnRecordExist And AllowMastersModification = 0 Then
+            Call DisplayError("You don't have the rights to Edit this Voucher")
+            Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
+            Exit Sub
+        End If
         SaveFields
         UpdateFlag = 0
         If UpdateRecord(rstPaperIRVParent) Then
@@ -1722,7 +1764,38 @@ Private Sub ClearFields()
     MhRealInput20.Value = 0 'Total Quantity (Sheets)
     MhRealInput21.Value = 0 'Total Bundles
     MhRealInput14.Value = 0 'Cartage
-    fpSpread1.ClearRange 1, 1, fpSpread1.MaxCols, fpSpread1.MaxRows, True: fpSpread1.SetActiveCell 1, 1
+    With fpSpread1
+    .ClearRange 1, 1, .MaxCols, .MaxRows, True: .SetActiveCell 1, 1
+        If Option2.Value Then
+            .ColWidth(1) = 64.125
+            .Col = 2: .ColHidden = True
+            .Col = 3: .ColHidden = True
+            .Col = 4: .ColHidden = True
+            .ColWidth(5) = 8
+            .ColWidth(6) = 11
+            .Col = 7: .ColHidden = True
+            .ColWidth(8) = 9.625
+            .SetText 8, 0, "Reels"
+            .ColWidth(9) = 9.25
+            MhRealInput21.Width = 1200
+            MhRealInput21.Left = 10490
+            MhRealInput20.Width = 1350
+        ElseIf Option1.Value Then
+            .ColWidth(1) = 41
+            .Col = 2: .ColHidden = False
+            .Col = 3: .ColHidden = False
+            .Col = 4: .ColHidden = False
+            .ColWidth(5) = 8
+            .ColWidth(6) = 8.375
+            .ColWidth(7) = 6.625
+            .Col = 7: .ColHidden = False
+            .SetText 8, 0, "Bundles"
+            MhRealInput21.Width = 660
+            MhRealInput21.Left = 11000
+            MhRealInput20.Width = 1200
+            .ColWidth(9) = 9.25
+        End If
+    End With
     Account1Code = "": Account2Code = ""
 End Sub
 Private Sub LoadFields()
@@ -1856,9 +1929,9 @@ Private Sub LoadPaperList(ByVal strOrderCode As String)
     On Error GoTo ErrorHandler
     If rstPaperIRVChild.State = adStateOpen Then rstPaperIRVChild.Close
     If VchType = "R" Then
-        rstPaperIRVChild.Open "SELECT LTRIM(I.Name)+' (UOM : '+LTRIM(U.Name)+'='+LTRIM(CONVERT(INT,U.Value1))+')' As PaperName,Paper As PaperCode,Quantity,U.Name As UOMName,T.[Weight/Unit],QuantityKg,QuantitySheets,T.[Units/Bundle],TotalBundles,ISNULL(Ref,'') As RefCode,ISNULL((SELECT LTRIM(Name) FROM PaperPOParent WHERE Code=Ref),'') As RefNo,U.Value1 As SPU,ISNULL((SELECT QuantitySheets-ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Ref+Paper=T.Ref+T.Paper AND Code<>T.Code),0) FROM PaperPOChild C WHERE C.Code+C.Paper=T.Ref+T.Paper),0) As Bal FROM (PaperIOChild T INNER JOIN PaperMaster I ON T.Paper=I.Code) INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE T.Code='" & strOrderCode & "' ORDER BY I.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
+        rstPaperIRVChild.Open "SELECT LTRIM(I.Name)+IIF(I.Form='S',' (UOM : '+LTRIM(U.Name)+'='+LTRIM(CONVERT(INT,U.Value1))+')','')  As PaperName,Paper As PaperCode,Quantity,U.Name As UOMName,T.[Weight/Unit],QuantityKg,QuantitySheets,T.[Units/Bundle],TotalBundles,ISNULL(Ref,'') As RefCode,ISNULL((SELECT LTRIM(Name) FROM PaperPOParent WHERE Code=Ref),'') As RefNo,U.Value1 As SPU,ISNULL((SELECT QuantitySheets-ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Ref+Paper=T.Ref+T.Paper AND Code<>T.Code),0) FROM PaperPOChild C WHERE C.Code+C.Paper=T.Ref+T.Paper),0) As Bal FROM (PaperIOChild T INNER JOIN PaperMaster I ON T.Paper=I.Code) INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE T.Code='" & strOrderCode & "' ORDER BY I.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
     Else
-        rstPaperIRVChild.Open "SELECT LTRIM(M.Name)+' (UOM : '+LTRIM(U.Name)+'='+LTRIM(CONVERT(INT,U.Value1))+')' As PaperName,Paper As PaperCode,Quantity,U.Name As UOMName,T.[Weight/Unit],QuantityKg,QuantitySheets,T.[Units/Bundle],TotalBundles,'' As RefCode,'' As RefNo,U.Value1 As SPU,0 As Bal FROM (PaperMVChild T INNER JOIN PaperMaster M ON T.Paper=M.Code) INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE T.Code='" & strOrderCode & "' ORDER BY M.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
+        rstPaperIRVChild.Open "SELECT LTRIM(M.Name)+IIF(M.Form='S',' (UOM : '+LTRIM(U.Name)+'='+LTRIM(CONVERT(INT,U.Value1))+')','') As PaperName,Paper As PaperCode,Quantity,U.Name As UOMName,T.[Weight/Unit],QuantityKg,QuantitySheets,T.[Units/Bundle],TotalBundles,'' As RefCode,'' As RefNo,U.Value1 As SPU,0 As Bal FROM (PaperMVChild T INNER JOIN PaperMaster M ON T.Paper=M.Code) INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE T.Code='" & strOrderCode & "' ORDER BY M.Name", cnPaperIRVch, adOpenKeyset, adLockOptimistic
     End If
     rstPaperIRVChild.ActiveConnection = Nothing
     If rstPaperIRVChild.RecordCount > 0 Then rstPaperIRVChild.MoveFirst
@@ -2014,12 +2087,18 @@ Private Sub LoadOrderList()
     If rstOrderList.RecordCount = 0 Then DisplayError ("No Pending Order Exists"): fpSpread1.SetFocus: Exit Sub
     With FrmOrderList.fpSpread1
         .ClearRange 1, 1, .MaxCols, .MaxRows, True
-        .Col = 5: .ColHidden = True 'Billed
+        .MaxCols = 13
+        .Col = 1: .Row = SpreadHeader: .Text = "Paper Name"
+        .Col = 5: .Row = SpreadHeader + 1: .Text = "Delivered" '.ColHidden = True 'Billed
         .Col = 6: .ColHidden = True 'Unbilled
-        .Col = 7: .ColHidden = True 'Challan
+        .Col = 7: '.ColHidden = True 'Challan
         .Col = 8: .ColHidden = True 'Direct Sale
-        .Col = 11: .ColHidden = True 'Status
-        .ColWidth(1) = 74.1
+        .Col = 11: .ColHidden = True '
+        .Col = 12: .ColHidden = True '
+        .Col = 13: .ColHidden = True '
+        .ColWidth(1) = 75
+        .ColWidth(9) = 7.25
+        
     End With
     Load FrmOrderList
     FrmOrderList.Text2 = Text3.Text
@@ -2034,19 +2113,21 @@ Private Sub LoadOrderList()
         i = 0
         Do While Not .EOF
             i = i + 1
-            FrmOrderList.fpSpread1.SetText 1, i, .Fields("Paper").Value
-            FrmOrderList.fpSpread1.SetText 2, i, .Fields("VchNo").Value: FrmOrderList.fpSpread1.SetText 13, i, .Fields("UniqCode").Value
-            FrmOrderList.fpSpread1.SetText 3, i, Format(.Fields("VchDate").Value, "dd-MMM-yy")
+            FrmOrderList.fpSpread1.SetText 1, i, .Fields("Paper").Value 'Paper Name
+            FrmOrderList.fpSpread1.SetText 2, i, .Fields("VchNo").Value 'Order No
+            FrmOrderList.fpSpread1.SetText 3, i, Format(.Fields("VchDate").Value, "dd-MMM-yy") 'Date
             FrmOrderList.fpSpread1.SetText 4, i, S2U(Val(.Fields("Ordered").Value), Val(.Fields("SPU").Value)) 'Ordered
-            FrmOrderList.fpSpread1.SetText 9, i, S2U(Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Delivered
-            FrmOrderList.fpSpread1.SetText 10, i, S2U(Val(.Fields("Ordered").Value) - Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Pending
-            FrmOrderList.fpSpread1.SetText 12, i, 0
+            FrmOrderList.fpSpread1.SetText 5, i, S2U(Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Delivered 9
+            FrmOrderList.fpSpread1.SetText 7, i, S2U(Val(.Fields("Ordered").Value) - Val(.Fields("Received").Value), Val(.Fields("SPU").Value)) 'Pending 10
+            FrmOrderList.fpSpread1.SetText 9, i, 1 'Check Box
+            FrmOrderList.fpSpread1.SetText 10, i, .Fields("UniqCode").Value 'UniqueCode
             .MoveNext
         Loop
-        FrmOrderList.fpSpread1.SetActiveCell 12, 1
+        FrmOrderList.fpSpread1.SetActiveCell 1, 1
     End With
     With FrmOrderList
         .Check1.Visible = False
+        .Check2.Value = 1
         .Text2.Width = 13005
         CenterForm FrmOrderList
         .Show vbModal
@@ -2107,7 +2188,9 @@ Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewC
             If CalcQtySheet Then QtySheet = U2S(QtyUnit, SPU)
             If CalcQtyWt Then If Val(SPU) > 0 Then QtyWt = Round(QtySheet * (Wt / SPU), 3)
             If UPB > 0 Then TotalBdl = QtyWt / (Wt * UPB): TotalBdl = Fix(TotalBdl) + IIf(TotalBdl - Fix(TotalBdl) > 0, 1, 0)
-            .SetText 2, Row, QtyUnit: .SetText 5, Row, QtyWt: .SetText 6, Row, QtySheet: .SetText 8, Row, TotalBdl: CalculateTotal
+            .SetText 2, Row, QtyUnit: .SetText 5, Row, QtyWt: .SetText 6, Row, QtySheet:
+            If Option1.Value Then .SetText 8, Row, TotalBdl
+            CalculateTotal
         Else
                 .SetText 2, Row, "": .SetText 4, Row, "": .SetText 5, Row, "": .SetText 6, Row, "": .SetText 7, Row, ""
         End If
@@ -2123,7 +2206,7 @@ Public Sub PrintPaperIRVch(ByVal OrderCode As String, Optional ByVal OutputType 
     Screen.MousePointer = vbHourglass
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
 '    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(VchType = "R", 6, 5), cnPaperIRVch, adOpenKeyset, adLockReadOnly
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Prefix,Suffix FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(VchType = "R", 6, 5), cnPaperIRVch, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,EMail,Website,GSTIN,Prefix,Suffix,Alias FROM CompanyMaster P INNER JOIN CompChild C ON P.Code=C.Code WHERE VchType=" & IIf(VchType = "R", 6, 5), cnPaperIRVch, adOpenKeyset, adLockReadOnly
     rptPaperIssueReceiptOrder.Text1.SetText "Paper " & IIf(VchType = "T", "Transfer", IIf(VchType = "I", "Issue", "Receipt")) & " Voucher"
     rptPaperIssueReceiptOrder.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptPaperIssueReceiptOrder.Text3.SetText Trim(rstCompanyMaster.Fields("Address1").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address2").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address3").Value) & Space(1) & Trim(rstCompanyMaster.Fields("Address4").Value)
@@ -2134,23 +2217,65 @@ Public Sub PrintPaperIRVch(ByVal OrderCode As String, Optional ByVal OutputType 
     ElseIf Not CheckEmpty(rstCompanyMaster.Fields("eMail").Value, False) Then
         rptPaperIssueReceiptOrder.Text24.SetText "E-Mail : " & Trim(rstCompanyMaster.Fields("eMail").Value)
     End If
-    If VchType = "R" Then
-        rptPaperIssueReceiptOrder.Section14.Suppress = True
-        rptPaperIssueReceiptOrder.Section15.Suppress = True
-    Else
-        rptPaperIssueReceiptOrder.Section17.Suppress = True
-        rptPaperIssueReceiptOrder.Section12.Suppress = True
-    End If
+    
     If rstPaperIRVChild.State = adStateOpen Then rstPaperIRVChild.Close
-    SQL = "SELECT '" & LTrim(rstCompanyMaster.Fields("Prefix").Value) & "'+LTRIM(P.Name)+'" & LTrim(rstCompanyMaster.Fields("Suffix").Value) & "' As VchNo,[Date] As VchDate,LTRIM(M1.PrintName) As Account1Name,LTRIM(M2.PrintName) As Account2Name,Remarks,LTRIM(M3.PrintName)+' (UOM : '+LTRIM(G.PrintName)+'='+LTRIM(CONVERT(INT,G.Value1))+')' As PaperName,Quantity,C.[Weight/Unit],QuantityKg,C.[Units/Bundle],TotalBundles "
+    SQL = "SELECT '" & LTrim(rstCompanyMaster.Fields("Alias").Value) & "'+'/'+'" & VchType & "'+'/' +LTRIM(P.Name)+'/' +'" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "' As VchNo,[Date] As VchDate,LTRIM(M1.PrintName) As Account1Name,LTRIM(M2.PrintName) As Account2Name,Remarks,LTRIM(M3.PrintName)+IIF(M3.Form='S',' (UOM : '+LTRIM(G.PrintName)+'='+LTRIM(CONVERT(INT,G.Value1))+')','') As PaperName,Quantity,C.[Weight/Unit],QuantityKg,C.[Units/Bundle],TotalBundles,LTRIM(G.PrintName) As Unit,QuantitySheets "
     If VchType = "R" Then
-        SQL = SQL + "FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=C.Account) INNER JOIN AccountMaster M2 ON M2.Code=P.Supplier) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
+        SQL = SQL + ",M2.Address1 As FromAddress1,M2.Address2 As FromAddress2,M2.Address3 As FromAddress3,M2.Address4 As FromAddress4,M1.Address1 As ToAddress1,M1.Address2 As ToAddress2,M1.Address3 As ToAddress3,M1.Address4 As ToAddress4,M3.Form FROM ((((PaperPOParent P INNER JOIN PaperIOChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=C.Account) INNER JOIN AccountMaster M2 ON M2.Code=P.Supplier) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
     Else
-        SQL = SQL + "FROM ((((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=P.AccountFrom) INNER JOIN AccountMaster M2 ON M2.Code=P.AccountTo) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
+        SQL = SQL + ",M1.Address1 As FromAddress1,M1.Address2 As FromAddress2,M1.Address3 As FromAddress3,M1.Address4 As FromAddress4,M2.Address1 As ToAddress1,M2.Address2 As ToAddress2,M2.Address3 As ToAddress3,M2.Address4 As ToAddress4,M3.Form FROM ((((PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code) INNER JOIN AccountMaster M1 ON M1.Code=P.AccountFrom) INNER JOIN AccountMaster M2 ON M2.Code=P.AccountTo) INNER JOIN PaperMaster M3 ON M3.Code=C.Paper) INNER JOIN GeneralMaster G ON G.Code=M3.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M3.PrintName"
     End If
     rstPaperIRVChild.Open SQL, cnPaperIRVch, adOpenKeyset, adLockOptimistic
     rptPaperIssueReceiptOrder.Database.SetDataSource rstPaperIRVChild, 3, 1
     Screen.MousePointer = vbNormal
+    
+    If VchType = "R" Then
+        rptPaperIssueReceiptOrder.Text27.SetText Trim(rstPaperIRVChild.Fields("Account1Name").Value)
+        rptPaperIssueReceiptOrder.Text9.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
+        
+        rptPaperIssueReceiptOrder.Section14.Suppress = True
+        rptPaperIssueReceiptOrder.Section20.Suppress = True
+        rptPaperIssueReceiptOrder.Section21.Suppress = True
+        rptPaperIssueReceiptOrder.Section22.Suppress = True
+        rptPaperIssueReceiptOrder.Section23.Suppress = True
+        
+        rptPaperIssueReceiptOrder.Section15.Suppress = True
+        rptPaperIssueReceiptOrder.Section24.Suppress = True
+        rptPaperIssueReceiptOrder.Section25.Suppress = True
+        rptPaperIssueReceiptOrder.Section26.Suppress = True
+        rptPaperIssueReceiptOrder.Section27.Suppress = True
+    Else
+        rptPaperIssueReceiptOrder.Text27.SetText Trim(rstPaperIRVChild.Fields("Account2Name").Value)
+        rptPaperIssueReceiptOrder.Text9.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
+        
+        rptPaperIssueReceiptOrder.Section17.Suppress = True
+        rptPaperIssueReceiptOrder.Section28.Suppress = True
+        rptPaperIssueReceiptOrder.Section29.Suppress = True
+        rptPaperIssueReceiptOrder.Section30.Suppress = True
+        rptPaperIssueReceiptOrder.Section31.Suppress = True
+        
+        rptPaperIssueReceiptOrder.Section12.Suppress = True
+        rptPaperIssueReceiptOrder.Section32.Suppress = True
+        rptPaperIssueReceiptOrder.Section33.Suppress = True
+        rptPaperIssueReceiptOrder.Section34.Suppress = True
+        rptPaperIssueReceiptOrder.Section35.Suppress = True
+    
+    End If
+    With rptPaperIssueReceiptOrder
+    If Logo = "S" Then
+    .Picture1.Width = LogoW
+    .Picture1.Height = LogoH
+    End If
+'    .Text2.Width = Header '9000 '7800
+'    .Text2.Left = HeaderL '1000 '1680
+    If LogoLine = "N" Then
+    .Picture1.LeftLineStyle = crLSNoLine
+    .Picture1.RightLineStyle = crLSNoLine
+    .Picture1.TopLineStyle = crLSNoLine
+    .Picture1.BottomLineStyle = crLSNoLine
+    End If
+    End With
+    
     If OutputType = "S" Then
         Set FrmReportViewer.Report = rptPaperIssueReceiptOrder
         FrmReportViewer.Show vbModal
@@ -2166,7 +2291,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     rstAccountList.Open "SELECT LTRIM(Name) As Col0,Code FROM AccountMaster ORDER BY Name", cnPaperIRVch, adOpenKeyset, adLockReadOnly
     If rstPaperList.State = adStateOpen Then rstPaperList.Close
     If LoadSelected Then
-        rstPaperList.Open "SELECT * FROM (SELECT LTRIM(P.Name)+' (UOM : '+LTRIM(C.Name)+'='+LTRIM(CONVERT(INT,C.Value1))+')' As Col0,FORMAT(dbo.ufnGetPaperStock('" & Account1Code & "',P.Code,'PMV','" & CheckNull(rstPaperIRVParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0.000') As Col1,[Weight/Unit],[Units/Bundle],C.Value1 As SPU,C.Name As UOMName,P.Code FROM PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) As Tbl WHERE CONVERT(DECIMAL(12,3),Col1)<>0 ORDER BY Col0", cnPaperIRVch, adOpenKeyset, adLockReadOnly
+        rstPaperList.Open "SELECT * FROM (SELECT LTRIM(P.Name)+IIF(P.Form='S',' (UOM : '+LTRIM(C.Name)+'='+LTRIM(CONVERT(INT,C.Value1))+')','') As Col0,FORMAT(dbo.ufnGetPaperStock('" & Account1Code & "',P.Code,'PMV','" & CheckNull(rstPaperIRVParent.Fields("Code").Value) & "','" & GetDate(MhDateInput1.Text) & "'),'#0.000') As Col1,[Weight/Unit],[Units/Bundle],C.Value1 As SPU,C.Name As UOMName,P.Code FROM PaperMaster P INNER JOIN GeneralMaster C ON P.UOM=C.Code) As Tbl WHERE CONVERT(DECIMAL(12,3),Col1)<>0 ORDER BY Col0", cnPaperIRVch, adOpenKeyset, adLockReadOnly
     Else
         rstPaperList.Open "SELECT M2.Name As UOMName,[Weight/Unit],[Units/Bundle],M2.Value1 As SPU,M1.Code FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code ORDER BY M1.Name", cnPaperIRVch, adOpenKeyset, adLockReadOnly
     End If

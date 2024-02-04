@@ -433,7 +433,7 @@ Private Sub Form_Load()
     RptType = "I"
     MhDateInput1.Text = Format(FinancialYearFrom, "dd-mm-yyyy")
     If Format(FinancialYearTo, "yyyymmdd") > Format(Date, "yyyymmdd") Then MhDateInput2.Text = (Format(FinancialYearTo, "dd-mm-yyyy")) Else MhDateInput2.Text = Format(Date, "dd-mm-yyyy") + 90
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstBookList.Open "SELECT Name,Code FROM BookMaster WHERE Type='F' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstBookList.ActiveConnection = Nothing
     Call FillList(ListView2, "List of Items...", rstBookList)

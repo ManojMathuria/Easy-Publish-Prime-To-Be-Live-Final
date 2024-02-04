@@ -2,10 +2,10 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDatGrd.ocx"
+Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmMaterialMovement 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "General Item Movement Voucher"
@@ -27,7 +27,6 @@ Begin VB.Form FrmMaterialMovement
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   8400
    ScaleWidth      =   15675
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -605,8 +604,8 @@ Begin VB.Form FrmMaterialMovement
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "MaterialMovement.frx":0951
-            Picture         =   "MaterialMovement.frx":096D
+            Picture         =   "MaterialMovement.frx":0A79
+            Picture         =   "MaterialMovement.frx":0A95
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -750,15 +749,18 @@ Dim OutputTo As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    WheelHook DataGrid1
     BusySystemIndicator True
     cnMaterialMovement.CursorLocation = adUseClient
     cnMaterialMovement.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", cnMaterialMovement, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnMaterialMovement, adOpenKeyset, adLockReadOnly
     rstAccountList.Open "SELECT Name As Col0, Code FROM AccountMaster ORDER BY Name", cnMaterialMovement, adOpenKeyset, adLockReadOnly
     rstOutsourceItemList.Open "Select Name,'1'+Code As NCode,(Select Name FROM GeneralMaster Where Code=M.UOM) AS UOMName From OutsourceItemMaster As M Order By Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
-    rstFreshBookList.Open "Select Name,Board,'3'+Code As NCode,'Piece' As UOMName From BookMaster Where Type='F' Order By Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
+    rstFreshBookList.Open "Select Name,[Group],'3'+Code As NCode,'Piece' As UOMName From BookMaster Where Type='F' Order By Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
     rstRepairBookList.Open "Select Name,'4'+Code As NCode,'Piece' As UOMName From BookMaster Where Type='R' Order By Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
-    rstTitleList.Open "Select Name,Board,'5'+Code As NCode,'Piece' As UOMName From BookMaster Where Type='F' Order By Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
+    rstTitleList.Open "Select Name,[Group],'5'+Code As NCode,'Piece' As UOMName From BookMaster Where Type='F' Order By Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
     rstMaterialMVList.Open "SELECT T.Code,T.Name,T.Date,M1.Name As GodownFromName,M2.Name As GodownToName,'Piece' As UOMName FROM (MaterialMVParent T INNER JOIN AccountMaster M1 ON M1.Code=T.AccountFrom) INNER JOIN AccountMaster M2 ON M2.Code=T.AccountTo WHERE FYCode='" & FYCode & "' ORDER BY T.Name", cnMaterialMovement, adOpenKeyset, adLockOptimistic
     rstMaterialMVParent.CursorLocation = adUseClient
     rstMaterialMVList.Filter = adFilterNone

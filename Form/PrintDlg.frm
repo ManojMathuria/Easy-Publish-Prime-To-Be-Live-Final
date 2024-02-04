@@ -85,7 +85,6 @@ Begin VB.Form PrintDlg
          Left            =   240
          TabIndex        =   12
          Top             =   900
-         Value           =   1  'Checked
          Width           =   1095
       End
       Begin VB.CheckBox Check1 
@@ -95,7 +94,6 @@ Begin VB.Form PrintDlg
          Left            =   240
          TabIndex        =   11
          Top             =   600
-         Value           =   1  'Checked
          Width           =   1635
       End
       Begin VB.CheckBox Check1 

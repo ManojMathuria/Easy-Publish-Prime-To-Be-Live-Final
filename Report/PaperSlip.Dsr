@@ -1,9 +1,9 @@
 VERSION 5.00
 Begin {BD4B4E61-F7B8-11D0-964D-00A0C9273C2A} rptPaperSlip 
-   ClientHeight    =   9240
+   ClientHeight    =   10155
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   20295
+   ClientWidth     =   15750
    OleObjectBlob   =   "PaperSlip.dsx":0000
 End
 Attribute VB_Name = "rptPaperSlip"

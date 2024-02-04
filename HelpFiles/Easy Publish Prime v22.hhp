@@ -1,0 +1,18 @@
+[OPTIONS]
+Binary TOC=Yes
+Compatibility=1.1 or later
+Compiled file=Easy Publish Prime v22.chm
+Contents file=Easy Publish Prime v22.hhc
+Default topic=Main Page.htm
+Display compile progress=Yes
+Enhanced decompilation=Yes
+Full-text search=Yes
+Language=0x4009 English (India)
+Title=Easy Publish Prime v22
+Create CHI file=Yes
+
+[FILES]
+Main Page.htm
+
+[INFOTYPES]
+

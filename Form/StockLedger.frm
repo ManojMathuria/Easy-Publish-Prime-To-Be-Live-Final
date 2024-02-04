@@ -2,16 +2,20 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{49CBFCC0-1337-11D2-9BBF-00A024695830}#1.0#0"; "tinumb8.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
+Object = "{C115893A-A3BF-43AF-B28D-69DB846077F3}#1.0#0"; "vsflex8u.ocx"
+Object = "{96548BD2-D0BF-46B1-B519-8F2268D49306}#1.0#0"; "vsvport8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
 Object = "{0D452EE1-E08F-101A-852E-02608C4D0BB4}#2.0#0"; "FM20.DLL"
 Object = "{F856EC8B-F03C-4515-BDC6-64CBD617566A}#8.0#0"; "fpSPR80.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form FrmStockLedger 
    BorderStyle     =   1  'Fixed Single
    Caption         =   " Stock Status"
    ClientHeight    =   9255
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   19485
+   ClientTop       =   390
+   ClientWidth     =   19305
    BeginProperty Font 
       Name            =   "Arial"
       Size            =   8.25
@@ -24,29 +28,18 @@ Begin VB.Form FrmStockLedger
    KeyPreview      =   -1  'True
    LinkTopic       =   "FrmLogin"
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9255
-   ScaleWidth      =   19485
-   Begin VB.CommandButton Command1 
-      Height          =   375
-      Left            =   18600
-      Picture         =   "StockLedger.frx":0000
-      Style           =   1  'Graphical
-      TabIndex        =   25
-      ToolTipText     =   "Refresh"
-      Top             =   210
-      Width           =   375
-   End
+   ScaleWidth      =   19305
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-      Height          =   9030
-      Left            =   120
-      TabIndex        =   5
+      Height          =   9270
+      Left            =   0
+      TabIndex        =   32
       TabStop         =   0   'False
-      Top             =   120
+      Top             =   0
       Width           =   19290
       _Version        =   65536
       _ExtentX        =   34025
-      _ExtentY        =   15928
+      _ExtentY        =   16351
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -65,33 +58,373 @@ Begin VB.Form FrmStockLedger
       NoPrefix        =   0   'False
       FormatString    =   ""
       Caption         =   ""
-      Picture         =   "StockLedger.frx":014A
+      Picture         =   "StockLedger.frx":0000
+      Begin MSComDlg.CommonDialog CommonDialog1 
+         Left            =   9960
+         Top             =   2160
+         _ExtentX        =   847
+         _ExtentY        =   847
+         _Version        =   393216
+      End
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   16665
+         TabIndex        =   36
+         Top             =   90
+         Width           =   2505
+         _ExtentX        =   4419
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         Style           =   1
+         ImageList       =   "ImageList1"
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   7
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Print Preview [Alt+V]"
+               Object.ToolTipText     =   "Print Preview [Alt+V]"
+               ImageIndex      =   1
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Print [Alt+P] "
+               ImageIndex      =   2
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Mail [Alt+M]"
+               Object.ToolTipText     =   "Mail [Alt+M]"
+               ImageIndex      =   3
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Export [Alt+E]"
+               Object.ToolTipText     =   "Export [Alt+E]"
+               ImageIndex      =   4
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Refresh [F5]"
+               Object.ToolTipText     =   "Refresh [F5]"
+               ImageIndex      =   5
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Exit [Escape]"
+               Object.ToolTipText     =   "Exit [Escape]"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Key             =   "Cancel [Escape]"
+               Object.ToolTipText     =   "Cancel [Escape]"
+               ImageIndex      =   7
+            EndProperty
+         EndProperty
+         Begin VB.CommandButton cmdCancel 
+            Height          =   375
+            Left            =   2040
+            Picture         =   "StockLedger.frx":001C
+            Style           =   1  'Graphical
+            TabIndex        =   39
+            ToolTipText     =   "Cancel"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton Command1 
+            Height          =   375
+            Left            =   1320
+            Picture         =   "StockLedger.frx":011E
+            Style           =   1  'Graphical
+            TabIndex        =   38
+            ToolTipText     =   "Refresh"
+            Top             =   0
+            Width           =   375
+         End
+         Begin VB.CommandButton cmdRefresh 
+            Height          =   375
+            Left            =   1320
+            Picture         =   "StockLedger.frx":0268
+            Style           =   1  'Graphical
+            TabIndex        =   37
+            ToolTipText     =   "Refresh"
+            Top             =   0
+            Width           =   375
+         End
+      End
+      Begin VB.CommandButton Print 
+         Caption         =   " Print"
+         Height          =   330
+         Left            =   16680
+         TabIndex        =   5
+         ToolTipText     =   "Print [Alt+P]"
+         Top             =   8850
+         Width           =   975
+      End
+      Begin VB.CommandButton Export 
+         Caption         =   "Export Excel"
+         Height          =   330
+         Left            =   17760
+         TabIndex        =   6
+         ToolTipText     =   "Export Excel [Alt+E]"
+         Top             =   8850
+         Width           =   1095
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
+         Height          =   330
+         Left            =   165
+         TabIndex        =   30
+         Top             =   555
+         Visible         =   0   'False
+         Width           =   13455
+         _Version        =   65536
+         _ExtentX        =   23733
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Report Header"
+         Alignment       =   0
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "StockLedger.frx":03B2
+         Picture         =   "StockLedger.frx":03CE
+      End
+      Begin VB.CheckBox Check2 
+         Caption         =   "Show Subtotal"
+         BeginProperty Font 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   225
+         Left            =   120
+         TabIndex        =   28
+         Top             =   645
+         Visible         =   0   'False
+         Width           =   1575
+      End
+      Begin VSFlex8UCtl.VSFlexGrid VSFlexGrid1 
+         Height          =   7455
+         Left            =   120
+         TabIndex        =   25
+         Top             =   885
+         Width           =   19050
+         _cx             =   33602
+         _cy             =   13150
+         Appearance      =   1
+         BorderStyle     =   1
+         Enabled         =   -1  'True
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Arial"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         MousePointer    =   0
+         BackColor       =   -2147483643
+         ForeColor       =   -2147483640
+         BackColorFixed  =   -2147483633
+         ForeColorFixed  =   -2147483630
+         BackColorSel    =   -2147483635
+         ForeColorSel    =   -2147483634
+         BackColorBkg    =   -2147483636
+         BackColorAlternate=   -2147483643
+         GridColor       =   -2147483633
+         GridColorFixed  =   -2147483632
+         TreeColor       =   -2147483632
+         FloodColor      =   192
+         SheetBorder     =   -2147483642
+         FocusRect       =   1
+         HighLight       =   1
+         AllowSelection  =   -1  'True
+         AllowBigSelection=   -1  'True
+         AllowUserResizing=   0
+         SelectionMode   =   0
+         GridLines       =   1
+         GridLinesFixed  =   2
+         GridLineWidth   =   1
+         Rows            =   50
+         Cols            =   38
+         FixedRows       =   1
+         FixedCols       =   1
+         RowHeightMin    =   0
+         RowHeightMax    =   0
+         ColWidthMin     =   0
+         ColWidthMax     =   0
+         ExtendLastCol   =   -1  'True
+         FormatString    =   ""
+         ScrollTrack     =   0   'False
+         ScrollBars      =   3
+         ScrollTips      =   0   'False
+         MergeCells      =   0
+         MergeCompare    =   0
+         AutoResize      =   -1  'True
+         AutoSizeMode    =   0
+         AutoSearch      =   0
+         AutoSearchDelay =   2
+         MultiTotals     =   -1  'True
+         SubtotalPosition=   0
+         OutlineBar      =   0
+         OutlineCol      =   0
+         Ellipsis        =   0
+         ExplorerBar     =   5
+         PicturesOver    =   0   'False
+         FillStyle       =   0
+         RightToLeft     =   0   'False
+         PictureType     =   0
+         TabBehavior     =   0
+         OwnerDraw       =   0
+         Editable        =   0
+         ShowComboButton =   1
+         WordWrap        =   0   'False
+         TextStyle       =   0
+         TextStyleFixed  =   0
+         OleDragMode     =   0
+         OleDropMode     =   0
+         DataMode        =   0
+         VirtualData     =   -1  'True
+         DataMember      =   ""
+         ComboSearch     =   3
+         AutoSizeMouse   =   -1  'True
+         FrozenRows      =   0
+         FrozenCols      =   0
+         AllowUserFreezing=   0
+         BackColorFrozen =   0
+         ForeColorFrozen =   0
+         WallPaperAlignment=   9
+         AccessibleName  =   ""
+         AccessibleDescription=   ""
+         AccessibleValue =   ""
+         AccessibleRole  =   24
+         Begin VSViewPort8LibCtl.VSViewPort VSViewPort1 
+            Height          =   7515
+            Left            =   570
+            TabIndex        =   31
+            Top             =   -30
+            Width           =   19050
+            _cx             =   33602
+            _cy             =   13256
+            Appearance      =   1
+            BorderStyle     =   1
+            Enabled         =   -1  'True
+            MousePointer    =   0
+            BackColor       =   -2147483633
+            AutoScroll      =   -1  'True
+            VirtualWidth    =   1000
+            VirtualHeight   =   1000
+            LargeChangeHorz =   300
+            LargeChangeVert =   300
+            SmallChangeHorz =   30
+            SmallChangeVert =   30
+            Track           =   0   'False
+            MouseScroll     =   0   'False
+            ProportionalBars=   -1  'True
+            FocusTrack      =   0   'False
+            FocusMarginLeft =   0
+            FocusMarginTop  =   0
+            AccessibleName  =   ""
+            AccessibleDescription=   ""
+            AccessibleValue =   ""
+            AccessibleRole  =   9
+            Begin MSComctlLib.ImageList ImageList1 
+               Left            =   17400
+               Top             =   360
+               _ExtentX        =   1005
+               _ExtentY        =   1005
+               BackColor       =   -2147483643
+               ImageWidth      =   16
+               ImageHeight     =   16
+               MaskColor       =   12632256
+               _Version        =   393216
+               BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+                  NumListImages   =   7
+                  BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":03EA
+                     Key             =   ""
+                  EndProperty
+                  BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":092E
+                     Key             =   ""
+                  EndProperty
+                  BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":0A42
+                     Key             =   ""
+                  EndProperty
+                  BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":0B54
+                     Key             =   ""
+                  EndProperty
+                  BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":0F2F
+                     Key             =   ""
+                  EndProperty
+                  BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":1089
+                     Key             =   ""
+                  EndProperty
+                  BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                     Picture         =   "StockLedger.frx":119B
+                     Key             =   ""
+                  EndProperty
+               EndProperty
+            End
+         End
+      End
+      Begin VB.CommandButton Command3 
+         Height          =   375
+         Left            =   18880
+         Picture         =   "StockLedger.frx":12AD
+         Style           =   1  'Graphical
+         TabIndex        =   26
+         TabStop         =   0   'False
+         ToolTipText     =   "Zoom"
+         Top             =   8800
+         Width           =   375
+      End
+      Begin VB.Timer Timer1 
+         Enabled         =   0   'False
+         Interval        =   4
+         Left            =   1920
+         Top             =   1200
+      End
       Begin VB.CommandButton Preview 
-         Caption         =   "&Print Preview"
+         Caption         =   " Print Preview"
          Height          =   330
          Left            =   15360
-         TabIndex        =   30
-         Top             =   8640
+         TabIndex        =   4
+         ToolTipText     =   "Print Preview [Alt+V]"
+         Top             =   8850
          Width           =   1215
       End
       Begin VB.CommandButton Command2 
          Height          =   320
-         Left            =   5880
-         Picture         =   "StockLedger.frx":0166
+         Left            =   7560
+         Picture         =   "StockLedger.frx":161F
          Style           =   1  'Graphical
-         TabIndex        =   26
+         TabIndex        =   7
          ToolTipText     =   "Search"
-         Top             =   8620
+         Top             =   8850
          Width           =   375
       End
       Begin VB.CommandButton cmdFilter 
          Height          =   320
-         Left            =   5400
-         Picture         =   "StockLedger.frx":04A8
+         Left            =   7080
+         Picture         =   "StockLedger.frx":1961
          Style           =   1  'Graphical
-         TabIndex        =   21
+         TabIndex        =   8
          ToolTipText     =   "Filter"
-         Top             =   8620
+         Top             =   8850
          Width           =   375
       End
       Begin VB.TextBox Text1 
@@ -110,10 +443,10 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   3240
          MaxLength       =   40
-         TabIndex        =   19
+         TabIndex        =   1
          ToolTipText     =   "Find And Search"
-         Top             =   8620
-         Width           =   2070
+         Top             =   8850
+         Width           =   3750
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber1 
          Height          =   330
@@ -125,8 +458,8 @@ Begin VB.Form FrmStockLedger
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calculator      =   "StockLedger.frx":07EA
-         Caption         =   "StockLedger.frx":080A
+         Calculator      =   "StockLedger.frx":1CA3
+         Caption         =   "StockLedger.frx":1CC3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -136,9 +469,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":086E
-         Keys            =   "StockLedger.frx":088C
-         Spin            =   "StockLedger.frx":08D6
+         DropDown        =   "StockLedger.frx":1D27
+         Keys            =   "StockLedger.frx":1D45
+         Spin            =   "StockLedger.frx":1D8F
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -187,7 +520,7 @@ Begin VB.Form FrmStockLedger
          EndProperty
          Height          =   225
          Left            =   7440
-         TabIndex        =   13
+         TabIndex        =   12
          Top             =   158
          Visible         =   0   'False
          Width           =   1455
@@ -205,30 +538,10 @@ Begin VB.Form FrmStockLedger
          EndProperty
          Height          =   225
          Left            =   4920
-         TabIndex        =   12
-         Top             =   158
+         TabIndex        =   11
+         Top             =   165
          Visible         =   0   'False
          Width           =   2535
-      End
-      Begin VB.CommandButton cmdCancel 
-         Height          =   375
-         Left            =   18840
-         Picture         =   "StockLedger.frx":08FE
-         Style           =   1  'Graphical
-         TabIndex        =   11
-         ToolTipText     =   "Cancel"
-         Top             =   90
-         Width           =   375
-      End
-      Begin VB.CommandButton cmdRefresh 
-         Height          =   375
-         Left            =   18480
-         Picture         =   "StockLedger.frx":0A00
-         Style           =   1  'Graphical
-         TabIndex        =   10
-         ToolTipText     =   "Refresh"
-         Top             =   90
-         Width           =   375
       End
       Begin VB.CheckBox ZeroStock 
          Alignment       =   1  'Right Justify
@@ -243,9 +556,9 @@ Begin VB.Form FrmStockLedger
             Strikethrough   =   0   'False
          EndProperty
          Height          =   225
-         Left            =   9360
-         TabIndex        =   9
-         Top             =   158
+         Left            =   9240
+         TabIndex        =   13
+         Top             =   165
          Visible         =   0   'False
          Width           =   4215
       End
@@ -262,20 +575,20 @@ Begin VB.Form FrmStockLedger
          EndProperty
          Height          =   225
          Left            =   3360
-         TabIndex        =   4
+         TabIndex        =   10
          Top             =   158
          Visible         =   0   'False
          Width           =   1455
       End
       Begin FPSpreadADO.fpSpread fpSpread1 
-         Height          =   7905
+         Height          =   7425
          Left            =   120
          TabIndex        =   0
-         Top             =   660
+         Top             =   950
          Width           =   19050
          _Version        =   524288
          _ExtentX        =   33602
-         _ExtentY        =   13944
+         _ExtentY        =   13097
          _StockProps     =   64
          ColsFrozen      =   3
          EditEnterAction =   2
@@ -292,12 +605,12 @@ Begin VB.Form FrmStockLedger
          MaxCols         =   35
          MaxRows         =   2000
          SelectBlockOptions=   4
-         SpreadDesigner  =   "StockLedger.frx":0B4A
+         SpreadDesigner  =   "StockLedger.frx":1DB7
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
          Left            =   120
-         TabIndex        =   6
+         TabIndex        =   33
          Top             =   105
          Width           =   615
          _Version        =   65536
@@ -318,13 +631,13 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":1CEF
-         Picture         =   "StockLedger.frx":1D0B
+         Picture         =   "StockLedger.frx":2F80
+         Picture         =   "StockLedger.frx":2F9C
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
          Left            =   1800
-         TabIndex        =   7
+         TabIndex        =   34
          Top             =   105
          Width           =   405
          _Version        =   65536
@@ -345,20 +658,20 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":1D27
-         Picture         =   "StockLedger.frx":1D43
+         Picture         =   "StockLedger.frx":2FB8
+         Picture         =   "StockLedger.frx":2FD4
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
          Left            =   2190
-         TabIndex        =   2
+         TabIndex        =   3
          Top             =   105
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":1D5F
-         Caption         =   "StockLedger.frx":1E77
+         Calendar        =   "StockLedger.frx":2FF0
+         Caption         =   "StockLedger.frx":3108
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -368,9 +681,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":1EE3
-         Keys            =   "StockLedger.frx":1F01
-         Spin            =   "StockLedger.frx":1F5F
+         DropDown        =   "StockLedger.frx":3174
+         Keys            =   "StockLedger.frx":3192
+         Spin            =   "StockLedger.frx":31F0
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -413,14 +726,14 @@ Begin VB.Form FrmStockLedger
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
          Left            =   720
-         TabIndex        =   1
+         TabIndex        =   2
          Top             =   105
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "StockLedger.frx":1F87
-         Caption         =   "StockLedger.frx":209F
+         Calendar        =   "StockLedger.frx":3218
+         Caption         =   "StockLedger.frx":3330
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -430,9 +743,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":210B
-         Keys            =   "StockLedger.frx":2129
-         Spin            =   "StockLedger.frx":2187
+         DropDown        =   "StockLedger.frx":339C
+         Keys            =   "StockLedger.frx":33BA
+         Spin            =   "StockLedger.frx":3418
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -475,9 +788,9 @@ Begin VB.Form FrmStockLedger
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Index           =   0
-         Left            =   14910
-         TabIndex        =   8
-         Top             =   105
+         Left            =   14760
+         TabIndex        =   35
+         Top             =   120
          Width           =   1215
          _Version        =   65536
          _ExtentX        =   2143
@@ -497,20 +810,20 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":21AF
-         Picture         =   "StockLedger.frx":21CB
+         Picture         =   "StockLedger.frx":3440
+         Picture         =   "StockLedger.frx":345C
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
          Left            =   1200
-         TabIndex        =   15
-         Top             =   8620
+         TabIndex        =   9
+         Top             =   8850
          Width           =   1215
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "StockLedger.frx":21E7
-         Caption         =   "StockLedger.frx":2207
+         Calculator      =   "StockLedger.frx":3478
+         Caption         =   "StockLedger.frx":3498
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -520,9 +833,9 @@ Begin VB.Form FrmStockLedger
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "StockLedger.frx":226B
-         Keys            =   "StockLedger.frx":2289
-         Spin            =   "StockLedger.frx":22D3
+         DropDown        =   "StockLedger.frx":34FC
+         Keys            =   "StockLedger.frx":351A
+         Spin            =   "StockLedger.frx":3564
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -562,7 +875,7 @@ Begin VB.Form FrmStockLedger
          Height          =   330
          Left            =   120
          TabIndex        =   16
-         Top             =   8620
+         Top             =   8850
          Width           =   1095
          _Version        =   65536
          _ExtentX        =   1931
@@ -582,66 +895,14 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":22FB
-         Picture         =   "StockLedger.frx":2317
-      End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
-         Height          =   330
-         Left            =   17970
-         TabIndex        =   17
-         Top             =   8620
-         Width           =   1215
-         _Version        =   65536
-         _ExtentX        =   2143
-         _ExtentY        =   582
-         _StockProps     =   77
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         TintColor       =   16711935
-         Caption         =   " Print Data"
-         FillColor       =   9164542
-         TextColor       =   0
-         Picture         =   "StockLedger.frx":2333
-         Picture         =   "StockLedger.frx":234F
-      End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
-         Height          =   330
-         Left            =   16680
-         TabIndex        =   18
-         Top             =   8620
-         Width           =   1215
-         _Version        =   65536
-         _ExtentX        =   2143
-         _ExtentY        =   582
-         _StockProps     =   77
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         TintColor       =   16711935
-         Caption         =   " Export Data"
-         FillColor       =   9164542
-         TextColor       =   0
-         Picture         =   "StockLedger.frx":236B
-         Picture         =   "StockLedger.frx":2387
+         Picture         =   "StockLedger.frx":358C
+         Picture         =   "StockLedger.frx":35A8
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
          Left            =   2520
-         TabIndex        =   20
-         Top             =   8625
+         TabIndex        =   17
+         Top             =   8850
          Width           =   735
          _Version        =   65536
          _ExtentX        =   1296
@@ -661,14 +922,14 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":23A3
-         Picture         =   "StockLedger.frx":23BF
+         Picture         =   "StockLedger.frx":35C4
+         Picture         =   "StockLedger.frx":35E0
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
-         Left            =   15380
-         TabIndex        =   23
-         Top             =   8620
+         Left            =   15375
+         TabIndex        =   19
+         Top             =   8850
          Visible         =   0   'False
          Width           =   1215
          _Version        =   65536
@@ -688,18 +949,18 @@ Begin VB.Form FrmStockLedger
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "StockLedger.frx":23DB
-         Picture         =   "StockLedger.frx":23F7
+         Picture         =   "StockLedger.frx":35FC
+         Picture         =   "StockLedger.frx":3618
       End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
-         Left            =   12720
-         TabIndex        =   24
-         Top             =   8625
+         Left            =   120
+         TabIndex        =   21
+         Top             =   8400
          Visible         =   0   'False
-         Width           =   2535
+         Width           =   7335
          _Version        =   65536
-         _ExtentX        =   4471
+         _ExtentX        =   12938
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -712,48 +973,21 @@ Begin VB.Form FrmStockLedger
             Strikethrough   =   0   'False
          EndProperty
          TintColor       =   16711935
-         Caption         =   "Create Stock Journal Voucher"
-         FillColor       =   9164542
-         TextColor       =   0
-         Picture         =   "StockLedger.frx":2413
-         Picture         =   "StockLedger.frx":242F
-      End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
-         Height          =   330
-         Left            =   8520
-         TabIndex        =   27
-         Top             =   8625
-         Visible         =   0   'False
-         Width           =   6735
-         _Version        =   65536
-         _ExtentX        =   11880
-         _ExtentY        =   582
-         _StockProps     =   77
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         TintColor       =   16711935
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "StockLedger.frx":244B
-         Picture         =   "StockLedger.frx":2467
+         Picture         =   "StockLedger.frx":3634
+         Picture         =   "StockLedger.frx":3650
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
          Height          =   330
-         Left            =   13680
-         TabIndex        =   28
-         Top             =   120
+         Left            =   13800
+         TabIndex        =   22
+         Top             =   555
          Visible         =   0   'False
-         Width           =   4455
+         Width           =   5295
          _Version        =   65536
-         _ExtentX        =   7858
+         _ExtentX        =   9340
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -770,13 +1004,13 @@ Begin VB.Form FrmStockLedger
          Alignment       =   1
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":2483
-         Picture         =   "StockLedger.frx":249F
+         Picture         =   "StockLedger.frx":366C
+         Picture         =   "StockLedger.frx":3688
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
          Left            =   3360
-         TabIndex        =   29
+         TabIndex        =   23
          Top             =   120
          Visible         =   0   'False
          Width           =   7575
@@ -798,20 +1032,124 @@ Begin VB.Form FrmStockLedger
          Alignment       =   0
          BorderStyle     =   0
          TextColor       =   0
-         Picture         =   "StockLedger.frx":24BB
-         Picture         =   "StockLedger.frx":24D7
+         Picture         =   "StockLedger.frx":36A4
+         Picture         =   "StockLedger.frx":36C0
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
+         Height          =   330
+         Left            =   12720
+         TabIndex        =   20
+         Top             =   8850
+         Visible         =   0   'False
+         Width           =   2535
+         _Version        =   65536
+         _ExtentX        =   4471
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Create Stock Journal Voucher"
+         FillColor       =   9164542
+         TextColor       =   0
+         Picture         =   "StockLedger.frx":36DC
+         Picture         =   "StockLedger.frx":36F8
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
+         Height          =   330
+         Left            =   7560
+         TabIndex        =   24
+         Top             =   8400
+         Visible         =   0   'False
+         Width           =   6975
+         _Version        =   65536
+         _ExtentX        =   12303
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
+         FillColor       =   8421504
+         TextColor       =   16777215
+         Picture         =   "StockLedger.frx":3714
+         Picture         =   "StockLedger.frx":3730
+      End
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
+         Height          =   330
+         Left            =   14640
+         TabIndex        =   29
+         Top             =   8355
+         Visible         =   0   'False
+         Width           =   4455
+         _Version        =   65536
+         _ExtentX        =   7858
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   "Closing Bal. = Rs. 0.00"
+         Alignment       =   1
+         BorderStyle     =   0
+         TextColor       =   0
+         Picture         =   "StockLedger.frx":374C
+         Picture         =   "StockLedger.frx":3768
+      End
+      Begin MSComctlLib.Slider Zoom 
+         Height          =   75
+         Left            =   17400
+         TabIndex        =   27
+         TabStop         =   0   'False
+         ToolTipText     =   "Zoom"
+         Top             =   8400
+         Width           =   1815
+         _ExtentX        =   3201
+         _ExtentY        =   132
+         _Version        =   393216
+         Min             =   -5
+         Max             =   5
+         TickStyle       =   2
+      End
+      Begin VB.Line Line1 
+         X1              =   0
+         X2              =   19300
+         Y1              =   8760
+         Y2              =   8760
       End
       Begin MSForms.ComboBox Combo2 
          Height          =   330
-         Left            =   6360
-         TabIndex        =   22
-         Top             =   8625
-         Width           =   2085
+         Left            =   8040
+         TabIndex        =   18
+         Top             =   8850
+         Visible         =   0   'False
+         Width           =   2925
          VariousPropertyBits=   545282075
          BackColor       =   16777215
          BorderStyle     =   1
          DisplayStyle    =   7
-         Size            =   "3678;582"
+         Size            =   "5159;582"
          MatchEntry      =   0
          ShowDropButtonWhen=   2
          SpecialEffect   =   0
@@ -822,15 +1160,15 @@ Begin VB.Form FrmStockLedger
       End
       Begin MSForms.ComboBox Combo1 
          Height          =   330
-         Left            =   16110
-         TabIndex        =   3
+         Left            =   15990
+         TabIndex        =   15
          Top             =   105
-         Width           =   2325
+         Width           =   2205
          VariousPropertyBits=   545282075
          BackColor       =   16777215
          BorderStyle     =   1
          DisplayStyle    =   7
-         Size            =   "4101;582"
+         Size            =   "3889;582"
          MatchEntry      =   0
          ShowDropButtonWhen=   2
          SpecialEffect   =   0
@@ -853,41 +1191,32 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
+Dim nSort As Boolean, VSFlexFlag As Boolean, FontFlag As Boolean
 Public dSortBy As Boolean
-Public sDate As String, eDate As String, ItemList As String, ItemGroupList As String, AccountList As String, VchType As String
-Dim rstStockLedger As New ADODB.Recordset, rstItemOpening As New ADODB.Recordset, rstCompanyMaster As New ADODB.Recordset
+Public sDate As String, eDate As String, ItemList As String, oItemName As String, ItemGroupList As String, MatCList As String, AccountList As String, VchType As String
+Dim rstStockLedger As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstItemOpening As New ADODB.Recordset, rstCompanyMaster As New ADODB.Recordset
 Dim Reset As Long, sysStock As Variant, phyStock As Variant, LR As Integer, R As Long, TotalFlag As Boolean, HideFlag As Boolean, ExitFlag As Boolean
 Dim Opening As Double, Debit As Double, Credit As Double, Bal As Variant
+Dim oMcCode As Variant, oPartyCode As Variant
 Public sMcCode As Variant, SCode As Variant, oSCode As Variant, vTypeCode As Variant, vtCode As Variant, vtType As Variant, vtNo As Variant, vDate As Variant
 Dim oVchType As String, Header1 As String, VchCode As String, PartyH As String, ItemH As String, OrderH As String, OrderF As Double, INWardF As Double, OUTWardF As Double, AmountF As Double, SNo As Long, aSNO As Long, pSNO As Long
 Dim OrderGTF As Double, INWardGTF As Double, OUTWardGTF As Double, AmountGTF As Double
-Dim OrderPGTF As Double, INWardPGTF As Double, OUTWardPGTF As Double, AmountPGTF As Double
-Private Sub Combo1_Change()
-If Reset = 1 Then Call cmdRefresh_Click
-End Sub
-Private Sub Command1_Click()
-With fpSpread1
-    fpSpread1.DeleteRows .DataRowCnt, 1
-    Call cmdRefresh_Click
-    fpSpread1.Col = 6: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight ' Stock Qty.
-    fpSpread1.Col = 7: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignCenter 'Units
-    fpSpread1.Col = 33: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight 'Physical Stock Quantity
-    fpSpread1.Col = 34: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight 'Stock Impact
-End With
-End Sub
+Dim OrderPGTF As Double, INWardPGTF As Double, OUTWardPGTF As Double, AmountPGTF As Double, ClearFlag As Boolean, unClearFlag As Boolean
 Private Sub Form_Load()
 If VchType <> 34 And VchType <> 45 And VchType <> 30 Then VchCode = ""
-'VchCode = IIf(VchType = 35 Or VchType = 36 Or VchType = 39 Or VchType = 40 Or VchType = 41, "S", "P")
 If VchType = 35 Or VchType = 36 Or VchType = 39 Or VchType = 40 Or VchType = 41 Then VchCode = "S"
 If VchType = 37 Or VchType = 38 Or VchType = 42 Or VchType = 43 Or VchType = 44 Then VchCode = "P"
 If VchType = 34 Or VchType = 45 Then VchCode = VchCode
+If VchType = 49 Then VSFlexFlag = False
 Reset = 0:
 If SCode <> "" Then SCode = SCode Else SCode = ""
+If VchType = 31 Or VchType = 49 Then If SCode = "" Then SCode = ItemList
     On Error GoTo ErrorHandler
     CenterForm Me
+Me.Top = 1200
     BusySystemIndicator True
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If VchType <= 2 Or VchType = 33 Then
         Combo1.Clear
         Combo1.AddItem "Item Ascending", 0
@@ -925,14 +1254,48 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
             ElseIf VchType = 41 Or VchType = 44 Then
                 Combo1.ListIndex = 3
             End If
+    ElseIf VchType >= 46 And VchType <= 48 Then
+        Combo1.Clear
+        Combo1.AddItem " Sales Direct", 0
+        Combo1.AddItem " Sales Against Challan", 1
+        Combo1.ListIndex = 1
+    ElseIf VchType = 103 Then
+        Combo1.Visible = False
+    ElseIf VchType >= 101 Then
+        Combo1.Clear
+        Combo1.AddItem "Item Ascending", 0
+        Combo1.AddItem "Item Descending", 1
+        Combo1.AddItem "WIP Ascending", 2
+        Combo1.AddItem "WIP Descending", 3
+        Combo1.AddItem "RM Ascending", 4
+        Combo1.AddItem "RM Descending", 5
+        Combo1.ListIndex = 0
     End If
     If VchType >= 34 And VchType <= 45 Then
         Combo2.Clear
         Combo2.AddItem " Date", 0
         Combo2.AddItem " Vch/Bill No", 1
-        Combo2.AddItem " Voucher Type", 2
-        Combo2.AddItem " Particulars", 3
+        Combo2.AddItem " Particulars", 2
+        Combo2.AddItem " Buyers Name", 3
         Combo2.ListIndex = 3
+    ElseIf VchType = 46 Then
+        Combo2.Clear
+        Combo2.AddItem " Date", 0
+        Combo2.AddItem " Vch/Bill No", 1
+        Combo2.AddItem " Particulars", 2
+        Combo2.AddItem " Unit Rate", 3
+        Combo2.AddItem " Buyer Name", 4
+        Combo2.ListIndex = 0
+    ElseIf VchType = 47 Then
+        Combo2.Clear
+        Combo2.AddItem " Buyer Name", 0
+        Combo2.ListIndex = 0
+    ElseIf VchType >= 101 Then
+        Combo2.Clear
+        Combo2.AddItem "Item", 0
+        Combo2.AddItem "WIP", 1
+        Combo2.AddItem "RM", 2
+        Combo2.ListIndex = 0
     Else
         Combo2.Clear
         Combo2.AddItem " Item Name", 0
@@ -940,6 +1303,7 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
         Combo2.ListIndex = 0
     End If
     Reset = 1
+    Combo1.Visible = True: Mh3dLabel1(0).Visible = True: MhDateInput1.ReadOnly = True: MhDateInput2.ReadOnly = True: Combo2.Visible = True: Command1.Visible = True: cmdFilter.Visible = True: Mh3dLabel7.Visible = True: Text1.Visible = True: Mh3dLabel.Visible = True: Command2.Visible = True: Mh3dLabel10.Visible = True
     If VchType <> 0 Then Command1 = False
     If VchType > 0 Then Mh3dLabel.Visible = True:
     If VchType = 0 Then Me.Caption = "Physical Stock Audit Ledger Item-Wise": Mh3dLabel8.Visible = True: Mh3dLabel9.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
@@ -948,7 +1312,7 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
     If VchType = 2 Then PendingCheck.Visible = True:  ZeroStock.Visible = True:  NegativeStock.Visible = True: Me.Caption = "Stock Status Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:: Mh3dLabel10.Visible = False:: Mh3dLabel11.Visible = False:
     '
     If VchType = 3 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Sales Greater Than Equal >>>>": Check1.Left = 3500: Me.Caption = "Sales Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
-    If VchType = 4 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Sales Return Greater Than Equal >>>>": ZeroStock.Width = 3735: ZeroStock.Left = 9840: Check1.Left = 3500: Me.Caption = "Sales Return Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
+    If VchType = 4 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Sales Return Greater Than Equal >>>>": ZeroStock.Width = 4000: ZeroStock.Left = 9540: Check1.Left = 3500: Me.Caption = "Sales Return Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     If VchType = 5 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Qty. Greater Than Equal >>>>": ZeroStock.Width = 3200: ZeroStock.Left = 10300: Check1.Left = 3500: Me.Caption = "Sales And Sales Return Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     If VchType = 6 Then Check1.Visible = True: ZeroStock.Visible = True:    ZeroStock.Caption = "Show Sales Greater Than Equal >>>>": Check1.Left = 3500: Me.Caption = "Net Sales Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     '
@@ -968,9 +1332,11 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
     If VchType = 28 Then Check1.Visible = True: ZeroStock.Visible = True: ZeroStock.Caption = "Show Sales Greater Than Equal >>>>": Check1.Left = 3500: Me.Caption = "Net Sales Analysis One-Item Party-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     '
     If (VchType >= 29 And VchType <= 30) Or VchType = 69 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False: ZeroStock.Visible = False: TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False: PendingCheck.Visible = False: ZeroStock.Caption = IIf(vtCode = 18, "Show Sales", "Sales Purchase") + "Greater Than Equal >>>>": Check1.Left = 3500: Me.Caption = IIf(vtCode = 18, "Pending Purchase Order", "Pending Sales Order")
-    If VchType = 31 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: Mh3dLabel10.Visible = True: Mh3dLabel11.Visible = True: ZeroStock.Visible = False: TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False: PendingCheck.Visible = False: ZeroStock.Caption = "Show Sales Greater Than Equal >>>>": Check1.Visible = False: Me.Caption = "Item Ledger"
+    If (VchType = 31 Or Right(VchType, 2) = 48) Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: Mh3dLabel10.Visible = True: Mh3dLabel11.Visible = True: ZeroStock.Visible = False: TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False: PendingCheck.Visible = False: ZeroStock.Caption = "Show Sales Greater Than Equal >>>>": Check1.Visible = False: Me.Caption = "Item Ledger"
+    If Right(VchType, 2) = 48 And Left(VchType, 2) = "04" Then Me.Caption = "Sales Voucher-Wise"
+    If Right(VchType, 2) = 48 And Left(VchType, 2) = "01" Then Me.Caption = "Purchase Voucher-Wise"
     If VchType = 32 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: Mh3dLabel10.Visible = True: Mh3dLabel11.Visible = True: ZeroStock.Visible = False: TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False: PendingCheck.Visible = False: ZeroStock.Caption = "Show Sales Greater Than Equal >>>>": Check1.Visible = False: Me.Caption = "Item Ledger Material Centre-Wise"
-    If VchType = 33 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = True:  ZeroStock.Visible = True:  NegativeStock.Visible = True: Me.Caption = "Short-Item Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False:
+    If VchType = 33 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = True:  ZeroStock.Visible = False: NegativeStock.Visible = True: Me.Caption = "Short-Item Analysis Item-Wise": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False:
     If VchType = 34 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Orders Status Voucher-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
     If VchType = 35 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:   ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Purchase Orders-Party-Wise-Detailed": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
     If VchType = 36 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:   ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Purchase Orders-Party-Wise-Summarized": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
@@ -983,6 +1349,8 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
     If VchType = 43 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Sales Orders Party-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
     If VchType = 44 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Sales Orders Item-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
     If VchType = 45 Then MhDateInput1.ReadOnly = False: MhDateInput2.ReadOnly = False: PendingCheck.Visible = False:  ZeroStock.Visible = False: NegativeStock.Visible = False: Me.Caption = "Orders Status Voucher-Wise ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = True: Combo1.Visible = True: Mh3dLabel10.Visible = False: Mh3dLabel11.Visible = False
+    If VchType = 46 Then Check1.Visible = True: Check1.Caption = "Select All": Me.Caption = "Pending Sales Order-Wise ": Mh3dLabel1(0).Caption = "   Pending ": Mh3dLabel12.Visible = True: Mh3dLabel12.Caption = "F9->Clear Order Quantity F10-> Retrieve Order Quantity": Mh3dLabel.Caption = "Ctrl+F->Search  F8->Delete  Escap->Un-Hide  F12->Duplicate  F5->Refresh"
+    If VchType = 47 Then Check1.Visible = True: Check1.Caption = "Select All": Me.Caption = "Pending Sales Party-Wise ": Mh3dLabel1(0).Caption = "   Pending "
     '
     If VchType = 53 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Purchase Greater Than Equal >>>>": ZeroStock.Width = 3700: ZeroStock.Left = 9800: Check1.Left = 3500: Me.Caption = "Purchase Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     If VchType = 54 Then Check1.Visible = True: ZeroStock.Visible = True:   ZeroStock.Caption = "Show Purchase Return Greater Than Equal >>>>": ZeroStock.Width = 4215: ZeroStock.Left = 9300: Check1.Left = 3500: Me.Caption = "Purchase Return Analysis Item-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
@@ -1004,6 +1372,10 @@ If SCode <> "" Then SCode = SCode Else SCode = ""
     If VchType = 67 Then Check1.Visible = True: ZeroStock.Visible = True: ZeroStock.Caption = "Show Qty. Greater Than Equal >>>>": ZeroStock.Width = 3200: ZeroStock.Left = 10300: Check1.Left = 3500: Me.Caption = "Purchase And Purchase Return Analysis One-Item Party-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     If VchType = 68 Then Check1.Visible = True: ZeroStock.Visible = True: ZeroStock.Caption = "Show Purchase Greater Than Equal >>>>": ZeroStock.Width = 3700: ZeroStock.Left = 9800: Check1.Left = 3500: Me.Caption = "Net Purchase Analysis One-Item Party-Wise": TDBNumber1.Visible = True: Mh3dLabel1(0).Visible = True: Combo1.Visible = True:
     
+    If VchType = 103 Then Check2.Visible = True: Check1.Visible = False: ZeroStock.Visible = False: Check1.Left = 3500: Me.Caption = "WIP Pending Item-Wise Ledger": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False
+    If VchType = 104 Then Check2.Visible = True: Check1.Visible = False: ZeroStock.Visible = False: Check1.Left = 3500: Me.Caption = "RM Pending Item-Wise": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False
+    If VchType = 105 Then Check2.Visible = True: Check1.Visible = False: ZeroStock.Visible = False: Check1.Left = 3500: Me.Caption = "RM & WIP Item-Wise [PSS] ": TDBNumber1.Visible = False: Mh3dLabel1(0).Visible = False: Combo1.Visible = False
+    If VchType = 49 Then Combo1.Visible = False: Mh3dLabel1(0).Visible = False: MhDateInput1.ReadOnly = True: MhDateInput2.ReadOnly = True: Combo2.Visible = False: Command1.Visible = False: cmdFilter.Visible = False: Mh3dLabel7.Visible = False: Text1.Visible = False: Mh3dLabel.Visible = True: Command2.Visible = False: Mh3dLabel10.Visible = False: Me.Caption = " Inventory - Montly Summary":
     MhDateInput1.Value = Format(sDate, "dd-MM-yyyy")
     MhDateInput2.Value = Format(eDate, "dd-MM-yyyy")
     cmdRefresh_Click
@@ -1013,69 +1385,41 @@ ErrorHandler:
     BusySystemIndicator False
     Call CloseForm(Me)
 End Sub
-
-Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
-If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
-End Sub
-Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
-    If UnloadMode = 0 Then Call CloseForm(Me)
-End Sub
-Private Sub Form_Unload(Cancel As Integer)
-    Call CloseRecordset(rstStockLedger)
-    Call CloseRecordset(rstItemOpening)
-    Call CloseRecordset(rstCompanyMaster)
-End Sub
-Private Sub cmdCancel_Click()
-    Call CloseForm(Me)
-    sMcCode = "": SCode = "": oSCode = "":  vtType = "": vDate = "": vTypeCode = "": vtNo = "":
-End Sub
 Private Sub cmdRefresh_Click()
     On Error GoTo ErrHandler
-    Dim SQL As String, i As Long, R As Long, C As Long, Stock As Long, EffectiveStock As Long, StockTotal As Long, POTotal As Long, SOTotal As Long, EStockTotal As Long, AmountTotal As Double, PurchaseTotal As Long, PurchaseReturnTotal As Long, PurchaseChallanTotal As Long, PurchaseReturnChallanTotal As Long, SalesTotal As Long, SalesReturnTotal As Long, SalesChallanTotal As Long, SalesReturnChallanTotal As Long, StockJournalINTotal As Long, StockJournalOUTTotal As Long, NetPurchaseTotal As Long, NetSalesTotal As Long, PurchaseAmountTotal As Double, SalesAmountTotal As Double, PurchaseReturnAmountTotal As Double, SalesReturnAmountTotal As Double, NetPurchaseAmountTotal As Double, NetSalesAmountTotal As Double, ICode As Variant
+    'Dim mSQL, sSQL, dSQL As String   '[Month SQL Query,Summary SQL Query,Details SQL Query]
+    Dim SQL, i As Long, R As Long, C As Long, Stock As Long, EffectiveStock As Long, StockTotal As Long, POTotal As Long, SOTotal As Long, EStockTotal As Long, AmountTotal As Double, PurchaseTotal As Long, PurchaseReturnTotal As Long, PurchaseChallanTotal As Long, PurchaseReturnChallanTotal As Long, SalesTotal As Long, SalesReturnTotal As Long, SalesChallanTotal As Long, SalesReturnChallanTotal As Long, StockJournalINTotal As Long, StockJournalOUTTotal As Long, NetPurchaseTotal As Long, NetSalesTotal As Long, PurchaseAmountTotal As Double, SalesAmountTotal As Double, PurchaseReturnAmountTotal As Double, SalesReturnAmountTotal As Double, NetPurchaseAmountTotal As Double, NetSalesAmountTotal As Double, ICode As Variant
     Dim OpSQL As String, dPrint As Long
     Debit = 0: Credit = 0: Bal = 0
-    If VchType = 31 Or VchType = 32 Then '31_Item Ledger Opening(One Or All Material Centre) 32_Item Ledger Opening(One Or All Material Centre)
-    OpSQL = "Select ISNULL(Sum(INWard),0) As INWard,ISNULL(Sum(OutWard),0) As OutWard, ISNULL(Sum(INWard),0)-ISNULL(Sum(OutWard),0)+(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") And Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Opening,(Select Name From BookMaster Where Code=Item) As Item,Item As ItemCode,(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") And Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As OPBAL From (" & _
-                    "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='01' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION " & _
-                    "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='02' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='04' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION " & _
-                    "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='03' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='05' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='06' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='08' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='07' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='19' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND C.Quantity>0 UNION " & _
-                    "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='20' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION " & _
-                    "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='19' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND C.Quantity<0 UNION " & _
-                    "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,C.Code,Item,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                    "WHERE LEFT(P.Type,2)='20' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Tbl Group By Item,MaterialCentre "
+    If VchType = 31 Or VchType = 32 Or VchType = 49 Then ' Item Ledger
+    oMcCode = IIf(sMcCode <> "", "P.MaterialCentre", "P.Party")
+    OpSQL = "Select ISNULL(Sum(INWard),0) As INWard,ISNULL(Sum(OutWard),0) As OutWard, ISNULL(Sum(INWard),0)-ISNULL(Sum(OutWard),0)+ISNULL((SELECT OPBAL From BookChild I Where MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") And Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")),0) As Opening,(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") And Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As OPBAL,(Select Name +PrintName From BookMaster Where Code= " & ItemList & ") AS Item From (" & _
+                "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
+                "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
+                "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0  UNION ALL " & _
+                "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 UNION ALL " & _
+                "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0 UNION ALL " & _
+                "SELECT IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard  FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date < '" & GetDate(MhDateInput1.Text) & "'  AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 ) As Tbl "
                     Screen.MousePointer = vbHourglass
                     If rstItemOpening.State = adStateOpen Then rstItemOpening.Close
-                    rstItemOpening.Open OpSQL, cnDatabase, adOpenKeyset, adLockReadOnly
+                        rstItemOpening.Open OpSQL, cnDatabase, adOpenKeyset, adLockReadOnly
                     If rstItemOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: 'Exit Sub
-                    If rstItemOpening.RecordCount = 0 Then
-                    OpSQL = "Select 0 As INWard,0 As OutWard, (SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Opening,Name As Item,Code As ItemCode,(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As OPBAL From BookMaster Where Code IN (" & IIf(SCode <> "", SCode, ItemList) & ")"
-                                    If rstItemOpening.State = adStateOpen Then rstItemOpening.Close
-                                    rstItemOpening.Open OpSQL, cnDatabase, adOpenKeyset, adLockReadOnly
-                                    If rstItemOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: 'Exit Sub
+                        If rstItemOpening.RecordCount = 0 Then
+                        OpSQL = "Select 0 As INWard,0 As OutWard, (SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Opening,Name As Item,Code As ItemCode,(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ") AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As OPBAL From BookMaster Where Code IN (" & IIf(SCode <> "", SCode, ItemList) & ")"
+                        If rstItemOpening.State = adStateOpen Then rstItemOpening.Close
+                        rstItemOpening.Open OpSQL, cnDatabase, adOpenKeyset, adLockReadOnly
+                        If rstItemOpening.RecordCount = 0 Then Screen.MousePointer = vbNormal: 'Exit Sub
                     End If
     End If
-    
     If VchType <= 2 Or VchType = 33 Then 'Stock Ledger
-    
     SQL = "SELECT * FROM (" & _
-                "SELECT " & IIf(VchType <= 10 And VchType >= 7, "(select name from AccountMaster where code='" & AccountList & "')", "''") & " as OneParty,I.Name As Item,I.Price  As MRP,G.Name As ItemGroup,I.Code As code,I.HSNCode," & _
+                "SELECT " & IIf(VchType <= 10 And VchType >= 7, "(select name from AccountMaster where code='" & AccountList & "')", "''") & " as OneParty,I.Name As Item,I.Price  As MRP,G.Name As ItemGroup," & _
                 "ISNULL((SELECT SUM(0-R.Quantity) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='17' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & AccountList & ") AND C.Item=I.Code),0)+ISNULL((SELECT SUM(EstQty01-(DeliveredQuantityC+DeliveredQuantityB)) FROM BookPOParent WHERE LEFT(Type,1)<>'O' AND RIGHT(Type,1)='P' AND Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND MaterialCentre IN (" & AccountList & ") AND Book=I.CODE),0) As PendingPO," & _
                 "ISNULL((SELECT SUM(R.Quantity) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & AccountList & ") AND C.Item=I.Code),0)+ISNULL((SELECT SUM(EstQty01-(DeliveredQuantityC+DeliveredQuantityB)) FROM BookPOParent WHERE LEFT(Type,1)<>'O' AND RIGHT(Type,1)='S' AND Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND MaterialCentre IN (" & AccountList & ") AND Book=I.CODE),0) As PendingSO," & _
                 "ISNULL((SELECT SUM(OPBAL) FROM BookChild C WHERE C.MaterialCentre IN (" & AccountList & ") AND C.Item=I.Code),0)  As OPBAL," & _
@@ -1097,13 +1441,11 @@ Private Sub cmdRefresh_Click()
                 "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND MaterialCentre IN (" & AccountList & ") AND C.Item=I.Code AND C.Quantity<0),0) As StockJournalOUT," & _
                 "ISNULL((SELECT ABS(SUM(Quantity)) From JobworkBVRef Where RefCode IN (Select RefCode From JobworkBVRef C inner join JobworkBVParent P on P.code=C.vchcode WHERE LEFT(C.VchType,2)='23' AND C.VchDate BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & AccountList & ") AND C.Item = I.Code)),0) As PQ , " & _
                 "ISNULL((SELECT ABS(SUM(Quantity)) From JobworkBVRef Where RefCode IN (Select RefCode From JobworkBVRef C inner join JobworkBVParent P on P.code=C.vchcode WHERE LEFT(C.VchType,2)='24' AND C.VchDate BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & AccountList & ") AND C.Item = I.Code)),0) As SQ " & _
-                "FROM BookMaster I INNER JOIN GeneralMaster G ON I.[Group]=G.Code WHERE I.Code IN (" & ItemList & ")" & _
+                " ,I.Code As code,I.HSNCode FROM BookMaster I INNER JOIN GeneralMaster G ON I.[Group]=G.Code WHERE I.Code IN (" & ItemList & ")" & _
                 ") As Tbl ORDER BY " & Choose(Combo1.ListIndex + 1, "Item ASC,MRP,ItemGroup", "Item DESC,MRP,ItemGroup", "ItemGroup ASC,Item,MRP", "ItemGroup DESC,Item,MRP", "MRP ASC,Item,ItemGroup", "MRP DESC,Item,ItemGroup", "Item ASC,MRP,ItemGroup") & ""
-    
     ElseIf (VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60) Then 'Item-Wise'( Sale And Purchase Ledger)
-    
     SQL = "SELECT * FROM (" & _
-                "SELECT " & IIf(((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)), "(select name from AccountMaster where code=" & IIf(sMcCode <> "", sMcCode, AccountList) & ")", "''") & " as OneParty,I.Name As Item,I.Price  As MRP,G.Name As ItemGroup,I.Code As code,'' As HSNCode," & _
+                "SELECT " & IIf(((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)), "(select name from AccountMaster where code=" & IIf(sMcCode <> "", sMcCode, AccountList) & ")", "''") & " as OneParty,IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) As Item,I.Price  As MRP,G.Name As ItemGroup,I.Code As code,'' As HSNCode," & _
                 SQL & _
                 "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)  As Purchase," & _
                 "ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)  As PurchaseAmount," & _
@@ -1115,11 +1457,9 @@ Private Sub cmdRefresh_Click()
                 "ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)  As SalesReturnAmount " & _
                 "FROM BookMaster I INNER JOIN GeneralMaster G ON I.[Group]=G.Code WHERE I.Code IN (" & ItemList & ")" & _
                 ") As Tbl ORDER BY " & Choose(Combo1.ListIndex + 1, "Item ASC,MRP,ItemGroup", "Item DESC,MRP,ItemGroup", "ItemGroup ASC,Item,MRP", "ItemGroup DESC,Item,MRP", "MRP ASC,Item,ItemGroup", "MRP DESC,Item,ItemGroup", "Item ASC,MRP,ItemGroup") & ""
-    
     ElseIf (VchType >= 21 And VchType <= 28) Or (VchType >= 61 And VchType <= 68) Then 'Party-Wise'( Sale And Purchase Ledger)
-    
     SQL = "SELECT * FROM (" & _
-              "SELECT " & IIf(((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)), "(select name from BookMaster where code=" & IIf(SCode <> "", SCode, ItemList) & ")", "''") & " as OneItem,I.Name As Item,'' As MRP,G.Name As ItemGroup,I.Code As Code,'' As HSNCode," & _
+              "SELECT " & IIf(((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)), "(select name from BookMaster where code=" & IIf(SCode <> "", SCode, ItemList) & ")", "''") & " as OneItem,IIF(I.PrintName<>I.Name,I.Name+' '+I.PrintName,I.PrintName) As Item,'' As MRP,G.Name As ItemGroup,I.Code As Code,'' As HSNCode," & _
               "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As Purchase," & _
               "ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As PurchaseAmount," & _
               "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As PurchaseReturn," & _
@@ -1130,9 +1470,8 @@ Private Sub cmdRefresh_Click()
               "ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND P.Party=I.Code),0)  As SalesReturnAmount " & _
               "FROM AccountMaster I INNER JOIN GeneralMaster G ON I.[Group]=G.Code WHERE I.Code IN (" & AccountList & ")" & _
               ") As Tbl ORDER BY " & Choose(Combo1.ListIndex + 1, "Item ASC,ItemGroup", "Item DESC,ItemGroup", "ItemGroup ASC,Item", "ItemGroup DESC,Item", "Item ASC,ItemGroup") & ""
-    
     ElseIf VchType >= 29 And VchType <= 30 Then 'Pending Order
-   SQL = "Select Code As VchCode,Date As Date,RIGHT(Type,1)+'O/'+LTRIM(Name)+'/JW/'+IIF(FORMAT(Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(Date,'yy')),Convert(Nvarchar,FORMAT(Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(Date,'yy'))+1)) As VchBillNo,(Select Name From BookMAster Where Code=Book) As Item,(Select Name From AccountMaster Where Code=IIF(BookPrinter IS NOT NULL, BookPrinter,IIF(TitlePrinter IS NOT NULL,TitlePrinter,IIF(Laminator IS NOT NULL,Laminator,IIF(Binder IS NOT NULL,Binder,''))))) As Details," & _
+    SQL = "Select Code As VchCode,Date As Date,RIGHT(Type,1)+'O/'+LTRIM(Name)+'/JW/'+IIF(FORMAT(Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(Date,'yy')),Convert(Nvarchar,FORMAT(Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(Date,'yy'))+1)) As VchBillNo,(Select Name From BookMAster Where Code=Book) As Item,(Select Name From AccountMaster Where Code=IIF(BookPrinter IS NOT NULL, BookPrinter,IIF(TitlePrinter IS NOT NULL,TitlePrinter,IIF(Laminator IS NOT NULL,Laminator,IIF(Binder IS NOT NULL,Binder,''))))) As Details," & _
              "EstQty01 As Ordered,0 As Dispatched,(EstQty01-(DeliveredQuantityB+DeliveredQuantityC)) As Pending,'No.' As Unit,UnitRate As Rate,(UnitRate*(EstQty01-(DeliveredQuantityB+DeliveredQuantityC))) As Amount,Type AS VchType,IIF(Right(Type,2)='FP','PO','SO') AS Type From BookPOParent Where Type='" & IIf(vTypeCode = "18", "FP", "FS") & "' AND Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND Book IN (" & IIf(SCode <> "", SCode, ItemList) & ")   AND (DeliveredQuantityC) = 0 AND (DeliveredQuantityB) = 0 " & _
              "Union " & _
              "Select P1.Code As VchCode,P1.Date As Date,RIGHT(P1.Type,1)+'O/'+LTRIM(P1.Name)+'/JW/'+IIF(FORMAT(P1.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(P1.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(P1.Date,'yy')),Convert(Nvarchar,FORMAT(P1.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(P1.Date,'yy'))+1)) As VchBillNo,(Select Name From BookMaster A Where A.Code=C.Item) As Item,(Select Name From AccountMaster A Where A.Code=P.Party) As Details," & _
@@ -1142,43 +1481,44 @@ Private Sub cmdRefresh_Click()
              " AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") " & _
              "Group By P1.Code,P1.Date,RIGHT(P1.Type,1)+'O/'+LTRIM(P1.Name)+'/JW/'+IIF(FORMAT(P1.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(P1.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(P1.Date,'yy')),Convert(Nvarchar,FORMAT(P1.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(P1.Date,'yy'))+1)),Item,Party,P1.Type " & _
              "Union " & _
-             "SELECT DISTINCT C.RefCode As VchCode,P.Date AS Date,LTRIM(P.Name) AS VchBillNo,(Select PrintName From BookMaster Where Code=C.Item ) AS Item,(Select PrintName From AccountMaster Where Code=P.Party) AS Details,IIF(LEFT(BOM,6)IN ('1701FI','1801FI'),ABS(C.Quantity),0) AS Ordered,ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0) As Dispatched,(IIF(LEFT(BOM,6)IN ('1701FI','1801FI'),ABS(C.[Quantity]),0)-ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0)) As Bal,'Units' As Unit,C.Rate As Rate,(C.Rate*(IIF(LEFT(BOM,6)IN ('1701FI','1801FI'),ABS(C.[Quantity]),0)-ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0))) As Amount,P.TYPE As VchType,Right(Type,2) AS Type  " & _
+             "SELECT DISTINCT C.RefCode As VchCode,P.Date AS Date,LTRIM(P.Name) AS VchBillNo,(Select PrintName From BookMaster Where Code=C.Item ) AS Item,(Select PrintName From AccountMaster Where Code=P.Party) AS Details,IIF(LEFT(BOM,4)+Right(BOM,2)IN ('1701FI','1801FI'),ABS(C.Quantity),0) AS Ordered,ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0) As Dispatched,(IIF(LEFT(BOM,4)+Right(BOM,2)IN ('1701FI','1801FI'),ABS(C.[Quantity]),0)-ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0)) As Bal,'Units' As Unit,C.Rate As Rate,(C.Rate*(IIF(LEFT(BOM,4)+Right(BOM,2)IN ('1701FI','1801FI'),ABS(C.[Quantity]),0)-ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0))) As Amount,P.TYPE As VchType,Right(Type,2) AS Type  " & _
              "FROM JobworkBVParent P INNER JOIN JobworkBVChild C ON P.Code=C.Code Left Join JobworkBVRef R ON R.VchCode=C.Code " & _
              "WHERE LEFT((C.BOM),6) IN ('" & IIf(VchCode = "P", "1801FI", "1701FI") & "') AND Right(P.Type,1)<>'" & Left(VchCode, 1) & "' AND LEFT(P.Code,1)<>'*' AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & _
              IIf(FrmItemSelectionList.Option3.Value, "ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0)<ABS(C.Quantity)", IIf(FrmItemSelectionList.Option1.Value, "ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0)>=ABS(C.Quantity)", IIf(FrmItemSelectionList.Option2.Value, "IIf(Right(P.Type,1)='P',ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0),ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0))>=0", 1))) & "  " & _
              "AND C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") " & _
              "ORDER BY VchBillNo "
-    
-'    SQL = "Select Code As VchCode,Date As Date, LTRIM(Name) As VchBillNo,(Select Name From BookMAster Where Code=Book) As Item,(Select Name From AccountMaster Where Code=IIF(BookPrinter IS NOT NULL, BookPrinter,IIF(TitlePrinter IS NOT NULL,TitlePrinter,IIF(Laminator IS NOT NULL,Laminator,IIF(Binder IS NOT NULL,Binder,''))))) As Details,EstQty01 As Ordered,(EstQty01-(DeliveredQuantityB+DeliveredQuantityC)) As Pending,'No.' As Unit,UnitRate As Rate,(UnitRate*(EstQty01-(DeliveredQuantityB+DeliveredQuantityC))) As Amount,Type AS VchType,IIF(Right(Type,2)='FP','PO','SO') AS Type From BookPOParent Where Type='" & IIf(vTypeCode = "18", "FP", "FS") & "' AND Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND Book IN (" & IIf(SCode <> "", SCode, ItemList) & ")   AND (EstQty01-(DeliveredQuantityB+DeliveredQuantityC)) <> 0 " & _
-'                      "Union " & _
-'                      "SELECT VchCode As VchCode,VchDate,VchBillNo,Item As Item,Details As Details,SUM(Quantity) As Ordered,SUM(Bal) As Pending,'Units' As Unit,Rate,(Rate*SUM(Bal)) As Amount,VchType,IIF(Right(VchType,2)='PO','PO','SO') AS Type FROM (SELECT VchCode,LTRIM(VchNo) As VchBillNo,(Select Name From BookMAster Where Code=T.Item) As Item,VchDate,ISNULL(ABS(Quantity),0) As Quantity,(Select Name From AccountMaster Where T.Party=Code) As Details,T.Rate,T.VchType,ABS((SELECT SUM(Quantity) FROM JobworkBVRef WHERE RefCode=T.RefCode)*1) As Bal FROM JobworkBVRef T WHERE RIGHT(VchType,2)='" & IIf(vTypeCode = "18", "PO", "SO") & "' AND VchDate BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Tbl WHERE Bal<>0 GROUP BY VchCode,VchDate,VchBillNo,Details,Rate,VchType,Item " & _
-'                      "ORDER BY VchBillNo "
-    ElseIf VchType = 31 Then ' Item Ledger
-    SQL = "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='05' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='06' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='08' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='07' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0  UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0 UNION ALL " & _
-                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select Name From BookMaster Where Code=C.Item) As Item,(Select Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= P.MaterialCentre) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code " & _
-                "WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0" & _
+    ElseIf VchType = 31 Then ' Item Ledger Date-wise
+    oMcCode = IIf(sMcCode <> "", "P.MaterialCentre", "P.Party")
+    SQL = "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code=  " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,'0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0  UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0 UNION ALL " & _
+                "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,'Units' As Unit,Rate,(Rate*ISNULL(ABS(Quantity),0)) As Amount,BOM,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) AS Type,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item,(Select IIF(PrintName<>Name,Name+' '+PrintName,PrintName) Name From AccountMaster Where Code= P.Party) As Party,(Select Name From AccountMaster Where Code= " & oMcCode & " ) As MaterialCentre,P.Type VchType FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0" & _
                 "Order By P.Date ASC "
+    ElseIf VchType = 49 Then ' Item Ledger Date-wise
+    oMcCode = IIf(sMcCode <> "", "P.MaterialCentre", "P.Party")
+     SQL = "WITH Months AS (SELECT TOP 12 CASE WHEN ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) <= 3 THEN ROW_NUMBER() OVER (ORDER BY (SELECT NULL )) +12 Else ROW_NUMBER()OVER (ORDER BY (SELECT NULL )) END AS mCode FROM master.dbo.spt_values)" & _
+                "Select CASE WHEN m.mCode <= 3 THEN m.mCode + 12 ELSE m.mCode END AS mCode,FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'MMMM-yyy') MonthYear,Sum(ISNULL(INWard,0)) As INWard,Sum(ISNULL(OutWard,0)) As OutWard,ISNULL(Item,'') As Item,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'),'dd-MMM-yyyy') Else FORMAT(DATEADD(month, m.mCode - 4, '" & FinancialYearFrom & "'), 'dd-MMM-yyyy') END  AS FromDate,CASE WHEN m.mCode <= 12 THEN FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') Else FORMAT(DATEADD(Day, -1, DATEADD(month, m.mCode - 3, '" & FinancialYearFrom & "')), 'dd-MMM-yyyy') END    AS ToDate FROM Months m LEFT JOIN (" & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, '0' As INWard,ISNULL(ABS(Quantity),0) As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, ISNULL(ABS(Quantity),0) As INWard,'0' As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0  UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0 UNION ALL " & _
+                "SELECT IIF(FORMAT(P.Date, 'MM')>3,FORMAT(P.Date, 'MM'),FORMAT(P.Date, 'MM')+12) AS mCode,FORMAT(P.Date, 'MMMM') AS MonthYear, IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As INWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As OutWard,(Select IIF(I.ItemMarks<>'',I.ItemMarks+' '+I.PrintName,I.PrintName) From BookMaster I Where I.Code=C.Item) As Item FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & oMcCode & " IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0" & _
+                ") AS TBL ON m.mCode = TBL.mCode GROUP BY m.mCode,TBL.Item ORDER BY m.mCode ASC; "
       ElseIf VchType = 32 Then 'One Item Ledger Material Centre-wise
       SQL = "Select ISNULL(Sum(oINWard),0) As oINWard,ISNULL(Sum(oOutWard),0) As oOutWard, ISNULL(Sum(oINWard),0)-ISNULL(Sum(oOutWard),0)+(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre = TBL.MaterialCentre AND Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Opening,ISNULL(Sum(cINWard),0) As cINWard,ISNULL(Sum(cOutWard),0) As cOutWard,ISNULL(Sum(cINWard),0)-ISNULL(Sum(cOutWard),0)+ISNULL(Sum(oINWard),0)-ISNULL(Sum(oOutWard),0)+(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre = TBL.MaterialCentre AND Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As Closing,(Select Name From AccountMaster Where Code= MaterialCentre) As MaterialCentreName,MaterialCentre,(SELECT ISNULL(Sum(OPBAL),0) From BookChild I Where I.MaterialCentre = TBL.MaterialCentre AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As OPBAL From ( " & _
                 "Select ISNULL(ABS(Quantity),0) As oINWard,'0' As oOutWard,'0' As cINWard,'0' As cOutWard,MaterialCentre,C.Code FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND P.Date < '" & GetDate(MhDateInput1.Text) & "' And P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') UNION ALL " & _
@@ -1205,7 +1545,6 @@ Private Sub cmdRefresh_Click()
                 "Select  '0' As oINWard,'0' As oOutWard,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As cINWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As cOutWard,MaterialCentre,C.Code FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity>0 UNION ALL " & _
                 "Select  '0' As oINWard,'0' As oOutWard,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As cINWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As cOutWard,IIF(Quantity<0,PArty,MaterialCentre) As MaterialCentre,C.Code FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0 UNION ALL " & _
                 "Select  '0' As oINWard,'0' As oOutWard,IIF((Quantity)<0,'0',ISNULL(ABS(Quantity),0)) As cINWard,IIF((Quantity)<0,ISNULL(ABS(Quantity),0),'0') As cOutWard,MaterialCentre,C.Code FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  Item IN (" & IIf(SCode <> "", SCode, ItemList) & ") AND C.Quantity<0) As Tbl Group By MaterialCentre "
-      
       ElseIf VchType = 34 Then ' Order Status
         SQL = "Select P.Date As vtDate,P.Name As VchBillNo,IIF(LEFT(P.Type,4)='0110','Purchase',IIF(LEFT(P.Type,4)='0210','Purchase Return',IIF(LEFT(P.Type,4)='0510','Pur Challan IN',IIF(LEFT(P.Type,4)='0610','Pur Challan Out',IIF(LEFT(P.Type,4)='0310','Sales Return',IIF(LEFT(P.Type,4)='0410','Sales',IIF(LEFT(P.Type,4)='0710','Sales Challan IN',IIF(LEFT(P.Type,4)='0810','Sales Challan Out','Order Status')))))))) As TypeRef,(Select Name From BookMaster A Where A.Code=C.Item) As ItemName,(Select Name From AccountMaster A Where A.Code=P.Party) As AccountName,(Select Name From AccountMaster A Where A.Code=P.MaterialCentre) As MaterialCentre,P.Remarks,P.ChallanDate,P.ChallanNo, " & _
                   "P1.EstQty01 As Ordered,IIF(LEFT(BOM,18) IN ('0310XXXXXXXXXXXXFI','0710XXXXXXXXXXXXFI','0110XXXXXXXXXXXXFI','0510XXXXXXXXXXXXFI','0000'),C.Quantity,0) As INward,ABS(IIF(LEFT(BOM,18) IN ('0410XXXXXXXXXXXXFI','0810XXXXXXXXXXXXFI','0210XXXXXXXXXXXXFI','0610XXXXXXXXXXXXFI','0000'),C.Quantity,0)) As OutWard,(IIF(P1.Type = 'FP', -1, 1) * P1.EstQty01)-ABS(IIF(LEFT(BOM,18) IN ('0410XXXXXXXXXXXXFI','0810XXXXXXXXXXXXFI','0210XXXXXXXXXXXXFI','0610XXXXXXXXXXXXFI','0000'),C.Quantity,0))+IIF(LEFT(BOM,18) IN ('0310XXXXXXXXXXXXFI','0710XXXXXXXXXXXXFI','0110XXXXXXXXXXXXFI','0510XXXXXXXXXXXXFI','0000'),C.Quantity,0) As Pending,C.Rate,C.Amount,ISNULL(P.Name,'') AS vtNO,ISNULL(P.Type,'') AS vtType,ISNULL(P.Code,'') AS vtCode,P1.Code As pvtCode," & _
@@ -1215,41 +1554,29 @@ Private Sub cmdRefresh_Click()
         SQL = "SELECT (Select Name From AccountMaster Where Code=Party) As AccountName,RIGHT((Select TYPE From BookPOParent Where Code=Ref),1)+'O/'+LTRIM((Select Name From BookPOParent Where Code=Ref))+'/JW/'+IIF(FORMAT((Select Date From BookPOParent Where Code=Ref),'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')),Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))+1)) As VchBillNo,(Select Date From BookPOParent Where Code=Ref) AS pvtDate,(Select Name From BookMaster Where Code=Item) As ItemName,ISNULL(ChallanNo,'') As ChallanNo,ISNULL(ChallanDate,'') As ChallanDate,(Select EstQty01 From BookPOParent Where Code=Ref) As Ordered,(Quantity) As INward,0 as Outward,Party As BCode,P.Name As GRNNo,Date As vtDate," & _
                   "(Select Name From AccountMaster Where Code=MaterialCentre)As MaterialCentre,(Select Name From AccountMaster Where Code=Party)As Party,Remarks,(Select LTrim(Name) From BookPOParent Where Code=Ref) As PO,(Select Name From BookMaster Where Code=Item) As Book,C.Quantity As Qty,ISNULL(C.Rate,(Select UnitRate From BookPOParent Where Code=Ref)) AS Rate,ISNULL(C.Amount,((Select EstQty01 From BookPOParent Where Code=Ref)*(Select UnitRate From BookPOParent Where Code=Ref))) As Amount,P.BOX,P.Freight,ISNULL(P.TYPE,'') AS TYPE,RIGHT(P.Type,2)+'-'+LTRIM(P.Name) As MRNNo,(Select Type From BookPOParent Where Code=Ref) As pvtType,Item As Code,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) As TypeRef,IIF(C.BOM IS NOT Null,C.BOM,'0000FI') As BOM,(Select Code From BookPOParent Where Code=Ref) As Code,(Select Code From BookPOParent Where Code=Ref) As pvtCode,ISNULL(P.Name,'') AS vtNO,ISNULL(P.Type,'') AS vtType,ISNULL(P.Code,'') AS vtCode " & _
                   "FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR') AND Ref IN (SELECT Code FROM BookPOParent) AND LEFT((Select Type From BookPOParent Where Code=Ref),1)<>'O' AND RIGHT((Select Type From BookPOParent Where Code=Ref),1)<>'" & Left(VchCode, 1) & "' AND LEFT((Select Code From BookPOParent Where Code=Ref),1)<>'*' AND (Select Date From BookPOParent Where Code=Ref)>='" & GetDate(MhDateInput1.Text) & "' AND (Select Date From BookPOParent Where Code=Ref)<='" & GetDate(MhDateInput2.Text) & "' AND " & _
-                   IIf(FrmItemSelectionList.Option3.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)<(Select EstQty01 From BookPOParent Where Code=Ref)", IIf(FrmItemSelectionList.Option1.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)>=(Select EstQty01 From BookPOParent Where Code=Ref)", "1=1")) & " AND P.Party IN (" & AccountList & ") AND C.Item IN (" & ItemList & ") " & _
+                   IIf(FrmItemSelectionList.Option3.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)<(Select EstQty01 From BookPOParent Where Code=Ref)", IIf(FrmItemSelectionList.Option1.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)>=(Select EstQty01 From BookPOParent Where Code=Ref)", "1=1")) & " AND P.MaterialCentre IN (" & MatCList & ") AND P.Party IN (" & AccountList & ") AND C.Item IN (" & ItemList & ") " & _
                   "UNION ALL " & _
                   "SELECT (Select Name From AccountMaster Where Code=Party) As AccountName,RIGHT((Select TYPE From BookPOParent Where Code=Ref),1)+'O/'+LTRIM((Select Name From BookPOParent Where Code=Ref))+'/JW/'+IIF(FORMAT((Select Date From BookPOParent Where Code=Ref),'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')),Convert(Nvarchar,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT((Select Date From BookPOParent Where Code=Ref),'yy'))+1)) As VchBillNo,(Select Date From BookPOParent Where Code=Ref) AS pvtDate,(Select Name From BookMaster Where Code=Item) As ItemName,ISNULL(ChallanNo,'') As ChallanNo,ISNULL(ChallanDate,'') As ChallanDate,(Select EstQty01 From BookPOParent Where Code=Ref) As Ordered,0 As INward,(Quantity) as Outward,Party As BCode,P.Name As GRNNo,Date As vtDate," & _
                   "(Select Name From AccountMaster Where Code=MaterialCentre)As MaterialCentre,(Select Name From AccountMaster Where Code=Party)As Party,Remarks,(Select LTrim(Name) From BookPOParent Where Code=Ref) As PO,(Select Name From BookMaster Where Code=Item) As Book,C.Quantity As Qty,ISNULL(C.Rate,(Select UnitRate From BookPOParent Where Code=Ref)) AS Rate,ISNULL(C.Amount,((Select EstQty01 From BookPOParent Where Code=Ref)*(Select UnitRate From BookPOParent Where Code=Ref))) As Amount,P.BOX,P.Freight,ISNULL(P.TYPE,'') AS TYPE,RIGHT(P.Type,2)+'-'+LTRIM(P.Name) As MRNNo,(Select Type From BookPOParent Where Code=Ref) As pvtType,Item As Code,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) As TypeRef,IIF(C.BOM IS NOT Null,C.BOM,'0000FI') As BOM,(Select Code From BookPOParent Where Code=Ref) As Code,(Select Code From BookPOParent Where Code=Ref) As pvtCode,ISNULL(P.Name,'') AS vtNO,ISNULL(P.Type,'') AS vtType,ISNULL(P.Code,'') AS vtCode " & _
                   "FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (SELECT Code FROM BookPOParent) AND LEFT((Select Type From BookPOParent Where Code=Ref),1)<>'O' AND RIGHT((Select Type From BookPOParent Where Code=Ref),1)<>'" & Left(VchCode, 1) & "' AND LEFT((Select Code From BookPOParent Where Code=Ref),1)<>'*' AND (Select Date From BookPOParent Where Code=Ref)>='" & GetDate(MhDateInput1.Text) & "' AND (Select Date From BookPOParent Where Code=Ref)<='" & GetDate(MhDateInput2.Text) & "' AND " & _
-                   IIf(FrmItemSelectionList.Option3.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)<(Select EstQty01 From BookPOParent Where Code=Ref)", IIf(FrmItemSelectionList.Option1.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)>=(Select EstQty01 From BookPOParent Where Code=Ref)", "1=1")) & " AND P.Party IN (" & AccountList & ") AND C.Item IN (" & ItemList & ") " & _
+                   IIf(FrmItemSelectionList.Option3.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)<(Select EstQty01 From BookPOParent Where Code=Ref)", IIf(FrmItemSelectionList.Option1.Value, "(Select DeliveredQuantityC+DeliveredQuantityB From BookPOParent Where Code=Ref)>=(Select EstQty01 From BookPOParent Where Code=Ref)", "1=1")) & " AND P.MaterialCentre IN (" & MatCList & ") AND P.Party IN (" & AccountList & ") AND C.Item IN (" & ItemList & ") " & _
                   "UNION ALL " & _
                  "SELECT (Select Name From AccountMaster Where Code=IIF(Binder IS NOT NULL AND Binder<>'' ,Binder,IIF(BookPrinter IS NOT NULL AND BookPrinter<>'',BookPrinter,IIF(TitlePrinter IS NOT NULL AND TitlePrinter<>'',TitlePrinter,Laminator)))) As AccountName,RIGHT(TYPE,1)+'O/'+LTRIM(Name)+'/JW/'+IIF(FORMAT(Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(Date,'yy')),Convert(Nvarchar,FORMAT(Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(Date,'yy'))+1)) As VchBillNo,Date AS pvtDate," & _
                  "(Select Name From BookMaster Where Code=Book) As ItemName,'' As ChallanNo,'' As ChallanDate,EstQty01 As Ordered,0 As INward,0 as Outward,'' As BCode,'' As GRNNo,Date As vtDate,(Select Name From AccountMaster Where Code=MaterialCentre)As MaterialCentre,'' As Party,'' As Remarks,LTrim(Name) As PO,(Select Name From BookMaster Where Code=Book) As Book,0 As Qty,UnitRate AS Rate,(EstQty01*UnitRate) As Amount,0 As BOX,0 As Freight,'' As Type,'' As MRNNo,Type As pvtType,Book As Code,'' As TypeRef,'0000FI' As BOM,Code,Code As pvtCode,'' AS vtNO,'' AS vtType,'' AS vtCode " & _
                  "From BookPOParent Where Code NOT IN (Select Distinct C.Ref FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI')) AND LEFT(Type,1)<>'O' AND RIGHT(Type ,1)<>'" & Left(VchCode, 1) & "' AND LEFT(Code ,1)<>'*' AND Date >='" & GetDate(MhDateInput1.Text) & "' AND Date <='" & GetDate(MhDateInput2.Text) & "' AND " & _
-                 IIf(FrmItemSelectionList.Option3.Value, "(DeliveredQuantityC+DeliveredQuantityB)<(EstQty01)", IIf(FrmItemSelectionList.Option1.Value, "(DeliveredQuantityC+DeliveredQuantityB)>=(EstQty01)", "1=1")) & " AND IIF(Binder IS NOT NULL AND Binder<>'' ,Binder,IIF(BookPrinter IS NOT NULL AND BookPrinter<>'',BookPrinter,IIF(TitlePrinter IS NOT NULL AND TitlePrinter<>'',TitlePrinter,Laminator))) IN (" & AccountList & ") AND Book IN (" & ItemList & ") " & _
+                 IIf(FrmItemSelectionList.Option3.Value, "(DeliveredQuantityC+DeliveredQuantityB)<(EstQty01)", IIf(FrmItemSelectionList.Option1.Value, "(DeliveredQuantityC+DeliveredQuantityB)>=(EstQty01)", "1=1")) & " AND MaterialCentre IN (" & MatCList & ") AND IIF(Binder IS NOT NULL AND Binder<>'' ,Binder,IIF(BookPrinter IS NOT NULL AND BookPrinter<>'',BookPrinter,IIF(TitlePrinter IS NOT NULL AND TitlePrinter<>'',TitlePrinter,Laminator))) IN (" & AccountList & ") AND Book IN (" & ItemList & ") " & _
                  "ORDER BY AccountName," & Choose(Combo1.ListIndex + 1, "P.Date,pvtCode,vtCode", "pvtCode,vtCode", "ItemName,pvtCode,vtCode,P.Date") & ""
-'        SQL = "SELECT IIF(B.PrintName IS NOT NULL,LTRIM(B.PrintName),IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName))))) As AccountName,RIGHT(T.Type,1)+'O/'+LTRIM(T.Name)+'/JW/'+IIF(FORMAT(T.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(T.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(T.Date,'yy')),Convert(Nvarchar,FORMAT(T.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(T.Date,'yy'))+1)) As VchBillNo," & _
-'                  "T.Date As pvtDate,I.PrintName As ItemName,ISNULL(P.ChallanNo,'') AS ChallanNo,ISNULL(P.ChallanDate,'') As ChallanDate,T.EstQty01 As Ordered,IIF(LEFT(BOM,18) IN ('0310XXXXXXXXXXXXFI','0710XXXXXXXXXXXXFI','0110XXXXXXXXXXXXFI','0510XXXXXXXXXXXXFI','0000'),C.Quantity,0) As INward,ABS(IIF(LEFT(BOM,18) IN ('0410XXXXXXXXXXXXFI','0810XXXXXXXXXXXXFI','0210XXXXXXXXXXXXFI','0610XXXXXXXXXXXXFI','0000'),C.Quantity,0)) As OutWard,IIF(B.Code IS NOT NULL,LTRIM(B.Code),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code))))) As BCode," & _
-'                  "LTRIM(ISNULL(P.Name,'')) As GRNNo,P.Date as vtDate,A.Name As MaterialCentre,B.Name As Party,P.Remarks,LTRIM(T.Name) As PO,I.Name As Book,C.Quantity As Qty,ISNULL(C.Rate,T.UnitRate) AS Rate,ISNULL(C.Amount,(T.EstQty01*T.UnitRate)) As Amount,P.BOX,P.Freight,ISNULL(P.TYPE,'') AS TYPE,RIGHT(P.Type,2)+'-'+LTRIM(P.Name) As MRNNo,(T.Type) As pvtType,I.Code,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) As TypeRef,IIF(C.BOM IS NOT Null,C.BOM,'0000FI') As BOM,T.Code,T.Code As pvtCode,ISNULL(P.Name,'') AS vtNO,ISNULL(P.Type,'') AS vtType,ISNULL(P.Code,'') AS vtCode " & _
-'                  "FROM ((((((((BookPOParent T INNER JOIN BookMaster As I ON T.Book=I.Code) LEFT JOIN JobworkBVChild C ON IIF(C.RefCode<>'','',C.Ref)=T.Code) LEFT JOIN JobworkBVParent P ON P.Code=C.Code) LEFT JOIN AccountMaster As B ON P.Party=B.Code) LEFT JOIN AccountMaster As A ON P.MaterialCentre=A.Code) LEFT JOIN AccountMaster As A1 ON T.Binder=A1.Code) LEFT JOIN AccountMaster As A2 ON T.BookPrinter=A2.Code) LEFT JOIN AccountMaster As A3 ON T.TitlePrinter=A3.Code) LEFT JOIN AccountMaster As A4 ON T.Laminator=A4.Code WHERE LEFT(IIF(C.BOM IS NOT Null,C.BOM,'0000FI'),18) IN " & IIf(Left(VchCode, 1) = "S", "('0110XXXXXXXXXXXXFI','0210XXXXXXXXXXXXFI','0510XXXXXXXXXXXXFI','0610XXXXXXXXXXXXFI','0000FI')", "('0310XXXXXXXXXXXXFI','0410XXXXXXXXXXXXFI','0710XXXXXXXXXXXXFI','0810XXXXXXXXXXXXFI','0000FI')") & " AND LEFT(T.Type,1)<>'O' AND RIGHT(T.Type,1)<>'" & Left(VchCode, 1) & "' AND LEFT(T.Code,1)<>'*' AND T.Date>='" & GetDate(MhDateInput1.Text) & "' AND T.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & _
-'                   IIf(FrmItemSelectionList.Option3.Value, "T.DeliveredQuantityC+T.DeliveredQuantityB<T.EstQty01", IIf(FrmItemSelectionList.Option1.Value, "T.DeliveredQuantityC+T.DeliveredQuantityB>=T.EstQty01", "1=1")) & " AND IIF(B.Code IS NOT NULL,LTRIM(B.Code),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code))))) IN (" & AccountList & ") AND I.Code IN (" & ItemList & ") " & _
-'                  "ORDER BY IIF(B.PrintName IS NOT NULL,LTRIM(B.PrintName),IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName))))),IIF(B.Code IS NOT NULL,LTRIM(B.Code),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code)))))," & Choose(Combo1.ListIndex + 1, "T.Code,P.Date,LTRIM(T.Name)", "T.Code,P.Code,P.Date", "I.PrintName,P.Code,T.Date,T.Code,P.Date") & ""
       ElseIf VchType = 36 Or VchType = 38 Then 'Sale & Purchase Order Status Summarized
-        SQL = "SELECT IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName)))) As AccountName,RIGHT(T.Type,1)+'O/'+LTRIM(T.Name)+'/JW/'+IIF(FORMAT(T.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(T.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(T.Date,'yy')),Convert(Nvarchar,FORMAT(T.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(T.Date,'yy'))+1)) As VchBillNo,T.Date As VchDate,I.PrintName As ItemName,T.EstQty01 As Ordered,ISNULL((SELECT SUM(Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR') AND Ref IN (T.Code)),0) As INward,ISNULL((SELECT SUM(Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (T.Code)),0) As Outward," & _
-                  "ISNULL((SELECT Avg(C.Rate) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (T.Code)),Avg(T.UnitRate)) AS Rate,ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (T.Code)),SUM(T.EstQty01*T.UnitRate)) AS Amount," & _
+            SQL = "SELECT IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName)))) As AccountName,RIGHT(T.Type,1)+'O/'+LTRIM(T.Name)+'/JW/'+IIF(FORMAT(T.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(T.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(T.Date,'yy')),Convert(Nvarchar,FORMAT(T.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(T.Date,'yy'))+1)) As VchBillNo,T.Date As VchDate,I.PrintName As ItemName,T.EstQty01 As Ordered,ISNULL((SELECT SUM(Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.MaterialCentre IN (" & MatCList & ") AND P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR') AND Ref IN (T.Code)),0) As INward,ISNULL((SELECT SUM(Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.MaterialCentre IN (" & MatCList & ") AND " & _
+                  "P.Type IN ('0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (T.Code)),0) As Outward," & _
+                  "ISNULL((SELECT Avg(C.Rate) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.MaterialCentre IN (" & MatCList & ") AND P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (T.Code)),Avg(T.UnitRate)) AS Rate,ISNULL((SELECT SUM(C.Amount) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE P.MaterialCentre IN (" & MatCList & ") AND P.Type IN ('0110PU','0110PC','0110PJ','0310PU','0310PC','0310PJ','0510FR','0710FR','0210OU','0210OC','0210OJ','0410TU','0410TC','0410TJ','0610FI','0810FI') AND Ref IN (T.Code)),SUM(T.EstQty01*T.UnitRate)) AS Amount," & _
                   "I.Code As ItemCode,IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code)))) As AccountCode,T.Code As vtCode,T.Name As vtNo,T.Type As vtType " & _
                   "FROM ((((BookPOParent T INNER JOIN BookMaster As I ON T.Book=I.Code) LEFT JOIN AccountMaster As A1 ON T.Binder=A1.Code) LEFT JOIN AccountMaster As A2 ON T.BookPrinter=A2.Code) LEFT JOIN AccountMaster As A3 ON T.TitlePrinter=A3.Code) LEFT JOIN AccountMaster As A4 ON T.Laminator=A4.Code WHERE LEFT(T.Type,1)<>'O' AND RIGHT(T.Type,1)<>'" & Left(VchCode, 1) & "' AND LEFT(T.Code,1)<>'*' AND T.Date>='" & GetDate(MhDateInput1.Text) & "' AND T.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & _
                    IIf(FrmItemSelectionList.Option3.Value, "T.DeliveredQuantityC+T.DeliveredQuantityB<T.EstQty01", IIf(FrmItemSelectionList.Option1.Value, "T.DeliveredQuantityC+T.DeliveredQuantityB>=T.EstQty01", "1=1")) & " AND IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code)))) IN (" & AccountList & ") AND I.Code IN (" & ItemList & ") " & _
                   "Group By T.TYPE,IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName)))),RIGHT(T.Type,1)+'O/'+LTRIM(T.Name)+'/JW/'+IIF(FORMAT(T.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(T.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(T.Date,'yy')),Convert(Nvarchar,FORMAT(T.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(T.Date,'yy'))+1)),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code)))),T.Date,I.PrintName,T.EstQty01,LTRIM(T.Name),T.Code,I.Code,T.Name " & _
                   "ORDER BY IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName))))," & Choose(Combo1.ListIndex + 1, "T.Date,LTRIM(T.Name)", "T.Code,LTRIM(T.Name)", "I.PrintName,LTRIM(T.Name),T.Code") & ""
-'Old Report Jobwork As 11th March 22
-'        SQL = "SELECT IIF(B.PrintName IS NOT NULL,LTRIM(B.PrintName),IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName))))) As AccountName,RIGHT(T.Type,1)+'O/'+LTRIM(T.Name)+'/JW/'+IIF(FORMAT(T.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(T.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(T.Date,'yy')),Convert(Nvarchar,FORMAT(T.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(T.Date,'yy'))+1)) As VchBillNo,T.Date As VchDate,I.PrintName As ItemName,T.EstQty01 As Ordered,Sum(IIF(LEFT(BOM,18) IN ('0310XXXXXXXXXXXXFI','0710XXXXXXXXXXXXFI','0110XXXXXXXXXXXXFI','0510XXXXXXXXXXXXFI','0000'),C.Quantity,0)) As INward,Sum(ABS(IIF(LEFT(BOM,18) IN ('0410XXXXXXXXXXXXFI','0810XXXXXXXXXXXXFI','0210XXXXXXXXXXXXFI','0610XXXXXXXXXXXXFI','0000'),C.Quantity,0))) As OutWard,ISNULL(C.Rate,T.UnitRate) AS Rate,SUM(ISNULL(C.Amount,(T.EstQty01*T.UnitRate))) As Amount," & _
-'                   "I.Code As ItemCode,IIF(B.Code IS NOT NULL,LTRIM(B.Code),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code))))) As AccountCode,T.Code As vtCode,T.Name As vtNo,T.Type As vtType " & _
-'                   "FROM ((((((((BookPOParent T INNER JOIN BookMaster As I ON T.Book=I.Code) LEFT JOIN JobworkBVChild C ON IIF(C.RefCode<>'','',C.Ref)=T.Code) LEFT JOIN JobworkBVParent P ON P.Code=C.Code) LEFT JOIN AccountMaster As B ON P.Party=B.Code) LEFT JOIN AccountMaster As A ON P.MaterialCentre=A.Code) LEFT JOIN AccountMaster As A1 ON T.Binder=A1.Code) LEFT JOIN AccountMaster As A2 ON T.BookPrinter=A2.Code) LEFT JOIN AccountMaster As A3 ON T.TitlePrinter=A3.Code) LEFT JOIN AccountMaster As A4 ON T.Laminator=A4.Code WHERE LEFT(IIF(C.BOM IS NOT Null,C.BOM,'0000FI'),18) IN " & IIf(Left(VchCode, 1) = "S", "('0110XXXXXXXXXXXXFI','0210XXXXXXXXXXXXFI','0510XXXXXXXXXXXXFI','0610XXXXXXXXXXXXFI','0000FI')", "('0310XXXXXXXXXXXXFI','0410XXXXXXXXXXXXFI','0710XXXXXXXXXXXXFI','0810XXXXXXXXXXXXFI','0000FI')") & " AND LEFT(T.Type,1)<>'O' AND RIGHT(T.Type,1)<>'" & Left(VchCode, 1) & "' AND LEFT(T.Code,1)<>'*' AND T.Date>='" & GetDate(MhDateInput1.Text) & "' AND T.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & _
-'                   IIf(FrmItemSelectionList.Option3.Value, "T.DeliveredQuantityC+T.DeliveredQuantityB<T.EstQty01", IIf(FrmItemSelectionList.Option1.Value, "T.DeliveredQuantityC+T.DeliveredQuantityB>=T.EstQty01", "1=1")) & " AND IIF(B.Code IS NOT NULL,LTRIM(B.Code),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code))))) IN (" & AccountList & ") AND I.Code IN (" & ItemList & ") " & _
-'                   "Group By T.TYPE,IIF(B.PrintName IS NOT NULL,LTRIM(B.PrintName),IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName))))),RIGHT(T.Type,1)+'O/'+LTRIM(T.Name)+'/JW/'+IIF(FORMAT(T.Date,'MM')<4,Convert(Nvarchar,(Convert(int,FORMAT(T.Date,'yy'))-1)) +'-'+Convert(Nvarchar,FORMAT(T.Date,'yy')),Convert(Nvarchar,FORMAT(T.Date,'yy')) +'-'+ Convert(Nvarchar,Convert(int,FORMAT(T.Date,'yy'))+1)),IIF(B.Code IS NOT NULL,LTRIM(B.Code),IIF(A1.Code IS NOT NULL,LTRIM(A1.Code),IIF(A2.Code IS NOT NULL,LTRIM(A2.Code),IIF(A3.Code IS NOT NULL,LTRIM(A3.Code),LTRIM(A4.Code))))),T.Date,I.PrintName,ISNULL(C.Rate,T.UnitRate),T.EstQty01,LTRIM(T.Name),T.Code,I.Code,T.Name " & _
-'                   "ORDER BY IIF(B.PrintName IS NOT NULL,LTRIM(B.PrintName),IIF(A1.PrintName IS NOT NULL,LTRIM(A1.PrintName),IIF(A2.PrintName IS NOT NULL,A2.PrintName,IIF(A3.PrintName IS NOT NULL,LTRIM(A3.PrintName),LTRIM(A4.PrintName)))))," & Choose(Combo1.ListIndex + 1, "T.Date,LTRIM(T.Name)", "T.Code,LTRIM(T.Name)", "I.PrintName,LTRIM(T.Name),T.Code") & ""
       ElseIf VchType = 39 Or VchType = 40 Or VchType = 41 Or VchType = 42 Or VchType = 43 Or VchType = 44 Then 'Sale & Purchased Order Status Summrized
-        SQL = "SELECT DISTINCT (Select PrintName From AccountMaster Where Code=P.Party) AS AccountName,LTRIM(P.Name) AS VchBillNo,P.Date AS VchDate,(Select PrintName From BookMaster Where Code=C.Item ) AS ItemName,P.ChallanNo,(P.ChallanDate),IIF(LEFT(BOM,6)IN ('1701FI','1801FI'),ABS(C.Quantity),0) AS Ordered,ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0) As Dispatched,(IIF(LEFT(BOM,6)IN ('1701FI','1801FI'),ABS(C.[Quantity]),0)-ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0)) As Balance," & _
+        SQL = "SELECT DISTINCT (Select PrintName From AccountMaster Where Code=P.Party) AS AccountName,LTRIM(P.Name) AS VchBillNo,P.Date AS VchDate,(Select PrintName From BookMaster Where Code=C.Item ) AS ItemName,P.ChallanNo,(P.ChallanDate),IIF(LEFT(BOM,4)+Right(BOM,2)IN ('1701FI','1801FI'),ABS(C.Quantity),0) AS Ordered,ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0) As Dispatched,(IIF(LEFT(BOM,4)+Right(BOM,2)IN ('1701FI','1801FI'),ABS(C.[Quantity]),0)-ISNULL((Select ABS(Sum (Quantity)) From JobworkBVRef Where RefCode=C.RefCode AND VchCode<>C.Code),0)) As Balance," & _
                   "(P.Party) AS BCode,LTRIM(P.Name) AS GRNNo,P.Date,(Select Name From AccountMaster Where Code=P.Consignee) AS Consignee,(Select Name From AccountMaster Where Code=P.Party) AS Party,P.Remarks,LTRIM(P.Name) AS PO,(Select PrintName From BookMaster Where Code=C.Item ) AS Book,C.Quantity As Qty,C.Rate,C.Amount,P.BOX,P.Freight,P.TYPE, Right(P.Type,2)+'-'+LTRIM(P.Name) As MRNNo,Right(P.Type,2) As vtType,C.Item as iCode,(Select VchName From VchSeriesMaster Where Code=P.vchSeries) As TypeRef,C.BOM  As BOM,P.Code,C.RefCode As vtCode,P.Remarks AS RemarkC " & _
                   "FROM JobworkBVParent P INNER JOIN JobworkBVChild C ON P.Code=C.Code Left Join JobworkBVRef R ON R.VchCode=C.Code " & _
                   "WHERE LEFT((C.BOM),6) IN ('" & IIf(VchCode = "P", "1801FI", "1701FI") & "') AND Right(P.Type,1)<>'" & Left(VchCode, 1) & "' AND LEFT(P.Code,1)<>'*' AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & _
@@ -1260,16 +1587,130 @@ Private Sub cmdRefresh_Click()
          SQL = "Select VchDate As vtDate,IIF(Right(VchType,2)='" & IIf(VchCode = "P", "SO", "PO") & "',LTRIM(VchNo),'') As VchBillNo,VchDate As pvtDate,VchCode As pvtCode,(Select Name From BookMaster A Where A.Code=Item) As ItemName,(Select VchName From VchSeriesMaster Where Code=(Select VchSeries From JobworkBVParent P Where P.Code=VchCode)) As TypeRef,(Select ISNULL(ChallanDate,'') From JobworkBVParent Where Code=JobworkBVRef.VchCode) As ChallanDate,(Select ISNULL(ChallanNo,'') From JobworkBVParent Where Code=JobworkBVRef.VchCode) As ChallanNo,(Select Name From AccountMaster A Where A.Code=Party) As AccountName,(Select Name From AccountMaster A Where A.Code=(Select MaterialCentre From JobworkBVParent P Where P.Code=VchCode)) As MaterialCentre,(Select ISNULL(Remarks,'') From JobworkBVParent Where Code=JobworkBVRef.VchCode) As Remarks,(Select ABS(Quantity) From JobworkBVRef Where RefCode  =" & SCode & " And (Left(VchType,2) ='17' OR Left(VchType,2) ='18')) As Ordered," & _
                    "ISNULL(IIF(Quantity>0,Quantity,0),0)  As INward,ISNULL(IIF(Quantity<0,ABS(Quantity),0),0)  As OutWard,'0' As Pending,Rate,(ISNULL(IIF(Quantity>0,Quantity,0),0)-ISNULL(IIF(Quantity<0,ABS(Quantity),0),0))*Rate As Amount,ISNULL(VchNo,'') AS vtNO,ISNULL(VchCode,'') AS vtCode,VchType As vtType,VchType As pvtType FROM JobworkBVRef " & _
                    "WHERE RefCode=" & SCode & " AND Left(VchType,2) NOT IN ('','') ORDER BY " & Choose(Combo1.ListIndex + 1, "VchDate", "VchCode", "AccountName", "ItemName") & ""
-'        SQL = "Select  R.VchDate As vtDate,LTRIM(P.Name) As VchBillNo,P.Date As pvtDate,P.Code As pvtCode,(Select Name From BookMaster A Where A.Code=C.Item) As ItemName,IIF(LEFT(R.VchType,4)='0110','Purchase',IIF(LEFT(R.VchType,4)='0210','Purchase Return',IIF(LEFT(R.VchType,4)='0510','Pur Challan IN',IIF(LEFT(R.VchType,4)='0610','Pur Challan Out',IIF(LEFT(R.VchType,4)='0310','Sales Return',IIF(LEFT(R.VchType,4)='0410','Sales',IIF(LEFT(R.VchType,4)='0710','Sales Challan IN',IIF(LEFT(R.VchType,4)='0810','Sales Challan Out',IIF(LEFT(R.VchType,4)='2110','Promotional Sales Challan Out',IIF(LEFT(R.VchType,4)='2210','Promotional Purchase Challan IN','Order Status')))))))))) As TypeRef,ISNULL(P.ChallanDate,'') As ChallanDate,P.ChallanNo,(Select Name From AccountMaster A Where A.Code=P.Party) As AccountName," & _
-'                  "(Select Name From AccountMaster A Where A.Code=P.MaterialCentre) As MaterialCentre,P.Remarks,(Select ABS(Quantity) From JobworkBVRef Where RefCode  =" & SCode & " And (Left(VchType,2) ='17' OR Left(VchType,2) ='18')) As Ordered,ISNULL((Select Quantity From JobworkBVRef Where LEFT(VchType,6) IN ('0310RF','0710RF','0110RF','0510RF','0000') AND RefCode  =" & SCode & "),0)  As INward,ISNULL((Select ABS(Quantity) From JobworkBVRef Where LEFT(VchType,6) IN ('0410IF','0810IF','0210IF','0610IF','0000') AND RefCode  =" & SCode & "),0)  As OutWard,'0' As Pending,R.Rate,C.Amount,ISNULL(R.VchNo,'') AS vtNO,ISNULL(R.VchCode,'') AS vtCode,R.VchType As vtType,P.Type As pvtType " & _
-'                  "From JobworkBVRef R INNER JOIN JobworkBVChild C ON C.RefCode=R.RefCode INNER JOIN JobworkBVParent P ON P.Code=C.Code Where R.RefCode  =" & SCode & " AND Left(VchType,2) NOT IN ('17','18') ORDER BY " & Choose(Combo1.ListIndex + 1, "R.VchDate", "R.VchCode", "AccountName", "ItemName") & ""
+      ElseIf VchType >= 46 And VchType <= 47 Then 'Pending Sale & Purchase Order Status Detailed
+            If VchType = 46 Then
+                        SQL = SQL + "Select VchType,ItemCode,UnitRate,VchCode,VchNo,VchDate,Item,BuyerCode,BuyerName,OrderedQty,Pending,PendingAmount,BilledQtyC,BilledQtyD,ChallanQty,DirectQty,ClearQty,CreatedBy,CreatedOn,Remarks From ("
+            ElseIf VchType = 47 Then
+                        SQL = SQL + "Select BuyerCode,BuyerName,Sum(OrderedQty) AS OrderedQty,SUM(Pending) AS Pending,Sum(PendingAmount) As PendingAmount,Sum(BilledQtyC) As BilledQtyC,SUM(BilledQtyD) As BilledQtyD,SUM(ChallanQty) AS ChallanQty,SUM(DirectQty) AS DirectQty,Sum(ClearQty) As ClearQty,CreatedBy,CreatedOn,Remarks From ("
+            End If
+                            SQL = SQL + "SELECT DISTINCT IIF(P.BookPrinter<>'',P.BookPrinter,IIF(P.TitlePrinter<>'',P.TitlePrinter,IIF(P.Laminator<>'',P.Laminator,IIF(P.Binder<>'',P.Binder,IIF(C.Vendor<>'',C.Vendor,'000000'))))) As BuyerCode,(Select PrintName From AccountMaster Where Code= IIF(P.BookPrinter<>'',P.BookPrinter,IIF(P.TitlePrinter<>'',P.TitlePrinter,IIF(P.Laminator<>'',P.Laminator,IIF(P.Binder<>'',P.Binder,IIF(C.Vendor<>'',C.Vendor,'000000')))))) As BuyerName,"
+                        
+                        If Combo1.ListIndex = 0 Then 'Direct 'Ordered-Delivered(Challan)-Billed(Direct)=Pending Quantity
+                            SQL = SQL + "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0)) As Pending,(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))*P.UnitRate As PendingAmount,"
+                        ElseIf Combo1.ListIndex = 1 Then 'Against Challan 'Delivered(Challan)-Billed(Challan)=Pending Quantity
+                            SQL = SQL + "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0)) As Pending,(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))*P.UnitRate As PendingAmount,"
+                        End If
+                            
+                            SQL = SQL + "'0000'+P.Type As VchType,P.Book As ItemCode,P.UnitRate,P.Code As VchCode,LTRIM(P.Name)+'/'+RIGHT(P.Type,1)+'O/JW' As VchNo,P.Date As VchDate,I.Name As Item,P.EstQty01 As OrderedQty,P.BilledAllC As BilledQtyC,P.BilledAllB As BilledQtyD,P.DeliveredQuantityC As ChallanQty,P.DeliveredQuantityB As DirectQty,ISNULL(J.Quantity,0) As ClearQty,J.CreatedBy,J.CreatedOn,J.Remarks "
+                            SQL = SQL + "FROM ((BookPOParent P INNER JOIN BookMaster I ON P.Book=I.Code) LEFT JOIN BookPOChild0801 C ON P.Code=C.Code) Left Join JobworkBVClear J On P.code=J.RefCode "
+                            SQL = SQL + "WHERE RIGHT(P.Type,1)=" & IIf(VchType = 46 Or VchType = 47, "'S'", "'P'") & "  AND "
+                        
+                        If Combo1.ListIndex = 0 Then 'Direct 'Ordered-Delivered(Challan)-Billed(Direct)=Pending Quantity
+                            SQL = SQL + IIf(FrmItemSelectionList.Option3.Value, "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))>0", IIf(FrmItemSelectionList.Option1.Value, "(P.EstQty01-P.DeliveredQuantityC-P.BilledAllB-ISNULL(J.Quantity,0))<=0", "1=1")) & ""
+                        ElseIf Combo1.ListIndex = 1 Then 'Against Challan 'Delivered(Challan)-Billed(Challan)=Pending Quantity
+                            SQL = SQL + IIf(FrmItemSelectionList.Option3.Value, "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))>0", IIf(FrmItemSelectionList.Option1.Value, "(P.DeliveredQuantityC-P.BilledAllC-ISNULL(J.Quantity,0))<=0 AND (P.DeliveredQuantityC+P.BilledAllB+ISNULL(J.Quantity,0))>=P.EstQty01", "1=1")) & ""
+                        End If
+                            
+                            SQL = SQL + " AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND IIF(P.BookPrinter<>'',P.BookPrinter,IIF(P.TitlePrinter<>'',P.TitlePrinter,IIF(P.Laminator<>'',P.Laminator,IIF(P.Binder<>'',P.Binder,IIF(C.Vendor<>'',C.Vendor,'000000'))))) IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  P.Book IN (" & IIf(SCode <> "", SCode, ItemList) & ") "
+            If VchType = 46 Then
+                            SQL = SQL + " ) AS TBL ORDER BY BuyerName,Item,VchDate,VchNo"
+            ElseIf VchType = 47 Then
+                            SQL = SQL + " ) AS TBL Group BY BuyerCode,BuyerName,CreatedBy,CreatedOn,Remarks "
+                            SQL = SQL + " ORDER BY BuyerName"
+            End If
+      ElseIf Right(VchType, 2) = 48 And Left(VchType, 2) = "04" Then ' Sales Ledger
+            SQL = "Select P.Date As VchDate,P.Name As VchBillNo,V.VchName AS Type,V.Name AS VchSeries,(Select Name From BookMaster Where Code=Item) As Item,(Select Name From AccountMaster Where Code=Party) AS Party,ISNULL(ABS(Quantity),0) As INWard,0 As OutWard,'Unit' As Unit,C.Rate,C.Amount,(Select Name From AccountMaster Where Code=MaterialCentre) As MaterialCentre,Type As VchType, BOM FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code  INNER JOIN VchSeriesMaster V ON V.Code=P.vchSeries WHERE LEFT(P.Type,2) = '" & Left(VchType, 2) & "' AND '" & Left(VchType, 2) & "'='04' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & AccountList & ") AND  C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND P.VchSeries IN (" & ItemGroupList & ") AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') "
+            
+      ElseIf Right(VchType, 2) = 48 Then ' Sales Ledger
+            SQL = "SELECT C.Code As VchCode,P.Date As VchDate,P.Name As VchBillNo,0 As INWard,ISNULL(SUM(ABS(Quantity)),0) As OutWard,'Units' As Unit,0 As Rate,Sum(C.Amount) As Amount,BOM,V.VchName AS Type,V.Name AS VchSeries,'' As Item,A.Name As Party,A.Name As MaterialCentre,P.Type VchType,C.Code As VchCode FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code INNER JOIN VchSeriesMaster V ON V.Code=P.vchSeries INNER JOIN BookMaster I ON I.Code=C.Item INNER JOIN AccountMaster A ON A.Code=P.Party " & _
+                  "WHERE LEFT(P.Type,2)='" & Left(VchType, 2) & "' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.Party IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND  C.Item IN (" & IIf(SCode <> "", SCode, ItemList) & ")  AND P.VchSeries IN (" & ItemGroupList & ")  AND SubString(P.Type,3,2)='10' And Right(BOM,2) NOT IN ('MO','ME','MF','BM') " & _
+                  "Group By C.Code,P.Date,P.Name,BOM,V.VchName,V.Name,A.Name,P.Type " & _
+                  "Order By V.Name,C.Code ASC "
+'''''      ElseIf VchType = 103 Or VchType = 104 Or VchType = 105 Then ' WIP & RM Ledger
+'''''            SQL = ""
+'''''                If FrmItemSelectionList.Check1.Value And VchType = 103 Then SQL = SQL + "Select UFG,'' Category,UFGCode,'' [UFGReq/UNIT],'' UFGPages,'' Color,SUM(Stock) AS Stock,SUM(SalesOrder) AS SalesOrder,SUM(Dispatched) As Dispatched,SUM(PendingSO) AS PendingSO,SUM(DeficientSalesOrder) AS DeficientSalesOrder,SUM(UFGRequired) AS UFGRequired,(SELECT Convert(Numeric,ISNULL(dbo.ufnGetUFGStock('4',UFGCode,'000000','XX','XXXXXX','" & GetDate(MhDateInput2.Text) & "'),0)))As UFGStock,SUM(UFGRequired)+(SELECT Convert(Numeric,ISNULL(dbo.ufnGetUFGStock('4',UFGCode,'000000','XX','XXXXXX','" & GetDate(MhDateInput2.Text) & "'),0))) As FinalUFGRequired From( "
+'''''                If VchType = 103 Or VchType = 104 Then SQL = SQL + "SELECT "
+'''''                If VchType = 103 Then SQL = SQL + "UFG,Category,UFGCode,[UFGReq/UNIT], UFGPages,Color,FG,SUM(Stock) AS Stock,SUM(SalesOrder) AS SalesOrder,SUM(Dispatched) As Dispatched,SUM(PendingSO) AS PendingSO,SUM(DeficientSalesOrder) AS DeficientSalesOrder,SUM(UFGRequired) AS UFGRequired,SUM(UFGStock) As UFGStock,SUM(FinalUFGRequired) As FinalUFGRequired "
+'''''                If VchType = 104 Then SQL = SQL + "SubUFG,SubUFG_Make,SubUFG_GSM,SubUFG_CUTOFF,SubUFGCode,SUBUFGCategory,[SubUFGReq/UNIT],[Weight/Unit],UOM_Name,UOM,SUM(SUBUFGReqSheets) AS SUBUFGReqSheets,SUM(SUBUFGReqKg) AS SUBUFGReqKg,SUM(SubUFGStkUOM) AS SubUFGStkUOM,SUM(SubUFGStockKg) As SubUFGStockKg,SUM(FinalSUBUFGReqKg) AS FinalSUBUFGReqKg "
+'''''                If VchType = 103 Or VchType = 104 Then SQL = SQL + "From  ("
+'''''                SQL = SQL + "Select*,Convert(Numeric(12,3),(PARSENAME(SubUFGStkUOM,2)+(SubUFGStkUOM-PARSENAME(SubUFGStkUOM,2))*2)*[Weight/Unit]) AS SubUFGStockKg,IIF(SUBUFGReqKg + Convert(Numeric(12, 3), (PARSENAME(SubUFGStkUOM, 2) + (SubUFGStkUOM - PARSENAME(SubUFGStkUOM, 2)) * 2) * [Weight/Unit]) < 0, SUBUFGReqKg + Convert(Numeric(12, 3), (PARSENAME(SubUFGStkUOM, 2) + (SubUFGStkUOM - PARSENAME(SubUFGStkUOM, 2)) * 2) * [Weight/Unit]), 0) As FinalSUBUFGReqKg " & _
+'''''                    "From(Select*,Convert(Numeric(12,3),IIF(FinalUFGRequired<0,FinalUFGRequired*[SubUFGReq/UNIT],0)) AS [SUBUFGReqSheets],Convert(Numeric(12,3),IIF(FinalUFGRequired<0,FinalUFGRequired*[SubUFGReq/UNIT],0)/UOM*[Weight/Unit])  As [SUBUFGReqKg],(SELECT Convert(Numeric(12,3),dbo.ufnGetPaperStock('000000',SubUFGCode,'XX','XXXXXX','" & GetDate(MhDateInput2.Text) & "')) As Col1 FROM PaperMaster P Where P.Code=SubUFGCode)As SubUFGStkUOM " & _
+'''''                    "From (Select*,(Select(Select Name From PaperMaster Where Code=C.Item) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2' AND C.code =UFGCode) AS SubUFG,(Select(Select Make+'-'+SubMake From PaperMaster Where Code=C.Item) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2' AND C.code =UFGCode) AS SubUFG_Make,(Select(Select GSM From PaperMaster Where Code=C.Item) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2'  AND C.code =UFGCode) AS SubUFG_GSM,(Select(Select cmWidth From PaperMaster Where Code=C.Item) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2'  AND C.code =UFGCode) AS SubUFG_CUTOFF," & _
+'''''                    "(Select(Select Code From PaperMaster Where Code=C.Item) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2' AND C.code =UFGCode) AS SubUFGCode,(Select C.Category FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2' AND C.code =UFGCode) As [SUBUFGCategory],(Select C.Quantity FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2' AND C.code =UFGCode) AS [SubUFGReq/UNIT],(Select Distinct I.[Weight/Unit] FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2'   AND C.code =UFGCode) AS [Weight/Unit],(Select (Select Name From GeneralMaster Where Code=I.UOM) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2'   AND C.code =UFGCode) AS [UOM_Name],(Select (Select Value1 From GeneralMaster Where Code=I.UOM) As UFG FROM PaperMaster I Left JOIN BookChild01 C ON I.Code=C.Item WHERE C.Category='2' AND C.code =UFGCode) AS [UOM] " & _
+'''''                    "From (Select *,UFGStock+((Stock-PendingSO)*[UFGReq/UNIT]) As [FinalUFGRequired] " & _
+'''''                    "From (Select *,(Stock-PendingSO) as DeficientSalesOrder,((Stock-PendingSO)*[UFGReq/UNIT]) As [UFGRequired],(SELECT Convert(Numeric,ISNULL(dbo.ufnGetUFGStock('4',UFGCode,'000000','XX','XXXXXX','" & GetDate(MhDateInput2.Text) & "'),0)) As Col1 FROM BookMaster I Where I.Code=UFGCode)As UFGStock " & _
+'''''                    "From (SELECT Distinct *,(Select Name From BookMaster Where Code=ItemCode) FG,[UFGReq/UNIT]*ISNULL((Select AVG(Pages*Ups/Sets) From BookChild06 Where Code=ItemCode),0) As UFGPages,ISNULL(Convert(nvarchar,ISNULL((Select Left(Value1,1) From GeneralMaster Where Code= (Select Top 1 FrontPrintingType From BookChild06 Where Code=UFGCode)),0))+'+'+Convert(nvarchar,ISNULL((Select Left(Value1,1) From GeneralMaster Where Code= (Select Top 1 BackPrintingType From BookChild06 Where Code=UFGCode)),0)),'') As Color," & _
+'''''                    "(SELECT dbo.ufnGetItemStock(" & (AccountList) & ",ItemCode,'XX','XXXXXX','" & GetDate(MhDateInput2.Text) & "') As Col1 FROM BookMaster I WHERE I.Type='F' AND I.Code=ItemCode) As Stock,ISNULL((SELECT SUM(R.Quantity) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=ItemCode),0)+ISNULL((SELECT SUM(ABS(R.Quantity)) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND " & _
+'''''                    "C.Item=ItemCode AND R.RefCode=C.RefCode AND VchCode<>C.Code),0) AS SalesOrder," & _
+'''''                    "ISNULL((SELECT SUM(ABS(R.Quantity)) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=ItemCode AND R.RefCode=C.RefCode AND VchCode<>C.Code),0) As Dispatched,ISNULL((SELECT SUM(R.Quantity) " & _
+'''''                    "FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=ItemCode),0) As PendingSO,ISNULL((SELECT CONVERT(DECIMAL(12,2),Avg(R.Rate)) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=ItemCode),0) As PendingSORate,ISNULL((SELECT SUM(R.Quantity*R.Rate) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND " & _
+'''''                    "P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND " & _
+'''''                    "P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=ItemCode),0) As PendingSOAmount " & _
+'''''                    "From(SELECT I.Name As Item,(Select Name From GeneralMaster Where Code= I.BindingType) AS Binding,(Select Name AS Size From GeneralMaster Where Code= I.FinishSize) AS FinishSize,ISNULL((Select Sum(Pages) From BookChild06 Where Code=I.Code),0) As Pages,I.Code As ItemCode,I.Price,(Select Name From BookMaster Where Code=I1.Item) As UFG,I1.Category,(Select Code From BookMaster Where Code=I1.Item) As UFGCode,I1.quantity As [UFGReq/UNIT] " & _
+'''''                    "From BookMaster I Left JOIN BookChild01 I1 ON I.Code=I1.Code WHERE I.Type='F' AND I1.Category='4' "
+'''''                If FrmItemSelectionList.Option1.Value Then    'Close
+'''''                    SQL = SQL + "AND ISNULL((SELECT SUM(R.Quantity) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)=0 "
+'''''                ElseIf FrmItemSelectionList.Option3.Value Then    'Pending
+'''''                    SQL = SQL + "AND ISNULL((SELECT SUM(R.Quantity) FROM (JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code) INNER JOIN JobWorkBVRef R ON C.RefCode=R.RefCode WHERE LEFT(P.Type,2)='18' AND P.Date BETWEEN '" & GetDate(MhDateInput1.Text) & "' AND '" & GetDate(MhDateInput2.Text) & "' AND P.MaterialCentre IN (" & IIf(sMcCode <> "", sMcCode, AccountList) & ")  AND C.Item=I.Code),0)<>0 "
+'''''                End If
+'''''            SQL = SQL + "AND I.Code IN (" & IIf(SCode <> "", SCode, ItemList) & ")) As FG_UFG) AS PendingSO) AS SUBUFG) AS TBL) AS TBL) AS TBL "
+'''''                If VchType = 105 Then SQL = SQL + "ORDER BY " & Choose(Combo1.ListIndex + 1, "Item,UFG,SubUFG ASC", "Item,UFG,SubUFG DESC", "UFG,Item,SubUFG ASC", "UFG,Item,SubUFG DESC", "SubUFG,UFG,Item ASC", "SubUFG,UFG,Item DESC") & " "
+'''''                If VchType = 103 Or VchType = 104 Then SQL = SQL + ") AS TBL "
+'''''                If VchType = 103 Then
+'''''                    If FrmItemSelectionList.Check1.Value Then
+'''''                        SQL = SQL + " Group By UFG,Category,UFGCode,[UFGReq/UNIT],UFGPages,Color,FG ) AS TBL Group By UFG,UFGCode ORDER BY UFG ASC "
+'''''                    Else
+'''''                        SQL = SQL + " Group By UFG,Category,UFGCode,[UFGReq/UNIT],UFGPages,Color,FG ORDER BY UFG ASC "
+'''''                    End If
+'''''                End If
+'''''                If VchType = 104 Then SQL = SQL + " Group By SubUFGCode,SubUFG,SubUFG_Make, SubUFG_GSM, SubUFG_CUTOFF,SUBUFGCategory,[SubUFGReq/UNIT],[Weight/Unit],UOM_Name,UOM ORDER BY SubUFG ASC "
       End If
-                Screen.MousePointer = vbHourglass
-                If rstStockLedger.State = adStateOpen Then rstStockLedger.Close
-                rstStockLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
-                If rstStockLedger.RecordCount = 0 And oVchType <> "" Then VchType = oVchType
-                If rstStockLedger.RecordCount = 0 Then Screen.MousePointer = vbNormal: Exit Sub
-                Dim n As Integer
+        Screen.MousePointer = vbHourglass
+        MdiMainMenu.StatusBar1.Panels(2).Text = "Wait For Data Spooling !!!"
+        If rstStockLedger.State = adStateOpen Then rstStockLedger.Close
+        rstStockLedger.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly
+            
+        MdiMainMenu.MousePointer = vbHourglass
+        ShowProgressInStatusBar True
+        Timer1.Enabled = True
+        If rstStockLedger.RecordCount = 0 And oVchType <> "" Then VchType = oVchType
+        VSViewPort1.Visible = False
+        'VSPrinter1.Visible = False
+        VSFlexGrid1.Visible = False
+        If rstStockLedger.RecordCount = 0 Then
+            With fpSpread1
+                .MaxCols = 19: .MaxRows = 28
+                For C = 1 To .MaxCols
+                    fpSpread1.Col = C: fpSpread1.Row = SpreadHeader: .Text = " "
+                Next
+                For R = 1 To .MaxRows
+                    fpSpread1.Col = 0: fpSpread1.Row = R: .Text = " "
+                Next
+                .ClearRange -1, 1, .MaxCols, .MaxRows, False
+                Mh3dLabel11.Caption = "": Mh3dLabel10.Caption = ""
+                MsgBox "No Records Found....", vbInformation, "Easy Publish...Reports !!! "
+            End With
+                MdiMainMenu.MousePointer = vbNormal
+                ShowProgressInStatusBar False
+                Timer1.Enabled = False
+                If VchType = 31 Then
+                i = 0
+                    Bal = Val(rstItemOpening.Fields("Opening").Value)
+                    fpSpread1.SetText 24, i + 1, Bal:
+                    Mh3dLabel13.Caption = "Closing Balance = " & Bal & " Units ": Mh3dLabel13.Visible = True: Mh3dLabel13.FontSize = 13
+                    fpSpread1.GetText 26, i + 1, Bal:  fpSpread1.GetText 27, i, Bal: fpSpread1.SetText 27, i + 1, Bal:
+                    Mh3dLabel10.Caption = "Opening Balance = " & Val(rstItemOpening.Fields("Opening").Value) & " Units ": Mh3dLabel10.Visible = True: Mh3dLabel10.FontSize = 13
+                    rstItemOpening.MoveFirst: Mh3dLabel14.Caption = " Item : " + rstItemOpening.Fields("Item").Value & " [Inventory - Ledger]": Mh3dLabel14.Visible = True
+                End If
+                
+                Screen.MousePointer = vbNormal: Exit Sub
+        ElseIf rstStockLedger.RecordCount > 5000 Or VchType = 103 Or VchType = 104 Or VchType = 105 Then
+                VSFlexGrid1.Visible = True
+                Call PublishGrid
+                VSFlexFlag = True
+        End If
+If VSFlexFlag = False Then
+    Dim n As Integer
     With fpSpread1
             If .DataRowCnt = 0 Then
             Else
@@ -1278,15 +1719,18 @@ Private Sub cmdRefresh_Click()
            End If
             .ClearRange -1, 1, .MaxCols, .MaxRows, False
             Dim K As Integer
-            If VchType >= 35 Then K = 9999 Else K = rstStockLedger.RecordCount
+            If VchType >= 35 And VchType <> 48 Then K = 9999 Else K = rstStockLedger.RecordCount
             ' Set number of columns and rows
-                fpSpread1.MaxCols = 35
+                
+                If VchType = 46 Then fpSpread1.MaxCols = 38 Else fpSpread1.MaxCols = 35
                 fpSpread1.MaxRows = IIf(K < 27, 27, K + 1)
                 Call FormatCol
                 Call Check1_Click
                 Call FormatHeader
-    If VchType >= 34 And VchType <= 45 Then
-            Call PrintPendingOrder
+
+    
+    If (VchType >= 34 And VchType <= 45) Or VchType = 49 Then
+            Call Print_fpSpread
     Else
         rstStockLedger.MoveFirst
         Do While Not rstStockLedger.EOF
@@ -1338,7 +1782,7 @@ Private Sub cmdRefresh_Click()
                     If Val(rstStockLedger.Fields("Pending").Value) < TDBNumber1.Value Then GoTo NXT
                 End If
             End If
-                i = i + 1
+        i = i + 1
 'Pending Order
         If VchType >= 29 And VchType <= 30 Then
             .SetText 1, i, rstStockLedger.Fields("Date").Value
@@ -1353,13 +1797,14 @@ Private Sub cmdRefresh_Click()
             .SetText 32, i, rstStockLedger.Fields("VchCode").Value
             .SetText 35, i, rstStockLedger.Fields("VchType").Value
             dPrint = dPrint + 1
-        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
 'Item Ledger
-        ElseIf VchType = 31 Then
+        ElseIf VchType = 31 Or Right(VchType, 2) = 48 Then
             .SetText 1, i, rstStockLedger.Fields("VchDate").Value
             .SetText 2, i, rstStockLedger.Fields("VchBillNo").Value
             .SetText 3, i, rstStockLedger.Fields("Type").Value ': .Col = 3: .Row = i: .TypeHAlign = TypeHAlignCenter
-            .SetText 5, i, rstStockLedger.Fields("Party").Value
+            If Right(VchType, 2) = 48 Then .Col = 4: .Row = i: .CellType = CellTypeEdit: .SetText 4, i, rstStockLedger.Fields("VchSeries").Value
+            .SetText 5, i, rstStockLedger.Fields("Party").Value:
                 Credit = Val(rstStockLedger.Fields("INward").Value)
             .SetText 6, i, Val(rstStockLedger.Fields("INward").Value)
                 Debit = Val(rstStockLedger.Fields("OutWard").Value)
@@ -1367,12 +1812,12 @@ Private Sub cmdRefresh_Click()
                 Bal = Bal + Credit - Debit
             .SetText 24, i, Bal
             .SetText 25, i, "Units"
-            .SetText 26, i, Val(rstStockLedger.Fields("Rate").Value)
-            .SetText 27, i, Bal * Val(rstStockLedger.Fields("Rate").Value)
+            .SetText 26, i, Format(Val(rstStockLedger.Fields("Rate").Value), "###0.00")
+            If VchType = 31 Then .SetText 27, i, Format(Bal * Val(rstStockLedger.Fields("Rate").Value), "###0.00") Else .SetText 27, i, Val(rstStockLedger.Fields("Amount").Value)
             .SetText 32, i, rstStockLedger.Fields("VchCode").Value
             .SetText 35, i, rstStockLedger.Fields("VchType").Value
             dPrint = dPrint + 1
-        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
 'Pending Quotations and Short Item Analysis
         ElseIf VchType = 33 Then
             .SetText 3, i, rstStockLedger.Fields("Item").Value: .Col = 3: .Row = i: .TypeHAlign = TypeHAlignLeft
@@ -1388,7 +1833,7 @@ Private Sub cmdRefresh_Click()
             .SetText 32, i, (rstStockLedger.Fields("Code").Value)
             .SetText 35, i, rstStockLedger.Fields("HSNCode").Value
             dPrint = dPrint + 1
-        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
 'Voucher Details
         ElseIf VchType = 32 Then
             .SetText 3, i, rstStockLedger.Fields("MaterialCentreName").Value
@@ -1399,8 +1844,63 @@ Private Sub cmdRefresh_Click()
             .SetText 25, i, "Units"
             .SetText 35, i, rstStockLedger.Fields("MaterialCentre").Value
             dPrint = dPrint + 1
-        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
 'Sales,Sales Return,Purchase,Purchase Return
+        ElseIf VchType >= 46 And VchType <= 48 Then
+                If VchType = 46 Then
+                    .SetText 1, i, rstStockLedger.Fields("VchDate").Value
+                    .SetText 2, i, rstStockLedger.Fields("VchNo").Value
+                    .SetText 3, i, rstStockLedger.Fields("Item").Value ': .Col = 3: .Row = i: .TypeHAlign = TypeHAlignLeft
+                    .SetText 4, i, Val(rstStockLedger.Fields("UnitRate").Value)
+                End If
+                    .SetText 5, i, "  " + rstStockLedger.Fields("BuyerName").Value
+                    .SetText 6, i, Val(rstStockLedger.Fields("OrderedQty").Value)
+                    .SetText 7, i, "Units"
+                If Combo1.ListIndex = 0 Then
+                    If Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value) < 0 Then
+                        .SetText 8, i, Val("0")
+                    Else
+                        .SetText 8, i, Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value)
+                    End If
+                If VchType = 46 Then
+                    If Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value) < 0 Then
+                        .SetText 9, i, Val("0")
+                    Else
+                        .SetText 9, i, (Val(rstStockLedger.Fields("OrderedQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyD").Value)) * Val(rstStockLedger.Fields("UnitRate").Value)
+                    End If
+                ElseIf VchType = 47 Then
+                    .SetText 9, i, Val(rstStockLedger.Fields("PendingAmount").Value)
+                End If
+                ElseIf Combo1.ListIndex = 1 Then
+                    If Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value) > 0 Then .SetText 8, i, Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value) Else .SetText 8, i, Val(0)
+                    If Val(rstStockLedger.Fields("OrderedQty").Value) <= Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value) Then .Col = 8: .Row = i: .FontBold = True: .FontSize = 10:  .ForeColor = vbRed: .Col = 9: .Row = i: .FontBold = True: .FontSize = 10: .ForeColor = vbRed: .Col = 11: .Row = i: .FontBold = True: .FontSize = 10: .ForeColor = vbRed: .Col = 12: .Row = i: .FontBold = True: .FontSize = 10: .ForeColor = vbRed
+                    If Val(rstStockLedger.Fields("OrderedQty").Value) <= Val(rstStockLedger.Fields("ChallanQty").Value) + Val(rstStockLedger.Fields("BilledQtyD").Value) Then .Col = 8: .Row = i: .FontBold = True: .FontSize = 10:  .ForeColor = vbRed: .Col = 9: .Row = i: .FontBold = True: .FontSize = 10: .ForeColor = vbRed: .Col = 11: .Row = i: .FontBold = True: .FontSize = 10: .ForeColor = vbRed: .Col = 12: .Row = i: .FontBold = True: .FontSize = 10: .ForeColor = vbRed
+                If VchType = 46 Then
+                    If Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value) > 0 Then .SetText 9, i, (Val(rstStockLedger.Fields("ChallanQty").Value) - Val(rstStockLedger.Fields("ClearQty").Value) - Val(rstStockLedger.Fields("BilledQtyC").Value)) * Val(rstStockLedger.Fields("UnitRate").Value) Else .SetText 9, i, Val(0)
+                ElseIf VchType = 47 Then
+                    .SetText 9, i, Val(rstStockLedger.Fields("PendingAmount").Value)
+                End If
+                    End If
+                    .SetText 10, i, Val(rstStockLedger.Fields("BilledQtyC").Value)
+                    .SetText 11, i, Val(rstStockLedger.Fields("BilledQtyD").Value)
+                    .SetText 12, i, Val(rstStockLedger.Fields("ChallanQty").Value)
+                    .SetText 13, i, Val(rstStockLedger.Fields("DirectQty").Value)
+                    .SetText 14, i, Val(rstStockLedger.Fields("ClearQty").Value)
+                If VchType = 46 Then
+                    .SetText 25, i, rstStockLedger.Fields("VchType").Value
+                    .SetText 26, i, Val(rstStockLedger.Fields("UnitRate").Value)
+                End If
+                    .SetText 32, i, rstStockLedger.Fields("BuyerCode").Value
+                If VchType = 46 Then
+                    .SetText 34, i, rstStockLedger.Fields("ItemCode").Value
+                    .SetText 35, i, rstStockLedger.Fields("VchCode").Value
+                    .SetText 36, i, rstStockLedger.Fields("CreatedBy").Value
+                    .SetText 37, i, rstStockLedger.Fields("CreatedOn").Value
+                    .SetText 38, i, rstStockLedger.Fields("Remarks").Value
+                    .Col = 15: .Row = i: .CellType = CellTypeCheckBox: .TypeVAlign = TypeVAlignCenter: .TypeHAlign = TypeHAlignCenter
+                End If
+                    dPrint = dPrint + 1
+                    MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
         ElseIf (VchType >= 3 And VchType <= 10) Or (VchType >= 21 And VchType <= 28) Or (VchType >= 53 And VchType <= 60) Or (VchType >= 61 And VchType <= 68) Then
             .SetText 3, i, rstStockLedger.Fields("Item").Value: .Col = 3: .Row = i: .TypeHAlign = TypeHAlignLeft
             .SetText 4, i, Val(rstStockLedger.Fields("MRP").Value)
@@ -1435,7 +1935,7 @@ Private Sub cmdRefresh_Click()
             .SetText 34, i, 0
             .SetText 35, i, rstStockLedger.Fields("HSNCode").Value
             dPrint = dPrint + 1
-        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
 'Stock , Sale, Purchase
         ElseIf VchType <= 2 Then
             .SetText 3, i, rstStockLedger.Fields("Item").Value: .Col = 3: .Row = i: .TypeHAlign = TypeHAlignLeft
@@ -1495,47 +1995,74 @@ Private Sub cmdRefresh_Click()
             StockTotal = StockTotal + Stock
             EStockTotal = EStockTotal + EffectiveStock
             dPrint = dPrint + 1
-        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
         End If
 NXT:
             rstStockLedger.MoveNext
+            If MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2) <= 100 Then
+                MdiMainMenu.ProgressBar1.Value = MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2)
+            End If
         Loop
     End If
-        If VchType < 34 Then
-            R = i + 1
-            For C = 1 To .MaxCols
-                .Col = C: .Row = R: .FontBold = True: .FontSize = 12.5: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue:
-            Next
-        End If
-            If VchType <= 2 Or VchType = 33 Then
-                .LockBackColor = RGB(255, 255, 240): Combo1.BackColor = RGB(255, 255, 240): Combo2.BackColor = RGB(255, 255, 240): MhDateInput1.BackColor = RGB(255, 255, 240): MhDateInput2.BackColor = RGB(255, 255, 240): TDBNumber1.BackColor = RGB(255, 255, 240): TDBNumber2.BackColor = RGB(255, 255, 240): Text1.BackColor = RGB(255, 255, 240):
-            ElseIf (VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56) Then
-                .LockBackColor = RGB(245, 255, 230): Combo1.BackColor = RGB(245, 255, 230): Combo2.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230): TDBNumber1.BackColor = RGB(245, 255, 230): TDBNumber2.BackColor = RGB(245, 255, 230): Text1.BackColor = RGB(245, 255, 230):
-            ElseIf (VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60) Then
-                .LockBackColor = RGB(245, 250, 250): Combo1.BackColor = RGB(245, 250, 250): Combo2.BackColor = RGB(245, 250, 250): MhDateInput1.BackColor = RGB(245, 250, 250): MhDateInput2.BackColor = RGB(245, 250, 250): TDBNumber1.BackColor = RGB(245, 250, 250): TDBNumber2.BackColor = RGB(245, 250, 250): Text1.BackColor = RGB(245, 250, 250):
-            ElseIf (VchType >= 21 And VchType <= 24) Or (VchType >= 61 And VchType <= 64) Then
-                .LockBackColor = RGB(255, 250, 255): Combo1.BackColor = RGB(255, 250, 255): Combo2.BackColor = RGB(255, 250, 255): MhDateInput1.BackColor = RGB(255, 250, 255): MhDateInput2.BackColor = RGB(255, 250, 255): TDBNumber1.BackColor = RGB(255, 250, 255): TDBNumber2.BackColor = RGB(255, 250, 255): Text1.BackColor = RGB(255, 250, 255):
-            ElseIf (VchType >= 25 And VchType <= 30) Or (VchType >= 65 And VchType <= 68) Then
-                .LockBackColor = RGB(240, 255, 255): Combo1.BackColor = RGB(240, 255, 255): Combo2.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255): TDBNumber1.BackColor = RGB(240, 255, 255): TDBNumber2.BackColor = RGB(240, 255, 255): Text1.BackColor = RGB(240, 255, 255):
-            End If
-            .SelectBlockOptions = SelectBlockOptionsAll: .AllowMultiBlocks = True: If TDBNumber2 <> 0 Then fpSpread1.SetFocus: fpSpread1.SetActiveCell 3, LR 'i + 1
 End With
-        If VchType < 34 Then TDBNumber2 = i: fpSpread1.MaxRows = IIf(i < 27, 27, i + 1): Call cmdFilter_Click Else TDBNumber2 = fpSpread1.DataRowCnt: fpSpread1.MaxRows = IIf(fpSpread1.DataRowCnt < 27, 27, fpSpread1.DataRowCnt + 1)
+End If
+    
+
+With fpSpread1
+If VSFlexFlag = False Then
+    If VchType < 34 Or Right(VchType, 2) = 48 Then
+        R = i + 1
+        For C = 1 To .MaxCols
+            .Col = C: .Row = R: .FontBold = True: .FontSize = 12.5: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue:
+        Next
+    End If
+    End If
+        If VchType <= 2 Or VchType = 33 Then
+            .LockBackColor = RGB(255, 255, 240): Combo1.BackColor = RGB(255, 255, 240): Combo2.BackColor = RGB(255, 255, 240): MhDateInput1.BackColor = RGB(255, 255, 240): MhDateInput2.BackColor = RGB(255, 255, 240): TDBNumber1.BackColor = RGB(255, 255, 240): TDBNumber2.BackColor = RGB(255, 255, 240): Text1.BackColor = RGB(255, 255, 240):
+        ElseIf (VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56) Then
+            .LockBackColor = RGB(245, 255, 230): Combo1.BackColor = RGB(245, 255, 230): Combo2.BackColor = RGB(245, 255, 230): MhDateInput1.BackColor = RGB(245, 255, 230): MhDateInput2.BackColor = RGB(245, 255, 230): TDBNumber1.BackColor = RGB(245, 255, 230): TDBNumber2.BackColor = RGB(245, 255, 230): Text1.BackColor = RGB(245, 255, 230):
+        ElseIf (VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60) Then
+            .LockBackColor = RGB(245, 250, 250): Combo1.BackColor = RGB(245, 250, 250): Combo2.BackColor = RGB(245, 250, 250): MhDateInput1.BackColor = RGB(245, 250, 250): MhDateInput2.BackColor = RGB(245, 250, 250): TDBNumber1.BackColor = RGB(245, 250, 250): TDBNumber2.BackColor = RGB(245, 250, 250): Text1.BackColor = RGB(245, 250, 250):
+        ElseIf (VchType >= 21 And VchType <= 24) Or (VchType >= 61 And VchType <= 64) Then
+            .LockBackColor = RGB(255, 250, 255): Combo1.BackColor = RGB(255, 250, 255): Combo2.BackColor = RGB(255, 250, 255): MhDateInput1.BackColor = RGB(255, 250, 255): MhDateInput2.BackColor = RGB(255, 250, 255): TDBNumber1.BackColor = RGB(255, 250, 255): TDBNumber2.BackColor = RGB(255, 250, 255): Text1.BackColor = RGB(255, 250, 255):
+        ElseIf (VchType >= 25 And VchType <= 30) Or (VchType >= 65 And VchType <= 68) Then
+            .LockBackColor = RGB(240, 255, 255): Combo1.BackColor = RGB(240, 255, 255): Combo2.BackColor = RGB(240, 255, 255): MhDateInput1.BackColor = RGB(240, 255, 255): MhDateInput2.BackColor = RGB(240, 255, 255): TDBNumber1.BackColor = RGB(240, 255, 255): TDBNumber2.BackColor = RGB(240, 255, 255): Text1.BackColor = RGB(240, 255, 255):
+        End If
+If VSFlexFlag = False Then
+        .SelectBlockOptions = SelectBlockOptionsAll: .AllowMultiBlocks = True: If TDBNumber2 <> 0 Then fpSpread1.SetFocus: fpSpread1.SetActiveCell 3, LR 'i + 1
+        If VchType < 34 Or Right(VchType, 2) = 48 Then TDBNumber2 = i: fpSpread1.MaxRows = IIf(i < 27, 27, i + 1): Call cmdFilter_Click Else TDBNumber2 = fpSpread1.DataRowCnt: fpSpread1.MaxRows = IIf(fpSpread1.DataRowCnt < 27, 27, fpSpread1.DataRowCnt + 1)
         If VchType >= 53 And VchType <= 68 Then TDBNumber2 = i: fpSpread1.MaxRows = IIf(i < 27, 27, i + 1): Call cmdFilter_Click
+        If VchType = 46 Or VchType = 47 Then Call cmdFilter_Click
         'Item Ledger
-        If VchType = 31 Then fpSpread1.SetText 24, i + 1, Bal: fpSpread1.GetText 26, i + 1, Bal: fpSpread1.SetText 26, i + 1, Bal / i: fpSpread1.GetText 27, i, Bal: fpSpread1.SetText 27, i + 1, Bal:
+        If VchType = 31 Then
+            fpSpread1.SetText 24, i + 1, Bal:
+            Mh3dLabel13.Caption = "Closing Balance = " & Bal & " Units ": Mh3dLabel13.Visible = True: Mh3dLabel13.FontSize = 13
+            fpSpread1.GetText 26, i + 1, Bal: fpSpread1.SetText 26, i + 1, Format(Bal / i, "##0.00"): fpSpread1.GetText 27, i, Bal: fpSpread1.SetText 27, i + 1, Bal:
+            Mh3dLabel10.Caption = "Opening Balance = " & Val(rstItemOpening.Fields("Opening").Value) & " Units ": Mh3dLabel10.Visible = True: Mh3dLabel10.FontSize = 13
+            rstStockLedger.MoveFirst: Mh3dLabel14.Caption = " Item : " + rstStockLedger.Fields("Item").Value & " [Inventory - Ledger]": Mh3dLabel14.Visible = True
+        End If
+        
         If VchType = 32 Then
-            Mh3dLabel11.Caption = "Material Centre : " + "All"
+                Mh3dLabel11.Caption = "Material Centre : " + "All"
             If rstItemOpening.RecordCount <> 0 Then rstItemOpening.MoveFirst
             fpSpread1.GetText 6, i + 1, Bal: Bal = Format(Bal, "##,##,##,##0.00"): Mh3dLabel10.Caption = "Opening Balance :  " & Format(Bal, "##,##,##,##0.00") & IIf(Opening <= 0, " Units", " Units")
         End If
-        Screen.MousePointer = vbNormal
-        Exit Sub
+End If
+End With
+    
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    Exit Sub
 ErrHandler:
-        Screen.MousePointer = vbNormal
-        DisplayError (Err.Description)
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
 End Sub
-Private Function PrintPendingOrder()
+Private Function Print_fpSpread()
 Dim i As Long, dPrint As Long
 OrderPGTF = 0: INWardPGTF = 0: OUTWardPGTF = 0: AmountPGTF = 0
 OrderGTF = 0: INWardGTF = 0: OUTWardGTF = 0: AmountGTF = 0
@@ -1655,6 +2182,7 @@ PartyH = "": OrderH = "": ItemH = "": INWardF = 0: OUTWardF = 0: SNo = 0: aSNO =
                 i = i + 1
             End If
         End If
+        
 'Pending Order
         If VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 45 Then
         If VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 45 And rstStockLedger.Fields("VchBillNo").Value = "" Then
@@ -1778,22 +2306,85 @@ PartyH = "": OrderH = "": ItemH = "": INWardF = 0: OUTWardF = 0: SNo = 0: aSNO =
             .SetText 32, i, rstStockLedger.Fields("vtCode").Value
             dPrint = dPrint + 1
         MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+'Item Ledger Summarize
+        ElseIf VchType = 49 Then
+        i = i + 1
+            .SetText 3, i, rstStockLedger.Fields("MonthYear").Value 'Month
+        If i = 1 Then
+            .SetText 6, i, Val(rstItemOpening.Fields("Opening").Value)
+            Opening = Val(rstItemOpening.Fields("Opening").Value)
+        Else
+            .SetText 6, i, Opening + (INWardF - OUTWardF)
+        End If
+            .SetText 20, i, Val(rstStockLedger.Fields("INWard").Value)
+                Credit = Val(rstStockLedger.Fields("INWard").Value)
+                INWardF = INWardF + Credit
+            .SetText 23, i, Val(rstStockLedger.Fields("OutWard").Value)
+                Debit = Val(rstStockLedger.Fields("OutWard").Value)
+                OUTWardF = OUTWardF + Debit
+                Bal = Opening + (INWardF - OUTWardF)
+            .SetText 24, i, Bal
+            .SetText 25, i, "Units"
+            .SetText 32, i, rstStockLedger.Fields("FromDate").Value
+            .SetText 35, i, rstStockLedger.Fields("ToDate").Value
+            dPrint = dPrint + 1
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+        ElseIf VchType = 101 Or VchType = 102 Or VchType = 103 Or VchType = 104 Or VchType = 105 Then
+            SNo = SNo + 1
+            i = i + 1
+            .SetText 0, i, SNo
+            .SetText 1, i, rstStockLedger.Fields("Item").Value
+            .SetText 2, i, rstStockLedger.Fields("VchBillNo").Value
+            .SetText 3, i, IIf(VchCode = "S", "Purchase Order", "Sales Order")
+            .SetText 5, i, rstStockLedger.Fields("AccountName").Value: fpSpread1.Col = 5: fpSpread1.Row = i: fpSpread1.CellType = CellTypeStaticText: fpSpread1.TypeTextWordWrap = True: If Len(rstStockLedger.Fields("ItemName").Value) > 48 Then fpSpread1.RowHeight(i) = 25.5: fpSpread1.TypeHAlign = TypeHAlignRight
+                OrderF = OrderF + Val(rstStockLedger.Fields("Ordered").Value)
+            .SetText 6, i, Val(rstStockLedger.Fields("Ordered").Value)
+                Credit = Val(rstStockLedger.Fields("Dispatched").Value)
+                INWardF = INWardF + Credit
+            .SetText 8, i, Val(rstStockLedger.Fields("Dispatched").Value)
+                Debit = Val(rstStockLedger.Fields("Dispatched").Value)
+                OUTWardF = OUTWardF + Debit
+            .SetText 23, i, Val(rstStockLedger.Fields("Dispatched").Value)
+                Bal = Bal + Val(rstStockLedger.Fields("Balance").Value)
+            .SetText 24, i, Val(rstStockLedger.Fields("Balance").Value)
+            .SetText 25, i, "Units"
+            .SetText 26, i, Val(rstStockLedger.Fields("Rate").Value)
+                AmountF = AmountF + Val(rstStockLedger.Fields("Amount").Value)
+            .SetText 27, i, Val(rstStockLedger.Fields("Amount").Value)
+            .SetText 32, i, rstStockLedger.Fields("vtCode").Value
+            dPrint = dPrint + 1
+        MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
         End If
 NXT:
             rstStockLedger.MoveNext
+            If MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2) <= 100 Then
+                MdiMainMenu.ProgressBar1.Value = MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2)
+            End If
         Loop
-        If i > 2 Then
+        If i > 2 Or VchType = 49 Then
             i = i + 1: .SetText 0, i, " ": .SetText 0, i + 1, " ": .SetText 0, i + 2, " "
             If VchType = 39 Or VchType = 42 Then .SetText 5, i, "TOTAL" Else .SetText 5, i, "SUBTOTAL"
-            .SetText 6, i, OrderF: .SetText 8, i, INWardF: .SetText 23, i, OUTWardF: .SetText 24, i, Bal: .SetText 25, i, "Units": .SetText 27, i, AmountF: If VchType = 36 Or VchType = 38 Then .SetText 24, i, (IIf(VchCode = "S", -1, 1) * OrderF) - OUTWardF + INWardF
-            .Col = 5: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True: .TypeHAlign = TypeHAlignRight
-            .Col = 6: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-            .Col = 8: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-            .Col = 23: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-            .Col = 24: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-            .Col = 25: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
-            .Col = 27: .Row = i: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+            If VchType = 49 Then
+                .SetText 3, i, ""
+                 .SetText 20, i, INWardF: .SetText 23, i, OUTWardF: .SetText 24, i, Bal: .SetText 25, i, "Units"
+                 Mh3dLabel10.Caption = "Opening Balance = " & Val(rstItemOpening.Fields("Opening").Value) & " Units ": Mh3dLabel10.Visible = True: Mh3dLabel10.FontSize = 13
+                 Mh3dLabel13.Caption = "Closing Balance = " & Bal & " Units ": Mh3dLabel13.Visible = True: Mh3dLabel13.FontSize = 13
+                 Mh3dLabel14.Caption = "Inventory - Monthly Ledger": Mh3dLabel14.Visible = True
+            Else
+                .SetText 6, i, OrderF: .SetText 8, i, INWardF: .SetText 23, i, OUTWardF: .SetText 24, i, Bal: .SetText 25, i, "Units": .SetText 27, i, AmountF: If VchType = 36 Or VchType = 38 Then .SetText 24, i, (IIf(VchCode = "S", -1, 1) * OrderF) - OUTWardF + INWardF
+            End If
+
+                .Col = 5: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True: .TypeHAlign = TypeHAlignRight
+                .Col = 6: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 8: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 20: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 23: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 24: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 25: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Col = 27: .Row = i: .FontBold = True: .FontSize = 14: .BackColor = &H8000000F:  .ForeColor = RGB(128, 0, 64): .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+                .Height = 7300
        End If
+If VchType <> 49 Then
         INWardGTF = INWardGTF + INWardF: INWardF = 0: OUTWardGTF = OUTWardGTF + OUTWardF: OUTWardF = 0: OrderGTF = OrderGTF + OrderF: OrderF = 0: AmountGTF = AmountGTF + AmountF: AmountF = 0:
          .SetText 5, i + 1, "Grand TOTAL": .SetText 6, i + 1, OrderGTF: .SetText 8, i + 1, INWardGTF: .SetText 23, i + 1, OUTWardGTF: .SetText 24, i + 1, (IIf(VchCode = "S", -1, 1) * OrderGTF) - OUTWardGTF + INWardGTF: .SetText 25, i + 1, "Units": .SetText 27, i + 1, AmountGTF: If VchType = 36 Or VchType = 38 Then .SetText 24, i, (IIf(VchCode = "S", -1, 1) * OrderGTF) - OUTWardGTF + INWardGTF
             .Col = 5: .Row = i + 1: .FontBold = True: .FontSize = 11: .BackColor = &H8000000F: .ForeColor = &H808000: .TypeVAlign = TypeVAlignTop: .FontUnderline = True: .TypeHAlign = TypeHAlignRight
@@ -1803,11 +2394,408 @@ NXT:
             .Col = 24: .Row = i + 1: .FontBold = True: .FontSize = 11: .BackColor = &H8000000F: .ForeColor = &H808000: .TypeVAlign = TypeVAlignTop: .FontUnderline = True
             .Col = 25: .Row = i + 1: .FontBold = True: .FontSize = 11: .BackColor = &H8000000F: .ForeColor = &H808000: .TypeVAlign = TypeVAlignTop: .FontUnderline = True
             .Col = 27: .Row = i + 1: .FontBold = True: .FontSize = 11: .BackColor = &H8000000F: .ForeColor = &H808000: .TypeVAlign = TypeVAlignTop: .FontUnderline = True
+End If
 End With
 End Function
+Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
+'********Check VchCode Next & Previous
+    If Shift = 0 And KeyCode = vbKeyReturn Then
+        If Right(oVchType, 2) <> Format(VchType, "00") Then
+            oVchType = oVchType + Format(VchType, "00")
+        End If
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyE Then
+        Export_Click
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then
+        Print_Click
+    ElseIf Shift = vbAltMask And KeyCode = vbKeyV Then
+        Preview_Click
+    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
+        If oVchType = "" And Len(Format(VchType, "00")) = 2 And HideFlag = False Then
+            oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
+        ElseIf oVchType = "" And Len(Format(VchType, "00")) = 2 And HideFlag = True Then
+            oVchType = Format(VchType, "00")
+        ElseIf oVchType <> "" And oVchType <> Format(VchType, "00") Then
+            oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
+        ElseIf oVchType <> "" And oVchType = Format(VchType, "00") And HideFlag = False Then
+            oVchType = Get_oVchType(oVchType): VchType = Right(oVchType, 2)
+        End If
+        If oVchType = "" And Format(VchType, "00") = "" And HideFlag = False And ExitFlag = False Then
+            Call cmdCancel_Click: ExitFlag = False: KeyCode = 0: Exit Sub
+        End If
+        
+    End If
+'********
+
+With fpSpread1
+'********Specific VchType(34,35,37,36,38,39,40,41,42,43,44, 45 ,48) .GetText 32, .ActiveRow, SCode: If SCode = "''" Then Exit Sub
+        If Shift = 0 And KeyCode = vbKeyReturn And (VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 36 Or VchType = 38 Or VchType = 39 Or VchType = 40 Or VchType = 41 Or VchType = 42 Or VchType = 43 Or VchType = 44 Or VchType = 45 Or Right(VchType, 2) = 48) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+'********Specific VchType(46) .GetText 35, .ActiveRow, SCode: If SCode = "''" Then Exit Sub
+        If Shift = 0 And KeyCode = vbKeyReturn And VchType = 46 Then .GetText 35, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+'********To Be Check
+        If (Shift = vbCtrlMask And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+        If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+        If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 21 And VchType <= 28) Or (VchType >= 61 And VchType <= 68)) Then .GetText 32, .ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
+'********
+
+'********Specific VchType = 46 Pending Order Qty Clear
+        If (Shift = 0 And KeyCode = vbKeyF9) And VchType = 46 Then
+            If Check1.Value <> 1 Then .GetText 8, .ActiveRow, SCode
+            If SCode = 0 Then ClearFlag = False: MsgBox "You Can't Clear This Order  !!!", vbCritical, "   Order Quantity Clear  !!!": SCode = "": Exit Sub
+            If SCode <> 0 Then ClearFlag = True: ClearQty (True): MsgBox " ( " & SCode & " ) Order Quantity Clear  !!!", vbCritical, "   Order Quantity Clear  !!!": SCode = "": ClearFlag = False: Form_Load: Exit Sub
+        ElseIf (Shift = 0 And KeyCode = vbKeyF10) And VchType = 46 Then
+            .GetText 14, .ActiveRow, SCode
+            If SCode = 0 Then unClearFlag = False: MsgBox "Order Quantity Can't Retrieve  !!!", vbCritical, "   Retrieve Pending Order !!!": SCode = "": Exit Sub
+            If SCode <> 0 Then unClearFlag = True: ClearQty (True): MsgBox " ( " & SCode & " )  Order Quantity Retrieve !!!", vbCritical, "   Retrieve Pending Order !!!": SCode = "": unClearFlag = False:: Form_Load: Exit Sub
+        End If
+'********
+    If (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) Then
+        If VchType = 3 Then oVchType = VchType: VchType = 25 'One Item-Party-wise 'Sales Ok
+        If VchType = 4 Then oVchType = VchType: VchType = 26 'One Item-Party-wise 'Sales Returns
+        If VchType = 5 Then oVchType = VchType: VchType = 27 'One Item-Party-wise'Sales And Sales Returns
+        If VchType = 6 Then oVchType = VchType: VchType = 28 'One Item-Party-wise'Net Sales
+        If SCode = "" Then Exit Sub
+            Form_Load
+            KeyCode = 0
+    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And (VchType = 36 Or VchType = 38 Or VchType = 39 Or VchType = 40 Or VchType = 41 Or VchType = 42 Or VchType = 43 Or VchType = 44) Then
+        If SCode = "" Then Exit Sub
+        If VchType = 36 Then oVchType = VchType: VchType = 34 'One Item JobWork Voucher-wise
+        If VchType = 38 Then oVchType = VchType: VchType = 34 'One Item JobWork Voucher-wise
+        
+        If VchType = 39 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
+        If VchType = 40 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
+        If VchType = 41 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
+        
+        If VchType = 42 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
+        If VchType = 43 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
+        If VchType = 44 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
+            Form_Load
+            KeyCode = 0
+    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)) Then
+        If SCode = "" Then Exit Sub
+        If VchType = 7 Then VchType = 25 'One Party-Item-wise 'Sales Ok
+        If VchType = 8 Then VchType = 26 'One Party-Item-wise 'Sales Returns
+        If VchType = 9 Then VchType = 27 'One Party-Item-wise 'Sales And 'Sales Returns
+        If VchType = 10 Then VchType = 28 'One Party-Item-wise 'Net Sales
+            sMcCode = "'"
+            Form_Load
+            KeyCode = 0
+    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 21 And VchType <= 24) Or (VchType >= 61 And VchType <= 64)) Then
+        If VchType = 21 Then VchType = 7 'One Item-Party-wise 'Sales
+        If VchType = 22 Then VchType = 8 'One Item-Party-wise 'Sales Return
+        If VchType = 23 Then VchType = 9 'One Item-Party-wise 'Sales And Sales Return
+        If VchType = 24 Then VchType = 10 'One Item-Party-wise 'Net Sales
+        If SCode = "" Then Exit Sub
+            Form_Load
+            KeyCode = 0
+    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) Then
+        If sMcCode = "" Then Exit Sub
+        If VchType = 26 Then VchType = 8 'One Item-Party-wise 'Sales Return
+        If VchType = 25 Then VchType = 7 'One Item-Party-wise 'Sales Ok
+        If VchType = 27 Then VchType = 9 'One Item-Party-wise 'Sales And Sales Return
+        If VchType = 28 Then VchType = 10 'One Item-Party-wise 'Net Sales
+            SCode = ""
+            Form_Load
+            KeyCode = 0
+'vbKeyEscape
+    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 34 Or VchType = 45) And SCode <> "" Then
+        If VchType = 34 Then VchType = oVchType: If oVchType = 30 Then SCode = oSCode 'Party-wise Order Status Sumarized
+        If VchType = 45 Then VchType = oVchType: SCode = oSCode
+        If SCode = "" Then Exit Sub
+        If oVchType <> 30 Then sMcCode = "'": SCode = ""
+           oVchType = ""
+            Form_Load
+            KeyCode = 0
+    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) And SCode <> "" Then
+            Call cmdCancel_Click: ExitFlag = False
+    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And ((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)) And SCode <> "" Then
+        If VchType = 7 Then VchType = 21 'Party-wise 'Sales OK
+        If VchType = 8 Then VchType = 22 'Party-wise 'Sales Return
+        If VchType = 9 Then VchType = 23 'Party-wise'Sales And Sales Return
+        If VchType = 10 Then VchType = 24 'Party-wise 'Net Sales
+        If SCode = "" Then Exit Sub
+            sMcCode = "'": SCode = ""
+            Form_Load
+            KeyCode = 0
+    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) And sMcCode <> "" Then
+        If VchType = 25 Then VchType = 3 'Item-Wise 'Sales
+        If VchType = 25 Then VchType = 7 'One Party-Item-wise 'Sales
+        If VchType = 26 Then VchType = 4 'Item-wise 'Sales Return
+        If VchType = 26 Then VchType = 8 'Item-wise 'Sales Return
+        If VchType = 27 Then VchType = 5 'Item-wise 'Sales Return
+        If VchType = 27 Then VchType = 9 'One Item-Party-wise 'Sales
+        If VchType = 28 Then VchType = 6 'One Item-Party-wise 'Sales
+        SCode = ""
+        sMcCode = ""
+        Form_Load
+        KeyCode = 0
+'vbKeyReturn Go To Next Report
+    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And (VchType = 2 Or VchType = 1 Or VchType = 30 Or VchType = 32 Or VchType = 33 Or VchType = 49) Then   'One-Item Pending
+        LR = fpSpread1.ActiveRow
+        If (VchType = 1 Or VchType = 2) And fpSpread1.ActiveCol = 6 Or fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19 Or fpSpread1.ActiveCol = 24 Then
+            If VchType = 30 Then fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): 'fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+            If fpSpread1.ActiveCol = 18 Then vTypeCode = "18": VchCode = "S"
+            If fpSpread1.ActiveCol = 19 Then vTypeCode = "19": VchCode = "P"
+            If (VchType = 1 Or VchType = 2) Then fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
+            If VchType = 2 And fpSpread1.ActiveCol = 6 Then VchType = 32: Text1.Text = "": oVchType = oVchType + Format(VchType, "00") 'Item Ledger Material Center-Wise
+            If VchType = 1 And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then VchType = 29 'Pending Order
+            If (VchType = 2 Or VchType = 33) And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then VchType = 30: oVchType = oVchType + Format(VchType, "00") 'Pending Order
+            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "FP" Or vtType = "FS") Then oSCode = SCode: VchType = 34: oVchType = oVchType + Format(VchType, "00"): VchCode = Right(vtType, 1): VchCode = IIf(VchCode = "P", "S", "P"): fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub  'Pending Order
+            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "PO" Or vtType = "SO") Then oSCode = SCode: VchType = 45: oVchType = oVchType + Format(VchType, "00"): fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub  'Pending Order
+            Form_Load
+        ElseIf VchType = 32 Then
+            If VchType = 32 Then VchType = 31: oVchType = oVchType + Format(VchType, "00") 'Item Ledger Material Centre-Wise
+                oSCode = SCode
+                fpSpread1.GetText 35, fpSpread1.ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
+                Form_Load
+        ElseIf VchType = 49 Then
+                VchType = 31 'One-Item-Ledger
+                oVchType = oVchType + Format(VchType, "00")
+                oSCode = SCode
+                fpSpread1.GetText 32, fpSpread1.ActiveRow, vDate: sDate = Format(vDate, "dd-MM-yyyy")
+                fpSpread1.GetText 35, fpSpread1.ActiveRow, vDate: eDate = Format(vDate, "dd-MM-yyyy")
+                Form_Load
+        ElseIf SCode = "" Then
+                Exit Sub
+        End If
+            KeyCode = 0
+'Open Transection
+    ElseIf ((Shift = 0 And KeyCode = vbKeyReturn) Or (Shift = 0 And KeyCode = vbKeyF8) Or (Shift = 0 And KeyCode = vbKeyF12)) And (VchType = 29 Or VchType = 30 Or Right(VchType, 2) = 48 Or VchType = 31 Or VchType = 32 Or VchType = 34 Or VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Or VchType = 45 Or VchType = 46) And SCode <> "" Then     'Open Transection
+'Get vtCode,vtType,vtNo,vDate
+            fpSpread1.GetText 1, fpSpread1.ActiveRow, vDate: vDate = Format(vDate, "dd-MMM-yyyy"):
+            If VchType = 46 Then SCode = "" Else If oSCode = "" Then oSCode = SCode
+            If VchType = 46 Then
+                fpSpread1.GetText 35, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 25, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo:
+            Else
+                fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo:
+            End If
+'ChecK vch FY
+            If vDate = "" Then Exit Sub
+            If FinancialYearFrom > vDate Or vDate = "" Then
+                If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
+'Order FG AND Jobwork
+            ElseIf vtType = "FP" Or vtType = "FS" Then
+            dSortBy = True
+                If VchType = 46 Then SCode = ""
+                    On Error Resume Next
+                    FrmBookPrintOrder.BookPOType = vtType
+                    If Err.Number <> 364 Then FrmBookPrintOrder.Show
+                    FrmBookPrintOrder.Text1 = vtCode
+                        KeyCode = vbKeyE
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    FrmBookPrintOrder.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyE Then 'Edir
+                    FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(2)
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(3)
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    FrmBookPrintOrder.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+'Purchase Order,Sale Order,Stock Transfer
+            ElseIf vtType = "PO" Or vtType = "SO" Or vtType = "ST" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmSalesOrderVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmSalesOrderVoucher.Show
+                    frmSalesOrderVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmSalesOrderVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmSalesOrderVoucher.Toolbar1_ButtonClick frmSalesOrderVoucher.Toolbar1.Buttons.Item(3)
+                    Call cmdRefresh_Click
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmSalesOrderVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+'Stock Journal Voucher
+            ElseIf vtType = "JR" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmStockJournalVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmStockJournalVoucher.Show
+                    frmStockJournalVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmStockJournalVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(3)
+                    Call cmdRefresh_Click
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmStockJournalVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+'Sale Voucher
+            ElseIf vtType = "SF" Or vtType = "PF" Or vtType = "TF" Or vtType = "OF" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmSalesVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmSalesVoucher.Show
+                    frmSalesVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmSalesVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmSalesVoucher.Toolbar1_ButtonClick frmSalesVoucher.Toolbar1.Buttons.Item(3)
+                    Call cmdRefresh_Click
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmSalesVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+'Sale Challan Voucher
+            ElseIf vtType = "RF" Or vtType = "IF" Then
+            dSortBy = True
+                    On Error Resume Next
+                    frmSalesChallanVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmSalesChallanVoucher.Show
+                    frmSalesChallanVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmSalesChallanVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmSalesChallanVoucher.Toolbar1_ButtonClick frmSalesChallanVoucher.Toolbar1.Buttons.Item(3)
+                    Call cmdRefresh_Click
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmSalesChallanVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+'Jobwork Sale Challan Voucher
+            ElseIf vtType = "FR" Or vtType = "FI" Then
+            vtType = IIf(vtType = "FR", "R", "I")
+            dSortBy = True
+                    On Error Resume Next
+                    frmItemIssueReceiptVoucher.VchType = vtType
+                    If Err.Number <> 364 Then frmItemIssueReceiptVoucher.Show
+                    frmItemIssueReceiptVoucher.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmItemIssueReceiptVoucher.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmItemIssueReceiptVoucher.Toolbar1_ButtonClick frmItemIssueReceiptVoucher.Toolbar1.Buttons.Item(3)
+                    Call cmdRefresh_Click
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmItemIssueReceiptVoucher.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+'Jobwork Sale Voucher
+            ElseIf vtType = "SU" Or vtType = "SC" Or vtType = "SJ" Or vtType = "PU" Or vtType = "PC" Or vtType = "PJ" Then
+                vtType = IIf(vtType = "SU", 1, IIf(vtType = "SC", 2, IIf(vtType = "SJ", 3, IIf(vtType = "PU", 4, IIf(vtType = "PC", 5, IIf(vtType = "PJ", 6, ""))))))
+                dSortBy = True
+                    On Error Resume Next
+                    frmJobworkBill.VchType = vtType
+                    If Err.Number <> 364 Then frmJobworkBill.Show
+                    frmJobworkBill.Text1 = vtCode
+                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
+                    frmJobworkBill.SSTab1.Tab = 1
+                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+                    frmJobworkBill.Toolbar1_ButtonClick frmJobworkBill.Toolbar1.Buttons.Item(3)
+                    Call cmdRefresh_Click
+                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
+                    frmJobworkBill.SSTab1.Tab = 1
+                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
+                    Call cmdRefresh_Click
+                End If
+            End If
+        KeyCode = 0
+'vbKeyEscape
+    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 2 Or VchType = 29 Or VchType = 30 Or VchType = 31 Or VchType = 32 Or VchType = 49) And SCode <> "" And HideFlag = False Then 'Stock Ledger Closing
+        sDate = FrmItemSelectionList.MhDateInput1: eDate = FrmItemSelectionList.MhDateInput2
+'        If VchType = 29 Then VchType = 1 'Inventry Movement Ledger Closing
+'        If VchType = 30 Then VchType = 2 'Stock Ledger Closing
+'        If VchType = 32 Then VchType = 2 'Stock Ledger Closing
+'        If VchType = 31 Then VchType = Right(oVchType, 2): oVchType = GetOvchType(oVchType): sDate = FrmItemSelectionList.MhDateInput1: eDate = FrmItemSelectionList.MhDateInput2   'VchType = 32 'Stock Ledger Closing
+        If VchType = 30 Or VchType = 32 Then SCode = oSCode
+        If oVchType <> 49 And VchType <> 2 And VchType <> 30 Then sMcCode = ""
+        Form_Load
+        KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
+        If VSFlexGrid1.Visible Then
+        On Error Resume Next
+                R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
+                LR = R
+                VSFlexGrid1.RemoveItem (VSFlexGrid1.Row): LR = VSFlexGrid1.Row
+                VSFlexGrid1.Row = R
+                    Call VSFlexGrid1_AfterDataRefresh
+        End If
+    ElseIf Shift = 0 And KeyCode = vbKeyF9 Then
+        If VSFlexGrid1.Visible Then
+        On Error Resume Next
+                R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
+                LR = R
+                VSFlexGrid1.RowHidden(VSFlexGrid1.Row) = True: LR = VSFlexGrid1.Row
+                VSFlexGrid1.Row = R
+    '            Call VSFlexGrid1_AfterDataRefresh
+        Else
+                R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
+                LR = R
+                 .Row = .ActiveRow: .RowHidden = True: LR = .Row
+                TotalFlag = True: HideFlag = True: If VchType < 35 Then Total_Click
+                TotalFlag = False
+                .SetActiveCell .ActiveCol, R
+        End If
+    ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
+        If VSFlexFlag = False Then
+            If Me.ActiveControl.Name <> "fpSpread1" Then Sendkeys "{TAB}": KeyCode = 0
+        ElseIf VSFlexFlag = True Then
+            If Me.ActiveControl.Name <> "VSFlexGrid1" Then Sendkeys "{TAB}": KeyCode = 0
+        End If
+    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then ' Close/Hide Row/Unhide Row
+        If HideFlag = True Then
+            For R = 1 To .DataRowCnt 'Unhide All
+                If HideFlag = True Then .Row = R: .RowHidden = False: .SetText 13, R, "":
+            Next
+            If VchType < 35 Then Total_Click
+            .SetActiveCell .ActiveCol, 1
+            HideFlag = False
+        ElseIf HideFlag = False And ExitFlag = False Then
+            Call cmdCancel_Click: ExitFlag = False
+        End If
+            KeyCode = 0
+    ElseIf Shift = 0 And KeyCode = vbKeyF5 Then
+        Call cmdRefresh_Click
+        KeyCode = 0
+    ElseIf KeyCode = vbKeyF And Shift = vbCtrlMask Then
+            If Text1.Text = "" Then
+                MsgBox "Please Provide Search Input", vbInformation
+                Text1.SetFocus
+            ElseIf Text1.Text <> "" Then
+            Call Command2_Click
+            End If
+        KeyCode = 0
+    ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyC) Or (Shift = 0 And KeyCode = vbKeyF12) Then
+        Call CopyToClipboard
+    ElseIf (Shift = vbCtrlMask And KeyCode = vbKeyV) Or (Shift = 0 And KeyCode = vbKeyF12) Then
+        Call PasteFromClipboard
+    End If
+    KeyCode = 0
+End With
+End Sub
+Private Sub Combo1_Change()
+If Reset = 1 Then Call cmdRefresh_Click
+End Sub
+Private Sub Command1_Click()
+With fpSpread1
+    fpSpread1.DeleteRows .DataRowCnt, 1
+    Call cmdRefresh_Click
+    fpSpread1.Col = 6: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight ' Stock Qty.
+    fpSpread1.Col = 7: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignCenter 'Units
+    fpSpread1.Col = 33: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight 'Physical Stock Quantity
+    fpSpread1.Col = 34: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight 'Stock Impact
+End With
+End Sub
 Private Sub Check1_Click()
 Dim C As Long
     With fpSpread1
+If VchType = 46 Then
+    Dim i As Integer, CellVal As Variant
+    With fpSpread1
+        For i = 1 To .DataRowCnt - 1
+            .GetText 8, i, CellVal 'Pending
+            If Val(CellVal) > 0 Then .SetText 15, i, Check1.Value
+        Next
+    End With
+Else
             If Check1.Value Then
                 If VchType = 1 Then  'Stock Ledger
                     .Col = 32: .ColHidden = True
@@ -1983,11 +2971,40 @@ Dim C As Long
                     Next
                     End If
             End If
+End If
     End With
 End Sub
+Private Sub Check2_Click()
+If Check2.Value Then
+    VSFlexGrid1.Subtotal flexSTClear
+    VSFlexGrid1_AfterDataRefresh
+Else
+    VSFlexGrid1.Subtotal flexSTClear
+End If
+End Sub
+
 Private Sub PendingCheck_Click()
 If TDBNumber1.Value <= 0 And PendingCheck.Value Then ZeroStock.Value = 0
+If VSFlexFlag = True Then VSFlexGrid1.Subtotal flexSTClear
     Call cmdRefresh_Click
+End Sub
+Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
+    On Error Resume Next
+    If Button.Index = 1 Then
+        Preview_Click
+    ElseIf Button.Index = 2 Then
+        Print_Click
+    ElseIf Button.Index = 3 Then
+    
+    ElseIf Button.Index = 4 Then
+          Export_Click
+    ElseIf Button.Index = 5 Then
+        Call cmdRefresh_Click
+    ElseIf Button.Index = 6 Then
+        Call CloseForm(Me)
+    ElseIf Button.Index = 7 Then
+    
+    End If
 End Sub
 Private Sub ZeroStock_Click()
 If ZeroStock.Value Then NegativeStock.Value = 0
@@ -2076,124 +3093,92 @@ cmdRefresh.Visible = False
     fpSpread1.Col = 34: fpSpread1.Row = .DataRowCnt: .TypeHAlign = TypeHAlignRight
     End With
 End Sub
-Private Sub Mh3dLabel6_Click()
-Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
-Dim R As Long, C As Long
-Dim JQty As Variant
-
-'"Export Data" &
-    With fpSpread1
-    If (VchType <= 10 And VchType >= 7) Or (VchType <= 28 And VchType >= 25) Or (VchType >= 57 And VchType <= 60) Then fpSpread1.InsertRows 1, 2 Else fpSpread1.InsertRows 1, 1
-                    R = 1
-                For C = 1 To .MaxCols
-                    .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter: '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-                    .GetText C, 0, JQty
-                    .SetText C, 1, JQty
-                Next
-                
-'                    .SetText 1, 1, "Details": .SetText 2, 1, "MRP": .SetText 3, 1, "Parent Group": .SetText 4, 1, "Stock Qty.": .SetText 5, 1, "Units": .SetText 6, 1, "Purchases Qty.": .SetText 7, 1, "Purchases Return Qty.": .SetText 8, 1, "Purchases Challan": .SetText 9, 1, "Purchases Return Challan": .SetText 10, 1, "Sales Qty.": .SetText 11, 1, "Sales Return Qty.": .SetText 12, 1, "Sales Challan": .SetText 13, 1, "Sales Return Challan": .SetText 14, 1, "Stock Journal IN": .SetText 15, 1, "Stock Journal OUT": .SetText 16, 1, "Pending P/O": .SetText 17, 1, "Pending S/O": .SetText 18, 1, "Effective Stock": .SetText 19, 1, "Price": .SetText 20, 1, " Amount": .SetText 21, 1, "Net Purchases": .SetText 22, 1, "Net Sales": .SetText 23, 1, "Units": .SetText 24, 1, " Purchases Amount": .SetText 25, 1, "Sales Amount": .SetText 26, 1, "Purchases Return Amount": .SetText 27, 1, "Sales Return Amt.": .SetText 28, 1, "Net Purchases Amount": .SetText 29, 1, "Net Sales Amount": .SetText 30, 1, "ICODE":
-'                    If VchType = 0 Then: .SetText 31, 1, "Physical Stock Quantity": .SetText 32, 1, "Stock Impact":
-                    
-                .ColHeadersShow = True: .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
-                If (VchType <= 10 And VchType >= 7) Or (VchType <= 28 And VchType >= 25) Or (VchType >= 57 And VchType <= 60) Then .SetText 1, 2, Header1: .Col = 1: .Row = 2: .FontBold = True: .FontSize = 14: .FontUnderline = True: .ForeColor = vbRed:
-    
-    End With
-
-    If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
-    
-    '
-    ' Export Excel file and set result to x
-     FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
-    SheetName = "Sheet1" '"(" & Me.Caption & ")"
-    LogFileName = "Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
-    x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
-    ' Display result to user based on T/F value of x
-    If x = True Then
-    
-    MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
-        
-        Dim oExcel As Object
-        Set oExcel = CreateObject("Excel.Application")
-        oExcel.Workbooks.Open (FileName)
-        oExcel.Visible = True
-        oExcel.Sheets("Sheet1").Select
-        oExcel.Sheets("Sheet1").Unprotect
-         Set oExcel = Nothing
-    Else
-    MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
-    End If
-    '
-    With fpSpread1
-    'Delete Header Row
-    If (VchType <= 10 And VchType >= 7) Or (VchType <= 28 And VchType >= 25) Or (VchType >= 57 And VchType <= 60) Then fpSpread1.DeleteRows 1, 2 Else: fpSpread1.DeleteRows 1, 1
-    End With
+Private Sub Text1_KeyDown(KeyCode As Integer, Shift As Integer)
+    If KeyCode = vbEnter And Shift = vbCtrlMask Then Call cmdFilter_Click
 End Sub
-Private Sub Mh3dLabel5_Click()
-With fpSpread1
-Dim PrintHeader As String
-Dim R As Long, C As Long
-Dim JQty As Variant
-.MaxRows = .MaxRows + 2
-    If VchType >= 0 Then fpSpread1.InsertRows 1, 2
-    .SetText 5, 1, rstCompanyMaster.Fields("PrintName").Value: .Col = 5: .Row = 1: .FontBold = True: .FontSize = 20: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = RGB(1, 106, 106): .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter: '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-    .SetText 5, 2, "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]": .Col = 5: .Row = 2: .FontBold = True: .FontSize = 16: .BackColor = &H8000000F:  .ForeColor = RGB(20, 106, 106): .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter:  '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-    R = 1
-For C = 1 To .MaxCols
-'    .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter: '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
- '   .GetText C, 0, JQty
-    '.SetText C, 1, JQty
-Next
-
-
-PrintHeader = Me.Caption
-.LockBackColor = vbWhite
-' These are 8.5" X 11" paper dimensions in TWIPS
-Const PaperWidth = 12240
-Const PaperHeight = 15840
-Printer.PaperSize = vbPRPSA4
-' Set printing options for sheet
-fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
-fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
-'fpSpread1.PrintHeader = "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy"): fpSpread1.PrintHeader=: .Font = 20 '"/cPrint Header/rPage # ./p/n2nd Line"
-fpSpread1.PrintFooter = "        Export Data Company : " & rstCompanyMaster.Fields("PrintName").Value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
-fpSpread1.PrintBorder = True
-fpSpread1.PrintColHeaders = True
-fpSpread1.PrintColor = True
-fpSpread1.PrintGrid = True
-fpSpread1.PrintMarginTop = 750 '1440
-fpSpread1.PrintMarginBottom = 500 '1440
-fpSpread1.PrintMarginLeft = 100 '720
-fpSpread1.PrintMarginRight = 100 '720
-'fpSpread1.PrintType = SPRD_PRINT_ALL
-fpSpread1.PrintRowHeaders = True
-fpSpread1.PrintShadows = True
-fpSpread1.PrintUseDataMax = True
-' Center vertically
-fpSpread1.PrintCenterOnPageV = False
-' Center horizontally
-fpSpread1.PrintCenterOnPageH = True
-' Perform the printing action
-' Set the sheet to print
-fpSpread1.Sheet = 1
-' Set scaling method
-fpSpread1.PrintScalingMethod = PrintScalingMethodZoom
-' Set zoom factor
-fpSpread1.PrintZoomFactor = 0.75
-' Print
-'fpSpread1.PrintSheet 0
-fpSpread1.PrintOrientation = PrintOrientationLandscape
-fpSpread1.PrintSheet
-.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-    'Delete Row
-    If VchType >= 0 Then fpSpread1.DeleteRows 1, 2
-    .MaxRows = .MaxRows - 2
- End With
+Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+    If UnloadMode = 0 Then Call CloseForm(Me)
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+    Call CloseRecordset(rstStockLedger)
+    Call CloseRecordset(rstItemOpening)
+    Call CloseRecordset(rstCompanyMaster)
+    Call CloseRecordset(rstItemList)
+End Sub
+Private Sub cmdCancel_Click()
+    Call CloseForm(Me)
+    sMcCode = "": SCode = "": oSCode = "": vTypeCode = "": vtCode = "": vtType = "": vtNo = "": vDate = "": dSortBy = False
 End Sub
 Private Sub cmdFilter_Click()
-        Call Total_Click
+ Dim i As Integer, cVal As Variant, n As Integer, R As Long, C As Long, Cols As Long
+ 
+C = 0
+    If VSFlexGrid1.Visible Then
+    If VSFlexGrid1.BottomRow = 1 Then Exit Sub
+    If Text1.Text = "" Then Exit Sub
+            If VSFlexGrid1.BottomRow = 0 Then Exit Sub
+              VSFlexGrid1.Subtotal flexSTClear
+              n = VSFlexGrid1.BottomRow
+            For i = 1 To VSFlexGrid1.Rows  'Unhide All
+                VSFlexGrid1.RowHidden(i) = False
+            Next
+
+            For i = 0 To VSFlexGrid1.RightCol  'Match Col Header
+            C = C + 1
+            If C > VSFlexGrid1.RightCol Then Exit Sub
+            cVal = StrConv(VSFlexGrid1.TextMatrix(0, C), vbUpperCase)
+            If StrConv(Combo2.Value, vbUpperCase) = cVal Then Exit For
+            
+            Next
+            
+    For i = 1 To VSFlexGrid1.BottomRow
+                    If VSFlexGrid1.BottomRow < i Or n = 0 Then Exit For
+                    If Combo2.ListIndex >= 0 And n <> 0 Then cVal = VSFlexGrid1.TextMatrix(i, C)
+                    
+            If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) <> 0 Then
+                '****'
+            Else
+                If Not VSFlexGrid1.RowHidden(i) Then
+                    VSFlexGrid1.RemoveItem (i): LR = i: n = n - 1 'Hide Filter
+                    i = i - 1
+                End If
+            End If
+                    TDBNumber2 = n 'Data Count
+    Next
+    
+    Call VSFlexGrid1_AfterDataRefresh
+  Else
+    Call Total_Click
+  End If
 End Sub
 Private Sub Command2_Click()
   Dim i As Integer, cVal As Variant, R As Long, C As Long
+  If VSFlexGrid1.Visible Then
+    If VSFlexGrid1.BottomRow = 1 Then Exit Sub
+  If Text1.Text = "" Then Exit Sub
+            If VSFlexGrid1.BottomRow = 0 Then Exit Sub
+            For i = 1 To VSFlexGrid1.Rows  'Unhide All
+                VSFlexGrid1.RowHidden(i) = False
+            Next
+
+            
+            For i = 1 To VSFlexGrid1.RightCol  'Match Col Header
+            C = C + 1
+            cVal = VSFlexGrid1.TextMatrix(0, C)
+            If Combo2.Value = cVal Then Exit For
+            Next
+            
+            R = IIf(VSFlexGrid1.Row + 1 <> LR, VSFlexGrid1.Row + 1, 1)
+            LR = R
+            
+            For i = R To VSFlexGrid1.BottomRow
+            If Combo2.ListIndex >= 0 Then cVal = VSFlexGrid1.TextMatrix(i, C)
+                        If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                        ElseIf Combo2.ListIndex >= 0 Then
+                        VSFlexGrid1.Row = i: VSFlexGrid1.Col = C:  Exit Sub
+                        End If
+            Next
+  Else
     With fpSpread1
     If Text1.Text = "" Then Exit Sub
             If .DataRowCnt = 0 Then Exit Sub
@@ -2203,12 +3188,15 @@ Private Sub Command2_Click()
         fpSpread1.MaxCols = 35
         If VchType < 28 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
         If VchType < 28 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
+        If VchType >= 29 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
+        If VchType >= 29 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
         
         If VchType >= 34 And VchType <= 45 Then C = Combo2.ListIndex + 1
         If VchType >= 34 And VchType <= 45 And Combo2.ListIndex = 3 Then C = Combo2.ListIndex + 2
         If VchType >= 53 And VchType <= 68 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
         If VchType >= 53 And VchType <= 68 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
-
+        If VchType = 46 Then C = Combo2.ListIndex + 1
+        If VchType = 47 Then C = Combo2.ListIndex + 5
             R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
             LR = R
             
@@ -2220,6 +3208,7 @@ Private Sub Command2_Click()
                         End If
             Next
     End With
+    End If
 End Sub
 Private Sub fpSpread1_BeforeUserSort(ByVal Col As Long, ByVal State As FPSpreadADO.BeforeUserSortStateConstants, DefaultAction As FPSpreadADO.BeforeUserSortDefaultActionConstants)
     Dim n As Integer
@@ -2264,25 +3253,28 @@ Private Sub Total_Click()
     Dim PStockVal As Variant, PStockTotal As Variant
     Dim JStockVal As Variant, JStockTotal As Variant
     With fpSpread1
-    If .DataRowCnt = 0 Then Exit Sub
-    n = .DataRowCnt: StockVal = 0
-        For i = 1 To .DataRowCnt 'Unhide All
-        .GetText 3, i, cVal
-            If TotalFlag = False Then .Row = i: .RowHidden = False
-            If cVal = "Grand Total" Then fpSpread1.DeleteRows i, 1
-        Next
-        fpSpread1.MaxCols = 35
+        If .DataRowCnt = 0 Then Exit Sub
+        n = .DataRowCnt: StockVal = 0
+            For i = 1 To .DataRowCnt 'Unhide All
+            .GetText 3, i, cVal
+                If TotalFlag = False Then .Row = i: .RowHidden = False
+                If cVal = "Grand Total" Then fpSpread1.DeleteRows i, 1
+            Next
+        If VchType = 46 Then fpSpread1.MaxCols = 38 Else fpSpread1.MaxCols = 35
 
-    If VchType <= 28 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
-    If VchType <= 28 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
-    If VchType >= 29 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
-    If VchType >= 29 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
-    If VchType <= 53 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
-    If VchType <= 53 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
+        If VchType <= 28 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
+        If VchType <= 28 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
+        If VchType >= 29 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
+        If VchType >= 29 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
+        If VchType <= 53 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 3
+        If VchType <= 53 And Combo2.ListIndex = 1 Then C = Combo2.ListIndex + 4
+        If VchType = 46 Then C = Combo2.ListIndex + 1
+        If VchType = 47 Then C = Combo2.ListIndex + 5
+        If Right(VchType, 2) = 48 And Combo2.ListIndex = 0 Then C = Combo2.ListIndex + 2
+    
     
     For i = 1 To .DataRowCnt
-
-    If Combo2.ListIndex >= 0 Then .GetText C, i, cVal
+                If Combo2.ListIndex >= 0 Then .GetText C, i, cVal
                 .GetText 6, i, StockVal
                 .GetText 8, i, PVal
                 .GetText 9, i, PRVal
@@ -2308,43 +3300,54 @@ Private Sub Total_Click()
                 .GetText 31, i, NSAVal
                 .GetText 33, i, PStockVal
                 .GetText 34, i, JStockVal
-                 .GetText C, i, cVal
+                 .GetText 3, i, cVal
                 If cVal = "Grand Total" Then fpSpread1.DeleteRows .DataRowCnt, 1
-                If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
-                .Row = i: .RowHidden = True: n = n - 1 'Hide Filter
-        Else
-              .Row = i
-        If Not .RowHidden Then
-                StockTotal = StockTotal + StockVal '6
-                PTotal = PTotal + PVal '8
-                PRTotal = PRTotal + PRVal '9
-                PCTotal = PCTotal + PCVal '10
-                PRCTotal = PRCTotal + PRCVal '11
-                STotal = STotal + SVal '12
-                SRTotal = SRTotal + SRVal '13
-                SCTotal = SCTotal + SCVal '14
-                SRCTotal = SRCTotal + SRCVal '15
-                SJITotal = SJITotal + SJIVal '16
-                SJOTotal = SJOTotal + SJOVal '17
-                POTotal = POTotal + POVal '18
-                SOTotal = SOTotal + SOVal '19
-                EStockTotal = EStockTotal + EStockVal '20
-                ATotal = ATotal + AVal '22
-                NPValTotal = NPValTotal + NPVal '23
-                NSValTotal = NSValTotal + NSVal '24
-                PAValTotal = PAValTotal + PAVal '26
-                SAValTotal = SAValTotal + SAVal '27
-                PRAValTotal = PRAValTotal + PRAVal '28
-                SRAValTotal = SRAValTotal + SRAVal '29
-                NPAValTotal = NPAValTotal + NPAVal '30
-                NSAValTotal = NSAValTotal + NSAVal '31
-                PStockTotal = PStockTotal + PStockVal '33
-                JStockTotal = JStockTotal + JStockVal '34
+                 .GetText 4, i, cVal
+                If cVal = "Grand Total" Then fpSpread1.DeleteRows .DataRowCnt, 1
+                 .GetText 5, i, cVal
+                If cVal = "Grand Total" Then fpSpread1.DeleteRows .DataRowCnt, 1
+                .GetText C, i, cVal
+            If InStr(StrConv(cVal, vbUpperCase), StrConv(Text1.Text, vbUpperCase)) = 0 Then
+                    .Row = i: .RowHidden = True: n = n - 1 'Hide Filter
+            Else
+                  .Row = i
+                If Not .RowHidden Then
+                        StockTotal = Val(StockTotal) + Val(StockVal) '6
+                        PTotal = Val(PTotal) + Val(PVal) '8
+                        PRTotal = Val(PRTotal) + Val(PRVal) '9
+                        PCTotal = Val(PCTotal) + Val(PCVal) '10
+                        PRCTotal = Val(PRCTotal) + Val(PRCVal) '11
+                        STotal = Val(STotal) + Val(SVal) '12
+                        SRTotal = Val(SRTotal) + Val(SRVal) '13
+                        SCTotal = Val(SCTotal) + Val(SCVal) '14
+                        SRCTotal = Val(SRCTotal) + Val(SRCVal) '15
+                        SJITotal = Val(SJITotal) + Val(SJIVal) '16
+                        SJOTotal = Val(SJOTotal) + Val(SJOVal) '17
+                        POTotal = Val(POTotal) + Val(POVal) '18
+                        SOTotal = Val(SOTotal) + Val(SOVal) '19
+                        EStockTotal = Val(EStockTotal) + Val(EStockVal) '20
+                        ATotal = Val(ATotal) + Val(AVal) '22
+                        NPValTotal = Val(NPValTotal) + Val(NPVal) '23
+                        NSValTotal = Val(NSValTotal) + Val(NSVal) '24
+                        PAValTotal = Val(PAValTotal) + Val(PAVal) '26
+                        SAValTotal = Val(SAValTotal) + Val(SAVal) '27
+                        PRAValTotal = Val(PRAValTotal) + Val(PRAVal) '28
+                        SRAValTotal = Val(SRAValTotal) + Val(SRAVal) '29
+                        NPAValTotal = Val(NPAValTotal) + Val(NPAVal) '30
+                        NSAValTotal = Val(NSAValTotal) + Val(NSAVal) '31
+                        PStockTotal = Val(PStockTotal) + Val(PStockVal) '33
+                        JStockTotal = Val(JStockTotal) + Val(JStockVal) '34
+                    End If
             End If
-        End If
-                TDBNumber2 = n 'Data Count
+                    TDBNumber2 = n 'Data Count
         Next
-                .SetText 3, i, "Grand Total"
+    
+                For C = 3 To 5
+                          .Col = C
+                If Not .ColHidden Then
+                .SetText C, i, "Grand Total": Exit For
+                End If
+                Next
                 .SetText 6, i, StockTotal
                 .SetText 7, i, "Units"
                 .SetText 8, i, PTotal
@@ -2373,14 +3376,13 @@ Private Sub Total_Click()
                 .SetText 33, i, PStockTotal
                 .SetText 34, i, JStockTotal
     End With
-    
-    Call Fomatting_Click
+                Call Fomatting_Click
     fpSpread1.MaxRows = IIf(TDBNumber2.Value < 27, i + (27 - TDBNumber2.Value), i + 1)
 End Sub
 Private Sub Fomatting_Click()
 Dim R As Long, C As Long, Cols As Long, Rows As Long
         With fpSpread1
-       fpSpread1.MaxCols = 35
+       If VchType = 46 Then fpSpread1.MaxCols = 38 Else fpSpread1.MaxCols = 35
             Cols = .MaxCols
             R = .DataRowCnt
             For C = 1 To Cols
@@ -2625,14 +3627,19 @@ With fpSpread1
             For C = 28 To 35
             .Col = C: .ColHidden = True
             Next
-        ElseIf VchType = 31 Then  'Item Ledger
+        ElseIf VchType = 31 Or Right(VchType, 2) = 48 Then 'Item Ledger
             For C = 1 To 3
             .Col = C: .ColHidden = False
             Next
             .ColWidth(1) = 10 'Date
             .ColWidth(2) = 13 'Vch/BillNo
             .ColWidth(3) = 23 'Vch Type
-            .Col = 4: .ColHidden = True
+            If Right(VchType, 2) = 48 Then
+                .Col = 4: .ColHidden = False
+                .ColWidth(4) = 23 'Voucher Series
+            Else
+                .Col = 4: .ColHidden = True
+            End If
             .Col = 5: .ColHidden = False
             .ColWidth(5) = 30 'Particulars
             .Col = 6: .ColHidden = False
@@ -2644,14 +3651,14 @@ With fpSpread1
             .Col = C: .ColHidden = False
             Next
             .ColWidth(23) = 13 'Qty2
-            .ColWidth(24) = 13 'Qty2
+            If Right(VchType, 2) = 48 Then .ColWidth(24) = 0 Else .ColWidth(24) = 13 'Qty2
             .ColWidth(25) = 11.5 'Unit
-            .ColWidth(26) = 10.25 'Rate
+            If Right(VchType, 2) = 48 Then .ColWidth(26) = 0 Else .ColWidth(26) = 10.25 'Rate
             .ColWidth(27) = 14.5 'Amount
-            For C = 28 To 35
+            For C = 28 To 38
             .Col = C: .ColHidden = True
             Next
-        ElseIf VchType = 32 Then  'Item Ledger Material Centre-wise
+        ElseIf VchType = 49 Or VchType = 32 Then  'Item Ledger Material Centre-wise
             For C = 1 To 2
             .Col = C: .ColHidden = True
             Next
@@ -2734,8 +3741,52 @@ With fpSpread1
             Next
             If VchType >= 39 And VchType <= 41 Then .Col = 23: .ColHidden = True
             If VchType >= 42 And VchType <= 44 Then .Col = 8: .ColHidden = True
+        ElseIf VchType >= 46 And VchType <= 48 Then  'Pending Sale AND Purchase
+            For C = 1 To 14
+            .Col = C: .ColHidden = False
+            Next
+        If VchType = 46 Then
+            .ColWidth(1) = 10 'Date
+            .ColWidth(2) = 13 'Vch/BillNo
+            .ColWidth(3) = 42.125 'Particulars
+            .ColWidth(4) = 8.25 'Unit Rate
+            .ColWidth(5) = 30.625 'Buyer Name
+            .ColWidth(6) = 11.5 'Qty
+            .ColWidth(7) = 8.625 'Unit
+            .ColWidth(8) = 13 'Pending Qty
+            .ColWidth(9) = 14.25 'Pending Amount
+            .ColWidth(10) = 19.125 'BilledQtyC
+            .ColWidth(11) = 19.5 'BilledQtyD
+            .ColWidth(12) = 20.25 'ChallanQty
+            .ColWidth(13) = 27.25 'DirectQty
+            .ColWidth(14) = 13 'Clear Qty
+            .ColWidth(15) = 3 'Check Box
+        ElseIf VchType = 47 Then
+            .ColWidth(1) = 10 'Date
+            .ColWidth(2) = 13 'Vch/BillNo
+            .ColWidth(3) = 42.125 'Particulars
+            .ColWidth(4) = 8.25 'Unit Rate
+            .ColWidth(5) = 28.625 'Buyer Name
+            .ColWidth(6) = 11 'Qty
+            .ColWidth(7) = 5.825 'Unit
+            .ColWidth(8) = 11.5 'Pending Qty
+            .ColWidth(9) = 13.875 'Pending Amount
+            .ColWidth(10) = 18 'BilledQtyC
+            .ColWidth(11) = 11.625 'BilledQtyD
+            .ColWidth(12) = 19.25 'ChallanQty
+            .ColWidth(13) = 18.5 'DirectQty
+            .ColWidth(14) = 13 'Clear Qty
+            For C = 1 To 4
+                .Col = C: .ColHidden = True
+            Next
         End If
-            
+            For C = 16 To 35
+            .Col = C: .ColHidden = True
+            Next
+            .ColWidth(36) = 10 'CreatedBY
+            .ColWidth(37) = 15 'CreatedOn
+            .ColWidth(38) = 40 'Remarks
+        End If
 End With
 End Function
 Private Function FormatHeader()
@@ -2839,17 +3890,31 @@ With fpSpread1
             fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Units":
             fpSpread1.Col = 26: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Rate":
             fpSpread1.Col = 27: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Amount":
-        ElseIf VchType = 32 Then
+        ElseIf VchType = 32 Or VchType = 49 Then
             fpSpread1.ColHeaderRows = 2:
             For C = 1 To .MaxCols
-            .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "": .Col = C: fpSpread1.Row = SpreadHeader + 1: fpSpread1.FontSize = 12:
+            .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "": .Col = C: fpSpread1.Row = SpreadHeader + 1: fpSpread1.FontSize = 14:
             Next
+            For C = 1 To .MaxCols
+                For i = 1 To rstStockLedger.RecordCount + 1
+                    .Col = C: .Row = i:  fpSpread1.FontSize = 14:
+                Next
+            Next
+    
     'Header1
-            fpSpread1.AddCellSpan 3, SpreadHeader, 5, 1: fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = " Item : " + rstItemOpening.Fields("Item").Value: fpSpread1.FontSize = 12: fpSpread1.FontBold = True: fpSpread1.TypeHAlign = TypeHAlignCenter: Header1 = " Item : " + rstItemOpening.Fields("Item").Value:
+            If VchType = 49 Then
+                If rstItemList.State = adStateOpen Then rstItemList.Close
+                rstItemList.Open "SELECT PrintName As Item FROM BookMaster WHERE Code=" & ItemList & "", cnDatabase, adOpenKeyset, adLockReadOnly
+                rstItemList.MoveFirst
+                        fpSpread1.AddCellSpan 1, SpreadHeader, 5, 1
+                        fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = " Item : " + rstItemList.Fields("Item").Value: fpSpread1.FontSize = 11: fpSpread1.FontBold = True
+                        fpSpread1.TypeHAlign = TypeHAlignCenter
+                        Header1 = " Item : " + rstItemList.Fields("Item").Value:
+            End If
     'Header2 rstItemOpening
-            fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = " Material Centre ": fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Opening Qty.": fpSpread1.Col = 20: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "IN-Ward Qty.": fpSpread1.Col = 23: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Out-Ward Qty": fpSpread1.Col = 24: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Closing Qty": fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Units":
+            If VchType = 32 Then fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = " Material Centre ": fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Opening Qty.": fpSpread1.Col = 20: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "IN-Ward Qty.": fpSpread1.Col = 23: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Out-Ward Qty": fpSpread1.Col = 24: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Closing Qty": fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Units":
+            If VchType = 49 Then fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = " Month ": fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Opening Qty.": fpSpread1.Col = 20: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "IN-Ward Qty.": fpSpread1.Col = 23: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Out-Ward Qty": fpSpread1.Col = 24: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Closing Qty": fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader + 1: fpSpread1.Text = "Units":
         ElseIf VchType = 33 Then
-            'fpSpread1.ColHeaderRows = 1: fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Item Name": fpSpread1.FontBold = False:
             fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Item Name": fpSpread1.Col = 4: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "MRP": fpSpread1.Col = 5: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Parent Group": fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Stock Qty.": fpSpread1.Col = 7: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Units": fpSpread1.Col = 8: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Pending Quotation Qty.":
             fpSpread1.Col = 18: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Pending P/O": fpSpread1.Col = 19: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Pending S/O": fpSpread1.Col = 20: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Effective Stock": fpSpread1.Col = 21: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = "Price": fpSpread1.Col = 22: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12: fpSpread1.Text = " Amount":
             'Header1
@@ -2870,9 +3935,56 @@ With fpSpread1
             fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Units":
             fpSpread1.Col = 26: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Rate":
             fpSpread1.Col = 27: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Amount":
-            End If
+        ElseIf Right(VchType, 2) = 48 Then
+            fpSpread1.ColHeaderRows = 1:
+        For C = 1 To .MaxCols
+            .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "": .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 12:
+        Next
+    'Header1
+            fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Date":
+            fpSpread1.Col = 2: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Vch/Bill No.":
+            fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Vch Type":
+            fpSpread1.Col = 4: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Vch Series":
+            fpSpread1.Col = 5: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Particulars":
+            fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "INward Qty.":
+            fpSpread1.Col = 23: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Out Ward Qty.":
+            fpSpread1.Col = 24: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Daily Bal.":
+            fpSpread1.Col = 25: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Units":
+            fpSpread1.Col = 26: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Rate":
+            fpSpread1.Col = 27: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Amount":
+            Mh3dLabel11.Caption = ""
+            Mh3dLabel10.Caption = ""
+        ElseIf VchType >= 46 And VchType <= 47 Then
+            fpSpread1.ColHeaderRows = 1:
+        For C = 1 To .MaxCols
+            .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "": .Col = C: fpSpread1.Row = SpreadHeader: fpSpread1.FontSize = 11:
+        Next
+    'Header1
+            fpSpread1.Col = 1: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Date"
+            fpSpread1.Col = 2: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Vch/Bill No."
+            fpSpread1.Col = 3: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Particulars"
+            fpSpread1.Col = 4: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Unit Rate"
+            fpSpread1.Col = 5: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Buyers Name"
+            fpSpread1.Col = 6: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Ordered Qty."
+            fpSpread1.Col = 7: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Unit"
+            fpSpread1.Col = 8: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Pending Qty"
+            fpSpread1.Col = 9: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Pending Amount"
+            fpSpread1.Col = 10: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Billed Against Challan"
+            fpSpread1.Col = 11: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Billed Direct"
+            fpSpread1.Col = 12: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Supply Against Challan"
+            fpSpread1.Col = 13: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Supply Against Billing"
+            fpSpread1.Col = 14: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Clear Quantity"
+            fpSpread1.Col = 15: fpSpread1.Row = SpreadHeader: fpSpread1.Text = " "
+            fpSpread1.Col = 36: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Created By"
+            fpSpread1.Col = 37: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Created On"
+            fpSpread1.Col = 38: fpSpread1.Row = SpreadHeader: fpSpread1.Text = "Remarks"
+        End If
         If VchType = 31 Then
-            Mh3dLabel11.Caption = "Material Centre : " + rstStockLedger.Fields("MaterialCentre").Value
+            If Len(sMcCode) > 10 Then
+                Mh3dLabel11.Caption = "Material Centre :  All"
+            Else
+                Mh3dLabel11.Caption = "Material Centre : " + rstStockLedger.Fields("MaterialCentre").Value
+            End If
             If rstItemOpening.RecordCount <> 0 Then rstItemOpening.MoveFirst
             If rstItemOpening.RecordCount <> 0 Then Opening = Format(Val(rstItemOpening.Fields("Opening").Value), "##,##,##,##0.00")
             Mh3dLabel10.Caption = "Opening Balance :  " & Format(Opening, "##,##,##,##0.00") & IIf(Opening <= 0, " Units", " Units")
@@ -2894,299 +4006,6 @@ With fpSpread1
         End If
 End With
 End Function
-Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-With fpSpread1
-        If Shift = 0 And KeyCode = vbKeyReturn And (VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 36 Or VchType = 38 Or VchType = 39 Or VchType = 40 Or VchType = 41 Or VchType = 42 Or VchType = 43 Or VchType = 44 Or VchType = 45) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-        If (Shift = vbCtrlMask And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-        If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 3 And VchType <= 10) Or (VchType >= 53 And VchType <= 60)) Then .GetText 32, .ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-        If (Shift = 0 And KeyCode <> vbKeyEscape) And ((VchType >= 21 And VchType <= 28) Or (VchType >= 61 And VchType <= 68)) Then .GetText 32, .ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
-    
-    If (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) Then
-        If VchType = 3 Then oVchType = VchType: VchType = 25 'One Item-Party-wise 'Sales Ok
-        If VchType = 4 Then oVchType = VchType: VchType = 26 'One Item-Party-wise 'Sales Returns
-        If VchType = 5 Then oVchType = VchType: VchType = 27 'One Item-Party-wise'Sales And Sales Returns
-        If VchType = 6 Then oVchType = VchType: VchType = 28 'One Item-Party-wise'Net Sales
-        If SCode = "" Then Exit Sub
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And (VchType = 36 Or VchType = 38 Or VchType = 39 Or VchType = 40 Or VchType = 41 Or VchType = 42 Or VchType = 43 Or VchType = 44) Then
-        If SCode = "" Then Exit Sub
-        If VchType = 36 Then oVchType = VchType: VchType = 34 'One Item JobWork Voucher-wise
-        If VchType = 38 Then oVchType = VchType: VchType = 34 'One Item JobWork Voucher-wise
-        
-        If VchType = 39 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
-        If VchType = 40 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
-        If VchType = 41 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
-        
-        If VchType = 42 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
-        If VchType = 43 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
-        If VchType = 44 Then oVchType = VchType: VchType = 45 'One Item Voucher-wise
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 34 Or VchType = 45) And SCode <> "" Then
-        If VchType = 34 Then VchType = oVchType: If oVchType = 30 Then SCode = oSCode 'Party-wise Order Status Sumarized
-        If VchType = 45 Then VchType = oVchType: SCode = oSCode
-        If SCode = "" Then Exit Sub
-        If oVchType <> 30 Then sMcCode = "'": SCode = ""
-           oVchType = ""
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)) Then
-        If SCode = "" Then Exit Sub
-        If VchType = 7 Then VchType = 25 'One Party-Item-wise 'Sales Ok
-        If VchType = 8 Then VchType = 26 'One Party-Item-wise 'Sales Returns
-        If VchType = 9 Then VchType = 27 'One Party-Item-wise 'Sales And 'Sales Returns
-        If VchType = 10 Then VchType = 28 'One Party-Item-wise 'Net Sales
-            sMcCode = "'"
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 21 And VchType <= 24) Or (VchType >= 61 And VchType <= 64)) Then
-        If VchType = 21 Then VchType = 7 'One Item-Party-wise 'Sales
-        If VchType = 22 Then VchType = 8 'One Item-Party-wise 'Sales Return
-        If VchType = 23 Then VchType = 9 'One Item-Party-wise 'Sales And Sales Return
-        If VchType = 24 Then VchType = 10 'One Item-Party-wise 'Net Sales
-        If SCode = "" Then Exit Sub
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) Then
-        If sMcCode = "" Then Exit Sub
-        If VchType = 25 Then VchType = 7 'One Item-Party-wise 'Sales Ok
-        If VchType = 26 Then VchType = 8 'One Item-Party-wise 'Sales Return
-        If VchType = 27 Then VchType = 9 'One Item-Party-wise 'Sales And Sales Return
-        If VchType = 28 Then VchType = 10 'One Item-Party-wise 'Net Sales
-            SCode = ""
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And ((VchType >= 3 And VchType <= 6) Or (VchType >= 53 And VchType <= 56)) And SCode <> "" Then
-            Call cmdCancel_Click: ExitFlag = False
-    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And ((VchType >= 7 And VchType <= 10) Or (VchType >= 57 And VchType <= 60)) And SCode <> "" Then
-        If VchType = 7 Then VchType = 21 'Party-wise 'Sales OK
-        If VchType = 8 Then VchType = 22 'Party-wise 'Sales Return
-        If VchType = 9 Then VchType = 23 'Party-wise'Sales And Sales Return
-        If VchType = 10 Then VchType = 24 'Party-wise 'Net Sales
-        If SCode = "" Then Exit Sub
-            sMcCode = "'": SCode = ""
-            Form_Load
-            KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And ((VchType >= 25 And VchType <= 28) Or (VchType >= 65 And VchType <= 68)) And sMcCode <> "" Then
-        If VchType = 25 Then VchType = 3 'Item-Wise 'Sales
-        If VchType = 25 Then VchType = 7 'One Party-Item-wise 'Sales
-        If VchType = 26 Then VchType = 4 'Item-wise 'Sales Return
-        If VchType = 26 Then VchType = 8 'Item-wise 'Sales Return
-        If VchType = 27 Then VchType = 5 'Item-wise 'Sales Return
-        If VchType = 27 Then VchType = 9 'One Item-Party-wise 'Sales
-        If VchType = 28 Then VchType = 6 'One Item-Party-wise 'Sales
-        SCode = ""
-        sMcCode = ""
-        Form_Load
-        KeyCode = 0
-    ElseIf (Shift = 0 And KeyCode = vbKeyReturn) And (VchType = 2 Or VchType = 1 Or VchType = 30 Or VchType = 32 Or VchType = 33) Then   'One-Item Pending
-        LR = fpSpread1.ActiveRow
-        If (VchType = 1 Or VchType = 2) And fpSpread1.ActiveCol = 6 Or fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19 Or fpSpread1.ActiveCol = 24 Then
-            If VchType = 30 Then fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2): 'fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-            If fpSpread1.ActiveCol = 18 Then vTypeCode = "18": VchCode = "S"
-            If fpSpread1.ActiveCol = 19 Then vTypeCode = "19": VchCode = "P"
-            If (VchType = 1 Or VchType = 2) Then fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub
-            If VchType = 2 And fpSpread1.ActiveCol = 6 Then VchType = 32: Text1.Text = "" 'Item Ledger Material Center-Wise
-            If VchType = 1 And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then VchType = 29 'Pending Order
-            If (VchType = 2 Or VchType = 33) And (fpSpread1.ActiveCol = 18 Or fpSpread1.ActiveCol = 19) Then oVchType = VchType: VchType = 30 'Pending Order
-            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "FP" Or vtType = "FS") Then oVchType = VchType: oSCode = SCode: VchType = 34: VchCode = Right(vtType, 1): VchCode = IIf(VchCode = "P", "S", "P"): fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub 'Pending Order
-            If VchType = 30 And (fpSpread1.ActiveCol = 24) And (vtType = "PO" Or vtType = "SO") Then oVchType = VchType: oSCode = SCode: VchType = 45: fpSpread1.GetText 32, fpSpread1.ActiveRow, SCode: SCode = "'" & SCode & "'": If SCode = "''" Then Exit Sub 'Pending Order
-            Form_Load
-        ElseIf VchType = 32 Then
-            If VchType = 32 Then VchType = 31  'Item Ledger Material Centre-Wise
-                oSCode = SCode
-                fpSpread1.GetText 35, fpSpread1.ActiveRow, sMcCode: sMcCode = "'" & sMcCode & "'": If sMcCode = "''" Then Exit Sub
-                Form_Load
-            ElseIf SCode = "" Then
-                Exit Sub
-            End If
-            KeyCode = 0
-    ElseIf ((Shift = 0 And KeyCode = vbKeyReturn) Or (Shift = 0 And KeyCode = vbKeyF8) Or (Shift = 0 And KeyCode = vbKeyF12)) And (VchType = 29 Or VchType = 30 Or VchType = 31 Or VchType = 32 Or VchType = 34 Or VchType = 35 Or VchType = 36 Or VchType = 37 Or VchType = 38 Or VchType = 45) And SCode <> "" Then      'Open Transection
-            fpSpread1.GetText 1, fpSpread1.ActiveRow, vDate: vDate = Format(vDate, "dd-MMM-yyyy"):
-            If oSCode = "" Then oSCode = SCode
-            
-            fpSpread1.GetText 2, fpSpread1.ActiveRow, vtNo: fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
-            If VchType = 34 Or VchType = 35 Or VchType = 37 Or VchType = 36 Or VchType = 38 Or VchType = 45 Then fpSpread1.GetText 32, fpSpread1.ActiveRow, vtCode: fpSpread1.GetText 35, fpSpread1.ActiveRow, vtType: vtType = Right(vtType, 2)
-            If vDate = "" Then
-                Exit Sub
-            ElseIf FinancialYearFrom > vDate Or vDate = "" Then
-                If MsgBox("You Can't Open Previous Financial Voucher in Current Year,... To Open This Voucher, Please Switch Financial Year ", vbCritical, "   Switch Financial Year !!!") = vbOK Then Exit Sub
-            ElseIf vtType = "FP" Or vtType = "FS" Then
-            dSortBy = True
-                    On Error Resume Next
-                    FrmBookPrintOrder.BookPOType = vtType
-                    If Err.Number <> 364 Then FrmBookPrintOrder.Show
-                    FrmBookPrintOrder.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    FrmBookPrintOrder.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    FrmBookPrintOrder.Toolbar1_ButtonClick FrmBookPrintOrder.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    FrmBookPrintOrder.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-'Purchase Order,Sale Order,Stock Transfer
-            ElseIf vtType = "PO" Or vtType = "SO" Or vtType = "ST" Then
-            dSortBy = True
-                    On Error Resume Next
-                    frmSalesOrderVoucher.VchType = vtType
-                    If Err.Number <> 364 Then frmSalesOrderVoucher.Show
-                    frmSalesOrderVoucher.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    frmSalesOrderVoucher.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    frmSalesOrderVoucher.Toolbar1_ButtonClick frmSalesOrderVoucher.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    frmSalesOrderVoucher.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-'Stock Journal Voucher
-            ElseIf vtType = "JR" Then
-            dSortBy = True
-                    On Error Resume Next
-                    frmStockJournalVoucher.VchType = vtType
-                    If Err.Number <> 364 Then frmStockJournalVoucher.Show
-                    frmStockJournalVoucher.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    frmStockJournalVoucher.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    frmStockJournalVoucher.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-'Sale Voucher
-            ElseIf vtType = "SF" Or vtType = "PF" Or vtType = "TF" Or vtType = "OF" Then
-            dSortBy = True
-                    On Error Resume Next
-                    frmSalesVoucher.VchType = vtType
-                    If Err.Number <> 364 Then frmSalesVoucher.Show
-                    frmSalesVoucher.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    frmSalesVoucher.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    frmSalesVoucher.Toolbar1_ButtonClick frmSalesVoucher.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    frmSalesVoucher.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-'Sale Challan Voucher
-            ElseIf vtType = "RF" Or vtType = "IF" Then
-            dSortBy = True
-                    On Error Resume Next
-                    frmSalesChallanVoucher.VchType = vtType
-                    If Err.Number <> 364 Then frmSalesChallanVoucher.Show
-                    frmSalesChallanVoucher.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    frmSalesChallanVoucher.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    frmSalesChallanVoucher.Toolbar1_ButtonClick frmSalesChallanVoucher.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    frmSalesChallanVoucher.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-'Jobwork Sale Challan Voucher
-            ElseIf vtType = "FR" Or vtType = "FI" Then
-            vtType = IIf(vtType = "FR", "R", "I")
-            dSortBy = True
-                    On Error Resume Next
-                    frmItemIssueReceiptVoucher.VchType = vtType
-                    If Err.Number <> 364 Then frmItemIssueReceiptVoucher.Show
-                    frmItemIssueReceiptVoucher.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    frmItemIssueReceiptVoucher.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    frmItemIssueReceiptVoucher.Toolbar1_ButtonClick frmItemIssueReceiptVoucher.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    frmItemIssueReceiptVoucher.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-'Jobwork Sale Voucher
-            ElseIf vtType = "SU" Or vtType = "SC" Or vtType = "SJ" Or vtType = "PU" Or vtType = "PC" Or vtType = "PJ" Then
-            vtType = IIf(vtType = "SU", 1, IIf(vtType = "SC", 2, IIf(vtType = "SJ", 3, IIf(vtType = "PU", 4, IIf(vtType = "PC", 5, IIf(vtType = "PJ", 6, ""))))))
-            dSortBy = True
-                    On Error Resume Next
-                    frmJobworkBill.VchType = vtType
-                    If Err.Number <> 364 Then frmJobworkBill.Show
-                    frmJobworkBill.Text1 = vtCode
-                If Shift = 0 And KeyCode = vbKeyReturn Then 'View
-                    frmJobworkBill.SSTab1.Tab = 1
-                ElseIf Shift = 0 And KeyCode = vbKeyF8 Then 'Delete
-                    frmJobworkBill.Toolbar1_ButtonClick frmJobworkBill.Toolbar1.Buttons.Item(3)
-                    Call cmdRefresh_Click
-                ElseIf Shift = 0 And KeyCode = vbKeyF12 Then 'Duplicate
-                    frmJobworkBill.SSTab1.Tab = 1
-                    If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Exit Sub
-                    Call cmdRefresh_Click
-                End If
-                
-            End If
-        KeyCode = 0
-        
-'Escape
-    ElseIf (Shift = 0 And KeyCode = vbKeyEscape) And (VchType = 29 Or VchType = 30 Or VchType = 31 Or VchType = 32) And SCode <> "" Then  'Stock Ledger Closing
-        If VchType = 29 Then VchType = 1 'Inventry Movement Ledger Closing
-        If VchType = 30 Then VchType = 2 'Stock Ledger Closing
-        If VchType = 32 Then VchType = 2 'Stock Ledger Closing
-        If VchType = 31 Then VchType = 32 'Stock Ledger Closing
-        If VchType = 32 Then SCode = oSCode
-        sMcCode = ""
-        Form_Load
-        'fpSpread1.SetActiveCell vTypeCode, LR
-        KeyCode = 0
-    
-    ElseIf Shift = 0 And KeyCode = vbKeyF9 Then
-        R = IIf(.ActiveRow + 1 <> LR, .ActiveRow + 1, 1)
-        LR = R
-         .Row = .ActiveRow: .RowHidden = True: LR = .Row
-        TotalFlag = True: HideFlag = True: If VchType < 35 Then Total_Click
-        TotalFlag = False
-        .SetActiveCell .ActiveCol, R
-    ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
-        If Me.ActiveControl.Name <> "fpSpread1" Then Sendkeys "{TAB}": KeyCode = 0
-    ElseIf Shift = 0 And KeyCode = vbKeyEscape Then ' Close/Hide Row/Unhide Row
-        If HideFlag = True Then
-            For R = 1 To .DataRowCnt 'Unhide All
-                If HideFlag = True Then .Row = R: .RowHidden = False: .SetText 13, R, "":
-            Next
-            If VchType < 35 Then Total_Click
-            .SetActiveCell .ActiveCol, 1
-            HideFlag = False
-        ElseIf HideFlag = False And ExitFlag = False Then
-            'Call cmdRefresh_Click: ExitFlag = True
-        'ElseIf ExitFlag = True Then
-        'ElseIf Shift = 0 And KeyCode = vbKeyReturn Then
-            Call cmdCancel_Click: ExitFlag = False
-        End If
-            KeyCode = 0
-    ElseIf Shift = 0 And KeyCode = vbKeyF5 Then
-        Call cmdRefresh_Click
-        KeyCode = 0
-    ElseIf KeyCode = vbKeyF And Shift = vbCtrlMask Then
-    If Text1.Text = "" Then
-        MsgBox "Please Provide Search Input", vbInformation
-        Text1.SetFocus
-    ElseIf Text1.Text <> "" Then
-    Call Command2_Click
-    End If
-        KeyCode = 0
-        
-    End If
-End With
-End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
     If (Shift = 0 And KeyCode = vbKeyReturn) And VchType = 0 Then 'Enter Physical Stock
             With fpSpread1
@@ -3198,67 +4017,45 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
             End With
     End If
 End Sub
-Private Sub Mh3dLabel9_Click()
-    Dim i As Long, j As Long, K As Long, C As Long
-    Dim JItem As Variant, JQty As Variant, JRate As Variant, JICode As Variant, JHSNCode As Variant
-    On Error Resume Next
-    frmStockJournalVoucher.VchType = "JR"
-    Load frmStockJournalVoucher
-    If Err.Number <> 364 Then frmStockJournalVoucher.Show
-    frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(1)
-                    j = 1: K = 1
-                For i = 1 To fpSpread1.DataRowCnt - 1
-                fpSpread1.GetText 34, i, JQty
-    
-    'Get Stock Journal Qty
-    If JItem <> "Grand Total" And JQty > 0 Or JQty < 0 Then
-                    C = C + 1
-                    fpSpread1.GetText 3, i, JItem
-                    fpSpread1.GetText 34, i, JQty
-                    fpSpread1.GetText 4, i, JRate
-                    fpSpread1.GetText 32, i, JICode
-                    fpSpread1.GetText 35, i, JHSNCode
-    
-    'Set Stock Journal Qty
-                If JQty > 0 Then
-                    
-                        frmStockJournalVoucher.fpSpread1.SetText 1, j, JItem
-                        frmStockJournalVoucher.fpSpread1.SetText 2, j, JQty
-                        frmStockJournalVoucher.fpSpread1.SetText 3, j, JRate
-                        frmStockJournalVoucher.fpSpread1.SetText 4, j, JQty * JRate
-                        frmStockJournalVoucher.fpSpread1.SetText 5, j, JICode
-                        frmStockJournalVoucher.fpSpread1.SetText 6, j, JHSNCode
-        'Active Row Generated
-                            j = j + 1
-                    
-                ElseIf JQty < 0 Then
-                    
-                        frmStockJournalVoucher.fpSpread2.SetText 1, K, JItem
-                        frmStockJournalVoucher.fpSpread2.SetText 2, K, JQty * -1
-                        frmStockJournalVoucher.fpSpread2.SetText 3, K, JRate
-                        frmStockJournalVoucher.fpSpread2.SetText 4, K, JQty * JRate * -1
-                        frmStockJournalVoucher.fpSpread2.SetText 5, K, JICode
-                        frmStockJournalVoucher.fpSpread2.SetText 6, K, JHSNCode
-        'Active Row Consumed
-                            K = K + 1
-                End If
-        End If
-            Next
-            
-        If C = 0 Then
-                frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(5)
-                MsgBox ("There is Zero Item to Create Stock Journal Voucher"), vbCritical
-                Call CloseForm(frmStockJournalVoucher)
-        Else
-                Mh3dLabel6_Click
-                Call CloseForm(FrmStockLedger)
-        End If
-    End Sub
 Private Sub Preview_Click()
 Dim PrintHeader As String
-'Dim R As Long, C As Long, i As Long
+Dim R As Long, C As Long, i As Long
 '*********************************************************
+If VSFlexGrid1.Visible = True Then Preview.Visible = False: Exit Sub
 With fpSpread1
+.RowHeadersShow = False
+Dim sC, eC As Long
+    For i = 1 To .DataColCnt 'Unhide All
+        .Col = i
+        If .ColHidden = False Then C = i: Exit For
+    Next
+    sC = C
+    For i = 1 To .DataColCnt 'Unhide All
+        .Col = i
+        If .ColHidden = False Then eC = i
+    Next
+.MaxRows = .MaxRows + 2
+'    If VchType >= 0 Then fpSpread1.InsertRows 1, 2
+'    fpSpread1.AddCellSpan sC, 1, eC, 1
+'    .Col = C: .Row = 1: .FontBold = True: .FontSize = 20: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = RGB(1, 106, 106): .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+'    .SetText C, 1, rstCompanyMaster.Fields("PrintName").Value: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter
+'
+'    fpSpread1.AddCellSpan sC, 2, eC, 1
+'    .Col = C: .Row = 2: .FontBold = True: .FontSize = 16: .BackColor = &H8000000F:  .ForeColor = RGB(20, 106, 106): .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+'    .SetText C, 2, "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]": .TypeHAlign = TypeHAlignCenter
+    .ColHeaderRows = .ColHeaderRows + 2
+    .RowHeadersAutoText = DispBlank
+    .ColHeadersAutoText = DispBlank
+    .AddCellSpan sC, SpreadHeader, eC, 1
+'Company Header
+    .AddCellSpan sC, SpreadHeader + .ColHeaderRows - 2, eC, 1
+    .Col = sC: .Row = SpreadHeader + .ColHeaderRows - 2: fpSpread1.Text = rstCompanyMaster.Fields("PrintName").Value
+    .FontBold = True: .FontSize = 20: .FontUnderline = True: .ForeColor = RGB(1, 106, 106): .TypeHAlign = TypeHAlignCenter
+'FY Header
+    .AddCellSpan sC, SpreadHeader + .ColHeaderRows - 1, eC, 1
+    .Col = sC: .Row = SpreadHeader + .ColHeaderRows - 1: fpSpread1.Text = "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]"
+    .FontBold = True: .FontSize = 16: .ForeColor = RGB(20, 106, 106):  .TypeHAlign = TypeHAlignCenter
+PrintHeader = Me.Caption
 .ColsFrozen = 0
 PrintHeader = Me.Caption
 .LockBackColor = vbWhite
@@ -3297,7 +4094,6 @@ fpSpread1.PrintZoomFactor = 0.75
 fpSpread1.PrintOrientation = PrintOrientationLandscape
 'fpSpread1.PrintSheet
 .LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
-   
    'If a cell is currently active, turn off edit mode
     If fpSpread1.EditMode = True Then
         fpSpread1.EditMode = False
@@ -3308,5 +4104,1037 @@ fpSpread1.PrintOrientation = PrintOrientationLandscape
     Set PrintDlg.frmPrintDlg = Me
     Set headerfooter.frmHeaderFooter = Me
     spreadpreview.Show
+.LockBackColor = RGB(245, 255, 230)
+'Delete Row
+'If VchType >= 0 Then fpSpread1.DeleteRows 1, 2
+'.MaxRows = .MaxRows - 2
+'.RowHeadersShow = True
+'.RowHeadersAutoText = DispNumbers
+'.ColHeaderRows = .ColHeaderRows - 2
  End With
+End Sub
+Function ClearQty(ByVal ActionType As String) As Boolean
+    Dim CellVal(1 To 17) As Variant, i As Long
+    Dim lpBuff As String * 1024
+    On Error GoTo ErrorHandler
+        With fpSpread1
+If Check1.Value Then
+For i = 1 To .DataRowCnt - 1
+            .SetActiveCell 8, i
+            .GetText 15, .ActiveRow, CellVal(17) 'CheckBox
+If CellVal(17) = 1 Then
+            .GetText 35, .ActiveRow, CellVal(1) 'RefCode
+            .GetText 25, .ActiveRow, CellVal(2) 'VchType
+            .GetText 2, .ActiveRow, CellVal(3) 'VchNo
+            .GetText 1, .ActiveRow, CellVal(4) 'VchDate
+            .GetText 32, .ActiveRow, CellVal(5) 'Buyer
+            .GetText 34, .ActiveRow, CellVal(6): CellVal(6) = Pad(Trim(CellVal(6)), 0, 6, "L") 'Item
+            .GetText 8, .ActiveRow, CellVal(7) 'Qty
+            .GetText 4, .ActiveRow, CellVal(8) 'Rate
+            .GetText 14, .ActiveRow, CellVal(9) 'ClearQty
+            .GetText 36, .ActiveRow, CellVal(14) 'CreatedBy
+            .GetText 37, .ActiveRow, CellVal(12) 'CreatedOn
+            .GetText 38, .ActiveRow, CellVal(13) 'Remarks
+            CellVal(12) = Format(CellVal(12), "YYYY-MM-DD hh:mm:ss")
+            If ClearFlag Then CellVal(11) = "Confirm Clear Quantity !!!" Else CellVal(11) = "Confirm Retrieve Quantity !!!"
+            If CellVal(12) <> "" Then CellVal(12) = CellVal(12): CellVal(16) = Format(Now(), "YYYY-MM-DD hh:mm:ss")
+            If CellVal(12) = "" Then CellVal(12) = Format(Now(), "YYYY-MM-DD hh:mm:ss"): CellVal(16) = Null
+            If CellVal(14) <> "" Then CellVal(14) = CellVal(14): CellVal(15) = UserCode
+            If CellVal(14) = "" Then CellVal(14) = UserCode: CellVal(15) = Null
+            
+            If ClearFlag Then
+                CellVal(10) = InputBox(CellVal(11), , CellVal(7))
+                If Val(CellVal(10)) > CellVal(7) Then SCode = 0: Exit Function
+            Else
+                CellVal(10) = InputBox(CellVal(11), , CellVal(9))
+                If Val(CellVal(10)) > CellVal(9) Then SCode = 0: Exit Function
+            End If
+                CellVal(13) = InputBox("Confirm Remarks !!!", , CellVal(13))
+            If ClearFlag Then
+                CellVal(10) = CellVal(10) + CellVal(9)
+                SCode = Val(SCode) + Val(CellVal(10))
+            Else
+                SCode = Val(SCode) + Val(CellVal(10))
+                CellVal(10) = Abs(CellVal(9) - Val(CellVal(10)))
+            End If
+            
+            GetComputerName lpBuff, Len(lpBuff)
+        cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='RefCode') Print 'Col_Exist' ELSE CREATE TABLE JobworkBVClear([RefCode] [nvarchar](6) NOT NULL,[VchType] [nvarchar](6) NOT NULL,[VchNo] [nvarchar](25) NOT NULL,[VchDate] [datetime] NOT NULL,[Party] [nvarchar](6) NOT NULL,[Item] [nvarchar](6) NOT NULL,[Quantity] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL,[Remarks] [nvarchar](100) NULL,[CreatedBy] [nvarchar](6) NOT NULL ,[CreatedOn] [datetime] NOT NULL ,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[ComputerName] [nvarchar](40) NULL) ON [PRIMARY]"
+        cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='Remarks') Print 'Col_Exist' ELSE ALTER TABLE JobworkBVClear ADD  [Remarks] [nvarchar](100) NULL,[CreatedBy] [nvarchar](6) NOT NULL Default('000001'),[CreatedOn] [datetime] NOT NULL Default('" & CellVal(12) & "' ) ,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[ComputerName] [nvarchar](40) NULL"
+    If ClearFlag = True Then
+        cnDatabase.Execute "INSERT INTO JobworkBVClear VALUES ('" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(3) & "','" & Format(CellVal(4), "dd-MMM-yyyy") & "','" & CellVal(5) & "','" & CellVal(6) & "'," & Val(CellVal(10)) & "," & Val(CellVal(8)) & ",'" & CellVal(13) & "' ,'" & CellVal(14) & "' ,'" & CellVal(12) & "','" & CellVal(15) & "' ,'" & CellVal(16) & "','" & Left(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1) & "' )"
+        cnDatabase.Execute "DELETE FROM JobworkBVClear WHERE RefCode='" & CellVal(1) & "' AND VchType='" & CellVal(2) & "' AND Quantity='" & CellVal(9) & "'"
+        .SetText 8, .ActiveRow, Abs(CellVal(7) + CellVal(9) - CellVal(10)) ' Qty
+        .SetText 14, .ActiveRow, CellVal(10) 'Clear Qty
+        .SetText 38, .ActiveRow, CellVal(13) 'Remarks
+    End If
+    If unClearFlag = True Then
+        cnDatabase.Execute "DELETE FROM JobworkBVClear WHERE RefCode='" & CellVal(1) & "' AND VchType='" & CellVal(2) & "' AND Quantity='" & CellVal(9) & "'"
+            .SetText 8, .ActiveRow, CellVal(7) + CellVal(9) - CellVal(10) ' Qty
+            .SetText 14, .ActiveRow, CellVal(10) 'Clear Qty
+            .SetText 38, .ActiveRow, CellVal(13) 'Remarks
+        cnDatabase.Execute "INSERT INTO JobworkBVClear VALUES ('" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(3) & "','" & Format(CellVal(4), "dd-MMM-yyyy") & "','" & CellVal(5) & "','" & CellVal(6) & "'," & Val(CellVal(10)) & "," & Val(CellVal(8)) & ",'" & CellVal(13) & "' ,'" & CellVal(14) & "' ,'" & CellVal(12) & "','" & CellVal(15) & "' ,'" & CellVal(16) & "','" & Left(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1) & "' )"
+    End If
+   End If
+            Next
+            ClearFlag = False
+            unClearFlag = False
+Else
+            .GetText 35, .ActiveRow, CellVal(1) 'RefCode
+            .GetText 25, .ActiveRow, CellVal(2) 'VchType
+            .GetText 2, .ActiveRow, CellVal(3) 'VchNo
+            .GetText 1, .ActiveRow, CellVal(4) 'VchDate
+            .GetText 32, .ActiveRow, CellVal(5) 'Buyer
+            .GetText 34, .ActiveRow, CellVal(6): CellVal(6) = Pad(Trim(CellVal(6)), 0, 6, "L") 'Item
+            .GetText 8, .ActiveRow, CellVal(7) 'Qty
+            .GetText 4, .ActiveRow, CellVal(8) 'Rate
+            .GetText 14, .ActiveRow, CellVal(9) 'ClearQty
+            .GetText 36, .ActiveRow, CellVal(14) 'CreatedBy
+            .GetText 37, .ActiveRow, CellVal(12) 'CreatedOn
+            .GetText 38, .ActiveRow, CellVal(13) 'Remarks
+            CellVal(12) = Format(CellVal(12), "YYYY-MM-DD hh:mm:ss")
+            If ClearFlag Then CellVal(11) = "Confirm Clear Quantity !!!" Else CellVal(11) = "Confirm Retrieve Quantity !!!"
+            If CellVal(12) <> "" Then CellVal(12) = CellVal(12): CellVal(16) = Format(Now(), "YYYY-MM-DD hh:mm:ss")
+            If CellVal(12) = "" Then CellVal(12) = Format(Now(), "YYYY-MM-DD hh:mm:ss"): CellVal(16) = Null
+            If CellVal(14) <> "" Then CellVal(14) = CellVal(14): CellVal(15) = UserCode
+            If CellVal(14) = "" Then CellVal(14) = UserCode: CellVal(15) = Null
+            
+            If ClearFlag Then
+                CellVal(10) = InputBox(CellVal(11), , CellVal(7))
+                If Val(CellVal(10)) > CellVal(7) Then SCode = 0: Exit Function
+            Else
+                CellVal(10) = InputBox(CellVal(11), , CellVal(9))
+                If Val(CellVal(10)) > CellVal(9) Then SCode = 0: Exit Function
+            End If
+                CellVal(13) = InputBox("Confirm Remarks !!!", , CellVal(13))
+            If ClearFlag Then
+                CellVal(10) = CellVal(10) + CellVal(9)
+                SCode = CellVal(10)
+            Else
+                SCode = CellVal(10)
+                CellVal(10) = Abs(CellVal(9) - Val(CellVal(10)))
+            End If
+            
+            GetComputerName lpBuff, Len(lpBuff)
+        cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='RefCode') Print 'Col_Exist' ELSE CREATE TABLE JobworkBVClear([RefCode] [nvarchar](6) NOT NULL,[VchType] [nvarchar](6) NOT NULL,[VchNo] [nvarchar](25) NOT NULL,[VchDate] [datetime] NOT NULL,[Party] [nvarchar](6) NOT NULL,[Item] [nvarchar](6) NOT NULL,[Quantity] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL,[Remarks] [nvarchar](100) NULL,[CreatedBy] [nvarchar](6) NOT NULL ,[CreatedOn] [datetime] NOT NULL ,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[ComputerName] [nvarchar](40) NULL) ON [PRIMARY]"
+        cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='Remarks') Print 'Col_Exist' ELSE ALTER TABLE JobworkBVClear ADD  [Remarks] [nvarchar](100) NULL,[CreatedBy] [nvarchar](6) NOT NULL Default('000001'),[CreatedOn] [datetime] NOT NULL Default('" & CellVal(12) & "' ) ,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[ComputerName] [nvarchar](40) NULL"
+    If ClearFlag = True Then
+        cnDatabase.Execute "INSERT INTO JobworkBVClear VALUES ('" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(3) & "','" & Format(CellVal(4), "dd-MMM-yyyy") & "','" & CellVal(5) & "','" & CellVal(6) & "'," & Val(CellVal(10)) & "," & Val(CellVal(8)) & ",'" & CellVal(13) & "' ,'" & CellVal(14) & "' ,'" & CellVal(12) & "','" & CellVal(15) & "' ,'" & CellVal(16) & "','" & Left(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1) & "' )"
+        cnDatabase.Execute "DELETE FROM JobworkBVClear WHERE RefCode='" & CellVal(1) & "' AND VchType='" & CellVal(2) & "' AND Quantity='" & CellVal(9) & "'"
+        .SetText 8, .ActiveRow, Abs(CellVal(7) + CellVal(9) - CellVal(10)) ' Qty
+        .SetText 14, .ActiveRow, CellVal(10) 'Clear Qty
+        .SetText 38, .ActiveRow, CellVal(13) 'Remarks
+        ClearFlag = False
+    End If
+    If unClearFlag = True Then
+        cnDatabase.Execute "DELETE FROM JobworkBVClear WHERE RefCode='" & CellVal(1) & "' AND VchType='" & CellVal(2) & "' AND Quantity='" & CellVal(9) & "'"
+            .SetText 8, .ActiveRow, CellVal(7) + CellVal(9) - CellVal(10) ' Qty
+            .SetText 14, .ActiveRow, CellVal(10) 'Clear Qty
+            .SetText 38, .ActiveRow, CellVal(13) 'Remarks
+        cnDatabase.Execute "INSERT INTO JobworkBVClear VALUES ('" & CellVal(1) & "','" & CellVal(2) & "','" & CellVal(3) & "','" & Format(CellVal(4), "dd-MMM-yyyy") & "','" & CellVal(5) & "','" & CellVal(6) & "'," & Val(CellVal(10)) & "," & Val(CellVal(8)) & ",'" & CellVal(13) & "' ,'" & CellVal(14) & "' ,'" & CellVal(12) & "','" & CellVal(15) & "' ,'" & CellVal(16) & "','" & Left(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1) & "' )"
+            unClearFlag = False
+    End If
+
+End If
+            .SetActiveCell 8, .ActiveRow
+            Check1.Value = 0
+        End With
+    Exit Function
+ErrorHandler:
+    ClearFlag = False
+    unClearFlag = False
+    ClearQty = False
+End Function
+Private Sub Print_Click()
+Dim PrintHeader As String
+Dim R As Long, C As Long
+Dim JQty As Variant
+    On Error GoTo ErrHandler
+Screen.MousePointer = vbHourglass
+
+Const PaperWidth = 12240
+Const PaperHeight = 15840
+
+PrintHeader = "Export Data Company : " & rstCompanyMaster.Fields("PrintName").Value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         "
+If VSFlexFlag = True Then
+    With Me.VSFlexGrid1
+    .PrintGrid PrintHeader, True, PrintOrientationLandscape, 50, 300
+ 
+    End With
+Else
+With fpSpread1
+.RowHeadersShow = False
+Dim sC, eC As Long
+Dim i As Long
+    For i = 1 To .DataColCnt 'Unhide All
+        .Col = i
+        If .ColHidden = False Then C = i: Exit For
+    Next
+    sC = C
+    For i = 1 To .DataColCnt 'Unhide All
+        .Col = i
+        If .ColHidden = False Then eC = i
+    Next
+.MaxRows = .MaxRows + 2
+'    If VchType >= 0 Then fpSpread1.InsertRows 1, 2
+'    fpSpread1.AddCellSpan sC, 1, eC, 1
+'    .Col = C: .Row = 1: .FontBold = True: .FontSize = 20: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = RGB(1, 106, 106): .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+'    .SetText C, 1, rstCompanyMaster.Fields("PrintName").Value: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter
+'    fpSpread1.AddCellSpan sC, 2, eC, 1
+'    .Col = C: .Row = 2: .FontBold = True: .FontSize = 16: .BackColor = &H8000000F:  .ForeColor = RGB(20, 106, 106): .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter '.LockBackColor = RGB(245, 255, 230) '(250, 255, 242) '
+'    .SetText C, 2, "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]": .TypeHAlign = TypeHAlignCenter
+.ColHeaderRows = .ColHeaderRows + 2
+.RowHeadersAutoText = DispBlank
+.ColHeadersAutoText = DispBlank
+'Company Header
+    .AddCellSpan sC, SpreadHeader + .ColHeaderRows - 2, eC, 1
+    .Col = sC: .Row = SpreadHeader + .ColHeaderRows - 2: fpSpread1.Text = rstCompanyMaster.Fields("PrintName").Value
+    .FontBold = True: .FontSize = 20: .FontUnderline = True: .ForeColor = RGB(1, 106, 106): .TypeHAlign = TypeHAlignCenter
+'FY Header
+    .AddCellSpan sC, SpreadHeader + .ColHeaderRows - 1, eC, 1
+    .Col = sC: .Row = SpreadHeader + .ColHeaderRows - 1: fpSpread1.Text = "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]"
+    .FontBold = True: .FontSize = 16: .ForeColor = RGB(20, 106, 106):  .TypeHAlign = TypeHAlignCenter
+
+PrintHeader = Me.Caption
+.LockBackColor = vbWhite
+' These are 8.5" X 11" paper dimensions in TWIPS
+Printer.PaperSize = vbPRPSA4
+' Set printing options for sheet
+fpSpread1.PrintAbortMsg = "Printing - Click Cancel to .Quit"
+fpSpread1.PrintJobName = "Export Data" & "(" & CompCode & "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy") '& ".pdf"
+'fpSpread1.PrintHeader = "_" & PrintHeader & ")" & Format(Date, "dd-MMM-yyyy"): fpSpread1.PrintHeader=: .Font = 20 '"/cPrint Header/rPage # ./p/n2nd Line"
+fpSpread1.PrintFooter = "        Export Data Company : " & rstCompanyMaster.Fields("PrintName").Value & " _(" & CompCode & "_" & PrintHeader & ")" & "  From [" + Format(GetDate(MhDateInput1.Text), "dd-MM-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-MM-yyyy") & "]" & " /rPage # ./p " & " Print Date : ( " & Format(Date, "dd-MMM-yyyy") & " )         ": .FontSize = 16 '& ".pdf" ' "/cPrint Footer/rPage # ./p/n2nd Line"
+fpSpread1.PrintBorder = True
+fpSpread1.PrintColHeaders = True
+fpSpread1.PrintColor = True
+fpSpread1.PrintGrid = True
+fpSpread1.PrintMarginTop = 750 '1440
+fpSpread1.PrintMarginBottom = 500 '1440
+fpSpread1.PrintMarginLeft = 100 '720
+fpSpread1.PrintMarginRight = 100 '720
+'fpSpread1.PrintType = SPRD_PRINT_ALL
+fpSpread1.PrintRowHeaders = True
+fpSpread1.PrintShadows = True
+fpSpread1.PrintUseDataMax = True
+' Center vertically
+fpSpread1.PrintCenterOnPageV = False
+' Center horizontally
+fpSpread1.PrintCenterOnPageH = True
+' Perform the printing action
+' Set the sheet to print
+fpSpread1.Sheet = 1
+' Set scaling method
+fpSpread1.PrintScalingMethod = PrintScalingMethodZoom
+' Set zoom factor
+fpSpread1.PrintZoomFactor = 0.75
+' Print
+'fpSpread1.PrintSheet 0
+fpSpread1.PrintOrientation = PrintOrientationLandscape
+fpSpread1.PrintSheet
+.LockBackColor = RGB(245, 255, 230)
+'Delete Row
+'If VchType >= 0 Then fpSpread1.DeleteRows 1, 2
+.MaxRows = .MaxRows - 2
+.RowHeadersShow = True
+.RowHeadersAutoText = DispNumbers
+.ColHeaderRows = .ColHeaderRows - 2
+ End With
+End If
+    Screen.MousePointer = vbNormal
+Exit Sub
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Sub
+Private Sub Export_Click()
+Dim x As Boolean, FileName As String, SheetName As String, LogFileName As String
+Dim R As Long, C As Long
+Dim JQty As Variant
+    On Error GoTo ErrHandler
+'''''With Me.VSFlexGrid1
+'''''    Set .DataSource = Nothing
+'''''    .LoadGrid App.Path & "\Customers.xls", flexFileExcel
+'''''End With
+
+'"Export Data" &
+Screen.MousePointer = vbHourglass
+If VSFlexFlag = True Then
+With Me.VSFlexGrid1
+
+    If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+    FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+    SheetName = "Sheet1" '"(" & Me.Caption & ")"
+    .SaveGrid FileName, flexFileExcel, SaveExcelSettings.flexXLSaveFixedCells
+    If Dir(FileName, vbDirectory) <> "" Then x = True
+    If x = True Then
+    MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+    Shell "C:\WINDOWS\explorer.exe """ & FileName & "", vbNormalFocus
+    Else
+    MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+    End If
+End With
+ElseIf VSFlexFlag = False Then
+Dim H As Long
+Dim cVal As Variant
+With fpSpread1
+fpSpread1.InsertRows 1, .ColHeaderRows
+For H = 1 To .ColHeaderRows
+    R = R + 1
+    For C = 1 To .MaxCols
+        If R = 1 Then .Col = C: .Row = R: .FontBold = True: .FontSize = 14: .FontUnderline = True: .ForeColor = vbRed: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignLeft
+        If R = 2 Then .Col = C: .Row = R: .FontBold = True: .FontSize = 10: .BackColor = &H8000000F: .FontUnderline = True: .ForeColor = vbBlue: .CellType = CellTypeEdit: .TypeHAlign = TypeHAlignCenter
+        .GetText C, SpreadHeader + R - 1, cVal
+        .SetText C, R, cVal
+    Next
+Next
+                .ColHeadersShow = True: .PrintColHeaders = True: .PrintRowHeaders = True: .ColHeadersShow = True: .RowHeadersShow = True: .GridShowHoriz = True: .GridShowVert = True
+    
+    End With
+    If Dir(App.Path & "\Export", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Export"
+    '
+     FileName = App.Path & "\Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".xls"
+    SheetName = "Sheet1" '"(" & Me.Caption & ")"
+    LogFileName = "Export\Export Data" & "(" & CompCode & "_" & Me.Caption & ")" & Format(Date, "dd-MMM-yyyy") & ".txt"
+    x = fpSpread1.ExportToExcelEx(FileName, SheetName, LogFileName, ExcelSaveFlagNoFormulas)
+    If x = True Then
+    MsgBox "Export complete.", vbInformation, "Easy Publish...Export !!! "
+        Dim oExcel As Object
+        Set oExcel = CreateObject("Excel.Application")
+        oExcel.Workbooks.Open (FileName)
+        oExcel.Visible = True
+        oExcel.Sheets("Sheet1").Select
+        oExcel.Sheets("Sheet1").Unprotect
+         Set oExcel = Nothing
+    Else
+    MsgBox "Export did not succeed.", vbInformation, "Easy Publish...Export !!!"
+    End If
+    '
+    With fpSpread1
+    'Delete Header Row
+    fpSpread1.DeleteRows 1, .ColHeaderRows
+    End With
+End If
+Screen.MousePointer = vbNormal
+Exit Sub
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Sub
+Private Function VSFlexGrid_Format_Headers()
+Dim i As Long
+Dim C As Long
+    On Error GoTo ErrHandler
+    With VSFlexGrid1
+        .ColWidth(0) = 250
+    If VchType = 0 Then 'Physical Stock Audit Ledger
+        .TextMatrix(i, 1) = ""
+        .ColHidden(1) = True
+        .TextMatrix(i, 2) = ""
+        .ColHidden(2) = True
+        .TextMatrix(i, 3) = "Item Name"
+        .TextMatrix(i, 4) = "MRP"
+        .TextMatrix(i, 5) = "Parent Group"
+        .TextMatrix(i, 6) = "Stock Qty."
+        .TextMatrix(i, 7) = "Units"
+        For C = 3 To 7
+        .ColHidden(C) = False
+        Next
+        .ColWidth(3) = 49.25 'Item
+        .ColWidth(4) = 15 'MRP
+        .ColWidth(5) = 15 'Item Group
+        .ColWidth(6) = 14  'Stock Qty.
+        .ColWidth(7) = 11.5 'Unit
+        For C = 8 To 32
+        .ColHidden(C) = True
+        Next
+        For C = 33 To 34
+        .ColHidden(C) = False
+        Next
+        .ColWidth(33) = 24 'Phical Stock Qty.
+        .ColWidth(34) = 22.75 'Stock Impact
+        .ColHidden(35) = True
+        .TextMatrix(i, 33) = "Physical Stock Quantity"
+        .TextMatrix(i, 34) = "Stock Impact"
+        .TextMatrix(i, 35) = "HSNCODE"
+    ElseIf VchType <= 2 Or VchType = 33 Then
+'        .ColWidth(0) = 500
+        .TextMatrix(i, 1) = ""
+        .ColHidden(1) = True
+        .TextMatrix(i, 2) = ""
+        .ColHidden(2) = True
+        .TextMatrix(i, 3) = "Item Name"
+        .TextMatrix(i, 4) = "MRP"
+        .TextMatrix(i, 5) = "Parent Group"
+        .TextMatrix(i, 6) = "Stock Qty."
+        .TextMatrix(i, 7) = "Units"
+         If VchType <= 2 And VchType <> 1 Then
+            For C = 8 To 17
+                    .ColHidden(C) = True
+             Next
+             ElseIf VchType = 33 And VchType <> 1 Then
+             For C = 9 To 17
+                    .ColHidden(C) = True
+             Next
+                    .TextMatrix(i, 8) = "Pending Quotation"
+         End If
+         If VchType = 1 Then .TextMatrix(i, 8) = "Purchases Qty."
+        .TextMatrix(i, 9) = "Purchases Return Qty."
+        .TextMatrix(i, 10) = "Purchases Challan"
+        .TextMatrix(i, 11) = "Purchases Return Challan"
+        .TextMatrix(i, 12) = "Sales Qty."
+        .TextMatrix(i, 13) = "Sales Return Qty."
+        .TextMatrix(i, 14) = "Sales Challan"
+        .TextMatrix(i, 15) = "Sales Return Challan"
+        .TextMatrix(i, 16) = "Stock Journal IN"
+        .TextMatrix(i, 17) = "Stock Journal OUT"
+        .TextMatrix(i, 18) = "Pending P/O"
+        .TextMatrix(i, 19) = "Pending S/O"
+        .TextMatrix(i, 20) = "Effective Stock"
+        .TextMatrix(i, 21) = "Price"
+        .ColHidden(21) = True
+        .TextMatrix(i, 22) = " Amount"
+        .TextMatrix(i, 23) = "Net Purchases"
+        .TextMatrix(i, 24) = "Net Sales"
+        .TextMatrix(i, 25) = "Units"
+        .ColHidden(25) = True
+        .TextMatrix(i, 26) = " Purchases Amount"
+        .TextMatrix(i, 27) = "Sales Amount"
+        .TextMatrix(i, 28) = "Purchases Return Amount"
+        .TextMatrix(i, 29) = "Sales Return Amt."
+        .TextMatrix(i, 30) = "Net Purchases Amount"
+        .TextMatrix(i, 31) = "Net Sales Amount"
+        .TextMatrix(i, 32) = "Code"
+        .TextMatrix(i, 33) = "Physical Stock Quantity"
+        .TextMatrix(i, 34) = "Stock Impact"
+        .TextMatrix(i, 35) = "HSNCODE"
+        If VchType <> 1 Then
+            For C = 23 To 35
+                    .ColHidden(C) = True
+             Next
+        ElseIf VchType = 1 Then
+            For C = 32 To 35
+                    .ColHidden(C) = True
+             Next
+        End If
+    ElseIf VchType > 101 Then
+            If (Combo1.ListIndex = 0 Or Combo1.ListIndex = 1) And VchType = 105 Then
+'                                 .ColWidth(0) = 500
+                C = C + 1: .TextMatrix(i, C) = "Item"
+                C = C + 1: .TextMatrix(i, C) = "Binding"
+                C = C + 1: .TextMatrix(i, C) = "FinishSize"
+                C = C + 1: .TextMatrix(i, C) = "Pages"
+                .ColHidden(C) = True
+                C = C + 1: .TextMatrix(i, C) = "Price"
+                C = C + 1: .TextMatrix(i, C) = "WIP"
+            ElseIf (Combo1.ListIndex = 2 Or Combo1.ListIndex = 3) And VchType = 105 Then
+                C = C + 1: .TextMatrix(i, C) = "WIP"
+                C = C + 1: .TextMatrix(i, C) = "Item"
+                C = C + 1: .TextMatrix(i, C) = "FinishSize"
+                C = C + 1: .TextMatrix(i, C) = "Pages"
+                C = C + 1: .TextMatrix(i, C) = "Price"
+            ElseIf (Combo1.ListIndex = 4 Or Combo1.ListIndex = 5) And VchType = 105 Then
+                C = C + 1: .TextMatrix(i, C) = "RM"
+                C = C + 1: .TextMatrix(i, C) = "WIP"
+                C = C + 1: .TextMatrix(i, C) = "Item"
+                C = C + 1: .TextMatrix(i, C) = "FinishSize"
+                C = C + 1: .TextMatrix(i, C) = "Pages"
+                C = C + 1: .TextMatrix(i, C) = "Price"
+            End If
+
+    If VchType = 103 Then C = C + 1: .TextMatrix(i, C) = "WIP"
+                If VchType = 103 Or VchType = 105 Then
+                        C = C + 1: .TextMatrix(i, C) = "WIP/UNIT"
+                        If FrmItemSelectionList.Check1.Value Then .ColHidden(C) = True
+                        C = C + 1: .TextMatrix(i, C) = "WIP Pages"
+                        If FrmItemSelectionList.Check1.Value Then .ColHidden(C) = True
+                        C = C + 1: .TextMatrix(i, C) = "Color"
+                        If FrmItemSelectionList.Check1.Value Then .ColHidden(C) = True
+                        If FrmItemSelectionList.Check1.Value = False And VchType <> 105 Then C = C + 1: .TextMatrix(i, C) = "FG Name(Actual BarCode)"
+                        C = C + 1: .TextMatrix(i, C) = "Stock"
+                        C = C + 1: .TextMatrix(i, C) = "Sales Order"
+                        C = C + 1: .TextMatrix(i, C) = "Dispatched"
+                        C = C + 1: .TextMatrix(i, C) = "Pending SO"
+                    If VchType = 105 Then
+                        C = C + 1: .TextMatrix(i, C) = "Rate"
+                        C = C + 1: .TextMatrix(i, C) = "Amount"
+                    End If
+                        C = C + 1: .TextMatrix(i, C) = "Deficient Order"
+                        C = C + 1: .TextMatrix(i, C) = "WIP Required"
+                        C = C + 1: .TextMatrix(i, C) = "WIP Stock"
+                        C = C + 1: .TextMatrix(i, C) = "Final WIP Required"
+            End If
+                    If VchType = 104 Or VchType = 105 Then
+                        C = C + 1: .TextMatrix(i, C) = "RM"
+                    End If
+                If VchType = 104 Or VchType = 105 Then
+                        C = C + 1: .TextMatrix(i, C) = "RM Make"
+                        C = C + 1: .TextMatrix(i, C) = "RM GSM"
+                        C = C + 1: .TextMatrix(i, C) = "RM CUT-OFF"
+                        C = C + 1: .TextMatrix(i, C) = "RM/UNIT"
+                        C = C + 1: .TextMatrix(i, C) = "Weight/Unit"
+                        C = C + 1: .TextMatrix(i, C) = "Unit Name"
+                        C = C + 1: .TextMatrix(i, C) = "Qty/Unit"
+                        C = C + 1: .TextMatrix(i, C) = "RM Req IN Sheets"
+                        C = C + 1: .TextMatrix(i, C) = "RM Req IN Kgs"
+                        C = C + 1: .TextMatrix(i, C) = "RM Stock UOM"
+                        C = C + 1: .TextMatrix(i, C) = "RM Stock IN Kgs"
+                        C = C + 1: .TextMatrix(i, C) = "Final RM Req Kgs"
+                End If
+    End If
+    End With
+        Mh3dLabel11.Caption = ""
+        Mh3dLabel10.Caption = ""
+
+Screen.MousePointer = vbNormal
+Exit Function
+ErrHandler:
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Function
+Private Function VSFlexGrid_Format_Cols_Headers()
+Dim C As Long
+With VSFlexGrid1
+End With
+End Function
+Private Function PublishGrid()
+Dim i, Stock, StockTotal, PurchaseTotal, PurchaseReturnTotal, PurchaseChallanTotal, PurchaseReturnChallanTotal, SalesTotal, SalesReturnTotal, SalesChallanTotal, SalesReturnChallanTotal, StockJournalINTotal, StockJournalOUTTotal, POTotal, SOTotal, EffectiveStock As Long, NetPurchaseTotal, NetSalesTotal, EStockTotal As Long
+Dim AmountTotal, PurchaseAmountTotal, SalesAmountTotal, PurchaseReturnAmountTotal, SalesReturnAmountTotal, NetPurchaseAmountTotal, NetSalesAmountTotal As Double
+Dim dPrint As Long
+Dim C As Long
+On Error GoTo ErrHandler
+
+With VSFlexGrid1
+    .Clear
+    Zoom.Visible = True
+    If VchType <= 2 Or VchType = 33 Then
+        .Cols = 36
+        .Rows = rstStockLedger.RecordCount + 1
+        rstStockLedger.MoveFirst
+        Do While Not rstStockLedger.EOF
+                If PendingCheck.Value Then
+                    If Val(rstStockLedger.Fields("PendingPO").Value) = 0 And Val(rstStockLedger.Fields("PendingSO").Value) = 0 Then GoTo NXT
+                End If
+                    Stock = Val(rstStockLedger.Fields("PurchaseChallan").Value) - Val(rstStockLedger.Fields("PurchaseReturnChallan").Value) - Val(rstStockLedger.Fields("SalesChallan").Value) + Val(rstStockLedger.Fields("SalesReturnChallan").Value) + Val(rstStockLedger.Fields("Purchase").Value) - Val(rstStockLedger.Fields("PurchaseReturn").Value) - Val(rstStockLedger.Fields("Sales").Value) + Val(rstStockLedger.Fields("SalesReturn").Value) + Val(rstStockLedger.Fields("StockJournalIN").Value) - Val(rstStockLedger.Fields("StockJournalOUT").Value) + Val(rstStockLedger.Fields("StockTransferIN").Value) - Val(rstStockLedger.Fields("StockTransferOUT").Value)
+                If VchType <= 2 Then EffectiveStock = Stock + Val(rstStockLedger.Fields("PendingPO").Value) - Val(rstStockLedger.Fields("PendingSO").Value)
+                If VchType = 33 Then EffectiveStock = Stock + Val(rstStockLedger.Fields("PendingPO").Value) - Val(rstStockLedger.Fields("PendingSO").Value) - Val(rstStockLedger.Fields("SQ").Value)
+                If NegativeStock.Value Then
+                    If EffectiveStock >= 0 Then GoTo NXT
+                End If
+                If ZeroStock.Value Then
+                    If TDBNumber1.Value = 0 Then
+                        If EffectiveStock <> TDBNumber1.Value Then GoTo NXT
+                    Else
+                        If EffectiveStock >= TDBNumber1.Value Then GoTo NXT
+                    End If
+                End If
+        
+        
+        i = i + 1
+                .TextMatrix(i, 0) = i
+            If VchType <= 2 Then
+                .TextMatrix(i, 1) = ""
+                .TextMatrix(i, 3) = rstStockLedger.Fields("Item").Value
+                .TextMatrix(i, 4) = Format(Val(rstStockLedger.Fields("MRP").Value), "###0.00")
+                .TextMatrix(i, 5) = rstStockLedger.Fields("ItemGroup").Value
+                .TextMatrix(i, 6) = Stock + Val(rstStockLedger.Fields("OPBAL").Value): If .TextMatrix(i, 6) < 0 Then .Cell(flexcpForeColor, i, 6) = vbRed Else .Cell(flexcpForeColor, i, 6) = vbBlack
+                .TextMatrix(i, 7) = "Units"
+                .TextMatrix(i, 8) = Val(rstStockLedger.Fields("Purchase").Value): If .TextMatrix(i, 8) < 0 Then .Cell(flexcpForeColor, i, 8) = vbRed Else .Cell(flexcpForeColor, i, 8) = vbBlack
+                        PurchaseTotal = PurchaseTotal + Val(rstStockLedger.Fields("Purchase").Value)
+                .TextMatrix(i, 9) = Val(rstStockLedger.Fields("PurchaseReturn").Value): If .TextMatrix(i, 9) < 0 Then .Cell(flexcpForeColor, i, 9) = vbRed Else .Cell(flexcpForeColor, i, 9) = vbBlack
+                        PurchaseReturnTotal = PurchaseReturnTotal + Val(rstStockLedger.Fields("PurchaseReturn").Value)
+                .TextMatrix(i, 10) = Val(rstStockLedger.Fields("PurchaseChallan").Value): If .TextMatrix(i, 10) < 0 Then .Cell(flexcpForeColor, i, 10) = vbRed Else .Cell(flexcpForeColor, i, 10) = vbBlack
+                        PurchaseChallanTotal = PurchaseChallanTotal + Val(rstStockLedger.Fields("PurchaseChallan").Value)
+                .TextMatrix(i, 11) = Val(rstStockLedger.Fields("PurchaseReturnChallan").Value): If .TextMatrix(i, 11) < 0 Then .Cell(flexcpForeColor, i, 11) = vbRed Else .Cell(flexcpForeColor, i, 11) = vbBlack
+                        PurchaseReturnChallanTotal = PurchaseReturnChallanTotal + Val(rstStockLedger.Fields("PurchaseReturnChallan").Value)
+                .TextMatrix(i, 12) = Val(rstStockLedger.Fields("Sales").Value): If .TextMatrix(i, 12) < 0 Then .Cell(flexcpForeColor, i, 12) = vbRed Else .Cell(flexcpForeColor, i, 12) = vbBlack
+                        SalesTotal = SalesTotal + Val(rstStockLedger.Fields("Sales").Value)
+                .TextMatrix(i, 13) = Val(rstStockLedger.Fields("SalesReturn").Value): If .TextMatrix(i, 13) < 0 Then .Cell(flexcpForeColor, i, 13) = vbRed Else .Cell(flexcpForeColor, i, 13) = vbBlack
+                        SalesReturnTotal = SalesReturnTotal + Val(rstStockLedger.Fields("SalesReturn").Value)
+                .TextMatrix(i, 14) = Val(rstStockLedger.Fields("SalesChallan").Value): If .TextMatrix(i, 14) < 0 Then .Cell(flexcpForeColor, i, 14) = vbRed Else .Cell(flexcpForeColor, i, 14) = vbBlack
+                        SalesChallanTotal = SalesChallanTotal + Val(rstStockLedger.Fields("SalesChallan").Value)
+                .TextMatrix(i, 15) = Val(rstStockLedger.Fields("SalesReturnChallan").Value): If .TextMatrix(i, 15) < 0 Then .Cell(flexcpForeColor, i, 15) = vbRed Else .Cell(flexcpForeColor, i, 15) = vbBlack
+                        SalesReturnChallanTotal = SalesReturnChallanTotal + Val(rstStockLedger.Fields("SalesReturnChallan").Value)
+                .TextMatrix(i, 16) = Val(rstStockLedger.Fields("StockJournalIN").Value): If .TextMatrix(i, 16) < 0 Then .Cell(flexcpForeColor, i, 16) = vbRed Else .Cell(flexcpForeColor, i, 16) = vbBlack
+                        StockJournalINTotal = StockJournalINTotal + Val(rstStockLedger.Fields("StockJournalIN").Value)
+                .TextMatrix(i, 17) = Val(rstStockLedger.Fields("StockJournalOUT").Value): If .TextMatrix(i, 17) < 0 Then .Cell(flexcpForeColor, i, 17) = vbRed Else .Cell(flexcpForeColor, i, 17) = vbBlack
+                        StockJournalOUTTotal = StockJournalOUTTotal + Val(rstStockLedger.Fields("StockJournalOUT").Value)
+                .TextMatrix(i, 18) = Val(rstStockLedger.Fields("PendingPO").Value): If .TextMatrix(i, 18) < 0 Then .Cell(flexcpForeColor, i, 18) = vbRed Else .Cell(flexcpForeColor, i, 18) = vbBlack
+                        POTotal = POTotal + Val(rstStockLedger.Fields("PendingPO").Value)
+                .TextMatrix(i, 19) = Val(rstStockLedger.Fields("PendingSO").Value): If .TextMatrix(i, 19) < 0 Then .Cell(flexcpForeColor, i, 19) = vbRed Else .Cell(flexcpForeColor, i, 19) = vbBlack
+                        SOTotal = SOTotal + Val(rstStockLedger.Fields("PendingSO").Value)
+                .TextMatrix(i, 20) = EffectiveStock: If .TextMatrix(i, 20) < 0 Then .Cell(flexcpForeColor, i, 20) = vbRed Else .Cell(flexcpForeColor, i, 20) = vbBlack
+                .TextMatrix(i, 21) = Val(rstStockLedger.Fields("MRP").Value)
+                .TextMatrix(i, 22) = EffectiveStock * Val(rstStockLedger.Fields("MRP").Value): If .TextMatrix(i, 22) < 0 Then .Cell(flexcpForeColor, i, 22) = vbRed Else .Cell(flexcpForeColor, i, 22) = vbBlack
+                        AmountTotal = AmountTotal + EffectiveStock * Val(rstStockLedger.Fields("MRP").Value)
+                .TextMatrix(i, 23) = Val(rstStockLedger.Fields("Purchase").Value) - Val(rstStockLedger.Fields("PurchaseReturn").Value)
+                        NetPurchaseTotal = NetPurchaseTotal + Val(rstStockLedger.Fields("Purchase").Value) - Val(rstStockLedger.Fields("PurchaseReturn").Value)
+                .TextMatrix(i, 24) = Val(rstStockLedger.Fields("Sales").Value) - Val(rstStockLedger.Fields("SalesReturn").Value)
+                        NetSalesTotal = NetSalesTotal + Val(rstStockLedger.Fields("Sales").Value) - Val(rstStockLedger.Fields("SalesReturn").Value)
+                .TextMatrix(i, 25) = "Units"
+                .TextMatrix(i, 26) = Val(rstStockLedger.Fields("PurchaseAmount").Value)
+                        PurchaseAmountTotal = PurchaseAmountTotal + Val(rstStockLedger.Fields("PurchaseAmount").Value)
+                .TextMatrix(i, 27) = Val(rstStockLedger.Fields("SalesAmount").Value)
+                        SalesAmountTotal = SalesAmountTotal + Val(rstStockLedger.Fields("SalesAmount").Value)
+                .TextMatrix(i, 28) = Val(rstStockLedger.Fields("PurchaseReturnAmount").Value)
+                        PurchaseReturnAmountTotal = PurchaseReturnAmountTotal + Val(rstStockLedger.Fields("PurchaseReturnAmount").Value)
+                .TextMatrix(i, 29) = Val(rstStockLedger.Fields("SalesReturnAmount").Value)
+                        SalesReturnAmountTotal = SalesReturnAmountTotal + Val(rstStockLedger.Fields("SalesReturnAmount").Value)
+                .TextMatrix(i, 30) = Val(rstStockLedger.Fields("PurchaseAmount").Value) - Val(rstStockLedger.Fields("PurchaseReturnAmount").Value)
+                        NetPurchaseAmountTotal = NetPurchaseAmountTotal + Val(rstStockLedger.Fields("PurchaseAmount").Value) - Val(rstStockLedger.Fields("PurchaseReturnAmount").Value)
+                .TextMatrix(i, 31) = Val(rstStockLedger.Fields("SalesAmount").Value) - Val(rstStockLedger.Fields("SalesReturnAmount").Value)
+                .TextMatrix(i, 32) = (rstStockLedger.Fields("Code").Value)
+'                .TextMatrix(i, 33) = ""
+'                .TextMatrix(i, 34) = ""
+                .TextMatrix(i, 35) = rstStockLedger.Fields("HSNCode").Value
+                NetSalesAmountTotal = NetSalesAmountTotal + Val(rstStockLedger.Fields("SalesAmount").Value) - Val(rstStockLedger.Fields("SalesReturnAmount").Value)
+                StockTotal = StockTotal + Stock
+                EStockTotal = EStockTotal + EffectiveStock
+                dPrint = dPrint + 1
+                MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+'Pending Quotations and Short Item Analysis
+        ElseIf VchType = 33 Then
+            .TextMatrix(i, 3) = rstStockLedger.Fields("Item").Value
+            .TextMatrix(i, 4) = Val(rstStockLedger.Fields("MRP").Value)
+            .TextMatrix(i, 5) = rstStockLedger.Fields("ItemGroup").Value
+            .TextMatrix(i, 6) = Stock + Val(rstStockLedger.Fields("OPBAL").Value): If .TextMatrix(i, 6) < 0 Then .Cell(flexcpForeColor, i, 6) = vbRed Else .Cell(flexcpForeColor, i, 6) = vbBlack
+            .TextMatrix(i, 7) = "Units"
+            .TextMatrix(i, 8) = Val(rstStockLedger.Fields("SQ").Value): If .TextMatrix(i, 8) < 0 Then .Cell(flexcpForeColor, i, 8) = vbRed Else .Cell(flexcpForeColor, i, 8) = vbBlack
+            .TextMatrix(i, 18) = Val(rstStockLedger.Fields("PendingPO").Value): If .TextMatrix(i, 18) < 0 Then .Cell(flexcpForeColor, i, 18) = vbRed Else .Cell(flexcpForeColor, i, 18) = vbBlack
+            .TextMatrix(i, 19) = Val(rstStockLedger.Fields("PendingSO").Value): If .TextMatrix(i, 19) < 0 Then .Cell(flexcpForeColor, i, 19) = vbRed Else .Cell(flexcpForeColor, i, 19) = vbBlack
+            .TextMatrix(i, 20) = EffectiveStock: If .TextMatrix(i, 20) < 0 Then .Cell(flexcpForeColor, i, 20) = vbRed Else .Cell(flexcpForeColor, i, 20) = vbBlack
+            .TextMatrix(i, 22) = EffectiveStock * Val(rstStockLedger.Fields("MRP").Value): If .TextMatrix(i, 22) < 0 Then .Cell(flexcpForeColor, i, 22) = vbRed Else .Cell(flexcpForeColor, i, 22) = vbBlack
+            .TextMatrix(i, 32) = (rstStockLedger.Fields("Code").Value)
+            .TextMatrix(i, 35) = rstStockLedger.Fields("HSNCode").Value
+            dPrint = dPrint + 1
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+        End If
+            TDBNumber2 = dPrint
+NXT:
+                rstStockLedger.MoveNext
+            If MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2) <= 100 Then
+                MdiMainMenu.ProgressBar1.Value = MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2)
+            End If
+            Loop
+            .Rows = i + 1
+'Pending Quotations and Short Item Analysis
+    ElseIf VchType >= 101 Then
+        If VchType = 103 Then 'WIP
+        .Cols = 14
+        ElseIf VchType = 104 Then 'RM
+        .Cols = 14
+        ElseIf VchType = 105 Then
+        .Cols = 33
+        End If
+        .Rows = rstStockLedger.RecordCount + 1
+        rstStockLedger.MoveFirst
+        Do While Not rstStockLedger.EOF
+            i = i + 1
+            C = 0
+            If (Combo1.ListIndex = 0 Or Combo1.ListIndex = 1) And VchType = 105 Then
+'                C = C + 0: .TextMatrix(i, C) = "#" & i
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Item").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Binding").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("FinishSize").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Pages").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Price").Value)
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("UFG").Value
+            ElseIf (Combo1.ListIndex = 2 Or Combo1.ListIndex = 3) And VchType = 105 Then
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("UFG").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Item").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Binding").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("FinishSize").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Pages").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Price").Value)
+            ElseIf (Combo1.ListIndex = 4 Or Combo1.ListIndex = 5) And VchType = 105 Then
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("SUBUFG").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("UFG").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Item").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Binding").Value
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("FinishSize").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Pages").Value)
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Price").Value
+            End If
+            If VchType = 103 Or VchType = 105 Then
+                If VchType = 103 Then C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("UFG").Value
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("UFGReq/UNIT").Value, "###0.000")
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("UFGPAGES").Value)
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("Color").Value
+                If FrmItemSelectionList.Check1.Value = False And VchType = 103 Then C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("FG").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Stock").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("SalesOrder").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("Dispatched").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("PendingSO").Value)
+            If VchType = 105 Then
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("PendingSORate").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("PendingSOAmount").Value)
+            End If
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("DeficientSalesOrder").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("UFGRequired").Value)
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("UFGStock").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("FinalUFGRequired").Value)
+            End If
+            If VchType <> 103 And (Combo1.ListIndex <> 4 And Combo1.ListIndex <> 5 Or VchType = 104) Then
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("SUBUFG").Value
+            End If
+            If VchType = 104 Or VchType = 105 Then
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("SubUFG_Make").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("SubUFG_GSM").Value)
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("SubUFG_CUTOFF").Value, "###0.00")
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("SubUFGReq/UNIT").Value)
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("Weight/Unit").Value, "###0.000")
+                C = C + 1: .TextMatrix(i, C) = rstStockLedger.Fields("UOM_Name").Value
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("UOM").Value)
+                C = C + 1: .TextMatrix(i, C) = Val(rstStockLedger.Fields("SUBUFGReqSheets").Value)
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("SUBUFGReqKg").Value, "###0.000")
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("SubUFGStkUOM").Value, "###0.000")
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("SubUFGStockKg").Value, "###0.000")
+                C = C + 1: .TextMatrix(i, C) = Format(rstStockLedger.Fields("FinalSUBUFGReqKg").Value, "###0.000")
+            End If
+            dPrint = dPrint + 1
+            MdiMainMenu.StatusBar1.Panels(2).Text = "Updated record # " & dPrint & " of " & rstStockLedger.RecordCount & " !!!"
+                
+                rstStockLedger.MoveNext
+            If MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2) <= 100 Then
+                MdiMainMenu.ProgressBar1.Value = MdiMainMenu.ProgressBar1.Value + Round((100 / rstStockLedger.RecordCount), 2)
+            End If
+            Loop
+          .Rows = i + 1
+          TDBNumber2.Value = i
+    Else
+    
+        Set VSFlexGrid1.DataSource = rstStockLedger
+        
+    End If
+
+End With
+
+Call VSFlexGrid_Format_Headers
+Call VSFlexGrid1_AfterDataRefresh
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    Exit Function
+ErrHandler:
+    Timer1.Enabled = False
+    ShowProgressInStatusBar False
+    MdiMainMenu.MousePointer = vbNormal
+    Screen.MousePointer = vbNormal
+    DisplayError (Err.Description)
+End Function
+Private Sub VSFlexGrid1_AfterDataRefresh()
+Dim C As Variant
+Dim T As Long
+Dim GroupOn As Long
+nSort = False
+If VchType <= 2 Or VchType = 33 Then
+GroupOn = 5
+VSFlexGrid1.FrozenCols = 7
+ElseIf VchType > 101 Then
+GroupOn = 3
+VSFlexGrid1.FrozenCols = 3
+End If
+'Subtotal
+With VSFlexGrid1
+.SubtotalPosition = flexSTBelow
+
+If nSort = True Then
+    .MultiTotals = True
+    .Subtotal flexSTClear
+        For C = 1 To .Cols - 1
+        Err.Number = 0
+        On Error Resume Next
+        T = .TextMatrix(1, C)
+        If Err.Number = 0 Then
+            If InStr(1, "#_ITEM_MRP_PRICE_FINISH SIZE_PAGES_RM GSM_RM CUT-OFF_RATE_BAL_WIP_WIP/UNIT_RM_RM/UNIT_WEIGHT/UNIT", StrConv(.TextMatrix(0, C), vbUpperCase)) > 0 Then
+                .Subtotal flexSTAverage, GroupOn, C, "(#,##0)", RGB(240, 230, 247), RGB(128, 0, 64), True, "Sub Total", GroupOn, True
+                For T = 1 To .Rows - 1
+                If .TextMatrix(T, 3) = "" Then .TextMatrix(T, 3) = "Sub Total"
+                Next
+            Else
+                .Subtotal flexSTSum, GroupOn, C, "(#,##0)", RGB(240, 230, 247), RGB(128, 0, 64), True, "Sub Total", GroupOn, True
+                .Subtotal flexSTSum, GroupOn, C, "(#,##0)", RGB(241, 248, 248), vbRed, True, , 1, True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+            End If
+        End If
+        Next
+    nSort = False
+ElseIf nSort = False Then
+    .MultiTotals = True
+    .Subtotal flexSTClear
+        For C = 1 To .Cols - 1
+        Err.Number = 0
+        On Error Resume Next
+        T = .TextMatrix(1, C)
+        If Err.Number = 0 Then
+            If InStr(1, "#_ITEM_MRP_PRICE_FINISH SIZE_PAGES_RM GSM_RM CUT-OFF_RATE_BAL_WIP_WIP/UNIT_RM_RM/UNIT_WEIGHT/UNIT", StrConv(.TextMatrix(0, C), vbUpperCase)) > 0 Then
+            
+            Else
+            
+                If FrmItemSelectionList.Check1.Value = False Then .Subtotal flexSTSum, 1, C, "(#,##0)", RGB(240, 230, 247), vbBlue, True, "Sub-Total", 1, True
+                .Subtotal flexSTSum, 0, C, "(#,##0)", RGB(240, 230, 247), vbRed, True, , 0, True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+            End If
+        End If
+        Next
+    nSort = True
+End If
+    For C = 1 To (.Cols - 1)
+        .AutoSize C
+        .ExplorerBar = flexExSort
+        .ColSort(C) = flexSortCustom
+        .AllowUserResizing = flexResizeBoth
+    Next
+    .Col = 33
+C = .Rows - 1
+
+.TextMatrix(C, 0) = ""
+End With
+End Sub
+Private Sub VSFlexGrid1_AfterSort(ByVal Col As Long, Order As Integer)
+Dim C As Variant
+Dim T As Long
+VSFlexGrid1.SubtotalPosition = flexSTBelow
+'VSFlexGrid1.AutoResize = True
+With VSFlexGrid1
+
+If nSort = True Then
+    .MultiTotals = True
+    .Subtotal flexSTClear
+        
+        For C = 1 To .Cols - 1
+        Err.Number = 0
+        On Error Resume Next
+        T = .TextMatrix(1, C)
+        If Err.Number = 0 Then
+            If InStr(1, "#_ITEM_MRP_PRICE_FINISH SIZE_PAGES_RM GSM_RM CUT-OFF_RATE_BAL_WIP_WIP/UNIT_RM_RM/UNIT_WEIGHT/UNIT", StrConv(.TextMatrix(0, C), vbUpperCase)) > 0 Then
+            
+            Else
+                .Subtotal flexSTSum, .Col, C, "(#,##0)", RGB(240, 230, 247), RGB(128, 0, 64), True, "Sub Total", .Col, True
+                .Subtotal flexSTSum, 1, C, "(#,##0)", RGB(240, 230, 247), &H808000, True, , 1, True
+                .Subtotal flexSTSum, 0, C, "(#,##0)", RGB(240, 230, 247), vbRed, True, , 0, True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+            End If
+        End If
+        Next
+        
+    nSort = False
+
+ElseIf nSort = False Then
+    .MultiTotals = True
+    .Subtotal flexSTClear
+        For C = 1 To .Cols - 1
+        Err.Number = 0
+        On Error Resume Next
+        T = .TextMatrix(1, C)
+        If Err.Number = 0 Then
+            If InStr(1, "#_ITEM_MRP_PRICE_FINISH SIZE_PAGES_RM GSM_RM CUT-OFF_RATE_BAL_WIP_WIP/UNIT_RM_RM/UNIT_WEIGHT/UNIT", StrConv(.TextMatrix(0, C), vbUpperCase)) > 0 Then
+    
+            Else
+                .Subtotal flexSTSum, 1, C, "(#,##0)", RGB(240, 230, 247), &H808000, True, "Subtotal", 1, True
+                .Subtotal flexSTSum, 0, C, "(#,##0)", RGB(240, 230, 247), vbRed, True, , 0, True: .TextMatrix(.Rows - 1, 1) = "Grand Total"
+            End If
+        End If
+        Next
+    nSort = True
+End If
+    
+    For C = 1 To (.Cols - 1)
+        .AutoSize C
+        .ExplorerBar = flexExSort
+        .ColSort(C) = flexSortCustom
+        .AllowUserResizing = flexResizeBoth
+    Next
+    
+    C = .Rows - 1
+: .TextMatrix(.Rows - 1, 0) = ""
+End With
+End Sub
+Private Sub Zoom_Click()
+Dim C As Long
+
+With VSFlexGrid1
+C = Zoom.Value
+If .Font.Size >= 8.25 And FontFlag = False Then
+    .Font.Size = .Font.Size + 1
+    If .Font.Size >= 13.25 Then FontFlag = True
+ElseIf .Font.Size > 8.25 And FontFlag = True Then
+    .Font.Size = .Font.Size - 1
+    If .Font.Size <= 8.25 Then FontFlag = False
+End If
+.Font.Size = .Font.Size + C
+
+    .AutoResize = True
+    For C = 1 To (.Cols - 1)
+        .AutoSize C
+        .ExplorerBar = flexExSort
+        .ColSort(C) = flexSortCustom
+        .AllowUserResizing = flexResizeBoth
+        .Cell(flexcpFontSize, .Rows - 1, C) = .Font.Size
+    Next
+If FontFlag = False Then
+    Command3.ToolTipText = "Zoom IN " & (.Font.Size - 8.25) * 20 & "%"
+ElseIf FontFlag = True Then
+    Command3.ToolTipText = "Zoom Out " & (.Font.Size - 8.25) * 20 & "%"
+End If
+
+End With
+End Sub
+Private Sub VSFlexGrid1_KeyDown(KeyCode As Integer, Shift As Integer)
+    With VSFlexGrid1
+If VchType = 0 Then
+    .Col = 33
+    
+        If .Col = 33 Then .Editable = flexEDKbdMouse
+        
+        If (Shift = 0 And KeyCode = vbKeyReturn) And VchType = 0 And .Col = 33 Then 'Enter Physical Stock
+    
+                    If .Col = 33 And .Row < .Rows Then
+                            sysStock = .TextMatrix(.Row, 6)
+                            phyStock = .TextMatrix(.Row, 33)
+                        If phyStock = "" Then
+                            '.TextMatrix(.Row, 34) = Val(sysStock)
+                            .Subtotal flexSTSum, 1, 33, "(#,##0)", RGB(240, 230, 247), vbBlue, True, "Grand Total", 1, True
+                            .Subtotal flexSTSum, 1, 34, "(#,##0)", RGB(240, 230, 247), vbBlue, True, "Grand Total", 1, True
+                        ElseIf phyStock <> "" Then
+                                .TextMatrix(.Row, 34) = Val(phyStock) - Val(sysStock)
+                                If .TextMatrix(.Row, 34) < 0 Then
+                                    .Cell(flexcpForeColor, .Row, 34) = vbRed
+                                ElseIf .TextMatrix(.Row, 34) > 0 Then
+                                    .Cell(flexcpForeColor, .Row, 34) = vbBlack
+                                End If
+                        End If
+                    End If
+                                
+                                .Subtotal flexSTSum, 1, 33, "(#,##0)", RGB(240, 230, 247), vbBlue, True, "Grand Total", 1, True
+                                .Subtotal flexSTSum, 1, 34, "(#,##0)", RGB(240, 230, 247), vbBlue, True, "Grand Total", 1, True
+                                .Editable = flexEDNone
+
+        End If
+End If
+        If (Shift = 0 And KeyCode = vbKeyReturn) And .Row + 1 < .Rows Then
+            .Row = .Row + 1
+            KeyCode = 0
+        End If
+    End With
+End Sub
+Private Sub Mh3dLabel9_Click()
+    Dim i As Long, j As Long, K As Long, C As Long
+    Dim JItem As Variant, JQty As Variant, JRate As Variant, JICode As Variant, JHSNCode As Variant
+    On Error Resume Next
+    frmStockJournalVoucher.VchType = "JR"
+    Load frmStockJournalVoucher
+    If Err.Number <> 364 Then frmStockJournalVoucher.Show
+    frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(1)
+                    j = 1: K = 1
+If VSFlexFlag = False Then
+                For i = 1 To fpSpread1.DataRowCnt - 1
+                fpSpread1.GetText 34, i, JQty
+                fpSpread1.GetText 3, i, JItem
+    
+    'Get Stock Journal Qty
+    If JItem <> "Grand Total" And JQty > 0 Or JQty < 0 Then
+                    C = C + 1
+                    fpSpread1.GetText 3, i, JItem
+                    fpSpread1.GetText 34, i, JQty
+                    fpSpread1.GetText 4, i, JRate
+                    fpSpread1.GetText 32, i, JICode
+                    fpSpread1.GetText 35, i, JHSNCode
+    
+    'Set Stock Journal Qty
+                If JQty > 0 Then
+                    
+                        frmStockJournalVoucher.fpSpread1.SetText 1, j, JItem
+                        frmStockJournalVoucher.fpSpread1.SetText 2, j, JQty
+                        frmStockJournalVoucher.fpSpread1.SetText 3, j, JRate
+                        frmStockJournalVoucher.fpSpread1.SetText 4, j, JQty * JRate
+                        frmStockJournalVoucher.fpSpread1.SetText 5, j, JICode
+                        frmStockJournalVoucher.fpSpread1.SetText 6, j, JHSNCode
+        'Active Row Generated
+                            j = j + 1
+                    
+                ElseIf JQty < 0 Then
+                    
+                        frmStockJournalVoucher.fpSpread2.SetText 1, K, JItem
+                        frmStockJournalVoucher.fpSpread2.SetText 2, K, JQty * -1
+                        frmStockJournalVoucher.fpSpread2.SetText 3, K, JRate
+                        frmStockJournalVoucher.fpSpread2.SetText 4, K, JQty * JRate * -1
+                        frmStockJournalVoucher.fpSpread2.SetText 5, K, JICode
+                        frmStockJournalVoucher.fpSpread2.SetText 6, K, JHSNCode
+        'Active Row Consumed
+                            K = K + 1
+                End If
+        End If
+            Next
+            
+ElseIf VSFlexFlag = True Then
+                For i = 1 To VSFlexGrid1.Rows - 2
+                JQty = VSFlexGrid1.TextMatrix(i, 34)
+                JItem = VSFlexGrid1.TextMatrix(i, 3)
+    'Get Stock Journal Qty
+    If JItem <> "Grand Total" And (JQty > 0 Or JQty < 0) And JQty <> "" Then
+                    C = C + 1
+                    JItem = VSFlexGrid1.TextMatrix(i, 3)
+                    JQty = VSFlexGrid1.TextMatrix(i, 34)
+                    JRate = VSFlexGrid1.TextMatrix(i, 4)
+                    JICode = VSFlexGrid1.TextMatrix(i, 32)
+                    JHSNCode = VSFlexGrid1.TextMatrix(i, 35)
+    
+    'Set Stock Journal Qty
+                If JQty > 0 Then
+                    
+                        frmStockJournalVoucher.fpSpread1.SetText 1, j, JItem
+                        frmStockJournalVoucher.fpSpread1.SetText 2, j, JQty
+                        frmStockJournalVoucher.fpSpread1.SetText 3, j, JRate
+                        frmStockJournalVoucher.fpSpread1.SetText 4, j, JQty * JRate
+                        frmStockJournalVoucher.fpSpread1.SetText 5, j, JICode
+                        frmStockJournalVoucher.fpSpread1.SetText 6, j, JHSNCode
+        'Active Row Generated
+                            j = j + 1
+                    
+                ElseIf JQty < 0 Then
+                    
+                        frmStockJournalVoucher.fpSpread2.SetText 1, K, JItem
+                        frmStockJournalVoucher.fpSpread2.SetText 2, K, JQty * -1
+                        frmStockJournalVoucher.fpSpread2.SetText 3, K, JRate
+                        frmStockJournalVoucher.fpSpread2.SetText 4, K, JQty * JRate * -1
+                        frmStockJournalVoucher.fpSpread2.SetText 5, K, JICode
+                        frmStockJournalVoucher.fpSpread2.SetText 6, K, JHSNCode
+        'Active Row Consumed
+                            K = K + 1
+                End If
+        End If
+            Next
+End If
+        If C = 0 Then
+                frmStockJournalVoucher.Toolbar1_ButtonClick frmStockJournalVoucher.Toolbar1.Buttons.Item(5)
+                MsgBox ("There is Zero Item to Create Stock Journal Voucher"), vbCritical
+                Call CloseForm(frmStockJournalVoucher)
+        Else
+                Export_Click
+                Call CloseForm(FrmStockLedger)
+        End If
+End Sub
+Private Sub CopyToClipboard()
+    Dim selectedData As String
+    Dim i As Integer
+    ' Get the selected data from the grid
+    For i = VSFlexGrid1.RowSel To VSFlexGrid1.Row
+        selectedData = selectedData & VSFlexGrid1.TextMatrix(i, VSFlexGrid1.ColSel) & vbCrLf
+    Next i
+
+    ' Copy the selected data to the clipboard
+    Clipboard.SetText selectedData
+End Sub
+Private Sub PasteFromClipboard()
+    Dim clipboardData As String
+    Dim dataRows() As String
+    Dim i As Integer
+    ' Get the data from the clipboard
+    clipboardData = Clipboard.GetText
+
+    ' Split the clipboard data into individual rows
+    dataRows = Split(clipboardData, vbCrLf)
+
+    ' Paste the data into the grid
+    For i = 0 To UBound(dataRows)
+        'VSFlexGrid1.TextMatrix(VSFlexGrid1.Row + i, VSFlexGrid1.Col) = dataRows(i)
+    Next i
 End Sub

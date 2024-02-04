@@ -7,12 +7,13 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{0F1F1508-C40A-101B-AD04-00AA00575482}#1.0#0"; "mhrinp32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form FrmBookPrintOrder 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Item Print Order"
    ClientHeight    =   7725
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   17610
    BeginProperty Font 
       Name            =   "Arial"
@@ -86,31 +87,115 @@ Begin VB.Form FrmBookPrintOrder
          Tab(0).ControlEnabled=   -1  'True
          Tab(0).Control(0)=   "Label1"
          Tab(0).Control(0).Enabled=   0   'False
-         Tab(0).Control(1)=   "Mh3dLabel1(1)"
+         Tab(0).Control(1)=   "CmdPrint"
          Tab(0).Control(1).Enabled=   0   'False
-         Tab(0).Control(2)=   "Mh3dLabel1(2)"
+         Tab(0).Control(2)=   "CmdExport"
          Tab(0).Control(2).Enabled=   0   'False
-         Tab(0).Control(3)=   "Text1"
+         Tab(0).Control(3)=   "Mh3dLabel1(1)"
          Tab(0).Control(3).Enabled=   0   'False
-         Tab(0).Control(4)=   "DataGrid1"
+         Tab(0).Control(4)=   "Mh3dLabel1(2)"
          Tab(0).Control(4).Enabled=   0   'False
-         Tab(0).Control(5)=   "cmdProceed"
+         Tab(0).Control(5)=   "Text1"
          Tab(0).Control(5).Enabled=   0   'False
-         Tab(0).ControlCount=   6
+         Tab(0).Control(6)=   "DataGrid1"
+         Tab(0).Control(6).Enabled=   0   'False
+         Tab(0).Control(7)=   "cmdProceed"
+         Tab(0).Control(7).Enabled=   0   'False
+         Tab(0).Control(8)=   "ImageList1"
+         Tab(0).Control(8).Enabled=   0   'False
+         Tab(0).Control(9)=   "CommonDialog1"
+         Tab(0).Control(9).Enabled=   0   'False
+         Tab(0).ControlCount=   10
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "BookPrintOrder.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame7"
-         Tab(1).Control(0).Enabled=   0   'False
-         Tab(1).Control(1)=   "Mh3dFrame3"
-         Tab(1).Control(1).Enabled=   0   'False
+         Tab(1).Control(0)=   "Mh3dFrame6"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).Control(2)=   "Mh3dFrame5"
-         Tab(1).Control(2).Enabled=   0   'False
-         Tab(1).Control(3)=   "Mh3dFrame2"
-         Tab(1).Control(3).Enabled=   0   'False
-         Tab(1).Control(4)=   "Mh3dFrame6"
-         Tab(1).Control(4).Enabled=   0   'False
+         Tab(1).Control(3)=   "Mh3dFrame3"
+         Tab(1).Control(4)=   "Mh3dFrame7"
          Tab(1).ControlCount=   5
+         Begin MSComDlg.CommonDialog CommonDialog1 
+            Left            =   2280
+            Top             =   2040
+            _ExtentX        =   847
+            _ExtentY        =   847
+            _Version        =   393216
+         End
+         Begin MSComctlLib.ImageList ImageList1 
+            Left            =   7200
+            Top             =   1680
+            _ExtentX        =   1005
+            _ExtentY        =   1005
+            BackColor       =   -2147483643
+            ImageWidth      =   16
+            ImageHeight     =   16
+            MaskColor       =   12632256
+            _Version        =   393216
+            BeginProperty Images {2C247F25-8591-11D1-B16A-00C0F0283628} 
+               NumListImages   =   15
+               BeginProperty ListImage1 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0054
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage2 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0598
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage3 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0ADC
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage4 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0BF0
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage5 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0D04
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage6 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0E18
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage7 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":0F74
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage8 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":14B8
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage9 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":15CC
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage10 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1B10
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage11 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1C24
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage12 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1D38
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage13 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1E4C
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage14 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":1F60
+                  Key             =   ""
+               EndProperty
+               BeginProperty ListImage15 {2C247F27-8591-11D1-B16A-00C0F0283628} 
+                  Picture         =   "BookPrintOrder.frx":2074
+                  Key             =   ""
+               EndProperty
+            EndProperty
+         End
          Begin VB.CommandButton cmdProceed 
             Caption         =   " Show Combo Item List Only"
             BeginProperty Font 
@@ -123,7 +208,7 @@ Begin VB.Form FrmBookPrintOrder
                Strikethrough   =   0   'False
             EndProperty
             Height          =   330
-            Left            =   14745
+            Left            =   12705
             Style           =   1  'Graphical
             TabIndex        =   98
             ToolTipText     =   "Save"
@@ -159,7 +244,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":0054
+            Picture         =   "BookPrintOrder.frx":2188
             Begin TDBNumber6Ctl.TDBNumber MhRealInput14 
                Height          =   330
                Left            =   2040
@@ -170,8 +255,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0070
-               Caption         =   "BookPrintOrder.frx":0090
+               Calculator      =   "BookPrintOrder.frx":21A4
+               Caption         =   "BookPrintOrder.frx":21C4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -181,9 +266,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":00FC
-               Keys            =   "BookPrintOrder.frx":011A
-               Spin            =   "BookPrintOrder.frx":0164
+               DropDown        =   "BookPrintOrder.frx":2230
+               Keys            =   "BookPrintOrder.frx":224E
+               Spin            =   "BookPrintOrder.frx":2298
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -229,8 +314,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":018C
-               Caption         =   "BookPrintOrder.frx":01AC
+               Calculator      =   "BookPrintOrder.frx":22C0
+               Caption         =   "BookPrintOrder.frx":22E0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -240,9 +325,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0218
-               Keys            =   "BookPrintOrder.frx":0236
-               Spin            =   "BookPrintOrder.frx":0280
+               DropDown        =   "BookPrintOrder.frx":234C
+               Keys            =   "BookPrintOrder.frx":236A
+               Spin            =   "BookPrintOrder.frx":23B4
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -302,8 +387,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":02A8
-               Picture         =   "BookPrintOrder.frx":02C4
+               Picture         =   "BookPrintOrder.frx":23DC
+               Picture         =   "BookPrintOrder.frx":23F8
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput10 
                Height          =   330
@@ -315,8 +400,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":02E0
-               Caption         =   "BookPrintOrder.frx":0300
+               Calculator      =   "BookPrintOrder.frx":2414
+               Caption         =   "BookPrintOrder.frx":2434
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -326,9 +411,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":036C
-               Keys            =   "BookPrintOrder.frx":038A
-               Spin            =   "BookPrintOrder.frx":03D4
+               DropDown        =   "BookPrintOrder.frx":24A0
+               Keys            =   "BookPrintOrder.frx":24BE
+               Spin            =   "BookPrintOrder.frx":2508
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -374,8 +459,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":03FC
-               Caption         =   "BookPrintOrder.frx":041C
+               Calculator      =   "BookPrintOrder.frx":2530
+               Caption         =   "BookPrintOrder.frx":2550
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -385,9 +470,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0488
-               Keys            =   "BookPrintOrder.frx":04A6
-               Spin            =   "BookPrintOrder.frx":04F0
+               DropDown        =   "BookPrintOrder.frx":25BC
+               Keys            =   "BookPrintOrder.frx":25DA
+               Spin            =   "BookPrintOrder.frx":2624
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -433,8 +518,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0518
-               Caption         =   "BookPrintOrder.frx":0538
+               Calculator      =   "BookPrintOrder.frx":264C
+               Caption         =   "BookPrintOrder.frx":266C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -444,9 +529,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":05A4
-               Keys            =   "BookPrintOrder.frx":05C2
-               Spin            =   "BookPrintOrder.frx":060C
+               DropDown        =   "BookPrintOrder.frx":26D8
+               Keys            =   "BookPrintOrder.frx":26F6
+               Spin            =   "BookPrintOrder.frx":2740
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -506,8 +591,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0634
-               Picture         =   "BookPrintOrder.frx":0650
+               Picture         =   "BookPrintOrder.frx":2768
+               Picture         =   "BookPrintOrder.frx":2784
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput15 
                Height          =   330
@@ -519,8 +604,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":066C
-               Caption         =   "BookPrintOrder.frx":068C
+               Calculator      =   "BookPrintOrder.frx":27A0
+               Caption         =   "BookPrintOrder.frx":27C0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -530,9 +615,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":06F8
-               Keys            =   "BookPrintOrder.frx":0716
-               Spin            =   "BookPrintOrder.frx":0760
+               DropDown        =   "BookPrintOrder.frx":282C
+               Keys            =   "BookPrintOrder.frx":284A
+               Spin            =   "BookPrintOrder.frx":2894
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -578,8 +663,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0788
-               Caption         =   "BookPrintOrder.frx":07A8
+               Calculator      =   "BookPrintOrder.frx":28BC
+               Caption         =   "BookPrintOrder.frx":28DC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -589,9 +674,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0814
-               Keys            =   "BookPrintOrder.frx":0832
-               Spin            =   "BookPrintOrder.frx":087C
+               DropDown        =   "BookPrintOrder.frx":2948
+               Keys            =   "BookPrintOrder.frx":2966
+               Spin            =   "BookPrintOrder.frx":29B0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -637,8 +722,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":08A4
-               Caption         =   "BookPrintOrder.frx":08C4
+               Calculator      =   "BookPrintOrder.frx":29D8
+               Caption         =   "BookPrintOrder.frx":29F8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -648,9 +733,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0930
-               Keys            =   "BookPrintOrder.frx":094E
-               Spin            =   "BookPrintOrder.frx":0998
+               DropDown        =   "BookPrintOrder.frx":2A64
+               Keys            =   "BookPrintOrder.frx":2A82
+               Spin            =   "BookPrintOrder.frx":2ACC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -696,8 +781,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":09C0
-               Caption         =   "BookPrintOrder.frx":09E0
+               Calculator      =   "BookPrintOrder.frx":2AF4
+               Caption         =   "BookPrintOrder.frx":2B14
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -707,9 +792,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0A4C
-               Keys            =   "BookPrintOrder.frx":0A6A
-               Spin            =   "BookPrintOrder.frx":0AB4
+               DropDown        =   "BookPrintOrder.frx":2B80
+               Keys            =   "BookPrintOrder.frx":2B9E
+               Spin            =   "BookPrintOrder.frx":2BE8
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -755,8 +840,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0ADC
-               Caption         =   "BookPrintOrder.frx":0AFC
+               Calculator      =   "BookPrintOrder.frx":2C10
+               Caption         =   "BookPrintOrder.frx":2C30
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -766,9 +851,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0B68
-               Keys            =   "BookPrintOrder.frx":0B86
-               Spin            =   "BookPrintOrder.frx":0BD0
+               DropDown        =   "BookPrintOrder.frx":2C9C
+               Keys            =   "BookPrintOrder.frx":2CBA
+               Spin            =   "BookPrintOrder.frx":2D04
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -824,11 +909,11 @@ Begin VB.Form FrmBookPrintOrder
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Variable Qnty Detail"
+               Caption         =   " Variable Qty. Details"
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0BF8
-               Picture         =   "BookPrintOrder.frx":0C14
+               Picture         =   "BookPrintOrder.frx":2D2C
+               Picture         =   "BookPrintOrder.frx":2D48
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput29 
                Height          =   330
@@ -840,8 +925,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0C30
-               Caption         =   "BookPrintOrder.frx":0C50
+               Calculator      =   "BookPrintOrder.frx":2D64
+               Caption         =   "BookPrintOrder.frx":2D84
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -851,9 +936,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0CBC
-               Keys            =   "BookPrintOrder.frx":0CDA
-               Spin            =   "BookPrintOrder.frx":0D24
+               DropDown        =   "BookPrintOrder.frx":2DF0
+               Keys            =   "BookPrintOrder.frx":2E0E
+               Spin            =   "BookPrintOrder.frx":2E58
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -899,8 +984,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":0D4C
-               Caption         =   "BookPrintOrder.frx":0D6C
+               Calculator      =   "BookPrintOrder.frx":2E80
+               Caption         =   "BookPrintOrder.frx":2EA0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -910,9 +995,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":0DD8
-               Keys            =   "BookPrintOrder.frx":0DF6
-               Spin            =   "BookPrintOrder.frx":0E40
+               DropDown        =   "BookPrintOrder.frx":2F0C
+               Keys            =   "BookPrintOrder.frx":2F2A
+               Spin            =   "BookPrintOrder.frx":2F74
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -943,7 +1028,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   173998085
+               ValueVT         =   266469381
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -984,7 +1069,7 @@ Begin VB.Form FrmBookPrintOrder
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   14
+            ColumnCount     =   16
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "   Order No."
@@ -1115,6 +1200,19 @@ Begin VB.Form FrmBookPrintOrder
                EndProperty
             EndProperty
             BeginProperty Column09 
+               DataField       =   "EstQty01"
+               Caption         =   "Order Qty."
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
+               EndProperty
+            EndProperty
+            BeginProperty Column10 
                DataField       =   "DeliveredQuantity"
                Caption         =   "    Recd Qty"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1127,7 +1225,20 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   1
                EndProperty
             EndProperty
-            BeginProperty Column10 
+            BeginProperty Column11 
+               DataField       =   "Pending"
+               Caption         =   "Pending Qty."
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   1
+                  Format          =   "0"
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   1
+               EndProperty
+            EndProperty
+            BeginProperty Column12 
                DataField       =   "BookPrinterName"
                Caption         =   "Multi Format"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1140,7 +1251,7 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column11 
+            BeginProperty Column13 
                DataField       =   "TitlePrinterName"
                Caption         =   "Spread Format"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1153,7 +1264,7 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column12 
+            BeginProperty Column14 
                DataField       =   "LaminatorName"
                Caption         =   "Misc Operation"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1166,7 +1277,7 @@ Begin VB.Form FrmBookPrintOrder
                   SubFormatType   =   0
                EndProperty
             EndProperty
-            BeginProperty Column13 
+            BeginProperty Column15 
                DataField       =   "BinderName"
                Caption         =   "Binding Process"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -1233,24 +1344,32 @@ Begin VB.Form FrmBookPrintOrder
                EndProperty
                BeginProperty Column09 
                   Alignment       =   1
-                  Locked          =   -1  'True
                   ColumnWidth     =   975.118
                EndProperty
                BeginProperty Column10 
+                  Alignment       =   1
                   Locked          =   -1  'True
-                  ColumnWidth     =   1289.764
+                  ColumnWidth     =   975.118
                EndProperty
                BeginProperty Column11 
-                  Locked          =   -1  'True
-                  ColumnWidth     =   1335.118
+                  Alignment       =   1
+                  ColumnWidth     =   1140.095
                EndProperty
                BeginProperty Column12 
                   Locked          =   -1  'True
-                  ColumnWidth     =   989.858
+                  ColumnWidth     =   2505.26
                EndProperty
                BeginProperty Column13 
                   Locked          =   -1  'True
-                  ColumnWidth     =   1950.236
+                  ColumnWidth     =   2505.26
+               EndProperty
+               BeginProperty Column14 
+                  Locked          =   -1  'True
+                  ColumnWidth     =   2505.26
+               EndProperty
+               BeginProperty Column15 
+                  Locked          =   -1  'True
+                  ColumnWidth     =   2505.26
                EndProperty
             EndProperty
          End
@@ -1270,7 +1389,7 @@ Begin VB.Form FrmBookPrintOrder
             Left            =   600
             TabIndex        =   34
             Top             =   7020
-            Width           =   9945
+            Width           =   7665
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
             Height          =   3560
@@ -1301,7 +1420,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":0E68
+            Picture         =   "BookPrintOrder.frx":2F9C
             Begin VB.TextBox Text11 
                Appearance      =   0  'Flat
                BackColor       =   &H00FFFFFF&
@@ -1660,8 +1779,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0E84
-               Picture         =   "BookPrintOrder.frx":0EA0
+               Picture         =   "BookPrintOrder.frx":2FB8
+               Picture         =   "BookPrintOrder.frx":2FD4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -1688,8 +1807,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0EBC
-               Picture         =   "BookPrintOrder.frx":0ED8
+               Picture         =   "BookPrintOrder.frx":2FF0
+               Picture         =   "BookPrintOrder.frx":300C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -1715,8 +1834,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0EF4
-               Picture         =   "BookPrintOrder.frx":0F10
+               Picture         =   "BookPrintOrder.frx":3028
+               Picture         =   "BookPrintOrder.frx":3044
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -1742,8 +1861,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0F2C
-               Picture         =   "BookPrintOrder.frx":0F48
+               Picture         =   "BookPrintOrder.frx":3060
+               Picture         =   "BookPrintOrder.frx":307C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
@@ -1769,8 +1888,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0F64
-               Picture         =   "BookPrintOrder.frx":0F80
+               Picture         =   "BookPrintOrder.frx":3098
+               Picture         =   "BookPrintOrder.frx":30B4
             End
             Begin MhinrelLib.MhRealInput MhRealInput1 
                Height          =   330
@@ -1826,8 +1945,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0F9C
-               Picture         =   "BookPrintOrder.frx":0FB8
+               Picture         =   "BookPrintOrder.frx":30D0
+               Picture         =   "BookPrintOrder.frx":30EC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
@@ -1853,8 +1972,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":0FD4
-               Picture         =   "BookPrintOrder.frx":0FF0
+               Picture         =   "BookPrintOrder.frx":3108
+               Picture         =   "BookPrintOrder.frx":3124
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -1865,8 +1984,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "BookPrintOrder.frx":100C
-               Caption         =   "BookPrintOrder.frx":1124
+               Calendar        =   "BookPrintOrder.frx":3140
+               Caption         =   "BookPrintOrder.frx":3258
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -1876,9 +1995,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1190
-               Keys            =   "BookPrintOrder.frx":11AE
-               Spin            =   "BookPrintOrder.frx":120C
+               DropDown        =   "BookPrintOrder.frx":32C4
+               Keys            =   "BookPrintOrder.frx":32E2
+               Spin            =   "BookPrintOrder.frx":3340
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -1942,8 +2061,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1234
-               Picture         =   "BookPrintOrder.frx":1250
+               Picture         =   "BookPrintOrder.frx":3368
+               Picture         =   "BookPrintOrder.frx":3384
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
@@ -1969,8 +2088,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":126C
-               Picture         =   "BookPrintOrder.frx":1288
+               Picture         =   "BookPrintOrder.frx":33A0
+               Picture         =   "BookPrintOrder.frx":33BC
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
@@ -1996,8 +2115,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":12A4
-               Picture         =   "BookPrintOrder.frx":12C0
+               Picture         =   "BookPrintOrder.frx":33D8
+               Picture         =   "BookPrintOrder.frx":33F4
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   330
@@ -2023,8 +2142,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":12DC
-               Picture         =   "BookPrintOrder.frx":12F8
+               Picture         =   "BookPrintOrder.frx":3410
+               Picture         =   "BookPrintOrder.frx":342C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
                Height          =   330
@@ -2050,8 +2169,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1314
-               Picture         =   "BookPrintOrder.frx":1330
+               Picture         =   "BookPrintOrder.frx":3448
+               Picture         =   "BookPrintOrder.frx":3464
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -2099,8 +2218,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":134C
-               Picture         =   "BookPrintOrder.frx":1368
+               Picture         =   "BookPrintOrder.frx":3480
+               Picture         =   "BookPrintOrder.frx":349C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel30 
                Height          =   330
@@ -2126,8 +2245,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1384
-               Picture         =   "BookPrintOrder.frx":13A0
+               Picture         =   "BookPrintOrder.frx":34B8
+               Picture         =   "BookPrintOrder.frx":34D4
             End
             Begin VB.Line Line1 
                X1              =   0
@@ -2165,7 +2284,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":13BC
+            Picture         =   "BookPrintOrder.frx":34F0
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
                Left            =   120
@@ -2190,8 +2309,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":13D8
-               Picture         =   "BookPrintOrder.frx":13F4
+               Picture         =   "BookPrintOrder.frx":350C
+               Picture         =   "BookPrintOrder.frx":3528
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                Height          =   330
@@ -2221,7 +2340,7 @@ Begin VB.Form FrmBookPrintOrder
                NoPrefix        =   0   'False
                FormatString    =   ""
                Caption         =   ""
-               Picture         =   "BookPrintOrder.frx":1410
+               Picture         =   "BookPrintOrder.frx":3544
                Begin VB.CheckBox Check1 
                   BackColor       =   &H00FFFFFF&
                   Caption         =   "CF"
@@ -2343,7 +2462,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":142C
+            Picture         =   "BookPrintOrder.frx":3560
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
                Left            =   120
@@ -2368,8 +2487,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1448
-               Picture         =   "BookPrintOrder.frx":1464
+               Picture         =   "BookPrintOrder.frx":357C
+               Picture         =   "BookPrintOrder.frx":3598
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
                Height          =   330
@@ -2380,8 +2499,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1480
-               Caption         =   "BookPrintOrder.frx":14A0
+               Calculator      =   "BookPrintOrder.frx":35B4
+               Caption         =   "BookPrintOrder.frx":35D4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2391,9 +2510,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":150C
-               Keys            =   "BookPrintOrder.frx":152A
-               Spin            =   "BookPrintOrder.frx":1574
+               DropDown        =   "BookPrintOrder.frx":3640
+               Keys            =   "BookPrintOrder.frx":365E
+               Spin            =   "BookPrintOrder.frx":36A8
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2438,8 +2557,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":159C
-               Caption         =   "BookPrintOrder.frx":15BC
+               Calculator      =   "BookPrintOrder.frx":36D0
+               Caption         =   "BookPrintOrder.frx":36F0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2449,9 +2568,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1628
-               Keys            =   "BookPrintOrder.frx":1646
-               Spin            =   "BookPrintOrder.frx":1690
+               DropDown        =   "BookPrintOrder.frx":375C
+               Keys            =   "BookPrintOrder.frx":377A
+               Spin            =   "BookPrintOrder.frx":37C4
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2496,8 +2615,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":16B8
-               Caption         =   "BookPrintOrder.frx":16D8
+               Calculator      =   "BookPrintOrder.frx":37EC
+               Caption         =   "BookPrintOrder.frx":380C
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2507,9 +2626,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1744
-               Keys            =   "BookPrintOrder.frx":1762
-               Spin            =   "BookPrintOrder.frx":17AC
+               DropDown        =   "BookPrintOrder.frx":3878
+               Keys            =   "BookPrintOrder.frx":3896
+               Spin            =   "BookPrintOrder.frx":38E0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2554,8 +2673,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":17D4
-               Caption         =   "BookPrintOrder.frx":17F4
+               Calculator      =   "BookPrintOrder.frx":3908
+               Caption         =   "BookPrintOrder.frx":3928
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2565,9 +2684,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1860
-               Keys            =   "BookPrintOrder.frx":187E
-               Spin            =   "BookPrintOrder.frx":18C8
+               DropDown        =   "BookPrintOrder.frx":3994
+               Keys            =   "BookPrintOrder.frx":39B2
+               Spin            =   "BookPrintOrder.frx":39FC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2612,8 +2731,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":18F0
-               Caption         =   "BookPrintOrder.frx":1910
+               Calculator      =   "BookPrintOrder.frx":3A24
+               Caption         =   "BookPrintOrder.frx":3A44
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2623,9 +2742,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":197C
-               Keys            =   "BookPrintOrder.frx":199A
-               Spin            =   "BookPrintOrder.frx":19E4
+               DropDown        =   "BookPrintOrder.frx":3AB0
+               Keys            =   "BookPrintOrder.frx":3ACE
+               Spin            =   "BookPrintOrder.frx":3B18
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2671,8 +2790,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1640
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1A0C
-               Caption         =   "BookPrintOrder.frx":1A2C
+               Calculator      =   "BookPrintOrder.frx":3B40
+               Caption         =   "BookPrintOrder.frx":3B60
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2682,9 +2801,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1A98
-               Keys            =   "BookPrintOrder.frx":1AB6
-               Spin            =   "BookPrintOrder.frx":1B00
+               DropDown        =   "BookPrintOrder.frx":3BCC
+               Keys            =   "BookPrintOrder.frx":3BEA
+               Spin            =   "BookPrintOrder.frx":3C34
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2715,7 +2834,7 @@ Begin VB.Form FrmBookPrintOrder
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   174063621
+               ValueVT         =   5
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -2744,8 +2863,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1B28
-               Picture         =   "BookPrintOrder.frx":1B44
+               Picture         =   "BookPrintOrder.frx":3C5C
+               Picture         =   "BookPrintOrder.frx":3C78
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput33 
                Height          =   330
@@ -2756,8 +2875,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1B60
-               Caption         =   "BookPrintOrder.frx":1B80
+               Calculator      =   "BookPrintOrder.frx":3C94
+               Caption         =   "BookPrintOrder.frx":3CB4
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2767,9 +2886,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1BEC
-               Keys            =   "BookPrintOrder.frx":1C0A
-               Spin            =   "BookPrintOrder.frx":1C54
+               DropDown        =   "BookPrintOrder.frx":3D20
+               Keys            =   "BookPrintOrder.frx":3D3E
+               Spin            =   "BookPrintOrder.frx":3D88
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2835,7 +2954,7 @@ Begin VB.Form FrmBookPrintOrder
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "BookPrintOrder.frx":1C7C
+            Picture         =   "BookPrintOrder.frx":3DB0
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel22 
                Height          =   330
                Left            =   5880
@@ -2860,8 +2979,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1C98
-               Picture         =   "BookPrintOrder.frx":1CB4
+               Picture         =   "BookPrintOrder.frx":3DCC
+               Picture         =   "BookPrintOrder.frx":3DE8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
                Height          =   330
@@ -2887,8 +3006,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1CD0
-               Picture         =   "BookPrintOrder.frx":1CEC
+               Picture         =   "BookPrintOrder.frx":3E04
+               Picture         =   "BookPrintOrder.frx":3E20
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
                Height          =   330
@@ -2914,8 +3033,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":1D08
-               Picture         =   "BookPrintOrder.frx":1D24
+               Picture         =   "BookPrintOrder.frx":3E3C
+               Picture         =   "BookPrintOrder.frx":3E58
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput19 
                Height          =   330
@@ -2927,8 +3046,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1D40
-               Caption         =   "BookPrintOrder.frx":1D60
+               Calculator      =   "BookPrintOrder.frx":3E74
+               Caption         =   "BookPrintOrder.frx":3E94
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2938,9 +3057,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1DCC
-               Keys            =   "BookPrintOrder.frx":1DEA
-               Spin            =   "BookPrintOrder.frx":1E34
+               DropDown        =   "BookPrintOrder.frx":3F00
+               Keys            =   "BookPrintOrder.frx":3F1E
+               Spin            =   "BookPrintOrder.frx":3F68
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -2986,8 +3105,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1E5C
-               Caption         =   "BookPrintOrder.frx":1E7C
+               Calculator      =   "BookPrintOrder.frx":3F90
+               Caption         =   "BookPrintOrder.frx":3FB0
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -2997,9 +3116,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":1EE8
-               Keys            =   "BookPrintOrder.frx":1F06
-               Spin            =   "BookPrintOrder.frx":1F50
+               DropDown        =   "BookPrintOrder.frx":401C
+               Keys            =   "BookPrintOrder.frx":403A
+               Spin            =   "BookPrintOrder.frx":4084
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3045,8 +3164,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":1F78
-               Caption         =   "BookPrintOrder.frx":1F98
+               Calculator      =   "BookPrintOrder.frx":40AC
+               Caption         =   "BookPrintOrder.frx":40CC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3056,9 +3175,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2004
-               Keys            =   "BookPrintOrder.frx":2022
-               Spin            =   "BookPrintOrder.frx":206C
+               DropDown        =   "BookPrintOrder.frx":4138
+               Keys            =   "BookPrintOrder.frx":4156
+               Spin            =   "BookPrintOrder.frx":41A0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3104,8 +3223,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2094
-               Caption         =   "BookPrintOrder.frx":20B4
+               Calculator      =   "BookPrintOrder.frx":41C8
+               Caption         =   "BookPrintOrder.frx":41E8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3115,9 +3234,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2120
-               Keys            =   "BookPrintOrder.frx":213E
-               Spin            =   "BookPrintOrder.frx":2188
+               DropDown        =   "BookPrintOrder.frx":4254
+               Keys            =   "BookPrintOrder.frx":4272
+               Spin            =   "BookPrintOrder.frx":42BC
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3163,8 +3282,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":21B0
-               Caption         =   "BookPrintOrder.frx":21D0
+               Calculator      =   "BookPrintOrder.frx":42E4
+               Caption         =   "BookPrintOrder.frx":4304
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3174,9 +3293,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":223C
-               Keys            =   "BookPrintOrder.frx":225A
-               Spin            =   "BookPrintOrder.frx":22A4
+               DropDown        =   "BookPrintOrder.frx":4370
+               Keys            =   "BookPrintOrder.frx":438E
+               Spin            =   "BookPrintOrder.frx":43D8
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3236,8 +3355,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":22CC
-               Picture         =   "BookPrintOrder.frx":22E8
+               Picture         =   "BookPrintOrder.frx":4400
+               Picture         =   "BookPrintOrder.frx":441C
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput20 
                Height          =   330
@@ -3249,8 +3368,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2304
-               Caption         =   "BookPrintOrder.frx":2324
+               Calculator      =   "BookPrintOrder.frx":4438
+               Caption         =   "BookPrintOrder.frx":4458
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3260,9 +3379,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2390
-               Keys            =   "BookPrintOrder.frx":23AE
-               Spin            =   "BookPrintOrder.frx":23F8
+               DropDown        =   "BookPrintOrder.frx":44C4
+               Keys            =   "BookPrintOrder.frx":44E2
+               Spin            =   "BookPrintOrder.frx":452C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3308,8 +3427,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2420
-               Caption         =   "BookPrintOrder.frx":2440
+               Calculator      =   "BookPrintOrder.frx":4554
+               Caption         =   "BookPrintOrder.frx":4574
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3319,9 +3438,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":24AC
-               Keys            =   "BookPrintOrder.frx":24CA
-               Spin            =   "BookPrintOrder.frx":2514
+               DropDown        =   "BookPrintOrder.frx":45E0
+               Keys            =   "BookPrintOrder.frx":45FE
+               Spin            =   "BookPrintOrder.frx":4648
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3367,8 +3486,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":253C
-               Caption         =   "BookPrintOrder.frx":255C
+               Calculator      =   "BookPrintOrder.frx":4670
+               Caption         =   "BookPrintOrder.frx":4690
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3378,9 +3497,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":25C8
-               Keys            =   "BookPrintOrder.frx":25E6
-               Spin            =   "BookPrintOrder.frx":2630
+               DropDown        =   "BookPrintOrder.frx":46FC
+               Keys            =   "BookPrintOrder.frx":471A
+               Spin            =   "BookPrintOrder.frx":4764
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3426,8 +3545,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2658
-               Caption         =   "BookPrintOrder.frx":2678
+               Calculator      =   "BookPrintOrder.frx":478C
+               Caption         =   "BookPrintOrder.frx":47AC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3437,9 +3556,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":26E4
-               Keys            =   "BookPrintOrder.frx":2702
-               Spin            =   "BookPrintOrder.frx":274C
+               DropDown        =   "BookPrintOrder.frx":4818
+               Keys            =   "BookPrintOrder.frx":4836
+               Spin            =   "BookPrintOrder.frx":4880
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3485,8 +3604,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1711
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2774
-               Caption         =   "BookPrintOrder.frx":2794
+               Calculator      =   "BookPrintOrder.frx":48A8
+               Caption         =   "BookPrintOrder.frx":48C8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3496,9 +3615,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2800
-               Keys            =   "BookPrintOrder.frx":281E
-               Spin            =   "BookPrintOrder.frx":2868
+               DropDown        =   "BookPrintOrder.frx":4934
+               Keys            =   "BookPrintOrder.frx":4952
+               Spin            =   "BookPrintOrder.frx":499C
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3558,8 +3677,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2890
-               Picture         =   "BookPrintOrder.frx":28AC
+               Picture         =   "BookPrintOrder.frx":49C4
+               Picture         =   "BookPrintOrder.frx":49E0
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
                Height          =   330
@@ -3585,8 +3704,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":28C8
-               Picture         =   "BookPrintOrder.frx":28E4
+               Picture         =   "BookPrintOrder.frx":49FC
+               Picture         =   "BookPrintOrder.frx":4A18
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel21 
                Height          =   330
@@ -3612,8 +3731,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2900
-               Picture         =   "BookPrintOrder.frx":291C
+               Picture         =   "BookPrintOrder.frx":4A34
+               Picture         =   "BookPrintOrder.frx":4A50
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
                Height          =   330
@@ -3638,8 +3757,8 @@ Begin VB.Form FrmBookPrintOrder
                Caption         =   ""
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2938
-               Picture         =   "BookPrintOrder.frx":2954
+               Picture         =   "BookPrintOrder.frx":4A6C
+               Picture         =   "BookPrintOrder.frx":4A88
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel26 
                Height          =   960
@@ -3661,11 +3780,11 @@ Begin VB.Form FrmBookPrintOrder
                   Strikethrough   =   0   'False
                EndProperty
                TintColor       =   16711935
-               Caption         =   " Base Qnty Detail"
+               Caption         =   " Base Qty. Details"
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2970
-               Picture         =   "BookPrintOrder.frx":298C
+               Picture         =   "BookPrintOrder.frx":4AA4
+               Picture         =   "BookPrintOrder.frx":4AC0
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput31 
                Height          =   330
@@ -3677,8 +3796,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1693
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":29A8
-               Caption         =   "BookPrintOrder.frx":29C8
+               Calculator      =   "BookPrintOrder.frx":4ADC
+               Caption         =   "BookPrintOrder.frx":4AFC
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3688,9 +3807,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2A34
-               Keys            =   "BookPrintOrder.frx":2A52
-               Spin            =   "BookPrintOrder.frx":2A9C
+               DropDown        =   "BookPrintOrder.frx":4B68
+               Keys            =   "BookPrintOrder.frx":4B86
+               Spin            =   "BookPrintOrder.frx":4BD0
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3750,8 +3869,8 @@ Begin VB.Form FrmBookPrintOrder
                Alignment       =   1
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookPrintOrder.frx":2AC4
-               Picture         =   "BookPrintOrder.frx":2AE0
+               Picture         =   "BookPrintOrder.frx":4BF8
+               Picture         =   "BookPrintOrder.frx":4C14
             End
             Begin TDBNumber6Ctl.TDBNumber MhRealInput32 
                Height          =   330
@@ -3763,8 +3882,8 @@ Begin VB.Form FrmBookPrintOrder
                _Version        =   65536
                _ExtentX        =   1720
                _ExtentY        =   582
-               Calculator      =   "BookPrintOrder.frx":2AFC
-               Caption         =   "BookPrintOrder.frx":2B1C
+               Calculator      =   "BookPrintOrder.frx":4C30
+               Caption         =   "BookPrintOrder.frx":4C50
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -3774,9 +3893,9 @@ Begin VB.Form FrmBookPrintOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "BookPrintOrder.frx":2B88
-               Keys            =   "BookPrintOrder.frx":2BA6
-               Spin            =   "BookPrintOrder.frx":2BF0
+               DropDown        =   "BookPrintOrder.frx":4CBC
+               Keys            =   "BookPrintOrder.frx":4CDA
+               Spin            =   "BookPrintOrder.frx":4D24
                AlignHorizontal =   1
                AlignVertical   =   0
                Appearance      =   0
@@ -3816,7 +3935,7 @@ Begin VB.Form FrmBookPrintOrder
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   2
-            Left            =   10530
+            Left            =   8370
             TabIndex        =   95
             Top             =   7020
             Width           =   4215
@@ -3838,8 +3957,8 @@ Begin VB.Form FrmBookPrintOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookPrintOrder.frx":2C18
-            Picture         =   "BookPrintOrder.frx":2C34
+            Picture         =   "BookPrintOrder.frx":4D4C
+            Picture         =   "BookPrintOrder.frx":4D68
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
@@ -3866,8 +3985,60 @@ Begin VB.Form FrmBookPrintOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookPrintOrder.frx":2C50
-            Picture         =   "BookPrintOrder.frx":2C6C
+            Picture         =   "BookPrintOrder.frx":4D84
+            Picture         =   "BookPrintOrder.frx":4DA0
+         End
+         Begin Mh3dlblLib.Mh3dLabel CmdExport 
+            Height          =   330
+            Left            =   16260
+            TabIndex        =   100
+            Top             =   7020
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Export "
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "BookPrintOrder.frx":4DBC
+            Picture         =   "BookPrintOrder.frx":4DD8
+         End
+         Begin Mh3dlblLib.Mh3dLabel CmdPrint 
+            Height          =   330
+            Left            =   15240
+            TabIndex        =   101
+            Top             =   7020
+            Width           =   1005
+            _Version        =   65536
+            _ExtentX        =   1773
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " &Print"
+            FillColor       =   9164542
+            TextColor       =   0
+            Picture         =   "BookPrintOrder.frx":4DF4
+            Picture         =   "BookPrintOrder.frx":4E10
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -3891,6 +4062,12 @@ Begin VB.Form FrmBookPrintOrder
             Width           =   495
          End
       End
+   End
+   Begin VB.Timer Timer1 
+      Enabled         =   0   'False
+      Interval        =   4
+      Left            =   2760
+      Top             =   2280
    End
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
@@ -3973,12 +4150,6 @@ Begin VB.Form FrmBookPrintOrder
          EndProperty
       EndProperty
    End
-   Begin VB.Timer Timer1 
-      Enabled         =   0   'False
-      Interval        =   4
-      Left            =   2760
-      Top             =   2280
-   End
 End
 Attribute VB_Name = "FrmBookPrintOrder"
 Attribute VB_GlobalNameSpace = False
@@ -3986,7 +4157,9 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Dim FI As Object, rstEasyPublish As DAO.Recordset
+Dim StartColumn As String, StartRow As String, EndColumn As String, EndRow As String
+Dim PrintFlag As Boolean
+Dim FI As Object, rstEasyPublish As Dao.Recordset
 Public BookPOType As String, DisplayListType As String, ItemCode As String
 Dim cnBookPrintOrder As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstBookPOList As New ADODB.Recordset, rstBookPOParent As New ADODB.Recordset, rstBookPOChild05 As New ADODB.Recordset, rstBookPOChild06 As New ADODB.Recordset, rstBookPOChild09 As New ADODB.Recordset, rstBookPOChild10 As New ADODB.Recordset, rstBookPOChild0901 As New ADODB.Recordset, rstBookPOChild07 As New ADODB.Recordset, rstBookPOChild08 As New ADODB.Recordset, rstBookPOChild0801 As New ADODB.Recordset, rstCorrections As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, srmPicMgr As New ADODB.Stream
@@ -4007,6 +4180,9 @@ Private Sub Form_Load()
     Unload FrmBookPOPrintUtility
     CenterForm Me
     WheelHook DataGrid1
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    BusySystemIndicator True
     Me.Caption = IIf(BookPOType = "DS", "Sales Order [Digital Printing]", IIf(BookPOType = "DP", "Purchase Order [Digital Printing]", IIf(BookPOType = "FP", "Purchase Order [Finished Goods]", IIf(BookPOType = "RP", "Purchase Order [Unfinished Goods]", IIf(BookPOType = "OP", "Cost Sheet", IIf(BookPOType = "FS", "Sales Order [Finished Goods]", "Sales Order [Unfinished Goods]"))))))
     'If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 3750: Mh3dFrame6.Top = 4280: Mh3dFrame7.Top = 5120 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
     If Left(BookPOType, 1) = "O" Then Mh3dFrame5.Visible = False: Mh3dFrame3.Top = 4000: Mh3dFrame6.Top = 4500: Mh3dFrame7.Top = 5400 Else Mh3dLabel14.Caption = " Final Quantity": Mh3dLabel15.Caption = " Final Unit Rate": Mh3dLabel16.Caption = " Final Amount": Mh3dLabel17.Caption = " Unit Rate": Mh3dLabel18.Caption = " Amount": Mh3dLabel26.Caption = " Final Qnty Detail": MhRealInput3.Width = 5780: MhRealInput9.Width = 7530: MhRealInput14.Width = 7530: MhRealInput4.Visible = False: MhRealInput5.Visible = False: MhRealInput6.Visible = False: MhRealInput7.Visible = False: MhRealInput33.Visible = False: Mh3dLabel25.Visible = False
@@ -4017,9 +4193,11 @@ Private Sub Form_Load()
     SSTab1.Tab = 0
 '    SortOrder = "Name"
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
+    ElseIf frmJobworkBill.dSortBy = True Then
+        SortOrder = "Code"
     Else
-    SortOrder = "NAME"
+        SortOrder = "NAME"
     End If
     DisplayListType = "O"
     Call RefreshList("")
@@ -4064,6 +4242,7 @@ Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
         KeyCode = 0
     ElseIf Shift = vbCtrlMask And KeyCode = vbKeyS And Toolbar1.Buttons.Item(4).Enabled Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(4)
+        If frmJobworkBill.dSortBy = True Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
         KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyF12 Then
         If MsgBox("Are you sure to make a duplicate copy of the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then DuplicateRecord
@@ -4121,6 +4300,7 @@ Private Sub Form_Unload(Cancel As Integer)
     DisableChildMenu
     MdiMainMenu.mnuPurchaseOrderJobWork.Enabled = True: MdiMainMenu.mnuSalesOrderJobWork.Enabled = True: MdiMainMenu.mnuCostSheet.Enabled = True
 End Sub
+
 Private Sub MhRealInput3_Validate(Cancel As Boolean) 'EstQty01
     If MhRealInput3.Value = 0 Then Cancel = True Else MhRealInput8_Validate False
 End Sub
@@ -4310,7 +4490,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         HiLiteRecord = True
     ElseIf Button.Index = 4 Then
         'If blnRecordExist Then If chkBilled Then DisplayError ("Updation failed due to bill generation"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(5): Exit Sub
-''''''        If CheckMandatoryFields Then Exit Sub
+        If CheckMandatoryFields Then Exit Sub
 ''''''        Set FrmBookPOChild0801.rstBookPOChild0801 = rstBookPOChild0801  'Outsource Material
 ''''''        FrmBookPOChild0801.BinderCode = BinderCode
 ''''''        FrmBookPOChild0801.BookCode = ItemCode
@@ -4605,18 +4785,18 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
             LoadMasterList
             rstBookList.MoveFirst
             rstBookList.Find "[Code] = '" & ItemCode & "'"
-            If Val(rstBookList.Fields("TwoColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
-                Text10.Text = "1 Color"
-            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
-                Text10.Text = "2 Color"
-            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("TwoColorPages").Value) = 0 Then
-                Text10.Text = "4 Color"
-            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("TwoColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
-                Text10.Text = "6 Color"
-            Else
-                Text10.Text = "Multi Color"
-            End If
-            Text4.Text = rstBookList.Fields("SizeName").Value & "/" & Choose(Val(rstBookList.Fields("FormType").Value), "08", "16", "04", "12", "24", "32", "64", "06", "02")
+'            If Val(rstBookList.Fields("TwoColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
+'                Text10.Text = "1 Color"
+'            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
+'                Text10.Text = "2 Color"
+'            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("TwoColorPages").Value) = 0 Then
+'                Text10.Text = "4 Color"
+'            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("TwoColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
+'                Text10.Text = "6 Color"
+'            Else
+'                Text10.Text = "Multi Color"
+'            End If
+            Text4.Text = rstBookList.Fields("SizeName").Value '& "/" & Choose(Val(rstBookList.Fields("FormType").Value), "08", "16", "04", "12", "24", "32", "64", "06", "02")
             MhRealInput1.Text = Val(rstBookList.Fields("Forms").Value)
             MhRealInput2.Text = Val(rstBookList.Fields("Pages").Value)
             If Me.Tag = "A" Then
@@ -4837,18 +5017,20 @@ Private Sub LoadFields()
         rstBookList.Find "[Code] = '" & ItemCode & "'"
         If Not rstBookList.EOF Then
             Text3.Text = rstBookList.Fields("Col0").Value
-            If Val(rstBookList.Fields("TwoColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
+            If Val(rstBookList.Fields("MinColor").Value) <> Val(rstBookList.Fields("MaxColor").Value) Then
+                Text10.Text = "Multi Color"
+            ElseIf Val(rstBookList.Fields("MaxColor").Value) = 1 Then
                 Text10.Text = "1 Color"
-            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
+            ElseIf Val(rstBookList.Fields("MaxColor").Value) = 2 Then
                 Text10.Text = "2 Color"
-            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("TwoColorPages").Value) = 0 Then
+            ElseIf Val(rstBookList.Fields("MaxColor").Value) = 4 Then
                 Text10.Text = "4 Color"
-            ElseIf Val(rstBookList.Fields("OneColorPages").Value) = 0 And Val(rstBookList.Fields("TwoColorPages").Value) = 0 And Val(rstBookList.Fields("FourColorPages").Value) = 0 Then
+            ElseIf Val(rstBookList.Fields("MaxColor").Value) = 6 Then
                 Text10.Text = "6 Color"
             Else
                 Text10.Text = "Multi Color"
             End If
-            Text4.Text = rstBookList.Fields("SizeName").Value & "/" & Choose(Val(rstBookList.Fields("FormType").Value), "08", "16", "04", "12", "24", "32", "64", "06", "02")
+            Text4.Text = rstBookList.Fields("SizeName").Value '& "/" & Choose(Val(rstBookList.Fields("FormType").Value), "08", "16", "04", "12", "24", "32", "64", "06", "02")
             MhRealInput1.Text = Val(rstBookList.Fields("Forms").Value)
             MhRealInput2.Text = Val(rstBookList.Fields("Pages").Value)
         End If
@@ -4968,6 +5150,15 @@ Private Sub SaveFields()
         .Fields("Type").Value = BookPOType
         .Fields("FYCode").Value = FYCode
         .Fields("PrintStatus").Value = "N"
+        If frmJobworkBill.dSortBy = True Then
+            frmJobworkBill.uRate = MhRealInput9.Value
+            frmJobworkBill.uRateMF = MhRealInput19.Value
+            frmJobworkBill.uRateME = MhRealInput21.Value
+            frmJobworkBill.uRateCF = MhRealInput23.Value
+            frmJobworkBill.uRateMO = MhRealInput25.Value
+            frmJobworkBill.uRateBN = MhRealInput27.Value
+            frmJobworkBill.uRateBM = MhRealInput31.Value
+        End If
     End With
 End Sub
 Private Function CheckMandatoryFields() As Boolean
@@ -4987,7 +5178,7 @@ Private Function CheckMandatoryFields() As Boolean
        CheckMandatoryFields = True
     ElseIf CheckEmpty(Text11.Text, False) Then 'Material Centre
        Text11.SetFocus
-       CheckMandatoryFields = True
+       CheckMandatoryFields = True: DisplayError "You Cann't Saved This Order Due To Field" & Chr(13) & "<<< Material Centre >>> is Mandatory Field"
     End If
 End Function
 Private Sub Timer1_Timer()
@@ -5088,10 +5279,11 @@ Private Function UpdateOrder(ByVal strOption As String, Optional ByVal POType As
 '                Amount = Amount + Val(.Fields("PrintAmount").Value) + Val(.Fields("PlateAmount").Value) + Val(.Fields("PaperAmount").Value) + Val(.Fields("Adjustment").Value) + Val(.Fields("PAdjustment").Value) + Val(.Fields("RAdjustment").Value)
 '            End With
             With rstBookPOChild06
-                cnBookPrintOrder.Execute "INSERT INTO BookPOChild06 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("SubItem").Value & "','" & .Fields("Element").Value & "','" & .Fields("ElementPrintName").Value & "'," & .Fields("Pages").Value & ",'" & .Fields("FinishSize").Value & "','" & .Fields("Size").Value & "','" & .Fields("Processing").Value & "','" & .Fields("ProcessingBack").Value & "','" & .Fields("Imposition").Value & "','" & .Fields("Ref").Value & "','" & .Fields("PlateMaker").Value & "','" & .Fields("FrontPrintingType").Value & "','" & .Fields("BackPrintingType").Value & "','" & .Fields("PlateType").Value & "','" & .Fields("PlateTypeBack").Value & "'," & _
-                                                                        Val(.Fields("ActualQuantity").Value) & "," & Val(.Fields("BillingQuantity").Value) & "," & Val(.Fields("Ups").Value) & "," & Val(.Fields("Sets").Value) & "," & Val(.Fields("TotalForms").Value) & "," & Val(.Fields("TotalPlates").Value) & "," & Val(.Fields("TotalPlatesBack").Value) & "," & Val(.Fields("aTotalPlates").Value) & "," & Val(.Fields("aTotalPlatesBack").Value) & "," & Val(.Fields("PrintRate").Value) & "," & Val(.Fields("PrintRateBack").Value) & "," & Val(.Fields("PrintAmount").Value) & "," & Val(.Fields("PlateRate").Value) & "," & Val(.Fields("PlateRateBack").Value) & "," & Val(.Fields("PlateAmount").Value) & "," & IIf(.Fields("PaperByParty").Value, 1, 0) & ",'" & .Fields("Paper").Value & "','" & IIf(.Fields("PaperByParty").Value, TitlePrinterCode, "000000") & "'," & _
+                cnBookPrintOrder.Execute "INSERT INTO BookPOChild06 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("SubItem").Value & "','" & .Fields("Element").Value & "','" & .Fields("ElementPrintName").Value & "'," & .Fields("Pages").Value & ",'" & .Fields("FinishSize").Value & "','" & .Fields("Size").Value & "','" & .Fields("Processing").Value & "','" & .Fields("ProcessingBack").Value & "','" & .Fields("Imposition").Value & "','" & .Fields("Ref").Value & "','" & .Fields("PlateMaker").Value & "'," & IIf(IsNull(.Fields("FrontPrintingType").Value), "Null", "'" & .Fields("FrontPrintingType").Value & "'") & "," & IIf(IsNull(.Fields("BackPrintingType").Value), "Null", "'" & .Fields("BackPrintingType").Value & "'") & "," & IIf(IsNull(.Fields("PlateType").Value), "Null", "'" & .Fields("PlateType").Value & "'") & "," & _
+                "" & IIf(IsNull(.Fields("PlateTypeBack").Value), "Null", "'" & .Fields("PlateTypeBack").Value & "'") & "," & _
+                                                                        Val(.Fields("ActualQuantity").Value) & "," & Val(.Fields("BillingQuantity").Value) & "," & Val(.Fields("Ups").Value) & "," & Val(.Fields("Sets").Value) & "," & Val(.Fields("TotalForms").Value) & "," & Val(.Fields("TotalPlates").Value) & "," & Val(.Fields("TotalPlatesBack").Value) & "," & Val(.Fields("TotalPlates").Value) & "," & Val(.Fields("TotalPlatesBack").Value) & "," & Val(.Fields("PrintRate").Value) & "," & Val(.Fields("PrintRateBack").Value) & "," & Val(.Fields("PrintAmount").Value) & "," & Val(.Fields("PlateRate").Value) & "," & Val(.Fields("PlateRateBack").Value) & "," & Val(.Fields("PlateAmount").Value) & "," & IIf(.Fields("PaperByParty").Value, 1, 0) & ",'" & .Fields("Paper").Value & "','" & IIf(.Fields("PaperByParty").Value, TitlePrinterCode, "000000") & "'," & _
                                                                         Val(.Fields("CutOffSize").Value) & "," & Val(.Fields("Titles/Sheet2").Value) & "," & Val(.Fields("PaperWastage%").Value) & "," & Val(.Fields("PaperWastage%Back").Value) & "," & Val(.Fields("PaperWastageMin").Value) & "," & Val(.Fields("PaperWastageMinBack").Value) & "," & Val(.Fields("Wastage/Set").Value) & "," & Val(.Fields("PaperWastageFinal").Value) & "," & Val(.Fields("PaperConsumptionOther").Value) & "," & Val(.Fields("PaperConsumptionSheets").Value) & "," & Val(.Fields("PaperConsumptionKg").Value) & "," & _
-                                                                        Val(.Fields("aPaperWastage%").Value) & "," & Val(.Fields("aPaperWastage%Back").Value) & "," & Val(.Fields("aPaperWastageMin").Value) & "," & Val(.Fields("aPaperWastageMinBack").Value) & "," & Val(.Fields("aPaperWastage/Set").Value) & "," & Val(.Fields("aPaperWastageFinal").Value) & "," & Val(.Fields("aPaperConsumptionOther").Value) & "," & Val(.Fields("aPaperConsumptionSheets").Value) & "," & Val(.Fields("aPaperConsumptionKg").Value) & "," & _
+                                                                        Val(.Fields("aPaperWastage%").Value) & "," & Val(.Fields("aPaperWastage%Back").Value) & "," & Val(.Fields("aPaperWastageMin").Value) & "," & Val(.Fields("aPaperWastageMinBack").Value) & "," & Val(.Fields("aWastage/Set").Value) & "," & Val(.Fields("aPaperWastageFinal").Value) & "," & Val(.Fields("aPaperConsumptionOther").Value) & "," & Val(.Fields("aPaperConsumptionSheets").Value) & "," & Val(.Fields("aPaperConsumptionKg").Value) & "," & _
                                                                         Val(.Fields("PaperRate").Value) & "," & Val(.Fields("PaperAmount").Value) & ",'" & .Fields("Remarks").Value & "','" & .Fields("BillNo").Value & "'," & IIf(IsNull(.Fields("BillDate").Value), "Null", "'" & Format(.Fields("BillDate").Value, "dd-MMM-yyyy") & "'") & ",'" & .Fields("PBillNo").Value & "'," & IIf(IsNull(.Fields("PBillDate").Value), "Null", "'" & Format(.Fields("PBillDate").Value, "dd-MMM-yyyy") & "'") & "," & _
                                                                         Val(.Fields("Adjustment").Value) & "," & Val(.Fields("PAdjustment").Value) & "," & Val(.Fields("RAdjustment").Value) & "," & Val(.Fields("VAT%").Value) & "," & Val(.Fields("VAT").Value) & "," & Val(.Fields("PVAT%").Value) & "," & Val(.Fields("PVAT").Value) & "," & Val(.Fields("RVAT%").Value) & "," & Val(.Fields("RVAT").Value) & "," & Val(.Fields("BillAmount").Value) & "," & Val(.Fields("PBillAmount").Value) & "," & Val(.Fields("RBillAmount").Value) & "," & Val(.Fields("PaidAmount").Value) & "," & Val(.Fields("PPaidAmount").Value) & ",'" & _
                                                                         .Fields("Status").Value & "','" & .Fields("Narration").Value & "','" & .Fields("AdjustmentRemarks").Value & "'," & IIf(IsNull(.Fields("ComputerName").Value), "Null", "'" & .Fields("ComputerName").Value & "'") & "," & Val(.Fields("DeliveredQuantityC").Value) & "," & Val(.Fields("DeliveredQuantityB").Value) & "," & Val(.Fields("BilledMEC").Value) & "," & Val(.Fields("BilledMEB").Value) & ")"
@@ -5116,7 +5308,8 @@ Private Function UpdateOrder(ByVal strOption As String, Optional ByVal POType As
             End With
         ElseIf POType = "3" And Not CheckEmpty(Text7.Text, False) Then 'Miscellaneous Operations
             With rstBookPOChild07
-                cnBookPrintOrder.Execute "INSERT INTO BookPOChild07 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("SubItem").Value & "','" & .Fields("Element").Value & "','" & .Fields("Operation").Value & "'," & Val(.Fields("Number").Value) & ",'" & .Fields("OperationCountName").Value & "','" & .Fields("Size").Value & "'," & Val(.Fields("Quantity").Value) & ",'" & .Fields("CalcMode").Value & "'," & Val(.Fields("CalcValue").Value) & "," & Val(.Fields("Rate").Value) & "," & Val(.Fields("Amount").Value) & "," & Val(.Fields("Adjustment").Value) & "," & Val(.Fields("GST%").Value) & "," & Val(.Fields("GST").Value) & "," & Val(.Fields("BillAmount").Value) & ",'" & .Fields("Remarks").Value & "','" & .Fields("BillNo").Value & "'," & _
+            '.Fields("SubItem").Value
+                cnBookPrintOrder.Execute "INSERT INTO BookPOChild07 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & ItemCode & "','" & .Fields("Element").Value & "','" & .Fields("Operation").Value & "'," & Val(.Fields("Number").Value) & ",'" & .Fields("OperationCountName").Value & "','" & .Fields("Size").Value & "'," & Val(.Fields("Quantity").Value) & ",'" & .Fields("CalcMode").Value & "'," & Val(.Fields("CalcValue").Value) & "," & Val(.Fields("Rate").Value) & "," & Val(.Fields("Amount").Value) & "," & Val(.Fields("Adjustment").Value) & "," & Val(.Fields("GST%").Value) & "," & Val(.Fields("GST").Value) & "," & Val(.Fields("BillAmount").Value) & ",'" & .Fields("Remarks").Value & "','" & .Fields("BillNo").Value & "'," & _
                                                                         IIf(IsNull(.Fields("BillDate").Value), "Null", "'" & Format(.Fields("BillDate").Value, "dd-MMM-yyyy") & "'") & "," & Val(.Fields("PaidAmount").Value) & ",'" & .Fields("Status").Value & "','" & .Fields("Narration").Value & "',0,0,0,0)"
                 Amount = Amount + Val(.Fields("Amount").Value) + Val(.Fields("Adjustment").Value)
             End With
@@ -5128,7 +5321,8 @@ Private Function UpdateOrder(ByVal strOption As String, Optional ByVal POType As
 '                                                                        .Fields("CNDetails").Value & "'," & IIf(IsNull(.Fields("BillFeedDate").Value), "Null", "'" & Format(.Fields("BillFeedDate").Value, "dd-MMM-yyyy") & "'") & ",'" & .Fields("AdjustmentRemarks").Value & "'," & IIf(IsNull(.Fields("ComputerName").Value), "Null", "'" & .Fields("ComputerName").Value & "'") & ",0,0,0,0)"
 '                Amount = Amount + (Val(.Fields("FormFoldRate").Value) * Val(.Fields("ActualQuantity").Value) * (Val(.Fields("BindingForms").Value) + Val(.Fields("ExtraForms").Value))) / 1000 + (Val(.Fields("FormPasteRate").Value) * Val(.Fields("ActualQuantity").Value)) / 1000 + (Val(.Fields("FormStitchRate").Value) * Val(.Fields("ActualQuantity").Value) * (Val(.Fields("BindingForms").Value) + Val(.Fields("ExtraForms").Value))) / 1000 + Val(.Fields("Rate/Book").Value) * Val(.Fields("ActualQuantity").Value) + Val(.Fields("TotalPkts").Value) * Val(.Fields("PktPackRate").Value) + Val(.Fields("TotalBoxes").Value) * Val(.Fields("BoxPackRate").Value) + Val(.Fields("TotalBoxes").Value) * Val(.Fields("CartageRate").Value)
 '                Amount = Amount + Val(.Fields("Adjustment").Value)
-                cnBookPrintOrder.Execute "INSERT INTO BookPOChild08 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("SubItem").Value & "','" & .Fields("BindingType").Value & "','" & .Fields("Element").Value & "','" & .Fields("BinderyProcess").Value & "'," & Val(.Fields("Number").Value) & ",'" & .Fields("OperationCountName").Value & "','" & .Fields("Size").Value & "'," & Val(.Fields("Fraction").Value) & "," & Val(.Fields("Quantity").Value) & ",'" & .Fields("CalcMode").Value & "'," & Val(.Fields("CalcValue").Value) & "," & Val(.Fields("Rate").Value) & "," & Val(.Fields("Amount").Value) & "," & Val(.Fields("Adjustment").Value) & "," & Val(.Fields("GST%").Value) & "," & Val(.Fields("GST").Value) & "," & Val(.Fields("BillAmount").Value) & ",'" & .Fields("Remarks").Value & "','" & .Fields("BillNo").Value & "'," & _
+''" & .Fields("Element").Value & "',
+                cnBookPrintOrder.Execute "INSERT INTO BookPOChild08 VALUES ('" & VchCode & "','" & Format(.Fields("OrderDate").Value, "dd-MMM-yyyy") & "','" & Format(.Fields("TargetDate").Value, "dd-MMM-yyyy") & "','" & .Fields("SubItem").Value & "','" & .Fields("BindingType").Value & "','" & .Fields("BinderyProcess").Value & "'," & Val(.Fields("Number").Value) & ",'" & .Fields("OperationCountName").Value & "','" & .Fields("Size").Value & "'," & Val(.Fields("Fraction").Value) & "," & Val(.Fields("Quantity").Value) & ",'" & .Fields("CalcMode").Value & "'," & Val(.Fields("CalcValue").Value) & "," & Val(.Fields("Rate").Value) & "," & Val(.Fields("Amount").Value) & "," & Val(.Fields("Adjustment").Value) & "," & Val(.Fields("GST%").Value) & "," & Val(.Fields("GST").Value) & "," & Val(.Fields("BillAmount").Value) & ",'" & .Fields("Remarks").Value & "','" & .Fields("BillNo").Value & "'," & _
                                                                         IIf(IsNull(.Fields("BillDate").Value), "Null", "'" & Format(.Fields("BillDate").Value, "dd-MMM-yyyy") & "'") & "," & Val(.Fields("PaidAmount").Value) & ",'" & .Fields("Status").Value & "','" & .Fields("Narration").Value & "',0,0,0,0)"
                 Amount = Amount + Val(.Fields("Amount").Value) + Val(.Fields("Adjustment").Value)
             End With
@@ -5150,12 +5344,15 @@ Public Sub FilterRecord(ByVal SrchFor As String, ByVal SrchText As String)
     End If
 End Sub
 Private Sub Command1_Click()    'Multi form format
-If Left(BookPOType, 1) = "F" Or Left(BookPOType, 1) = "R" Then
+If Left(BookPOType, 1) = "F" Or Left(BookPOType, 1) = "R" Or Left(BookPOType, 1) = "O" Then
     If CheckEmpty(Text5.Text, False) Then Exit Sub
     With FrmBookPOChild05
         .VchCode = CheckNull(rstBookPOParent.Fields("Code").Value)
         .VchType = BookPOType
         .PartyCode = BookPrinterCode
+        rstAccountList.MoveFirst
+        rstAccountList.Find "[Code]='" & BookPrinterCode & "'"
+        .RoundOffQty = rstAccountList.Fields("RoundOffQty").Value
         Set .rstBookPOChild05 = rstBookPOChild05
         .Mh3dLabel51.Caption = IIf(Right(BookPOType, 1) = "P", " Paper Supplied", " Paper by Party")
         On Error Resume Next
@@ -5216,8 +5413,8 @@ Private Sub Command2_Click()    'Multi Element Format
     If rstBookPOChild09.RecordCount = 0 Then Call AddRecord(rstBookPOChild09)
     Set FrmBookPOChild09.rstBookPOChild09 = rstBookPOChild09
     Set FrmBookPOChild09.rstBookPOChild0901 = rstBookPOChild0901
-    FrmBookPOChild09.SizeCode = rstBookList.Fields("TitleSizeCode").Value
-    FrmBookPOChild09.PrinterCode = TitlePrinterCode
+    FrmBookPOChild09.SizeCode = " " 'rstBookList.Fields("TitleSizeCode").Value
+    FrmBookPOChild09.PartyCode = TitlePrinterCode
     rstAccountList.MoveFirst
     rstAccountList.Find "[Code]='" & TitlePrinterCode & "'"
     FrmBookPOChild09.RoundOffQty = rstAccountList.Fields("RoundOffQty").Value
@@ -5252,7 +5449,7 @@ Private Sub Command2_Click()    'Multi Element Format
     If AbortPO Then Toolbar1_ButtonClick Toolbar1.Buttons.Item(5)
 End Sub
 Private Sub Command5_Click()
-If Left(BookPOType, 1) = "F" Or Left(BookPOType, 1) = "R" Then
+If Left(BookPOType, 1) = "F" Or Left(BookPOType, 1) = "R" Or Left(BookPOType, 1) = "O" Then
     If CheckEmpty(Text6.Text, False) Then Exit Sub
     With FrmBookPOChild06
         .VchCode = CheckNull(rstBookPOParent.Fields("Code").Value)
@@ -5522,64 +5719,14 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
     Do While Not rstBookPOChild0801.EOF
         TotalTax = 0: TotalAmount = 0
         HeaderPrinted = False
-'
-'        If OrderType = "TL" Or OrderType = "ALL" Then
-'            If rstBookPOParent.State = adStateOpen Then rstBookPOParent.Close
-'            rstBookPOParent.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,TRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,TRIM(TRIM(I.Pages)+'p/'+TRIM(I.Forms)+'f('+IIF(I.OneColorForms=0,'','1C-'+TRIM(I.OneColorForms)+' ')+IIF(I.TwoColorForms=0,'','2C-'+TRIM(I.TwoColorForms)+' ')+IIF(I.FourColorForms=0,'','4C-'+TRIM(I.FourColorForms)))+')' As Forme,TRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Narration " & _
-'                                                               "FROM ((((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN GeneralMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Laminator='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
-'                rptPaperSlip.Text22.SetText rstBookPOChild08.Fields("BindingType").Value
-'                rptPaperSlip.Text29.SetText Val(rstBookPOChild08.Fields("BindingForms").Value) + Val(rstBookPOChild08.Fields("ExtraForms").Value)
-'            If rstBookPOParent.RecordCount = 0 Then
-'                rptPaperSlip.Section20.Suppress = True
-'            Else
-'                With rstBookPOParent
-'                    .MoveFirst
-'                    BillAmount = 0
-'                    Do While Not .EOF
-'                        BillAmount = BillAmount + Val(.Fields("BillAmount").Value)
-'                        TotalAmount = TotalAmount + Val(.Fields("BillAmount").Value)
-'                        TotalTax = TotalTax + Val(.Fields("GST").Value)
-'                        .MoveNext
-'                    Loop
-'                End With
-'                rstBookPOParent.MoveFirst
-'                If Not HeaderPrinted Then
-'                    rptPaperSlip.Text7.SetText rstBookPOParent.Fields("OrderNo").Value
-'                    rptPaperSlip.Text42.SetText Format(rstBookPOParent.Fields("OrderDate").Value, "dd-MM-yyyy")
-'                    rptPaperSlip.Text12.SetText rstBookPOParent.Fields("Laminator").Value
-'                    rptPaperSlip.Text13.SetText rstBookPOParent.Fields("Item").Value
-'                    rptPaperSlip.Text14.SetText rstBookPOParent.Fields("FinishSize").Value
-'                    rptPaperSlip.Text64.SetText rstBookPOParent.Fields("Forme").Value
-'                    rptPaperSlip.Text15.SetText rstBookPOParent.Fields("FinalQuantity").Value
-'                    EMailID = rstBookPOParent.Fields("EMailId").Value
-'                    OrderNo = rstBookPOParent.Fields("OrderNo").Value
-'                    ItemName = rstBookPOParent.Fields("Item").Value
-'                    Attachment = Trim(rstBookPOParent.Fields("OrderNo").Value)
-'                    HeaderPrinted = True
-'                End If
-'                rptPaperSlip.Subreport4.OpenSubreport.Text25.SetText "Amount Payable : " & Trim(NumberToWords(Round(BillAmount, 0), True))
-'            End If
-'        End If
      If OrderType = "BP" Or OrderType = "ALL" Then
             If rstBookPOChild05.State = adStateOpen Then rstBookPOChild05.Close
      If DatabaseType = "MS SQL" Then
-            rstBookPOChild05.Open "SELECT LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[Forms1-¼],[Forms1-½],[Forms1-1],CHOOSE(CONVERT(NUMERIC,PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper1) As Paper1Name,[PaperWastage1%],PaperConsumptionOther1,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper1) As UOM1," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size2) As [Size2],Pages2,[Forms2-¼],[Forms2-½],[Forms2-1],CHOOSE(CONVERT(NUMERIC,PlateType2),'Deep-etch','PS','Wipe-on','CTP') As Plate2,PrintRate2,PrintAmount2,PlateRate2,PlateAmount2," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(CONVERT(NUMERIC,PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-            rstBookPOChild05.Open "SELECT Trim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,TRIM(TRIM(M1.Pages)+'pages/'+TRIM(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+TRIM(M1.OneColorForms)+'f +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+TRIM(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+TRIM(M1.FourColorForms)+'f '))+' )' As Forme,TRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[Forms1-¼],[Forms1-½],[Forms1-1],CHOOSE(VAL(PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
-                                  "(SELECT TRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper1) As Paper1Name,[PaperWastage1%],PaperConsumptionOther1,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper1) As UOM1," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size2) As [Size2],Pages2,[Forms2-¼],[Forms2-½],[Forms2-1],CHOOSE(VAL(PlateType2),'Deep-etch','PS','Wipe-on','CTP') As Plate2,PrintRate2,PrintAmount2,PlateRate2,PlateAmount2," & _
-                                  "(SELECT TRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(VAL(PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
-                                  "(SELECT TRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT TRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+                    rstBookPOChild05.Open "SELECT IIF(C.ElementPrintName<>'',C.ElementPrintName,(SELECT PrintName FROM ElementMaster WHERE Code=C.Element)) As Element,LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Forms) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,C.DuplexPrinting,BillingQuantity,(SELECT PrintName+'/'+Convert(Varchar,C.[Pages/Form]) FROM GeneralMaster WHERE Code=C.Size) As [Size],C.Pages,(SELECT PrintName FROM GeneralMaster WHERE Code=C.Color) As Col,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T]," & _
+                                          "(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
+                                          "(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,(SELECT ''+LTrim(M6.PrintName)+' ' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty," & _
+                                          "C.PaperConsumptionsheets,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Remarks,P.BookPrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref,C.[TotalForms-¼],C.[TotalForms-½],C.[TotalForms-1-F&B],C.[TotalForms-1-W&T],C.[TotalPlates-¼],C.[TotalPlates-½],C.[TotalPlates-1-F&B],C.[TotalPlates-1-W&T],C.[RevisedPlates]  " & _
+                                          "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
                 rptPaperSlip.Text22.SetText rstBookPOChild08.Fields("BindingType").Value
                 rptPaperSlip.Text29.SetText Val(rstBookPOChild08.Fields("BindingForms").Value) + Val(rstBookPOChild08.Fields("ExtraForms").Value)
@@ -5608,13 +5755,12 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
         If OrderType = "TP" Or OrderType = "ALL" Then
     If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
                 If DatabaseType = "MS SQL" Then
-            rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1-Col-'+LTrim(M1.OneColorForms)+' ')+IIF(M1.TwoColorForms=0,'','f + 2-Col-'+LTrim(M1.TwoColorForms)+' ')+IIF(M1.FourColorForms=0,'','f + 4-Col-'+LTrim(M1.FourColorForms)+'f '))+'f)' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
-                                  "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,CHOOSE(CONVERT(NUMERIC,PlateTypeBack),'Deep-etch','PS','Wipe-on','CTP') As PlateBack,C.Pages  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-            rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,Trim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,TRIM(TRIM(M1.Pages)+'pages/'+TRIM(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1-Col_'+TRIM(M1.OneColorForms)+'f +')+IIF(M1.TwoColorForms=0,'','2-Col_'+TRIM(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' + 4-Col-'+TRIM(M1.FourColorForms)+'f '))+')' As Forme,TRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],CHOOSE(VAL(PlateType),'Deep-etch','PS','Wipe-on','CTP') As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount,(SELECT TRIM(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
-                                  "[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT TRIM(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,CHOOSE(VAL(PlateTypeBack),'Deep-etch','PS','Wipe-on','CTP') As PlateBack,C.Pages  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+                rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,C.Pages," & _
+                                                                   "LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Sets) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,(SELECT Value1 FROM GeneralMaster WHERE Code=C.FrontPrintingType) As FrontPrintingType,(SELECT Value1 FROM GeneralMaster WHERE Code=C.BackPrintingType) As BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateTypeBack) As PlateBack,C.TotalPlates,C.TotalPlatesBack," & _
+                                                                   "PrintRate,PrintRateBack,PrintAmount,PlateRate,PlateRateBack,PlateAmount,(SELECT LTRIM(M3.PrintName)+' (UOM : '+LTRIM(M4.PrintName)+'='+LTRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
+                                                                   "[PaperWastage%],[PaperWastage%Back],PaperWastageFinal,PaperConsumptionOther,PaperConsumptionKg,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Remarks,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperWastageMinBack,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Sets,(SELECT '('+LTRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,C.Ref,P.Code As VchCode,C.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty,PicData,PicType " & _
+                                                                   "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+    
     End If
 
                 rptPaperSlip.Text22.SetText rstBookPOChild08.Fields("BindingType").Value
@@ -5829,7 +5975,7 @@ Public Sub PaperSlip(ByVal OrderCode As String, Optional ByVal Note As String, O
     Screen.MousePointer = vbNormal
 End Sub
 Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Optional ByVal OutputType As String, Optional ByVal OrderType As String, Optional ByVal BookPOType As String)
-    Dim oOutlookMsg As Outlook.MailItem, HeaderPrinted As Boolean, OrderNo As String, ItemName As String, TotalTax As Double, TotalAmount As Double, BillAmount As Double
+    Dim oOutlookMsg As Outlook.MailItem, HeaderPrinted As Boolean, OrderNo As String, ItemName As String, TotalTax As Double, TotalAmount As Double, BillAmount As Double, TotalPages As Double, TotalForme As Double
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     rptJobCard.Text1.SetText IIf(Right(BookPOType, 1) = "S", "Job-Card ", "Job-Order")
@@ -5880,28 +6026,23 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
         If OrderType = "BP" Or OrderType = "ALL" Then
             If rstBookPOChild05.State = adStateOpen Then rstBookPOChild05.Close
     If DatabaseType = "MS SQL" Then
-            rstBookPOChild05.Open "SELECT LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[Forms1-¼],[Forms1-½],[Forms1-1],CHOOSE(CONVERT(NUMERIC,PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper1) As Paper1Name,[PaperWastage1%],PaperConsumptionOther1,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper1) As UOM1," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size2) As [Size2],Pages2,[Forms2-¼],[Forms2-½],[Forms2-1],CHOOSE(CONVERT(NUMERIC,PlateType2),'Deep-etch','PS','Wipe-on','CTP') As Plate2,PrintRate2,PrintAmount2,PlateRate2,PlateAmount2," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(CONVERT(NUMERIC,PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-            rstBookPOChild05.Open "SELECT LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[Forms1-¼],[Forms1-½],[Forms1-1],CHOOSE(VAL(PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper1) As Paper1Name,[PaperWastage1%],PaperConsumptionOther1,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper1) As UOM1," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size2) As [Size2],Pages2,[Forms2-¼],[Forms2-½],[Forms2-1],CHOOSE(VAL(PlateType2),'Deep-etch','PS','Wipe-on','CTP') As Plate2,PrintRate2,PrintAmount2,PlateRate2,PlateAmount2," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper2) As UOM2," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[Forms4-¼],[Forms4-½],[Forms4-1],CHOOSE(VAL(PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
-                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper4) As UOM4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,C.Ref  " & _
+            rstBookPOChild05.Open "SELECT IIF(C.ElementPrintName<>'',C.ElementPrintName,(SELECT PrintName FROM ElementMaster WHERE Code=C.Element)) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Forms) As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,C.DuplexPrinting,BillingQuantity,(SELECT PrintName+'/'+Convert(Varchar,C.[Pages/Form]) FROM GeneralMaster WHERE Code=C.Size) As [Size],C.Pages,(SELECT PrintName FROM GeneralMaster WHERE Code=C.Color) As Col,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
+                                  "(SELECT LTrim(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[aPaperWastage%],aPaperWastageMin,[aWastage/Set],aPaperWastageFinal,aPaperConsumptionOther,aPaperConsumptionsheets,aPaperConsumptionKg,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty," & _
+                                  "Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,C.Narration,P.BookPrinter,PlateMaker,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref,C.[TotalForms-¼],C.[TotalForms-½],C.[TotalForms-1-F&B],C.[TotalForms-1-W&T],C.[aTotalPlates-¼],C.[aTotalPlates-½],C.[aTotalPlates-1-F&B],C.[aTotalPlates-1-W&T],C.[aRevisedPlates]  " & _
                                   "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
             
             If rstBookPOChild05.RecordCount = 0 Then
                 rptJobCard.Section13.Suppress = True
             Else
+            With rstBookPOChild05
+                .MoveFirst
+                Do While Not .EOF
+                    TotalPages = TotalPages + Val(rstBookPOChild05.Fields("Pages").Value)
+                    TotalForme = TotalForme + Val(rstBookPOChild05.Fields("Forme").Value)
+                    .MoveNext
+                Loop
+            End With
                 rstBookPOChild05.MoveFirst
                 TotalAmount = TotalAmount + IIf(rstBookPOChild05.Fields("BookPrinter").Value <> rstBookPOChild05.Fields("PlateMaker").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("PBillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value)
                 TotalTax = TotalTax + IIf(rstBookPOChild05.Fields("BookPrinter").Value <> rstBookPOChild05.Fields("PlateMaker").Value, rstBookPOChild05.Fields("VAT").Value + rstBookPOChild05.Fields("RVAT").Value, rstBookPOChild05.Fields("VAT").Value + rstBookPOChild05.Fields("PVAT").Value + rstBookPOChild05.Fields("RVAT").Value)
@@ -5911,7 +6052,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
                 rptJobCard.Text12.SetText rstBookPOChild05.Fields("TextPrinter").Value
                 rptJobCard.Text13.SetText rstBookPOChild05.Fields("Item").Value
                 rptJobCard.Text14.SetText rstBookPOChild05.Fields("FinishSize").Value
-                rptJobCard.Text64.SetText rstBookPOChild05.Fields("Forme").Value
+                rptJobCard.Text64.SetText "(" & TotalPages & " Pages/" & TotalForme & " f )"
                 rptJobCard.Text15.SetText rstBookPOChild05.Fields("FinalQuantity").Value       'FinalQuantity ("ActualQuantity").Value
                 rptJobCard.Subreport1.OpenSubreport.Text25.SetText " (" & Trim(NumberToWords(IIf(rstBookPOChild05.Fields("BookPrinter").Value <> rstBookPOChild05.Fields("PlateMaker").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("PBillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value), True)) & ")"
                 EMailID = rstBookPOChild05.Fields("EMailId").Value
@@ -5924,17 +6065,21 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
         If OrderType = "TP" Or OrderType = "ALL" Then
             If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
     If DatabaseType = "MS SQL" Then
-            rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
-                                  "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,CHOOSE(CONVERT(NUMERIC,PlateTypeBack),'Deep-etch','PS','Wipe-on','CTP') As PlateBack,C.Pages  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-            rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'pages/'+LTrim(M1.Forms)+'f ('+IIF(M1.OneColorForms=0,'','1-Col_'+LTrim(M1.OneColorForms)+'f  +')+IIF(M1.TwoColorForms=0,'',' 2-Col_'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'','+ 4-Col_'+LTrim(M1.FourColorForms)+'f '))+' )' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],CHOOSE(VAL(PlateType),'Deep-etch','PS','Wipe-on','CTP') As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount,(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
-                                  "[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,CHOOSE(VAL(PlateTypeBack),'Deep-etch','PS','Wipe-on','CTP') As PlateBack,C.Pages  " & _
+            rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Sets) As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,(SELECT Value1 FROM GeneralMaster WHERE Code=C.FrontPrintingType) As FrontPrintingType,(SELECT Value1 FROM GeneralMaster WHERE Code=C.BackPrintingType) As BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
+                                  "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,C.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,P.EstQty01 As FinalQuantity,C.Sets,C.TotalPlates,C.TotalPlatesBack,C.Ref,(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateTypeBack) As PlateBack,C.Pages  " & _
                                   "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
             If rstBookPOChild06.RecordCount = 0 Then
                 rptJobCard.Section4.Suppress = True
             Else
+            With rstBookPOChild06
+                .MoveFirst
+                Do While Not .EOF
+                    TotalPages = TotalPages + Val(rstBookPOChild06.Fields("Pages").Value)
+                    TotalForme = TotalForme + Val(rstBookPOChild06.Fields("Sets").Value)
+                    .MoveNext
+                Loop
+            End With
                 rstBookPOChild06.MoveFirst
                 TotalAmount = TotalAmount + IIf(rstBookPOChild06.Fields("TitlePrinter").Value <> rstBookPOChild06.Fields("PlateMaker").Value, rstBookPOChild06.Fields("BillAmount").Value + rstBookPOChild06.Fields("RBillAmount").Value, rstBookPOChild06.Fields("BillAmount").Value + rstBookPOChild06.Fields("PBillAmount").Value + rstBookPOChild06.Fields("RBillAmount").Value)
                 TotalTax = TotalTax + IIf(rstBookPOChild06.Fields("TitlePrinter").Value <> rstBookPOChild06.Fields("PlateMaker").Value, rstBookPOChild06.Fields("VAT").Value + rstBookPOChild06.Fields("RVAT").Value, rstBookPOChild06.Fields("VAT").Value + rstBookPOChild06.Fields("PVAT").Value + rstBookPOChild06.Fields("RVAT").Value)
@@ -5945,7 +6090,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
                     rptJobCard.Text12.SetText rstBookPOChild06.Fields("CoverPrinter").Value
                     rptJobCard.Text13.SetText rstBookPOChild06.Fields("Item").Value
                     rptJobCard.Text14.SetText rstBookPOChild06.Fields("FinishSize").Value
-                    rptJobCard.Text64.SetText rstBookPOChild06.Fields("Forme").Value
+                    rptJobCard.Text64.SetText "(" & TotalPages & " Pages/" & TotalForme & " f )"
                     rptJobCard.Text15.SetText rstBookPOChild06.Fields("FinalQuantity").Value
                     EMailID = rstBookPOChild06.Fields("EMailId").Value
                     OrderNo = rstBookPOChild06.Fields("OrderNo").Value
@@ -6003,7 +6148,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
         End If
         If OrderType = "TL" Or OrderType = "ALL" Then
             If rstBookPOChild07.State = adStateOpen Then rstBookPOChild07.Close
-            rstBookPOChild07.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTrim(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,LTrim(LTrim(I.Pages)+'p/'+LTrim(I.Forms)+'f('+IIF(I.OneColorForms=0,'','1C-'+LTrim(I.OneColorForms)+'f ')+IIF(I.TwoColorForms=0,'','2Col_'+LTrim(I.TwoColorForms)+'f ')+IIF(I.FourColorForms=0,'','4C-'+LTrim(I.FourColorForms)+'f '))+')' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Narration,P.EstQty01 As FinalQuantity " & _
+            rstBookPOChild07.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTrim(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,C.Narration,P.EstQty01 As FinalQuantity " & _
                                                                "FROM ((((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) Left JOIN BookMaster I ON P.Book=I.Code) Left JOIN GeneralMaster FS ON I.FinishSize=FS.Code) Left JOIN GeneralMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Laminator='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild07.RecordCount = 0 Then
                 rptJobCard.Section20.Suppress = True
@@ -6038,9 +6183,8 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
         End If
         If OrderType = "BB" Or OrderType = "ALL" Then
             If rstBookPOChild08.State = adStateOpen Then rstBookPOChild08.Close
-            rstBookPOChild08.Open "SELECT LTrim(M1.PrintName)+IIF(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'p/'+LTrim(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1C-'+LTrim(M1.OneColorForms)+' ')+IIF(M1.TwoColorForms=0,'','2Col_'+LTrim(M1.TwoColorForms)+' ')+IIF(M1.FourColorForms=0,'','4C-'+LTrim(M1.FourColorForms)))+')' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,C.ActualQuantity, " & _
-                                  "C.BillingQuantity,(SELECT PrintName FROM GeneralMaster WHERE Code=C.BindingType) As BindingType,BindingForms,ExtraForms,FormFoldRate,FormPasteRate,FormStitchRate,[Rate/Book],TotalPkts,PktPackRate,TotalBoxes,BoxPackRate,CartageRate,Adjustment,[VAT%],VAT,BillAmount,C.Remarks,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,M1.Narration,P.EstQty01 As FinalQuantity " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+            rstBookPOChild08.Open "SELECT E.Name As SubItem,O.Name As Operation,[Number],C.OperationCountName,(Select Name From GeneralMaster Where Code= C.BindingType) As BindingType,OS.Name As [Size],Quantity,'/ '+M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,C.Narration,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+                                                    "FROM ((((((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN BookMaster E ON C.SubItem=E.Code) INNER JOIN GeneralMaster O ON C.BinderyProcess=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild08.RecordCount = 0 Then
                 rptJobCard.Section11.Suppress = True
             Else
@@ -6053,6 +6197,7 @@ Public Sub JobCard(ByVal OrderCode As String, Optional ByVal Note As String, Opt
                     rptJobCard.Text12.SetText rstBookPOChild08.Fields("Binder").Value
                     rptJobCard.Text13.SetText rstBookPOChild08.Fields("Item").Value
                     rptJobCard.Text14.SetText rstBookPOChild08.Fields("FinishSize").Value
+                    If rstBookPOChild08.Fields("Forme").Value = "" Then rptJobCard.Text59.SetText ""
                     rptJobCard.Text64.SetText rstBookPOChild08.Fields("Forme").Value
                     rptJobCard.Text15.SetText rstBookPOChild08.Fields("FinalQuantity").Value
                     EMailID = rstBookPOChild08.Fields("EMailId").Value
@@ -6544,23 +6689,11 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
         If OrderType = "BP" Or OrderType = "ALL" Then
             If rstBookPOChild05.State = adStateOpen Then rstBookPOChild05.Close
     If DatabaseType = "MS SQL" Then
-            rstBookPOChild05.Open "SELECT LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'-pages/'+LTrim(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1Col-'+LTrim(M1.OneColorForms)+'f ')+IIF(M1.TwoColorForms=0,'',' 2Col-'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' 4Col-'+LTrim(M1.FourColorForms)))+'f)' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[TotalForms1-¼],[TotalForms1-½],[TotalForms1-1],CHOOSE(CONVERT(NUMERIC,PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
-                                  "(SELECT LTrim(M3.PrintName)+' (UOM : '+LTrim(M4.PrintName)+'='+LTrim(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper1) As Paper1Name,[PaperWastage1%],PaperConsumptionOther1," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size2) As [Size2],Pages2,[TotalForms2-¼],[TotalForms2-½],[TotalForms2-1],CHOOSE(CONVERT(NUMERIC,PlateType2),'Deep-etch','PS','Wipe-on','CTP') As Plate2,PrintRate2,PrintAmount2,PlateRate2,PlateAmount2," & _
-                                  "(SELECT LTrim(M3.PrintName)+' (UOM : '+LTrim(M4.PrintName)+'='+LTrim(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[TotalForms4-¼],[TotalForms4-½],[TotalForms4-1],CHOOSE(CONVERT(NUMERIC,PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
-                                  "(SELECT LTrim(M3.PrintName)+' (UOM : '+LTrim(M4.PrintName)+'='+LTrim(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-            rstBookPOChild05.Open "SELECT Trim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,TRIM(TRIM(M1.Pages)+'-pages/'+TRIM(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1Col-'+TRIM(M1.OneColorForms)+'f ')+IIF(M1.TwoColorForms=0,'',' 2Col-'+TRIM(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' 4Col-'+TRIM(M1.FourColorForms)))+'f)' As Forme,TRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,M1.DuplexPrinting,BillingQuantity01,BillingQuantity02,(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size1) As [Size1],Pages1,[TotalForms1-¼],[TotalForms1-½],[TotalForms1-1],CHOOSE(VAL(PlateType1),'Deep-etch','PS','Wipe-on','CTP') As Plate1,PrintRate1,PrintAmount1,PlateRate1,PlateAmount1," & _
-                                  "(SELECT TRIM(M3.PrintName)+' (UOM : '+TRIM(M4.PrintName)+'='+TRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper1) As Paper1Name,[PaperWastage1%],PaperConsumptionOther1," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size2) As [Size2],Pages2,[TotalForms2-¼],[TotalForms2-½],[TotalForms2-1],CHOOSE(VAL(PlateType2),'Deep-etch','PS','Wipe-on','CTP') As Plate2,PrintRate2,PrintAmount2,PlateRate2,PlateAmount2," & _
-                                  "(SELECT TRIM(M3.PrintName)+' (UOM : '+TRIM(M4.PrintName)+'='+TRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper2) As Paper2Name,[PaperWastage2%],PaperConsumptionOther2," & _
-                                  "(SELECT PrintName+'/'+CHOOSE(M1.FormType,'08','16','04','12','24','32','64','06') FROM GeneralMaster WHERE Code=C.Size4) As [Size4],Pages4,[TotalForms4-¼],[TotalForms4-½],[TotalForms4-1],CHOOSE(VAL(PlateType4),'Deep-etch','PS','Wipe-on','CTP') As Plate4,PrintRate4,PrintAmount4,PlateRate4,PlateAmount4," & _
-                                  "(SELECT TRIM(M3.PrintName)+' (UOM : '+TRIM(M4.PrintName)+'='+TRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper4) As Paper4Name,[PaperWastage4%],PaperConsumptionOther4," & _
-                                  "TotalPaperConsumption,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT TRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin1,PaperWastageMin2,PaperWastageMin4,PaperRate1,PaperRate2,PaperRate4,PaperAmount1,PaperAmount2,PaperAmount4,RBillAmount,RAdjustment,[RVAT%],RVAT,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+                    rstBookPOChild05.Open "SELECT IIF(C.ElementPrintName<>'',C.ElementPrintName,(SELECT PrintName FROM ElementMaster WHERE Code=C.Element)) As Element,LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Forms) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,C.DuplexPrinting,BillingQuantity,(SELECT PrintName+'/'+Convert(Varchar,C.[Pages/Form]) FROM GeneralMaster WHERE Code=C.Size) As [Size],C.Pages,(SELECT PrintName FROM GeneralMaster WHERE Code=C.Color) As Col,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T]," & _
+                                          "(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
+                                          "(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,(SELECT ''+LTrim(M6.PrintName)+' ' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty," & _
+                                          "C.PaperConsumptionsheets,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Remarks,P.BookPrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref,C.[TotalForms-¼],C.[TotalForms-½],C.[TotalForms-1-F&B],C.[TotalForms-1-W&T],C.[TotalPlates-¼],C.[TotalPlates-½],C.[TotalPlates-1-F&B],C.[TotalPlates-1-W&T],C.[RevisedPlates]  " & _
+                                          "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
             If rstBookPOChild05.RecordCount = 0 Then
                 rptQuotationFormat.Section13.Suppress = True
@@ -6596,13 +6729,12 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
         If OrderType = "TP" Or OrderType = "ALL" Then
             If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
     If DatabaseType = "MS SQL" Then
-            rstBookPOChild06.Open "SELECT LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'-pages/'+LTrim(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1Col-'+LTrim(M1.OneColorForms)+'f ')+IIF(M1.TwoColorForms=0,'',' 2Col-'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' 4Col-'+LTrim(M1.FourColorForms)))+'f)' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount,(SELECT LTrim(M3.PrintName)+' (UOM : '+LTrim(M4.PrintName)+'='+LTrim(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
-                                  "[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTrim(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Sets,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-            rstBookPOChild06.Open "SELECT Trim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,TRIM(TRIM(M1.Pages)+'-pages/'+TRIM(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1Col-'+TRIM(M1.OneColorForms)+'f ')+IIF(M1.TwoColorForms=0,'',' 2Col-'+TRIM(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' 4Col-'+TRIM(M1.FourColorForms)))+'f)' As Forme,TRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],CHOOSE(VAL(PlateType),'Deep-etch','PS','Wipe-on','CTP') As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount,(SELECT TRIM(M3.PrintName)+' (UOM : '+TRIM(M4.PrintName)+'='+TRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
-                                  "[PaperWastage%],PaperConsumptionOther,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT TRIM(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Sets,(SELECT '('+TRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,C.Ref  " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+        If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
+                rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,C.Pages," & _
+                                                                   "LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Sets) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,(SELECT Value1 FROM GeneralMaster WHERE Code=C.FrontPrintingType) As FrontPrintingType,(SELECT Value1 FROM GeneralMaster WHERE Code=C.BackPrintingType) As BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateTypeBack) As PlateBack,C.TotalPlates,C.TotalPlatesBack," & _
+                                                                   "PrintRate,PrintRateBack,PrintAmount,PlateRate,PlateRateBack,PlateAmount,(SELECT LTRIM(M3.PrintName)+' (UOM : '+LTRIM(M4.PrintName)+'='+LTRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
+                                                                   "[PaperWastage%],[PaperWastage%Back],PaperWastageFinal,PaperConsumptionOther,PaperConsumptionKg,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Remarks,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperWastageMinBack,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Sets,(SELECT '('+LTRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,C.Ref,P.Code As VchCode,C.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty,PicData,PicType " & _
+                                                                   "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
             If rstBookPOChild06.RecordCount = 0 Then
                 rptQuotationFormat.Section4.Suppress = True
@@ -6641,15 +6773,10 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
         If OrderType = "CB" Or OrderType = "ALL" Then
                 If rstBookPOChild10.State = adStateOpen Then rstBookPOChild10.Close
     If DatabaseType = "MS SQL" Then
-        rstBookPOChild10.Open "SELECT LTrim(P.Name) As OrderNo,P.Date As OrderDate,TargetDate,Plate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,(SELECT PrintName FROM AccountMaster WHERE Code=C1.PlateMaker) As PlateMakers,CHOOSE(CONVERT(NUMERIC,C1.PlateType),'Deep-etch','PS','Wipe-on','CTP') As PlateName,C1.TotalFormsFront,C1.TotalFormsBack,C1.PrintRateFront,C1.PrintRateBack,C1.[GST%],C1.GST,C1.Adjustment,C1.PrintAmount,C1.TotalPlates,C1.PlateRate,C1.PAdjustment,C1.[PGST%],C1.PGST,PlateAmount," & _
-                          "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C1.Paper) As PaperName,C1.[PaperWastage%],C1.[PaperConsumptionOther],C1.Remarks,(SELECT PrintName FROM GeneralMaster WHERE Code=C1.[Size]) As [Size],LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,C2.ActualQuantity,[Ups/Plate],C2.PrintingQuantity,C2.BillingQuantity,LTrim(C2.FrontPrintingColor)+'+'+LTrim(C2.BackPrintingColor) + ' ('+IIF(C1.Imposition='F','F&B','W&T')+')' As PrintingType,P.TitlePrinter AS TitlePrinterCode ,C1.PlateMaker As PlateMakerCode," & _
-                          "PaperWastageMin,PaperRate,PaperAmountBT,RAdjustment,[RGST%],RGST,PaperAmount,PrintAmountBT,PlateAmountBT,(SELECT EMail FROM AccountMaster WHERE Code=P.TitlePrinter) As EMail,Imposition,PlateType,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOM,(SELECT LTrim(MAX(PrintingQuantity)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxPrintingQty, " & _
-                          "P.EstQty01 As FinalQuantity,P.ProfitMargin,(SELECT LTrim(MAX(FrontPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxFrontColor,(SELECT LTrim(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxBackColor FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-        rstBookPOChild10.Open "SELECT LTrim(P.Name) As OrderNo,P.Date As OrderDate,TargetDate,Plate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,(SELECT PrintName FROM AccountMaster WHERE Code=C1.PlateMaker) As PlateMakers,CHOOSE(VAL(C1.PlateType),'Deep-etch','PS','Wipe-on','CTP') As PlateName,C1.TotalFormsFront,C1.TotalFormsBack,C1.PrintRateFront,C1.PrintRateBack,[C1.GST%],C1.GST,C1.Adjustment,C1.PrintAmount,C1.TotalPlates,C1.PlateRate,C1.PAdjustment,[C1.PGST%],C1.PGST,PlateAmount," & _
-                          "(SELECT LTrim(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C1.Paper) As PaperName,C1.[PaperWastage%],C1.[PaperConsumptionOther],C1.Remarks,(SELECT PrintName FROM GeneralMaster WHERE Code=C1.[Size]) As [Size],LTrim(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,C2.ActualQuantity,[Ups/Plate],C2.PrintingQuantity,C2.BillingQuantity,LTrim(C2.FrontPrintingColor)+'+'+LTrim(C2.BackPrintingColor) + ' ('+IIF(C1.Imposition='F','F&B','W&T')+')' As PrintingType,P.TitlePrinter AS TitlePrinterCode ,C1.PlateMaker As PlateMakerCode," & _
-                          "PaperWastageMin,PaperRate,PaperAmountBT,RAdjustment,[RGST%],RGST,PaperAmount,PrintAmountBT,PlateAmountBT,(SELECT EMail FROM AccountMaster WHERE Code=P.TitlePrinter) As EMail,Imposition,PlateType,(SELECT '('+LTrim(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOM,(SELECT LTrim(MAX(PrintingQuantity)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxPrintingQty, " & _
-                          "P.EstQty01 As FinalQuantity,P.ProfitMargin,(SELECT LTrim(MAX(FrontPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxFrontColor,(SELECT LTrim(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxBackColor FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+                rstBookPOChild10.Open "SELECT LTRIM(P.Name) As OrderNo,P.Date As OrderDate,TargetDate,Plate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,(SELECT PrintName FROM AccountMaster WHERE Code=C1.PlateMaker) As PlateMakers,CHOOSE(CONVERT(NUMERIC,C1.PlateType),'Deep-etch','PS','Wipe-on','CTP') As PlateName,C1.TotalFormsFront,C1.TotalFormsBack,C1.PrintRateFront,C1.PrintRateBack,C1.[GST%],C1.GST,C1.Adjustment,C1.PrintAmount,C1.TotalPlates,C1.PlateRate,C1.PAdjustment,C1.[PGST%],C1.PGST,PlateAmount," & _
+                          "(SELECT LTRIM(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C1.Paper) As PaperName,C1.[PaperWastage%],C1.[PaperConsumptionOther],C1.Remarks,(SELECT PrintName FROM GeneralMaster WHERE Code=C1.[Size]) As [Size],LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,C2.ActualQuantity,[Ups/Plate],C2.PrintingQuantity,C2.BillingQuantity,LTRIM(C2.FrontPrintingColor)+'+'+LTRIM(C2.BackPrintingColor) + ' ('+IIF(C1.Imposition='F','F&B','W&T')+')' As PrintingType,P.TitlePrinter AS TitlePrinterCode,C1.PlateMaker As PlateMakerCode," & _
+                          "PaperWastageMin,PaperRate,PaperAmountBT,RAdjustment,[RGST%],RGST,PaperAmount,PrintAmountBT,PlateAmountBT,(SELECT EMail FROM AccountMaster WHERE Code=P.TitlePrinter) As EMail,Imposition,PlateType,(SELECT '('+LTRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOM,(SELECT LTRIM(MAX(PrintingQuantity)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxPrintingQty, " & _
+                          "P.EstQty01 As FinalQuantity,P.ProfitMargin,(SELECT LTRIM(MAX(FrontPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxFrontColor,(SELECT LTRIM(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxBackColor,C1.Calculation,C1.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOMqty,(Select Name From BookMaster Where Code=P.Book) As oItem FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "'AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
                 If rstBookPOChild10.RecordCount = 0 Then
                    rptQuotationFormat.Section16.Suppress = True
@@ -6687,8 +6814,8 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
         End If
         If OrderType = "TL" Or OrderType = "ALL" Then
             If rstBookPOChild07.State = adStateOpen Then rstBookPOChild07.Close
-            rstBookPOChild07.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTrim(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,LTrim(LTrim(I.Pages)+'-pages/'+LTrim(I.Forms)+'f('+IIF(I.OneColorForms=0,'',' 1Col-'+LTrim(I.OneColorForms)+'f ')+IIF(I.TwoColorForms=0,'',' 2Col-'+LTrim(I.TwoColorForms)+'f ')+IIF(I.FourColorForms=0,'',' 4Col-'+LTrim(I.FourColorForms)))+'f)' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Narration,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
-                                                               "FROM ((((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN GeneralMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Laminator='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+            rstBookPOChild07.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+                                                               "FROM ((((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Laminator='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild07.RecordCount = 0 Then
                 rptQuotationFormat.Section20.Suppress = True
             Else
@@ -6731,9 +6858,8 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
         End If
         If OrderType = "BB" Or OrderType = "ALL" Then
             If rstBookPOChild08.State = adStateOpen Then rstBookPOChild08.Close
-            rstBookPOChild08.Open "SELECT LTrim(M1.PrintName)+IIF(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTrim(LTrim(M1.Pages)+'-pages/'+LTrim(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1Col-'+LTrim(M1.OneColorForms)+'f ')+IIF(M1.TwoColorForms=0,'',' 2Col-'+LTrim(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' 4Col-'+LTrim(M1.FourColorForms)))+'f)' As Forme,LTrim(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,C.ActualQuantity, " & _
-                                  "C.BillingQuantity,(SELECT PrintName FROM GeneralMaster WHERE Code=C.BindingType) As BindingType,BindingForms,ExtraForms,FormFoldRate,FormPasteRate,FormStitchRate,[Rate/Book],TotalPkts,PktPackRate,TotalBoxes,BoxPackRate,CartageRate,Adjustment,[VAT%],VAT,BillAmount,C.Remarks,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,M1.Narration,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
-                                  "FROM ((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+                rstBookPOChild08.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,'/ '+M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+                                                                   "FROM ((((((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN BookMaster E ON C.SubItem=E.Code) INNER JOIN GeneralMaster O ON C.BinderyProcess=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild08.RecordCount = 0 Then
                 rptQuotationFormat.Section11.Suppress = True
             Else
@@ -6767,27 +6893,11 @@ Public Sub PrintQuotationFormat(ByVal OrderCode As String, Optional ByVal Note A
         End If
         If rstBookPOChild09.State = adStateOpen Then rstBookPOChild09.Close
     If DatabaseType = "MS SQL" Then
-        rstBookPOChild09.Open "SELECT Choose(CONVERT(NUMERIC,Category),(SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item),(SELECT LTrim(M3.PrintName)+' (UOM : '+LTrim(M4.PrintName)+'='+LTrim(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='R' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item)) As ItemName,[Consumption/Item],OrderQuantity,TotalConsumption,Rate,Amount " & _
+        rstBookPOChild09.Open "SELECT Choose(LTrim(Category),(SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item),(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='R' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item)) As ItemName,[Consumption/Item],OrderQuantity,TotalConsumption,Rate,Amount,(Select EstQty01 from BookPoParent where Code=T.Code)*1 as FinalQuantity,(Select ProfitMargin from BookPoParent where Code=T.Code)*1 as ProfitMargin " & _
                               "FROM BookPOChild0801 T WHERE T.Code='" & OrderCode & "' AND T.Vendor='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-    Else
-        rstBookPOChild09.Open "SELECT Choose(Val(Category),(SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item),(SELECT TRIM(M3.PrintName)+' (UOM : '+TRIM(M4.PrintName)+'='+TRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='R' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item)) As ItemName,[Consumption/Item],OrderQuantity,TotalConsumption,Rate,Amount " & _
-                              "FROM BookPOChild0801 T WHERE T.Code='" & OrderCode & "' AND T.Vendor='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+
     End If
         If rstBookPOChild09.RecordCount = 0 Then rptQuotationFormat.Section12.Suppress = True
-'            Else
-'                rstBookPOChild08.MoveFirst
-'                TotalAmount = TotalAmount + Val(rstBookPOChild08.Fields("BillAmount").Value)
-'                TotalTax = TotalTax + Val(rstBookPOChild08.Fields("VAT").Value)
-'                TaxableAmount = (TotalAmount - TotalTax)
-'                UnitRateBT = TaxableAmount / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'                UnitRate = TotalAmount / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'
-'                PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild08.Fields("ProfitMargin").Value) / 100))
-'                PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild08.Fields("ProfitMargin").Value) / 100))
-'                PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'                PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'
-'
         Screen.MousePointer = vbNormal
         If rstCompanyMaster.State = adStateClosed Then rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,EMail,Website FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
         rptQuotationFormat.Text2.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
@@ -6868,8 +6978,11 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
     Dim oOutlookMsg As Outlook.MailItem, HeaderPrinted As Boolean, OrderNo As String, ItemName As String, TotalTax As Double, TotalAmount As Double, BillAmount As Double, PBillAmount As Double, RBillAmount As Double, BOMAmount As Double, TotalPages As Double, TotalForme As Double
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    'rptBookPrintOrder02.Text1.SetText IIf(cRpt = "1", IIf(Right(BookPOType, 1) = "S", "Proforma Invoice", "Item Order"), IIf(Right(BookPOType, 1) = "S", "Quotation/Estimation", "Estimation/Costing"))
+    If cRpt = "A" Then
+        rptQuotationFormat.Text1.SetText IIf(Left(BookPOType, 1) = "D", "Digital Printing Order", IIf(Right(BookPOType, 1) = "S", "Quotation/Estimation", "Estimation/Costing"))
+    Else
     rptBookPrintOrder02.Text1.SetText IIf(Left(BookPOType, 1) = "D", "Digital Printing Order", IIf(Right(BookPOType, 1) = "S", "Proforma Invoice", "Item Order"))
+    End If
     If Right(BookPOType, 1) = "P" Then
         rptBookPrintOrder02.Section17.Suppress = True
     Else
@@ -6882,6 +6995,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder02.Section15.Suppress = True
         rptBookPrintOrder02.Section16.Suppress = True
         rptBookPrintOrder02.Section21.Suppress = True
+        rptBookPrintOrder02.Section22.Suppress = True
     ElseIf OrderType = "TP" Then
         rptBookPrintOrder02.Section13.Suppress = True
         rptBookPrintOrder02.Section20.Suppress = True
@@ -6889,6 +7003,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder02.Section15.Suppress = True
         rptBookPrintOrder02.Section16.Suppress = True
         rptBookPrintOrder02.Section18.Suppress = True
+        rptBookPrintOrder02.Section22.Suppress = True
     ElseIf OrderType = "CB" Then
         rptBookPrintOrder02.Section13.Suppress = True
         rptBookPrintOrder02.Section20.Suppress = True
@@ -6897,6 +7012,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder02.Section4.Suppress = True
         rptBookPrintOrder02.Section18.Suppress = True
         rptBookPrintOrder02.Section21.Suppress = True
+        rptBookPrintOrder02.Section22.Suppress = True
     ElseIf OrderType = "TL" Then
         rptBookPrintOrder02.Section13.Suppress = True
         rptBookPrintOrder02.Section4.Suppress = True
@@ -6905,6 +7021,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder02.Section16.Suppress = True
         rptBookPrintOrder02.Section18.Suppress = True
         rptBookPrintOrder02.Section21.Suppress = True
+        rptBookPrintOrder02.Section22.Suppress = True
     ElseIf OrderType = "BB" Then
         rptBookPrintOrder02.Section11.Suppress = True
         rptBookPrintOrder02.Section13.Suppress = True
@@ -6926,7 +7043,7 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
     ElseIf OrderType = "BB" Then
         rstBookPOChild0801.Open "SELECT Binder As Vendor FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     Else
-        rstBookPOChild0801.Open "SELECT BookPrinter As Vendor FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT TitlePrinter As Vendor FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT Laminator As Vendor FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT Binder As Vendor FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+        rstBookPOChild0801.Open "SELECT BookPrinter As Vendor FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT TitlePrinter As Vendor FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT Laminator As Vendor FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT Binder As Vendor FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "' UNION SELECT Vendor FROM BookPOParent P INNER JOIN BookPOChild0801 C ON P.Code=C.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
     End If
     If rstBookPOChild0801.RecordCount > 0 Then rstBookPOChild0801.MoveFirst
     Do While Not rstBookPOChild0801.EOF
@@ -6937,103 +7054,119 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
                     rstBookPOChild05.Open "SELECT IIF(C.ElementPrintName<>'',C.ElementPrintName,(SELECT PrintName FROM ElementMaster WHERE Code=C.Element)) As Element,LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Forms) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.BookPrinter) As TextPrinter,C.ActualQuantity,C.DuplexPrinting,BillingQuantity,(SELECT PrintName+'/'+Convert(Varchar,C.[Pages/Form]) FROM GeneralMaster WHERE Code=C.Size) As [Size],C.Pages,(SELECT PrintName FROM GeneralMaster WHERE Code=C.Color) As Col,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T]," & _
                                           "(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,PrintRate,PrintAmount,PlateRate,PlateAmount," & _
                                           "(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName,[PaperWastage%],PaperConsumptionOther,(SELECT ''+LTrim(M6.PrintName)+' ' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty," & _
-                                          "C.PaperConsumptionsheets,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Narration,P.BookPrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref,C.[TotalForms-¼],C.[TotalForms-½],C.[TotalForms-1-F&B],C.[TotalForms-1-W&T],C.[TotalPlates-¼],C.[TotalPlates-½],C.[TotalPlates-1-F&B],C.[TotalPlates-1-W&T],C.[RevisedPlates]  " & _
+                                          "C.PaperConsumptionsheets,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE CODE=P.BookPrinter) As EMailId,M1.Remarks,P.BookPrinter,PlateMaker,PaperWastageMin,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Ref,C.[TotalForms-¼],C.[TotalForms-½],C.[TotalForms-1-F&B],C.[TotalForms-1-W&T],C.[TotalPlates-¼],C.[TotalPlates-½],C.[TotalPlates-1-F&B],C.[TotalPlates-1-W&T],C.[RevisedPlates]  " & _
                                           "FROM ((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.BookPrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-        If rstBookPOChild05.RecordCount = 0 Then
+            If rstBookPOChild05.RecordCount = 0 Then
             rptBookPrintOrder02.Section13.Suppress = True
+            rptBookPrintOrder02.Section18.Suppress = True
                 Else
             With rstBookPOChild05
                 .MoveFirst
-                Do While Not .EOF
-                    TotalAmount = TotalAmount + IIf(rstBookPOChild05.Fields("BookPrinter").Value <> rstBookPOChild05.Fields("PlateMaker").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("PBillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value)
-                    TotalTax = TotalTax + IIf(rstBookPOChild05.Fields("BookPrinter").Value <> rstBookPOChild05.Fields("PlateMaker").Value, rstBookPOChild05.Fields("VAT").Value + rstBookPOChild05.Fields("RVAT").Value, rstBookPOChild05.Fields("VAT").Value + rstBookPOChild05.Fields("PVAT").Value + rstBookPOChild05.Fields("RVAT").Value)
-                    TaxableAmount = (TotalAmount - TotalTax)
-                    UnitRateBT = TaxableAmount / Val(rstBookPOChild05.Fields("FinalQuantity").Value)
-                    UnitRate = TotalAmount / Val(rstBookPOChild05.Fields("FinalQuantity").Value)
-                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild05.Fields("ProfitMargin").Value) / 100))
-                    PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild05.Fields("ProfitMargin").Value) / 100))
-                    PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild05.Fields("FinalQuantity").Value)
-                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild05.Fields("FinalQuantity").Value)
-                    TotalPages = TotalPages + Val(rstBookPOChild05.Fields("Pages").Value)
-                    TotalForme = TotalForme + Val(rstBookPOChild05.Fields("Forme").Value)
-                    .MoveNext
-                Loop
-            End With
-            rstBookPOChild05.MoveFirst
-            If Not HeaderPrinted Then
-                    rptBookPrintOrder02.Text7.SetText rstBookPOChild05.Fields("OrderNo").Value
-                    rptBookPrintOrder02.Text43.SetText rstBookPOChild05.Fields("Ref").Value
-                    rptBookPrintOrder02.Text42.SetText Format(rstBookPOChild05.Fields("OrderDate").Value, "dd-MM-yyyy")
-                    rptBookPrintOrder02.Text12.SetText rstBookPOChild05.Fields("TextPrinter").Value
-                    rptBookPrintOrder02.Text13.SetText rstBookPOChild05.Fields("Item").Value
-                    rptBookPrintOrder02.Text14.SetText rstBookPOChild05.Fields("FinishSize").Value
-                    rptBookPrintOrder02.Text64.SetText "(" & TotalPages & " Pages/" & TotalForme & " f )"
-                    rptBookPrintOrder02.Text59.SetText "Pages/Forms:"
-                    rptBookPrintOrder02.Text15.SetText rstBookPOChild05.Fields("FinalQuantity").Value
-                    rptBookPrintOrder02.Subreport7.OpenSubreport.Text2.SetText " (" & LTrim(NumberToWords(IIf(rstBookPOChild05.Fields("BookPrinter").Value <> rstBookPOChild05.Fields("PlateMaker").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value, rstBookPOChild05.Fields("BillAmount").Value + rstBookPOChild05.Fields("PBillAmount").Value + rstBookPOChild05.Fields("RBillAmount").Value), True)) & ")"
-                    EMailID = rstBookPOChild05.Fields("EMailId").Value
-                    OrderNo = rstBookPOChild05.Fields("OrderNo").Value
-                    ItemName = rstBookPOChild05.Fields("Item").Value
-                    Attachment = LTrim(rstBookPOChild05.Fields("OrderNo").Value)
-                HeaderPrinted = True
-            End If
-        End If
-    End If
-    If OrderType = "TP" Or OrderType = "ALL" Then 'Title or All Printing
-        If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
-                rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,C.Pages," & _
-                                                                   "LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Sets) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,C.FrontPrintingType,C.BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateTypeBack) As PlateBack,C.TotalPlates,C.TotalPlatesBack," & _
-                                                                   "PrintRate,PrintRateBack,PrintAmount,PlateRate,PlateRateBack,PlateAmount,(SELECT LTRIM(M3.PrintName)+' (UOM : '+LTRIM(M4.PrintName)+'='+LTRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
-                                                                   "[PaperWastage%],[PaperWastage%Back],PaperWastageFinal,PaperConsumptionOther,PaperConsumptionKg,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Narration,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperWastageMinBack,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Sets,(SELECT '('+LTRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,C.Ref,P.Code As VchCode,C.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty,PicData,PicType " & _
-                                                                   "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-        If rstBookPOChild06.RecordCount = 0 Then
-            rptBookPrintOrder02.Section4.Suppress = True
-                Else
-            With rstBookPOChild06
-                .MoveFirst
-                BillAmount = 0
+                BillAmount = 0: PBillAmount = 0: RBillAmount = 0
                 Do While Not .EOF
                     BillAmount = BillAmount + Val(.Fields("BillAmount").Value)
                     PBillAmount = PBillAmount + Val(.Fields("PBillAmount").Value)
                     RBillAmount = RBillAmount + Val(.Fields("RBillAmount").Value)
-                    TotalAmount = TotalAmount + IIf(rstBookPOChild06.Fields("TitlePrinter").Value <> rstBookPOChild06.Fields("PlateMaker").Value, rstBookPOChild06.Fields("BillAmount").Value + rstBookPOChild06.Fields("RBillAmount").Value, rstBookPOChild06.Fields("BillAmount").Value + rstBookPOChild06.Fields("PBillAmount").Value + rstBookPOChild06.Fields("RBillAmount").Value)
-                    TotalTax = TotalTax + IIf(rstBookPOChild06.Fields("TitlePrinter").Value <> rstBookPOChild06.Fields("PlateMaker").Value, rstBookPOChild06.Fields("VAT").Value + rstBookPOChild06.Fields("RVAT").Value, rstBookPOChild06.Fields("VAT").Value + rstBookPOChild06.Fields("PVAT").Value + rstBookPOChild06.Fields("RVAT").Value)
+                    TotalAmount = TotalAmount + IIf(.Fields("BookPrinter").Value <> .Fields("PlateMaker").Value, .Fields("BillAmount").Value + .Fields("RBillAmount").Value, .Fields("BillAmount").Value + .Fields("PBillAmount").Value + .Fields("RBillAmount").Value)
+                    TotalTax = TotalTax + IIf(.Fields("BookPrinter").Value <> .Fields("PlateMaker").Value, .Fields("VAT").Value + .Fields("RVAT").Value, .Fields("VAT").Value + .Fields("PVAT").Value + .Fields("RVAT").Value)
                     TaxableAmount = (TotalAmount - TotalTax)
-                    UnitRateBT = TaxableAmount / Val(rstBookPOChild06.Fields("FinalQuantity").Value)
-                    UnitRate = TotalAmount / Val(rstBookPOChild06.Fields("FinalQuantity").Value)
-                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild06.Fields("ProfitMargin").Value) / 100))
-                    PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild06.Fields("ProfitMargin").Value) / 100))
-                    PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild05.Fields("FinalQuantity").Value)
-                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild06.Fields("FinalQuantity").Value)
-                    TotalPages = TotalPages + Val(rstBookPOChild06.Fields("Pages").Value)
-                    TotalForme = TotalForme + Val(rstBookPOChild06.Fields("Sets").Value)
+                    UnitRateBT = TaxableAmount / Val(.Fields("FinalQuantity").Value)
+                    UnitRate = TotalAmount / Val(.Fields("FinalQuantity").Value)
+                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(.Fields("ProfitMargin").Value) / 100))
+                    PMTotalTax = TotalTax + (TotalTax * (Val(.Fields("ProfitMargin").Value) / 100))
+                    PMUnitRateBT = PMTaxableAmount / Val(.Fields("FinalQuantity").Value)
+                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(.Fields("FinalQuantity").Value)
+                    TotalPages = TotalPages + Val(.Fields("Pages").Value)
+                    TotalForme = TotalForme + Val(.Fields("Forme").Value)
                     .MoveNext
                 Loop
+            .MoveFirst
+            If Not HeaderPrinted Then
+                    If .Fields("ProfitMargin").Value = 0 Then
+                        rptBookPrintOrder02.Section17.Suppress = True
+                    Else
+                        rptBookPrintOrder02.Text44.SetText Format(.Fields("ProfitMargin").Value / 100, "##0.00 %")
+                    End If
+                    rptBookPrintOrder02.Text7.SetText .Fields("OrderNo").Value
+                    rptBookPrintOrder02.Text43.SetText .Fields("Ref").Value
+                    rptBookPrintOrder02.Text42.SetText Format(.Fields("OrderDate").Value, "dd-MM-yyyy")
+                    rptBookPrintOrder02.Text12.SetText .Fields("TextPrinter").Value
+                    rptBookPrintOrder02.Text13.SetText .Fields("Item").Value
+                    rptBookPrintOrder02.Text14.SetText .Fields("FinishSize").Value
+                    rptBookPrintOrder02.Text64.SetText "(" & TotalPages & " Pages/" & TotalForme & " f )"
+                    rptBookPrintOrder02.Text59.SetText "Pages/Forms:"
+                    rptBookPrintOrder02.Text15.SetText .Fields("FinalQuantity").Value
+                    rptBookPrintOrder02.Subreport7.OpenSubreport.Text2.SetText " (" & LTrim(NumberToWords(IIf(.Fields("BookPrinter").Value <> .Fields("PlateMaker").Value, Round(BillAmount, 0) + Round(RBillAmount, 0), Round(BillAmount, 0) + Round(PBillAmount, 0) + Round(RBillAmount, 0)), True)) & ")"
+                    EMailID = .Fields("EMailId").Value
+                    OrderNo = .Fields("OrderNo").Value
+                    ItemName = .Fields("Item").Value
+                    Attachment = LTrim(.Fields("OrderNo").Value)
+                HeaderPrinted = True
+            End If
             End With
+        End If
+    End If
+    If OrderType = "TP" Or OrderType = "ALL" Then 'Title or All Printing
+        If rstBookPOChild06.State = adStateOpen Then rstBookPOChild06.Close
+        rstBookPOChild06.Open "SELECT (SELECT PrintName FROM ElementMaster WHERE Code=C.Element) As Element,C.Pages," & _
+                                                           "LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(C.Sets) As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,C.ActualQuantity,C.BillingQuantity,(SELECT Value1 FROM GeneralMaster WHERE Code=C.FrontPrintingType) As FrontPrintingType,(SELECT Value1 FROM GeneralMaster WHERE Code=C.BackPrintingType) As BackPrintingType,Imposition,(SELECT PrintName FROM GeneralMaster WHERE Code=C.[Size]) As [Size],(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateType) As Plate,(SELECT PrintName FROM GeneralMaster WHERE Code=C.PlateTypeBack) As PlateBack,C.TotalPlates,C.TotalPlatesBack," & _
+                                                           "PrintRate,PrintRateBack,PrintAmount,PlateRate,PlateRateBack,PlateAmount,(SELECT LTRIM(M3.PrintName)+' (UOM : '+LTRIM(M4.PrintName)+'='+LTRIM(M4.Value1)+')' FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C.Paper) As PaperName," & _
+                                                           "[PaperWastage%],[PaperWastage%Back],PaperWastageFinal,PaperConsumptionOther,PaperConsumptionKg,Adjustment,PAdjustment,[VAT%],VAT,[PVAT%],PVAT,BillAmount,PBillAmount,C.Remarks,(SELECT LTRIM(eMail) FROM AccountMaster WHERE Code=P.TitlePrinter) As EMailId,M1.Remarks,P.TitlePrinter,PlateMaker,PaperWastageMin,PaperWastageMinBack,PaperRate,PaperAmount,RBillAmount,RAdjustment,[RVAT%],RVAT,C.Processing,C.ProcessingBack,C.[Ups] As Ups,P.EstQty01 As FinalQuantity,P.ProfitMargin,C.Sets,(SELECT '('+LTRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOM,C.Ref,P.Code As VchCode,C.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C.Paper) As UOMqty,PicData,PicType " & _
+                                                           "FROM ((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON C.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+        If rstBookPOChild06.RecordCount = 0 Then
+            rptBookPrintOrder02.Section4.Suppress = True
+            rptBookPrintOrder02.Section21.Suppress = True
+                Else
+            With rstBookPOChild06
+                .MoveFirst
+                BillAmount = 0: PBillAmount = 0: RBillAmount = 0
+                Do While Not .EOF
+                    BillAmount = BillAmount + Val(.Fields("BillAmount").Value)
+                    PBillAmount = PBillAmount + Val(.Fields("PBillAmount").Value)
+                    RBillAmount = RBillAmount + Val(.Fields("RBillAmount").Value)
+                    TotalAmount = TotalAmount + IIf(.Fields("TitlePrinter").Value <> .Fields("PlateMaker").Value, .Fields("BillAmount").Value + .Fields("RBillAmount").Value, .Fields("BillAmount").Value + .Fields("PBillAmount").Value + .Fields("RBillAmount").Value)
+                    TotalTax = TotalTax + IIf(.Fields("TitlePrinter").Value <> .Fields("PlateMaker").Value, .Fields("VAT").Value + .Fields("RVAT").Value, .Fields("VAT").Value + .Fields("PVAT").Value + .Fields("RVAT").Value)
+                    TaxableAmount = (TotalAmount - TotalTax)
+                    UnitRateBT = TaxableAmount / Val(.Fields("FinalQuantity").Value)
+                    UnitRate = TotalAmount / Val(.Fields("FinalQuantity").Value)
+                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(.Fields("ProfitMargin").Value) / 100))
+                    PMTotalTax = TotalTax + (TotalTax * (Val(.Fields("ProfitMargin").Value) / 100))
+                    PMUnitRateBT = PMTaxableAmount / Val(.Fields("FinalQuantity").Value)
+                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(.Fields("FinalQuantity").Value)
+                    TotalPages = TotalPages + Val(.Fields("Pages").Value)
+                    TotalForme = TotalForme + Val(.Fields("Sets").Value)
+                    .MoveNext
+                Loop
                 rstBookPOChild06.MoveFirst
                 If Not HeaderPrinted Then
-                    rptBookPrintOrder02.Text7.SetText rstBookPOChild06.Fields("OrderNo").Value
-                    rptBookPrintOrder02.Text43.SetText rstBookPOChild06.Fields("Ref").Value
-                    rptBookPrintOrder02.Text42.SetText Format(rstBookPOChild06.Fields("OrderDate").Value, "dd-MM-yyyy")
-                    rptBookPrintOrder02.Text12.SetText rstBookPOChild06.Fields("CoverPrinter").Value
-                    rptBookPrintOrder02.Text13.SetText rstBookPOChild06.Fields("Item").Value
-                    rptBookPrintOrder02.Text14.SetText rstBookPOChild06.Fields("FinishSize").Value
+                    If .Fields("ProfitMargin").Value = 0 Then
+                        rptBookPrintOrder02.Section17.Suppress = True
+                    Else
+                        rptBookPrintOrder02.Text44.SetText Format(.Fields("ProfitMargin").Value / 100, "##0.00 %")
+                    End If
+                    rptBookPrintOrder02.Text7.SetText .Fields("OrderNo").Value
+                    rptBookPrintOrder02.Text43.SetText .Fields("Ref").Value
+                    rptBookPrintOrder02.Text42.SetText Format(.Fields("OrderDate").Value, "dd-MM-yyyy")
+                    rptBookPrintOrder02.Text12.SetText .Fields("CoverPrinter").Value
+                    rptBookPrintOrder02.Text13.SetText .Fields("Item").Value
+                    rptBookPrintOrder02.Text14.SetText .Fields("FinishSize").Value
                     rptBookPrintOrder02.Text64.SetText "(" & TotalPages & " Pages/" & TotalForme & " Sets )"
                     rptBookPrintOrder02.Text59.SetText "Pages/Sets:"
-                    rptBookPrintOrder02.Text15.SetText rstBookPOChild06.Fields("FinalQuantity").Value
-                    EMailID = rstBookPOChild06.Fields("EMailId").Value
-                    OrderNo = rstBookPOChild06.Fields("OrderNo").Value
-                    ItemName = rstBookPOChild06.Fields("Item").Value
-                    Attachment = LTrim(rstBookPOChild06.Fields("OrderNo").Value)
+                    rptBookPrintOrder02.Text15.SetText .Fields("FinalQuantity").Value
+                    EMailID = .Fields("EMailId").Value
+                    OrderNo = .Fields("OrderNo").Value
+                    ItemName = .Fields("Item").Value
+                    Attachment = LTrim(.Fields("OrderNo").Value)
                     HeaderPrinted = True
                 End If
                 If Not CheckEmpty(rstBookPOChild06.Fields("PicData").Value, False) Then
                     If Dir(App.Path & "\Pic\", vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic\"
                     If Dir(App.Path & "\Pic\" & FinancialYear & CompCode, vbDirectory) = "" Then FSO.CreateFolder App.Path & "\Pic\" & FinancialYear & CompCode
-                    imgFile = App.Path & "\Pic\" & FinancialYear & CompCode & "\" & FinancialYear & CompCode & rstBookPOChild06.Fields("VchCode").Value & "." & rstBookPOChild06.Fields("PicType").Value: RetrievePic rstBookPOChild06.Fields("PicData").Value, imgFile, srmPicMgr
+                    imgFile = App.Path & "\Pic\" & FinancialYear & CompCode & "\" & FinancialYear & CompCode & .Fields("VchCode").Value & "." & .Fields("PicType").Value: RetrievePic .Fields("PicData").Value, imgFile, srmPicMgr
                     rptBookPrintOrder02.picFile = imgFile
                 End If
-                rptBookPrintOrder02.Subreport8.OpenSubreport.Text13.SetText " (" & LTrim(NumberToWords(IIf(rstBookPOChild06.Fields("TitlePrinter").Value <> rstBookPOChild06.Fields("PlateMaker").Value, Round(BillAmount, 0) + Round(RBillAmount, 0), Round(BillAmount, 0) + Round(PBillAmount, 0) + Round(RBillAmount, 0)), True)) & ")"
+                rptBookPrintOrder02.Subreport8.OpenSubreport.Text13.SetText " (" & LTrim(NumberToWords(IIf(.Fields("TitlePrinter").Value <> .Fields("PlateMaker").Value, Round(BillAmount, 0) + Round(RBillAmount, 0), Round(BillAmount, 0) + Round(PBillAmount, 0) + Round(RBillAmount, 0)), True)) & ")"
+            End With
         End If
     End If
     If OrderType = "CB" Or OrderType = "ALL" Then
@@ -7041,47 +7174,58 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
                 rstBookPOChild10.Open "SELECT LTRIM(P.Name) As OrderNo,P.Date As OrderDate,TargetDate,Plate,(SELECT PrintName FROM AccountMaster WHERE Code=P.TitlePrinter) As CoverPrinter,(SELECT PrintName FROM AccountMaster WHERE Code=C1.PlateMaker) As PlateMakers,CHOOSE(CONVERT(NUMERIC,C1.PlateType),'Deep-etch','PS','Wipe-on','CTP') As PlateName,C1.TotalFormsFront,C1.TotalFormsBack,C1.PrintRateFront,C1.PrintRateBack,C1.[GST%],C1.GST,C1.Adjustment,C1.PrintAmount,C1.TotalPlates,C1.PlateRate,C1.PAdjustment,C1.[PGST%],C1.PGST,PlateAmount," & _
                           "(SELECT LTRIM(M3.PrintName)FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=C1.Paper) As PaperName,C1.[PaperWastage%],C1.[PaperConsumptionOther],C1.Remarks,(SELECT PrintName FROM GeneralMaster WHERE Code=C1.[Size]) As [Size],LTRIM(M1.PrintName)+iif(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,C2.ActualQuantity,[Ups/Plate],C2.PrintingQuantity,C2.BillingQuantity,LTRIM(C2.FrontPrintingColor)+'+'+LTRIM(C2.BackPrintingColor) + ' ('+IIF(C1.Imposition='F','F&B','W&T')+')' As PrintingType,P.TitlePrinter AS TitlePrinterCode,C1.PlateMaker As PlateMakerCode," & _
                           "PaperWastageMin,PaperRate,PaperAmountBT,RAdjustment,[RGST%],RGST,PaperAmount,PrintAmountBT,PlateAmountBT,(SELECT EMail FROM AccountMaster WHERE Code=P.TitlePrinter) As EMail,Imposition,PlateType,(SELECT '('+LTRIM(M6.PrintName)+')' FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOM,(SELECT LTRIM(MAX(PrintingQuantity)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxPrintingQty, " & _
-                          "P.EstQty01 As FinalQuantity,P.ProfitMargin,(SELECT LTRIM(MAX(FrontPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxFrontColor,(SELECT LTRIM(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxBackColor,C1.Calculation,C1.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOMqty,(Select Name From BookMaster Where Code=P.Book) As oItem FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+                          "P.EstQty01 As FinalQuantity,P.ProfitMargin,(SELECT LTRIM(MAX(FrontPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxFrontColor,(SELECT LTRIM(MAX(BackPrintingColor)) FROM BookPOChild0901 WHERE Code=P.Code) As MaxBackColor,C1.Calculation,C1.PaperConsumptionsheets,(SELECT LTrim(M7.[Weight/Unit]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOMwt,(SELECT LTrim(M6.[Value1]) FROM PaperMaster M7 INNER JOIN GeneralMaster M6 ON M7.UOM=M6.Code WHERE M7.Code=C1.Paper) As UOMqty,(Select Name From BookMaster Where Code=P.Book) As oItem FROM ((BookPOParent P INNER JOIN BookPOChild09 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0901 C2 ON C1.Code=C2.Code) INNER JOIN BookMaster M1 ON C2.Book=M1.Code WHERE P.Code='" & OrderCode & "'AND P.TitlePrinter='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
         If rstBookPOChild10.RecordCount = 0 Then
                     rptBookPrintOrder02.Section16.Suppress = True
                 Else
-            rstBookPOChild10.MoveFirst
-                    TotalTax = TotalTax + IIf(rstBookPOChild10.Fields("TitlePrinterCode").Value <> rstBookPOChild10.Fields("PlateMakerCode").Value, rstBookPOChild10.Fields("GST").Value + rstBookPOChild10.Fields("RGST").Value, rstBookPOChild10.Fields("GST").Value + rstBookPOChild10.Fields("PGST").Value + rstBookPOChild10.Fields("RGST").Value)
-                    TotalAmount = TotalAmount + IIf(rstBookPOChild10.Fields("TitlePrinterCode").Value <> rstBookPOChild10.Fields("PlateMakerCode").Value, rstBookPOChild10.Fields("PrintAmount").Value + rstBookPOChild10.Fields("PaperAmount").Value, rstBookPOChild10.Fields("PrintAmount").Value + rstBookPOChild10.Fields("PlateAmount").Value + rstBookPOChild10.Fields("PaperAmount").Value)
+            With rstBookPOChild10
+                .MoveFirst
+                    BillAmount = 0: PBillAmount = 0: RBillAmount = 0
+                    BillAmount = BillAmount + Val(.Fields("PrintAmount").Value)
+                    PBillAmount = PBillAmount + Val(.Fields("PlateAmount").Value)
+                    RBillAmount = RBillAmount + Val(.Fields("PaperAmount").Value)
+                    TotalTax = TotalTax + IIf(.Fields("TitlePrinterCode").Value <> .Fields("PlateMakerCode").Value, .Fields("GST").Value + .Fields("RGST").Value, .Fields("GST").Value + .Fields("PGST").Value + .Fields("RGST").Value)
+                    TotalAmount = TotalAmount + IIf(.Fields("TitlePrinterCode").Value <> .Fields("PlateMakerCode").Value, .Fields("PrintAmount").Value + .Fields("PaperAmount").Value, .Fields("PrintAmount").Value + .Fields("PlateAmount").Value + .Fields("PaperAmount").Value)
                     TaxableAmount = (TotalAmount - TotalTax)
-                    UnitRateBT = TaxableAmount / Val(rstBookPOChild10.Fields("FinalQuantity").Value)
-                    UnitRate = TotalAmount / Val(rstBookPOChild10.Fields("FinalQuantity").Value)
-                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild10.Fields("ProfitMargin").Value) / 100))
-                    PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild10.Fields("ProfitMargin").Value) / 100))
-                    PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild10.Fields("FinalQuantity").Value)
-                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild10.Fields("FinalQuantity").Value)
+                    UnitRateBT = TaxableAmount / Val(.Fields("FinalQuantity").Value)
+                    UnitRate = TotalAmount / Val(.Fields("FinalQuantity").Value)
+                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(.Fields("ProfitMargin").Value) / 100))
+                    PMTotalTax = TotalTax + (TotalTax * (Val(.Fields("ProfitMargin").Value) / 100))
+                    PMUnitRateBT = PMTaxableAmount / Val(.Fields("FinalQuantity").Value)
+                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(.Fields("FinalQuantity").Value)
                 If Not HeaderPrinted Then
-                    rptBookPrintOrder02.Text7.SetText rstBookPOChild10.Fields("OrderNo").Value
-                    rptBookPrintOrder02.Text42.SetText Format(rstBookPOChild10.Fields("OrderDate").Value, "dd-MM-yyyy")
-                    rptBookPrintOrder02.Text12.SetText rstBookPOChild10.Fields("CoverPrinter").Value
-                    rptBookPrintOrder02.Text13.SetText rstBookPOChild10.Fields("oItem").Value
-'                    rptBookPrintOrder02.Text14.SetText rstBookPOChild10.Fields("FinishSize").Value
+                    If .Fields("ProfitMargin").Value = 0 Then
+                        rptBookPrintOrder02.Section17.Suppress = True
+                    Else
+                        rptBookPrintOrder02.Text44.SetText Format(.Fields("ProfitMargin").Value / 100, "##0.00 %")
+                    End If
+                    rptBookPrintOrder02.Text7.SetText .Fields("OrderNo").Value
+                    rptBookPrintOrder02.Text42.SetText Format(.Fields("OrderDate").Value, "dd-MM-yyyy")
+                    rptBookPrintOrder02.Text12.SetText .Fields("CoverPrinter").Value
+                    rptBookPrintOrder02.Text13.SetText .Fields("oItem").Value
+'                    rptBookPrintOrder02.Text14.SetText .Fields("FinishSize").Value
                     rptBookPrintOrder02.Text59.SetText ""
-'                    rptBookPrintOrder02.Text64.SetText rstBookPOChild10.Fields("Forme").Value
+'                    rptBookPrintOrder02.Text64.SetText .Fields("Forme").Value
                     rptBookPrintOrder02.Text9.SetText ""
-                    rptBookPrintOrder02.Text15.SetText rstBookPOChild10.Fields("FinalQuantity").Value     'IIf(OrderType = "CB", (Val(rstBookPOChild10.Fields("MaxPrintingQty").Value)), Val(rstBookPOChild10.Fields("FinalQuantity").Value))
-                    EMailID = rstBookPOChild10.Fields("EMailId").Value
-                    OrderNo = rstBookPOChild10.Fields("OrderNo").Value
-                    ItemName = rstBookPOChild10.Fields("Item").Value
-                    Attachment = LTrim(rstBookPOChild10.Fields("OrderNo").Value)
+                    rptBookPrintOrder02.Text15.SetText .Fields("FinalQuantity").Value     'IIf(OrderType = "CB", (Val(.Fields("MaxPrintingQty").Value)), Val(.Fields("FinalQuantity").Value))
+                    EMailID = .Fields("EMailId").Value
+                    OrderNo = .Fields("OrderNo").Value
+                    ItemName = .Fields("Item").Value
+                    Attachment = LTrim(.Fields("OrderNo").Value)
                     HeaderPrinted = True
                 End If
-                    If rstBookPOChild10.Fields("Calculation").Value = "S" Then
+                    If .Fields("Calculation").Value = "S" Then
                     rptBookPrintOrder02.Subreport6_Text66.SetText "Combo Format Printing Details (As per Single Set Calculation)"
                     Else
                     rptBookPrintOrder02.Subreport6_Text66.SetText "Combo Format Printing Details (As per Individual Set Calculation)"
                     End If
-                    rptBookPrintOrder02.Subreport6.OpenSubreport.Text25.SetText " (" & LTrim(NumberToWords(IIf(rstBookPOChild10.Fields("TitlePrinterCode").Value <> rstBookPOChild10.Fields("PlateMakerCode").Value, rstBookPOChild10.Fields("BillAmount").Value + rstBookPOChild10.Fields("RBillAmount").Value, rstBookPOChild10.Fields("BillAmount").Value + rstBookPOChild10.Fields("PBillAmount").Value + rstBookPOChild10.Fields("RBillAmount").Value), True)) & ")"
+                    rptBookPrintOrder02.Subreport6.OpenSubreport.Text25.SetText " (" & LTrim(NumberToWords(IIf(.Fields("TitlePrinterCode").Value <> .Fields("PlateMakerCode").Value, .Fields("PrintAmount").Value + .Fields("PaperAmount").Value, .Fields("PrintAmount").Value + .Fields("PlateAmount").Value + .Fields("PaperAmount").Value), True)) & ")"
+            End With
         End If
     End If
     If OrderType = "TL" Or OrderType = "ALL" Then
         If rstBookPOChild07.State = adStateOpen Then rstBookPOChild07.Close
-            rstBookPOChild07.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,LTRIM(LTRIM(I.Pages)+'-pages/'+LTRIM(I.Forms)+'f('+IIF(I.OneColorForms=0,'',' 1Col-'+LTRIM(I.OneColorForms)+'f ')+IIF(I.TwoColorForms=0,'',' 2Col-'+LTRIM(I.TwoColorForms)+'f ')+IIF(I.FourColorForms=0,'',' 4Col-'+LTRIM(I.FourColorForms)))+'f)' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Narration,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+            rstBookPOChild07.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.PrintName As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Laminator) As Laminator,(SELECT eMail FROM AccountMaster WHERE Code=P.Laminator) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
                                                                "FROM ((((((BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN ElementMaster E ON C.Element=E.Code) INNER JOIN GeneralMaster O ON C.Operation=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Laminator='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
         If rstBookPOChild07.RecordCount = 0 Then
                 rptBookPrintOrder02.Section20.Suppress = True
@@ -7103,15 +7247,21 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
                 PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild07.Fields("FinalQuantity").Value)
                         .MoveNext
                     Loop
-                End With
+
                 rstBookPOChild07.MoveFirst
                 If Not HeaderPrinted Then
+                    If .Fields("ProfitMargin").Value = 0 Then
+                        rptBookPrintOrder02.Section17.Suppress = True
+                    Else
+                        rptBookPrintOrder02.Text44.SetText Format(.Fields("ProfitMargin").Value / 100, "##0.00 %")
+                    End If
                     rptBookPrintOrder02.Text7.SetText rstBookPOChild07.Fields("OrderNo").Value
                     rptBookPrintOrder02.Text42.SetText Format(rstBookPOChild07.Fields("OrderDate").Value, "dd-MM-yyyy")
                     rptBookPrintOrder02.Text12.SetText rstBookPOChild07.Fields("Laminator").Value
                     rptBookPrintOrder02.Text13.SetText rstBookPOChild07.Fields("Item").Value
                     rptBookPrintOrder02.Text14.SetText rstBookPOChild07.Fields("FinishSize").Value
                     rptBookPrintOrder02.Text64.SetText rstBookPOChild07.Fields("Forme").Value
+                    If rstBookPOChild07.Fields("Forme").Value = "" Then rptBookPrintOrder02.Text59.SetText ""
                     rptBookPrintOrder02.Text15.SetText rstBookPOChild07.Fields("FinalQuantity").Value
                     EMailID = rstBookPOChild07.Fields("EMailId").Value
                     OrderNo = rstBookPOChild07.Fields("OrderNo").Value
@@ -7119,15 +7269,16 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
                     Attachment = Trim(rstBookPOChild07.Fields("OrderNo").Value)
                     HeaderPrinted = True
                 End If
-                rptBookPrintOrder02.Subreport4.OpenSubreport.Text25.SetText "Amount Payable : " & Trim(NumberToWords(Round(BillAmount, 0), True))
+                rptBookPrintOrder02.Subreport4.OpenSubreport.Text25.SetText "Amount Payable : " & Round(BillAmount, 0) & " (" & Trim(NumberToWords(Round(BillAmount, 0), True)) & " )"
+                End With
             End If
         End If
         If OrderType = "BB" Or OrderType = "ALL" Then
             If rstBookPOChild08.State = adStateOpen Then rstBookPOChild08.Close
-                rstBookPOChild08.Open "SELECT E.Name As Element,O.Name As Operation,[Number],OS.Name As [Size],Quantity,M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,LTRIM(LTRIM(I.Pages)+'-pages/'+LTRIM(I.Forms)+'f('+IIF(I.OneColorForms=0,'',' 1Col-'+LTRIM(I.OneColorForms)+'f ')+IIF(I.TwoColorForms=0,'',' 2Col-'+LTRIM(I.TwoColorForms)+'f ')+IIF(I.FourColorForms=0,'',' 4Col-'+LTRIM(I.FourColorForms)))+'f)' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,I.Narration,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
-                                                                   "FROM ((((((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN ElementMaster E ON C.ElementGroup=E.Code) INNER JOIN GeneralMaster O ON C.BinderyProcess=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
+                rstBookPOChild08.Open "SELECT E.Name As Element,O.Name As Operation,Format(IIF(O.Value1 =0,[Number],Quantity/C.CalcValue),'#0.000') As Number,OS.PrintName As [Size],Quantity,'/ '+M.Name As CalcMode,Rate,Amount,Adjustment,[GST%],GST,BillAmount,C.Remarks,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize,'' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
+                                                                   "FROM ((((((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code) INNER JOIN BookMaster E ON C.SubItem=E.Code) INNER JOIN GeneralMaster O ON C.BinderyProcess=O.Code) INNER JOIN GeneralMaster M ON C.CalcMode=M.Code) LEFT JOIN GeneralMaster OS ON C.[Size]=OS.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "' ORDER BY E.Name,O.Name", cnDatabase, adOpenKeyset, adLockOptimistic
             If rstBookPOChild08.RecordCount = 0 Then
-                    rptBookPrintOrder02.Section15.Suppress = True
+                    rptBookPrintOrder02.Section22.Suppress = True
                 Else
                     With rstBookPOChild08
                         .MoveFirst
@@ -7146,9 +7297,14 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
                     PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
                             .MoveNext
                         Loop
-                    End With
+
                     rstBookPOChild08.MoveFirst
                     If Not HeaderPrinted Then
+                    If .Fields("ProfitMargin").Value = 0 Then
+                        rptBookPrintOrder02.Section17.Suppress = True
+                    Else
+                        rptBookPrintOrder02.Text44.SetText Format(.Fields("ProfitMargin").Value / 100, "##0.00 %")
+                    End If
                         rptBookPrintOrder02.Text7.SetText rstBookPOChild08.Fields("OrderNo").Value
                         rptBookPrintOrder02.Text42.SetText Format(rstBookPOChild08.Fields("OrderDate").Value, "dd-MM-yyyy")
                         rptBookPrintOrder02.Text12.SetText rstBookPOChild08.Fields("Binder").Value
@@ -7162,48 +7318,14 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
                         Attachment = Trim(rstBookPOChild08.Fields("OrderNo").Value)
                         HeaderPrinted = True
                     End If
-                    rptBookPrintOrder02.Subreport9.OpenSubreport.Text25.SetText "Amount Payable : " & Trim(NumberToWords(Round(BillAmount, 0), True))
+                    rptBookPrintOrder02.Subreport9.OpenSubreport.Text13.SetText "Amount Payable :" & Round(BillAmount, 0) & " (" & Trim(NumberToWords(Round(BillAmount, 0), True)) & ")"
+                    End With
                 End If
             End If
-'            If rstBookPOChild08.State = adStateOpen Then rstBookPOChild08.Close
-'            rstBookPOChild08.Open "SELECT LTRIM(M1.PrintName)+IIF(M1.Price=0,'',' (Price : Rs. '+Format(M1.Price,'0.00')+')') As Item,M2.PrintName As FinishSize,LTRIM(LTRIM(M1.Pages)+'-pages/'+LTRIM(M1.Forms)+'f('+IIF(M1.OneColorForms=0,'','1Col-'+LTRIM(M1.OneColorForms)+'f ')+IIF(M1.TwoColorForms=0,'',' 2Col-'+LTRIM(M1.TwoColorForms)+'f ')+IIF(M1.FourColorForms=0,'',' 4Col-'+LTRIM(M1.FourColorForms)))+'f)' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=P.Binder) As Binder,C.ActualQuantity, " & _
-'                                  "C.BillingQuantity,(SELECT PrintName FROM GeneralMaster WHERE Code=C.BindingType) As BindingType,BindingForms,ExtraForms,FormFoldRate,FormPasteRate,FormStitchRate,[Rate/Book],TotalPkts,PktPackRate,TotalBoxes,BoxPackRate,CartageRate,Adjustment,[VAT%],VAT,BillAmount,C.Remarks,(SELECT eMail FROM AccountMaster WHERE Code=P.Binder) As EMailId,M1.Narration,P.EstQty01 As FinalQuantity,P.ProfitMargin " & _
-'                                  "FROM ((BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code) INNER JOIN BookMaster M1 ON P.Book=M1.Code) INNER JOIN GeneralMaster M2 ON M1.FinishSize=M2.Code WHERE P.Code='" & OrderCode & "' AND P.Binder='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
-'            If rstBookPOChild08.RecordCount = 0 Then
-'                rptBookPrintOrder02.Section11.Suppress = True
-'            Else
-'                rstBookPOChild08.MoveFirst
-'                TotalAmount = TotalAmount + Val(rstBookPOChild08.Fields("BillAmount").Value)
-'                TotalTax = TotalTax + Val(rstBookPOChild08.Fields("VAT").Value)
-'                TaxableAmount = (TotalAmount - TotalTax)
-'                UnitRateBT = TaxableAmount / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'                UnitRate = TotalAmount / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'
-'                PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild08.Fields("ProfitMargin").Value) / 100))
-'                PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild08.Fields("ProfitMargin").Value) / 100))
-'                PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'                PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild08.Fields("FinalQuantity").Value)
-'
-'                If Not HeaderPrinted Then
-'                    rptBookPrintOrder02.Text7.SetText rstBookPOChild08.Fields("OrderNo").Value
-'                    rptBookPrintOrder02.Text42.SetText rstBookPOChild08.Fields("OrderDate").Value
-'                    rptBookPrintOrder02.Text12.SetText rstBookPOChild08.Fields("Binder").Value
-'                    rptBookPrintOrder02.Text13.SetText rstBookPOChild08.Fields("Item").Value
-'                    rptBookPrintOrder02.Text14.SetText rstBookPOChild08.Fields("FinishSize").Value
-'                    rptBookPrintOrder02.Text64.SetText rstBookPOChild08.Fields("Forme").Value
-'                    rptBookPrintOrder02.Text15.SetText rstBookPOChild08.Fields("FinalQuantity").Value
-'                    EMailID = rstBookPOChild08.Fields("EMailId").Value
-'                    OrderNo = rstBookPOChild08.Fields("OrderNo").Value
-'                    ItemName = rstBookPOChild08.Fields("Item").Value
-'                    Attachment = LTrim(rstBookPOChild08.Fields("OrderNo").Value)
-'                End If
-'                rptBookPrintOrder02.Subreport3.OpenSubreport.Text25.SetText " (" & LTrim(NumberToWords(Round(rstBookPOChild08.Fields("BillAmount").Value, 0), True)) & ")"
-'            End If
-'        End If
         If rstBookPOChild09.State = adStateOpen Then rstBookPOChild09.Close
         If DatabaseType = "MS SQL" Then
-        rstBookPOChild09.Open "SELECT Choose(LTrim(Category),(SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item),(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='R' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item)) As ItemName,[Consumption/Item],OrderQuantity,TotalConsumption,Rate,Amount,(Select EstQty01 from BookPoParent where Code=T.Code)*1 as FinalQuantity,(Select ProfitMargin from BookPoParent where Code=T.Code)*1 as ProfitMargin " & _
-                              "FROM BookPOChild0801 T WHERE T.Code='" & OrderCode & "' AND T.Vendor='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
+        rstBookPOChild09.Open "SELECT Choose(LTrim(Category),(SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item),(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=T.Item),(SELECT Name FROM BookMaster WHERE Code=T.Item)) As ItemName,[Consumption/Item],OrderQuantity,TotalConsumption,Rate,Amount,(Select EstQty01 from BookPoParent where Code=T.Code)*1 as FinalQuantity,(Select ProfitMargin from BookPoParent where Code=T.Code)*1 as ProfitMargin,LTRIM(I.PrintName)+IIF(I.Price=0,'',' (Price : Rs. '+Format(I.Price,'0.00')+')') As Item,FS.PrintName As FinishSize, '' As Forme,LTRIM(P.Name) As OrderNo,P.Date As OrderDate,(SELECT PrintName FROM AccountMaster WHERE Code=T.Vendor) As Vendor,(SELECT eMail FROM AccountMaster WHERE Code=T.Vendor) As EMailId,I.Remarks,P.EstQty01 As FinalQuantity " & _
+                              "FROM BookPOChild0801 T INNER JOIN BookPOParent P ON P.CODE =T.Code INNER JOIN BookMaster I ON P.Book=I.Code INNER JOIN GeneralMaster FS ON I.FinishSize=FS.Code WHERE T.Code='" & OrderCode & "' AND T.Vendor='" & rstBookPOChild0801.Fields("Vendor").Value & "'", cnDatabase, adOpenKeyset, adLockOptimistic
                                 '+' (UOM : '+LTRIM(M4.PrintName)+'='+LTRIM(M4.Value1)+')'       +' (UOM : '+LTRIM(M4.PrintName)+'='+LTRIM(M4.Value1)+')'
         Else
         rstBookPOChild09.Open "SELECT Choose(Val(Category),(SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item),(SELECT LTRIM(M3.PrintName) FROM PaperMaster M3 INNER JOIN GeneralMaster M4 ON M3.UOM=M4.Code WHERE M3.Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='R' AND Code=T.Item),(SELECT Name FROM BookMaster WHERE LEFT(Type,1)='F' AND Code=T.Item)) As ItemName,[Consumption/Item],OrderQuantity,TotalConsumption,Rate,Amount,(Select EstQty01 from BookPoParent where Code=T.Code)*1 as FinalQuantity,(Select ProfitMargin from BookPoParent where Code=T.Code)*1 as ProfitMargin " & _
@@ -7214,25 +7336,43 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         If rstBookPOChild09.RecordCount = 0 Then
         Else
                 With rstBookPOChild09
-            .MoveFirst
-            
-                BOMAmount = 0
-                Do While Not .EOF
-                BOMAmount = BOMAmount + rstBookPOChild09.Fields("Amount").Value
-                'PBillAmount = PBillAmount
-                'RBillAmount = RBillAmount
-                TotalAmount = TotalAmount + rstBookPOChild09.Fields("Amount").Value
-                'TotalTax = TotalTax
-                TaxableAmount = (TotalAmount - TotalTax)
-                UnitRateBT = TaxableAmount / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
-                UnitRate = TotalAmount / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
-                PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild09.Fields("ProfitMargin").Value) / 100))
-                PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild09.Fields("ProfitMargin").Value) / 100))
-                PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
-                PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
-                    
-            .MoveNext
+                    .MoveFirst
+                    BOMAmount = 0
+                    Do While Not .EOF
+                    BOMAmount = BOMAmount + rstBookPOChild09.Fields("Amount").Value
+                    TotalAmount = TotalAmount + rstBookPOChild09.Fields("Amount").Value
+                    TaxableAmount = (TotalAmount - TotalTax)
+                    UnitRateBT = TaxableAmount / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
+                    UnitRate = TotalAmount / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
+                    PMTaxableAmount = TaxableAmount + (TaxableAmount * (Val(rstBookPOChild09.Fields("ProfitMargin").Value) / 100))
+                    PMTotalTax = TotalTax + (TotalTax * (Val(rstBookPOChild09.Fields("ProfitMargin").Value) / 100))
+                    PMUnitRateBT = PMTaxableAmount / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
+                    PMUnitRate = (PMTaxableAmount + PMTotalTax) / Val(rstBookPOChild09.Fields("FinalQuantity").Value)
+                .MoveNext
                 Loop
+                
+                .MoveFirst
+                If Not HeaderPrinted Then
+                    If .Fields("ProfitMargin").Value = 0 Then
+                        rptBookPrintOrder02.Section17.Suppress = True
+                    Else
+                        rptBookPrintOrder02.Text44.SetText Format(.Fields("ProfitMargin").Value / 100, "##0.00 %")
+                    End If
+                    rptBookPrintOrder02.Text7.SetText .Fields("OrderNo").Value
+                    rptBookPrintOrder02.Text42.SetText Format(.Fields("OrderDate").Value, "dd-MM-yyyy")
+                    rptBookPrintOrder02.Text12.SetText .Fields("Vendor").Value
+                    rptBookPrintOrder02.Text13.SetText .Fields("Item").Value
+                    rptBookPrintOrder02.Text14.SetText .Fields("FinishSize").Value
+                    rptBookPrintOrder02.Text64.SetText .Fields("Forme").Value
+                    If .Fields("Forme").Value = "" Then rptBookPrintOrder02.Text59.SetText ""
+                    rptBookPrintOrder02.Text15.SetText .Fields("FinalQuantity").Value
+                    EMailID = .Fields("EMailId").Value
+                    OrderNo = .Fields("OrderNo").Value
+                    ItemName = .Fields("Item").Value
+                    Attachment = Trim(.Fields("OrderNo").Value)
+                    HeaderPrinted = True
+                End If
+                rptBookPrintOrder02.Subreport5.OpenSubreport.Text25.SetText "Amount Payable : " & Round(BillAmount, 0) & " (" & Trim(NumberToWords(Round(BillAmount, 0), True)) & " )"
                 End With
         End If
         
@@ -7244,7 +7384,6 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
         rptBookPrintOrder02.Text27.SetText "for " & rptBookPrintOrder02.Text12.Text
         rptBookPrintOrder02.Text28.SetText "for " & LTrim(rstCompanyMaster.Fields("PrintName").Value)
         If TotalAmount = 0 Then
-'            rptBookPrintOrder02.Section14.Suppress = True
         Else
             rptBookPrintOrder02.Text17.SetText Format(TotalTax, "##0.00")
             rptBookPrintOrder02.Text18.SetText Format(TotalAmount, "##0.00")
@@ -7258,11 +7397,6 @@ Public Sub PrintBookPrintOrder02(ByVal OrderCode As String, Optional ByVal Note 
             rptBookPrintOrder02.Text38.SetText Format(PMUnitRateBT, "##0.000")
             rptBookPrintOrder02.Text40.SetText Format(PMUnitRate, "#0.000")
             rptBookPrintOrder02.Text19.SetText " (" & LTrim(NumberToWords(Round(TotalAmount, 0), True)) & ")"
-        End If
-        If rstBookPOChild05.Fields("ProfitMargin").Value = 0 Then
-        rptBookPrintOrder02.Section17.Suppress = True
-        Else
-        rptBookPrintOrder02.Text44.SetText Format(rstBookPOChild05.Fields("ProfitMargin").Value / 100, "##0.00 %")
         End If
         rptBookPrintOrder02.Subreport1.OpenSubreport.Database.SetDataSource rstBookPOChild05, 3, 1
         rptBookPrintOrder02.Subreport2.OpenSubreport.Database.SetDataSource rstBookPOChild06, 3, 1
@@ -8078,17 +8212,17 @@ Private Sub DisplayMenu()
         Case 23
             PaperSlip rstBookPOList.Fields("Code").Value, , , "CB", BookPOType   '19
         Case 27
-            PrintQuotationFormat rstBookPOList.Fields("Code").Value, , , "BP", BookPOType
+            PrintBookPrintOrder02 rstBookPOList.Fields("Code").Value, , , "BP", BookPOType, "A"
         Case 28
-            PrintQuotationFormat rstBookPOList.Fields("Code").Value, , , "TP", BookPOType
+            PrintBookPrintOrder02 rstBookPOList.Fields("Code").Value, , , "TP", BookPOType
         Case 29
-            PrintQuotationFormat rstBookPOList.Fields("Code").Value, , , "TL", BookPOType
+            PrintBookPrintOrder02 rstBookPOList.Fields("Code").Value, , , "TL", BookPOType
         Case 30
-            PrintQuotationFormat rstBookPOList.Fields("Code").Value, , , "CB", BookPOType
+            PrintBookPrintOrder02 rstBookPOList.Fields("Code").Value, , , "CB", BookPOType
         Case 31
-            PrintQuotationFormat rstBookPOList.Fields("Code").Value, , , "BB", BookPOType
+            PrintBookPrintOrder02 rstBookPOList.Fields("Code").Value, , , "BB", BookPOType
         Case 32
-            PrintQuotationFormat rstBookPOList.Fields("Code").Value, , , "ALL", BookPOType
+            PrintBookPrintOrder02 rstBookPOList.Fields("Code").Value, , , "ALL", BookPOType
         Case 33
             PrintCostSheet rstBookPOList.Fields("Code").Value
         Case 34
@@ -8123,24 +8257,24 @@ Private Sub DuplicateRecord()
     VchNo = GenerateCode(cnBookPrintOrder, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,Name))", "VAL(Name))") & "  FROM BookPOParent WHERE Type='" & ConvertOrderType & "' AND LEFT(Code,1)<>'*' AND FYCode='" & FYCode & "'", 10, Space(1))
     cnBookPrintOrder.BeginTrans
     cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOParent Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-    cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',Name='" & Pad(Trim(VchNo), Space(1), 10, "L") & "',[Date]=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",DeliveredQuantityC=0,DeliveredQuantityB=0,Type='" & ConvertOrderType & "',BPODStatus=0,TPODStatus=0,TLODStatus=0,BBODStatus=0,UnitRate=0,[UnitRate-MF]=0,[UnitRate-SF]=0,[UnitRate-CF]=0,[UnitRate-MO]=0,[UnitRate-BP]=0,BilledAllC=0,BilledAllB=0,[UnitRate-BOM]=0"
+    cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',Name='" & Pad(Trim(VchNo), Space(1), 10, "L") & "',[Date]=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",DeliveredQuantityC=0,DeliveredQuantityB=0,Type='" & ConvertOrderType & "',BPODStatus=0,TPODStatus=0,TLODStatus=0,BBODStatus=0,UnitRate=0,[UnitRate-MF]=0,[UnitRate-SF]=0,[UnitRate-CF]=0,[UnitRate-MO]=0,[UnitRate-BP]=0,BilledAllC=0,BilledAllB=0,[UnitRate-BOM]=0"
     cnBookPrintOrder.Execute "INSERT INTO BookPOParent SELECT * FROM " & TmpTbl
     cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     If OrderSubType(1) Then 'Multi Form Format
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild05 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMFC=0,BilledMFB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMFC=0,BilledMFB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild05 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
     If OrderSubType(2) Then 'Spread Format
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild06 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMEC=0,BilledMEB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,Ref='',BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMEC=0,BilledMEB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild06 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
     If OrderSubType(3) Then 'Combo Format
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild09 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',BillFeedDate=Null"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,BillNo='',BillDate=Null,PBillNo='',PBillDate=Null,PaidAmount=0,PPaidAmount=0,Status='',BillFeedDate=Null"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild09 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild0901 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
@@ -8150,13 +8284,13 @@ Private Sub DuplicateRecord()
     End If
     If OrderSubType(4) Then 'Misc Operations
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild07 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMOC=0,BilledMOB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledMOC=0,BilledMOB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild07 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
     If OrderSubType(5) Then 'Binding Process
         cnBookPrintOrder.Execute "SELECT * INTO [" & TmpTbl & "] FROM BookPOChild08 Where Code = '" & rstBookPOList.Fields("Code").Value & "'"
-        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "NOW()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DNDetails='',CNDetails='',BillFeedDate=Null,DeliveredQuantityC=0,DeliveredQuantityB=0,BilledBNC=0,BilledBNB=0"
+        cnBookPrintOrder.Execute "UPDATE [" & TmpTbl & "] SET Code='" & VchCode & "',OrderDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & ",TargetDate=" & IIf(DatabaseType = "MS SQL", "GETDATE()", "TODAY()") & "+2,BillNo='',BillDate=Null,PaidAmount=0,Status='',DeliveredQuantityC=0,DeliveredQuantityB=0,BilledBNC=0,BilledBNB=0"
         cnBookPrintOrder.Execute "INSERT INTO BookPOChild08 SELECT * FROM " & TmpTbl
         cnBookPrintOrder.Execute "DROP TABLE " & TmpTbl
     End If
@@ -8194,7 +8328,14 @@ ErrHandler:
 End Function
 Private Sub LoadMasterList()
     If rstBookList.State = adStateOpen Then rstBookList.Close
-    rstBookList.Open "SELECT M1.Name As Col0,M2.Name As SizeName,M2.Code As SizeCode,TitleSize As TitleSizeCode,FinishSize,FormType,Forms,Pages,OneColorPages,TwoColorPages,FourColorPages,[OneColor¼Forms],[OneColor½Forms],[OneColor1F/BForms],[OneColor1W/TForms],OneColorForms,[TwoColor¼Forms],[TwoColor½Forms],[TwoColor1F/BForms],[TwoColor1W/TForms],TwoColorForms,[FourColor¼Forms],[FourColor½Forms],[FourColor1F/BForms],[FourColor1W/TForms],FourColorForms,OneColorPlateType,TwoColorPlateType,FourColorPlateType,DuplexPrinting,BindingType,LaminationType,TitlePlateType,BindingForms01,BindingForms02,TitleFrontColor,TitleBackColor,TitlePlateType,[Qty/Pkt],[Pkt/Box],[LooseQty/Box],AddOnRate01,AddOnRate02,BookPrinter,TitlePrinter,Laminator,BinderFresh,BinderRepair,M1.Type,M1.Code From BookMaster M1,GeneralMaster M2 Where M1.[Size] = M2.Code Order by M1.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
+    'rstBookList.Open "SELECT M1.Name As Col0,M2.Name As SizeName,M2.Code As SizeCode,TitleSize As TitleSizeCode,FinishSize,FormType,Forms,Pages,OneColorPages,TwoColorPages,FourColorPages,[OneColor¼Forms],[OneColor½Forms],[OneColor1F/BForms],[OneColor1W/TForms],OneColorForms,[TwoColor¼Forms],[TwoColor½Forms],[TwoColor1F/BForms],[TwoColor1W/TForms],TwoColorForms,[FourColor¼Forms],[FourColor½Forms],[FourColor1F/BForms],[FourColor1W/TForms],FourColorForms,OneColorPlateType,TwoColorPlateType,FourColorPlateType,DuplexPrinting,BindingType,LaminationType,TitlePlateType,BindingForms01,BindingForms02,TitleFrontColor,TitleBackColor,TitlePlateType,[Qty/Pkt],[Pkt/Box],[LooseQty/Box],AddOnRate01,AddOnRate02,BookPrinter,TitlePrinter,Laminator,BinderFresh,BinderRepair,M1.Type,M1.Code From BookMaster M1,GeneralMaster M2 Where M1.[FinishSize] = M2.Code Order by M1.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
+    rstBookList.Open "Select Col0,SizeName,SizeCode,FinishSize,ISNUll(MinColor,0) As MinColor,ISNUll(MaxColor,0) As MaxColor,Pages,Forms,BindingType,BookPrinter,TitlePrinter,Laminator,BinderFresh,BinderRepair,Type,Code From " & _
+                                 "(SELECT M1.Name As Col0,M2.Name As SizeName,M2.Code As SizeCode,FinishSize, " & _
+                                 "(Select Min(Value1) From GeneralMAster Where Code IN ( " & _
+                                 "(Select ISNULL((Color),(Select ISNULL((FrontPrintingType),(Select ISNULL((BackPrintingType),0) from BookChild05 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "')) from BookChild06 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "')) from BookChild05 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "'))) As MinColor, " & _
+                                 "(Select Max(Value1) From GeneralMAster Where Code IN ( " & _
+                                 "(Select ISNULL((Color),(Select ISNULL((FrontPrintingType),(Select ISNULL((BackPrintingType),0) from BookChild05 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "')) from BookChild06 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "')) from BookChild05 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "'))) As MaxColor, " & _
+                                 "(Select ISNULL(Sum (Pages),0) from BookChild05 Where Code=M1.Code AND  Right(Type,1)='" & Right(BookPOType, 1) & "' )+(Select ISNULL(Sum (Pages),0) from BookChild06 Where Code=M1.Code AND  Right(Type,1)='" & Right(BookPOType, 1) & "' AND BindingForms>0) As Pages,(Select ISNULL(Sum (Forms),0) from BookChild05 Where Code=M1.Code AND  Right(Type,1)='" & Right(BookPOType, 1) & "' )+(Select ISNULL(Sum (Sets),0) from BookChild06 Where Code=M1.Code AND Right(Type,1)='" & Right(BookPOType, 1) & "' AND BindingForms>0) Forms,BindingType,BookPrinter,TitlePrinter,Laminator,BinderFresh,BinderRepair,M1.Type,M1.Code From BookMaster M1,GeneralMaster M2 Where M1.[FinishSize] = M2.Code) TBL  Order By Col0 ", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
     rstBookList.ActiveConnection = Nothing
     If Not CheckEmpty(ItemCode, False) Then rstBookList.Find "[Code]='" & ItemCode & "'"
     If rstAccountList.State = adStateOpen Then rstAccountList.Close
@@ -8207,16 +8348,27 @@ End Sub
 Private Function Save2Master() As Boolean
     Save2Master = True
     On Error GoTo ErrHandler
-'    cnBookPrintOrder.Execute "DELETE FROM BookChild07 WHERE Type='" & BookPOType & "' AND Code='" & ItemCode & "'"
 '    cnBookPrintOrder.Execute "INSERT INTO BookChild07 SELECT TOP 1 Book As Code,Element,Operation,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.Type='" & BookPOType & "' AND P.Book='" & ItemCode & "' ORDER BY P.Code DESC"
-'    cnBookPrintOrder.Execute "DELETE FROM BookChild08 WHERE Type='" & BookPOType & "' AND Code='" & ItemCode & "'"
-'    cnBookPrintOrder.Execute "INSERT INTO BookChild08 SELECT Book As Code,ElementGroup,BindingType,BinderyProcess,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Type='" & BookPOType & "' AND P.Book='" & ItemCode & "' ORDER BY P.Code DESC"
-'    cnBookPrintOrder.Execute "DELETE FROM BookChild06 WHERE Type='" & BookPOType & "' AND Code='" & ItemCode & "'"
 '    cnBookPrintOrder.Execute "INSERT INTO BookChild06 SELECT TOP 1 Book As Code,Element,Pages,[FinishSize],[Size],Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,[Ups],P.Type FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.Type='" & BookPOType & "' AND P.Book='" & ItemCode & "' ORDER BY P.Code DESC"
-    cnBookPrintOrder.Execute "INSERT INTO BookChild05 SELECT Book As Code,Book As Code,Element,[FinishSize],[Size],DuplexPrinting,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms, [Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[Forms/Sheet1],0,P.Type,1 FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element NOT IN (SELECT Element FROM BookChild05 WHERE Code=P.Book)"
-    cnBookPrintOrder.Execute "INSERT INTO BookChild06 SELECT Book AsCode,Book As Code,Element,'',Pages,[FinishSize],[Size],Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,[Ups],Sets,0,P.Type FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element NOT IN (SELECT Element FROM BookChild06 WHERE Code=P.Book)"
-    cnBookPrintOrder.Execute "INSERT INTO BookChild07 SELECT Book As Code,Book As Code,Element,Operation,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element+Operation+Type NOT IN (SELECT Element+Operation+Type FROM BookChild07 WHERE Code=P.Book)"
-    cnBookPrintOrder.Execute "INSERT INTO BookChild08 SELECT Book As Code,Book As Code,BindingType,BinderyProcess,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND SubItem+BinderyProcess+Type NOT IN (SELECT SubItem+BinderyProcess+Type FROM BookChild08 WHERE Code=P.Book)"
+'    cnBookPrintOrder.Execute "INSERT INTO BookChild08 SELECT Book As Code,ElementGroup,BindingType,BinderyProcess,[Number],OperationCountName,[Size],CalcMode,CalcValue,P.Type FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Type='" & BookPOType & "' AND P.Book='" & ItemCode & "' ORDER BY P.Code DESC"
+
+
+If MsgBox("Are you sure to Update the Master Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Master Update !") = vbYes Then
+'Delete
+    cnBookPrintOrder.Execute "DELETE FROM BookChild05 WHERE IIF(Len(Type)=1,Type,Right(Type,1))='" & Right(BookPOType, 1) & "' AND Code='" & ItemCode & "'AND Element IN (SELECT Element FROM BookPOChild05 WHERE Code='" & rstBookPOParent.Fields("Code").Value & "')"
+    cnBookPrintOrder.Execute "DELETE FROM BookChild06 WHERE IIF(Len(Type)=1,Type,Right(Type,1))='" & Right(BookPOType, 1) & "' AND Code='" & ItemCode & "' AND Element IN (SELECT Element FROM BookPOChild06 WHERE Code='" & rstBookPOParent.Fields("Code").Value & "')"
+    cnBookPrintOrder.Execute "DELETE FROM BookChild07 WHERE IIF(Len(Type)=1,Type,Right(Type,1))='" & Right(BookPOType, 1) & "' AND Code='" & ItemCode & "' AND Element+Operation+IIF(Len(Type)=1,Type,Right(Type,1)) IN (SELECT Element+Operation+IIF(Len(Type)=1,Type,Right(Type,1)) FROM BookPOChild07 WHERE Code='" & rstBookPOParent.Fields("Code").Value & "')"
+    cnBookPrintOrder.Execute "DELETE FROM BookChild08 WHERE IIF(Len(Type)=1,Type,Right(Type,1))='" & Right(BookPOType, 1) & "' AND Code='" & ItemCode & "' AND SubItem+BinderyProcess+IIF(Len(Type)=1,Type,Right(Type,1)) IN (Select Distinct SubItem+BinderyProcess+IIF(Len(Type)=1,Type,Right(Type,1)) FROM BookPOChild08 WHERE Code='" & rstBookPOParent.Fields("Code").Value & "')"
+    cnBookPrintOrder.Execute "Delete From BookChild01  WHERE Code='" & ItemCode & "' AND Code+Category+Item IN (Select Book+Category+Item From BookPOParent P INNER JOIN BookPOChild0801 C ON C.Code=P.Code Where P.Code = '" & rstBookPOParent.Fields("Code").Value & "')"
+'Insert
+    cnBookPrintOrder.Execute "INSERT INTO BookChild05 SELECT Book As Code,Book As Code,Element,ElementPrintName,[FinishSize],[Size],DuplexPrinting,[Pages/PrintingForm],[Pages/Form],Color,Pages,Forms, [Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[Forms/Sheet1] As Ups,([Forms-¼]+[Forms-½]+IIf (CONVERT(NUMERIC,[Pages/Form]) <= 12,CONVERT(NUMERIC,[Forms-1-F&B]) / 2,[Forms-1-F&B])+[Forms-1-W&T]) As BindingForms,Right(P.Type,1) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element NOT IN (SELECT Element FROM BookChild05 WHERE Code=P.Book)"
+    cnBookPrintOrder.Execute "INSERT INTO BookChild06 SELECT Book AsCode,Book As Code,Element,ElementPrintName,Pages,[FinishSize],[Size],Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,[Ups],Sets,0,Right(P.Type,1) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' AND Element NOT IN (SELECT Element FROM BookChild06 WHERE Code=P.Book)"
+    cnBookPrintOrder.Execute "INSERT INTO BookChild07 SELECT Book As Code,Book As SubItem,Element,Operation,[Number],OperationCountName,[Size],CalcMode,CalcValue,Right(P.Type,1) FROM BookPOParent P INNER JOIN BookPOChild07 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' " 'AND Element+Operation+Type IN (SELECT Element+Operation+Right(Type,1) FROM BookChild07 WHERE Code=P.Book)
+    cnBookPrintOrder.Execute "INSERT INTO BookChild08 SELECT Book As Code,Book As SubItem,BindingType,BinderyProcess,[Number],OperationCountName,[Size],CalcMode,CalcValue,Right(P.Type,1) FROM BookPOParent P INNER JOIN BookPOChild08 C ON P.Code=C.Code WHERE P.Code='" & rstBookPOParent.Fields("Code").Value & "' " 'AND SubItem+BinderyProcess+Type IN (SELECT SubItem+BinderyProcess+Right(Type,1) FROM BookChild08 WHERE Code=P.Book)
+    cnBookPrintOrder.Execute "INSERT INTO BookChild01 Select Book As Code,Category,Item,[Consumption/Item] As Quantity From BookPOParent P INNER JOIN BookPOChild0801 C ON C.Code=P.Code Where P.Code = '" & rstBookPOParent.Fields("Code").Value & "' "
+Else
+
+End If
     Exit Function
 ErrHandler:
     Save2Master = False
@@ -8226,25 +8378,6 @@ Private Sub MhRealInput8_Validate(Cancel As Boolean)
     Dim PlateAmount As Double, OthersAmount As Double, OthersUnitRate As Double, Amount As Double
     MhRealInput19.Value = 0: MhRealInput21.Value = 0: MhRealInput23.Value = 0: MhRealInput25.Value = 0: MhRealInput27.Value = 0: MhRealInput31.Value = 0
     MhRealInput20.Value = 0: MhRealInput22.Value = 0: MhRealInput24.Value = 0: MhRealInput26.Value = 0: MhRealInput28.Value = 0: MhRealInput32.Value = 0
-'    With rstBookPOChild05
-'        If .RecordCount <> 0 Then
-'            .MoveFirst
-'            Do While Not .EOF
-'                Amount = Val(.Fields("PlateAmount1").Value) + Val(.Fields("PlateAmount2").Value) + Val(.Fields("PlateAmount4").Value) + Val(.Fields("PAdjustment").Value) 'Plate Amount
-'                PlateAmount = PlateAmount + Amount
-'                MhRealInput20.Value = MhRealInput20.Value + Amount
-'                Amount = Val(.Fields("PaperAmount1").Value) + Val(.Fields("PaperAmount2").Value) + Val(.Fields("PaperAmount4").Value) + Val(.Fields("RAdjustment").Value) 'Paper Amount
-'                OthersAmount = OthersAmount + Amount
-'                MhRealInput20.Value = MhRealInput20.Value + Amount
-'                Amount = Val(.Fields("PrintAmount1").Value) + Val(.Fields("PrintAmount2").Value) + Val(.Fields("PrintAmount4").Value) + Val(.Fields("Adjustment").Value) 'Print Amount
-'                OthersAmount = OthersAmount + Amount
-'                MhRealInput20.Value = MhRealInput20.Value + Amount
-'                .MoveNext
-'            Loop
-'            MhRealInput19.Value = MhRealInput20.Value / MhRealInput3.Value
-'            .MoveFirst
-'        End If
-'    End With
     With rstBookPOChild05
         If .RecordCount <> 0 Then
             .MoveFirst
@@ -8257,10 +8390,10 @@ Private Sub MhRealInput8_Validate(Cancel As Boolean)
                 MhRealInput20.Value = MhRealInput20.Value + Amount
                 Amount = Val(.Fields("PrintAmount").Value) + Val(.Fields("Adjustment").Value) 'Print Amount
                 OthersAmount = OthersAmount + Amount
-                MhRealInput20.Value = MhRealInput20.Value + Amount
+                MhRealInput20.Value = MhRealInput20.Value + Amount 'MF Amount
                 .MoveNext
             Loop
-            MhRealInput19.Value = MhRealInput20.Value / MhRealInput3.Value
+            MhRealInput19.Value = MhRealInput20.Value / MhRealInput3.Value 'MF UnitRate
             .MoveFirst
         End If
     End With
@@ -8276,10 +8409,10 @@ Private Sub MhRealInput8_Validate(Cancel As Boolean)
                 MhRealInput22.Value = MhRealInput22.Value + Amount
                 Amount = Val(.Fields("PrintAmount").Value) + Val(.Fields("Adjustment").Value) 'Print Amount
                 OthersAmount = OthersAmount + Amount
-                MhRealInput22.Value = MhRealInput22.Value + Amount
+                MhRealInput22.Value = MhRealInput22.Value + Amount 'SF Amount
                 .MoveNext
             Loop
-            MhRealInput21.Value = MhRealInput22.Value / MhRealInput3.Value
+            MhRealInput21.Value = MhRealInput22.Value / MhRealInput3.Value 'SF Unit Rate
             .MoveFirst
         End If
     End With
@@ -8375,10 +8508,11 @@ Private Sub RefreshList(ByVal VchCode As String)
         If .State = adStateOpen Then .Close
         BusySystemIndicator True
         If DisplayListType = "O" Then
-            .Open "SELECT DISTINCT T.Code,T.Name,IIF(ISNULL(C1.Ref,'')='' AND ISNULL(C2.Ref,'')='','',IIF(ISNULL(C1.Ref,'')='',C2.Ref,IIF(ISNULL(C2.Ref,'')='',C1.Ref,C1.Ref+'-'+C2.Ref))) As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM ((((((BookPOParent T INNER JOIN BookMaster I ON T.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder) LEFT JOIN BookPOChild05 C1 ON T.Code=C1.Code) LEFT JOIN BookPOChild06 C2 ON T.Code=C2.Code WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
+            .Open "SELECT DISTINCT T.Code,T.Name,IIF(ISNULL(C1.Ref,'')='' AND ISNULL(C2.Ref,'')='','',IIF(ISNULL(C1.Ref,'')='',C2.Ref,IIF(ISNULL(C2.Ref,'')='',C1.Ref,C1.Ref+'-'+C2.Ref))) As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.EstQty01,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,IIF(T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)<0,0,T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)) As Pending," & _
+            "XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM ((((((BookPOParent T INNER JOIN BookMaster I ON T.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder) LEFT JOIN BookPOChild05 C1 ON T.Code=C1.Code) LEFT JOIN BookPOChild06 C2 ON T.Code=C2.Code WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
             cmdProceed.Caption = " Show Combo Item List Only"
         Else
-            .Open "SELECT DISTINCT T.Code,T.Name,'' As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM (((((BookPOParent T INNER JOIN BookPOChild0901 C3 ON T.Code=C3.Code) INNER JOIN BookMaster I ON C3.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
+            .Open "SELECT DISTINCT T.Code,T.Name,'' As RefNo,Date,I.Name As BookName,BPODStatus,TPODStatus,TLODStatus,BBODStatus,T.EstQty01,T.DeliveredQuantityC+T.DeliveredQuantityB As DeliveredQuantity,IIF(T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)<0,0,T.EstQty01-(T.DeliveredQuantityC+T.DeliveredQuantityB)) As Pending,XP.Name As BookPrinterName,TP.Name As TitlePrinterName,LM.Name  As LaminatorName,BD.Name As BinderName,UnitRate FROM (((((BookPOParent T INNER JOIN BookPOChild0901 C3 ON T.Code=C3.Code) INNER JOIN BookMaster I ON C3.Book=I.Code) LEFT JOIN AccountMaster XP ON XP.Code=T.BookPrinter) LEFT JOIN AccountMaster TP ON TP.Code=T.TitlePrinter) LEFT JOIN AccountMaster LM ON LM.Code=T.Laminator) LEFT JOIN AccountMaster BD ON BD.Code=T.Binder WHERE T.Type = '" & BookPOType & "' AND FYCode='" & FYCode & "' AND LEFT(T.Code,1)<>'*' ORDER BY T.Name", cnBookPrintOrder, adOpenKeyset, adLockOptimistic
             cmdProceed.Caption = " Show Genaral Item List "
         End If
         .ActiveConnection = Nothing
@@ -8407,8 +8541,10 @@ Private Sub cmdProceed_Click()
         Call RefreshList("")
 End Sub
 Private Sub PushVch() 'PushPO2Busy
+    On Error Resume Next
+    CreatePurchaseOrderInBusy
 'To Be Confirm---FI.FormatDate,FI.GetRecordset
-    Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, xmlstr
+    Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
     Dim ItemCode, ItemName, Qty, Price
     AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
     If CheckEmpty(AccountCode, False) Then Set FI = Nothing: Exit Sub
@@ -8419,17 +8555,178 @@ Private Sub PushVch() 'PushPO2Busy
     ItemCode = Mid(ItemCode, 2, 6)
     Set rstEasyPublish = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
     ItemName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstEasyPublish.Fields("Price").Value)
-    xmlstr = "<PurchaseOrder>"
-        xmlstr = xmlstr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
-        xmlstr = xmlstr & "<ItemEntries>"
-        xmlstr = xmlstr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
-        xmlstr = xmlstr & "</ItemEntries>"
-        xmlstr = xmlstr & "<PendingOrders>"
-            xmlstr = xmlstr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
-            xmlstr = xmlstr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
-            xmlstr = xmlstr & "</OrderDetail>"
-        xmlstr = xmlstr & "</PendingOrders>"
-    xmlstr = xmlstr & "</PurchaseOrder>"
-    If Not FI.SaveVchFromXML(13, xmlstr, Err, True, 2) Then DisplayError (Err)
+    XMLStr = "<PurchaseOrder>"
+        XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+        XMLStr = XMLStr & "<ItemEntries>"
+        XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+        XMLStr = XMLStr & "</ItemEntries>"
+        XMLStr = XMLStr & "<PendingOrders>"
+            XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+            XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+            XMLStr = XMLStr & "</OrderDetail>"
+        XMLStr = XMLStr & "</PendingOrders>"
+    XMLStr = XMLStr & "</PurchaseOrder>"
+    If Not FI.SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
 End Sub
+Private Sub CreatePurchaseOrderInBusy()
+    Dim objHTTP As Object
+    Dim URL As String
+    Dim postData As String
+    Dim responseText As String
+    On Error Resume Next
+    Dim VchSeriesName, VchDate, VchNo, STName, AccountCode, AccountName, MCName, XMLStr
+    Dim ItemCode, ItemName, Qty, Price
+    AccountCode = IIf(Not CheckEmpty(BookPrinterCode, False), BookPrinterCode, BinderCode)
+    If CheckEmpty(AccountCode, False) Then Exit Sub
+    VchSeriesName = IIf(Left(BookPOType, 1) = "F", "Main", "Repair"): MCName = "Main Store": VchNo = Trim(Text2.Text): VchDate = MhDateInput1.Text: Qty = Val(MhRealInput3.Value)
+    'Set rstEasyPublish = FI.GetRecordset("SELECT Name,GSTNo FROM Master1 P INNER JOIN MasterAddressInfo C ON P.Code=C.MasterCode WHERE Code=" & AccountCode)
+    'AccountName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1)
+    AccountName = "Sita Fine Arts Pvt. Ltd."
+    STName = IIf(Left(rstEasyPublish.Fields("GSTNo").Value, 2) = "07", "L/GST-Exempt", "I/GST-Exempt")
+    STName = "07"
+    ItemCode = Mid(ItemCode, 2, 6)
+    
+    Set rstEasyPublish = FI.GetRecordset("SELECT Name,D3 As Price FROM Master1 WHERE Code=" & ItemCode)
+    ItemName = Replace(rstEasyPublish.Fields("Name").Value, "&", "&amp;", 1): Price = Val(rstEasyPublish.Fields("Price").Value)
+    ItemName = "Busy Integration": Price = 20
+    XMLStr = "<PurchaseOrder>"
+        XMLStr = XMLStr & "<VchSeriesName>" & VchSeriesName & "</VchSeriesName><Date>" & VchDate & "</Date><VchType>13</VchType><VchNo>" & VchNo & "</VchNo><STPTName>" & STName & "</STPTName><MasterName1>" & AccountName & "</MasterName1><MasterName2>" & MCName & "</MasterName2>"
+        XMLStr = XMLStr & "<ItemEntries>"
+        XMLStr = XMLStr & "<ItemDetail><SrNo>1</SrNo><ItemName>" & ItemName & "</ItemName><UnitName>Nos</UnitName><Qty>" & Trim(Qty) & "</Qty><QtyMainUnit>" & Trim(Qty) & "</QtyMainUnit><QtyAltUnit>" & Trim(Qty) & "</QtyAltUnit><Price>" & Trim(Price) & "</Price><Amt>" & Trim(Qty * Price) & "</Amt><STAmount>0</STAmount><STPercent>0</STPercent><TaxBeforeSurcharge>0</TaxBeforeSurcharge><MC>" & MCName & "</MC></ItemDetail>"
+        XMLStr = XMLStr & "</ItemEntries>"
+        XMLStr = XMLStr & "<PendingOrders>"
+            XMLStr = XMLStr & "<OrderDetail><MasterName1>" & ItemName & "</MasterName1><MasterName2>" & AccountName & "</MasterName2>"
+            XMLStr = XMLStr & "<OrderRefs><Method>1</Method><SrNo>1</SrNo><RefNo>" & VchNo & "</RefNo><Date>" & VchDate & "</Date><DueDate>" & VchDate & "</DueDate><Value1>" & Trim(0 - Qty) & "</Value1><Value2>" & Trim(0 - Qty) & "</Value2><ItemSrNo>1</ItemSrNo><tmpMasterCode1>" & Trim(ItemCode) & "</tmpMasterCode1><tmpMasterCode2>" & Trim(AccountCode) & "</tmpMasterCode2></OrderRefs>"
+            XMLStr = XMLStr & "</OrderDetail>"
+        XMLStr = XMLStr & "</PendingOrders>"
+    XMLStr = XMLStr & "</PurchaseOrder>"
+    If Not FI.SaveVchFromXML(13, XMLStr, Err, True, 2) Then DisplayError (Err)
+
+    
+    
+    ' Set the URL for Busy API
+    URL = "http://localhost:52525/Integration/Api/Invoice"
+    
+    ' Create the JSON request for creating a sales invoice
+    postData = "{""invoiceType"": ""Sales"",""invoiceDate"": ""2023-05-12"",""partyName"": ""CustomerName"",""invoiceNumber"": ""INV001"",""partyLedgerName"": ""Debtors"",""narration"": ""Sales Invoice"",""ledgerEntries"": [{""ledgerName"": ""Sales Account"",""isDeemedPositive"": true,""amount"": 1000}]}"
+    
+    ' Create an HTTP object
+    Set objHTTP = CreateObject("MSXML2.XMLHTTP")
+    postData = XMLStr
+    ' Set the URL and request type
+    objHTTP.Open "POST", URL, False
+    
+    ' Set the content type to JSON
+    objHTTP.setRequestHeader "Content-Type", "application/json"
+
+    ' Send the JSON request to Busy API
+    objHTTP.Send postData
+    
+    ' Get the response from Busy API
+    responseText = objHTTP.responseText
+    
+    ' Process the response
+    ' ...
+    
+    ' Clean up the HTTP object
+    Set objHTTP = Nothing
+End Sub
+Private Sub CmdPrint_Click()
+PrintFlag = True
+On Error GoTo errHandler_print
+cmdexport_click
+    On Error GoTo 0
+Exit Sub
+errHandler_print:
+  On Error GoTo 0
+  Exit Sub
+End Sub
+Private Sub cmdexport_click()
+Screen.MousePointer = vbHourglass
+Dim oExcel As Object
+Dim oPdf As Object
+Dim oBook As Object
+Dim oSheet As Object
+Dim j As Integer, i As Integer, Cnt As Long
+   Set oExcel = CreateObject("Excel.Application")
+   Set oBook = oExcel.Workbooks.Add
+   Set oSheet = oBook.Worksheets(1)
+   On Error GoTo errcode
+   With oBook.Worksheets("sheet1").Rows(1)
+        .Font.Bold = True
+        .Font.Size = 16
+        oBook.Worksheets("sheet1").Cells(1, j + 1).Value = "Order List"
+        .Range("A1:O1").Merge
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        oBook.Worksheets("sheet1").Rows(2).Font.Bold = True
+        For j = 0 To DataGrid1.Columns.Count - 1
+            oBook.Worksheets("sheet1").Cells(2, j + 1).Value = DataGrid1.Columns(j).Caption
+           MdiMainMenu.StatusBar1.Panels(2).Text = "Processed record #" & Trim(Str(Cnt)) & " of " & Trim(Str(rstBookPOList.RecordCount)) & " !!!"
+        Cnt = Cnt + 1
+        Next j
+    'Next i
+   End With
+ 'Save Data
+   oSheet.Range("A3").CopyFromRecordset rstBookPOList
+     
+   With oExcel
+            StartColumn = "A"
+            StartRow = 1
+            EndColumn = "O"
+            EndRow = rstBookPOList.RecordCount + 1
+            oBook.Activate
+            oExcel.Visible = True
+            oBook.Worksheets("sheet1").Cells(2, 1).Value = " Order Code"
+            oBook.Worksheets("sheet1").Cells(2, 2).Value = " Order No."
+            oBook.Worksheets("sheet1").Cells(2, 3).Value = " Ref. No."
+            oBook.Worksheets("sheet1").Cells(2, 4).Value = " Order Date"
+            oBook.Worksheets("sheet1").Cells(2, 5).Value = " Item Name."
+            oBook.Worksheets("sheet1").Cells(2, 6).Value = " email-Text"
+            oBook.Worksheets("sheet1").Cells(2, 7).Value = " email-Title"
+            oBook.Worksheets("sheet1").Cells(2, 8).Value = " email-Lamination"
+            oBook.Worksheets("sheet1").Cells(2, 9).Value = " email-Binding"
+            oBook.Worksheets("sheet1").Cells(2, 10).Value = " Receipt Qty."
+            oBook.Worksheets("sheet1").Cells(2, 11).Value = " Text Party"
+            oBook.Worksheets("sheet1").Cells(2, 12).Value = " Title Party"
+            oBook.Worksheets("sheet1").Cells(2, 13).Value = " Misc. Operation  Party"
+            oBook.Worksheets("sheet1").Cells(2, 14).Value = " Binding Party"
+            oBook.Worksheets("sheet1").Cells(2, 15).Value = " Unit Rate"
+            .Columns("A:O").EntireColumn.AutoFit
+            .ActiveSheet.pagesetup.Orientation = xlLandscape
+            .ActiveSheet.pagesetup.LeftMargin = .InchesToPoints(0.36)
+            .ActiveSheet.pagesetup.RightMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.TopMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.BottomMargin = .InchesToPoints(0.5)
+            .ActiveSheet.pagesetup.HeaderMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.FooterMargin = .InchesToPoints(0.25)
+            .ActiveSheet.pagesetup.PrintArea = StartColumn & StartRow & ":" & EndColumn & EndRow + 1
+            .ActiveSheet.pagesetup.Zoom = False
+            .ActiveSheet.pagesetup.FitToPagesTall = False
+            .ActiveSheet.pagesetup.FitToPagesWide = 1
+            .ActiveSheet.pagesetup.PrintGridlines = True
+            .ActiveSheet.pagesetup.PrintTitleRows = "$1:$2"
+            .ActiveSheet.ExportAsFixedFormat Type:=xlTypePDF
+            If PrintFlag Then
+                With CommonDialog1
+                    .Copies = 1
+                    .flags = &H0&
+                    .ShowPrinter
+                    oExcel.ActiveSheet.PrintOut
+'                    oBook.SaveAs
+'                    oBook.Close
+'                    oExcel.Quit
+                End With
+            End If
+   End With
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+   Exit Sub
+errcode:
+   MsgBox Err.Description, , Err.Source
+   PrintFlag = False
+   Screen.MousePointer = vbDefault
+End Sub
+
+
 

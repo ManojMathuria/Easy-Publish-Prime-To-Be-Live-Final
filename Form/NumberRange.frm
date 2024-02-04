@@ -6,7 +6,7 @@ Begin VB.Form FrmNumberRange
    Caption         =   "Select Range"
    ClientHeight    =   1125
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4440
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmNumberRange
    MaxButton       =   0   'False
    ScaleHeight     =   1125
    ScaleWidth      =   4440
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Height          =   375
@@ -181,7 +180,7 @@ Private Sub Form_Load()
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-        SendKeys "{TAB}", True
+        Sendkeys "{TAB}", True
         KeyCode = 0
     ElseIf KeyCode = vbKeyEscape Then
         KeyCode = 0

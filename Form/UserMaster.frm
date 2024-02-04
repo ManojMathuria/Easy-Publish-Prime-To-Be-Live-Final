@@ -9,7 +9,7 @@ Begin VB.Form FrmUserMaster
    Caption         =   "User Master"
    ClientHeight    =   7875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   9150
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -110,11 +110,13 @@ Begin VB.Form FrmUserMaster
          TabPicture(1)   =   "UserMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          TabCaption(2)   =   "&Privileges"
          TabPicture(2)   =   "UserMaster.frx":0054
          Tab(2).ControlEnabled=   0   'False
          Tab(2).Control(0)=   "Mh3dFrame4"
+         Tab(2).Control(0).Enabled=   0   'False
          Tab(2).ControlCount=   1
          Begin VB.CommandButton cmdRefresh 
             Height          =   325
@@ -926,6 +928,7 @@ Private Sub Form_Load()
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     If Not SL Then MasterCode = ""
     CenterForm Me
+    WheelHook DataGrid1
     BusySystemIndicator True
     CxnUserMaster.CursorLocation = adUseClient
     CxnUserMaster.Open cnDatabase.ConnectionString
@@ -1545,7 +1548,7 @@ Private Function UpdatePrivileges(ByVal strOption As String) As Boolean
     Else
         If rstUserMaster.Fields("Level").Value <> "1" Then
             For Cnt = TreeView1.Nodes.Count To 1 Step -1
-                If InStr(1, "Key01000000_Key02000000_Key03000000_Key04000000_Key05000000_Key06000000_Key07000000_Key08000000", TreeView1.Nodes(Cnt).Key) Then
+                If InStr(1, "Key00000000_Key01000000_Key02000000_Key03000000_Key04000000_Key05000000_Key06000000_Key07000000_Key08000000", TreeView1.Nodes(Cnt).Key) Then
                     If Not ChildNodeSelected Then
                         TreeView1.Nodes(Cnt).Checked = False
                     End If
@@ -1578,7 +1581,7 @@ Private Sub cmdRefresh_Click()
     For Each Object In MdiMainMenu
         If TypeName(Object) = "Menu" Then
             If Object.Tag <> "" Then
-                If InStr(1, "01000000_02000000_03000000_04000000_05000000_06000000_07000000_08000000", Object.Tag) Then
+                If InStr(1, "00000000_01000000_02000000_03000000_04000000_05000000_06000000_07000000_08000000", Object.Tag) Then
                     ModuleCode = Trim(Object.Tag)
                     ParentNodeKey = Trim(Object.Tag)
                     ModuleName = Mid(Trim(Object.Caption), 2)
@@ -1649,7 +1652,7 @@ Private Sub CreateTreeView()
     For Each Object In MdiMainMenu
         If TypeName(Object) = "Menu" Then
             If Object.Tag <> "" Then
-                If InStr(1, "01000000_02000000_03000000_04000000_05000000_06000000_07000000_08000000", Object.Tag) Then
+                If InStr(1, "00000000_01000000_02000000_03000000_04000000_05000000_06000000_07000000_08000000", Object.Tag) Then
                     ParentNodeKey = "Key" & Trim(Object.Tag)
                     Set nodX = TreeView1.Nodes.Add(, , ParentNodeKey, Mid(Object.Caption, 2))
                     nodX.Expanded = True

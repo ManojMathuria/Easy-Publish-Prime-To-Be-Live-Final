@@ -25,7 +25,6 @@ Begin VB.Form FrmAccountChild08
    MaxButton       =   0   'False
    ScaleHeight     =   4635
    ScaleWidth      =   9855
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       Height          =   375
       Left            =   8730
@@ -255,8 +254,8 @@ Begin VB.Form FrmAccountChild08
          _Version        =   65536
          _ExtentX        =   3836
          _ExtentY        =   582
-         Calculator      =   "AccountChild08.frx":09C9
-         Caption         =   "AccountChild08.frx":09E9
+         Calculator      =   "AccountChild08.frx":09ED
+         Caption         =   "AccountChild08.frx":0A0D
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -266,9 +265,9 @@ Begin VB.Form FrmAccountChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountChild08.frx":0A55
-         Keys            =   "AccountChild08.frx":0A73
-         Spin            =   "AccountChild08.frx":0ABD
+         DropDown        =   "AccountChild08.frx":0A79
+         Keys            =   "AccountChild08.frx":0A97
+         Spin            =   "AccountChild08.frx":0AE1
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -313,8 +312,8 @@ Begin VB.Form FrmAccountChild08
          _Version        =   65536
          _ExtentX        =   3519
          _ExtentY        =   582
-         Calculator      =   "AccountChild08.frx":0AE5
-         Caption         =   "AccountChild08.frx":0B05
+         Calculator      =   "AccountChild08.frx":0B09
+         Caption         =   "AccountChild08.frx":0B29
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -324,9 +323,9 @@ Begin VB.Form FrmAccountChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountChild08.frx":0B71
-         Keys            =   "AccountChild08.frx":0B8F
-         Spin            =   "AccountChild08.frx":0BD9
+         DropDown        =   "AccountChild08.frx":0B95
+         Keys            =   "AccountChild08.frx":0BB3
+         Spin            =   "AccountChild08.frx":0BFD
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -386,8 +385,8 @@ Begin VB.Form FrmAccountChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountChild08.frx":0C01
-         Picture         =   "AccountChild08.frx":0C1D
+         Picture         =   "AccountChild08.frx":0C25
+         Picture         =   "AccountChild08.frx":0C41
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
@@ -413,8 +412,8 @@ Begin VB.Form FrmAccountChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountChild08.frx":0C39
-         Picture         =   "AccountChild08.frx":0C55
+         Picture         =   "AccountChild08.frx":0C5D
+         Picture         =   "AccountChild08.frx":0C79
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
          Height          =   330
@@ -440,8 +439,8 @@ Begin VB.Form FrmAccountChild08
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "AccountChild08.frx":0C71
-         Picture         =   "AccountChild08.frx":0C8D
+         Picture         =   "AccountChild08.frx":0C95
+         Picture         =   "AccountChild08.frx":0CB1
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput3 
          Height          =   330
@@ -452,8 +451,8 @@ Begin VB.Form FrmAccountChild08
          _Version        =   65536
          _ExtentX        =   10504
          _ExtentY        =   582
-         Calculator      =   "AccountChild08.frx":0CA9
-         Caption         =   "AccountChild08.frx":0CC9
+         Calculator      =   "AccountChild08.frx":0CCD
+         Caption         =   "AccountChild08.frx":0CED
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -463,9 +462,9 @@ Begin VB.Form FrmAccountChild08
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "AccountChild08.frx":0D35
-         Keys            =   "AccountChild08.frx":0D53
-         Spin            =   "AccountChild08.frx":0D9D
+         DropDown        =   "AccountChild08.frx":0D59
+         Keys            =   "AccountChild08.frx":0D77
+         Spin            =   "AccountChild08.frx":0DC1
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -533,10 +532,10 @@ Begin VB.Form FrmAccountChild08
       AutoSize        =   -1  'True
       FillColor       =   8421504
       TextColor       =   16777215
-      Picture         =   "AccountChild08.frx":0DC5
+      Picture         =   "AccountChild08.frx":0DE9
       Multiline       =   -1  'True
       GlobalMem       =   -1  'True
-      Picture         =   "AccountChild08.frx":0DE1
+      Picture         =   "AccountChild08.frx":0E05
    End
 End
 Attribute VB_Name = "FrmAccountChild08"

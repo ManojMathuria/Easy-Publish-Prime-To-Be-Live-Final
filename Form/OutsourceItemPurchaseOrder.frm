@@ -1718,6 +1718,8 @@ Dim EMailID, Attachment, Message
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2
     WheelHook DataGrid1
     BusySystemIndicator True
     cnBOMPurchaseOrder.CursorLocation = adUseClient
@@ -2489,7 +2491,7 @@ Public Sub PrintBOMPurchaseOrder(ByVal OrderCode As String, Optional ByVal Note 
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     Prefix = "BM/" & Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/"
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail,GSTIN FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail,GSTIN FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstBOMOrder.Open "SELECT '" & Prefix & "'+LTRIM(P.Name) As OrderNo,[Date] As OrderDate,DeliveryDate,LTRIM(M1.PrintName) As SupplierName,VAT,Adjustment,BillAmount,Remarks,LTRIM(M2.PrintName) As BOMName,Quantity,Rate,Amount,[VAT%],LTRIM(G.PrintName)+' ('+LTRIM(G.Value1)+')' As UOM,(SELECT TOP 1 '" & Prefix & "'+LTRIM(P1.Name)+'/'+FORMAT(P1.Date,'dd-MM-yyyy')+'/'+FORMAT([Rate],'0.00') FROM OutsourceItemPOParent P1 INNER JOIN OutsourceItemPOChild C1 ON P1.Code=C1.Code WHERE C1.OutsourceItem=C.OutsourceItem AND P1.Code<P.Code ORDER BY P1.Name DESC) As LastPurchaseRate FROM (((OutsourceItemPOParent P LEFT JOIN OutsourceItemPOChild C ON P.Code = C.Code) LEFT JOIN AccountMaster M1 ON M1.Code=P.Supplier)LEFT JOIN OutsourceItemMaster M2 On C.OutsourceItem=M2.Code)LEFT JOIN GeneralMaster G ON G.Code=M2.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M2.PrintName", cnDatabase, adOpenKeyset, adLockOptimistic
     rstBOMOrderChild.Open "SELECT LTRIM(M1.PrintName) As OutsourceItemName,LTRIM(M3.PrintName) As AccountName,Quantity,M3.Address1 As PrinterAdd1,M3.Address2 As PrinterAdd2,M3.Address3 As PrinterAdd3,M3.Address4 As PrinterAdd4,LTRIM(M3.eMail) As AccountMail,M3.TIN As GSTIN,M3.Mobile,LTRIM(G.PrintName)+' ('+LTRIM(G.Value1)+')' As UOM FROM (((OutsourceItemPOParent P INNER JOIN MaterialIOChild C ON P.IssueOrder=C.Code) INNER JOIN OutsourceItemMaster M1 ON M1.Code=C.Item) INNER JOIN AccountMaster M3 ON C.Godown=M3.Code)LEFT JOIN GeneralMaster G ON G.Code=M1.UOM WHERE P.Code='" & OrderCode & "' ORDER BY M1.PrintName", cnDatabase, adOpenKeyset, adLockOptimistic
     Screen.MousePointer = vbNormal

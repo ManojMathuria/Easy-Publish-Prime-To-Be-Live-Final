@@ -296,6 +296,7 @@ Public rstSelectionList As New ADODB.Recordset
 Public FindFieldName As String
 Dim PrevStr As String, dblBookMark As Double, FormCaption As String
 Private Sub Form_Activate()
+On Error Resume Next
     Dim Ctr As Integer
     If rstSelectionList.RecordCount = 0 Then Exit Sub ': Unload Me:
     rstSelectionList.Filter = adFilterNone

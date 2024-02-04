@@ -11,7 +11,7 @@ Begin VB.Form FrmBookPOChild01
    Caption         =   "Multi Elements Digital Printing  Order Details"
    ClientHeight    =   8640
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   11730
    BeginProperty Font 
       Name            =   "Arial"
@@ -27,7 +27,6 @@ Begin VB.Form FrmBookPOChild01
    MaxButton       =   0   'False
    ScaleHeight     =   8640
    ScaleWidth      =   11730
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdDelete 
       Height          =   375
       Left            =   10870
@@ -5052,6 +5051,7 @@ Dim PaperBalance As Double, SPU As Long, Wt As Double, inWidth As Double, GSM As
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value

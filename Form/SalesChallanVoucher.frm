@@ -13,7 +13,7 @@ Begin VB.Form frmSalesChallanVoucher
    Caption         =   "Sales Challan Voucher"
    ClientHeight    =   9075
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -98,10 +98,15 @@ Begin VB.Form frmSalesChallanVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesChallanVoucher.frx":0038
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0)=   "txtNotes"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "btnNotes"
-         Tab(1).Control(2)=   "txtNotes"
-         Tab(1).ControlCount=   3
+         Tab(1).Control(1).Enabled=   0   'False
+         Tab(1).Control(2)=   "Mh3dFrame2"
+         Tab(1).Control(2).Enabled=   0   'False
+         Tab(1).Control(3)=   "Mh3dLabel1(1)"
+         Tab(1).Control(3).Enabled=   0   'False
+         Tab(1).ControlCount=   4
          Begin VB.TextBox txtNotes 
             Appearance      =   0  'Flat
             BackColor       =   &H00FFFFFF&
@@ -1998,8 +2003,8 @@ Begin VB.Form frmSalesChallanVoucher
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "SalesChallanVoucher.frx":25B0
-               Picture         =   "SalesChallanVoucher.frx":25CC
+               Picture         =   "SalesChallanVoucher.frx":25D4
+               Picture         =   "SalesChallanVoucher.frx":25F0
             End
             Begin MSForms.ComboBox cmbChallanType 
                Height          =   330
@@ -2065,8 +2070,36 @@ Begin VB.Form frmSalesChallanVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesChallanVoucher.frx":25E8
-            Picture         =   "SalesChallanVoucher.frx":2604
+            Picture         =   "SalesChallanVoucher.frx":260C
+            Picture         =   "SalesChallanVoucher.frx":2628
+         End
+         Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+            Height          =   330
+            Index           =   1
+            Left            =   -67320
+            TabIndex        =   55
+            Top             =   0
+            Width           =   5895
+            _Version        =   65536
+            _ExtentX        =   10398
+            _ExtentY        =   582
+            _StockProps     =   77
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Calibri"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            TintColor       =   16711935
+            Caption         =   " Ctrl+E->Edit  Ctrl+S OR F2->Save F11->Get Reference  F9->Delete Row"
+            Alignment       =   0
+            FillColor       =   8421504
+            TextColor       =   16777215
+            Picture         =   "SalesChallanVoucher.frx":2644
+            Picture         =   "SalesChallanVoucher.frx":2660
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2203,7 +2236,7 @@ Private Sub Form_Load()
     rstSalesChallanVoucherParent.CursorLocation = adUseClient
     LoadMasterList
     With rstSalesChallanVoucherList
-        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,ChallanNo,ChallanDate,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code  WHERE RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesChallanVoucher, adOpenKeyset, adLockPessimistic
+        .Open "SELECT T.Code,T.Name,V.Code As VchSeriesCode,V.Name As VchSeriesName,Date,T.Type,P.Name As PartyName,C.Name As ConsigneeName,ChallanNo,ChallanDate,Amount FROM ((JobworkBVParent T INNER JOIN AccountMaster P ON T.Party=P.Code) INNER JOIN AccountMaster C ON T.Consignee=C.Code) INNER JOIN VchSeriesMaster V ON T.VchSeries=V.Code  WHERE RIGHT(Type,2)='" & VchType & "' AND T.FYCode='" & FYCode & "' ORDER BY T.Name", cnSalesChallanVoucher, adOpenKeyset, adLockPessimistic
         .Filter = adFilterNone
         If .RecordCount > 0 Then
             .MoveLast
@@ -2213,9 +2246,9 @@ Private Sub Form_Load()
         BusySystemIndicator False
         SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "AutoVchNo"
+        SortOrder = "AutoVchNo"
     End If
 '        SortOrder = "Name"
         If Not (.EOF Or .BOF) Then
@@ -3100,9 +3133,11 @@ Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
         If Shift = 0 And KeyCode = vbKeyF9 Then
             .GetText 11, .ActiveRow, Item  'Ref Code
             If Not CheckEmpty(Item, False) Then
-                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesChallanVoucherParent.Fields("Code").Value & "'") Then DisplayError ("Failed to delete the record"): .SetFocus
-            ElseIf MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
-                .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+                If chkRef("SELECT RefCode FROM JobworkBVRef WHERE RefCode='" & Item & "' AND VchCode<>'" & rstSalesChallanVoucherParent.Fields("Code").Value & "'") Then
+                    DisplayError ("Failed to delete the record"): .SetFocus
+                Else
+                    If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then .DeleteRows .ActiveRow, 1: .SetFocus: CalculateTotal
+                End If
             End If
         ElseIf KeyCode = vbKeyF3 Then
             If .ActiveCol = 1 Then
@@ -3275,7 +3310,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND P.MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND Party ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
                 "-ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND P.Date <='" & GetDate(MhDateInput1.Text) & "' AND MaterialCentre ='" & MaterialCentreCode & "' AND C.Item=I.Code AND C.Quantity<0),0)" & _
-                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Name As HSNName,I.HSNCode As HSNCode" & _
+                "),'#0') As Col1,0 As Quantity,I.Price,I.Code As code,H.Code As HSNCode,H.Name As HSNName " & _
                 " FROM (BookMaster I INNER Join GeneralMaster H ON H.Code=I.HSNCode)" & _
                 "WHERE I.Type='F') As Tbl ORDER BY Col0 ASC", cnSalesChallanVoucher, adOpenKeyset, adLockReadOnly
     Else
@@ -3283,7 +3318,7 @@ Private Sub LoadMasterList(Optional ByVal LoadSelected As Boolean)
     End If
     rstItemList.ActiveConnection = Nothing
     If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
-    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE VchType='" & IIf(VchType = "IF", "08", "05") & VchType & "' ORDER BY Name", cnSalesChallanVoucher, adOpenKeyset, adLockReadOnly
+    rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType ='" & IIf(VchType = "IF", "08", "05") & VchType & "' ORDER BY Name", cnSalesChallanVoucher, adOpenKeyset, adLockReadOnly
     rstVchSeriesList.ActiveConnection = Nothing
 End Sub
 Private Sub LoadOrderList()
@@ -3438,6 +3473,27 @@ Dim ChallanType As String
     If rstSalesChallanVoucherChild.RecordCount = 0 Then On Error GoTo 0: Exit Sub
     rstSalesChallanVoucherChild.ActiveConnection = Nothing
 With rptSalesOrderVoucher
+    
+            If Logo = "S" Then
+                .Picture1.Width = LogoW
+                .Picture1.Height = LogoH
+            End If
+            If Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 30 Then
+                .Text2.Font.Size = 20
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 40 Then
+                .Text2.Font.Size = 18
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 50 Then
+                .Text2.Font.Size = 16
+            ElseIf Len(LTrim(rstCompanyMaster.Fields("PrintName").Value)) <= 60 Then
+                .Text2.Font.Size = 14
+            End If
+            If LogoLine = "N" Then
+                .Picture1.LeftLineStyle = crLSNoLine
+                .Picture1.RightLineStyle = crLSNoLine
+                .Picture1.TopLineStyle = crLSNoLine
+                .Picture1.BottomLineStyle = crLSNoLine
+            End If
+    
     rptSalesOrderVoucher.Text1.SetText IIf(ChallanType = "0710RF", "Sales Return", IIf(ChallanType = "0510RF", "Purchase", IIf(ChallanType = "0810IF", "Sales ", IIf(ChallanType = "0610IF", "Purchase Return", IIf(ChallanType = "2110RF", "Promotional Sales", "Stock Transfer"))))) & " Challan"
     rptSalesOrderVoucher.Text13.SetText IIf(ChallanType = "0710RF", "Buyer :", IIf(ChallanType = "0510RF", "Supplier :", IIf(ChallanType = "0810IF", "Buyer :", IIf(ChallanType = "0610IF", "Supplier :", IIf(ChallanType = "2110RF", "Buyer :", "From: Material Centre")))))
     

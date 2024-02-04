@@ -6,7 +6,7 @@ Begin VB.Form FrmCompanyChild
    Caption         =   "CompanyChild"
    ClientHeight    =   6495
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   18315
    BeginProperty Font 
       Name            =   "Arial"
@@ -22,7 +22,6 @@ Begin VB.Form FrmCompanyChild
    MaxButton       =   0   'False
    ScaleHeight     =   6495
    ScaleWidth      =   18315
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdRefresh 
       Height          =   375
       Left            =   17835
@@ -118,13 +117,10 @@ Option Explicit
 Dim cnCompanyChild As New ADODB.Connection
 Dim rstCompanyChild As New ADODB.Recordset
 Dim EditMode As Boolean
-
-Private Sub Command1_Click()
-
-End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnCompanyChild.CursorLocation = adUseClient
     cnCompanyChild.Open cnDatabase.ConnectionString
@@ -175,13 +171,13 @@ Private Sub SaveFields()
                     .GetText 3, i, CellVal(3)
                     .GetText 4, i, CellVal(4)
                     .GetText 5, i, CellVal(5)
-                    .GetText 6, i, CellVal(6)
-                    .GetText 7, i, CellVal(7)
-                    .GetText 8, i, CellVal(8)
-                    .GetText 9, i, CellVal(9)
-                    .GetText 10, i, CellVal(10)
-                    .GetText 11, i, CellVal(11)
-                    .GetText 12, i, CellVal(12)
+                    .GetText 6, i, CellVal(6): CellVal(6) = Left(CellVal(6), 60): .SetText 6, i, CellVal(6)
+                    .GetText 7, i, CellVal(7): CellVal(7) = Left(CellVal(7), 60): .SetText 7, i, CellVal(7)
+                    .GetText 8, i, CellVal(8): CellVal(8) = Left(CellVal(8), 60): .SetText 8, i, CellVal(8)
+                    .GetText 9, i, CellVal(9): CellVal(9) = Left(CellVal(9), 60): .SetText 9, i, CellVal(9)
+                    .GetText 10, i, CellVal(10): CellVal(10) = Left(CellVal(10), 60): .SetText 10, i, CellVal(10)
+                    .GetText 11, i, CellVal(11): CellVal(11) = Left(CellVal(11), 60): .SetText 11, i, CellVal(11)
+                    .GetText 12, i, CellVal(12): CellVal(12) = Left(CellVal(12), 60): .SetText 12, i, CellVal(12)
                 With rstCompanyChild
                      cnCompanyChild.Execute "INSERT INTO CompChild VALUES ('" & CellVal(1) & "','" & (CellVal(2)) & "','" & CellVal(6) & "','" & CellVal(7) & "','" & CellVal(8) & "','" & CellVal(9) & "','" & CellVal(10) & "','" & CellVal(11) & "','" & CellVal(12) & "','" & CellVal(4) & "','" & CellVal(5) & "','" & CellVal(3) & "')"
                 End With

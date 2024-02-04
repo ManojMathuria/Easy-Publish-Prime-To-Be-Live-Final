@@ -10,7 +10,7 @@ Begin VB.Form FrmFinishSizeMaster
    Caption         =   "Finish Size Master"
    ClientHeight    =   4875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   6750
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -104,6 +104,7 @@ Begin VB.Form FrmFinishSizeMaster
          TabPicture(1)   =   "FinishSizeMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -389,8 +390,8 @@ Begin VB.Form FrmFinishSizeMaster
             Caption         =   "Ctrl+A->Add  Ctrl+E->Edit  Ctrl+D->Delete  Ctrl+S->Save"
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "FinishSizeMaster.frx":08D4
-            Picture         =   "FinishSizeMaster.frx":08F0
+            Picture         =   "FinishSizeMaster.frx":092B
+            Picture         =   "FinishSizeMaster.frx":0947
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -542,12 +543,12 @@ Private Sub DataGrid1_HeadClick(ByVal ColIndex As Integer)
     Text1.Text = ""
     Text1.SetFocus
 End Sub
-
 Private Sub Form_Load()
     If Not SL Then MasterCode = ""
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     cnFinishSizeMaster.CursorLocation = adUseClient: cnFinishSizeMaster.Open cnDatabase.ConnectionString
     rstFinishSizeList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='11' ORDER BY Name", cnDatabase, adOpenKeyset, adLockOptimistic

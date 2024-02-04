@@ -1,0 +1,19 @@
+{
+  "user": {
+    "username": "JohnDoe",
+    "password": "s3cr3t"
+  },
+  "product": {
+    "name": "Widget",
+    "description": "A great widget",
+    "quantity": 1,
+    "price": 10.99
+  },
+  "customer": {
+    "name": "JaneDoe",
+    "address": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip": "12345"
+  }
+}

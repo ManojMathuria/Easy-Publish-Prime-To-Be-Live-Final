@@ -35,14 +35,14 @@ Begin VB.Form spreadpreview
       AppearanceStyle =   0
    End
    Begin FPSpreadADO.fpSpreadPreview fpSpreadPreview1 
-      Height          =   8715
+      Height          =   10635
       Left            =   0
       TabIndex        =   0
       Top             =   480
-      Width           =   19850
+      Width           =   19845
       _Version        =   524288
-      _ExtentX        =   35013
-      _ExtentY        =   15372
+      _ExtentX        =   35004
+      _ExtentY        =   18759
       _StockProps     =   96
       AllowUserZoom   =   -1  'True
       GrayAreaColor   =   16121836
@@ -77,7 +77,6 @@ Private Sub Form_Activate()
  
     'Attach preview control to Spread
     spreadpreview.fpSpreadPreview1.hWndSpread = frm.fpSpread1.hwnd
-   
     'Update page count listing
     UpdatePageCount
 End Sub
@@ -145,7 +144,7 @@ Dim i As Integer
     fpSpread1.fontname = "MS Sans Serif"
     fpSpread1.FontSize = 8
     fpSpread1.FontBold = False
-    
+
     'Select a single cell
     fpSpread1.Col = 2
     fpSpread1.Row = 1
@@ -221,7 +220,7 @@ Dim i As Integer
 End Sub
 Sub DisableButton(Col As Long, bitmapdirection As String)
 'Disable specified button
-    fpSpread1.ReDraw = False
+    fpSpread1.Redraw = False
     
     fpSpread1.Row = 1
     fpSpread1.Col = Col
@@ -231,11 +230,11 @@ Sub DisableButton(Col As Long, bitmapdirection As String)
     fpSpread1.Protect = True
     Set fpSpread1.TypeButtonPicture = LoadPicture(App.Path & "\Icon\" & bitmapdirection & "DIS.BMP")
     
-    fpSpread1.ReDraw = True
+    fpSpread1.Redraw = True
 End Sub
 Sub EnableButton(Col As Long, bitmapdirection As String)
 'Enable specified button
-    fpSpread1.ReDraw = False
+    fpSpread1.Redraw = False
     
     fpSpread1.Row = 1
     fpSpread1.Col = Col
@@ -245,7 +244,7 @@ Sub EnableButton(Col As Long, bitmapdirection As String)
     fpSpread1.Protect = False
     Set fpSpread1.TypeButtonPicture = LoadPicture(App.Path & "\Icon\" & bitmapdirection & ".BMP")
     
-    fpSpread1.ReDraw = True
+    fpSpread1.Redraw = True
 End Sub
 Private Sub Form_Resize()
     fpSpread1.Move 0, 0, ScaleWidth, fpSpread1.Height
@@ -298,6 +297,10 @@ Private Sub fpSpread1_ButtonClicked(ByVal Col As Long, ByVal Row As Long, ByVal 
              
             Case 16 'Close
                 Unload Me
+'                With FrmStockLedger.Toolbar1.Buttons
+'                    FrmStockLedger.Toolbar1_ButtonClick FrmStockLedger.Toolbar1.Buttons.Item(5) 'FrmStockLedger.Toolbar1_ButtonClick .Item(5)
+'                End With
+'                'FrmStockLedger.Toolbar1_ButtonClick FrmStockLedger.Toolbar1.Buttons.Item(5)
         End Select
     End If
 End Sub
@@ -306,10 +309,7 @@ Sub UpdatePageCount()
     fpSpread1.Row = 1
     fpSpread1.Col = 14
     fpSpread1.Text = "Page " & fpSpreadPreview1.PageCurrent & " of " & frm.fpSpread1.PrintPageCount
-    
 End Sub
-
-
 Private Sub fpSpread1_TextTipFetch(ByVal Col As Long, ByVal Row As Long, MultiLine As FPSpreadADO.TextTipFetchMultilineConstants, TipWidth As Long, TipText As String, ShowTip As Boolean)
     With fpSpread1
         .Col = Col
@@ -322,9 +322,7 @@ Private Sub fpSpread1_TextTipFetch(ByVal Col As Long, ByVal Row As Long, MultiLi
             TipText = .Text
         End If
     End With
-
 End Sub
-
 Private Sub fpSpreadPreview1_PageChange(ByVal Page As Long)
     UpdatePageCount
 End Sub

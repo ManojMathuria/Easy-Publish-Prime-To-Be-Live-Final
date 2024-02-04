@@ -231,8 +231,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   8421376
                TextColor       =   16777215
-               Picture         =   "MaterialIssueOrder.frx":077E
-               Picture         =   "MaterialIssueOrder.frx":079A
+               Picture         =   "MaterialIssueOrder.frx":08A6
+               Picture         =   "MaterialIssueOrder.frx":08C2
             End
             Begin VB.TextBox Text2 
                Alignment       =   1  'Right Justify
@@ -319,8 +319,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":07B6
-               Picture         =   "MaterialIssueOrder.frx":07D2
+               Picture         =   "MaterialIssueOrder.frx":08DE
+               Picture         =   "MaterialIssueOrder.frx":08FA
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -347,8 +347,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":07EE
-               Picture         =   "MaterialIssueOrder.frx":080A
+               Picture         =   "MaterialIssueOrder.frx":0916
+               Picture         =   "MaterialIssueOrder.frx":0932
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -374,8 +374,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":0826
-               Picture         =   "MaterialIssueOrder.frx":0842
+               Picture         =   "MaterialIssueOrder.frx":094E
+               Picture         =   "MaterialIssueOrder.frx":096A
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -401,8 +401,8 @@ Begin VB.Form FrmMaterialIssueOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "MaterialIssueOrder.frx":085E
-               Picture         =   "MaterialIssueOrder.frx":087A
+               Picture         =   "MaterialIssueOrder.frx":0986
+               Picture         =   "MaterialIssueOrder.frx":09A2
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -413,8 +413,8 @@ Begin VB.Form FrmMaterialIssueOrder
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "MaterialIssueOrder.frx":0896
-               Caption         =   "MaterialIssueOrder.frx":09AE
+               Calendar        =   "MaterialIssueOrder.frx":09BE
+               Caption         =   "MaterialIssueOrder.frx":0AD6
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -424,9 +424,9 @@ Begin VB.Form FrmMaterialIssueOrder
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "MaterialIssueOrder.frx":0A1A
-               Keys            =   "MaterialIssueOrder.frx":0A38
-               Spin            =   "MaterialIssueOrder.frx":0A96
+               DropDown        =   "MaterialIssueOrder.frx":0B42
+               Keys            =   "MaterialIssueOrder.frx":0B60
+               Spin            =   "MaterialIssueOrder.frx":0BBE
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -616,8 +616,8 @@ Begin VB.Form FrmMaterialIssueOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "MaterialIssueOrder.frx":0ABE
-            Picture         =   "MaterialIssueOrder.frx":0ADA
+            Picture         =   "MaterialIssueOrder.frx":0BE6
+            Picture         =   "MaterialIssueOrder.frx":0C02
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -766,14 +766,17 @@ Dim OutputTo As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+'    Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    WheelHook DataGrid1
     BusySystemIndicator True
     CxnMaterialIssueOrder.CursorLocation = adUseClient
     CxnMaterialIssueOrder.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster Where FYCode='" & FYCode & "'", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
     rstSourceList.Open "Select Name As Col0, Code From AccountMaster Order by Name", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
     rstGodownList.Open "Select Name As Col0,Code From AccountMaster Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockReadOnly
     rstOutsourceItemList.Open "Select Name,'1'+Code As NCode,(Select Name FROM GeneralMaster Where Code=M.UOM) AS UOMName From OutsourceItemMaster As M Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic
-    rstFreshBookList.Open "Select Name,Board,'3'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='F' Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic
+    rstFreshBookList.Open "Select Name,[Group],'3'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='F' Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic
     rstTitleList.Open "Select Name,'000000' As Board,'5'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='F' Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic
     rstRepairBookList.Open "Select Name,'4'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='R' Order By Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic
     rstMaterialIOList.Open "Select T.Code,T.Name,T.Date,M.Name As SourceName From MaterialIOParent T, AccountMaster M Where T.Source = M.Code And T.Type='0' AND FYCode='" & FYCode & "' ORDER BY T.Name", CxnMaterialIssueOrder, adOpenKeyset, adLockOptimistic

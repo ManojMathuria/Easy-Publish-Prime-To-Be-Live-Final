@@ -9,7 +9,7 @@ Begin VB.Form FrmOutsourceItemMaster
    Caption         =   "General Item (BOM)  Master"
    ClientHeight    =   5160
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   7950
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -103,6 +103,7 @@ Begin VB.Form FrmOutsourceItemMaster
          TabPicture(1)   =   "OutsourceItemMaster.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -156,10 +157,23 @@ Begin VB.Form FrmOutsourceItemMaster
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            ColumnCount     =   1
+            ColumnCount     =   2
             BeginProperty Column00 
                DataField       =   "Name"
                Caption         =   "Name"
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   16393
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column01 
+               DataField       =   "Unit"
+               Caption         =   "Unit"
                BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
                   Type            =   0
                   Format          =   ""
@@ -178,6 +192,9 @@ Begin VB.Form FrmOutsourceItemMaster
                AllowSizing     =   0   'False
                Locked          =   -1  'True
                BeginProperty Column00 
+                  ColumnWidth     =   5174.929
+               EndProperty
+               BeginProperty Column01 
                   Locked          =   -1  'True
                   ColumnWidth     =   6870.047
                EndProperty
@@ -518,10 +535,11 @@ Private Sub Form_Load()
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     If Not SL Then MasterCode = ""
     CenterForm Me
+    WheelHook DataGrid1
     BusySystemIndicator True
     CxnOutsourceItemMaster.CursorLocation = adUseClient
     CxnOutsourceItemMaster.Open cnDatabase.ConnectionString
-    rstOutsourceItemList.Open "Select Name,Code From OutsourceItemMaster Order By Name", CxnOutsourceItemMaster, adOpenKeyset, adLockOptimistic
+    rstOutsourceItemList.Open "Select Name,Code,ISNULL((Select Name From GeneralMaster Where Code=UOM),'') As UOM From OutsourceItemMaster Order By Name", CxnOutsourceItemMaster, adOpenKeyset, adLockOptimistic
     rstUOMList.Open "SELECT Name As Col0,Value1,Code FROM GeneralMaster WHERE Type='25' ORDER BY Name", CxnOutsourceItemMaster, adOpenKeyset, adLockReadOnly
     rstOutsourceItemMaster.CursorLocation = adUseClient
     rstOutsourceItemList.Filter = adFilterNone

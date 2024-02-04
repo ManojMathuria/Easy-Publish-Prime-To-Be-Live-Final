@@ -1,9 +1,9 @@
 VERSION 5.00
 Begin {BD4B4E61-F7B8-11D0-964D-00A0C9273C2A} rptSalesOrderVoucher 
-   ClientHeight    =   10230
+   ClientHeight    =   10350
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   15345
+   ClientWidth     =   15930
    OleObjectBlob   =   "SalesOrderVoucher.dsx":0000
 End
 Attribute VB_Name = "rptSalesOrderVoucher"

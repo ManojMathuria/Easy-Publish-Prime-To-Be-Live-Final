@@ -11,7 +11,7 @@ Begin VB.Form FrmBookPOChild06
    Caption         =   "Multi Elements Format Order Details"
    ClientHeight    =   10335
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   10710
    BeginProperty Font 
       Name            =   "Arial"
@@ -28,7 +28,6 @@ Begin VB.Form FrmBookPOChild06
    MaxButton       =   0   'False
    ScaleHeight     =   10335
    ScaleWidth      =   10710
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdDelete 
       Height          =   375
       Left            =   10215
@@ -327,7 +326,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1717043205
          Value           =   4
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -543,7 +542,6 @@ Begin VB.Form FrmBookPOChild06
          Left            =   1800
          MaxLength       =   60
          TabIndex        =   10
-         TabStop         =   0   'False
          Top             =   1290
          Width           =   4815
       End
@@ -1124,7 +1122,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   224919557
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1183,7 +1181,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   224919557
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1242,7 +1240,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   1888288773
+         ValueVT         =   224919557
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1301,7 +1299,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   224919557
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1360,7 +1358,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   224919557
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1419,7 +1417,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2088828933
+         ValueVT         =   323420165
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1478,7 +1476,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323420165
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1536,7 +1534,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323420165
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1595,7 +1593,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   1901789189
+         ValueVT         =   323420165
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1770,7 +1768,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1717043205
          Value           =   4
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1829,7 +1827,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323485701
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1887,7 +1885,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1717043205
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2187,7 +2185,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323551237
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2245,7 +2243,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2009726981
+         ValueVT         =   1717043205
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2304,7 +2302,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323551237
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2416,7 +2414,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323551237
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2536,7 +2534,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2088828933
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2595,7 +2593,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2654,7 +2652,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2767,7 +2765,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2825,7 +2823,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   2009726981
+         ValueVT         =   1717043205
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -2884,7 +2882,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3029,7 +3027,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3115,7 +3113,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3228,7 +3226,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   1888288773
+         ValueVT         =   323682309
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3314,7 +3312,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3373,7 +3371,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -3974,7 +3972,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4092,7 +4090,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4178,7 +4176,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4237,7 +4235,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4682,7 +4680,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4794,7 +4792,7 @@ Begin VB.Form FrmBookPOChild06
          ReadOnly        =   1
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   323878917
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4944,11 +4942,12 @@ Option Explicit
 Public VchCode As String, VchType As String, PartyCode As String, RoundOffQty As Boolean, rstBookPOChild06 As New ADODB.Recordset
 Dim rstPaperList As New ADODB.Recordset, rstGeneralList As New ADODB.Recordset, rstPlateMakerList As New ADODB.Recordset, rstFetchRate As New ADODB.Recordset, rstElementList As New ADODB.Recordset, WithEvents rstBookPOChild06c As ADODB.Recordset
 Attribute rstBookPOChild06c.VB_VarHelpID = -1
-Dim ItemCode As String, FinishSizeCode As String, SizeCode As String, TitleSizeCode As String, PlateMakerCode As String, ElementCode As String, PaperCode As String, fColorCode As String, bColorCode As String, fColor As Integer, bColor As Integer, fPlateCode As String, bPlateCode As String, fPlate As Integer, bPlate As Integer
+Dim ItemCode As String, FinishSizeCode As String, SizeCode As String, TitleSizeCode As String, PlateMakerCode As String, ElementCode As String, PaperCode As String, fColorCode As Variant, bColorCode As Variant, fColor As Integer, bColor As Integer, fPlateCode As Variant, bPlateCode As Variant, fPlate As Integer, bPlate As Integer
 Dim SPU As Long, Wt As Double, inLength As Double, inWidth As Double, GSM As Double, PaperForm As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
@@ -4968,7 +4967,8 @@ Private Sub Form_Load()
     Set rstBookPOChild06c = New ADODB.Recordset
     cnDatabase.Execute "IF OBJECT_ID('tempdb.dbo.#T', 'U') IS NOT NULL  DROP TABLE #T"
     cnDatabase.Execute "SELECT * INTO #T FROM (SELECT SubItem,Element,E.Name As ElementName,ElementPrintName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,P.Pages,DuplexPrinting,[Ups] As Ups,PaperConsumptionOther As PaperReqd FROM ((BookPOChild06 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code WHERE P.Code='" & VchCode & "' UNION " & _
-                                "SELECT SubItem,Element,E.Name As ElementName,ElementPrintName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,P.Pages,DuplexPrinting,[Ups] As Ups,0 As PaperReqd FROM ((BookChild06 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code WHERE P.Code='" & ItemCode & "' AND P.[Type]='" & VchType & "' AND Element NOT IN (SELECT Element FROM BookPOChild06 WHERE Code='" & VchCode & "')) As Tbl ORDER BY ElementName,FinishSizeName,PrintSizeName"
+                                "SELECT SubItem,Element,E.Name As ElementName,ElementPrintName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,Imposition,FrontPrintingType,BackPrintingType,PlateType,PlateTypeBack,P.Pages,DuplexPrinting,[Ups] As Ups,0 As PaperReqd FROM ((BookChild06 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code WHERE P.Code='" & ItemCode & "' AND Element NOT IN (SELECT Element FROM BookPOChild06 WHERE Code='" & VchCode & "')) As Tbl ORDER BY ElementName,FinishSizeName,PrintSizeName"
+                                ' P.[Type]='" & VchType & "' AND
     rstBookPOChild06c.Open "SELECT * FROM #T", cnDatabase, adOpenKeyset, adLockOptimistic
     Set DataGrid1.DataSource = rstBookPOChild06c
     rstBookPOChild06c.ActiveConnection = Nothing
@@ -5230,12 +5230,14 @@ Private Sub Text13_KeyDown(KeyCode As Integer, Shift As Integer) 'front color
         End With
         On Error GoTo 0
         fColorCode = slCode: Text13.Text = slName
+        If CheckEmpty(fColorCode, False) Then fColor = 0: MhRealInput3 = fColor
         If Not CheckEmpty(fColorCode, False) Then
             LoadMasterList
             With rstGeneralList
                 .MoveFirst
                 .Find "[Code] = '" & fColorCode & "'"
                 fColor = Val(.Fields("Value1").Value)
+                MhRealInput3 = fColor
             End With
             Sendkeys "{TAB}"
         End If
@@ -5260,12 +5262,14 @@ Private Sub Text15_KeyDown(KeyCode As Integer, Shift As Integer) 'back color
         End With
         On Error GoTo 0
         bColorCode = slCode: Text15.Text = slName
+        If CheckEmpty(fColorCode, False) Then bColor = 0: MhRealInput37 = bColor
         If Not CheckEmpty(bColorCode, False) Then
             LoadMasterList
             With rstGeneralList
                 .MoveFirst
                 .Find "[Code] = '" & bColorCode & "'"
                 bColor = Val(.Fields("Value1").Value)
+                MhRealInput37 = bColor
             End With
             Sendkeys "{TAB}"
         End If
@@ -5615,6 +5619,7 @@ Private Sub Command1_Click(Index As Integer)
                 If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
                 rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
                 If Not rstPlateMakerList.EOF Then Text9.Text = rstPlateMakerList.Fields("Col0").Value
+                fColor = 0: bColor = 0 'Change
                 MhRealInput3.Value = fColor: MhRealInput37.Value = bColor
                 MhRealInput1.Value = FrmBookPrintOrder.MhRealInput3.Value
                 MhDateInput1.SetFocus
@@ -5627,6 +5632,7 @@ Private Sub Command1_Click(Index As Integer)
                     If rstElementList.RecordCount > 0 Then rstElementList.MoveFirst
                     rstElementList.Find "[Code] = '" & ElementCode & "'"
                     If Not rstElementList.EOF Then Text14.Text = rstElementList.Fields("Col0").Value
+                    If Not IsNull(.Fields("ElementPrintName").Value) Then Text7.Text = .Fields("ElementPrintName").Value
                     MhRealInput41.Value = Val(.Fields("Pages").Value)
                     FinishSizeCode = .Fields("FinishSize").Value
                     If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
@@ -5637,18 +5643,23 @@ Private Sub Command1_Click(Index As Integer)
                     rstGeneralList.Find "[Code] = '" & SizeCode & "'"
                     If Not rstGeneralList.EOF Then Text4.Text = rstGeneralList.Fields("Col0").Value
                     Combo3.ListIndex = IIf(.Fields("Imposition").Value = "F", 0, 1)
+                    
                     PlateMakerCode = PartyCode
                     If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
                     rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
                     If Not rstPlateMakerList.EOF Then Text9.Text = rstPlateMakerList.Fields("Col0").Value
-                    fColorCode = .Fields("FrontPrintingType").Value
+                    
+                    If Not IsNull(.Fields("FrontPrintingType").Value) Then fColorCode = .Fields("FrontPrintingType").Value
                     If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
                     rstGeneralList.Find "[Code] = '" & fColorCode & "'"
                     If Not rstGeneralList.EOF Then Text13.Text = rstGeneralList.Fields("Col0").Value: fColor = rstGeneralList.Fields("Value1").Value
+                    
+                    'If Not IsNull(.Fields("BackPrintingType").Value) Then bColorCode = .Fields("BackPrintingType").Value
                     bColorCode = .Fields("BackPrintingType").Value
                     If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
                     rstGeneralList.Find "[Code] = '" & bColorCode & "'"
                     If Not rstGeneralList.EOF Then Text15.Text = rstGeneralList.Fields("Col0").Value: bColor = rstGeneralList.Fields("Value1").Value
+                    
                     fPlateCode = .Fields("PlateType").Value
                     If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
                     rstGeneralList.Find "[Code] = '" & fPlateCode & "'"
@@ -5690,10 +5701,10 @@ Private Sub Command1_Click(Index As Integer)
                 .Fields("Size").Value = SizeCode
                 .Fields("PrintSizeName").Value = Text4.Text
                 .Fields("Imposition").Value = IIf(Combo3.ListIndex = 0, "F", "W")
-                .Fields("FrontPrintingType").Value = fColorCode
-                .Fields("BackPrintingType").Value = bColorCode
-                .Fields("PlateType").Value = fPlateCode
-                .Fields("PlateTypeBack").Value = bPlateCode
+                .Fields("FrontPrintingType").Value = IIf(fColorCode = "", Null, fColorCode)
+                .Fields("BackPrintingType").Value = IIf(bColorCode = "", Null, bColorCode)
+                .Fields("PlateType").Value = IIf(fPlateCode = "", Null, fPlateCode)
+                .Fields("PlateTypeBack").Value = IIf(bPlateCode = "", Null, bPlateCode)
                 .Fields("Pages").Value = MhRealInput41.Value
                 .Fields("DuplexPrinting").Value = IIf(CheckEmpty(Text13.Text, False) Or CheckEmpty(Text15.Text, False), 0, 1)
                 .Fields("Ups").Value = MhRealInput15.Value
@@ -5711,6 +5722,7 @@ Private Sub Command1_Click(Index As Integer)
                     rstBookPOChild06c.MoveNext
                     If rstBookPOChild06c.EOF Then
                         rstBookPOChild06c.MoveLast
+                        If MsgBox("All Element has been processed..!!! Do you want to Exit the Process?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbYes Then cmdProceed_Click
                     Else
                         Command1_Click (1)
                     End If
@@ -5749,22 +5761,28 @@ Private Sub ClearFields()
     Text3.Text = ""
     Text9.Text = "": PlateMakerCode = ""
     Text13.Text = "": fColorCode = "*23003"
+    Text15.Text = "" 'bColorCode
+    bColor = 0
+    fColor = 0
     With rstGeneralList
-        .MoveFirst
-        .Find "[Code] = '" & fColorCode & "'"
-        Text13.Text = .Fields("Col0").Value
-        Text15.Text = Text13.Text
-        fColor = Val(.Fields("Value1").Value)
-        bColor = fColor
+'        .MoveFirst
+'        .Find "[Code] = '" & fColorCode & "'"
+'        Text13.Text = .Fields("Col0").Value
+'        Text15.Text = Text13.Text
+'        fColor = Val(.Fields("Value1").Value)
+'        bColor = fColor
     End With
     Text16.Text = "": fPlateCode = "*24004"
+    Text17.Text = ""  'bPlateCode
+    bPlate = 0
+    fPlate = 0
     With rstGeneralList
-        .MoveFirst
-        .Find "[Code] = '" & fPlateCode & "'"
-        Text16.Text = .Fields("Col0").Value
-        Text17.Text = Text16.Text
-        fPlate = Val(.Fields("Value1").Value)
-        bPlate = fPlate
+'        .MoveFirst
+'        .Find "[Code] = '" & fPlateCode & "'"
+'        Text16.Text = .Fields("Col0").Value
+'        Text17.Text = Text16.Text
+'        fPlate = Val(.Fields("Value1").Value)
+'        bPlate = fPlate
     End With
     MhRealInput1.Value = 0
     MhRealInput6.Value = 0
@@ -5846,11 +5864,11 @@ Private Sub LoadFields()
             If rstPlateMakerList.RecordCount > 0 Then rstPlateMakerList.MoveFirst
             rstPlateMakerList.Find "[Code] = '" & PlateMakerCode & "'"
             If Not rstPlateMakerList.EOF Then Text9.Text = Trim(rstPlateMakerList.Fields("Col0").Value)
-            fColorCode = .Fields("FrontPrintingType").Value
+            If Not IsNull(.Fields("FrontPrintingType").Value) Then fColorCode = .Fields("FrontPrintingType").Value
             If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
             rstGeneralList.Find "[Code] = '" & fColorCode & "'"
             If Not rstGeneralList.EOF Then Text13.Text = rstGeneralList.Fields("Col0").Value: fColor = rstGeneralList.Fields("Value1").Value
-            bColorCode = .Fields("BackPrintingType").Value
+            If Not IsNull(.Fields("BackPrintingType").Value) Then bColorCode = .Fields("BackPrintingType").Value
             If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
             rstGeneralList.Find "[Code] = '" & bColorCode & "'"
             If Not rstGeneralList.EOF Then Text15.Text = rstGeneralList.Fields("Col0").Value: bColor = rstGeneralList.Fields("Value1").Value
@@ -5868,6 +5886,8 @@ Private Sub LoadFields()
             MhRealInput40.Value = Val(.Fields("Sets").Value)
             MhRealInput3.Value = Val(.Fields("TotalPlates").Value)
             MhRealInput37.Value = Val(.Fields("TotalPlatesBack").Value)
+'            ? = Val(.Fields("aTotalPlates").Value)
+'            ? = Val(.Fields("aTotalPlatesBack").Value)
             MhRealInput5.Value = Val(.Fields("PrintRate").Value)
             MhRealInput34.Value = Val(.Fields("PrintRateBack").Value)
             MhRealInput8.Value = Val(.Fields("PrintAmount").Value)
@@ -5888,6 +5908,15 @@ Private Sub LoadFields()
             MhRealInput33.Value = Val(.Fields("PaperWastageFinal").Value)
             MhRealInput13.Value = Val(.Fields("PaperConsumptionOther").Value)
             MhRealInput39.Value = Val(.Fields("PaperConsumptionKg").Value)
+            
+'            MhRealInput11.Value = Val(.Fields("aPaperWastage%").Value)
+'            MhRealInput35.Value = Val(.Fields("aPaperWastage%Back").Value)
+'            MhRealInput23.Value = Val(.Fields("aPaperWastageMin").Value)
+'            MhRealInput36.Value = Val(.Fields("aPaperWastageMinBack").Value)
+'            MhRealInput33.Value = Val(.Fields("aPaperWastageFinal").Value)
+'            MhRealInput13.Value = Val(.Fields("aPaperConsumptionOther").Value)
+'            MhRealInput39.Value = Val(.Fields("aPaperConsumptionKg").Value)
+                       
             MhRealInput25.Value = Val(.Fields("PaperRate").Value)
             MhRealInput26.Value = Val(.Fields("PaperAmount").Value)
             Text6.Text = .Fields("Remarks").Value
@@ -5929,10 +5958,10 @@ Private Sub SaveFields()
         .Fields("Imposition").Value = IIf(Combo3.ListIndex = 0, "F", "W")
         .Fields("Ref").Value = Text3.Text
         .Fields("PlateMaker").Value = PlateMakerCode
-        .Fields("FrontPrintingType").Value = fColorCode
-        .Fields("BackPrintingType").Value = bColorCode
-        .Fields("PlateType").Value = fPlateCode
-        .Fields("PlateTypeBack").Value = bPlateCode
+        .Fields("FrontPrintingType").Value = IIf(fColorCode = "", Null, fColorCode)
+        .Fields("BackPrintingType").Value = IIf(bColorCode = "", Null, bColorCode)
+        .Fields("PlateType").Value = IIf(fPlateCode = "", Null, fPlateCode)
+        .Fields("PlateTypeBack").Value = IIf(bPlateCode = "", Null, bPlateCode)
         .Fields("ActualQuantity").Value = MhRealInput1.Value
         .Fields("BillingQuantity").Value = MhRealInput6.Value
         .Fields("Totalforms").Value = MhRealInput6.Value
@@ -5940,6 +5969,8 @@ Private Sub SaveFields()
         .Fields("Sets").Value = MhRealInput40.Value
         .Fields("TotalPlates").Value = MhRealInput3.Value
         .Fields("TotalPlatesBack").Value = MhRealInput37.Value
+        .Fields("aTotalPlates").Value = MhRealInput3.Value
+        .Fields("aTotalPlatesBack").Value = MhRealInput37.Value
         .Fields("PrintRate").Value = MhRealInput5.Value
         .Fields("PrintRateBack").Value = MhRealInput34.Value
         .Fields("PrintAmount").Value = MhRealInput8.Value
@@ -5958,6 +5989,17 @@ Private Sub SaveFields()
         .Fields("PaperConsumptionOther").Value = MhRealInput13.Value
         .Fields("PaperConsumptionSheets").Value = CLng(Int(MhRealInput13.Value) * SPU) + ((MhRealInput13.Value - Int(MhRealInput13.Value)) * 1000)
         .Fields("PaperConsumptionKg").Value = MhRealInput39.Value
+
+        .Fields("aPaperWastage%").Value = MhRealInput11.Value
+        .Fields("aPaperWastage%Back").Value = MhRealInput35.Value
+        .Fields("aPaperWastageMin").Value = MhRealInput23.Value
+        .Fields("aPaperWastageMinBack").Value = MhRealInput36.Value
+        .Fields("aWastage/Set").Value = MhRealInput33.Value
+        .Fields("aPaperWastageFinal").Value = MhRealInput33.Value
+        .Fields("aPaperConsumptionOther").Value = MhRealInput13.Value
+        .Fields("aPaperConsumptionSheets").Value = CLng(Int(MhRealInput13.Value) * SPU) + ((MhRealInput13.Value - Int(MhRealInput13.Value)) * 1000)
+        .Fields("aPaperConsumptionKg").Value = MhRealInput39.Value
+        
         .Fields("PaperRate").Value = MhRealInput25.Value
         .Fields("PaperAmount").Value = MhRealInput26.Value
         .Fields("Remarks").Value = Text6.Text
@@ -6160,7 +6202,7 @@ Private Sub GetPartyRates(ByVal RateType As String, Optional ByVal Position As S
                 MhRealInput23.Value = 0
             End If
         End If
-        If Position = "B" Then
+            If Position = "B" Then
             If IIf(Combo3.ListIndex = 0, bColor > 0, False) Then
                 If backPaperWastageMin > 0 Then
                     If MhRealInput36.Value = 0 Then
@@ -6221,7 +6263,7 @@ Private Sub CalculateConsumption()
         If W < (MhRealInput23.Value + MhRealInput36.Value) Then W = (MhRealInput23.Value + MhRealInput36.Value) 'Comparison with Minimum Wastage
         C = q + W   'Consumption With Wastage (in Sheets)
         C = C / MhRealInput12.Value
-        MhRealInput39.Value = IIf(MhRealInput52.Value > 0, Round(((MhRealInput52.Value / 25.4) * inWidth * GSM) / 3100, 3), Wt) * (C / SPU)
+        MhRealInput39.Value = IIf(MhRealInput52.Value > 0, Round(((MhRealInput52.Value / 25.4) * inWidth * GSM) / 3100, 3), Wt) * (C / SPU) * MhRealInput40.Value
         MhRealInput33.Value = CLng(Int((W * MhRealInput40.Value) / SPU)) + (((W * MhRealInput40.Value) Mod SPU) / 1000) 'Min Wastage Final
         MhRealInput13.Value = CLng(Int((C * MhRealInput40.Value) / SPU)) + (((C * MhRealInput40.Value) Mod SPU) / 1000)
     End If

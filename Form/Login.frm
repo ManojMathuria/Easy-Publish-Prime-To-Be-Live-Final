@@ -6,7 +6,7 @@ Begin VB.Form FrmLogin
    Caption         =   "Login Please..."
    ClientHeight    =   1590
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   4440
    BeginProperty Font 
       Name            =   "Arial"
@@ -23,7 +23,6 @@ Begin VB.Form FrmLogin
    MaxButton       =   0   'False
    ScaleHeight     =   1590
    ScaleWidth      =   4440
-   StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton cmdCancel 
       Cancel          =   -1  'True
       Height          =   375
@@ -314,6 +313,7 @@ Private Sub Form_Load()
     Mh3dLabel6.Caption = Format(Time, "hh:mm:ss")
     CenterForm Me
     txtUserName.Text = oRegistry.GetRegistryValue(HKEY_LOCAL_MACHINE, "SOFTWARE\Easy Publish", "Last User", "")
+    If Len(txtUserName.Text) = 0 Then txtUserName.Text = "EasyPublish"
     LoginSuccess = False
     Exit Sub
 ErrorHandler:
@@ -356,7 +356,7 @@ Private Sub cmdLogin_Click()
            Me.Caption = "Login Successful !"
            cmdCancel.ToolTipText = "Proceed"
            UserCode = RTrim(.Fields("Code").Value)
-           UserName = RTrim(.Fields("Name").Value)
+           Username = RTrim(.Fields("Name").Value)
            UserLevel = RTrim(.Fields("Level").Value)
            VchApprovalRights = .Fields("VchApprovalRights").Value
            AllowMastersModification = Val(.Fields("AllowMastersModification").Value)
@@ -394,7 +394,9 @@ Private Sub Timer1_Timer()
     Else
         FrmLogin.Caption = " "
     End If
-    If LoginSuccess Then CloseForm Me
+    If LoginSuccess Then
+        CloseForm Me
+    End If
 End Sub
 Private Sub Label3_Click()
     If LoginSuccess Then Exit Sub

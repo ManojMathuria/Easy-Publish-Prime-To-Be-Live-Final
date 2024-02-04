@@ -12,7 +12,7 @@ Begin VB.Form FrmBookProcessOrder
    Caption         =   "Item Process Order"
    ClientHeight    =   8265
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   13740
    BeginProperty Font 
       Name            =   "Arial"
@@ -1392,8 +1392,8 @@ Begin VB.Form FrmBookProcessOrder
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "BookProcessOrder.frx":1A71
-               Picture         =   "BookProcessOrder.frx":1A8D
+               Picture         =   "BookProcessOrder.frx":1B99
+               Picture         =   "BookProcessOrder.frx":1BB5
             End
             Begin VB.Line Line2 
                X1              =   0
@@ -1445,8 +1445,8 @@ Begin VB.Form FrmBookProcessOrder
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "BookProcessOrder.frx":1AA9
-            Picture         =   "BookProcessOrder.frx":1AC5
+            Picture         =   "BookProcessOrder.frx":1BD1
+            Picture         =   "BookProcessOrder.frx":1BED
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -1589,7 +1589,7 @@ Private Sub Form_Load()
     BusySystemIndicator True
     CxnBookOutputOrder.CursorLocation = adUseClient
     CxnBookOutputOrder.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "SELECT PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster", CxnBookOutputOrder, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster Where FYCode='" & FYCode & "'", CxnBookOutputOrder, adOpenKeyset, adLockReadOnly
     rstProcessorList.Open "SELECT Name As Col0,P.Code,NegativeOnePcRate,NegativeCutPcRate,NegativePastingRate,PositiveOnePcRate,PositiveCutPcRate,PositivePastingRate FROM AccountMaster P INNER JOIN AccountChild04 C ON P.Code=C.Code ORDER BY Name", CxnBookOutputOrder, adOpenKeyset, adLockReadOnly
     rstBookList.Open "SELECT Name As Col0,Code FROM BookMaster ORDER BY Name", CxnBookOutputOrder, adOpenKeyset, adLockOptimistic
     rstBookOOList.Open "SELECT T.Code,T.Name,T.Date,A.Name As ProcessorName,B.Name As BookName,T.BillAmount FROM (BookOOParent T INNER JOIN AccountMaster A ON T.Processor=A.Code) INNER JOIN BookMaster B ON T.Book=B.Code WHERE FYCode='" & FYCode & "' ORDER BY T.Name", CxnBookOutputOrder, adOpenKeyset, adLockOptimistic
@@ -2432,7 +2432,7 @@ Private Sub PrintBookProcessOrder(ByVal OrderCode As String)
     On Error Resume Next
     Screen.MousePointer = vbHourglass
     Prefix = "OO/" + Right(Year(FinancialYearFrom), 2) + "-" + Right(Year(FinancialYearTo), 2) & "/"
-    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName,Address1,Address2,Address3,Address4,Phone,Fax,eMail FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstBookProcessOrder.Open "SELECT '" & Prefix & "'+LTRIM(P.Name) As OrderNo,Date,DeliveryDate As TargetDate,B.PrintName As BookName,A.PrintName As ProcessName,[VAT%],VAT,Adjustment,BillAmount,P.Remarks As OrderRemarks,IIF(OutputType='1','Text','Title') As OPType,G1.Name As OutputSizeName,Ups,C.Forms,Colors,IIF(ProcessingType='1','Positive','Negative') As PRType,IIF(OutputFormat='1','One Piece',IIF(OutputFormat='2','Cut Piece','Pasting')) As OPFormat,Rate,Amount,G2.Name As BindingTypeName,C.Remarks As ItemRemarks,LTRIM(A.eMail) As ProcessorMail FROM ((((BookOOParent P INNER JOIN BookOOChild C ON P.Code=C.Code) INNER JOIN BookMaster B ON P.Book=B.Code) INNER JOIN AccountMaster A ON P.Processor=A.Code) INNER JOIN GeneralMaster G1 ON C.OutputSize=G1.Code) INNER JOIN GeneralMaster G2 ON C.BindingType=G2.Code WHERE P.Code='" & OrderCode & "' ORDER BY C.SerialNo", cnDatabase, adOpenKeyset, adLockOptimistic
     Screen.MousePointer = vbNormal
     rstBookProcessOrder.ActiveConnection = Nothing

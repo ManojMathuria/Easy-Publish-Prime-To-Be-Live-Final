@@ -9,10 +9,10 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmPaperMaster 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Paper Master"
-   ClientHeight    =   5160
+   ClientHeight    =   5880
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   7740
+   ClientTop       =   390
+   ClientWidth     =   9180
    BeginProperty Font 
       Name            =   "Comic Sans MS"
       Size            =   8.25
@@ -26,18 +26,18 @@ Begin VB.Form FrmPaperMaster
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   ScaleHeight     =   5160
-   ScaleWidth      =   7740
+   ScaleHeight     =   5880
+   ScaleWidth      =   9180
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   5160
+      Height          =   5880
       Left            =   15
       TabIndex        =   26
       TabStop         =   0   'False
       Top             =   0
-      Width           =   7695
+      Width           =   9135
       _Version        =   65536
-      _ExtentX        =   13573
-      _ExtentY        =   9102
+      _ExtentX        =   16113
+      _ExtentY        =   10372
       _StockProps     =   77
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Arial"
@@ -67,14 +67,14 @@ Begin VB.Form FrmPaperMaster
       Caption         =   ""
       Picture         =   "PaperMaster.frx":0000
       Begin TabDlg.SSTab SSTab1 
-         Height          =   4935
+         Height          =   5655
          Left            =   120
          TabIndex        =   28
          TabStop         =   0   'False
          Top             =   120
-         Width           =   7455
-         _ExtentX        =   13150
-         _ExtentY        =   8705
+         Width           =   8895
+         _ExtentX        =   15690
+         _ExtentY        =   9975
          _Version        =   393216
          Style           =   1
          TabHeight       =   520
@@ -127,18 +127,18 @@ Begin VB.Form FrmPaperMaster
             Height          =   330
             Left            =   600
             TabIndex        =   53
-            Top             =   4450
-            Width           =   4215
+            Top             =   5175
+            Width           =   5655
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
-            Height          =   3930
+            Height          =   4650
             Left            =   120
             TabIndex        =   29
             TabStop         =   0   'False
             Top             =   450
-            Width           =   7215
-            _ExtentX        =   12726
-            _ExtentY        =   6932
+            Width           =   8655
+            _ExtentX        =   15266
+            _ExtentY        =   8202
             _Version        =   393216
             AllowUpdate     =   0   'False
             Appearance      =   0
@@ -187,20 +187,20 @@ Begin VB.Form FrmPaperMaster
                Locked          =   -1  'True
                BeginProperty Column00 
                   Locked          =   -1  'True
-                  ColumnWidth     =   6600.189
+                  ColumnWidth     =   8070.237
                EndProperty
             EndProperty
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   3370
+            Height          =   5055
             Left            =   -74880
             TabIndex        =   30
             TabStop         =   0   'False
             Top             =   480
-            Width           =   7215
+            Width           =   8655
             _Version        =   65536
-            _ExtentX        =   12726
-            _ExtentY        =   5944
+            _ExtentX        =   15266
+            _ExtentY        =   8916
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -786,18 +786,18 @@ Begin VB.Form FrmPaperMaster
                ClipMode        =   0
                ClearAction     =   0
                DecimalPoint    =   "."
-               DisplayFormat   =   "##0"
+               DisplayFormat   =   "###0"
                EditMode        =   1
                Enabled         =   -1
                ErrorBeep       =   0
                ForeColor       =   -2147483640
-               Format          =   "##0"
+               Format          =   "###0"
                HighlightText   =   0
                MarginBottom    =   1
                MarginLeft      =   1
                MarginRight     =   1
                MarginTop       =   1
-               MaxValue        =   999
+               MaxValue        =   9999
                MinValue        =   0
                MousePointer    =   0
                MoveOnLRKey     =   0
@@ -807,7 +807,7 @@ Begin VB.Form FrmPaperMaster
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   1
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1592,15 +1592,15 @@ Begin VB.Form FrmPaperMaster
             End
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame3 
-            Height          =   4320
+            Height          =   5040
             Left            =   -74880
             TabIndex        =   37
             TabStop         =   0   'False
             Top             =   480
-            Width           =   7215
+            Width           =   8655
             _Version        =   65536
-            _ExtentX        =   12726
-            _ExtentY        =   7620
+            _ExtentX        =   15266
+            _ExtentY        =   8890
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -1636,11 +1636,11 @@ Begin VB.Form FrmPaperMaster
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   5365
+               Left            =   6780
                MaxLength       =   13
                TabIndex        =   38
                Text            =   "0"
-               Top             =   590
+               Top             =   585
                Visible         =   0   'False
                Width           =   1520
             End
@@ -1659,7 +1659,7 @@ Begin VB.Form FrmPaperMaster
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   3870
+               Left            =   5280
                MaxLength       =   13
                TabIndex        =   24
                Text            =   "0.000"
@@ -1681,21 +1681,21 @@ Begin VB.Form FrmPaperMaster
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   430
+               Left            =   435
                MaxLength       =   40
                TabIndex        =   21
                Top             =   590
                Visible         =   0   'False
-               Width           =   3450
+               Width           =   4860
             End
             Begin MSDataGridLib.DataGrid DataGrid2 
-               Height          =   4095
+               Height          =   4815
                Left            =   120
                TabIndex        =   19
                Top             =   105
-               Width           =   7005
-               _ExtentX        =   12356
-               _ExtentY        =   7223
+               Width           =   8445
+               _ExtentX        =   14896
+               _ExtentY        =   8493
                _Version        =   393216
                AllowUpdate     =   0   'False
                AllowArrows     =   -1  'True
@@ -1773,7 +1773,7 @@ Begin VB.Form FrmPaperMaster
                   Locked          =   -1  'True
                   BeginProperty Column00 
                      Locked          =   -1  'True
-                     ColumnWidth     =   3435.024
+                     ColumnWidth     =   4844.977
                   EndProperty
                   BeginProperty Column01 
                      Alignment       =   1
@@ -1782,7 +1782,7 @@ Begin VB.Form FrmPaperMaster
                   EndProperty
                   BeginProperty Column02 
                      Alignment       =   1
-                     ColumnWidth     =   1544.882
+                     ColumnWidth     =   1500.095
                   EndProperty
                EndProperty
             End
@@ -1818,9 +1818,9 @@ Begin VB.Form FrmPaperMaster
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   1
-            Left            =   4800
+            Left            =   6240
             TabIndex        =   54
-            Top             =   4450
+            Top             =   5175
             Width           =   2535
             _Version        =   65536
             _ExtentX        =   4471
@@ -1861,7 +1861,7 @@ Begin VB.Form FrmPaperMaster
             Height          =   330
             Left            =   120
             TabIndex        =   31
-            Top             =   4450
+            Top             =   5175
             Width           =   495
          End
       End
@@ -1872,8 +1872,8 @@ Begin VB.Form FrmPaperMaster
       Left            =   0
       TabIndex        =   27
       Top             =   0
-      Width           =   7740
-      _ExtentX        =   13653
+      Width           =   9180
+      _ExtentX        =   16193
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1963,7 +1963,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Public MasterCode As String  'Master to Modify
+Public slAccount As String 'Selection Account
+Public slDate As String 'Selection Date
 Public SL As Boolean 'Selection List
+Public slvtCode As String 'Selection VchCode
 Public FormType As String 'Paper/Reel
 Dim cnPaperMaster As New ADODB.Connection
 Dim rstPaperList As New ADODB.Recordset
@@ -2001,13 +2004,16 @@ Private Sub Form_Load()
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+    WheelHook DataGrid1
     BusySystemIndicator True
     cnPaperMaster.CursorLocation = adUseClient
     cnPaperMaster.Open cnDatabase.ConnectionString
     If FormType = "" Then FormType = "S" 'UpdateFlag1 = 1: Load FrmDialog: FrmDialog.Show vbModal
     If SL = True Then Me.Caption = "Paper Master " Else Me.Caption = "Paper Master " & IIf(FormType = "S", "(Sheet)", "(Reel)")
     If FormType <> "S" Then Mh3dLabel8.Caption = "Reel Width(in)": Mh3dLabel18.Caption = "Reel cut-off(in)": Mh3dLabel12.Caption = "Reel Width(cm)": Mh3dLabel19.Caption = "Reel cut-off(cm)": Mh3dLabel6.Caption = "Units/Reel"
-    rstPaperList.Open "SELECT Name,Code FROM PaperMaster WHERE " & IIf(SL, "1=1", "[Form]='" & FormType & "'") & " ORDER BY Name", cnPaperMaster, adOpenKeyset, adLockOptimistic
+    rstPaperList.Open "SELECT Name+IIF('" & slAccount & "' <>'','    [Stock : '+(SELECT Convert(Nvarchar,dbo.ufnGetPaperStock('" & slAccount & "',Code,'XX','" & slvtCode & "','" & slDate & "')))+']  '+(Select Name From GeneralMaster Where Code=UOM),'') As Name,Code FROM PaperMaster WHERE " & IIf(SL, "1=1", "[Form]='" & FormType & "'") & " ORDER BY Name", cnPaperMaster, adOpenKeyset, adLockOptimistic
+    'rstPaperList.Open "SELECT Name,Code FROM PaperMaster WHERE " & IIf(SL, "1=1", "[Form]='" & FormType & "'") & " ORDER BY Name", cnPaperMaster, adOpenKeyset, adLockOptimistic
     rstUOMList.Open "SELECT Name As Col0,Value1,Code FROM GeneralMaster WHERE Type='15' ORDER BY Name", cnPaperMaster, adOpenKeyset, adLockReadOnly
     rstQualityList.Open "SELECT Name As Col0,Value1,Code FROM GeneralMaster WHERE Type='16' ORDER BY Name", cnPaperMaster, adOpenKeyset, adLockReadOnly
     rstAccountList.Open "SELECT Name As Col0, Code FROM AccountMaster ORDER BY Name", cnPaperMaster, adOpenKeyset, adLockReadOnly
@@ -2117,7 +2123,7 @@ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
     If Toolbar1.Buttons.Item(4).Enabled Then
         Call Form_KeyDown(vbKeyEscape, 0): Cancel = 1
     Else
-        If Me.Tag <> "S" Then slCode = "": slName = ""
+        If Me.Tag <> "S" Then slCode = "": slName = "": slAccount = "": slDate = "Null": slvtCode = ""
     End If
 End Sub
 Private Sub Form_Unload(Cancel As Integer)
@@ -2608,8 +2614,8 @@ Private Sub EditRecord()
     rstPaperMaster.Open "Select * From PaperMaster Where Code = '" & FixQuote(rstPaperList.Fields("Code").Value) & "'", cnPaperMaster, adOpenKeyset, adLockPessimistic
     MdiMainMenu.MousePointer = vbHourglass
     rstPaperMaster.Fields("Printstatus") = "N"
-    If chkRef("SELECT Code As Paper FROM PaperChild WHERE Code='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper1 As Paper FROM BookPOChild05 WHERE Paper1='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper2 As Paper FROM BookPOChild05 WHERE Paper2='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper4 As Paper FROM BookPOChild05 WHERE Paper4='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM BookPOChild06 WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM BookPOChild09 WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM PaperPOChild WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM PaperMVChild WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM PaperDNChild WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Item FROM MaterialSVChild WHERE Category='2' AND Item='" & rstPaperList.Fields("Code").Value & "'") Then
-        Text4.Enabled = False: MhRealInput3.Enabled = False: MhRealInput4.Enabled = False
+    If chkRef("SELECT Code As Paper FROM PaperChild WHERE Code='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper As Paper FROM BookPOChild05 WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM BookPOChild06 WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM BookPOChild09 WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM PaperPOChild WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM PaperMVChild WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Paper FROM PaperDNChild WHERE Paper='" & rstPaperList.Fields("Code").Value & "' UNION SELECT Item FROM MaterialSVChild WHERE Category='2' AND Item='" & rstPaperList.Fields("Code").Value & "'") Then
+            If AllowMastersModification = 0 Then Text4.Enabled = False: MhRealInput3.Enabled = False: MhRealInput4.Enabled = False
     End If
     MdiMainMenu.MousePointer = vbNormal
     AddToList
@@ -2733,14 +2739,14 @@ End Function
 Private Function CheckRef() As Boolean
     On Error GoTo ErrorHandler
     If rstCheckRef.State = adStateOpen Then rstCheckRef.Close
-    rstCheckRef.Open "Select Paper1 From BookPOChild05 Where Paper1 = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
+    rstCheckRef.Open "Select Paper From BookPOChild05 Where Paper = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
     If rstCheckRef.RecordCount > 0 Then CheckRef = True: Exit Function
     If rstCheckRef.State = adStateOpen Then rstCheckRef.Close
-    rstCheckRef.Open "Select Paper2 From BookPOChild05 Where Paper2 = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
-    If rstCheckRef.RecordCount > 0 Then CheckRef = True: Exit Function
-    If rstCheckRef.State = adStateOpen Then rstCheckRef.Close
-    rstCheckRef.Open "Select Paper4 From BookPOChild05 Where Paper4 = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
-    If rstCheckRef.RecordCount > 0 Then CheckRef = True: Exit Function
+'    rstCheckRef.Open "Select Paper2 From BookPOChild05 Where Paper2 = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
+'    If rstCheckRef.RecordCount > 0 Then CheckRef = True: Exit Function
+ '   If rstCheckRef.State = adStateOpen Then rstCheckRef.Close
+ '   rstCheckRef.Open "Select Paper4 From BookPOChild05 Where Paper4 = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
+  '  If rstCheckRef.RecordCount > 0 Then CheckRef = True: Exit Function
     If rstCheckRef.State = adStateOpen Then rstCheckRef.Close
     rstCheckRef.Open "Select Paper From BookPOChild06 Where Paper = '" & rstPaperList.Fields("Code").Value & "'", cnPaperMaster, adOpenKeyset, adLockReadOnly
     If rstCheckRef.RecordCount > 0 Then CheckRef = True: Exit Function
@@ -2953,6 +2959,7 @@ Private Function CheckDuplicateGodown() As Boolean
     If dblBookMark <> 0 Then rstPaperChild.Bookmark = dblBookMark Else rstPaperChild.MoveLast
 End Function
 Private Function CalcDependents(Optional ByVal BeforeUpdate As Boolean) As Boolean
+On Error Resume Next
     Dim Value1 As Double
     If MhRealInput4.Value > 0 Then 'Wt/Unit
         Value1 = IIf(Option1.Value, 50, 400) / MhRealInput4.Value

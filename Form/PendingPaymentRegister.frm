@@ -2,7 +2,7 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmPendingPaymentRegister 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Pending Payments"
@@ -379,7 +379,7 @@ ErrorHandler:
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-       SendKeys "{TAB}", True: KeyCode = 0
+       Sendkeys "{TAB}", True: KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3): KeyCode = 0
     ElseIf Shift = vbAltMask And KeyCode = vbKeyP Then
@@ -461,7 +461,7 @@ Private Sub PrintPendingPayment()
     Dim rstImporter As New ADODB.Recordset
     On Error GoTo ErrorHandler
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "Select PrintName,CreatedFrom From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName,CreatedFrom FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstCompanyMaster.Fields("CreatedFrom").Value <> "" Then
         CxnImporter.CursorLocation = adUseClient
         CxnImporter.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & DatabasePath & "\EasyPublish." & rstCompanyMaster.Fields("CreatedFrom").Value & ";Persist Security Info=False;Jet OLEDB:Database Password=pubprint123!@#"

@@ -11,7 +11,7 @@ Begin VB.Form FrmEmailing
    Caption         =   "Email"
    ClientHeight    =   9375
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   19845
    BeginProperty Font 
       Name            =   "Arial"
@@ -627,8 +627,8 @@ Begin VB.Form FrmEmailing
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "emailing.frx":2DD9
-         Picture         =   "emailing.frx":2DF5
+         Picture         =   "emailing.frx":2EDD
+         Picture         =   "emailing.frx":2EF9
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber1 
          Height          =   330
@@ -639,8 +639,8 @@ Begin VB.Form FrmEmailing
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "emailing.frx":2E11
-         Caption         =   "emailing.frx":2E31
+         Calculator      =   "emailing.frx":2F15
+         Caption         =   "emailing.frx":2F35
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -650,9 +650,9 @@ Begin VB.Form FrmEmailing
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "emailing.frx":2E95
-         Keys            =   "emailing.frx":2EB3
-         Spin            =   "emailing.frx":2EFD
+         DropDown        =   "emailing.frx":2F99
+         Keys            =   "emailing.frx":2FB7
+         Spin            =   "emailing.frx":3001
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -712,8 +712,8 @@ Begin VB.Form FrmEmailing
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "emailing.frx":2F25
-         Picture         =   "emailing.frx":2F41
+         Picture         =   "emailing.frx":3029
+         Picture         =   "emailing.frx":3045
       End
       Begin MSForms.ComboBox Combo3 
          Height          =   330
@@ -769,7 +769,7 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT * FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     cnEmail.CursorLocation = adUseClient
     cnEmail.Open cnDatabase.ConnectionString
     rstEmailTable.Open "Select Code,Company,ContactPerson,Mobile,email,Address,PIN,CITY,Category,State,Status From dbo.Email ORDER BY Code", cnEmail, adOpenKeyset, adLockOptimistic

@@ -424,7 +424,7 @@ Private Sub Form_Load()
     
     CenterForm Me
     BusySystemIndicator True
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstSupplierList.Open "Select Name, Code From AccountMaster Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstSupplierList.ActiveConnection = Nothing
     rstOutsourceItemList.Open "Select Name, Code From OutsourceItemMaster Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly

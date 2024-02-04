@@ -10,7 +10,7 @@ Begin VB.Form FrmBookPOChild05
    Caption         =   "Multi Form Format Order Details"
    ClientHeight    =   10095
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   11640
    BeginProperty Font 
       Name            =   "Arial"
@@ -27,7 +27,6 @@ Begin VB.Form FrmBookPOChild05
    MaxButton       =   0   'False
    ScaleHeight     =   10095
    ScaleWidth      =   11640
-   StartUpPosition =   1  'CenterOwner
    Begin VB.CommandButton cmdProceed 
       Height          =   375
       Left            =   11160
@@ -1503,7 +1502,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -1562,7 +1561,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -4082,7 +4081,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -5064,7 +5063,7 @@ Begin VB.Form FrmBookPOChild05
          ReadOnly        =   0
          Separator       =   ""
          ShowContextMenu =   1
-         ValueVT         =   5
+         ValueVT         =   1638405
          Value           =   0
          MaxValueVT      =   5
          MinValueVT      =   5
@@ -5422,14 +5421,15 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Public VchCode As String, VchType As String, PartyCode As String, rstBookPOChild05 As New ADODB.Recordset
+Public VchCode As String, VchType As String, PartyCode As String, RoundOffQty As Boolean, rstBookPOChild05 As New ADODB.Recordset
 Dim rstPaperList As New ADODB.Recordset, rstGeneralList As New ADODB.Recordset, rstPlateMakerList As New ADODB.Recordset, rstFetchRate As New ADODB.Recordset, rstElementList As New ADODB.Recordset, WithEvents rstBookPOChild05c As ADODB.Recordset
 Attribute rstBookPOChild05c.VB_VarHelpID = -1
-Dim ItemCode As String, FinishSizeCode As String, SizeCode As String, TextSizeCode As String, PlateMakerCode As String, ElementCode As String, PaperCode As String, ColorCode As String, PlateCode As String, Plate As Integer
+Dim ItemCode As String, FinishSizeCode As String, SizeCode As String, TextSizeCode As String, PlateMakerCode As String, ElementCode As String, PaperCode As String, ColorCode As Variant, PlateCode As Variant, Plate As Integer, Color As Integer
 Dim SPU As Long, Wt As Double, inLength As Double, inWidth As Double, GSM As Double, PaperForm As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     DisableCloseButton Me
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
@@ -5443,9 +5443,10 @@ Private Sub Form_Load()
     Set rstBookPOChild05c = New ADODB.Recordset
     cnDatabase.Execute "IF OBJECT_ID('tempdb.dbo.#T', 'U') IS NOT NULL DROP TABLE #T"
     cnDatabase.Execute "SELECT * INTO #T FROM (" & _
-                                              "SELECT Element,E.Name As ElementName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,P.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],[Color],C.Name As ColorName,P.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[Forms/Sheet1] As Ups,PaperConsumptionOther As PaperReqd FROM (((BookPOChild05 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code) INNER JOIN GeneralMaster C ON P.Color=C.Code WHERE P.Code='" & VchCode & "' UNION " & _
-                                              "SELECT Element,E.Name As ElementName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,P.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],[Color],C.Name As ColorName,P.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,Ups,0 As PaperReqd FROM (((BookChild05 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code) INNER JOIN GeneralMaster C ON P.Color=C.Code WHERE P.Code='" & ItemCode & "' AND P.[Type]='" & VchType & "' AND Element NOT IN (SELECT Element FROM BookPOChild05 WHERE Code='" & VchCode & "')" & _
+                                              "SELECT Element,E.Name As ElementName,ElementPrintName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,P.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],[Color],C.Name As ColorName,P.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,[Forms/Sheet1] As Ups,PaperConsumptionOther As PaperReqd FROM (((BookPOChild05 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code) INNER JOIN GeneralMaster C ON P.Color=C.Code WHERE P.Code='" & VchCode & "' UNION " & _
+                                              "SELECT Element,E.Name As ElementName,ElementPrintName,FinishSize,FS.Name As FinishSizeName,[Size],PS.Name As PrintSizeName,P.DuplexPrinting,[Pages/PrintingForm],[Pages/Form],[Color],C.Name As ColorName,P.Pages,Forms,[Forms-¼],[Forms-½],[Forms-1-F&B],[Forms-1-W&T],PlateType,Ups,0 As PaperReqd FROM (((BookChild05 P INNER JOIN ElementMaster E ON P.[Element]=E.Code) INNER JOIN GeneralMaster FS ON P.FinishSize=FS.Code) INNER JOIN GeneralMaster PS ON P.[Size]=PS.Code) INNER JOIN GeneralMaster C ON P.Color=C.Code WHERE P.Code='" & ItemCode & "' AND Element NOT IN (SELECT Element FROM BookPOChild05 WHERE Code='" & VchCode & "')" & _
                                               ") As Tbl ORDER BY ElementName,FinishSizeName,PrintSizeName"
+                                              ' P.[Type]='" & VchType & "' AND
     rstBookPOChild05c.Open "SELECT * FROM #T", cnDatabase, adOpenKeyset, adLockOptimistic
     Set DataGrid1.DataSource = rstBookPOChild05c
     rstBookPOChild05c.ActiveConnection = Nothing
@@ -5683,10 +5684,30 @@ Private Sub MhRealInput2_GotFocus() 'Billing quantity
     q = IIf(q = 0, 1000, q * 1000) + IIf(MhRealInput1.Value Mod 1000 <= IIf(MhRealInput1.Value <= 20000, 299, 599), 0, 1000)
     If MhRealInput2.Value = 0 Then MhRealInput2.Value = q
     MhRealInput2.Tag = q
+'    If MhDateInput1.ReadOnly Then Exit Sub
+'    CalculateBillingQty
+End Sub
+Private Sub CalculateBillingQty()
+    Dim BillQty As Double
+    If MhRealInput40.Value > 0 Then 'Pages/Form
+        BillQty = MhRealInput1.Value  'BillQty
+        If BillQty > 0 Then
+            If RoundOffQty Then
+                If BillQty < 1000 Then BillQty = 1000
+                BillQty = IIf(Int(BillQty / 1000) = 0, 1000, Int(BillQty / 1000) * 1000) + IIf(BillQty Mod 1000 <= IIf(BillQty <= 20000, 299, 599), 0, 1000)
+            End If
+            If MhRealInput2.Value = 0 Then
+                MhRealInput2.Value = BillQty
+            ElseIf MhRealInput2.Value <> BillQty Then
+                If MsgBox("Variation in Billing Qty. [" & Trim(BillQty) & "] and Existing [" & Trim(MhRealInput2.Value) & "] Billing Qty. ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput2.Value = BillQty
+            End If
+        End If
+    End If
 End Sub
 Private Sub MhRealInput2_Validate(Cancel As Boolean)
     If MhDateInput1.ReadOnly Then Exit Sub
-    If MhRealInput2.Value = 0 Or MhRealInput2.Value Mod 1000 <> 0 Then Cancel = True: Exit Sub
+'    If MhRealInput2.Value = 0 Or MhRealInput2.Value Mod 1000 <> 0 Then Cancel = True: Exit Sub
+    If MhRealInput2.Value = 0 Then Cancel = True: Exit Sub
     If Val(MhRealInput2.Tag) <> MhRealInput2.Value And Val(MhRealInput2.Tag) <> 0 Then
         If MsgBox("Variation in Calculated [" & Trim(MhRealInput2.Tag) & "] and Existing [" & Trim(MhRealInput2.Value) & "] Billing Quantity ! Change?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Change !") = vbYes Then MhRealInput2.Value = Val(MhRealInput2.Tag)
     End If
@@ -5708,6 +5729,7 @@ Private Sub Text13_KeyDown(KeyCode As Integer, Shift As Integer) 'Color
             If Err.Number <> 364 Then .Show vbModal
             On Error GoTo 0
             ColorCode = slCode: Text13.Text = slName
+            Color = slValue1
             If Not CheckEmpty(ColorCode, False) Then
                 LoadMasterList
                 With rstGeneralList
@@ -6010,6 +6032,7 @@ Private Sub Command1_Click(Index As Integer)
                     If rstElementList.RecordCount > 0 Then rstElementList.MoveFirst
                     rstElementList.Find "[Code] = '" & ElementCode & "'"
                     If Not rstElementList.EOF Then Text14.Text = rstElementList.Fields("Col0").Value
+                    If Not IsNull(.Fields("ElementPrintName").Value) Then Text9.Text = .Fields("ElementPrintName").Value
                     FinishSizeCode = .Fields("FinishSize").Value
                     If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
                     rstGeneralList.Find "[Code] = '" & FinishSizeCode & "'"
@@ -6028,6 +6051,7 @@ Private Sub Command1_Click(Index As Integer)
                     ColorCode = .Fields("Color").Value
                     If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
                     rstGeneralList.Find "[Code] = '" & ColorCode & "'"
+                    If Not rstGeneralList.EOF Then Color = rstGeneralList.Fields("Value1").Value
                     If Not rstGeneralList.EOF Then Text13.Text = Trim(rstGeneralList.Fields("Col0").Value)
                     MhRealInput15.Value = Val(.Fields("Pages").Value)
                     MhRealInput45.Value = Val(.Fields("Forms").Value)
@@ -6090,7 +6114,19 @@ Private Sub Command1_Click(Index As Integer)
                 LockFields True
                 DataGrid1.Enabled = True
                 DataGrid1.SetFocus
-                Me.Tag = ""
+                If Left(Me.Tag, 1) = "E" Then
+                    Me.Tag = ""
+                    rstBookPOChild05c.MoveNext
+                    If rstBookPOChild05c.EOF Then
+                        rstBookPOChild05c.MoveLast
+                            If MsgBox("All Element has been processed..!!! Do you want to Exit the Process?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Quit !") = vbYes Then cmdProceed_Click
+                    Else
+                        Command1_Click (1)
+                    End If
+                Else
+                    Me.Tag = ""
+                End If
+'                Me.Tag = ""
             Case 4  'Cancel
                 ClearFields
                 SetButtons True
@@ -6123,7 +6159,7 @@ Private Sub ClearFields()
     MhRealInput2.Value = 0
     MhRealInput40.Value = 0
     MhRealInput42.Value = 0
-    Text13.Text = "": ColorCode = ""
+    Text13.Text = "": ColorCode = "": Color = 0
     MhRealInput15.Value = 0
     MhRealInput45.Value = 0
     MhRealInput17.Value = 0
@@ -6221,6 +6257,7 @@ Private Sub LoadFields()
             ColorCode = .Fields("Color").Value
             If rstGeneralList.RecordCount > 0 Then rstGeneralList.MoveFirst
             rstGeneralList.Find "[Code] = '" & ColorCode & "'"
+            Color = rstGeneralList.Fields("Value1").Value
             If Not rstGeneralList.EOF Then Text13.Text = Trim(rstGeneralList.Fields("Col0").Value)
             MhRealInput15.Value = Val(.Fields("Pages").Value)
             MhRealInput45.Value = Val(.Fields("Forms").Value)
@@ -6386,20 +6423,45 @@ Private Sub GetPartyRates(ByVal RateType As String)
     On Error GoTo ErrorHandler
     'Fetching Rates
     With rstFetchRate
-        If .State = adStateOpen Then .Close
+            If .State = adStateOpen Then .Close
         If RateType = "L" Then  'Plate Rate
-            .Open "SELECT TOP 1 P.* FROM AccountChild06 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'Size
+                .Open "SELECT TOP 1 P.* FROM AccountChild06 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+''Area
+'            If .RecordCount = 0 Then
+'            If .State = adStateOpen Then .Close
+'                .Open "SELECT TOP 1 P.* FROM AccountChild06 P WHERE P.Code='" & PartyCode & "' AND  Convert(Real,Left((Select Name From GeneralMaster Where Code=P.[SizeGroup]),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code=P.[SizeGroup]),7,5))>=Convert(Real,Left((Select Name From GeneralMaster Where Code='" & SizeCode & "'),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code='" & SizeCode & "'),7,5))  AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'            End If
+'Size
             If .RecordCount = 0 Then
-                If .State = adStateOpen Then .Close
+            If .State = adStateOpen Then .Close
                 .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild06 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE [Name] LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
             End If
+''Area
+'            If .RecordCount = 0 Then
+'            If .State = adStateOpen Then .Close
+'                .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild06 C1 ON P.Code=C1.Code) WHERE [Name] LIKE '%Rate%' AND  Convert(Real,Left((Select Name From GeneralMaster Where Code=C1.[SizeGroup]),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code=C1.[SizeGroup]),7,5))>=Convert(Real,Left((Select Name From GeneralMaster Where Code='" & SizeCode & "'),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code='" & SizeCode & "'),7,5))  AND [Plate]='" & PlateCode & "' AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'            End If
             If .RecordCount > 0 Then PlateRate = Val(.Fields("Rate").Value)
         Else
-            .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+    'Printing Rate
+    'Size
+                .Open "SELECT TOP 1 P.* FROM AccountChild05 P INNER JOIN SizeGroupChild C ON P.[SizeGroup]=C.Code WHERE P.Code='" & PartyCode & "' AND C.[Size]='" & SizeCode & "' AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'    'Area
+'            If .RecordCount = 0 Then
+'                If .State = adStateOpen Then .Close
+'                .Open "SELECT TOP 1 P.* FROM AccountChild05 P WHERE P.Code='" & PartyCode & "' AND Convert(Real,Left((Select Name From GeneralMaster Where Code=P.[SizeGroup]),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code=P.[SizeGroup]),7,5))>=Convert(Real,Left((Select Name From GeneralMaster Where Code='" & SizeCode & "'),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code='" & SizeCode & "'),7,5)) AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'            End If
+    'Size
             If .RecordCount = 0 Then
                 If .State = adStateOpen Then .Close
                 .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) INNER JOIN SizeGroupChild C2 ON C1.[SizeGroup]=C2.Code WHERE [Name] LIKE '%Rate%' AND C2.[Size]='" & SizeCode & "' AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
             End If
+'    'Area
+'            If .RecordCount = 0 Then
+'                If .State = adStateOpen Then .Close
+'                .Open "SELECT TOP 1 C1.* FROM (AccountMaster P INNER JOIN AccountChild05 C1 ON P.Code=C1.Code) WHERE [Name] LIKE '%Rate%' AND  Convert(Real,Left((Select Name From GeneralMaster Where Code=P.[SizeGroup]),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code=P.[SizeGroup]),7,5))>=Convert(Real,Left((Select Name From GeneralMaster Where Code='" & SizeCode & "'),5))*Convert(Real,Substring((Select Name From GeneralMaster Where Code='" & SizeCode & "'),7,5)) AND [Color]='" & ColorCode & "' AND [Range]>=" & MhRealInput2.Value & " AND wef<='" & GetDate(MhDateInput1.Text) & "' ORDER BY [Range],wef DESC", cnDatabase, adOpenKeyset, adLockReadOnly
+'            End If
             If .RecordCount > 0 Then
                 If RateType = "P" Then  'Print Rate
                     PrintRate = Val(.Fields("PrintingRate").Value)
@@ -6412,7 +6474,7 @@ Private Sub GetPartyRates(ByVal RateType As String)
         End If
     End With
     If RateType = "L" Then
-        If Combo3.ListIndex > 0 Then 'not old
+        If Combo3.ListIndex > 0 Or MhRealInput59.Value > 0 Then 'not old
             If PlateRate > 0 Then
                 If MhRealInput4.Value = 0 Then
                     MhRealInput4.Value = PlateRate
@@ -6496,10 +6558,17 @@ Private Sub CalculateTotalForms()
     Dim TotalForms As Double
     TotalForms = MhRealInput2.Value / MhRealInput22.Value
     TotalForms = IIf(Option2.Value, 0.5, 1) * TotalForms
+If RoundOffQty Then
     MhRealInput6.Value = (Int((TotalForms * 0.25) / 1000) + IIf((TotalForms * 0.25) Mod 1000 = 0, 0, 1)) * MhRealInput17.Value
     MhRealInput25.Value = (Int((TotalForms * 0.5) / 1000) + IIf((TotalForms * 0.5) Mod 1000 = 0, 0, 1)) * MhRealInput20.Value
     MhRealInput26.Value = (Int((TotalForms * 1) / 1000) + IIf((TotalForms * 1) Mod 1000 = 0, 0, 1)) * MhRealInput21.Value
     MhRealInput43.Value = (Int((TotalForms * 1) / 1000) + IIf((TotalForms * 1) Mod 1000 = 0, 0, 1)) * MhRealInput41.Value
+Else
+    MhRealInput6.Value = (((TotalForms * 0.25) / 1000)) * MhRealInput17.Value
+    MhRealInput25.Value = (((TotalForms * 0.5) / 1000)) * MhRealInput20.Value
+    MhRealInput26.Value = (((TotalForms * 1) / 1000)) * MhRealInput21.Value
+    MhRealInput43.Value = (((TotalForms * 1) / 1000)) * MhRealInput41.Value
+End If
 End Sub
 Private Sub CalculateTotalPlates()
     If MhRealInput22.Value = 0 Then Exit Sub
@@ -6529,7 +6598,7 @@ Private Sub CalculateConsumption()
     MhRealInput48.Value = CLng(Int(W / SPU)) + ((W Mod SPU) / 1000)
 End Sub
 Private Sub CalculateAmount()
-    MhRealInput7.Value = IIf(MhRealInput59.Value = 0, MhRealInput3.Value + MhRealInput23.Value + MhRealInput24.Value + MhRealInput46.Value, MhRealInput59.Value) * MhRealInput4.Value 'Plate Amount
+    MhRealInput7.Value = IIf(Combo3.ListIndex > 0, MhRealInput3.Value + MhRealInput23.Value + MhRealInput24.Value + MhRealInput46.Value + MhRealInput59.Value, MhRealInput59.Value) * MhRealInput4.Value 'Plate Amount
     MhRealInput8.Value = Val(Left(Text13.Text, 2)) * (MhRealInput6.Value + MhRealInput25.Value + MhRealInput26.Value + MhRealInput43.Value) * MhRealInput5.Value 'Print Amount
     CalculateTotalAmount
 End Sub
@@ -6611,6 +6680,7 @@ Private Function MaxUps(ByVal Position As String) As Integer
             If Abs(FL - PL) <= 1 Then PL = FL: If Abs(FR - PL) <= 1 Then PL = FR: If Abs(FL - PW) <= 1 Then PW = FL: If Abs(FR - PW) <= 1 Then PW = FR
             Ups01 = Int(IIf(PW > PL, PW, PL) / IIf(FL > FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL < FR, FL, FR)): Ups02 = Int(IIf(PW > PL, PW, PL) / IIf(FL < FR, FL, FR)) * Int(IIf(PW < PL, PW, PL) / IIf(FL > FR, FL, FR)): Ups03 = Int((PW * PL) / (FL * FR))
             MaxUps = IIf(Ups03 > IIf(Ups01 > Ups02, Ups01, Ups02), Ups03, IIf(Ups01 > Ups02, Ups01, Ups02))
+            If MaxUps = 0 Then MaxUps = 1
     End If
 End Function
 Private Sub CheckPaperSize()

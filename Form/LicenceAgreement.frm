@@ -16,6 +16,23 @@ Begin VB.Form frmLicenceAgreement
    MinButton       =   0   'False
    ScaleHeight     =   9075
    ScaleWidth      =   13440
+   Begin VB.CommandButton Command5 
+      Caption         =   "&General Update"
+      BeginProperty Font 
+         Name            =   "Calibri"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   405
+      Left            =   7680
+      TabIndex        =   18
+      Top             =   8520
+      Width           =   3645
+   End
    Begin VB.TextBox Text1 
       Alignment       =   2  'Center
       BeginProperty Font 
@@ -155,7 +172,7 @@ Begin VB.Form frmLicenceAgreement
       ClipControls    =   0   'False
       Height          =   1020
       Left            =   106
-      Picture         =   "LicenceAgreement.frx":2093
+      Picture         =   "LicenceAgreement.frx":20FF
       ScaleHeight     =   674.24
       ScaleMode       =   0  'User
       ScaleWidth      =   674.24
@@ -350,7 +367,7 @@ Begin VB.Form frmLicenceAgreement
       Width           =   12045
    End
    Begin VB.Label lblDisclaimer 
-      Caption         =   $"LicenceAgreement.frx":2BF0
+      Caption         =   $"LicenceAgreement.frx":2C5C
       BeginProperty Font 
          Name            =   "Calibri"
          Size            =   11.25
@@ -699,5 +716,13 @@ Private Sub Command3_Click()
         Call MsgBox("Successfully Updated Version !!!", vbInformation, App.Title)
     Else
         DisplayError ("Failed to Update Version")
+    End If
+End Sub
+Private Sub Command5_Click()
+    If CompCode = "" Then Call MsgBox("Please Login Company !!!", vbInformation, App.Title): Exit Sub
+    If GeneralUpdate(False) Then
+        Call MsgBox("Successfully Updated Database !!!", vbInformation, App.Title)
+    Else
+        DisplayError ("Failed to Update Database")
     End If
 End Sub

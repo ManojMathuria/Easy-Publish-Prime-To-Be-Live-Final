@@ -10,7 +10,7 @@ Begin VB.Form FrmPrintPlanning
    Caption         =   "Print Planning"
    ClientHeight    =   4875
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   8715
    BeginProperty Font 
       Name            =   "Arial"
@@ -96,6 +96,7 @@ Begin VB.Form FrmPrintPlanning
          TabPicture(1)   =   "PrintPlanning.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame2"
+         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).ControlCount=   1
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -928,6 +929,7 @@ End Sub
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+    WheelHook DataGrid1
     BusySystemIndicator True
     If PlanningType = "1" Then
         DataGrid2.Columns(0).Caption = "Item Name"
@@ -938,7 +940,7 @@ Private Sub Form_Load()
     End If
     cnPrintPlanning.CursorLocation = adUseClient
     cnPrintPlanning.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", cnPrintPlanning, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnPrintPlanning, adOpenKeyset, adLockReadOnly
     rstPrintPVList.Open "Select PrintPVParent.Code, PrintPVParent.Name, Date, Particulars From PrintPVParent Where PlanningType = '" & PlanningType & "' AND FYCode='" & FYCode & "' Order By PrintPVParent.Name", cnPrintPlanning, adOpenKeyset, adLockOptimistic
     rstPrintPVParent.CursorLocation = adUseClient
     Set rstPrintPVChild = New ADODB.Recordset
@@ -1549,7 +1551,7 @@ End Sub
 Private Sub LoadBookList(ByVal strVoucherCode As String)
     On Error GoTo ErrorHandler
     If rstPrintPVChild.State = adStateOpen Then rstPrintPVChild.Close
-    rstPrintPVChild.Open "Select Book, M1.Name As BookName, M2.Name As SizeName, Quantity, T.Forms, [PaperWastage%], PaperConsumption From BookMaster M1, GeneralMaster M2, PrintPVChild T Where T.Book = M1.Code And M1.[Size] = M2.Code And T.Code = '" & strVoucherCode & "'", cnPrintPlanning, adOpenKeyset, adLockOptimistic
+    rstPrintPVChild.Open "Select Book, M1.Name As BookName, M2.Name As SizeName, Quantity, T.Forms, [PaperWastage%], PaperConsumption From BookMaster M1, GeneralMaster M2, PrintPVChild T Where T.Book = M1.Code And M1.[FinishSize] = M2.Code And T.Code = '" & strVoucherCode & "'", cnPrintPlanning, adOpenKeyset, adLockOptimistic
     rstPrintPVChild.ActiveConnection = Nothing
     Set DataGrid2.DataSource = rstPrintPVChild
     Exit Sub
@@ -1846,9 +1848,9 @@ Private Sub PrintPrintPlanning()
         rstPrintPVChild.Close
     End If
     If PlanningType = "1" Then
-        rstPrintPVChild.Open "SELECT LTRIM(P.Name) As VchNo,[Date] As VchDate,LTRIM(PrintName) As BookName,'' As BoardName,(SELECT LTRIM(PrintName) FROM GeneralMaster WHERE Code = M.[Size]) As SizeName,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BookPrinter) As BookPrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.TitlePrinter) As TitlePrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.Laminator) As Laminator,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BinderFresh) As Binder,Quantity,C.Forms,PaperConsumption,P.Remarks FROM (PrintPVParent P INNER JOIN PrintPVChild C ON P.Code=C.Code) INNER JOIN BookMaster M ON C.Book=M.Code WHERE  P.Code = '" & rstPrintPVList.Fields("Code").Value & "' ORDER BY M.PrintName", cnPrintPlanning, adOpenKeyset, adLockOptimistic
+        rstPrintPVChild.Open "SELECT LTRIM(P.Name) As VchNo,[Date] As VchDate,LTRIM(PrintName) As BookName,'' As BoardName,(SELECT LTRIM(PrintName) FROM GeneralMaster WHERE Code = M.[FinishSize]) As SizeName,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BookPrinter) As BookPrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.TitlePrinter) As TitlePrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.Laminator) As Laminator,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BinderFresh) As Binder,Quantity,C.Forms,PaperConsumption,P.Remarks FROM (PrintPVParent P INNER JOIN PrintPVChild C ON P.Code=C.Code) INNER JOIN BookMaster M ON C.Book=M.Code WHERE  P.Code = '" & rstPrintPVList.Fields("Code").Value & "' ORDER BY M.PrintName", cnPrintPlanning, adOpenKeyset, adLockOptimistic
     Else
-        rstPrintPVChild.Open "SELECT LTRIM(P.Name) As VchNo,[Date] As VchDate,LTRIM(PrintName) As BookName,'' As BoardName,(SELECT LTRIM(PrintName) FROM GeneralMaster WHERE Code = M.[Size]) As SizeName,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.TitlePrinter) As BookPrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BookPrinter) As TitlePrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.Laminator) As Laminator,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BinderFresh) As Binder,Quantity,C.Forms,PaperConsumption,P.Remarks FROM (PrintPVParent P INNER JOIN PrintPVChild C ON P.Code=C.Code) INNER JOIN BookMaster M ON C.Book=M.Code WHERE  P.Code = '" & rstPrintPVList.Fields("Code").Value & "' ORDER BY M.PrintName", cnPrintPlanning, adOpenKeyset, adLockOptimistic
+        rstPrintPVChild.Open "SELECT LTRIM(P.Name) As VchNo,[Date] As VchDate,LTRIM(PrintName) As BookName,'' As BoardName,(SELECT LTRIM(PrintName) FROM GeneralMaster WHERE Code = M.[FinishSize]) As SizeName,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.TitlePrinter) As BookPrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BookPrinter) As TitlePrinter,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.Laminator) As Laminator,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=M.BinderFresh) As Binder,Quantity,C.Forms,PaperConsumption,P.Remarks FROM (PrintPVParent P INNER JOIN PrintPVChild C ON P.Code=C.Code) INNER JOIN BookMaster M ON C.Book=M.Code WHERE  P.Code = '" & rstPrintPVList.Fields("Code").Value & "' ORDER BY M.PrintName", cnPrintPlanning, adOpenKeyset, adLockOptimistic
         rptPrintPlanning.Text11.SetText "SF Party": rptPrintPlanning.Text15.SetText "MF PARTY"
     End If
     rptPrintPlanning.Database.SetDataSource rstPrintPVChild, 3, 1
@@ -1865,6 +1867,6 @@ Private Sub PrintPrintPlanning()
 End Sub
 Private Sub LoadMasterList()
     If rstBookList.State = adStateOpen Then rstBookList.Close
-    rstBookList.Open "Select M1.Name As Col0, M2.Name As SizeName, Forms, M1.Code From BookMaster M1 INNER JOIN GeneralMaster M2 ON M1.[Size] = M2.Code ORDER BY M1.Name", cnPrintPlanning, adOpenKeyset, adLockReadOnly
+    rstBookList.Open "Select M1.Name As Col0, M2.Name As SizeName, '' Forms, M1.Code From BookMaster M1 INNER JOIN GeneralMaster M2 ON M1.[FinishSize] = M2.Code ORDER BY M1.Name", cnPrintPlanning, adOpenKeyset, adLockReadOnly
     rstBookList.ActiveConnection = Nothing
 End Sub

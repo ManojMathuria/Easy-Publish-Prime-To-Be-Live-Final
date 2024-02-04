@@ -7,7 +7,7 @@ Begin VB.Form FrmOrderList
    Caption         =   "List of Pending Orders..."
    ClientHeight    =   6165
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   16110
    BeginProperty Font 
       Name            =   "Arial"
@@ -221,8 +221,8 @@ Begin VB.Form FrmOrderList
       Alignment       =   0
       FillColor       =   9164542
       TextColor       =   0
-      Picture         =   "OrderList.frx":0BFD
-      Picture         =   "OrderList.frx":0C19
+      Picture         =   "OrderList.frx":0D01
+      Picture         =   "OrderList.frx":0D1D
    End
 End
 Attribute VB_Name = "FrmOrderList"

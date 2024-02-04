@@ -12,7 +12,7 @@ Begin VB.Form FrmProductionScheduling
    Caption         =   "Production Scheduling"
    ClientHeight    =   9375
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   19845
    BeginProperty Font 
       Name            =   "Arial"
@@ -204,7 +204,7 @@ Begin VB.Form FrmProductionScheduling
          NoPrefix        =   0   'False
          FormatString    =   ""
          Caption         =   ""
-         Picture         =   "ProductionScheduling.frx":2033
+         Picture         =   "ProductionScheduling.frx":215B
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
             Height          =   330
             Left            =   0
@@ -229,8 +229,8 @@ Begin VB.Form FrmProductionScheduling
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProductionScheduling.frx":204F
-            Picture         =   "ProductionScheduling.frx":206B
+            Picture         =   "ProductionScheduling.frx":2177
+            Picture         =   "ProductionScheduling.frx":2193
          End
          Begin MSForms.OptionButton Option1 
             Height          =   300
@@ -391,7 +391,7 @@ Begin VB.Form FrmProductionScheduling
       Begin VB.CommandButton cmdFilter 
          Height          =   320
          Left            =   6720
-         Picture         =   "ProductionScheduling.frx":2087
+         Picture         =   "ProductionScheduling.frx":21AF
          Style           =   1  'Graphical
          TabIndex        =   14
          ToolTipText     =   "Filter"
@@ -401,7 +401,7 @@ Begin VB.Form FrmProductionScheduling
       Begin VB.CommandButton Command2 
          Height          =   320
          Left            =   7200
-         Picture         =   "ProductionScheduling.frx":23C9
+         Picture         =   "ProductionScheduling.frx":24F1
          Style           =   1  'Graphical
          TabIndex        =   13
          ToolTipText     =   "Search"
@@ -432,8 +432,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":270B
-         Picture         =   "ProductionScheduling.frx":2727
+         Picture         =   "ProductionScheduling.frx":2833
+         Picture         =   "ProductionScheduling.frx":284F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
          Height          =   330
@@ -459,8 +459,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2743
-         Picture         =   "ProductionScheduling.frx":275F
+         Picture         =   "ProductionScheduling.frx":286B
+         Picture         =   "ProductionScheduling.frx":2887
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
@@ -471,8 +471,8 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "ProductionScheduling.frx":277B
-         Caption         =   "ProductionScheduling.frx":2893
+         Calendar        =   "ProductionScheduling.frx":28A3
+         Caption         =   "ProductionScheduling.frx":29BB
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -482,9 +482,9 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ProductionScheduling.frx":28FF
-         Keys            =   "ProductionScheduling.frx":291D
-         Spin            =   "ProductionScheduling.frx":297B
+         DropDown        =   "ProductionScheduling.frx":2A27
+         Keys            =   "ProductionScheduling.frx":2A45
+         Spin            =   "ProductionScheduling.frx":2AA3
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   1
@@ -533,8 +533,8 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1931
          _ExtentY        =   582
-         Calendar        =   "ProductionScheduling.frx":29A3
-         Caption         =   "ProductionScheduling.frx":2ABB
+         Calendar        =   "ProductionScheduling.frx":2ACB
+         Caption         =   "ProductionScheduling.frx":2BE3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -544,9 +544,9 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ProductionScheduling.frx":2B27
-         Keys            =   "ProductionScheduling.frx":2B45
-         Spin            =   "ProductionScheduling.frx":2BA3
+         DropDown        =   "ProductionScheduling.frx":2C4F
+         Keys            =   "ProductionScheduling.frx":2C6D
+         Spin            =   "ProductionScheduling.frx":2CCB
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   1
@@ -610,8 +610,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2BCB
-         Picture         =   "ProductionScheduling.frx":2BE7
+         Picture         =   "ProductionScheduling.frx":2CF3
+         Picture         =   "ProductionScheduling.frx":2D0F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
          Height          =   330
@@ -637,8 +637,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2C03
-         Picture         =   "ProductionScheduling.frx":2C1F
+         Picture         =   "ProductionScheduling.frx":2D2B
+         Picture         =   "ProductionScheduling.frx":2D47
       End
       Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
          Height          =   330
@@ -649,8 +649,8 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   2143
          _ExtentY        =   582
-         Calculator      =   "ProductionScheduling.frx":2C3B
-         Caption         =   "ProductionScheduling.frx":2C5B
+         Calculator      =   "ProductionScheduling.frx":2D63
+         Caption         =   "ProductionScheduling.frx":2D83
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -660,9 +660,9 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "ProductionScheduling.frx":2CBF
-         Keys            =   "ProductionScheduling.frx":2CDD
-         Spin            =   "ProductionScheduling.frx":2D27
+         DropDown        =   "ProductionScheduling.frx":2DE7
+         Keys            =   "ProductionScheduling.frx":2E05
+         Spin            =   "ProductionScheduling.frx":2E4F
          AlignHorizontal =   2
          AlignVertical   =   0
          Appearance      =   1
@@ -722,8 +722,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2D4F
-         Picture         =   "ProductionScheduling.frx":2D6B
+         Picture         =   "ProductionScheduling.frx":2E77
+         Picture         =   "ProductionScheduling.frx":2E93
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
          Height          =   330
@@ -748,8 +748,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   " Print Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2D87
-         Picture         =   "ProductionScheduling.frx":2DA3
+         Picture         =   "ProductionScheduling.frx":2EAF
+         Picture         =   "ProductionScheduling.frx":2ECB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
          Height          =   330
@@ -774,8 +774,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   " Export Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2DBF
-         Picture         =   "ProductionScheduling.frx":2DDB
+         Picture         =   "ProductionScheduling.frx":2EE7
+         Picture         =   "ProductionScheduling.frx":2F03
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
          Height          =   330
@@ -801,8 +801,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2DF7
-         Picture         =   "ProductionScheduling.frx":2E13
+         Picture         =   "ProductionScheduling.frx":2F1F
+         Picture         =   "ProductionScheduling.frx":2F3B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel 
          Height          =   330
@@ -827,8 +827,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Ctrl+F->Search  F8->Delete  F9->Hide  Escap->Un-Hide  F5->Refresh"
          FillColor       =   8421504
          TextColor       =   16777215
-         Picture         =   "ProductionScheduling.frx":2E2F
-         Picture         =   "ProductionScheduling.frx":2E4B
+         Picture         =   "ProductionScheduling.frx":2F57
+         Picture         =   "ProductionScheduling.frx":2F73
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
          Height          =   330
@@ -854,8 +854,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Import Data"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2E67
-         Picture         =   "ProductionScheduling.frx":2E83
+         Picture         =   "ProductionScheduling.frx":2F8F
+         Picture         =   "ProductionScheduling.frx":2FAB
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
          Height          =   330
@@ -880,8 +880,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Click To Schedule M/C"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2E9F
-         Picture         =   "ProductionScheduling.frx":2EBB
+         Picture         =   "ProductionScheduling.frx":2FC7
+         Picture         =   "ProductionScheduling.frx":2FE3
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
          Height          =   330
@@ -906,8 +906,8 @@ Begin VB.Form FrmProductionScheduling
          Caption         =   "Click To Deschedule M/C"
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2ED7
-         Picture         =   "ProductionScheduling.frx":2EF3
+         Picture         =   "ProductionScheduling.frx":2FFF
+         Picture         =   "ProductionScheduling.frx":301B
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
          Height          =   330
@@ -933,8 +933,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2F0F
-         Picture         =   "ProductionScheduling.frx":2F2B
+         Picture         =   "ProductionScheduling.frx":3037
+         Picture         =   "ProductionScheduling.frx":3053
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
          Height          =   330
@@ -960,8 +960,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":2F47
-         Picture         =   "ProductionScheduling.frx":2F63
+         Picture         =   "ProductionScheduling.frx":306F
+         Picture         =   "ProductionScheduling.frx":308B
       End
       Begin TDBTime6Ctl.TDBTime TDBTime4 
          Height          =   330
@@ -972,7 +972,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":2F7F
+         Caption         =   "ProductionScheduling.frx":30A7
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -982,8 +982,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":2FE3
-         Spin            =   "ProductionScheduling.frx":3033
+         Keys            =   "ProductionScheduling.frx":310B
+         Spin            =   "ProductionScheduling.frx":315B
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1031,7 +1031,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":305B
+         Caption         =   "ProductionScheduling.frx":3183
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -1041,8 +1041,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":30BF
-         Spin            =   "ProductionScheduling.frx":310F
+         Keys            =   "ProductionScheduling.frx":31E7
+         Spin            =   "ProductionScheduling.frx":3237
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1129,8 +1129,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":3137
-         Picture         =   "ProductionScheduling.frx":3153
+         Picture         =   "ProductionScheduling.frx":325F
+         Picture         =   "ProductionScheduling.frx":327B
       End
       Begin TDBTime6Ctl.TDBTime TDBTime1 
          Height          =   330
@@ -1142,7 +1142,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":316F
+         Caption         =   "ProductionScheduling.frx":3297
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -1152,8 +1152,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":31D3
-         Spin            =   "ProductionScheduling.frx":3223
+         Keys            =   "ProductionScheduling.frx":32FB
+         Spin            =   "ProductionScheduling.frx":334B
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1217,8 +1217,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":324B
-         Picture         =   "ProductionScheduling.frx":3267
+         Picture         =   "ProductionScheduling.frx":3373
+         Picture         =   "ProductionScheduling.frx":338F
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
          Height          =   330
@@ -1245,8 +1245,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":3283
-         Picture         =   "ProductionScheduling.frx":329F
+         Picture         =   "ProductionScheduling.frx":33AB
+         Picture         =   "ProductionScheduling.frx":33C7
       End
       Begin TDBTime6Ctl.TDBTime TDBTime2 
          Height          =   330
@@ -1258,7 +1258,7 @@ Begin VB.Form FrmProductionScheduling
          _Version        =   65536
          _ExtentX        =   1296
          _ExtentY        =   582
-         Caption         =   "ProductionScheduling.frx":32BB
+         Caption         =   "ProductionScheduling.frx":33E3
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Arial"
             Size            =   8.25
@@ -1268,8 +1268,8 @@ Begin VB.Form FrmProductionScheduling
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Keys            =   "ProductionScheduling.frx":331F
-         Spin            =   "ProductionScheduling.frx":336F
+         Keys            =   "ProductionScheduling.frx":3447
+         Spin            =   "ProductionScheduling.frx":3497
          AlignHorizontal =   2
          AlignVertical   =   2
          Appearance      =   1
@@ -1332,8 +1332,8 @@ Begin VB.Form FrmProductionScheduling
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "ProductionScheduling.frx":3397
-         Picture         =   "ProductionScheduling.frx":33B3
+         Picture         =   "ProductionScheduling.frx":34BF
+         Picture         =   "ProductionScheduling.frx":34DB
       End
       Begin MSForms.ComboBox Combo4 
          Height          =   330
@@ -1448,7 +1448,7 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     If rstCompanyMaster.State = adStateOpen Then rstCompanyMaster.Close
-    rstCompanyMaster.Open "SELECT * FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT * FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     cnProductionScheduling.CursorLocation = adUseClient
     cnProductionScheduling.Open cnDatabase.ConnectionString
     rstBookPOChild0501.Open "SELECT Code,Color,Machine,[Plan],formsPrinted,platesIssued,paperIssued,SNo FROM BookPOChild0501 ORDER BY Code", cnProductionScheduling, adOpenKeyset, adLockOptimistic
@@ -1967,26 +1967,26 @@ fpSpread1.ColHeadersAutoText = DispBlank
     On Error GoTo ErrHandler
     Dim SQL As String, i As Long
     'MF1
-  SQL = "SELECT (Select Name From ElementMaster Where Code='*00011') As Element,RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'1' As Col,A.Name As Party,C.Forms1 As TotalForms,ISNULL(C1.[Plan],C.Forms1) AS [Plan],ISNULL(C1.formsPrinted,0) AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType1='1','Deepatch',IIF(PlateType1='2','PS',IIF(PlateType1='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1]) As TotalPlates,ISNULL(C1.platesIssued,0) AS platesIssued, LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal1,2)*U.Value1+(PARSENAME(PaperWastageFinal1,1)) As Wastage,PaperConsumptionsheets1 As TotalPaper,ISNULL(C1.paperIssued,0) As paperIssued,P.Code+'MF1*00011' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo, " & _
+  SQL = "SELECT P.code,(Select Name From ElementMaster Where Code='*00011') As Element,RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'1' As Col,A.Name As Party,C.Forms1 As TotalForms,ISNULL(C1.[Plan],C.Forms1) AS [Plan],ISNULL(C1.formsPrinted,0) AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType1='1','Deepatch',IIF(PlateType1='2','PS',IIF(PlateType1='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1]) As TotalPlates,ISNULL(C1.platesIssued,0) AS platesIssued, LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal1,2)*U.Value1+(PARSENAME(PaperWastageFinal1,1)) As Wastage,PaperConsumptionsheets1 As TotalPaper,ISNULL(C1.paperIssued,0) As paperIssued,P.Code+'MF1*00011' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo, " & _
 "M.StartTime,M.EndTime,C.Forms1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF1*00011'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.Size1=S.Code) INNER JOIN PaperMaster R ON C.Paper1=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'MF1*00011'=C1.Code) LEFT JOIN AccountMaster A ON P.BookPrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=ISNULL(C1.Machine,'*21046') WHERE Forms1<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=1") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "'  AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "ISNULL(C1.[Plan],C.Forms1)-ISNULL(C1.FormsPrinted,0)<>0", IIf(VchType = 1 And Option3.Value, "ISNULL(C1.[Plan],C.Forms1)-ISNULL(C1.FormsPrinted,0)=0", "1=1"))) & _
             " AND " & IIf(Combo4.ListIndex = 0, "C.Processing='N'", IIf(Combo4.ListIndex = 1, "C.Processing='O'", "1=1")) & " AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "(C.ActualQuantity-P.DeliveredQuantityC+P.DeliveredQuantityB)>0", "1=1")) & " AND " & Choose(Combo1.ListIndex + 1, "RIGHT(P.Type,1)='S'", "RIGHT(P.Type,1)='P'", "1=1") & " AND " & IIf(Check2.Value = 0, "C1.Machine IS NOT NULL", IIf(MC = "All", "1=1", "(C1.Machine IN ('" & MC & "','*21046') OR " & IIf(Check2.Value, "(C1.Machine IS NULL)", "C1.Machine IN ('')") & ")")) & " AND " & IIf(Check2.Value = 0, "M.Code<>'*21046'", "1=1") & " AND " & _
             IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1])-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "((IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1])-ISNULL(C1.platesIssued,0)=0) OR (P.DeliveredQuantityC+P.DeliveredQuantityB)>0)", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "'" & MC & "'=C1.Machine"))
     'MF2
     SQL = SQL + " UNION " & _
-           "SELECT (Select Name From ElementMaster Where Code='*00012') As Element,RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'2' As Col,A.Name As Party,C.Forms2 As TotalForms,ISNULL(C1.[Plan],C.Forms2)AS [Plan],ISNULL(C1.formsPrinted,0)  AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType2='1','Deepatch',IIF(PlateType2='2','PS',IIF(PlateType2='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2 As TotalPlates,ISNULL(C1.platesIssued,0)  AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal2,2)*U.Value1+(PARSENAME(PaperWastageFinal2,1)) As Wastage,PaperConsumptionsheets2 As TotalPaper,ISNULL(C1.paperIssued,0) As paperIssued,P.Code+'MF2*00012' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo," & _
+           "SELECT P.code,(Select Name From ElementMaster Where Code='*00012') As Element,RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'2' As Col,A.Name As Party,C.Forms2 As TotalForms,ISNULL(C1.[Plan],C.Forms2)AS [Plan],ISNULL(C1.formsPrinted,0)  AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType2='1','Deepatch',IIF(PlateType2='2','PS',IIF(PlateType2='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2 As TotalPlates,ISNULL(C1.platesIssued,0)  AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal2,2)*U.Value1+(PARSENAME(PaperWastageFinal2,1)) As Wastage,PaperConsumptionsheets2 As TotalPaper,ISNULL(C1.paperIssued,0) As paperIssued,P.Code+'MF2*00012' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo," & _
 "M.StartTime,M.EndTime,C.Forms2-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF2*00012'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.Size2=S.Code) INNER JOIN PaperMaster R ON C.Paper2=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'MF2*00012'=C1.Code) LEFT JOIN AccountMaster A ON P.BookPrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=ISNULL(C1.Machine,'*21046') WHERE Forms2<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=2") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "'  AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "ISNULL(C1.[Plan],C.Forms2)-ISNULL(C1.FormsPrinted,0)<>0", IIf(VchType = 1 And Option3.Value, "ISNULL(C1.[Plan],C.Forms2)-ISNULL(C1.FormsPrinted,0)=0", "1=1"))) & _
            " AND " & IIf(Combo4.ListIndex = 0, "C.Processing='N'", IIf(Combo4.ListIndex = 1, "C.Processing='O'", "1=1")) & " AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "(C.ActualQuantity-P.DeliveredQuantityC+P.DeliveredQuantityB)>0", "1=1")) & " AND " & Choose(Combo1.ListIndex + 1, "RIGHT(P.Type,1)='S'", "RIGHT(P.Type,1)='P'", "1=1") & " AND " & IIf(Check2.Value = 0, "C1.Machine IS NOT NULL", IIf(MC = "All", "1=1", "(C1.Machine IN ('" & MC & "','*21046') OR " & IIf(Check2.Value, "(C1.Machine IS NULL)", "C1.Machine IN ('')") & ")")) & " AND " & IIf(Check2.Value = 0, "M.Code<>'*21046'", "1=1") & " AND " & _
            IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "((IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2-ISNULL(C1.platesIssued,0)=0) OR (P.DeliveredQuantityC+P.DeliveredQuantityB)>0)", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "'" & MC & "'=C1.Machine"))
     'MF4
     SQL = SQL + " UNION " & _
-          "SELECT (Select Name From ElementMaster Where Code='*00013') As Element,RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'4' As Col,A.Name As Party,C.Forms4 As TotalForms,ISNULL(C1.[Plan],C.Forms4)AS [Plan],ISNULL(C1.formsPrinted,0)  AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType4='1','Deepatch',IIF(PlateType4='2','PS',IIF(PlateType4='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4 As TotalPlates,ISNULL(C1.platesIssued,0)  AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal4,2)*U.Value1+(PARSENAME(PaperWastageFinal4,1)) As Wastage,PaperConsumptionsheets4 As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'MF4*00013' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo, " & _
+          "SELECT P.code,(Select Name From ElementMaster Where Code='*00013') As Element,RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'4' As Col,A.Name As Party,C.Forms4 As TotalForms,ISNULL(C1.[Plan],C.Forms4)AS [Plan],ISNULL(C1.formsPrinted,0)  AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType4='1','Deepatch',IIF(PlateType4='2','PS',IIF(PlateType4='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4 As TotalPlates,ISNULL(C1.platesIssued,0)  AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal4,2)*U.Value1+(PARSENAME(PaperWastageFinal4,1)) As Wastage,PaperConsumptionsheets4 As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'MF4*00013' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo, " & _
 "M.StartTime,M.EndTime,C.Forms4-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF4*00013'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.Size4=S.Code) INNER JOIN PaperMaster R ON C.Paper4=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'MF4*00013'=C1.Code) LEFT JOIN AccountMaster A ON P.BookPrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=ISNULL(C1.Machine,'*21046') WHERE Forms4<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=4") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "'  AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "ISNULL(C1.[Plan],C.Forms4)-ISNULL(C1.FormsPrinted,0)<>0", IIf(VchType = 1 And Option3.Value, "ISNULL(C1.[Plan],C.Forms4)-ISNULL(C1.FormsPrinted,0)=0", "1=1"))) & _
           " AND " & IIf(Combo4.ListIndex = 0, "C.Processing='N'", IIf(Combo4.ListIndex = 1, "C.Processing='O'", "1=1")) & " AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "(C.ActualQuantity-P.DeliveredQuantityC+P.DeliveredQuantityB)>0", "1=1")) & " AND " & Choose(Combo1.ListIndex + 1, "RIGHT(P.Type,1)='S'", "RIGHT(P.Type,1)='P'", "1=1") & " AND " & IIf(Check2.Value = 0, "C1.Machine IS NOT NULL", IIf(MC = "All", "1=1", "(C1.Machine IN ('" & MC & "','*21046') OR " & IIf(Check2.Value, "(C1.Machine IS NULL)", "C1.Machine IN ('')") & ")")) & " AND " & IIf(Check2.Value = 0, "M.Code<>'*21046'", "1=1") & " AND " & _
           IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "((IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4-ISNULL(C1.platesIssued,0)=0) OR (P.DeliveredQuantityC+P.DeliveredQuantityB)>0)", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "'" & MC & "'=C1.Machine"))
 
     'ME
     SQL = SQL + " UNION " & _
-              "SELECT (Select Name From ElementMaster Where Code=C.Element) As Element," & _
+              "SELECT P.code,(Select Name From ElementMaster Where Code=C.Element) As Element," & _
               "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-ME','UFG-ME')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],IIF(LTRIM(BackPrintingType)=0,LTRIM(FrontPrintingType),LTRIM(FrontPrintingType)+' + '+LTRIM(BackPrintingType)) As Col,A.Name As Party,Sets As TotalForms,ISNULL(C1.[Plan],Sets) AS [Plan],ISNULL(C1.formsPrinted,0) AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType='1','Deepatch',IIF(PlateType='2','PS',IIF(PlateType='3','Wipeon','CTP'))) As Plate,(FrontPrintingType+BackPrintingType) As TotalPlates,ISNULL(C1.platesIssued,0) AS platesIssued, LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)) As Wastage,PaperConsumptionsheets As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'ME1'+C.Element As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo, " & _
             "M.StartTime,M.EndTime,Sets-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'ME1*00011'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.[Size]=S.Code) INNER JOIN PaperMaster R ON C.Paper=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'ME1'+C.Element=C1.Code) LEFT JOIN AccountMaster A ON P.TitlePrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=ISNULL(C1.Machine,'*21046') WHERE Sets<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=LTRIM(FrontPrintingType)") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND  " & _
             IIf(Option1.Value, "1=1", IIf(Option2.Value, "ISNULL(C1.[Plan],Sets)-ISNULL(C1.FormsPrinted,0)<>0", IIf(VchType = 1 And Option3.Value, "ISNULL(C1.[Plan],Sets)-ISNULL(C1.FormsPrinted,0)=0", "1=1"))) & _
@@ -1994,7 +1994,7 @@ fpSpread1.ColHeadersAutoText = DispBlank
               IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "(FrontPrintingType+BackPrintingType) -ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "(((FrontPrintingType+BackPrintingType)-ISNULL(C1.platesIssued,0)=0) OR (P.DeliveredQuantityC+P.DeliveredQuantityB)>0)", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "'" & MC & "'=C1.Machine"))
     'CF
     SQL = SQL + " UNION " & _
-              "SELECT (Select Name From ElementMaster Where Code='*00015') As Element," & _
+              "SELECT P.code,(Select Name From ElementMaster Where Code='*00015') As Element," & _
               "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-CF','UFG-CF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],Convert(nvarchar,C.FrontPrintingColor)+Convert(nvarchar,C.BackPrintingColor) As Col,A.Name As Party,1 As TotalForms,ISNULL(C1.[Plan],1) AS [Plan],ISNULL(C1.formsPrinted,0) AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType='1','Deepatch',IIF(PlateType='2','PS',IIF(PlateType='3','Wipeon','CTP'))) As Plate,C.TotalPlates As TotalPlates,ISNULL(C1.PlatesIssued,0) AS PlatesIssued,LTRIM(R.Name) As Paper, PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)) As Wastage,PaperConsumptionsheets As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'CF1*00015' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,ISNULL(C1.SNo,0) AS SNo, " & _
               "M.StartTime,M.EndTime,1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'CF1*00015'),0) AS PendingPlan,C.Plate As Processing FROM (((((((BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code)INNER JOIN BookPOChild0901 C9 ON C.Code=C9.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.[Size]=S.Code) INNER JOIN PaperMaster R ON C.Paper=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'CF1*00015'=C1.Code) LEFT JOIN AccountMaster A ON P.TitlePrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=ISNULL(C1.Machine,'*21046') WHERE (" & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>= LTRIM(C.FrontPrintingColor)") & "  OR " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>= LTRIM(C.BackPrintingColor)") & " ) AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & _
               "' AND " & IIf(Combo4.ListIndex = 0, "C.Plate='N'", IIf(Combo4.ListIndex = 1, "C.Plate='O'", "1=1")) & " AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "1-ISNULL(C1.FormsPrinted,0)<>0", "1-ISNULL(C1.FormsPrinted,0)=0")) & " AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "(C.ActualQuantity-P.DeliveredQuantityC+P.DeliveredQuantityB)>0", "1=1")) & " AND " & Choose(Combo1.ListIndex + 1, "RIGHT(P.Type,1)='S'", "RIGHT(P.Type,1)='P'", "1=1") & " AND " & IIf(Check2.Value = 0, "C1.Machine IS NOT NULL", IIf(MC = "All", "1=1", "(C1.Machine IN ('" & MC & "','*21046') OR " & IIf(Check2.Value, "(C1.Machine IS NULL)", "C1.Machine IN ('')") & ")")) & " AND " & IIf(Check2.Value = 0, "M.Code<>'*21046'", "1=1") & " AND " & _
@@ -2003,7 +2003,7 @@ fpSpread1.ColHeadersAutoText = DispBlank
     'Pending
     'MF1
     SQL = SQL + " UNION " & _
-              "SELECT Distinct (Select Name From ElementMaster Where Code='*00011') As Element," & _
+              "SELECT Distinct P.code,(Select Name From ElementMaster Where Code='*00011') As Element," & _
               "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'1' As Col,A.Name As Party,C.Forms1 As TotalForms,C.Forms1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF1*00011'),0) AS [Plan],0 AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType1='1','Deepatch',IIF(PlateType1='2','PS',IIF(PlateType1='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1]) As TotalPlates,0 AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal1,2)*U.Value1+(PARSENAME(PaperWastageFinal1,1)) As Wastage,PaperConsumptionsheets1 As TotalPaper,ISNULL(C1.paperIssued,0) As paperIssued,P.Code+'MF1*00011' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,0 AS SNo, " & _
               "M.StartTime,M.EndTime,C.Forms1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF1*00011'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.Size1=S.Code) INNER JOIN PaperMaster R ON C.Paper1=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'MF1*00011'=C1.Code) LEFT JOIN AccountMaster A ON P.BookPrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=('*21046') WHERE Forms1<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=1") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "'  AND P.Date<='" & GetDate(MhDateInput2.Text) & _
               "' AND " & IIf(Option2.Value, "C.Forms1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF1*00011'),0)<>0", "C.Forms1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF1*00011'),0)<>0") & _
@@ -2011,7 +2011,7 @@ fpSpread1.ColHeadersAutoText = DispBlank
               IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1])-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "IIF(Processing='R',[RevisedPlates1],[TotalPlates1-¼]+[TotalPlates1-½]+[TotalPlates1-1]+[RevisedPlates1])-ISNULL(C1.platesIssued,0)=0", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "M.Code <>'*21046'"))
     'MF2
     SQL = SQL + " UNION " & _
-              "SELECT Distinct (Select Name From ElementMaster Where Code='*00012') As Element," & _
+              "SELECT Distinct P.code,(Select Name From ElementMaster Where Code='*00012') As Element," & _
               "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'2' As Col,A.Name As Party,C.Forms2 As TotalForms,C.Forms2-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF2*00012'),0) AS [Plan],0  AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType2='1','Deepatch',IIF(PlateType2='2','PS',IIF(PlateType2='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2 As TotalPlates,0 AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal2,2)*U.Value1+(PARSENAME(PaperWastageFinal2,1)) As Wastage,PaperConsumptionsheets2 As TotalPaper,ISNULL(C1.paperIssued,0) As paperIssued,P.Code+'MF2*00012' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,0 AS SNo, " & _
               "M.StartTime,M.EndTime,C.Forms2-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF2*00012'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.Size2=S.Code) INNER JOIN PaperMaster R ON C.Paper2=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'MF2*00012'=C1.Code) LEFT JOIN AccountMaster A ON P.BookPrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=('*21046') WHERE Forms2<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=2") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "'  AND P.Date<='" & GetDate(MhDateInput2.Text) & _
               "' AND " & IIf(Option2.Value, "C.Forms2-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF2*00012'),0)<>0", "C.Forms2-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF2*00012'),0)<>0") & _
@@ -2019,7 +2019,7 @@ fpSpread1.ColHeadersAutoText = DispBlank
               IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "IIF(Processing='R',[RevisedPlates2],[TotalPlates2-¼]+[TotalPlates2-½]+[TotalPlates2-1]+[RevisedPlates2])*2-ISNULL(C1.platesIssued,0)=0", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "M.Code <>'*21046'"))
     'MF4
     SQL = SQL + " UNION " & _
-              "SELECT Distinct (Select Name From ElementMaster Where Code='*00013') As Element," & _
+              "SELECT Distinct P.code,(Select Name From ElementMaster Where Code='*00013') As Element," & _
               "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-MF','UFG-MF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],'4' As Col,A.Name As Party,C.Forms4 As TotalForms,C.Forms4-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF4*00013'),0) AS [Plan],0  AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType4='1','Deepatch',IIF(PlateType4='2','PS',IIF(PlateType4='3','Wipeon','CTP'))) As Plate,IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4 As TotalPlates,0 AS platesIssued,LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal4,2)*U.Value1+(PARSENAME(PaperWastageFinal4,1)) As Wastage,PaperConsumptionsheets4 As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'MF4*00013' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,0 AS SNo, " & _
               "M.StartTime,M.EndTime,C.Forms4-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF4*00013'),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.Size4=S.Code) INNER JOIN PaperMaster R ON C.Paper4=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'MF4*00013'=C1.Code) LEFT JOIN AccountMaster A ON P.BookPrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=('*21046') WHERE Forms4<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=4") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "'  AND P.Date<='" & GetDate(MhDateInput2.Text) & _
               "' AND " & IIf(Option2.Value, "C.Forms4-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF4*00013'),0)<>0", "C.Forms4-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'MF4*00013'),0)<>0") & _
@@ -2027,7 +2027,7 @@ fpSpread1.ColHeadersAutoText = DispBlank
               IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "IIF(Processing='R',[RevisedPlates4],[TotalPlates4-¼]+[TotalPlates4-½]+[TotalPlates4-1]+[RevisedPlates4])*4-ISNULL(C1.platesIssued,0)=0", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "M.Code <>'*21046'"))
     'ME
     SQL = SQL + " UNION " & _
-              "SELECT Distinct (Select Name From ElementMaster Where Code=C.Element) As Element," & _
+              "SELECT Distinct P.code,(Select Name From ElementMaster Where Code=C.Element) As Element," & _
               "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-ME','UFG-ME')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],IIF(LTRIM(BackPrintingType)=0,LTRIM(FrontPrintingType),LTRIM(FrontPrintingType)+' + '+LTRIM(BackPrintingType)) As Col,A.Name As Party,Sets As TotalForms,C.Sets-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'ME1'+C.Element),0) AS [Plan],0 AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType='1','Deepatch',IIF(PlateType='2','PS',IIF(PlateType='3','Wipeon','CTP'))) As Plate,(FrontPrintingType+BackPrintingType) As TotalPlates,0 AS platesIssued, LTRIM(R.Name) As Paper,PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)) As Wastage,PaperConsumptionsheets As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'ME1'+C.Element As RefCode," & _
               "M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,0 AS SNo, " & _
               "M.StartTime,M.EndTime,Sets-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'ME1'+C.Element),0) AS PendingPlan,C.Processing FROM ((((((BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.[Size]=S.Code) INNER JOIN PaperMaster R ON C.Paper=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'ME1'+C.Element=C1.Code) LEFT JOIN AccountMaster A ON P.TitlePrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=ISNULL(C1.Machine,'*21046') WHERE Sets<>0 AND " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>=LTRIM(FrontPrintingType)") & " AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND " & _
@@ -2036,12 +2036,13 @@ fpSpread1.ColHeadersAutoText = DispBlank
               IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "(FrontPrintingType+BackPrintingType)-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "(FrontPrintingType+BackPrintingType)-ISNULL(C1.platesIssued,0)=0", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", IIf(MC = "All", "1=1", "M.Code <>'*21046'"))
     'CF
     SQL = SQL + " UNION " & _
-             "SELECT Distinct (Select Name From ElementMaster Where Code='*00015') As Element," & _
+             "SELECT Distinct P.code,(Select Name From ElementMaster Where Code='*00015') As Element," & _
              "RIGHT(P.Type,1)+'O/'+IIF(LEFT(P.Type,1)='F','FG-CF','UFG-CF')+'/'+LTRIM(P.Name) As RefNo,P.Date As RefDate,I.Name As Item,S.Name As [Size],Convert(nvarchar,C.FrontPrintingColor)+Convert(nvarchar,C.BackPrintingColor) As Col,A.Name As Party,1 As TotalForms,1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'CF1*00015'),0) AS [Plan],ISNULL(0,0) AS formsPrinted,C.ActualQuantity As TotalQty,(P.DeliveredQuantityC+P.DeliveredQuantityB) As QtyIssued,IIF(PlateType='1','Deepatch',IIF(PlateType='2','PS',IIF(PlateType='3','Wipeon','CTP'))) As Plate,C.TotalPlates As TotalPlates,0 AS PlatesIssued,LTRIM(R.Name) As Paper, PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)) As Wastage,PaperConsumptionsheets As TotalPaper,ISNULL(C1.paperIssued,0) AS paperIssued,P.Code+'CF1*00015' As RefCode,M.Name AS MAC,M.Code AS MCode,MakeReadyTime,Efficiency,0 AS SNo," & _
              "M.StartTime,M.EndTime,1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'CF1*00015'),0) AS PendingPlan,C.Plate As Processing FROM (((((((BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code)INNER JOIN BookPOChild0901 C9 ON C.Code=C9.Code) INNER JOIN BookMaster I ON P.Book=I.Code) INNER JOIN GeneralMaster S ON C.[Size]=S.Code) INNER JOIN PaperMaster R ON C.Paper=R.Code) INNER JOIN GeneralMaster U ON R.UOM=U.Code) LEFT JOIN BookPOChild0501 C1 ON C.Code+'CF1*00015'=C1.Code) LEFT JOIN AccountMaster A ON P.TitlePrinter=A.Code LEFT JOIN MachineMaster M ON M.Code=('*21046') WHERE (" & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>= LTRIM(C.FrontPrintingColor)") & "  OR " & IIf(MC = "All", "1=1", "(Select Units From MachineMaster Where Code='" & MC & "')>= LTRIM(C.BackPrintingColor)") & " ) AND LEFT(P.Type,1)<>'O' AND P.Date>='" & GetDate(MhDateInput1.Text) & "' AND P.Date<='" & GetDate(MhDateInput2.Text) & "' AND " & _
               IIf(Option2.Value, "1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'CF1*00015'),0)<>0", "1-ISNULL((Select Sum ([Plan]) From BookPOChild0501 Where Code=P.Code+'CF1*00015'),0)<>0") & " AND " & IIf(Combo4.ListIndex = 0, "C.Plate='N'", IIf(Combo4.ListIndex = 1, "C.Plate='O'", "1=1")) & " AND " & IIf(Option1.Value, "1=1", IIf(Option2.Value, "(C.ActualQuantity-P.DeliveredQuantityC+P.DeliveredQuantityB)>0", "(C.ActualQuantity-P.DeliveredQuantityC+P.DeliveredQuantityB)<=0")) & " AND " & Choose(Combo1.ListIndex + 1, "RIGHT(P.Type,1)='S'", "RIGHT(P.Type,1)='P'", "1=1") & " AND " & IIf(Check2.Value = 0, "C1.Machine IS NOT NULL", IIf(MC = "All", "1=1", "(C1.Machine IN ('" & MC & "','*21046') OR " & IIf(Check2.Value, "(C1.Machine IS NULL)", "C1.Machine IN ('')") & ")")) & " AND " & IIf(Check2.Value = 0, "M.Code<>'*21046'", "1=1") & _
               " AND " & IIf(VchType = 2 And Option1.Value, "1=1", IIf(VchType = 2 And Option2.Value, "C.TotalPlates-ISNULL(C1.platesIssued,0)<>0", IIf(VchType = 2 And Option3.Value, "C.TotalPlates-ISNULL(C1.platesIssued,0)=0", "1=1"))) & " AND " & IIf(Check2.Value, "1=1", "M.Code <>'*21046'") & _
-              " ORDER BY MAC,SNo,TotalForms,RefDate"
+              " ORDER BY MAC,SNo,Code,RefDate,TotalForms"
+              'MAC,SNo,TotalForms,RefDate
     Screen.MousePointer = vbHourglass
     If rstProductionScheduling.State = adStateOpen Then rstProductionScheduling.Close
     rstProductionScheduling.Open SQL, cnDatabase, adOpenKeyset, adLockReadOnly

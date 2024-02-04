@@ -4,10 +4,10 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmBookList 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "List of Item [All]"
-   ClientHeight    =   8070
+   ClientHeight    =   8310
    ClientLeft      =   150
    ClientTop       =   435
-   ClientWidth     =   9600
+   ClientWidth     =   9840
    BeginProperty Font 
       Name            =   "Comic Sans MS"
       Size            =   8.25
@@ -22,16 +22,16 @@ Begin VB.Form FrmBookList
    LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   8070
-   ScaleWidth      =   9600
+   ScaleHeight     =   8310
+   ScaleWidth      =   9840
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
       TabIndex        =   2
       Top             =   0
-      Width           =   9600
-      _ExtentX        =   16933
+      Width           =   9840
+      _ExtentX        =   17357
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -117,14 +117,14 @@ Begin VB.Form FrmBookList
       EndProperty
    End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   7710
+      Height          =   7950
       Left            =   15
       TabIndex        =   3
       Top             =   345
-      Width           =   9570
+      Width           =   9810
       _Version        =   65536
-      _ExtentX        =   16880
-      _ExtentY        =   13600
+      _ExtentX        =   17304
+      _ExtentY        =   14023
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -146,9 +146,9 @@ Begin VB.Form FrmBookList
       Picture         =   "BookList.frx":076C
       Begin MSComctlLib.ListView ListView1 
          Height          =   7710
-         Left            =   0
+         Left            =   120
          TabIndex        =   0
-         Top             =   0
+         Top             =   120
          Width           =   3765
          _ExtentX        =   6641
          _ExtentY        =   13600
@@ -178,9 +178,9 @@ Begin VB.Form FrmBookList
       End
       Begin MSComctlLib.ListView ListView2 
          Height          =   7710
-         Left            =   3755
+         Left            =   3870
          TabIndex        =   1
-         Top             =   0
+         Top             =   120
          Width           =   5820
          _ExtentX        =   10266
          _ExtentY        =   13600
@@ -227,7 +227,7 @@ Private Sub Form_Load()
     BookType = "A": Check.Value = 1
     CenterForm Me
     BusySystemIndicator True
-    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "SELECT PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstGroupList.Open "SELECT Name,Code FROM GeneralMaster WHERE Type='5' ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstGroupList.ActiveConnection = Nothing
     Call FillList(ListView1, "List of Groups...", rstGroupList)

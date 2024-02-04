@@ -1,27 +1,31 @@
 Attribute VB_Name = "ModUserDefinedFunctions"
 Option Explicit
+Dim Decrypt As Variant
 Dim CompAlias As String, compName As String, ClientID As Variant
 Dim rstCompanyMaster As New ADODB.Recordset
 Dim rstEasyPublishVersion As New ADODB.Recordset
+Public cnClientAccount As New ADODB.Connection
+Public FileVersion
+Public Logo, LogoLine As String, LogoW, LogoH, Header, HeaderL As Integer, TransportLabel1 As Integer
 Public MajorFlag As Boolean
 Public RenewFlag As Boolean, LaterFlag As Boolean
 Public dueDate As String, DaysLeft As Variant, dDay As String, dMonth As String, dYear As String
 Public ServerID As String, UniqueDate As String
 Public Major As Variant, Minor As Variant, Revision As Variant
-Public slCode As String, slName As String, slValue1 As Double, slUGroupName As String, slUGroupCode As String, slUGroupValue1 As Double 'Selection List Code & Name & Value1
+Public slCode As String, slName As String, slValue1 As Double, slUGroupName As String, slUGroupCode As String, slUGroupValue1 As Double, slStateCode As String 'Selection List Code & Name & Value1
 Public cnDatabase As New ADODB.Connection
 Public cnCompany As New ADODB.Connection
 Public cnBusy As New ADODB.Connection
-Public FinancialYearFrom As Date, FinancialYearTo As Date, FinancialYear As String, FYCode As String
+Public FinancialYearFrom As Date, FinancialYearTo As Date, FinancialYear As String, FYCode As String, CompStateCode As String, FYFromTo As String, FYFromToFlag As Boolean, GSTMethod As String
 Global FSO As New FileSystemObject
-Global CompCode As String, MCGroup As String
+Global CompCode As String, CostCenter As String, MCGroup As String
 Global DatabasePath As String
 Global DatabaseType
 Global SearchOrder As Integer
 Global SelectionType As String
 Global LoginSuccess As Boolean
 Global UserCode As String
-Global UserName As String
+Global Username As String
 Global UserLevel As String
 Global AllowMastersModification As Integer
 Global AllowMastersDeletion As Integer
@@ -149,11 +153,36 @@ Public Declare Function StartDocPrinter Lib "winspool.drv" Alias "StartDocPrinte
 Public Declare Function EndDocPrinter Lib "winspool.drv" (ByVal hPrinter As Long) As Long
 Public Declare Function AnimateWindow Lib "user32" (ByVal hwnd As Long, ByVal dwTime As Long, ByVal dwFlags As Long) As Long
 Public Declare Function GetComputerName Lib "kernel32" Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
-Private Declare Function CallWindowProc Lib "user32.dll" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hwnd As Long, ByVal msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
+Private Declare Function CallWindowProc Lib "user32.dll" Alias "CallWindowProcA" (ByVal lpPrevWndFunc As Long, ByVal hwnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 Private Declare Function SetWindowLong Lib "user32.dll" Alias "SetWindowLongA" (ByVal hwnd As Long, ByVal nIndex As Long, ByVal dwNewLong As Long) As Long
 Public Declare Function FindWindowEx Lib "user32" Alias "FindWindowExA" (ByVal hWnd1 As Long, ByVal hWnd2 As Long, ByVal lpsz1 As String, ByVal lpsz2 As String) As Long
 Public Declare Function InvalidateRect Lib "user32" (ByVal hwnd As Long, lpRect As RECT, ByVal bErase As Long) As Long
 Private Declare Function AppendMenu Lib "user32" Alias "AppendMenuA" (ByVal hMenu As Long, ByVal wFlags As Long, ByVal wIDNewItem As Long, ByVal lpNewItem As Any) As Long
+'Get Version
+    Public Type VS_FIXEDFILEINFO
+       dwSignature As Long
+       dwStrucVersionl As Integer     '  e.g. = &h0000 = 0
+       dwStrucVersionh As Integer     '  e.g. = &h0042 = .42
+       dwFileVersionMSl As Integer    '  e.g. = &h0003 = 3
+       dwFileVersionMSh As Integer    '  e.g. = &h0075 = .75
+       dwFileVersionLSl As Integer    '  e.g. = &h0000 = 0
+       dwFileVersionLSh As Integer    '  e.g. = &h0031 = .31
+       dwProductVersionMSl As Integer '  e.g. = &h0003 = 3
+       dwProductVersionMSh As Integer '  e.g. = &h0010 = .1
+       dwProductVersionLSl As Integer '  e.g. = &h0000 = 0
+       dwProductVersionLSh As Integer '  e.g. = &h0031 = .31
+       dwFileFlagsMask As Long        '  = &h3F for version "0.42"
+       dwFileFlags As Long            '  e.g. VFF_DEBUG Or VFF_PRERELEASE
+       dwFileOS As Long               '  e.g. VOS_DOS_WINDOWS16
+       dwFileType As Long             '  e.g. VFT_DRIVER
+       dwFileSubtype As Long          '  e.g. VFT2_DRV_KEYBOARD
+       dwFileDateMS As Long           '  e.g. 0
+       dwFileDateLS As Long           '  e.g. 0
+    End Type
+    Public Declare Function GetFileVersionInfoSize Lib "Version.dll" Alias "GetFileVersionInfoSizeA" (ByVal lptstrFilename As String, lpdwHandle As Long) As Long
+    Public Declare Function GetFileVersionInfo Lib "Version.dll" Alias "GetFileVersionInfoA" (ByVal lptstrFilename As String, ByVal dwhandle As Long, ByVal dwlen As Long, lpData As Any) As Long
+    Public Declare Function VerQueryValue Lib "Version.dll" Alias "VerQueryValueA" (pBlock As Any, ByVal lpSubBlock As String, lplpBuffer As Any, puLen As Long) As Long
+    Public Declare Sub CopyMemory Lib "kernel32" Alias "RtlMoveMemory" (Destination As Any, Source As Any, ByVal Length As Long)
 Public Function CheckEmpty(ByVal strExpression As Variant, ByVal xDspMsg As Boolean) As Boolean
     If LTrim(RTrim(strExpression)) = "" Or IsNull(strExpression) Then
        If xDspMsg Then DisplayError ("Mandatory Field")
@@ -367,7 +396,6 @@ Public Function ProperCase(ByVal strInput As String) As String
 End Function
 Public Sub ShowProgressInStatusBar(ByVal bShowProgressBar As Boolean)
     Dim tRC As RECT
-
     If bShowProgressBar Then
         'Get the size of the Panel Rectangle from the status Bar
         SendMessage MdiMainMenu.StatusBar1.hwnd, SB_GETRECT, 0, tRC
@@ -426,6 +454,21 @@ Public Sub CloseForm(ByRef xForm As Form)
     Exit Sub
 ErrorHandler:
 End Sub
+Public Function GetValue(ByVal xConnection As ADODB.Connection, ByVal strSQL As String) As Variant
+    On Error GoTo ErrorHandler
+    Dim rstGetValue As New ADODB.Recordset
+    Dim xCode As String
+    rstGetValue.Open strSQL, xConnection, adOpenKeyset, adLockReadOnly
+    If IsNull(rstGetValue.Fields(0).Value) Then xCode = "" Else xCode = rstGetValue.Fields(0).Value
+    GetValue = xCode
+    rstGetValue.Close
+    Set rstGetValue = Nothing
+    Exit Function
+ErrorHandler:
+    If rstGetValue.State = adStateOpen Then rstGetValue.Close
+    Set rstGetValue = Nothing
+    GetValue = Null
+End Function
 Public Function GenerateCode(ByVal xConnection As ADODB.Connection, ByVal strSQL As String, intLen, ByVal strFillChar As String) As Variant
     On Error GoTo ErrorHandler
     Dim rstGenerateCode As New ADODB.Recordset
@@ -789,8 +832,8 @@ Public Function DisplayPopupMenu(ByVal hwnd As Long, Optional ByVal intMenu As I
         hMenu = CreatePopupMenu
         AppendMenu hMenu, 0, 1, "Packing Slip"
         AppendMenu hMenu, 0, 2, "Fowarding Slip"
-'        AppendMenu hMenu, 0, 3, "Private Mark"
-'        AppendMenu hMenu, 0, 4, "Packing Slip With Private Mark"
+        AppendMenu hMenu, 0, 3, "Private Mark"
+        AppendMenu hMenu, 0, 4, "Packing Slip With Private Mark"
     ElseIf intMenu = 4 Then
         hMenu = CreatePopupMenu
         AppendMenu hMenu, 0, 1, "Original"
@@ -887,7 +930,11 @@ Public Function GetDate(ByVal strInput As String) As String
     If strInput = "  -  -    " Then
         GetDate = "Null"
     Else
+        If InStr(1, strInput, "-") > 0 Or InStr(1, strInput, "/") > 0 Then
         GetDate = CStr(Left(strInput, 2)) & "-" & MonthName(Mid(strInput, 4, 2), True) & "-" & CStr(Right(strInput, 4))
+        Else
+        GetDate = CStr(Left(strInput, 2)) & "-" & MonthName(Mid(strInput, 3, 2), True) & "-" & CStr(Right(strInput, 4))
+        End If
     End If
 End Function
 Public Function FillList(ByVal lvwName As ListView, ByVal ColHdr As String, ByRef xRecordset As Recordset) As String
@@ -924,7 +971,6 @@ Public Function SelectedItems(ByVal lvwName As ListView, Optional ByVal lvwWithC
 End Function
 Public Function DisableCloseButton(frm As Form) As Boolean
     Dim lHndSysMenu As Long, lAns1 As Long, lAns2 As Long
-    
     lHndSysMenu = GetSystemMenu(frm.hwnd, 0)
     lAns1 = RemoveMenu(lHndSysMenu, 6, MF_BYPOSITION) 'Remove close button
     lAns2 = RemoveMenu(lHndSysMenu, 5, MF_BYPOSITION) 'Remove seperator bar
@@ -962,11 +1008,11 @@ Public Function bVerifySum13(ByVal ISBN As String) As Boolean
     On Error GoTo 0
 End Function
 Public Sub UpdateUserAction(ByVal Activity As String, ByVal Action As String, ByVal Description As String, ByVal xConnection As ADODB.Connection)
-    If UserName = "EasyPublish" Then Exit Sub
+    If Username = "EasyPublish" Then Exit Sub
     On Error GoTo ErrorHandler
     Dim lpBuff As String * 1024
     GetComputerName lpBuff, Len(lpBuff)
-    xConnection.Execute "INSERT INTO UserAction VALUES('" & UserName & "','" & Format(Now(), "dd-MMM-yyyy hh:mm:ss") & "','" & Activity & "','" & Action & "','" & Description & "','" & Left(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1) & "')"
+    xConnection.Execute "INSERT INTO UserAction VALUES('" & Username & "','" & Format(Now(), "dd-MMM-yyyy hh:mm:ss") & "','" & Activity & "','" & Action & "','" & Description & "','" & Left(lpBuff, (InStr(1, lpBuff, vbNullChar)) - 1) & "')"
     Exit Sub
 ErrorHandler:
     Call DisplayError("Failed to update User Log")
@@ -1034,6 +1080,7 @@ Public Function ConnectToBusy(ByVal DatabaseName As String) As Boolean
     ConnectToBusy = True
 End Function
 Public Function RefreshData(ByRef rsGeneral As ADODB.Recordset)
+If cnDatabase.State <> adStateOpen Then cnDatabase.Open
     rsGeneral.ActiveConnection = cnDatabase
     Do While Not RefreshRecord(rsGeneral): Loop
     rsGeneral.ActiveConnection = Nothing
@@ -1071,7 +1118,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-    Set WshShell = Nothing
+                                            Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -1136,6 +1183,15 @@ End If
 'Create And Edit Company
     If CreateComp = True Then
 
+
+    'Company SMTP Update
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CompanyMaster' AND COLUMN_NAME='SmtpServer') Print 'Column_Exist' ELSE ALTER TABLE dbo.CompanyMaster ADD   SmtpServer nvarchar(60) NULL,Port nvarchar(60) NULL,UserName nvarchar(60) NULL,Password nvarchar(60) NULL"
+    cnDatabase.Execute "IF EXISTS (SELECT SmtpServer FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set SmtpServer='smtp.gmail.com' Where SmtpServer IS NULL AND FYCode='" & FYCode & "'  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT Port FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set Port='465' Where Port IS NULL AND FYCode='" & FYCode & "'  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT UserName FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set UserName='production.easyinfosolutionsi@gmail.com' Where UserName IS NULL  AND FYCode='" & FYCode & "' ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT Password FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set Password='mr74eena' Where Password IS NULL AND FYCode='" & FYCode & "' ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CompanyMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table CompanyMaster Add State nvarchar(6) NOT Null Default('*56000')"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM CompanyMaster WHERE  State<>''  AND FYCode='" & FYCode & "') Print 'Col_Exist' ELSE Update CompanyMaster Set State='*56036' WHERE State IS NULL AND FYCode='" & FYCode & "'"
     cnDatabase.Execute "DELETE FROM CompanyMaster"
     cnDatabase.Execute "INSERT INTO CompanyMaster (Code,Name,PrintName,Address1,Address2,Address3,Address4,Phone,Mobile,Fax,eMail,Website,GSTIN,CreatedFrom,MCGroup,MCPrimary,MCRepair,FinancialYearFrom,FinancialYearTo,Printstatus,TitleCombo,BankName,AccountNo,IFSC,TallyIntegration,BusyIntegration,FYCode,Alias) VALUES ('000001','" & Trim(FrmCompanyMaster.Text1.Text) & "','" & Trim(FrmCompanyMaster.Text2.Text) & "','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text12.Text) & "'" & _
                                       ",'" & Trim(FrmCompanyMaster.Text8.Text) & "','" & Trim(FrmCompanyMaster.Text9.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & CompCode & "','0','0','0','" & Format(GetDate(FrmCompanyMaster.MhDateInput1.Text), "mm-dd-yyyy") & "','" & Format(GetDate(FrmCompanyMaster.MhDateInput2.Text), "mm-dd-yyyy") & "','N','1','" & Trim(FrmCompanyMaster.Text18.Text) & "','" & Trim(FrmCompanyMaster.Text19.Text) & "','" & Trim(FrmCompanyMaster.Text20.Text) & "','" & Trim(FrmCompanyMaster.Option1.Value) & "','" & Trim(FrmCompanyMaster.Option2.Value) & "','" & Trim(FrmCompanyMaster.Text16.Text) & "','" & Trim(FrmCompanyMaster.Text15.Text) & "')"
@@ -1201,7 +1257,7 @@ If Not WithMasters Then    'Delete Master
     cnDatabase.Execute "DELETE FROM AccountChild07 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
     cnDatabase.Execute "DELETE FROM AccountChild08 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
     cnDatabase.Execute "DELETE FROM AccountChild0801 Where CODE IN (Select Code From AccountMaster Where Right([Group],5)<'10001' AND Left(Code,1)<>'*' AND Code<> '000000')"
-    cnDatabase.Execute "DELETE FROM AccountMaster "
+    cnDatabase.Execute "DELETE FROM AccountMaster Where Left(Code,1)<>'*' "
 'BookingRouteMaster
     cnDatabase.Execute "DELETE FROM BookingRouteMaster "
 'Book Master
@@ -1247,13 +1303,21 @@ End If
 
 If CreateComp = True Then
 ''Account Masters
-    cnDatabase.Execute "DELETE FROM AccountMaster Where Code ='000000' Or Left(Code,1)='*'"
-    cnDatabase.Execute "Insert Into AccountMaster VALUES ('000000','" & Trim(FrmCompanyMaster.Text1.Text) & "','" & Trim(FrmCompanyMaster.Text2.Text) & "','000000','*12002','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00001','Rate Master','Rate Master','1002','*12002','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00002','Main Godown','Main Godown','1003','*99999','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00003','Self Transport','Self Transport','1004','*99996','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00004','Self Packer','Self Packer','1005','*99997','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
-    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00005','Direct','Direct','1006','*99998','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0);"
+    'Update Account Master State Col
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'AccountMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table AccountMaster Add State nvarchar(6) NOT Null Default('*56000')"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CompanyMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table CompanyMaster Add State nvarchar(6) NOT Null Default('*56000')"
+    cnDatabase.Execute "Update AccountMaster Set State='*56000'  Where State IS NULL"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM CompanyMaster WHERE  State<>''  AND FYCode='" & FYCode & "') Print 'Col_Exist' ELSE Update CompanyMaster Set State='*56036' WHERE State IS NULL AND FYCode='" & FYCode & "'"
+
+
+
+    cnDatabase.Execute "DELETE FROM AccountMaster Where Code ='000000' Or Left(Code,1)<>'*' OR Right(Code,1)<6"
+    cnDatabase.Execute "Insert Into AccountMaster VALUES ('000000','" & Left(Trim(FrmCompanyMaster.Text1.Text), 40) & "','" & Left(Trim(FrmCompanyMaster.Text2.Text), 40) & "','000000','*12002','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'" & Trim(FrmCompanyMaster.Text25.Text) & "');"
+    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00001','Rate Master','Rate Master','1002','*12002','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'" & Trim(FrmCompanyMaster.Text25.Text) & "');"
+    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00002','Main Godown','Main Godown','1003','*99999','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'" & Trim(FrmCompanyMaster.Text25.Text) & "');"
+    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00003','Self Transport','Self Transport','1004','*99996','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'" & Trim(FrmCompanyMaster.Text25.Text) & "');"
+    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00004','Self Packer','Self Packer','1005','*99997','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'" & Trim(FrmCompanyMaster.Text25.Text) & "');"
+    cnDatabase.Execute "Insert Into AccountMaster VALUES ('*00005','Direct','Direct','1006','*99998','" & Trim(FrmCompanyMaster.Text3.Text) & "','" & Trim(FrmCompanyMaster.Text4.Text) & "','" & Trim(FrmCompanyMaster.Text5.Text) & "','" & Trim(FrmCompanyMaster.Text6.Text) & "','" & Trim(FrmCompanyMaster.Text7.Text) & "','" & Trim(FrmCompanyMaster.Text11.Text) & "','" & Trim(FrmCompanyMaster.Text10.Text) & "','" & Trim(FrmCompanyMaster.Text8.Text) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'" & Trim(FrmCompanyMaster.Text25.Text) & "');"
 End If
 'Check Version Update
     cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'EasyPublishVersion' AND COLUMN_NAME = 'Date') Print 'Col_Exist' ELSE CREATE TABLE dbo.EasyPublishVersion(Date datetime NOT NULL, Major nchar(10) NOT NULL,Minor nchar(10) NOT NULL,Revision nchar(10) NOT NULL,Version nchar(10) NULL) ON [PRIMARY] ALTER TABLE dbo.EasyPublishVersion SET (LOCK_ESCALATION = TABLE)"
@@ -1300,11 +1364,17 @@ End If
     CompAlias = rstCompanyMaster.Fields("Alias")
 
 'Update=01
+UpdateVersion = True
+    If rstEasyPublishVersion.RecordCount <> 0 Then rstEasyPublishVersion.MoveFirst
+    Do While Not rstEasyPublishVersion.EOF
+    If Trim(rstEasyPublishVersion.Fields("Version").Value) = "21.09.22" Then UpdateVersion = False: cnDatabase.Execute "Update EasyPublishVersion Set vUPDATE='UpdateMinor01' Where vUPDATE IS NULL AND Version='21.09.22'"
+    rstEasyPublishVersion.MoveNext
+    Loop
 If UpdateVersion = True Then
 Call UpdateMinor01
 'EasyPublishVersion
-cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.09.22') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,9,22,'21.09.22')"
-frmLicenceAgreement.Label2 = ""
+cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.09.22') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,9,22,'21.09.22','UpdateMinor01')"
+MdiMainMenu.StatusBar1.Panels(2).Text = ""
 End If
 '***************************************************************************************************************************************************************
 'Update=02
@@ -1315,9 +1385,9 @@ UpdateVersion = True
     rstEasyPublishVersion.MoveNext
     Loop
 If UpdateVersion = True Then
-Call UpdateMinor02
+    Call UpdateMinor02
 'EasyPublishVersion
-    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.09.23') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,09,23,'21.09.23')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.09.23') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,09,23,'21.09.23','UpdateMinor02')"
 End If
 '***************************************************************************************************************************************************************
 'Update=03
@@ -1330,7 +1400,7 @@ UpdateVersion = True
 If UpdateVersion = True Then
 Call UpdateMinor03
 'EasyPublishVersion
-    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.01') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,01,'21.10.01')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.01') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,01,'21.10.01','UpdateMinor03')"
 End If
 '***************************************************************************************************************************************************************
 'Update=04
@@ -1343,7 +1413,7 @@ UpdateVersion = True
 If UpdateVersion = True Then
 Call UpdateMinor04
 'EasyPublishVersion
-    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.13') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,13,'21.10.13')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.13') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,13,'21.10.13','UpdateMinor04')"
 End If
 '***************************************************************************************************************************************************************
 'Update=05
@@ -1356,7 +1426,7 @@ UpdateVersion = True
 If UpdateVersion = True Then
 Call UpdateMinor05
 'EasyPublishVersion
-    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.19') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,19,'21.10.19')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.10.19') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,10,19,'21.10.19','UpdateMinor05')"
 End If
 '***************************************************************************************************************************************************************
 'Update=06
@@ -1426,7 +1496,7 @@ End If
 '***************************************************************************************************************************************************************
 
 
-
+If UpdateMajor = True Then
 '***************************************************************************************************************************************************************
 'MajorUpdate=01
 If MsgBox("Do You Wants to Update '21.11.01 Version'" & vbCrLf & "[Update Account Child Master & Update Color Master] Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
@@ -1520,7 +1590,7 @@ End If
 '***************************************************************************************************************************************************************
 'MajorUpdate=07  Update BookPOChild08
 If MsgBox("Do You Wants to Update '21.11.07 Version'" & vbCrLf & "[Update BookPOChild08] Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
-UpdateMajor = True
+    UpdateMajor = True
     If rstEasyPublishVersion.RecordCount <> 0 Then rstEasyPublishVersion.MoveFirst
     Do While Not rstEasyPublishVersion.EOF
     If Trim(rstEasyPublishVersion.Fields("Version").Value) = "21.11.07" Then UpdateMajor = False: cnDatabase.Execute "Update EasyPublishVersion Set vUPDATE='UpdateMajor07' Where vUPDATE IS NULL AND Version='21.11.07'"
@@ -1532,7 +1602,10 @@ Call UpdateMajor07
     cnDatabase.Execute "IF EXISTS (SELECT *FROM EasyPublishVersion WHERE Version='21.11.07') Print 'Version_Exist' ELSE Insert Into EasyPublishVersion VALUES (GetDate(),21,11,07,'21.11.07','UpdateMajor07')"
 End If
 End If
+End If
 '***************************************************************************************************************************************************************
+
+MdiMainMenu.StatusBar1.Panels(2).Text = "Common Updates Going on!!! "
 'Common Update
     'Email
     cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'Email' AND COLUMN_NAME = 'Code') Print 'Col_Exist' ELSE CREATE TABLE dbo.Email(Code nchar(6) NOT NULL,Company nchar(100) NULL,ContactPerson nchar(60) NULL,Mobile nchar(60) NULL,email nchar(80) NULL,Address nchar(150) NULL,PIN nchar(10) NULL,CITY nchar(40) NULL,Category nchar(30) NULL,State nchar(30) NULL,Status nchar(10) NULL) ON [PRIMARY] ALTER TABLE dbo.Email SET (LOCK_ESCALATION = TABLE)"
@@ -1553,76 +1626,369 @@ End If
     cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00052' OR NAME='Carton_Sheet-1') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00052','Carton_Sheet-1','Carton_Sheet-1','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
     cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00053' OR NAME='Carton_Sheet-2') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00053','Carton_Sheet-2','Carton_Sheet-2','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
     'BookPOChild06
-    cnDatabase.Execute "IF Exists (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME = 'Titles/sheet1') EXEC sp_rename 'BookPOChild06.Titles/sheet1','Ups','Column' Else Print 'Col_NOT_Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME='Ups') ALTER TABLE BookPOChild06 Alter COLUMN [Ups] decimal(12, 0) ELSE Print 'Column_Not_Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME='Sets') ALTER TABLE BookPOChild06 Alter COLUMN [Sets] decimal(12, 0) ELSE Print 'Column_Not_Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME='Titles/sheet2') ALTER TABLE BookPOChild06 Alter COLUMN [Titles/sheet2] decimal(12, 0) ELSE Print 'Column_Not_Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME='Titles/sheet1') ALTER TABLE BookPOChild06 Alter COLUMN [Titles/sheet1] decimal(12, 0) ELSE Print 'Column_Not_Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME='Code') ALTER TABLE BookPOChild06 Alter COLUMN [Sets] decimal(12, 0) ELSE Print 'Column_Not_Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME='Code') ALTER TABLE BookPOChild06 Alter COLUMN [Titles/sheet2] decimal(12, 0) ELSE Print 'Column_Not_Exist'"
     'Company SMTP Update
     cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CompanyMaster' AND COLUMN_NAME='SmtpServer') Print 'Column_Exist' ELSE ALTER TABLE dbo.CompanyMaster ADD   SmtpServer nvarchar(60) NULL,Port nvarchar(60) NULL,UserName nvarchar(60) NULL,Password nvarchar(60) NULL"
-    cnDatabase.Execute "IF EXISTS (SELECT SmtpServer FROM CompanyMaster) Update CompanyMaster Set SmtpServer='smtp.gmail.com' Where SmtpServer IS NULL  ELSE Print 'Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT Port FROM CompanyMaster) Update CompanyMaster Set Port='465' Where Port IS NULL  ELSE Print 'Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT UserName FROM CompanyMaster) Update CompanyMaster Set UserName='production.easyinfosolutionsi@gmail.com' Where UserName IS NULL  ELSE Print 'Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT Password FROM CompanyMaster) Update CompanyMaster Set Password='mr74eena' Where Password IS NULL  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT SmtpServer FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set SmtpServer='smtp.gmail.com' Where SmtpServer IS NULL AND FYCode='" & FYCode & "'  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT Port FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set Port='465' Where Port IS NULL AND FYCode='" & FYCode & "'  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT UserName FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set UserName='production.easyinfosolutionsi@gmail.com' Where UserName IS NULL  AND FYCode='" & FYCode & "' ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT Password FROM CompanyMaster WHERE FYCode='" & FYCode & "') Update CompanyMaster Set Password='mr74eena' Where Password IS NULL AND FYCode='" & FYCode & "' ELSE Print 'Exist'"
     'TeamMemberMaster Update
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else CREATE TABLE dbo.Tmp_TeamMemberMaster(Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,PrintName nvarchar(40) NOT NULL,Department nvarchar(6) NOT NULL,Designation nvarchar(6) NOT NULL,LoginId nvarchar(6) NOT NULL,ReportingTo nvarchar(6) NULL,eMail nvarchar(50) NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar(1) NOT NULL,Printstatus nvarchar(1) NOT NULL)  ON [PRIMARY]"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else ALTER TABLE dbo.Tmp_TeamMemberMaster SET (LOCK_ESCALATION = TABLE)"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else  IF EXISTS(SELECT * FROM dbo.TeamMemberMaster) EXEC('INSERT INTO dbo.Tmp_TeamMemberMaster (Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus) SELECT Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus FROM dbo.TeamMemberMaster WITH (HOLDLOCK TABLOCKX)')"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else DROP TABLE dbo.TeamMemberMaster"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else EXECUTE sp_rename N'dbo.Tmp_TeamMemberMaster', N'TeamMemberMaster', 'OBJECT' "
-    'GeneralMaster Update Calc Mode
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BOPP Matt') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='BOPP Matt'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Box Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20009' Where Name='Box Packing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Center Pin Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Center Pin Binding'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Counting & Fabrication') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Counting & Fabrication'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Creasing+Folding+Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Creasing+Folding+Packing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Cutting and Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Cutting and Packing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Cutting Leaflet Only') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Cutting Leaflet Only'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Die Cutting Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Die Cutting Charges'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Die Making Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Die Making Charges'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Embossing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Embossing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Foiling Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Foiling Charges'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Folding & Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Folding & Packing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Graning') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Graning'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Half Die Cutting Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Half Die Cutting Charges'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Hardbound Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Hardbound Binding'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Hologram') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Hologram'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt + Spot UV') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Matt + Spot UV'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt + Spot UV + Foiling + Embossing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Matt + Spot UV + Foiling + Embossing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt + Spot UV+Glitter UV') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Matt + Spot UV+Glitter UV'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Matt Both Side') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='Matt Both Side'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='MINI Offset JOB') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='MINI Offset JOB'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='None') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='None'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Packing Shrink') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20006' Where Name='Packing Shrink'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Paper Cost') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Paper Cost'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Pasting Charges') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Pasting Charges'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Perfect Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Perfect Binding'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Plate') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Plate'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Printing 4 Col') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='Printing 4 Col'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='PVC') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='PVC'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Spot UV') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Spot UV'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Thermal Matt') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='Thermal Matt'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='UV Hybraid') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='UV Hybraid'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Varnising') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20008' Where Name='Varnising'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Unit Cost') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='BP-Unit Cost'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Stitching') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Stitching'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Binding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Binding'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Folding') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Folding'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Shrink Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20006' Where Name='BP-Shrink Packing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Box Packing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20009' Where Name='BP-Box Packing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Cartage') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20010' Where Name='BP-Cartage'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print_1C') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print_1C'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print_2C') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print_2C'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Digital Print_4C') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='Digital Print_4C'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Center Pin') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Center Pin'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-CD Pasting') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20001' Where Name='BP-CD Pasting'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Creasing') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Creasing'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-CUTTING') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-CUTTING'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Die_Cutting') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Die_Cutting'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Gathering') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Gathering'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Perforation') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Perforation'"
-   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='BP-Section Insert') Print 'Not Exist' ELSE Update GeneralMaster Set UnderGroup='*20005' Where Name='BP-Section Insert'"
-    '***************************************************************************************************************************************************************
+    'cnDatabase.Execute "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME='email') Print 'Column_Exist' Else CREATE TABLE dbo.Tmp_TeamMemberMaster(Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,PrintName nvarchar(40) NOT NULL,Department nvarchar(6) NOT NULL,Designation nvarchar(6) NOT NULL,LoginId nvarchar(6) NOT NULL,ReportingTo nvarchar(6) NULL,eMail nvarchar(50) NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar(1) NOT NULL,Printstatus nvarchar(1) NOT NULL)  ON [PRIMARY]"
+    'cnDatabase.Execute "IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Tmp_TeamMemberMaster') Print 'Table_NOT_Exist' Else EXEC('INSERT INTO dbo.Tmp_TeamMemberMaster (Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus) SELECT Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus FROM dbo.TeamMemberMaster WITH (HOLDLOCK TABLOCKX)')"
+    cnDatabase.Execute "IF (SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME = 'email') >'0' Print 'Column_Exist' Else CREATE TABLE dbo.Tmp_TeamMemberMaster(Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,PrintName nvarchar(40) NOT NULL,Department nvarchar(6) NOT NULL,Designation nvarchar(6) NOT NULL,LoginId nvarchar(6) NOT NULL,ReportingTo nvarchar(6) NULL,eMail nvarchar(50) NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar(1) NOT NULL,Printstatus nvarchar(1) NOT NULL)  ON [PRIMARY]"
+    cnDatabase.Execute "IF (SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME = 'Code') >'0' IF (SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Tmp_TeamMemberMaster' AND COLUMN_NAME = 'email') >'0' EXEC('INSERT INTO dbo.Tmp_TeamMemberMaster (Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus) SELECT Code, Name, PrintName, Department, Designation, LoginId, ReportingTo, CreatedBy, CreatedOn, ModifiedBy, ModifiedOn, Recordstatus, Printstatus FROM dbo.TeamMemberMaster WITH (HOLDLOCK TABLOCKX)') Else Print 'Column_Not_Exist'"
+    cnDatabase.Execute "IF (SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'TeamMemberMaster' AND COLUMN_NAME = 'Code') >'0' IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Tmp_TeamMemberMaster' AND COLUMN_NAME='email') Print 'Table_NOT_Exist' Else DROP TABLE dbo.TeamMemberMaster"
+    cnDatabase.Execute "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Tmp_TeamMemberMaster' AND COLUMN_NAME='email') Print 'Table_NOT_Exist' Else EXECUTE sp_rename N'dbo.Tmp_TeamMemberMaster', N'TeamMemberMaster', 'OBJECT' "
+    'PaperPOChild Update [Units/Bundle]
+    cnDatabase.Execute "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PaperPOChild' AND COLUMN_NAME='Units/Bundle' AND NUMERIC_PRECISION<12) Print 'NUMERIC_PRECISION_NOT_12' Else Alter Table PaperPOChild Alter Column [Units/Bundle] decimal(12, 2) NOT NULL"
+    'PaperIOChild Update [Units/Bundle]
+    cnDatabase.Execute "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PaperIOChild' AND COLUMN_NAME='Units/Bundle' AND NUMERIC_PRECISION<12) Print 'NUMERIC_PRECISION_NOT_12' Else Alter Table PaperIOChild Alter Column [Units/Bundle] decimal(12, 2) NOT NULL"
+    'BookMaster Update [ItemIntegrationName]
+    cnDatabase.Execute "IF COL_LENGTH('BookMaster', 'ItemIntegrationName') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookMaster ADD ItemIntegrationName text NULL ALTER TABLE BookMaster SET (LOCK_ESCALATION = TABLE) "
+    cnDatabase.Execute "IF EXISTS (SELECT ItemIntegrationName FROM BookMaster) Update BookMaster Set ItemIntegrationName=Name Where ItemIntegrationName IS NULL  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'IntegrationStatus') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD IntegrationStatus bit DEFAULT (0) ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE)"
+    cnDatabase.Execute "IF EXISTS (SELECT IntegrationStatus FROM JobworkBVParent) Update JobworkBVParent Set IntegrationStatus=0 Where IntegrationStatus IS NULL  ELSE Print 'Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25019' OR Name='Numbers') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25019','Numbers','No','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+    cnDatabase.Execute "IF COL_LENGTH('BookMaster', 'IntegrationUnit') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookMaster ADD IntegrationUnit nvarchar(60) NOT NULL Default('*25019') ALTER TABLE BookMaster SET (LOCK_ESCALATION = TABLE)"
+    cnDatabase.Execute "UPDATE BookMaster SET IntegrationUnit='*25019' Where IntegrationUnit=''"
+       '[JobworkParent]
+    cnDatabase.Execute "IF (SELECT Data_Type FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'JobworkBVParent' AND COLUMN_NAME='VehicleNo') ='nvarchar' Print 'DataType_Ok' ELSE ALTER TABLE JobworkBVParent Alter Column VehicleNo nvarchar(40) NULL "
+        'UserChild Update
+    cnDatabase.Execute "IF(SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'UserChild' AND COLUMN_NAME='Module') ='8' Print 'DataField_Ok' ELSE ALTER TABLE UserChild Alter Column Module nvarchar(8) NOT NULL"
+        'CompChild
+    cnDatabase.Execute "DELETE FROM CompChild"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='01') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','01','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/Pur/','/20-21','Purchase')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='02') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','02','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/PR/','/20-21','Purchase Return')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='03') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','03','1. All disputes are subject to Our Jurisdiction Only','2. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection.','3. Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','','','" & CompAlias & "'+'/SR/','/20-21','Sale Return')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='04') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','04','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/Sale/','/20-21','Sale')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='05') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','05','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/PC/','/20-21','Purchase Challan IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='06') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','06','','','','','','','','" & CompAlias & "'+'/PRC/','/20-21','Purchase Challan Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='07') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','07','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SRC/','/20-21','Sale Challan IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='08') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','08','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Sale Challan Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='09') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','09','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SJ/','/20-21','Sale Jobwork')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='10') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','10','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Sale Jobwork Unit Cost')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='11') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','11','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/DN/','/20-21','Challan Revesal IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='12') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','12','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Delhi Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/PU/','/20-21','Challan Revesal Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='13') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','13','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan TO Be Billed IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='14') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','14','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan TO Be Billed OUT')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='15') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','15','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan Not TO Be Billed IN')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='16') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','16','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SC/','/20-21','Challan Not TO Be Billed IOUT')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='17') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','17','1. The Deliverables shall be delivered or performed on the ','date and at the place specified in the Purchase Order.','2. Prices shall be as specified in the  Purchase  Order.','3. No increase in price shall be made or accepted unless ',' agreed in writing by Accenture.','4. The  Deliverables must conform in all respects with the','   Specifications and must be of sound.','" & CompAlias & "'+'/PO/','/20-21','Purchase Order')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='18') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','18','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SO/','/20-21','Sale Order')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='19') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','19','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/ST/','/20-21','Stock Tranfer')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='20') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','20','','','','','','','','" & CompAlias & "'+'/RN/','/20-21','Stock Genral')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='21') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','21','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Delhi Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SU/','/20-21','Promotional Sale Challan Out')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='22') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','22','1. Interest @24% p.a. will be charged if','the payment is not made in time.','2. All disputes are subject to Our Jurisdiction Only','3. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection','4. . Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','" & CompAlias & "'+'/SQ/','/20-21','--')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='23') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','23','1. The price set for in Supplier’s Quotation (“Price”) are',' in  INDIA INR.','2. All Taxes shall be paid by Customer in addition to the ',' Price.','3.  Quotation (“Prices”) are valid for 30 days only.','','','" & CompAlias & "'+'/QP/','/20-21','Purchase Quotation')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='24') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','24','1. The price set for in Supplier’s Quotation (“Price”) are',' in  INDIA INR.','2. All Taxes shall be paid by Customer in addition to the ',' Price.','3.  Quotation (“Prices”) are valid for 30 days only.','','','" & CompAlias & "'+'/QS/','/20-21','Sales Quotation')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='25') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','25','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='26') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','26','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='27') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','27','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='28') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','28','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='29') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','29','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='30') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','30','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='31') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','31','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='32') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','32','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='33') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','33','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='34') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','34','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='35') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','35','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='36') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','36','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='37') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','37','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='38') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','38','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='39') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','39','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='40') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','40','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='41') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','41','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='42') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','42','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='43') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','43','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='44') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','44','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='45') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','45','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='46') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','46','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='47') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','47','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='48') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','48','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='49') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','49','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='50') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','50','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='51') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','51','','','','','','','','" & CompAlias & "'+'/PI/','/20-21','Payment')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='52') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','52','','','','','','','','" & CompAlias & "'+'/PR/','/20-21','Receipt')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='53') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','53','','','','','','','','" & CompAlias & "'+'/JE/','/20-21','Journal')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='54') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','54','','','','','','','','" & CompAlias & "'+'/CE/','/20-21','Contra')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='55') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','55','','','','','','','','" & CompAlias & "'+'/DN/','/20-21','Debit Note')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='56') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','56','','','','','','','','" & CompAlias & "'+'/CN/','/20-21','Credit Note')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='57') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','57','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='58') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','58','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='59') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','59','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='60') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','60','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='61') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','61','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='62') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','62','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='63') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','63','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='64') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','64','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='65') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','65','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='66') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','66','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='67') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','67','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='68') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','68','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='69') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','69','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='70') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','70','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='71') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','71','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='72') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','72','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='73') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','73','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='74') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','74','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='75') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','75','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='76') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','76','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='77') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','77','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='78') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','78','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='79') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','79','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='80') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','80','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='81') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','81','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='82') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','82','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='83') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','83','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='84') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','84','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='85') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','85','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='86') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','86','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='87') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','87','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='88') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','88','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='89') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','89','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='90') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','90','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='91') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','91','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='92') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','92','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='93') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','93','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='94') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','94','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='95') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','95','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='96') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','96','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='97') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','97','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='98') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','98','','','','','','','','','','')"
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='99') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','99','','','','','','','','','','')"
+'Update Tax Master
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00001' OR Name='Local GST 12%') UPDATE TaxMaster SET Name='Job Work (Local GST 12%)',PrintName='Job Work (Local GST 12%)' Where Name='Local GST 12%' OR Code ='*00001'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00002' OR Name='IGST 12%') UPDATE TaxMaster SET Name='Job Work (Interstate IGST 12%)',PrintName='Job Work (Interstate IGST 12%)' Where Name='IGST 12%' OR Code ='*00002'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00003' OR Name='IGST 5%') UPDATE TaxMaster SET Name='Job Work Books (Interstate IGST 5%)',PrintName='Job Work Books (Interstate IGST 5%)' Where Name='IGST 5%' OR Code ='*00003'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00004' OR Name='Local GST 5%') UPDATE TaxMaster SET Name='Job Work Books (Local GST 5%)',PrintName='Job Work Books (Local GST 5%)' Where Name='Local GST 5%' OR Code ='*00004'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00005' OR Name='Local GST 18%') UPDATE TaxMaster SET Name='Sales (Local GST 18%)',PrintName='Sales (Local GST 18%)' Where Name='Local GST 18%' OR Code ='*00005'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00006' OR Name='IGST 18%') UPDATE TaxMaster SET Name='Sales (Interstate IGST 18%)',PrintName='Sales (Interstate IGST 18%)' Where Name='IGST 18%' OR Code ='*00006'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00007' OR Name='Local GST NIL') UPDATE TaxMaster SET Name='Local GST NIL',PrintName='Local GST NIL' Where Name='Local GST NIL' OR Code ='*00007'  ELSE  Print 'Not Exist' "
+    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00008' OR Name='IGST NIL') UPDATE TaxMaster SET Name='Interstate IGST NIL',PrintName='Interstate IGST NIL' Where Name='IGST NIL' OR Code ='*00008'  ELSE  Print 'Not Exist' "
+'Update State
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56000' OR Name='State') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56000','State','0','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56001' OR Name='Andaman and Nicobar Islands') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56001','Andaman and Nicobar Islands','35','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56002' OR Name='Andhra Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56002','Andhra Pradesh','37','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56003' OR Name='Arunachal Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56003','Arunachal Pradesh','12','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56004' OR Name='Assam') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56004','Assam','18','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56005' OR Name='Bihar') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56005','Bihar','10','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56006' OR Name='Chandigarh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56006','Chandigarh','4','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56007' OR Name='Chhattisgarh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56007','Chhattisgarh','22','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56008' OR Name='Dadra and Nagar Haveli') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56008','Dadra and Nagar Haveli','26','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56009' OR Name='Daman and Diu') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56009','Daman and Diu','25','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56010' OR Name='Delhi') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56010','Delhi','7','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56011' OR Name='Goa') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56011','Goa','30','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56012' OR Name='Gujarat') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56012','Gujarat','24','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56013' OR Name='Haryana') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56013','Haryana','6','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56014' OR Name='Himachal Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56014','Himachal Pradesh','2','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56015' OR Name='Jammu and Kashmir') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56015','Jammu and Kashmir','1','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56016' OR Name='Jharkhand') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56016','Jharkhand','20','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56017' OR Name='Karnataka') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56017','Karnataka','29','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56018' OR Name='Kerala') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56018','Kerala','32','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56019' OR Name='Ladakh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56019','Ladakh','38','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56020' OR Name='Lakshadweep') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56020','Lakshadweep','31','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56021' OR Name='Madhya Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56021','Madhya Pradesh','23','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56022' OR Name='Maharashtra') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56022','Maharashtra','27','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56023' OR Name='Manipur') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56023','Manipur','14','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56024' OR Name='Meghalaya') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56024','Meghalaya','17','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56025' OR Name='Mizoram') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56025','Mizoram','15','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56026' OR Name='Nagaland') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56026','Nagaland','13','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56027' OR Name='Odisha') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56027','Odisha','21','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56028' OR Name='Other Territory') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56028','Other Territory','97','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56029' OR Name='Puducherry') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56029','Puducherry','34','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56030' OR Name='Punjab') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56030','Punjab','3','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56031' OR Name='Rajasthan') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56031','Rajasthan','8','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56032' OR Name='Sikkim') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56032','Sikkim','11','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56033' OR Name='Tamil Nadu') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56033','Tamil Nadu','33','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56034' OR Name='Telangana') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56034','Telangana','36','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56035' OR Name='Tripura') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56035','Tripura','16','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56036' OR Name='Uttar Pradesh') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56036','Uttar Pradesh','9','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56037' OR Name='Uttarakhand') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56037','Uttarakhand','5','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56038' OR Name='West Bengal') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56038','West Bengal','19','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*56039' OR Name='Foreign Country') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*56039','Foreign Country','96','56','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'Update Account Master State Col
+   cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'AccountMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table AccountMaster Add State nvarchar(6) NOT Null Default('*56000')"
+   cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CompanyMaster' AND COLUMN_Name = 'State') Print 'Col_Exist' ELSE Alter Table CompanyMaster Add State nvarchar(6) NOT Null Default('*56000')"
+   cnDatabase.Execute "Update AccountMaster Set State='*56000'  Where State IS NULL"
+   cnDatabase.Execute "IF EXISTS (SELECT * FROM CompanyMaster WHERE  State<>''  AND FYCode='" & FYCode & "') Print 'Col_Exist' ELSE Update CompanyMaster Set State='*56036' WHERE State IS NULL AND FYCode='" & FYCode & "'"
+'Create Table CustomSettings
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CustomSettings' AND COLUMN_NAME='Logo') Print 'Done'Else CREATE TABLE [dbo].[CustomSettings]([Logo] [nchar](10) NOT NULL,[LogoLine] [nchar](10) NOT NULL,[LogoW] [int] NOT NULL,[LogoH] [int] NOT NULL,[Header] [int] NOT NULL,[HeaderL] [int] NOT NULL,FYFromTo nvarchar(1) NOT NULL Default('N'),GSTMethod nvarchar(1) NOT NULL Default('1')) ON [PRIMARY]"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'FYFromTo') Print 'Col_Exist' ELSE Alter Table CustomSettings Add FYFromTo nvarchar(1) NOT NULL Default('N')"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'GSTMethod') Print 'Col_Exist' ELSE Alter Table CustomSettings Add GSTMethod nvarchar(1) NOT NULL Default('1')"
+    cnDatabase.Execute "IF EXISTS (SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'DriverDetails') Print 'Col_Exist' ELSE Alter Table CustomSettings Add DriverDetails nvarchar(1) NOT NULL Default('1')"
+    cnDatabase.Execute "IF(SELECT COLUMN_Name FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'CustomSettings' AND COLUMN_Name = 'LOGO')<>'' Print'Done' Else INSERT INTO CustomSettings VALUES ('S','N',1440,960,7800,1680,'N','1','1')"
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='RefCode') Print 'Col_Exist' ELSE CREATE TABLE JobworkBVClear([RefCode] [nvarchar](6) NOT NULL,[VchType] [nvarchar](6) NOT NULL,[VchNo] [nvarchar](25) NOT NULL,[VchDate] [datetime] NOT NULL,[Party] [nvarchar](6) NOT NULL,[Item] [nvarchar](6) NOT NULL,[Quantity] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL) ON [PRIMARY]"
+'Update Vch Series Master
+   cnDatabase.Execute "IF COL_LENGTH('VchSeriesMaster', 'VchName') IS NOT NULL PRINT 'Exists' ELSE Alter Table VchSeriesMaster Add VchName nvarchar(40) NOT NULL DEFAULT ('')"
+   cnDatabase.Execute "IF COL_LENGTH('VchSeriesMaster', 'FYCode') IS NOT NULL PRINT 'Exists' ELSE Alter Table VchSeriesMaster Add FYCode nvarchar(6) NOT NULL  DEFAULT '" & FYCode & "'"
+'Vch Series Master
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*001" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*001" & Mid(FYCode, 2, 1) & "1','Main','01PF','" & CompAlias & "'+'/','/Purc','A','Purchase','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*001" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*001" & Mid(FYCode, 2, 1) & "2','Main','01PU','" & CompAlias & "'+'/','/PrJU','A','Purchase Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*001" & Mid(FYCode, 2, 1) & "3' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*001" & Mid(FYCode, 2, 1) & "3','Main','01PC','" & CompAlias & "'+'/','/PrJC','A','Purchase Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*001" & Mid(FYCode, 2, 1) & "4' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*001" & Mid(FYCode, 2, 1) & "4','Main','01PJ','" & CompAlias & "'+'/','/PrJW','A','Purchase Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*002" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*002" & Mid(FYCode, 2, 1) & "1','Main','02OF','" & CompAlias & "'+'/','/PrRt','A','Purchase Return','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*002" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*002" & Mid(FYCode, 2, 1) & "2','Main','02OU','" & CompAlias & "'+'/','/PrRtJU','A','Purchase Return Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*002" & Mid(FYCode, 2, 1) & "3' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*002" & Mid(FYCode, 2, 1) & "3','Main','02OC','" & CompAlias & "'+'/','/PrRtJC','A','Purchase Return Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*002" & Mid(FYCode, 2, 1) & "4' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*002" & Mid(FYCode, 2, 1) & "4','Main','02OJ','" & CompAlias & "'+'/','/PrRtJW','A','Purchase Return Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*003" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*003" & Mid(FYCode, 2, 1) & "1','Main','03TF','" & CompAlias & "'+'/','/SlRt','A','Sale Return','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*003" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*003" & Mid(FYCode, 2, 1) & "2','Main','03TU','" & CompAlias & "'+'/','/SlRtJU','A','Sale Return Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*003" & Mid(FYCode, 2, 1) & "3' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*003" & Mid(FYCode, 2, 1) & "3','Main','03TC','" & CompAlias & "'+'/','/SlRtJC','A','Sale Return Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*003" & Mid(FYCode, 2, 1) & "4' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*003" & Mid(FYCode, 2, 1) & "4','Main','03TJ','" & CompAlias & "'+'/','/SlRtJW','A','Sale Return Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*004" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*004" & Mid(FYCode, 2, 1) & "1','Main','04SF','" & CompAlias & "'+'/','/Sale','A','Sales','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*004" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*004" & Mid(FYCode, 2, 1) & "2','Main','04SU','" & CompAlias & "'+'/','/SlJU','A','Sales Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*004" & Mid(FYCode, 2, 1) & "3' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*004" & Mid(FYCode, 2, 1) & "3','Main','04SC','" & CompAlias & "'+'/','/SlJC','A','Sales Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*004" & Mid(FYCode, 2, 1) & "4' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*004" & Mid(FYCode, 2, 1) & "4','Main','04SJ','" & CompAlias & "'+'/','/SlJW','A','Sales Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*005" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*005" & Mid(FYCode, 2, 1) & "1','Main','05RF','" & CompAlias & "'+'/','/MtRc','A','Purchase Challan IN','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*005" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*005" & Mid(FYCode, 2, 1) & "2','Main','05FR','" & CompAlias & "'+'/','/MtRcJW','A','Purchase Challan IN (Jobwork)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*006" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*006" & Mid(FYCode, 2, 1) & "1','Main','06IF','" & CompAlias & "'+'/','/PrRtC','A','Purchase Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*006" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*006" & Mid(FYCode, 2, 1) & "2','Main','06FI','" & CompAlias & "'+'/','/PrRtCJW','A','Purchase Challan Out (Jobworj)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*007" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*007" & Mid(FYCode, 2, 1) & "1','Main','07RF','" & CompAlias & "'+'/','/SlRtC','A','Sale Challan IN','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*007" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*007" & Mid(FYCode, 2, 1) & "2','Main','07FR','" & CompAlias & "'+'/','/SlRtCJW','A','Sale Challan IN (Jobwork)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*008" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*008" & Mid(FYCode, 2, 1) & "1','Main','08IF','" & CompAlias & "'+'/','/MtIs','A','Sale Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*008" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*008" & Mid(FYCode, 2, 1) & "2','Main','08FI','" & CompAlias & "'+'/','/MtIsJW','A','Sale Challan Out (Jobwork)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*017" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*017" & Mid(FYCode, 2, 1) & "1','Main','17PO','" & CompAlias & "'+'/','/PO','A','Purchase Order','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*018" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*018" & Mid(FYCode, 2, 1) & "1','Main','18SO','" & CompAlias & "'+'/','/SO','A','Sale Order','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*019" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*019" & Mid(FYCode, 2, 1) & "1','Main','19ST','" & CompAlias & "'+'/','/STrn','A','Stock Tranfer','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*020" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*020" & Mid(FYCode, 2, 1) & "1','Main','20JR','" & CompAlias & "'+'/','/SJrnl','A','Stock Genral','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*021" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*021" & Mid(FYCode, 2, 1) & "1','Main','21JR','" & CompAlias & "'+'/','/SJrnl','A','Promotional Sale Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*022" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*022" & Mid(FYCode, 2, 1) & "1','Main','22JR','" & CompAlias & "'+'/','/SJrnl','A','Promotional Purchase Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "1','Main','23PQ','" & CompAlias & "'+'/','/PQ','A','Purchase Quotation','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "2' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "2','Main','23UZ','" & CompAlias & "'+'/','/PQU','A','Purchase Quotation Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "3' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "3','Main','23CZ','" & CompAlias & "'+'/','/PQC','A','Purchase Quotation Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "4' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "4','Main','23JZ','" & CompAlias & "'+'/','/PQJ','A','Purchase Quotation Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "5' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "5','Main','24SQ','" & CompAlias & "'+'/','/SQ','A','Sales Quotation','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "6' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "6','Main','24UQ','" & CompAlias & "'+'/','/SQU','A','Sales Quotation Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "7' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "7','Main','24CQ','" & CompAlias & "'+'/','/SQC','A','Sales Quotation Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*023" & Mid(FYCode, 2, 1) & "8' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*023" & Mid(FYCode, 2, 1) & "8','Main','24JQ','" & CompAlias & "'+'/','/SQJ','A','Sales Quotation Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*051" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*051" & Mid(FYCode, 2, 1) & "1','Main','51PI','" & CompAlias & "'+'/','/Pymt','A','Payments','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*052" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*052" & Mid(FYCode, 2, 1) & "1','Main','52PR','" & CompAlias & "'+'/','/Rcpt','A','Receipts','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*053" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*053" & Mid(FYCode, 2, 1) & "1','Main','53JE','" & CompAlias & "'+'/','/Jrnl','A','Journal','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*054" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*054" & Mid(FYCode, 2, 1) & "1','Main','54CE','" & CompAlias & "'+'/','/Cntr','A','Countra','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*055" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*055" & Mid(FYCode, 2, 1) & "1','Main','55CN','" & CompAlias & "'+'/','/CrNt','A','Credit Note','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*056" & Mid(FYCode, 2, 1) & "1' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*056" & Mid(FYCode, 2, 1) & "1','Main','56DN','" & CompAlias & "'+'/','/DrNt','A','Debit Note','" & FYCode & "')"
+   'ElementMaster
+   cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00054' OR NAME='Inner Paster') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00054','Inner Paster','Inner Paster','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
+   cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00055' OR NAME='Pocket') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00055','Pocket','Pocket','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
+'Update JobworkBVRef
+   cnDatabase.Execute "IF (SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'JobworkBVRef' AND COLUMN_NAME = 'VchNo') ='25' Print 'Col_POS_OK' Else ALTER TABLE JobworkBVRef Alter  Column VchNo nvarchar(25) NOT NULL"
+'Update SizeGroup
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large-28''''X40''''-A/P') Print 'Not Exist' ELSE Update GeneralMaster Set Name='28.00X40.00-Extra Large-(A/P)', PrintName='28.00X40.00-Extra Large-(A/P)' Where Name='Extra Large-28''''X40''''-A/P'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large(28''''X40'''')A/P_SPL') Print 'Not Exist' ELSE Update GeneralMaster Set Name='28.00X40.00-Extra Large-(A/P_SPL)', PrintName='28.00X40.00-Extra Large-(A/P_SPL)' Where Name='Extra Large(28''''X40'''')A/P_SPL'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large-(30''''X40'''')') Print 'Not Exist' ELSE Update GeneralMaster Set Name='30.00X40.00-Extra Large', PrintName='30.00X40.00-Extra Large' Where Name='Extra Large-(30''''X40'''')'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large-30''''X40''''-(A/P)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='30.00X40.00-Extra Large-(A/P)', PrintName='30.00X40.00-Extra Large-(A/P)' Where Name='Extra Large-30''''X40''''-(A/P)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large-30''''X40''''-(Card)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='30.00X40.00-Extra Large-(Card)', PrintName='30.00X40.00-Extra Large-(Card)' Where Name='Extra Large-30''''X40''''-(Card)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='LARGE-23''''X36''''') Print 'Not Exist' ELSE Update GeneralMaster Set Name='23.00X36.00-LARGE', PrintName='23.00X36.00-LARGE' Where Name='LARGE-23''''X36'''''"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='LARGE-(23''''X36'''')A/P') Print 'Not Exist' ELSE Update GeneralMaster Set Name='23.00X36.00-LARGE-(A/P)', PrintName='23.00X36.00-LARGE-(A/P)' Where Name='LARGE-(23''''X36'''')A/P'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='LARGE-23''''X36''''-(Card)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='23.00X36.00-LARGE-(Card)', PrintName='23.00X36.00-LARGE-(Card)' Where Name='LARGE-23''''X36''''-(Card)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Medium-(20''''X30'''')') Print 'Not Exist' ELSE Update GeneralMaster Set Name='20.00X30.00-Medium', PrintName='20.00X30.00-Medium' Where Name='Medium-(20''''X30'''')'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Medium-(20''''X30'''')A/P') Print 'Not Exist' ELSE Update GeneralMaster Set Name='20.00X30.00-Medium-(A/P)', PrintName='20.00X30.00-Medium-(A/P)' Where Name='Medium-(20''''X30'''')A/P'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Medium-20''''X30''''(Card)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='20.00X30.00-Medium-(Card)', PrintName='20.00X30.00-Medium-(Card)' Where Name='Medium-20''''X30''''(Card)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Small-(19''''X26'''')') Print 'Not Exist' ELSE Update GeneralMaster Set Name='19.00X26.00-Small', PrintName='19.00X26.00-Small' Where Name='Small-(19''''X26'''')'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Small-19''''X26''''(Card)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='19.00X26.00-Small-(Card)', PrintName='19.00X26.00-Small-(Card)' Where Name='Small-19''''X26''''(Card)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Web-508mm') Print 'Not Exist' ELSE Update GeneralMaster Set Name='20.00X30.00-Web-508mm', PrintName='20.00X30.00-Web-508mm' Where Name='Web-508mm'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Web-578mm') Print 'Not Exist' ELSE Update GeneralMaster Set Name='22.80X36.00-Web-578mm', PrintName='22.80X36.00-Web-578mm' Where Name='Web-578mm'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large-28''''X40''''') Print 'Not Exist' ELSE Update GeneralMaster Set Name='28.00X40.00-Extra Large', PrintName='28.00X40.00-Extra Large' Where Name='Extra Large-28''''X40'''''"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Small-19''''X26''''-(A/P)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='19.00X26.00-Small-(A/P)', PrintName='19.00X26.00-Small-(A/P)' Where Name='Small-19''''X26''''-(A/P)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large-28''''X40''''-(Card)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='28.00X40.00-Extra Large-(Card)', PrintName='28.00X40.00-Extra Large-(Card)' Where Name='Extra Large-28''''X40''''-(Card)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Little-11.50''''X18.00''''') Print 'Not Exist' ELSE Update GeneralMaster Set Name='11.50X18.00-Little', PrintName='11.50X18.00-Little' Where Name='Little-11.50''''X18.00'''''"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Little-11.50''''X18.00''''-(Card)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='11.50X18.00-Little-(Card)', PrintName='11.50X18.00-Little-(Card)' Where Name='Little-11.50''''X18.00''''-(Card)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Little-11.50''''X18.00''''-(A/P)') Print 'Not Exist' ELSE Update GeneralMaster Set Name='11.50X18.00-Little-(A/P)', PrintName='11.50X18.00-Little-(A/P)' Where Name='Little-11.50''''X18.00''''-(A/P)'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='12.00X18.00-Digital') Print 'Not Exist' ELSE Update GeneralMaster Set Name='12.00X18.00-Digital', PrintName='12.00X18.00-Digital' Where Name='12.00X18.00-Digital'"
+   cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Name='Extra Large(28''''X40'''')UC_A/P_SPL') Print 'Not Exist' ELSE Update GeneralMaster Set Name='28.00X40.00-Extra Large_UC_ A/P_SPL', PrintName='28.00X40.00-Extra Large_UC_ A/P_SPL' Where Name='Extra Large(28''''X40'''')UC_A/P_SPL'"
+'Create SizeGroup
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10001' OR Name='28.00X40.00-Extra Large-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10001','28.00X40.00-Extra Large-(A/P)','28.00X40.00-Extra Large-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10002' OR Name='28.00X40.00-Extra Large-(A/P_SPL)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10002','28.00X40.00-Extra Large-(A/P_SPL)','28.00X40.00-Extra Large-(A/P_SPL)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10003' OR Name='30.00X40.00-Extra Large') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10003','30.00X40.00-Extra Large','30.00X40.00-Extra Large','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10004' OR Name='30.00X40.00-Extra Large-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10004','30.00X40.00-Extra Large-(A/P)','30.00X40.00-Extra Large-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10005' OR Name='30.00X40.00-Extra Large-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10005','30.00X40.00-Extra Large-(Card)','30.00X40.00-Extra Large-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10006' OR Name='23.00X36.00-LARGE') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10006','23.00X36.00-LARGE','23.00X36.00-LARGE','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10007' OR Name='23.00X36.00-LARGE-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10007','23.00X36.00-LARGE-(A/P)','23.00X36.00-LARGE-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10008' OR Name='23.00X36.00-LARGE-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10008','23.00X36.00-LARGE-(Card)','23.00X36.00-LARGE-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10009' OR Name='20.00X30.00-Medium') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10009','20.00X30.00-Medium','20.00X30.00-Medium','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10010' OR Name='20.00X30.00-Medium-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10010','20.00X30.00-Medium-(A/P)','20.00X30.00-Medium-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10011' OR Name='20.00X30.00-Medium-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10011','20.00X30.00-Medium-(Card)','20.00X30.00-Medium-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10012' OR Name='19.00X26.00-Small') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10012','19.00X26.00-Small','19.00X26.00-Small','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10013' OR Name='19.00X26.00-Small-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10013','19.00X26.00-Small-(Card)','19.00X26.00-Small-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10014' OR Name='20.00X30.00-Web-508mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10014','20.00X30.00-Web-508mm','20.00X30.00-Web-508mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10015' OR Name='22.80X36.00-Web-578mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10015','22.80X36.00-Web-578mm','22.80X36.00-Web-578mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10016' OR Name='28.00X40.00-Extra Large') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10016','28.00X40.00-Extra Large','28.00X40.00-Extra Large','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10017' OR Name='19.00X26.00-Small-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10017','19.00X26.00-Small-(A/P)','19.00X26.00-Small-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10018' OR Name='28.00X40.00-Extra Large-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10018','28.00X40.00-Extra Large-(Card)','28.00X40.00-Extra Large-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10019' OR Name='11.50X18.00-Little') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10019','11.50X18.00-Little','11.50X18.00-Little','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10020' OR Name='11.50X18.00-Little-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10020','11.50X18.00-Little-(Card)','11.50X18.00-Little-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10021' OR Name='11.50X18.00-Little-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10021','11.50X18.00-Little-(A/P)','11.50X18.00-Little-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10022' OR Name='12.00X18.00-Digital') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10022','12.00X18.00-Digital','12.00X18.00-Digital','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10023' OR Name='28.00X40.00-Extra Large_UC_ A/P_SPL') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10023','28.00X40.00-Extra Large_UC_ A/P_SPL','28.00X40.00-Extra Large_UC_ A/P_SPL','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'Update Element Masters
+   cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00055' OR NAME='Spread') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00055','Spread','Spread','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
+   cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00056' OR NAME='Spacer') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00056','Spacer','Spacer','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
+   cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00057' OR NAME='Linner') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00057','Linner','Linner','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
+   cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00058' OR NAME='Board') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00058','Board','Board','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
+'Update
+    Dim CellVal(12) As Variant
+    CellVal(12) = Format(Now(), "YYYY-MM-DD hh:mm:ss")
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='RefCode') Print 'Col_Exist' ELSE CREATE TABLE JobworkBVClear([RefCode] [nvarchar](6) NOT NULL,[VchType] [nvarchar](6) NOT NULL,[VchNo] [nvarchar](25) NOT NULL,[VchDate] [datetime] NOT NULL,[Party] [nvarchar](6) NOT NULL,[Item] [nvarchar](6) NOT NULL,[Quantity] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL,[Remarks] [nvarchar](100) NULL,[CreatedBy] [nvarchar](6) NOT NULL ,[CreatedOn] [datetime] NOT NULL ,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[ComputerName] [nvarchar](40) NULL) ON [PRIMARY]"
+    cnDatabase.Execute "IF EXISTS (SELECT ORDINAL_POSITION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'JobworkBVClear' AND COLUMN_Name ='Remarks') Print 'Col_Exist' ELSE ALTER TABLE JobworkBVClear ADD  [Remarks] [nvarchar](100) NULL,[CreatedBy] [nvarchar](6) NOT NULL Default('000001'),[CreatedOn] [datetime] NOT NULL Default('" & CellVal(12) & "' ) ,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[ComputerName] [nvarchar](40) NULL"
+'Update PaperMaster
+    cnDatabase.Execute "IF (SELECT NUMERIC_PRECISION FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'PaperMaster' AND COLUMN_NAME = 'GSM')=3 Alter Table PaperMaster Alter Column GSM decimal(5, 0) NOT NULL Else Print 'Col_OK'"
+'Update JobworkChild
+cnDatabase.Execute "ALTER TABLE JobworkBVChild Alter Column SrNo smallint NOT NULL "
+'Update BookChild0201
+cnDatabase.Execute "IF EXISTS (SELECT Distinct TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookChild0201') Print 'Table_Exist' ELSE CREATE TABLE [dbo].[BookChild0201]([Code] [nvarchar](6) NOT NULL,[SNo] [decimal](3, 0) NOT NULL,[Correction] [nvarchar](255) NULL,[ArrivedOn] [datetime] NOT NULL,[TargetDate] [datetime] NOT NULL,[RectifiedOn] [nvarchar](40) NULL,[Member] [nvarchar](6) NULL,[Remarks] [nvarchar](40) NULL CONSTRAINT [FK_BookChild0201_BookMaster] FOREIGN KEY([Code])REFERENCES [dbo].[BookMaster] ([Code])ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY]"
+'Update GeneralMaster
+cnDatabase.Execute "UPDATE GeneralMaster Set UnderGroup= NULL Where UnderGroup = 'null'"
+
+'Update Col_FYCODE_FORMAT_'0000'
+    cnDatabase.Execute "Update PaperMVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update BookChild Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update PackingSlipParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update BookDNParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update DebitCreditParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update BookOOParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update DiscountMaster Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update BookPOParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update BookRVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update OutsourceItemPOParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update CompanyMaster Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update VchSeriesMaster Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update MaterialIOParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update JobworkBVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update MaterialMVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update MaterialSVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update PaperDNParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update PaperPOParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update PrintPVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update PaperMVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+    cnDatabase.Execute "Update TatRVParent Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20001' OR Name='Per Unit') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20001','Per Unit','Per Unit','20','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20002' OR Name='Per Inch²') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20002','Per Inch²','Per Inch²','20','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20003' OR Name='100 Inch²') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20003','100 Inch²','100 Inch²','20','100','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20004' OR Name='1000 Inch²') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20004','1000 Inch²','1000 Inch²','20','1000','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20005' OR Name='Per 1000') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20005','Per 1000','Per 1000','20','1000','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20006' OR Name='Per Packet') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20006','Per Packet','Per Packet','20','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20007' OR Name='Per Page') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20007','Per Page','Per Page','20','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20008' OR Name='Per Paisa Inch²') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20008','Per Paisa Inch²','Per Paisa Inch²','20','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20009' OR Name='Per Box') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20009','Per Box','Per Box','20','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20010' OR Name='Per Bundle') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20010','Per Bundle','Per Bundle','20','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+    
+        '***************************************************************************************************************************************************************
+'Add_ CONSTRAINT_ PaperMaster_PaperChild_PaperPOParent_PaperPOChild_PaperIOChild_PaperMVParent_PaperMVChild
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperChild' AND CONSTRAINT_NAME='FK_PaperChild_PaperMaster') ALTER TABLE PaperChild ADD CONSTRAINT FK_PaperChild_PaperMaster FOREIGN KEY (Code) REFERENCES PaperMaster (Code) ON UPDATE CASCADE  ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperChild' AND CONSTRAINT_NAME='FK_PaperChild_AccountMaster') ALTER TABLE PaperChild ADD CONSTRAINT FK_PaperChild_AccountMaster FOREIGN KEY (Account) REFERENCES AccountMaster (Code) ON UPDATE CASCADE  ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperMVParent' AND CONSTRAINT_NAME='FK_PaperMVParent_AccountMaster_I') ALTER TABLE PaperMVParent ADD CONSTRAINT FK_PaperMVParent_AccountMaster_I FOREIGN KEY (AccountFrom) REFERENCES AccountMaster (Code) ON UPDATE CASCADE  ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperMVParent' AND CONSTRAINT_NAME='FK_PaperMVParent_AccountMaster_II') ALTER TABLE PaperMVParent ADD CONSTRAINT FK_PaperMVParent_AccountMaster_II FOREIGN KEY (AccountTO) REFERENCES AccountMaster (Code) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperMVChild' AND CONSTRAINT_NAME='FK_PaperMVChild_PaperMaster') ALTER TABLE PaperMVChild ADD CONSTRAINT FK_PaperMVChild_PaperMaster FOREIGN KEY (Paper) REFERENCES PaperMaster (Code) ON UPDATE CASCADE  ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperPOParent' AND CONSTRAINT_NAME='FK_PaperPOParent_AccountMaster') ALTER TABLE PaperPOParent ADD CONSTRAINT FK_PaperPOParent_AccountMaster FOREIGN KEY (Supplier) REFERENCES AccountMaster (Code) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperIOChild' AND CONSTRAINT_NAME='FK_PaperIOChild_AccountMaster') ALTER TABLE PaperIOChild ADD CONSTRAINT FK_PaperIOChild_AccountMaster FOREIGN KEY (Account) REFERENCES AccountMaster (Code) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperIOChild' AND CONSTRAINT_NAME='FK_PaperIOChild_PaperMaster') ALTER TABLE PaperIOChild ADD CONSTRAINT FK_PaperIOChild_PaperMaster FOREIGN KEY (Paper) REFERENCES PaperMaster (Code) ON UPDATE CASCADE  ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperMaster' AND CONSTRAINT_NAME='FK_PaperMaster_GeneralMaster_I') ALTER TABLE PaperMaster ADD CONSTRAINT FK_PaperMaster_GeneralMaster_I FOREIGN KEY (UOM) REFERENCES GeneralMaster (Code) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'PaperMaster' AND CONSTRAINT_NAME='FK_PaperMaster_GeneralMaster_II') ALTER TABLE PaperMaster ADD CONSTRAINT FK_PaperMaster_GeneralMaster_II FOREIGN KEY (Quality) REFERENCES GeneralMaster (Code) ELSE Print 'CONSTRAINT_Exist'"
+'ufnGetPaperStock
+
+        '***************************************************************************************************************************************************************
 NXT:
     cnDatabase.CommitTrans
     Call CloseRecordset(rstCompanyMaster)
@@ -1639,7 +2005,7 @@ End Function
 Public Function UpdateMajor01() 'AccountChild Update 04,05,06,07
 'Create Table
 '   cnDatabase.Execute "Delete TmpData Where Right(Code,1)<>'a'"
-   cnDatabase.Execute "Drop Table TmpData"
+   cnDatabase.Execute "IF NOT Exists (Select *From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = 'TmpData' AND COLUMN_NAME = 'CODE') Print 'Table_Not_Exist' ELSE Drop Table TmpData"
    cnDatabase.Execute "IF Exists (Select *From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = 'TmpData' AND COLUMN_NAME = 'CODE') Print 'Col_Exist' ELSE CREATE TABLE [TmpData](  [Code] [nvarchar](7) NULL,[Name] [nvarchar](100) NULL ) ON [PRIMARY] "
 'Inser Tmp_Data
    cnDatabase.Execute "INSERT INTO TmpData VALUES ('*10001','Extra Large-28''''X40''''-A/P')"
@@ -1682,7 +2048,7 @@ Public Function UpdateMajor01() 'AccountChild Update 04,05,06,07
    cnDatabase.Execute "INSERT INTO TmpData VALUES ('*10020','Little-11.50''''X18.00''''-(Card)')"
    cnDatabase.Execute "INSERT INTO TmpData VALUES ('*10021','Little-11.50''''X18.00''''-(A/P)')"
    cnDatabase.Execute "INSERT INTO TmpData VALUES ('*10022','12.00X18.00-Digital')"
-   
+
    cnDatabase.Execute "INSERT INTO TmpData VALUES ('*10023a','Extra Large(28''''X40'''')UC_A/P_SPL')"
 'Update Data
    cnDatabase.Execute "Update GeneralMaster Set Name= '28.00X40.00-Extra Large-(A/P)',PrintName='28.00X40.00-Extra Large-(A/P)' Where NAME=(Select NAME From TmpData Where Code='*10001')"
@@ -1709,9 +2075,9 @@ Public Function UpdateMajor01() 'AccountChild Update 04,05,06,07
    cnDatabase.Execute "Update GeneralMaster Set Name= '28.00X40.00-Extra Large',PrintName='28.00X40.00-Extra Large' Where NAME=(Select NAME From TmpData Where Code='*10016')"
    cnDatabase.Execute "Update GeneralMaster Set Name= '19.00X26.00-Small-(A/P)',PrintName='19.00X26.00-Small-(A/P)' Where NAME=(Select NAME From TmpData Where Code='*10017')"
    cnDatabase.Execute "Update GeneralMaster Set Name= '28.00X40.00-Extra Large-(Card)',PrintName='28.00X40.00-Extra Large-(Card)' Where NAME=(Select NAME From TmpData Where Code='*10018')"
-   cnDatabase.Execute "Update GeneralMaster Set Name= '11.50.00X18.00.00-Little',PrintName='11.50.00X18.00.00-Little' Where NAME=(Select NAME From TmpData Where Code='*10019')"
-   cnDatabase.Execute "Update GeneralMaster Set Name= '11.50.00X18.00.00-Little-(Card)',PrintName='11.50.00X18.00.00-Little-(Card)' Where NAME=(Select NAME From TmpData Where Code='*10020')"
-   cnDatabase.Execute "Update GeneralMaster Set Name= '11.50.00X18.00.00-Little-(A/P)',PrintName='11.50.00X18.00.00-Little-(A/P)' Where NAME=(Select NAME From TmpData Where Code='*10021')"
+   cnDatabase.Execute "Update GeneralMaster Set Name= '11.50X18.00-Little',PrintName='11.50X18.00-Little' Where NAME=(Select NAME From TmpData Where Code='*10019')"
+   cnDatabase.Execute "Update GeneralMaster Set Name= '11.50X18.00-Little-(Card)',PrintName='11.50X18.00-Little-(Card)' Where NAME=(Select NAME From TmpData Where Code='*10020')"
+   cnDatabase.Execute "Update GeneralMaster Set Name= '11.50X18.00-Little-(A/P)',PrintName='11.50X18.00-Little-(A/P)' Where NAME=(Select NAME From TmpData Where Code='*10021')"
    cnDatabase.Execute "Update GeneralMaster Set Name= '12.00X18.00-Digital',PrintName='12.00X18.00-Digital' Where NAME=(Select NAME From TmpData Where Code='*10022')"
    cnDatabase.Execute "Update GeneralMaster Set Name= '28.00X40.00-Extra Large_UC_ A/P_SPL',PrintName='28.00X40.00-Extra Large_UC_ A/P_SPL' Where NAME=(Select NAME From TmpData Where Code='*10023a')"
     
@@ -1815,92 +2181,248 @@ Public Function UpdateMajor01() 'AccountChild Update 04,05,06,07
 'Add Columns
     cnDatabase.Execute "IF NOT EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='AccountChild07' AND COLUMN_NAME='Type') ALTER TABLE AccountChild07 ADD [WEF] [date] NOT NULL DEFAULT ('01-APR-2021') WITH VALUES,[Type] [char](1) NOT NULL DEFAULT ('S') WITH VALUES"
      cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'AccountChild07' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'AccountChild07', 'AccountChild07T'"
-     cnDatabase.Execute "CREATE TABLE dbo.AccountChild07 (Code nvarchar(6) NOT NULL,BinderyProcess nvarchar(6) NOT NULL,CalcMode nvarchar(6) NOT NULL,CalcValue decimal(12, 4) NOT NULL,Size nvarchar(6) NULL,Fraction decimal(12, 4) NOT NULL DEFAULT (1),AreaRange decimal(12, 3) NOT NULL DEFAULT (0),SectionRange decimal(12, 3) NOT NULL DEFAULT (1),QtyRange decimal(12, 3) NOT NULL DEFAULT (99999.99),Rate decimal(12, 4) NOT NULL,AddOnRate decimal(12, 4) NOT NULL DEFAULT (0),WEF date NOT NULL DEFAULT ('01-APR-2021'),Type char(1) NOT NULL DEFAULT ('S') " & _
+     cnDatabase.Execute "CREATE TABLE dbo.AccountChild07 (Code nvarchar(6) NOT NULL,BinderyProcess nvarchar(6) NOT NULL,CalcMode nvarchar(6) NOT NULL,CalcValue decimal(12, 4) NOT NULL,Size nvarchar(6) NOT NULL,Fraction decimal(12, 4) NOT NULL DEFAULT (1),AreaRange decimal(12, 3) NOT NULL DEFAULT (0),SectionRange decimal(12, 3) NOT NULL DEFAULT (1),QtyRange Decimal(12, 0) NOT NULL DEFAULT 99999,Rate decimal(12, 4) NOT NULL,AddOnRate decimal(12, 4) NOT NULL DEFAULT (0),WEF date NOT NULL DEFAULT ('01-APR-2021'),Type char(1) NOT NULL DEFAULT ('S') " & _
                                        "CONSTRAINT [FK_AccountChild07_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE, " & _
                                        "CONSTRAINT [FK_AccountChild07_GeneralMaster_II] FOREIGN KEY([Size]) REFERENCES [GeneralMaster] ([Code]), " & _
                                        "CONSTRAINT [FK_AccountChild07_GeneralMaster_III] FOREIGN KEY([BinderyProcess]) REFERENCES [GeneralMaster] ([Code]), " & _
                                        "CONSTRAINT [FK_AccountChild07_GeneralMaster_IV] FOREIGN KEY([CalcMode]) REFERENCES [GeneralMaster] ([Code]))  ON [PRIMARY]"
-cnDatabase.Execute "INSERT INTO dbo.AccountChild07 Select Code,LaminationType As BinderyProcess,CalcMode,(Select Value1 From GeneralMaster Where Code=CalcMode) As CalcValue,   Size,1 As Fraction,(Select(Convert(decimal,Left(Name,5))*Convert(decimal,SUBSTRING(Name,7,5))) From GeneralMaster Where Code=Size) As AreaRange,(1) As SectionRange,Range As QtyRange,Rate,0 As AddON,'01-APR-2021' AS WEF,'S' AS Type From dbo.AccountChild07T"
+cnDatabase.Execute "INSERT INTO dbo.AccountChild07 Select Code,LaminationType As BinderyProcess,CalcMode,(Select Value1 From GeneralMaster Where Code=CalcMode) As CalcValue,   Size,1 As Fraction,ISNULL((Select(Convert(Real,Left(Name,5))*Convert(Real,SUBSTRING(Name,7,5))) From GeneralMaster Where Code=Size),0) As AreaRange,(1) As SectionRange,Range As QtyRange,Rate,0 As AddON,'01-APR-2021' AS WEF,'S' AS Type From dbo.AccountChild07T"
 cnDatabase.Execute "INSERT INTO dbo.AccountChild07 " & _
-"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,(99999.99) As QtyRange,[Rate/Book04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book04]>0 Union All SELECT [Code],'*07036' As BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,(99999.99) As QtyRange,[Rate/Book06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book06]>0 Union All " & _
-"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,(99999.99) As QtyRange,[Rate/Book08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book08]>0 Union All SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,(99999.99) As QtyRange,[Rate/Book12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book12]>0 Union All " & _
-"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,(99999.99) As QtyRange,[Rate/Book16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book16]>0 Union All SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,(99999.99) As QtyRange,[Rate/Book24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book24]>0 Union All " & _
-"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,(99999.99) As QtyRange,[Rate/Book32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book32]>0 Union All SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,(99999.99) As QtyRange,[Rate/Book64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book64]>0 Union All " & _
-"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,(99999.99) As QtyRange,[FormStitchRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate04]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,(99999.99) As QtyRange,[FormStitchRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate06]>0 Union All " & _
-"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,(99999.99) As QtyRange,[FormStitchRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate08]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,(99999.99) As QtyRange,[FormStitchRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate12]>0 Union All " & _
-"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,(99999.99) As QtyRange,[FormStitchRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate16]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,(99999.99) As QtyRange,[FormStitchRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate24]>0 Union All " & _
-"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,(99999.99) As QtyRange,[FormStitchRate32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate32]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,(99999.99) As QtyRange,[FormStitchRate64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate64]>0 Union All " & _
-"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,(99999.99) As QtyRange,[FormFoldRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate04]>0 Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,(99999.99) As QtyRange,[FormFoldRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate06]>0 Union All " & _
-"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,(99999.99) As QtyRange,[FormFoldRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate08]>0 Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,(99999.99) As QtyRange,[FormFoldRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate12]>0 Union All " & _
-"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,(99999.99) As QtyRange,[FormFoldRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate16]>0 Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,(99999.99) As QtyRange,[FormFoldRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate24]>0 Union All " & _
-"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,(99999.99) As QtyRange,[FormFoldRate32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate32]>0   Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,(99999.99) As QtyRange,[FormFoldRate64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate64]>0 Union All " & _
-"SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,(99999.99) As QtyRange,[FormPasteRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate04]>0  Union All SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,(99999.99) As QtyRange,[FormPasteRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate06]>0 Union All " & _
-"SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,(99999.99) As QtyRange,[FormPasteRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate08]>0 Union All SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,(99999.99) As QtyRange,[FormPasteRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate12]>0 Union All " & _
-"SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,(99999.99) As QtyRange,[FormPasteRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate16]>0 Union All SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,(99999.99) As QtyRange,[FormPasteRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate24]>0 Order By CalcMode"
+"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[Rate/Book04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book04]>0 Union All SELECT [Code],'*07036' As BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[Rate/Book06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book06]>0 Union All " & _
+"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[Rate/Book08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book08]>0 Union All SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[Rate/Book12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book12]>0 Union All " & _
+"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[Rate/Book16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book16]>0 Union All SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[Rate/Book24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book24]>0 Union All " & _
+"SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,99999 As QtyRange,[Rate/Book32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book32]>0 Union All SELECT [Code],'*07036' AS BinderyProcess,'*20001' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20001') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,99999 As QtyRange,[Rate/Book64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [Rate/Book64]>0 Union All " & _
+"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[FormStitchRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate04]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[FormStitchRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate06]>0 Union All " & _
+"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[FormStitchRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate08]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[FormStitchRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate12]>0 Union All " & _
+"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[FormStitchRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate16]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[FormStitchRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate24]>0 Union All " & _
+"SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,99999 As QtyRange,[FormStitchRate32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate32]>0 Union All SELECT [Code],'*07037' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,99999 As QtyRange,[FormStitchRate64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormStitchRate64]>0 Union All " & _
+"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[FormFoldRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate04]>0 Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[FormFoldRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate06]>0 Union All " & _
+"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[FormFoldRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate08]>0 Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[FormFoldRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate12]>0 Union All " & _
+"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[FormFoldRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate16]>0 Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[FormFoldRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate24]>0 Union All " & _
+"SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,99999 As QtyRange,[FormFoldRate32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate32]>0   Union All SELECT [Code],'*07039' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,99999 As QtyRange,[FormFoldRate64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormFoldRate64]>0 Union All " & _
+"SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[FormPasteRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate04]>0  Union All SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[FormPasteRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate06]>0 Union All " & _
+"SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[FormPasteRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate08]>0 Union All SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[FormPasteRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate12]>0 Union All " & _
+"SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[FormPasteRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate16]>0 Union All SELECT [Code],'*07038' AS BinderyProcess,'*20005' As CalcMode,(Select Value1 From GeneralMaster Where Code='*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[FormPasteRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08] WHERE [FormPasteRate24]>0 Order By CalcMode"
+    
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='AccountChild07T' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End " & _
+                                    "While Exists " & _
+                                    "(SELECT * FROM sys.tables WHERE NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'DROP TABLE '+ @table " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
 
 'AccountChild08
-    cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'AccountChild08' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'AccountChild08', 'AccountChild08T'"
-    cnDatabase.Execute "CREATE TABLE [AccountChild08](  [Code] [nvarchar](6) NOT NULL,[BindingType] [nvarchar](6) NOT NULL,[BinderyProcess] [nvarchar](6) NOT NULL,[CalcMode] [nvarchar](6) NOT NULL,[SizeGroup] [nvarchar](6) NOT NULL,[Fraction] [tinyint] NOT NULL,[Range] [decimal](12, 0) NOT NULL,[Rate] [decimal](12, 2) NOT NULL,[AddOnRate] [decimal](12, 2) NOT NULL DEFAULT (0),[WEF] [date] NOT NULL DEFAULT '01-APR-2021',[Type] [char](1) NOT NULL DEFAULT 'S' " & _
-                                      "CONSTRAINT [FK_AccountChild08_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE, " & _
-                                      "CONSTRAINT [FK_AccountChild08_GeneralMaster_II] FOREIGN KEY([BindingType]) REFERENCES [GeneralMaster] ([Code]), " & _
-                                      "CONSTRAINT [FK_AccountChild08_GeneralMaster_III] FOREIGN KEY([BinderyProcess]) REFERENCES [GeneralMaster] ([Code]), " & _
-                                      "CONSTRAINT [FK_AccountChild08_GeneralMaster_IV] FOREIGN KEY([CalcMode]) REFERENCES [GeneralMaster] ([Code]), " & _
-                                      "CONSTRAINT [FK_AccountChild08_AccountMaster_V] FOREIGN KEY([SizeGroup]) REFERENCES [GeneralMaster] ([Code])) ON [PRIMARY]"
-    
-    cnDatabase.Execute "INSERT INTO AccountChild08  " & _
-    "SELECT [Code],[BindingType],'*07036','*20001',[Size],4,[Range04],[Rate/Book04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book04]>0 Union All SELECT [Code],[BindingType],'*07036','*20001',[Size],6,[Range06],[Rate/Book06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book06]>0 Union All SELECT [Code],[BindingType],'*07036','*20001',[Size],8,[Range08],[Rate/Book08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book08]>0 Union All SELECT [Code],[BindingType],'*07036','*20001',[Size],12,[Range12],[Rate/Book12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book12]>0 Union All SELECT [Code],[BindingType],'*07036','*20001',[Size],16,[Range16],[Rate/Book16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book16]>0 Union All SELECT [Code],[BindingType],'*07036','*20001',[Size],24,[Range24],[Rate/Book24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book24]>0 Union All  " & _
-    "SELECT [Code],[BindingType],'*07036','*20001',[Size],32,[Range32],[Rate/Book32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book32]>0 Union All SELECT [Code],[BindingType],'*07036','*20001',[Size],64,[Range64],[Rate/Book64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [Rate/Book64]>0 Union All " & _
-    "SELECT [Code],[BindingType],'*07037','*20005',[Size],4,[Range04],[FormStitchRate04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate04]>0 Union All SELECT [Code],[BindingType],'*07037','*20005',[Size],6,[Range06],[FormStitchRate06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate06]>0 Union All SELECT [Code],[BindingType],'*07037','*20005',[Size],8,[Range08],[FormStitchRate08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate08]>0 Union All SELECT [Code],[BindingType],'*07037','*20005',[Size],12,[Range12],[FormStitchRate12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate12]>0 Union All SELECT [Code],[BindingType],'*07037','*20005',[Size],16,[Range16],[FormStitchRate16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate16]>0 Union All SELECT [Code],[BindingType],'*07037','*20005',[Size],24,[Range24],[FormStitchRate24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate24]>0 Union All  " & _
-    "SELECT [Code],[BindingType],'*07037','*20005',[Size],32,[Range32],[FormStitchRate32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate32]>0 Union All SELECT [Code],[BindingType],'*07037','*20005',[Size],64,[Range64],[FormStitchRate64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormStitchRate64]>0 Union All   " & _
-    "SELECT [Code],[BindingType],'*07039','*20005',[Size],4,[Range04],[FormFoldRate04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate04]>0 Union All SELECT [Code],[BindingType],'*07039','*20005',[Size],6,[Range06],[FormFoldRate06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate06]>0 Union All SELECT [Code],[BindingType],'*07039','*20005',[Size],8,[Range08],[FormFoldRate08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate08]>0 Union All SELECT [Code],[BindingType],'*07039','*20005',[Size],12,[Range12],[FormFoldRate12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate12]>0 Union All SELECT [Code],[BindingType],'*07039','*20005',[Size],16,[Range16],[FormFoldRate16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate16]>0 Union All SELECT [Code],[BindingType],'*07039','*20005',[Size],24,[Range24],[FormFoldRate24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate24]>0 Union All  " & _
-    "SELECT [Code],[BindingType],'*07039','*20005',[Size],32,[Range32],[FormFoldRate32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate32]>0 Union All SELECT [Code],[BindingType],'*07039','*20005',[Size],64,[Range64],[FormFoldRate64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormFoldRate64]>0 Union All  " & _
-    "SELECT [Code],[BindingType],'*07038','*20005',[Size],4,[Range04],[FormPasteRate04],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate04]>0 Union All SELECT [Code],[BindingType],'*07038','*20005',[Size],6,[Range06],[FormPasteRate06],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate06]>0 Union All SELECT [Code],[BindingType],'*07038','*20005',[Size],8,[Range08],[FormPasteRate08],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate08]>0 Union All SELECT [Code],[BindingType],'*07038','*20005',[Size],12,[Range12],[FormPasteRate12],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate12]>0 Union All SELECT [Code],[BindingType],'*07038','*20005',[Size],16,[Range16],[FormPasteRate16],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate16]>0 Union All SELECT [Code],[BindingType],'*07038','*20005',[Size],24,[Range24],[FormPasteRate24],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate24]>0 Union All  " & _
-    "SELECT [Code],[BindingType],'*07038','*20005',[Size],32,[Range32],[FormPasteRate32],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate32]>0 Union All SELECT [Code],[BindingType],'*07038','*20005',[Size],64,[Range64],[FormPasteRate64],0,'01-Apr-2021','S' FROM [AccountChild08T] WHERE [FormPasteRate64]>0  "
-
+     cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'AccountChild08' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'AccountChild08', 'AccountChild08T'"
+     cnDatabase.Execute "CREATE TABLE dbo.AccountChild08 (Code nvarchar(6) NOT NULL,[BindingType] [nvarchar](6) NOT NULL,BinderyProcess nvarchar(6) NOT NULL,CalcMode nvarchar(6) NOT NULL,CalcValue decimal(12, 4) NOT NULL,Size nvarchar(6) NOT NULL,Fraction decimal(12, 4) NOT NULL DEFAULT (1),AreaRange decimal(12, 3) NOT NULL DEFAULT (0),SectionRange decimal(12, 3) NOT NULL DEFAULT (1),QtyRange Decimal(12, 0) NOT NULL DEFAULT 99999,Rate decimal(12, 4) NOT NULL,AddOnRate decimal(12, 4) NOT NULL DEFAULT (0),WEF date NOT NULL DEFAULT ('01-APR-2021'),Type char(1) NOT NULL DEFAULT ('S') " & _
+                                       "CONSTRAINT [FK_AccountChild08_AccountMaster_I] FOREIGN KEY([Code]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE, " & _
+                                       "CONSTRAINT [FK_AccountChild08_GeneralMaster_II] FOREIGN KEY([Size]) REFERENCES [GeneralMaster] ([Code]), " & _
+                                       "CONSTRAINT [FK_AccountChild08_GeneralMaster_III] FOREIGN KEY([BinderyProcess]) REFERENCES [GeneralMaster] ([Code]), " & _
+                                       "CONSTRAINT [FK_AccountChild08_GeneralMaster_IV] FOREIGN KEY([CalcMode]) REFERENCES [GeneralMaster] ([Code]))  ON [PRIMARY]"
+cnDatabase.Execute "INSERT INTO dbo.AccountChild08 Select Code,'*06017' AS BindingType,BinderyProcess As BinderyProcess,CalcMode,(Select Value1 From GeneralMaster Where Code=CalcMode) As CalcValue,[Size],1 As Fraction,(Select(Convert(Real,Left(Name,5))*Convert(Real,SUBSTRING(Name,7,5))) From GeneralMaster Where Code=Size) As AreaRange,(1) As SectionRange,QtyRange As QtyRange,Rate,0 As AddON,'01-APR-2021' AS WEF,'S' AS Type From dbo.AccountChild07"
+Dim FS0 As String
+FS0 = "(Select Value1 From GeneralMaster Where Code ="
+cnDatabase.Execute "INSERT INTO dbo.AccountChild08 " & _
+" SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[Rate/Book04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book04]>0 Union All SELECT [Code],[BindingType],'*07036' As BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[Rate/Book06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book06]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[Rate/Book08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book08]>0 Union All SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[Rate/Book12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book12]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[Rate/Book16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book16]>0 Union All SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[Rate/Book24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book24]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,99999 As QtyRange,[Rate/Book32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book32]>0 Union All SELECT [Code],[BindingType],'*07036' AS BinderyProcess,'*20001' As CalcMode," & FS0 & "'*20001') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,99999 As QtyRange,[Rate/Book64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [Rate/Book64]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[FormStitchRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate04]>0 Union All SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[FormStitchRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate06]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[FormStitchRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate08]>0 Union All SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[FormStitchRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate12]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[FormStitchRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate16]>0 Union All SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[FormStitchRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate24]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,99999 As QtyRange,[FormStitchRate32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate32]>0 Union All SELECT [Code],[BindingType],'*07037' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,99999 As QtyRange,[FormStitchRate64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormStitchRate64]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[FormFoldRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate04]>0 Union All SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[FormFoldRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate06]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[FormFoldRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate08]>0 Union All SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[FormFoldRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate12]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[FormFoldRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate16]>0 Union All SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[FormFoldRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate24]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],32 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/32) As AreaRange,[Range32] As SectionRange,99999 As QtyRange,[FormFoldRate32] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate32]>0   Union All SELECT [Code],[BindingType],'*07039' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],64 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/64) As AreaRange,[Range64] As SectionRange,99999 As QtyRange,[FormFoldRate64] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormFoldRate64]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07038' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],4 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/4) As AreaRange,[Range04] As SectionRange,99999 As QtyRange,[FormPasteRate04] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormPasteRate04]>0  Union All SELECT [Code],[BindingType],'*07038' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],6 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/6) As AreaRange,[Range06] As SectionRange,99999 As QtyRange,[FormPasteRate06] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormPasteRate06]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07038' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],8 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/8) As AreaRange,[Range08] As SectionRange,99999 As QtyRange,[FormPasteRate08] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormPasteRate08]>0 Union All SELECT [Code],[BindingType],'*07038' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],12 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/12) As AreaRange,[Range12] As SectionRange,99999 As QtyRange,[FormPasteRate12] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormPasteRate12]>0 Union All " & _
+" SELECT [Code],[BindingType],'*07038' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],16 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/16) As AreaRange,[Range16] As SectionRange,99999 As QtyRange,[FormPasteRate16] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormPasteRate16]>0 Union All SELECT [Code],[BindingType],'*07038' AS BinderyProcess,'*20005' As CalcMode," & FS0 & "'*20005') As CalcValue,[Size],24 AS Fraction,(Convert(NUMERIC,Left((Select Name From GeneralMaster Where Code=Size),5))*Convert(NUMERIC,SubString((Select Name From GeneralMaster Where Code=Size),7,5))/24) As AreaRange,[Range24] As SectionRange,99999 As QtyRange,[FormPasteRate24] As Rate,0 AS AddON, '01-Apr-2021' AS WEF,'S' AS Type  FROM [AccountChild08T] WHERE [FormPasteRate24]>0 Order By CalcMode"
     cnDatabase.Execute "DROP TABLE AccountChild08T"
 'BindingTypeChild
-    cnDatabase.Execute "IF Not Exists (Select *From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = 'BindingTypeChild' AND COLUMN_NAME = 'CODE') Print 'Col_Not_Exist' ELSE DROP TABLE BindingTypeChild"
+'    cnDatabase.Execute "IF Not Exists (Select *From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = 'BindingTypeChild' AND COLUMN_NAME = 'CODE') Print 'Col_Not_Exist' ELSE DROP TABLE BindingTypeChild"
+    cnDatabase.Execute "IF Not Exists (Select *From INFORMATION_SCHEMA.COLUMNS Where TABLE_NAME = 'BindingTypeChild' AND COLUMN_NAME = 'CODE') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'BindingTypeChild', 'BindingTypeChildT'"
     cnDatabase.Execute "CREATE TABLE [BindingTypeChild]([Code] [nvarchar](6) NOT NULL,[BinderyProcess] [nvarchar](6) NOT NULL CONSTRAINT [FK_BindingTypeChild_GeneralMaster_I] FOREIGN KEY([Code]) REFERENCES [GeneralMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE,CONSTRAINT [FK_BindingTypeChild_GeneralMaster_II] FOREIGN KEY([BinderyProcess]) REFERENCES [GeneralMaster] ([Code]) ) ON [PRIMARY]"
+    cnDatabase.Execute "INSERT INTO dbo.BindingTypeChild SELECT * From dbo.BindingTypeChildT"
+    cnDatabase.Execute "DROP TABLE BindingTypeChildT"
 'AccountChild0801
     cnDatabase.Execute "IF NOT EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='AccountChild0801' AND COLUMN_NAME='SubItem') ALTER TABLE AccountChild0801 ADD [SubItem] [nvarchar](6) NULL"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_01 Done!!! "
 End Function
 Public Function UpdateMajor02()
-'    cnDatabase.Execute "Update GeneralMaster Set Name= '02.00X03.00-Visiting Card',PrintName= '02.00X03.00-Visiting Card' Where Name='Visiting Card'"
-'    cnDatabase.Execute "Update GeneralMaster Set Name= '20.00X30.00-Medium',PrintName= '20.00X30.00-Medium' Where Name='Medium(20''''X30'''')'"
-'    cnDatabase.Execute "Update GeneralMaster Set Name= '20.00X30.00-Medium_A/P',PrintName= '20.00X30.00-Medium_A/P' Where Name='Medium(20''''X30'''')A/P'"
-'    cnDatabase.Execute "Update GeneralMaster Set Name= '23.00X36.00-Large',PrintName= '23.00X36.00-Large' Where Name='Large(23''''X36'''')'"
-'    cnDatabase.Execute "Update GeneralMaster Set Name= '23.00X36.00-Large_A/P',PrintName= '23.00X36.00-Large_A/P' Where Name='Large(23''''X36'''')A/P'"
-''BookMaster
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SaleLY1003') ALTER TABLE BookMaster DROP COLUMN SaleLY1003"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SaleTY0409') ALTER TABLE BookMaster DROP COLUMN SaleTY0409"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='StockTransferLY1003') ALTER TABLE BookMaster DROP COLUMN StockTransferLY1003"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='StockTransferTY0409') ALTER TABLE BookMaster DROP COLUMN StockTransferTY0409"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SpecimenLY1003') ALTER TABLE BookMaster DROP COLUMN SpecimenLY1003"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SpecimenTY0409') ALTER TABLE BookMaster DROP COLUMN SpecimenTY0409"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PendingSO') ALTER TABLE BookMaster DROP COLUMN PendingSO"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='SaleableStock') ALTER TABLE BookMaster DROP COLUMN SaleableStock"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='RepairableStock') ALTER TABLE BookMaster DROP COLUMN RepairableStock"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POLTLY1003') ALTER TABLE BookMaster DROP COLUMN POLTLY1003"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POLY0409') ALTER TABLE BookMaster DROP COLUMN POLY0409"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POLY1003') ALTER TABLE BookMaster DROP COLUMN POLY1003"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='POTY0409') ALTER TABLE BookMaster DROP COLUMN POTY0409"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PendingPO') ALTER TABLE BookMaster DROP COLUMN PendingPO"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO30') ALTER TABLE BookMaster DROP COLUMN ESO30"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO60') ALTER TABLE BookMaster DROP COLUMN ESO60"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO90') ALTER TABLE BookMaster DROP COLUMN ESO90"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='ESO150') ALTER TABLE BookMaster DROP COLUMN ESO150"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PSO15') ALTER TABLE BookMaster DROP COLUMN PSO15"
-'    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='PSO30') ALTER TABLE BookMaster DROP COLUMN PSO30"
-''    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='Royalty') ALTER TABLE BookMaster DROP COLUMN Royalty"
-''    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='Qty/Pkt') ALTER TABLE BookMaster DROP COLUMN [Qty/Pkt]"
-''    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='LooseQty/Box') ALTER TABLE BookMaster DROP COLUMN [LooseQty/Box]"
-''    cnDatabase.Execute "IF  EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookMaster' AND COLUMN_NAME='Pkt/Box') ALTER TABLE BookMaster DROP COLUMN [Pkt/Box]"
+    cnDatabase.Execute "Update GeneralMaster Set Name= '02.00X03.00-Visiting Card',PrintName= '02.00X03.00-Visiting Card' Where Name='Visiting Card'"
+    cnDatabase.Execute "Update GeneralMaster Set Name= '20.00X30.00-Medium',PrintName= '20.00X30.00-Medium' Where Name='Medium(20''''X30'''')'"
+    cnDatabase.Execute "Update GeneralMaster Set Name= '20.00X30.00-Medium_A/P',PrintName= '20.00X30.00-Medium_A/P' Where Name='Medium(20''''X30'''')A/P'"
+    cnDatabase.Execute "Update GeneralMaster Set Name= '23.00X36.00-Large',PrintName= '23.00X36.00-Large' Where Name='Large(23''''X36'''')'"
+    cnDatabase.Execute "Update GeneralMaster Set Name= '23.00X36.00-Large_A/P',PrintName= '23.00X36.00-Large_A/P' Where Name='Large(23''''X36'''')A/P'"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_02 Done!!! "
 End Function
 Public Function UpdateMajor03() 'Update BookChild05,BookPOChild05
+'Drop CONSTRAINT  Book Master,BookPOParent,BookPOChild05,BookPOChild06,BookPOChild07,BookPOChild08,BookPOChild09
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild05' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild05' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild06' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild06' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild07' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild07' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild0801' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild08' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild08' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild0901' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOChild09' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookPOParent' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild01' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild02' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild0201' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookChild03' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookMaster' " & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOParent' AND CONSTRAINT_NAME='PK_BookPOParent') ALTER TABLE BookPOParent ADD CONSTRAINT [PK_BookPOParent] PRIMARY KEY CLUSTERED (Code) ELSE Print 'CONSTRAINT_Exist'"
+
+
 'GeneralMaster,ElementMaster
  cnDatabase.Execute "IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='ElementMaster' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE ElementMaster ADD PRIMARY KEY (Code)"
  cnDatabase.Execute "IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='GeneralMaster' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE GeneralMaster ADD PRIMARY KEY (Code)"
  cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11098' OR Name='*None') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11098','*None','*None','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+
+'BookMaster
+cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookMaster' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'BookMaster', 'BookMasterT'"
+cnDatabase.Execute "CREATE TABLE BookMaster ([Code] [nvarchar](6) NOT NULL,[Name] [nvarchar](60) NOT NULL,[PrintName] [nvarchar](60) NOT NULL,[FinishSize] [nvarchar](6) NOT NULL,[BindingType] [nvarchar](6) NULL,[Price] [decimal](12, 2) NOT NULL,[Weight] [decimal](12, 3) NOT NULL DEFAULT (0),[BusyCode] [nvarchar](40) NULL,[ISBN] [nvarchar](17) NULL,[Group] [nvarchar](6) NOT NULL,[HSNCode] [nvarchar](6) NULL,[Remarks] [nvarchar](255) NULL,[ItemIntegrationName] [text] NULL,[IntegrationUnit] [nvarchar](6) NOT NULL DEFAULT ('*25019'),[Notes] [text] NULL," & _
+                                  "[BookPrinter] [nvarchar](6) NULL,[TitlePrinter] [nvarchar](6) NULL,[ComboPrinter] [nvarchar](6) NULL,[Laminator] [nvarchar](6) NULL,[BinderFresh] [nvarchar](6) NULL,[BinderRepair] [nvarchar](6) NULL," & _
+                                  "[Type] [nvarchar](1) NOT NULL,[CreatedBy] [nvarchar](6) NOT NULL,[CreatedOn] [datetime] NOT NULL,[ModifiedBy] [nvarchar](6) NULL,[ModifiedOn] [datetime] NULL,[Recordstatus] [nvarchar](1) NOT NULL,[Printstatus] [nvarchar](1) NOT NULL " & _
+                                  "CONSTRAINT [PK_BookMaster] PRIMARY KEY CLUSTERED (Code), " & _
+                                  "CONSTRAINT [FK_BookMaster_HSNCode] FOREIGN KEY([HSNCode]) REFERENCES GeneralMaster ([Code]), " & _
+                                  "CONSTRAINT [FK_BookMaster_Group] FOREIGN KEY([Group]) REFERENCES GeneralMaster ([Code]), " & _
+                                  "CONSTRAINT [FK_BookMaster_FinishSize] FOREIGN KEY([FinishSize]) REFERENCES GeneralMaster ([Code]), " & _
+                                  "CONSTRAINT [FK_BookMaster_BindingType] FOREIGN KEY([BindingType]) REFERENCES GeneralMaster ([Code]), " & _
+                                  "CONSTRAINT [FK_BookMaster_IntegrationUnit] FOREIGN KEY([IntegrationUnit]) REFERENCES GeneralMaster ([Code])) ON [PRIMARY] "
+cnDatabase.Execute "Update BookMasterT Set BindingType= NULL Where BindingType=''"
+cnDatabase.Execute "INSERT INTO BookMaster SELECT [Code],[Name],[PrintName],[FinishSize],[BindingType],[Price],[Weight],[BusyCode],[ISBN],[Group],[HSNCode],[Remarks]+' ;'+[Narration] As [Remarks],[ItemIntegrationName],[IntegrationUnit],[Notes],[BookPrinter],[TitlePrinter],[TitlePrinter] As [ComboPrinter],[Laminator],[BinderFresh],[BinderRepair],[Type],[CreatedBy],[CreatedOn],[ModifiedBy],[ModifiedOn],[Recordstatus],[Printstatus] FROM BookMasterT"
 
 'Update BookPOChild05
 cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild05' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'BookPOChild05', 'BookPOChild05T'"
@@ -1931,7 +2453,7 @@ cnDatabase.Execute "INSERT INTO BookPOChild05  " & _
         "PrintRate1 As PrintRate,PrintAmount1 As PrintAmount,PlateRate1 As PlateRate,PlateAmount1 As PlateAmount,PaperByParty1 As [PaperByParty],[Paper1] As [Paper],[RAccount1] As [RAccount],[CutOffSize1] As [CutOffSize]," & _
         "[PaperWastage1%] As [PaperWastage%],[PaperWastageMin1] As [PaperWastageMin],(Select (((PARSENAME(PaperWastageFinal1,2)*U.Value1)+(PARSENAME(PaperWastageFinal1,1)))/(Forms1)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper1=P1.Code) AS [Wastage/Set],[PaperWastageFinal1] As [PaperWastageFinal],[PaperConsumptionOther1] As [PaperConsumptionOther],[PaperConsumptionsheets1] As [PaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets1],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper1) As [PaperConsumptionKg]," & _
         "[PaperWastage1%] As [aPaperWastage%],[PaperWastageMin1] As [aPaperWastageMin],(Select (((PARSENAME(PaperWastageFinal1,2)*U.Value1)+(PARSENAME(PaperWastageFinal1,1)))/(Forms1)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper1=P1.Code) AS [aWastage/Set],[PaperWastageFinal1] As [aPaperWastageFinal],[PaperConsumptionOther1] As [aPaperConsumptionOther],[PaperConsumptionsheets1] As [aPaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets1],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper1) As [aPaperConsumptionKg]," & _
-        "[PaperRate1] As [PaperRate],[PaperAmount1] As [PaperAmount],[Forms/Sheet1-1] As [Forms/Sheet1],[Forms/Sheet2-1] As [Forms/Sheet2],C.[Remarks],[BillNo],[BillDate],[PBillNo],[PBillDate],[Adjustment],[PAdjustment],[RAdjustment],[VAT%],[VAT],[PVAT%],[PVAT],[RVAT%],[RVAT],[BillAmount],[PBillAmount],[RBillAmount],[PaidAmount],[PPaidAmount],[Status],C.[Narration],[AdjustmentRemarks],C.DeliveredQuantityC,C.DeliveredQuantityB,BilledMFC,BilledMFB FROM ([dbo].[BookPOChild05T] C INNER JOIN BookPOParent P ON P.Code=C.Code) LEFT JOIN BookMaster I ON P.Book=I.Code WHERE [Pages1]<>0 UNION ALL " & _
+        "[PaperRate1] As [PaperRate],[PaperAmount1] As [PaperAmount],[Forms/Sheet1-1] As [Forms/Sheet1],[Forms/Sheet2-1] As [Forms/Sheet2],C.[Remarks],[BillNo],[BillDate],[PBillNo],[PBillDate],[Adjustment],[PAdjustment],[RAdjustment],[VAT%],[VAT],[PVAT%],[PVAT],[RVAT%],[RVAT],[BillAmount],[PBillAmount],[RBillAmount],[PaidAmount],[PPaidAmount],[Status],C.[Narration],[AdjustmentRemarks],C.DeliveredQuantityC,C.DeliveredQuantityB,BilledMFC,BilledMFB FROM ([dbo].[BookPOChild05T] C INNER JOIN BookPOParent P ON P.Code=C.Code) LEFT JOIN BookMasterT I ON P.Book=I.Code WHERE [Pages1]<>0 UNION ALL " & _
     "SELECT DISTINCT C.[Code],[OrderDate],[TargetDate],P.Book AS SubItem,'*00012' As [Element],(Select Name From ElementMaster Where Code='*00012') As ElementPrintName,I.[FinishSize],[Size2] As [Size],IIF(I.[DuplexPrinting]='Y',1,0) As DuplexPrinting,[Processing],[Ref],[PlateMaker],[ActualQuantity],BillingQuantity02 As [BillingQuantity],CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/PrintingForm],CHOOSE(CONVERT(INT,FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/Form],'*23002' As [Color],[Pages2] As [Pages],[Forms2] As [Forms],[Forms2-¼] As [Forms-¼],[Forms2-½] As [Forms-½],CONVERT(INT,([Forms2-1]/2))*2 As [Forms-2-F&B],Convert(INT,(([Forms2-1]/2)-CONVERT(INT,([Forms2-1]/2)))*2) As [Forms-1-W&T],CHOOSE(CONVERT(INT,PlateType2),'*24001','*24003','*24002','*24004') as PlateType," & _
         "[TotalForms2-¼] As [TotalForms-¼],[TotalForms2-½] As [TotalForms-½],Convert(INT,Convert(INT,([Forms2-1]/2))*2* BillingQuantity02/1000)  As [TotalForms-1-F&B],Convert(INT,(([Forms2-1]-(Convert(INT,([Forms2-1]/2))*2))* BillingQuantity02)/1000) As [TotalForms-1-W&T]," & _
         "[TotalPlates2-¼] As [TotalPlates-¼],[TotalPlates2-½] As [TotalPlates-½],Convert(INT,Convert(INT,([TotalPlates2-1]/1/2))*2*2) As [TotalPlates-1-F&B],Convert(INT,[TotalPlates2-1]*2- Convert(INT,([TotalPlates2-1]/1/2))*2*2) As [TotalPlates-1-W&T],[RevisedPlates2]*2 As [RevisedPlates]," & _
@@ -1939,7 +2461,7 @@ cnDatabase.Execute "INSERT INTO BookPOChild05  " & _
         "[PrintRate2] As [PrintRate],[PrintAmount2] As [PrintAmount],[PlateRate2] As [PlateRate],[PlateAmount2] As [PlateAmount],PaperByParty2 As [PaperByParty],[Paper2] As [Paper],[RAccount2] As [RAccount],[CutOffSize2] As [CutOffSize]," & _
         "[PaperWastage2%] As [PaperWastage%],[PaperWastageMin2] As [PaperWastageMin],(Select (((PARSENAME(PaperWastageFinal2,2)*U.Value1)+(PARSENAME(PaperWastageFinal2,1)))/(Forms2)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper2=P1.Code) AS [Wastage/Set],[PaperWastageFinal2] As [PaperWastageFinal],[PaperConsumptionOther2] As [PaperConsumptionOther],[PaperConsumptionsheets2] As [PaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets2],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper2) As [PaperConsumptionKg]," & _
         "[PaperWastage2%] As [aPaperWastage%],[PaperWastageMin2] As [aPaperWastageMin],(Select (((PARSENAME(PaperWastageFinal2,2)*U.Value1)+(PARSENAME(PaperWastageFinal2,1)))/(Forms2)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper2=P1.Code) AS [aWastage/Set],[PaperWastageFinal2] As [aPaperWastageFinal],[PaperConsumptionOther2] As [aPaperConsumptionOther],[PaperConsumptionsheets2] As [aPaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets2],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper2) As [aPaperConsumptionKg]," & _
-        "[PaperRate2] As [PaperRate],[PaperAmount2] As [PaperAmount],[Forms/Sheet1-2] As [Forms/Sheet1],[Forms/Sheet2-2] As [Forms/Sheet2],C.[Remarks],[BillNo],[BillDate],[PBillNo],[PBillDate],[Adjustment],[PAdjustment],[RAdjustment],[VAT%],[VAT],[PVAT%],[PVAT],[RVAT%],[RVAT],[BillAmount],[PBillAmount],[RBillAmount],[PaidAmount],[PPaidAmount],[Status],C.[Narration],[AdjustmentRemarks],C.DeliveredQuantityC,C.DeliveredQuantityB,BilledMFC,BilledMFB FROM ([dbo].[BookPOChild05T] C LEFT JOIN BookPOParent P ON P.Code=C.Code) LEFT JOIN BookMaster I ON P.Book=I.Code WHERE [Pages2]<>0 UNION ALL " & _
+        "[PaperRate2] As [PaperRate],[PaperAmount2] As [PaperAmount],[Forms/Sheet1-2] As [Forms/Sheet1],[Forms/Sheet2-2] As [Forms/Sheet2],C.[Remarks],[BillNo],[BillDate],[PBillNo],[PBillDate],[Adjustment],[PAdjustment],[RAdjustment],[VAT%],[VAT],[PVAT%],[PVAT],[RVAT%],[RVAT],[BillAmount],[PBillAmount],[RBillAmount],[PaidAmount],[PPaidAmount],[Status],C.[Narration],[AdjustmentRemarks],C.DeliveredQuantityC,C.DeliveredQuantityB,BilledMFC,BilledMFB FROM ([dbo].[BookPOChild05T] C LEFT JOIN BookPOParent P ON P.Code=C.Code) LEFT JOIN BookMasterT I ON P.Book=I.Code WHERE [Pages2]<>0 UNION ALL " & _
     "SELECT DISTINCT C.[Code],[OrderDate],[TargetDate],P.Book AS SubItem,'*00013' As [Element],(Select Name From ElementMaster Where Code='*00013') As ElementPrintName,I.[FinishSize],[Size4] As [Size],IIF(I.[DuplexPrinting]='Y',1,0) As DuplexPrinting,[Processing],[Ref],[PlateMaker],[ActualQuantity],BillingQuantity02 As [BillingQuantity],CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/PrintingForm],CHOOSE(CONVERT(INT,FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/Form],'*23003' As [Color],[Pages4] As [Pages],[Forms4] As [Forms],[Forms4-¼] As [Forms-¼],[Forms4-½] As [Forms-½],CONVERT(INT,([Forms4-1]/2))*2 As [Forms-2-F&B],Convert(INT,(([Forms4-1]/2)-CONVERT(INT,([Forms4-1]/2)))*2) As [Forms-1-W&T],CHOOSE(CONVERT(INT,PlateType4),'*24001','*24003','*24002','*24004') as PlateType," & _
         "[TotalForms4-¼] As [TotalForms-¼],[TotalForms4-½] As [TotalForms-½],Convert(INT,Convert(INT,([Forms4-1]/2))*2* BillingQuantity02/1000)  As [TotalForms-1-F&B],Convert(INT,(([Forms4-1]-(Convert(INT,([Forms4-1]/2))*2))* BillingQuantity02)/1000) As [TotalForms-1-W&T]," & _
         "[TotalPlates4-¼] As [TotalPlates-¼],[TotalPlates4-½] As [TotalPlates-½],Convert(INT,Convert(INT,([TotalPlates4-1]/1/2))*2*4) As [TotalPlates-1-F&B],Convert(INT,[TotalPlates4-1]*4- Convert(INT,([TotalPlates4-1]/1/2))*2*4) As [TotalPlates-1-W&T],[RevisedPlates4]*4 As [RevisedPlates]," & _
@@ -1947,7 +2469,7 @@ cnDatabase.Execute "INSERT INTO BookPOChild05  " & _
         "[PrintRate4] As [PrintRate],[PrintAmount4] As [PrintAmount],[PlateRate4] As [PlateRate],[PlateAmount4] As [PlateAmount],PaperByParty4 As [PaperByParty],[Paper4] As [Paper],[RAccount4] As [RAccount],[CutOffSize4] As [CutOffSize]," & _
         "[PaperWastage4%] As [PaperWastage%],[PaperWastageMin4] As [PaperWastageMin],(Select (((PARSENAME(PaperWastageFinal4,2)*U.Value1)+(PARSENAME(PaperWastageFinal4,1)))/(Forms4)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper4=P1.Code) AS [Wastage/Set],[PaperWastageFinal4] As [PaperWastageFinal],[PaperConsumptionOther4] As [PaperConsumptionOther],[PaperConsumptionsheets4] As [PaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets4],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper4) As [PaperConsumptionKg]," & _
         "[PaperWastage4%] As [aPaperWastage%],[PaperWastageMin4] As [aPaperWastageMin],(Select (((PARSENAME(PaperWastageFinal4,2)*U.Value1)+(PARSENAME(PaperWastageFinal4,1)))/(Forms4)) From GeneralMaster U INNER JOIN PaperMaster P1 ON U.Code=P1.UOM Where C.Paper4=P1.Code) AS [aWastage/Set],[PaperWastageFinal4] As [aPaperWastageFinal],[PaperConsumptionOther4] As [aPaperConsumptionOther],[PaperConsumptionsheets4] As [aPaperConsumptionsheets],(SELECT ROUND(([Weight/Unit]/U.Value1)*[PaperConsumptionsheets4],3) FROM PaperMaster R INNER JOIN GeneralMaster U ON R.UOM=U.Code WHERE R.Code=Paper4) As [aPaperConsumptionKg]," & _
-        "[PaperRate4] As [PaperRate],[PaperAmount4] As [PaperAmount],[Forms/Sheet1-4] As [Forms/Sheet1],[Forms/Sheet2-4] As [Forms/Sheet2],C.[Remarks],[BillNo],[BillDate],[PBillNo],[PBillDate],[Adjustment],[PAdjustment],[RAdjustment],[VAT%],[VAT],[PVAT%],[PVAT],[RVAT%],[RVAT],[BillAmount],[PBillAmount],[RBillAmount],[PaidAmount],[PPaidAmount],[Status],C.[Narration],[AdjustmentRemarks],C.DeliveredQuantityC,C.DeliveredQuantityB,BilledMFC,BilledMFB FROM ([dbo].[BookPOChild05T] C LEFT JOIN BookPOParent P ON P.Code=C.Code) LEFT JOIN BookMaster I ON P.Book=I.Code WHERE [Pages4]<>0 "
+        "[PaperRate4] As [PaperRate],[PaperAmount4] As [PaperAmount],[Forms/Sheet1-4] As [Forms/Sheet1],[Forms/Sheet2-4] As [Forms/Sheet2],C.[Remarks],[BillNo],[BillDate],[PBillNo],[PBillDate],[Adjustment],[PAdjustment],[RAdjustment],[VAT%],[VAT],[PVAT%],[PVAT],[RVAT%],[RVAT],[BillAmount],[PBillAmount],[RBillAmount],[PaidAmount],[PPaidAmount],[Status],C.[Narration],[AdjustmentRemarks],C.DeliveredQuantityC,C.DeliveredQuantityB,BilledMFC,BilledMFB FROM ([dbo].[BookPOChild05T] C LEFT JOIN BookPOParent P ON P.Code=C.Code) LEFT JOIN BookMasterT I ON P.Book=I.Code WHERE [Pages4]<>0 "
 cnDatabase.Execute "DROP TABLE BookPOChild05T"
 'Update BookChild05
 cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookChild05' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' Else DROP TABLE BookChild05"
@@ -1963,37 +2485,39 @@ cnDatabase.Execute "IF EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TA
                                   ','*00016' As ElementGroup
 cnDatabase.Execute "INSERT INTO BookChild05  " & _
                                     "SELECT I.Code,I.Code As SubItem, '*00011' AS Element,(Select Name From ElementMaster Where Code='*00011') As ElementPrintName,I.FinishSize,I.Size,IIF(I.[DuplexPrinting]='Y',1,0) As DuplexPrinting,CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/PrintingForm], CHOOSE(CONVERT(INT,FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/Form],'*23001' As [Color],I.OneColorPages AS pages,I.OneColorForms AS Forms,I.[OneColor¼Forms] AS [Forms-¼],I.[OneColor½Forms] AS [Forms-½],I.[OneColor1F/BForms] AS [Forms-1-F&B],I.[OneColor1W/TForms] AS [Forms-1-W&T],CHOOSE(CONVERT(INT,I.OneColorPlateType),'*24001','*24003','*24002','*24004') as PlateType,'1' As Ups,CONVERT(INT,(I.[OneColor¼Forms]+I.[OneColor½Forms]+(I.[OneColor1F/BForms]/IIF(CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2)<=12, 2,1))+I.[OneColor1W/TForms])) As BindingForms,TYPE + Convert(nvarchar, '" & ClientID & "') As Type " & _
-                                    "FROM BOOKMASTER I WHERE (((I.OneColorPages)<>0)) " & _
+                                    "FROM BOOKMASTERT I WHERE (((I.OneColorPages)<>0)) " & _
                                     "Union All " & _
                                     "SELECT I.Code,I.Code As SubItem, '*00012' AS Element,(Select Name From ElementMaster Where Code='*00012') As ElementPrintName,I.FinishSize,I.Size,IIF(I.[DuplexPrinting]='Y',1,0) As DuplexPrinting,CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/PrintingForm], CHOOSE(CONVERT(INT,FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/Form],'*23002' As [Color],I.TwoColorPages AS pages,I.TwoColorForms AS Forms,I.[TwoColor¼Forms] AS [Forms-¼],I.[TwoColor½Forms] AS [Forms-½],I.[TwoColor1F/BForms] AS [Forms-1-F&B],I.[TwoColor1W/TForms] AS [Forms-1-W&T],CHOOSE(CONVERT(INT,I.TwoColorPlateType),'*24001','*24003','*24002','*24004') as PlateType,'1' As Ups,CONVERT(INT,(I.[TwoColor¼Forms]+I.[TwoColor½Forms]+(I.[TwoColor1F/BForms]/IIF(CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2)<=12, 2,1))+I.[TwoColor1W/TForms])) As BindingForms,TYPE + Convert(nvarchar, '" & ClientID & "')  As Type " & _
-                                    "FROM BOOKMASTER I WHERE (((I.TwoColorPages)<>0)) " & _
+                                    "FROM BOOKMASTERT I WHERE (((I.TwoColorPages)<>0)) " & _
                                     "Union All " & _
                                     "SELECT I.Code,I.Code As SubItem, '*00013' AS Element,(Select Name From ElementMaster Where Code='*00013') As ElementPrintName,I.FinishSize,I.Size,IIF(I.[DuplexPrinting]='Y',1,0) As DuplexPrinting,CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/PrintingForm], CHOOSE(CONVERT(INT,FormType),8, 16, 4, 12, 24, 32, 64, 6, 2) As [Pages/Form],'*23003' As [Color],I.FourColorPages AS pages,I.FourColorForms AS Forms,I.[FourColor¼Forms] AS [Forms-¼],I.[FourColor½Forms] AS [Forms-½],I.[FourColor1F/BForms] AS [Forms-1-F&B],I.[FourColor1W/TForms] AS [Forms-1-W&T],CHOOSE(CONVERT(INT,I.FourColorPlateType),'*24001','*24003','*24002','*24004') as PlateType,'1' As Ups,CONVERT(INT,(I.[FourColor¼Forms]+I.[FourColor½Forms]+(I.[FourColor1F/BForms]/IIF(CHOOSE(CONVERT(INT,I.FormType),8, 16, 4, 12, 24, 32, 64, 6, 2)<=12, 2,1))+I.[FourColor1W/TForms])) As BindingForms,TYPE + Convert(nvarchar, '" & ClientID & "')  As Type " & _
-                                    "FROM BOOKMASTER I WHERE (((I.FourColorPages)<>0))"
-cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetPaperStock](@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE)  " & _
-                                  " RETURNS Decimal(12, 3) " & _
-                                  "AS " & _
-                                  "BEGIN " & _
-                                  "   DECLARE @CurStk DECIMAL(12,3); " & _
-                                  "SELECT @CurStk= " & _
-                                  "( " & _
-                                 "(ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0)+ " & _
-                                 "ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0)+ " & _
-                                 "ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0))- " & _
-                                 "(ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
-                                 "ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
-                                 ") " & _
-                                 ")/U.Value1 " & _
-                                 "FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper  " & _
-                                 "RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2; " & _
-                            "End"
+                                    "FROM BOOKMASTERT I WHERE (((I.FourColorPages)<>0))"
+
+'cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetPaperStock](@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE)  " & _
+'                                  " RETURNS Decimal(12, 3) " & _
+'                                  "AS " & _
+'                                  "BEGIN " & _
+'                                  "   DECLARE @CurStk DECIMAL(12,3); " & _
+'                                  "SELECT @CurStk= " & _
+'                                  "( " & _
+'                                 "(ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0)+ " & _
+'                                 "ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0)+ " & _
+'                                 "ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0))- " & _
+'                                 "(ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0)+ " & _
+'                                 "ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+'                                 ") " & _
+'                                 ")/U.Value1 " & _
+'                                 "FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper  " & _
+'                                 "RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2; " & _
+'                            "End"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_03 Done!!! "
 End Function
 Public Function UpdateMajor04() 'Update BookChild06,BookPOChild06
 cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'BookChild06', 'BookChild06T'"
@@ -2010,10 +2534,24 @@ cnDatabase.Execute "CREATE TABLE dbo.BookChild06 (Code nvarchar(6) NOT NULL,SubI
                                   ','*00016' As ElementGroup
 cnDatabase.Execute "INSERT INTO BookChild06  " & _
                                   "SELECT I.Code,I.Code As SubItem, '*00020' AS Element,(Select Name From ElementMaster Where Code='*00020') As ElementPrintName,'4' Pages,I.FinishSize,ISNULL(IIF(I.TitleSize<>'',I.TitleSize,I.Size),I.Size) AS Size,'F' As Imposition,CHOOSE(CONVERT(INT,I.TitleFrontColor),'*23001','*23002','*23006','*23003','*23005','*23004','*23007','*23008') As FrontPrintingType,CHOOSE(CONVERT(INT,I.TitleBackColor),'*23001','*23002','*23006','*23003','*23005','*23004','*23007','*23008') As BackPrintingType,ISNULL(CHOOSE(CONVERT(INT,I.TitlePlateType),'*24001','*24003','*24002','*24004'),'') as PlateType,ISNULL(CHOOSE(CONVERT(INT,I.TitlePlateType),'*24001','*24003','*24002','*24004'),'') as PlateTypeBack,'2' As Ups,'1' As Sets,'0' As BindingForms,TYPE+ '" & ClientID & "' As Type  " & _
-                                  "FROM BOOKMASTER I Where I.Code NOT IN (Select Code From BookChild06T)"
+                                  "FROM BOOKMASTERT I Where I.Code NOT IN (Select Code From BookChild06T)"
 cnDatabase.Execute "INSERT INTO BookChild06  " & _
                                   "SELECT P.Book,P.Book As SubItem, Element,(Select Name From ElementMaster Where Code='*00020') As ElementPrintName,Pages,FinishSize,Size,Imposition,CHOOSE(CONVERT(INT,FrontPrintingType),'*23001','*23002','*23006','*23003','*23005','*23004','*23007','*23008') As FrontPrintingType,CHOOSE(CONVERT(INT,BackPrintingType),'*23001','*23002','*23006','*23003','*23005','*23004','*23007','*23008') As BackPrintingType,CHOOSE(CONVERT(INT,PlateType),'*24001','*24003','*24002','*24004') as PlateType,CHOOSE(CONVERT(INT,PlateTypeBack),'*24001','*24003','*24002','*24004') as PlateTypeBack,[Titles/sheet1] As Ups,'1' AS Sets,'0' As BindingForms,C.TYPE   As Type  " & _
                                   "From BookChild06T C INNER JOIN BookPOParent P ON P.Code=C.Code "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50)" & _
+                                    "SET @table='BookChild06T'" & _
+                                    " While Exists" & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table)" & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End" & _
+                                    " While Exists " & _
+                                    "(SELECT * FROM sys.tables WHERE NAME = @table)" & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'DROP TABLE '+ @table " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End"
 'Update Color & Plate Master Code
     cnDatabase.Execute "IF NOT EXISTS (SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='BookPOChild06' AND COLUMN_NAME='ElementPrintName') ALTER TABLE BookPOChild06 ADD [ElementPrintName] [nvarchar](60) NOT NULL DEFAULT ('') WITH VALUES"
     cnDatabase.Execute "ALTER TABLE dbo.BookPOChild06 Alter Column FrontPrintingType nvarchar(6) NOT NULL "
@@ -2032,7 +2570,7 @@ cnDatabase.Execute "INSERT INTO BookChild06  " & _
     cnDatabase.Execute "Update [BookPOChild06] Set RAccount = '000000' where RAccount=''"
 'Update BookPOChild06
     cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild06' AND COLUMN_NAME = 'Code') Print 'Table_Not_Exist' ELSE EXEC sp_rename 'BookPOChild06', 'BookPOChild06T'"
-    cnDatabase.Execute "CREATE TABLE dbo.BookPOChild06(Code nvarchar(6) NOT NULL,OrderDate datetime NOT NULL,TargetDate datetime NOT NULL,SubItem nvarchar(6) NOT NULL,Element nvarchar(6) NOT NULL,ElementPrintName nvarchar(60) NOT NULL,Pages decimal(4, 0) NULL,FinishSize nvarchar(6) NULL,Size nvarchar(6) NULL,Processing nvarchar(1) NOT NULL,ProcessingBack nvarchar(1) NULL,Imposition nvarchar(1) NOT NULL,Ref nvarchar(40) NULL,PlateMaker nvarchar(6) NULL,FrontPrintingType nvarchar(6) NULL,BackPrintingType nvarchar(6) NULL,PlateType nvarchar(6) NULL,PlateTypeBack nvarchar(6) NULL,ActualQuantity decimal(12, 0) NOT NULL,BillingQuantity decimal(12, 0) NOT NULL,[Titles/sheet1] decimal(4, 2) NOT NULL,Sets decimal(12, 0) NOT NULL,TotalForms decimal(12, 2) NOT NULL,TotalPlates decimal(12, 0) NOT NULL,TotalPlatesBack decimal(12, 0) NULL,aTotalPlates decimal(12, 0) NOT NULL,aTotalPlatesBack decimal(12, 0) NULL," & _
+    cnDatabase.Execute "CREATE TABLE dbo.BookPOChild06(Code nvarchar(6) NOT NULL,OrderDate datetime NOT NULL,TargetDate datetime NOT NULL,SubItem nvarchar(6) NOT NULL,Element nvarchar(6) NOT NULL,ElementPrintName nvarchar(60) NOT NULL,Pages decimal(4, 0) NULL,FinishSize nvarchar(6) NULL,Size nvarchar(6) NULL,Processing nvarchar(1) NOT NULL,ProcessingBack nvarchar(1) NULL,Imposition nvarchar(1) NOT NULL,Ref nvarchar(40) NULL,PlateMaker nvarchar(6) NULL,FrontPrintingType nvarchar(6) NULL,BackPrintingType nvarchar(6) NULL,PlateType nvarchar(6) NULL,PlateTypeBack nvarchar(6) NULL,ActualQuantity decimal(12, 0) NOT NULL,BillingQuantity decimal(12, 0) NOT NULL,[Ups] decimal(4, 2) NOT NULL,Sets decimal(12, 0) NOT NULL,TotalForms decimal(12, 2) NOT NULL,TotalPlates decimal(12, 0) NOT NULL,TotalPlatesBack decimal(12, 0) NULL,aTotalPlates decimal(12, 0) NOT NULL,aTotalPlatesBack decimal(12, 0) NULL," & _
                                       "PrintRate decimal(12, 2) NOT NULL,PrintRateBack decimal(12, 2) NULL,PrintAmount decimal(12, 2) NOT NULL,PlateRate decimal(12, 2) NOT NULL,PlateRateBack decimal(12, 2) NULL,PlateAmount decimal(12, 2) NOT NULL," & _
                                       "PaperByParty bit NOT NULL,Paper nvarchar(6) NOT NULL,RAccount nvarchar(6) NOT NULL,CutOffSize decimal(6, 0) NULL,[Titles/sheet2] decimal(4, 2) NOT NULL," & _
                                       "[PaperWastage%] decimal(4, 2) NOT NULL,[PaperWastage%Back] decimal(4, 2) NULL,PaperWastageMin decimal(6, 0) NOT NULL,PaperWastageMinBack decimal(6, 0) NULL,[Wastage/Set] decimal(12, 0) NOT NULL,PaperWastageFinal decimal(12, 3) NOT NULL,PaperConsumptionOther decimal(12, 3) NOT NULL,PaperConsumptionsheets decimal(12, 0) NOT NULL,PaperConsumptionKg decimal(12, 3) NULL," & _
@@ -2061,6 +2599,21 @@ cnDatabase.Execute "INSERT INTO BookChild06  " & _
                                     "PARSENAME(PaperWastageFinal,2)*U.Value1+(PARSENAME(PaperWastageFinal,1)/Sets) AS [aWastage/Set]," & _
                                     "PaperWastageFinal As aPaperWastageFinal,PaperConsumptionOther As aPaperConsumptionOther,PaperConsumptionsheets As aPaperConsumptionsheets,PaperConsumptionKg As aPaperConsumptionKg," & _
                                     "PaperRate,PaperAmount,Remarks,BillNo,BillDate,PBillNo,PBillDate,Adjustment,PAdjustment,RAdjustment,[VAT%],VAT,[PVAT%],PVAT,[RVAT%],RVAT,BillAmount,PBillAmount,RBillAmount,PaidAmount,PPaidAmount,Status,Narration,AdjustmentRemarks,C.ComputerName,C.DeliveredQuantityC,C.DeliveredQuantityB,C.BilledMEC,C.BilledMEB FROM BookPOChild06T C INNER JOIN BookPOParent P1 ON P1.Code=C.Code INNER JOIN PaperMaster P ON C.Paper=P.Code INNER JOIN GeneralMaster U ON U.Code=P.UOM"
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50)" & _
+                                    "SET @table='BookPOChild06T'" & _
+                                    "While Exists " & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table)" & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table)" & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End " & _
+                                    "While Exists " & _
+                                    "(SELECT * FROM sys.tables WHERE NAME = @table)" & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'DROP TABLE '+ @table " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_04 Done!!! "
 End Function
 Public Function UpdateMajor05() 'Update AccountChild07
 'Update BookPOChild07
@@ -2087,7 +2640,7 @@ Public Function UpdateMajor05() 'Update AccountChild07
                                      'CONSTRAINT PK_BookPOChild07 PRIMARY KEY CLUSTERED (Code,Element,Operation),
     cnDatabase.Execute "INSERT INTO dbo.BookPOChild07 " & _
                                       "Select Code,OrderDate,TargetDate,(Select Book From BookPOParent Where Code=C.Code) As SubItem,Element,Operation,Number,'Nos' As OperationCountName,Size,Quantity,CalcMode,(Select Value1 From GeneralMaster Where Code=CalcMode) As CalcValue,Rate,Amount,Adjustment,[GST%],GST,BillAmount,Remarks,BillNo,BillDate,PaidAmount,Status,Narration,DeliveredQuantityC,DeliveredQuantityB,BilledMOC,BilledMOB From BookPOChild07T C "
-    'cnDatabase.Execute "DROP TABLE BookPOChild07T"
+    cnDatabase.Execute "DROP TABLE BookPOChild07T"
 'Update BookChild07
     cnDatabase.Execute "Delete FROM BookChild07 Where Code IN (Select Distinct Code From BookChild07 Where Code NOT IN (Select Code From BookMaster))"
     cnDatabase.Execute "Update BookChild07 Set  Size = NULL Where Size IN ((Select Distinct Size From BookChild07 Where Size NOT IN (Select Code From GeneralMaster)),'')"
@@ -2115,6 +2668,7 @@ Public Function UpdateMajor05() 'Update AccountChild07
     cnDatabase.Execute "INSERT INTO dbo.BookChild07 " & _
                                         "Select C.Code,(Select Code From BookMaster Where Code=C.Code) As SubItem,Element,Operation,Number,'Nos' As OperationCountName,Size,CalcMode,(Select Value1 From GeneralMaster Where Code=CalcMode) As CalcValue,Type From BookChild07T C "
     cnDatabase.Execute "DROP TABLE BookChild07T"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_05 Done!!! "
 End Function
 Public Function UpdateMajor06() 'Update BookChild08
 cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookChild08' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'BookChild08', 'BookChild08T'"
@@ -2129,8 +2683,9 @@ cnDatabase.Execute "CREATE TABLE dbo.BookChild08 (Code nvarchar(6) NOT NULL,SubI
     cnDatabase.Execute "INSERT INTO dbo.BookChild08  " & _
                                       "Select DISTINCT I.Code As Code,I.Code As SubItem,I.BindingType,C.BinderyProcess AS BinderyProcess,IIF(C.BinderyProcess='*07037',(I.BindingForms01+I.BindingForms02),IIF(C.BinderyProcess='*07039',(I.BindingForms01+I.BindingForms02),IIF(C.BinderyProcess='*07051',(I.BindingForms01+I.BindingForms02),'1'))) As Number,IIF(C.BinderyProcess='*07037',('Sections'),IIF(C.BinderyProcess='*07039',('Forms'),IIF(C.BinderyProcess='*07051',('Sections'),'Nos'))) As OperationCountName,I.FinishSize As Size,IIF(C.BinderyProcess='*07037',('*20005'),IIF(C.BinderyProcess='*07039',('*20005'),IIF(C.BinderyProcess='*07036',('*20001'),IIF(C.BinderyProcess='*07038',('*20005'),IIF(C.BinderyProcess='*07041',('*20009'),IIF(C.BinderyProcess='*07051',('*20005'),'*20006')))))) As CalcMode,  " & _
                                       "IIF(C.BinderyProcess='*07037',(1000),IIF(C.BinderyProcess='*07039',(1000),IIF(C.BinderyProcess='*07036',(1),IIF(C.BinderyProcess='*07038',(1),I.[Qty/Pkt])))) As CalcValue,I.TYPE + Convert(nvarchar, '" & ClientID & "') As Type  " & _
-                                      "From BookMaster I  INNER JOIN BindingTypeChild C ON I.BindingType=C.Code Where I.Code NOT IN (Select Distinct Code From BookChild08) " & _
+                                      "From BookMasterT I  INNER JOIN BindingTypeChild C ON I.BindingType=C.Code Where I.Code NOT IN (Select Distinct Code From BookChild08) " & _
                                       "Order By Code,BinderyProcess"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_06 Done!!! "
 End Function
 Public Function UpdateMajor07() 'Update BookPOChild08
     cnDatabase.Execute "IF Not EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild08' AND COLUMN_NAME = 'Code') Print 'Col_Not_Exist' ELSE EXEC sp_rename 'BookPOChild08', 'BookPOChild08T'"
@@ -2159,35 +2714,89 @@ Public Function UpdateMajor07() 'Update BookPOChild08
     "Union All  " & _
     "Select C.Code,OrderDate,TargetDate,P.Book As SubItem,C.BindingType,'*07042' AS BinderyProcess,1 As Number,'Nos' As OperationCountName,I.FinishSize As Size,1,ActualQuantity As Quantity,'*20010' As CalcMode,C.[Pkt/BOX]*C.[Qty/Pkt] As CalcValue,CartageRate As Rate,((TotalBoxes*CartageRate)) As Amount,Adjustment,[Vat%] As [GST%],((((TotalBoxes*CartageRate))*[VAT%])/100) As GST,((((TotalBoxes*CartageRate))*([VAT%]+100))/100) As BillAmount,C.Remarks,BillNo,BillDate,PaidAmount,Status,C.Narration,C.DeliveredQuantityC,C.DeliveredQuantityB,BilledBNC,BilledBNB From BookPOChild08T C INNER JOIN BookPOParent P ON P.Code=C.Code INNER JOIN BookMaster I ON I.Code=P.Book Where C.CartageRate<>0 Or C.Adjustment<>0 " & _
     "Order By Code,BinderyProcess "
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50)" & _
+                                    "SET @table='BookPOChild08T' " & _
+                                    "While Exists" & _
+                                    "(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'ALTER TABLE '+@table+' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @table) " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End " & _
+                                    "While Exists " & _
+                                    "(SELECT * FROM sys.tables WHERE NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'DROP TABLE '+ @table " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End"
+cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
+                                    "SET @table='BookMasterT' " & _
+                                    "While Exists " & _
+                                    "(SELECT * FROM sys.tables WHERE NAME = @table) " & _
+                                    "BEGIN " & _
+                                    "SELECT @sql = 'DROP TABLE '+ @table " & _
+                                    "EXEC sp_executesql @sql " & _
+                                    "End "
+cnDatabase.Execute "IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='BookMaster' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE BookMaster ADD CONSTRAINT PK_BookMaster PRIMARY KEY CLUSTERED (Code) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild01' AND CONSTRAINT_NAME='FK_BookChild01_BookMaster') ALTER TABLE BookChild01 ADD CONSTRAINT FK_BookChild01_BookMaster FOREIGN KEY (Code) REFERENCES BookMaster (Code) ON UPDATE CASCADE  ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild02' AND CONSTRAINT_NAME='FK_BookChild02_BookMaster') ALTER TABLE BookChild02 ADD CONSTRAINT FK_BookChild02_BookMaster FOREIGN KEY (Code) REFERENCES BookMaster (Code) ON UPDATE CASCADE  ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF NOT EXISTS (SELECT TABLE_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild0201') Print 'Table_Not_Exist' Else IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild0201' AND CONSTRAINT_NAME='FK_BookChild0201_BookMaster') ALTER TABLE BookChild0201 ADD CONSTRAINT FK_BookChild0201_BookMaster FOREIGN KEY (Code) REFERENCES BookMaster (Code) ON UPDATE CASCADE  ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild03' AND CONSTRAINT_NAME='FK_BookChild03_BookMaster') ALTER TABLE BookChild03 ADD CONSTRAINT FK_BookChild03_BookMaster FOREIGN KEY (Code) REFERENCES BookMaster (Code) ON UPDATE CASCADE  ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild05' AND CONSTRAINT_NAME='FK_BookChild05_BookMaster_I') ALTER TABLE BookChild05 ADD CONSTRAINT [FK_BookChild05_BookMaster_I] FOREIGN KEY([Code]) REFERENCES [BookMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild05' AND CONSTRAINT_NAME='FK_BookChild05_BookMaster_II') ALTER TABLE BookChild05 ADD CONSTRAINT [FK_BookChild05_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES [BookMaster] ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild06' AND CONSTRAINT_NAME='FK_BookChild06_BookMaster_I') ALTER TABLE BookChild06 ADD CONSTRAINT [FK_BookChild06_BookMaster_I] FOREIGN KEY([Code]) REFERENCES [BookMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild06' AND CONSTRAINT_NAME='FK_BookChild06_BookMaster_II') ALTER TABLE BookChild06 ADD CONSTRAINT [FK_BookChild06_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES [BookMaster] ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild07' AND CONSTRAINT_NAME='FK_BookChild07_BookMaster_I') ALTER TABLE BookChild07 ADD CONSTRAINT [FK_BookChild07_BookMaster_I] FOREIGN KEY([Code]) REFERENCES [BookMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild07' AND CONSTRAINT_NAME='FK_BookChild07_BookMaster_II') ALTER TABLE BookChild07 ADD CONSTRAINT [FK_BookChild07_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES BookMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild08' AND CONSTRAINT_NAME='FK_BookChild08_BookMaster_I') ALTER TABLE BookChild08 ADD CONSTRAINT [FK_BookChild08_BookMaster_I] FOREIGN KEY([Code]) REFERENCES [BookMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookChild08' AND CONSTRAINT_NAME='FK_BookChild08_BookMaster_II') ALTER TABLE BookChild08 ADD CONSTRAINT [FK_BookChild08_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES [BookMaster] ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOParent' AND CONSTRAINT_NAME='PK_BookPOParent') ALTER TABLE BookPOParent ADD CONSTRAINT [PK_BookPOParent] PRIMARY KEY CLUSTERED (Code) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOParent' AND CONSTRAINT_NAME='FK_BookPOParent_BookMaster') ALTER TABLE BookPOParent ADD CONSTRAINT [FK_BookPOParent_BookMaster] FOREIGN KEY([BOOK]) REFERENCES BookMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild05' AND CONSTRAINT_NAME='FK_BookPOChild05_BookPOParent_I') ALTER TABLE BookPOChild05 ADD CONSTRAINT [FK_BookPOChild05_BookPOParent_I] FOREIGN KEY([Code]) REFERENCES [BookPOParent] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild05' AND CONSTRAINT_NAME='FK_BookPOChild05_BookMaster_II') ALTER TABLE BookPOChild05 ADD CONSTRAINT [FK_BookPOChild05_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES BookMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild06' AND CONSTRAINT_NAME='FK_BookPOChild06_BookPOParent_I') ALTER TABLE BookPOChild06 ADD CONSTRAINT [FK_BookPOChild06_BookPOParent_I] FOREIGN KEY([Code]) REFERENCES [BookPOParent] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild06' AND CONSTRAINT_NAME='FK_BookPOChild06_BookMaster_II') ALTER TABLE BookPOChild06 ADD CONSTRAINT [FK_BookPOChild06_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES [BookMaster] ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild07' AND CONSTRAINT_NAME='FK_BookPOChild07_BookPOParent_I') ALTER TABLE BookPOChild07 ADD CONSTRAINT [FK_BookPOChild07_BookPOParent_I] FOREIGN KEY([Code]) REFERENCES [BookPOParent] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild07' AND CONSTRAINT_NAME='FK_BookPOChild07_BookMaster_II') ALTER TABLE BookPOChild07 ADD CONSTRAINT [FK_BookPOChild07_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES BookMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild08' AND CONSTRAINT_NAME='FK_BookPOChild08_BookPOParent_I') ALTER TABLE BookPOChild08 ADD CONSTRAINT [FK_BookPOChild08_BookPOParent_I] FOREIGN KEY([Code]) REFERENCES [BookPOParent] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild08' AND CONSTRAINT_NAME='FK_BookPOChild08_BookMaster_II') ALTER TABLE BookPOChild08 ADD CONSTRAINT [FK_BookPOChild08_BookMaster_II] FOREIGN KEY([SubItem]) REFERENCES BookMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild0801' AND CONSTRAINT_NAME='FK_BookPOChild0801_BookPOParent') ALTER TABLE BookPOChild0801 ADD CONSTRAINT [FK_BookPOChild0801_BookPOParent] FOREIGN KEY([Code]) REFERENCES [BookPOParent] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild0801' AND CONSTRAINT_NAME='PK_BookPOChild0801') ALTER TABLE BookPOChild0801 ADD CONSTRAINT [PK_BookPOChild0801] PRIMARY KEY CLUSTERED (Code,Category,Item) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild09' AND CONSTRAINT_NAME='FK_BookPOChild09_BookPOParent_I') ALTER TABLE BookPOChild09 ADD CONSTRAINT [FK_BookPOChild09_BookPOParent_I] FOREIGN KEY([Code]) REFERENCES BookPOParent ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild09' AND CONSTRAINT_NAME='FK_BookPOChild09_GeneralMaster_II') ALTER TABLE BookPOChild09 ADD CONSTRAINT [FK_BookPOChild09_GeneralMaster_II] FOREIGN KEY([Size]) REFERENCES GeneralMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild09' AND CONSTRAINT_NAME='FK_BookPOChild09_AccountMaster_III') ALTER TABLE BookPOChild09 ADD CONSTRAINT [FK_BookPOChild09_AccountMaster_III] FOREIGN KEY([PlateMaker]) REFERENCES AccountMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild09' AND CONSTRAINT_NAME='FK_BookPOChild09_AccountMaster_IV') ALTER TABLE BookPOChild09 ADD CONSTRAINT [FK_BookPOChild09_AccountMaster_IV] FOREIGN KEY([RAccount]) REFERENCES AccountMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild0901' AND CONSTRAINT_NAME='PK_BookPOChild0901') ALTER TABLE BookPOChild0901 ADD CONSTRAINT [PK_BookPOChild0901] PRIMARY KEY CLUSTERED([Code],[Book]) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild0901' AND CONSTRAINT_NAME='FK_BookPOChild0901_BookPOParent_I') ALTER TABLE BookPOChild0901 ADD CONSTRAINT [FK_BookPOChild0901_BookPOParent_I] FOREIGN KEY([Code]) REFERENCES BookPOParent ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'BookPOChild0901' AND CONSTRAINT_NAME='FK_BookPOChild0901_BookMaster_II') ALTER TABLE BookPOChild0901 ADD CONSTRAINT [FK_BookPOChild0901_BookMaster_II] FOREIGN KEY([Book]) REFERENCES BookMaster ([Code]) ELSE Print 'CONSTRAINT_Exist'"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Major_Update_07 Done!!! "
 End Function
-'//*****************************//
-'//*****************************//
-'//*****************************//
 '//*****************************//
 '//*****************************//
 
 Public Function UpdateMinor01()
+
 'GeneralMaster,'ElementMaster
  cnDatabase.Execute "IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='GeneralMaster' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE GeneralMaster ADD PRIMARY KEY (Code)"
  cnDatabase.Execute "IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='ElementMaster' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE ElementMaster ADD PRIMARY KEY (Code)"
 'Account Master Update Table
-frmLicenceAgreement.Label2 = "AccountMaster Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "AccountMaster Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('AccountMaster', 'Notes') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE AccountMaster ADD Notes text NULL ALTER TABLE AccountMaster SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('AccountMaster', 'Notes') IS NULL PRINT 'NOT Exists' ELSE Update AccountMaster Set Notes='' Where Notes IS NULL"
     cnDatabase.Execute "IF COL_LENGTH('AccountMaster', 'Opening') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE AccountMaster ADD Opening decimal(12, 2) NULL ALTER TABLE AccountMaster SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('AccountMaster', 'Opening') IS NULL PRINT 'NOT Exists' ELSE Update AccountMaster Set Opening=0 Where Opening IS NULL"
 'BindingTypeChild Create Table
-frmLicenceAgreement.Label2 = "BindingTypeChild Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BindingTypeChild Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BindingTypeChild', 'Code') IS NOT NULL PRINT 'Exists' ELSE  CREATE TABLE [BindingTypeChild]([Code] [nvarchar](6) NOT NULL,[BinderyProcess] [nvarchar](6) NOT NULL CONSTRAINT [FK_BindingTypeChild_GeneralMaster_I] FOREIGN KEY([Code]) REFERENCES [GeneralMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE,CONSTRAINT [FK_BindingTypeChild_GeneralMaster_II] FOREIGN KEY([BinderyProcess]) REFERENCES [GeneralMaster] ([Code]) ) ON [PRIMARY]"
 'BookChild Create Table
-frmLicenceAgreement.Label2 = "BookChild Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookChild Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookChild', 'MaterialCentre') IS NOT NULL PRINT 'Exists' ELSE  CREATE TABLE BookChild(MaterialCentre nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,OpBal int NOT NULL,FYCode nvarchar(6) NOT NULL ) ON [PRIMARY] ALTER TABLE BookChild SET (LOCK_ESCALATION = TABLE)"
 'Book Master Update Table
-frmLicenceAgreement.Label2 = "BookMaster Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookMaster Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookMaster', 'Notes') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookMaster ADD Notes text NULL ALTER TABLE BookMaster SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('BookMaster', 'Notes') IS NULL PRINT 'NOT Exists' ELSE Update BookMaster Set Notes='' Where Notes IS NULL"
 'BookPOChild05
-frmLicenceAgreement.Label2 = "BookPOChild05 Update Going on!!! "
+
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild05 Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild05', 'DeliveredQuantityC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild05 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild05', 'DeliveredQuantityB') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild05 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild05', 'BilledMFC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild05 ADD BilledMFC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
@@ -2210,7 +2819,7 @@ frmLicenceAgreement.Label2 = "BookPOChild05 Update Going on!!! "
                                        "End"
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild05', 'QuantityIssuedC') IS NOT NULL ALTER TABLE BookPOChild05 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE PRINT 'Exists' "
 'BookPOChild06 Table Update
-frmLicenceAgreement.Label2 = "BookPOChild06 Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild06 Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild06', 'DeliveredQuantityC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild06 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild06', 'DeliveredQuantityB') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild06 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild06', 'BilledMEC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild06 ADD BilledMEC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
@@ -2233,7 +2842,7 @@ frmLicenceAgreement.Label2 = "BookPOChild06 Update Going on!!! "
                                         "End"
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild06', 'QuantityIssuedC') IS NOT NULL ALTER TABLE BookPOChild06 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE  PRINT 'Exists' "
 'BookPOChild07 Table Update
-frmLicenceAgreement.Label2 = "BookPOChild07 Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild07 Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild07', 'Number') IS NOT NULL PRINT 'Exists' ELSE Alter Table BookPOChild07 Alter Column Number decimal(7, 3)"
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild07', 'Rate') IS NOT NULL PRINT 'Exists' ELSE Alter Table BookPOChild07 Alter Column Rate decimal(12, 3)"
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild07', 'DeliveredQuantityC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild07 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
@@ -2258,7 +2867,7 @@ frmLicenceAgreement.Label2 = "BookPOChild07 Update Going on!!! "
                                       "End"
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild07', 'QuantityIssuedC') IS NOT NULL ALTER TABLE BookPOChild07 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE PRINT 'Not Exists'"
 'BookPOChild08 Table Update
-frmLicenceAgreement.Label2 = "BookPOChild08 Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild08 Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild08', 'DeliveredQuantityC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild08 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild08', 'DeliveredQuantityB') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild08 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild08', 'BilledBNC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild08 ADD BilledBNC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
@@ -2281,7 +2890,7 @@ frmLicenceAgreement.Label2 = "BookPOChild08 Update Going on!!! "
                                      "End "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild08', 'QuantityIssuedC') IS NOT NULL ALTER TABLE BookPOChild08 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE PRINT 'NotExists' "
 'BookPOChild0801 Table Update
-frmLicenceAgreement.Label2 = "BookPOChild0801 Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild0801 Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0801', 'DeliveredQuantityC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild0801 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0801', 'DeliveredQuantityB') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild0801 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0801', 'BilledBMC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild0801 ADD BilledBMC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
@@ -2304,7 +2913,7 @@ frmLicenceAgreement.Label2 = "BookPOChild0801 Update Going on!!! "
                                       "End "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0801', 'QuantityIssuedC') IS NOT NULL  ALTER TABLE BookPOChild0801 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE PRINT 'Exists' "
 'BookPOChild09
-frmLicenceAgreement.Label2 = "BookPOChild09 Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild09 Update Going on!!! "
     cnDatabase.Execute "DECLARE @sql NVARCHAR(255), @table NVARCHAR(50) " & _
                                       "SET @table='BookPOChild09' " & _
                                       "WHILE EXISTS (SELECT Name FROM SYS.DEFAULT_CONSTRAINTS P WHERE PARENT_OBJECT_ID=OBJECT_ID(@table) AND PARENT_COLUMN_ID IN ((SELECT column_id FROM sys.columns WHERE NAME IN ( 'QuantityIssuedC','QuantityReceivedC','QuantityIssuedB','QuantityReceivedB') AND object_id = P.PARENT_OBJECT_ID))) " & _
@@ -2314,7 +2923,7 @@ frmLicenceAgreement.Label2 = "BookPOChild09 Update Going on!!! "
                                       "End "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild09', 'QuantityIssuedC') IS NOT NULL ALTER TABLE BookPOChild09 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE PRINT 'Exists' "
 'BookPOChild0901 Table Update
-frmLicenceAgreement.Label2 = "BookPOChild0901 Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOChild0901 Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0901', 'DeliveredQuantityC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild0901 ADD DeliveredQuantityC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0901', 'DeliveredQuantityB') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild0901 ADD DeliveredQuantityB DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0901', 'BilledCFC') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE BookPOChild0901 ADD BilledCFC DECIMAL(12,0) NOT NULL DEFAULT (0) WITH VALUES "
@@ -2337,7 +2946,7 @@ frmLicenceAgreement.Label2 = "BookPOChild0901 Update Going on!!! "
                                      "End"
     cnDatabase.Execute "IF COL_LENGTH('BookPOChild0901', 'QuantityIssuedC') IS NOT NULL  ALTER TABLE BookPOChild0901 DROP COLUMN QuantityIssuedC,QuantityReceivedC,QuantityIssuedB,QuantityReceivedB ELSE PRINT 'Exists' "
 'BookPOParent Table Update
-frmLicenceAgreement.Label2 = "BookPOParent Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "BookPOParent Update Going on!!! "
 'PaperPOParent
     cnDatabase.Execute "IF COL_LENGTH('BookPOParent', 'PicData') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE dbo.BookPOParent ADD PicData varbinary(MAX) NULL"
     cnDatabase.Execute "IF COL_LENGTH('BookPOParent', 'PicType') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE dbo.BookPOParent ADD PicType nvarchar(4) NULL"
@@ -2383,7 +2992,7 @@ frmLicenceAgreement.Label2 = "BookPOParent Update Going on!!! "
         End If
     'End If
 'Company Master Table Update Table
-frmLicenceAgreement.Label2 = "CompanyMaster Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "CompanyMaster Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('CompanyMaster', 'TallyIntegration') IS NOT NULL PRINT 'Exists' ELSE  Alter Table CompanyMaster Add TallyIntegration bit NOT NULL CONSTRAINT df_TallyIntegration DEFAULT '' "
     cnDatabase.Execute "IF COL_LENGTH('CompanyMaster', 'TallyIntegration') IS NULL PRINT 'NOT Exists' ELSE Update CompanyMaster Set TallyIntegration=0"
     cnDatabase.Execute "IF COL_LENGTH('CompanyMaster', 'BusyIntegration') IS NOT NULL PRINT 'Exists' ELSE  Alter Table CompanyMaster Add BusyIntegration bit NOT NULL CONSTRAINT df_BusyIntegration DEFAULT '' "
@@ -2396,31 +3005,31 @@ frmLicenceAgreement.Label2 = "CompanyMaster Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('CompChild', 'VchName') IS NULL PRINT 'NOT Exists' ELSE  ALTER TABLE CompChild ALTER Column VchName nvarchar(60)"
     cnDatabase.Execute "IF COL_LENGTH('CompChild', 'VchName') IS NULL PRINT 'NOT Exists' ELSE  Update CompChild Set VchName=''  Where VchName IS NULL"
 'DebitCreditChild Create Table
-frmLicenceAgreement.Label2 = "DebitCreditChild Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "DebitCreditChild Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('DebitCreditChild', 'Code') IS NOT NULL PRINT 'Exists' ELSE CREATE TABLE DebitCreditChild (Code nvarchar(6) NOT NULL,TOA nchar(1) NOT NULL,Ref nvarchar(6) NULL,BOM nvarchar(6) NULL,Account nvarchar(6) NOT NULL,Debit decimal(12, 2) NOT NULL,Credit decimal(12, 2) NOT NULL,ShortNarration nvarchar(100) NOT NULL,SrNo tinyint NOT NULL,RefCode nvarchar(6) NULL)  ON [PRIMARY]ALTER TABLE DebitCreditChild SET (LOCK_ESCALATION = TABLE)"
 'DebitCreditParent Create Table
-frmLicenceAgreement.Label2 = "DebitCreditOthInf Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "DebitCreditOthInf Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('DebitCreditParent', 'Code') IS NOT NULL PRINT 'Exists' ELSE CREATE TABLE DebitCreditParent(Code nvarchar(6) NOT NULL,Name nvarchar(25) NOT NULL,Date datetime NULL,Debit decimal(12, 2) NOT NULL,Credit decimal(12, 2) NOT NULL,LongNarration nvarchar(100) NULL,Type nvarchar(6) NOT NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,RecordStatus nvarchar(1) NULL,VchSeries nvarchar(6) NULL,AutoVchNo nvarchar(10) NULL,FYCode nvarchar(6) NOT NULL,Notes text NULL)  ON [PRIMARY] TEXTIMAGE_ON [PRIMARY] ALTER TABLE DebitCreditParent ADD CONSTRAINT DF_DebitCreditParent_Debit DEFAULT ((0)) FOR Debit ALTER TABLE DebitCreditParent ADD CONSTRAINT DF_DebitCreditParent_Credit DEFAULT ((0)) FOR Credit ALTER TABLE DebitCreditParent ADD CONSTRAINT DF_DebitCreditParent_FYCode DEFAULT ('') FOR FYCode " & _
                                       "ALTER TABLE DebitCreditParent ADD CONSTRAINT PK_DebitCreditParent PRIMARY KEY CLUSTERED (Code) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY] ALTER TABLE DebitCreditParent SET (LOCK_ESCALATION = TABLE)"
 'DebitCreditParent Update Table
-frmLicenceAgreement.Label2 = "DebitCreditParent Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "DebitCreditParent Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('DebitCreditParent', 'Notes') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE DebitCreditParent ADD Notes text NULL  ALTER TABLE DebitCreditParent SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('DebitCreditParent', 'Notes') IS NULL PRINT 'NOT Exists' ELSE Update DebitCreditParent Set Notes='' Where Notes IS NULL"
 'DebitCreditRef Create Table
-frmLicenceAgreement.Label2 = "DebitCreditRef Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "DebitCreditRef Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('DebitCreditRef', 'RefCode') IS NOT NULL PRINT 'Exists' ELSE CREATE TABLE DebitCreditRef(RefCode nvarchar(6) NOT NULL,Method tinyint NOT NULL,VchType nvarchar(6) NOT NULL,VchCode nvarchar(6) NOT NULL,VchNo nvarchar(25) NULL,VchDate datetime NOT NULL,Account nvarchar(6) NOT NULL,Debit decimal(12, 2) NOT NULL,Credit decimal(12, 2) NOT NULL, TOA nchar(1) NOT NULL)  ON [PRIMARY] ALTER TABLE DebitCreditRef SET (LOCK_ESCALATION = TABLE)"
 'DebitCreditOthInf Create Table
     cnDatabase.Execute "IF COL_LENGTH('DebitCreditOthInf', 'Code') IS NOT NULL PRINT 'Exists' ELSE CREATE TABLE DebitCreditOthInf(Code nvarchar(6) NOT NULL,BiltyNo nvarchar(30) NULL,BiltyDate datetime NULL,BiltyType nvarchar(30) NULL,Pkt smallint NOT NULL,Station nvarchar(30) NULL,Transport nvarchar(30) NULL,PktPicked bit NOT NULL)ON [PRIMARY]ALTER TABLE DebitCreditOthInf ADD CONSTRAINT  DF_DebitCreditOthInf_Pkt DEFAULT ((0)) FOR Pkt ALTER TABLE DebitCreditOthInf ADD CONSTRAINT DF_DebitCreditOthInf_PktPicked DEFAULT ((0)) FOR PktPicked ALTER TABLE DebitCreditOthInf SET (LOCK_ESCALATION = TABLE)"
 'DiscountMaster Create Table
-frmLicenceAgreement.Label2 = "DiscountMaster Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "DiscountMaster Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('DiscountMaster', 'Party') IS NOT NULL PRINT 'Exists' ELSE CREATE TABLE DiscountMaster (Party nvarchar(6) NOT NULL,ItemGroup nvarchar(6) NOT NULL,[Disc%] decimal(6, 2) NOT NULL,FYCode nvarchar(6) Not NULL )  ON [PRIMARY] ALTER TABLE DiscountMaster ADD CONSTRAINT [DF_DiscountMaster_Disc%] DEFAULT ((0)) FOR [Disc%] ALTER TABLE DiscountMaster ADD CONSTRAINT PK_DiscountMaster PRIMARY KEY CLUSTERED (Party,ItemGroup) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY] ALTER TABLE DiscountMaster SET (LOCK_ESCALATION = TABLE)"
 'General Master Table Update Table
-frmLicenceAgreement.Label2 = "GeneralMaster Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "GeneralMaster Update Going on!!! "
     cnDatabase.Execute "Alter Table GeneralMaster Alter Column Name nvarchar(60) NOT NULL"
     cnDatabase.Execute "Alter Table GeneralMaster Alter Column PrintName nvarchar(60) NOT NULL"
     cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'GeneralMaster' AND COLUMN_NAME = 'UnderGroup') Print 'Col_Exist' ELSE ALTER TABLE GeneralMaster ADD  UnderGroup nvarchar(6) NULL  ALTER TABLE GeneralMaster SET (LOCK_ESCALATION = TABLE)"
 'JobworkBVParent Update Table
-frmLicenceAgreement.Label2 = "JobworkBVParent Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "JobworkBVParent Update Going on!!! "
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'VchSeries') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD VchSeries nvarchar(6) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE)"
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'AutoVchNo') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD AutoVchNo nvarchar(10) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE)"
     
@@ -2445,7 +3054,7 @@ End If
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'GRDate') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD GRDate nvarchar(40) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'GRNo') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD GRNo nvarchar(40) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'Transport') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD Transport nvarchar(40) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE) "
-    cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'VehicleNo') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD VehicleNo datetime NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE) "
+    cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'VehicleNo') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD VehicleNo nvarchar(40) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVParent', 'Station') IS NOT NULL PRINT 'Exists' ELSE ALTER TABLE JobworkBVParent ADD Station nvarchar(40) NULL  ALTER TABLE JobworkBVParent SET (LOCK_ESCALATION = TABLE) "
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVChild', 'BOM') IS NULL PRINT 'NOT Exists' ELSE ALTER TABLE JobworkBVChild ALTER COLUMN BOM NVARCHAR(18) NOT NULL"
     cnDatabase.Execute "IF COL_LENGTH('JobworkBVChild', 'BOM') IS NULL PRINT 'NOT Exists' ELSE UPDATE JobworkBVChild SET BOM=LEFT(BOM,4)+'XXXXXXXXXXXX'+RIGHT(BOM,2) WHERE LEFT(BOM,2)='08' AND LEN(BOM)<18 "
@@ -2457,7 +3066,7 @@ End If
         'Default Master
     'Genral Master
 'Size Master_Type-1
-frmLicenceAgreement.Label2 = "Size Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01001' OR Name='05.25X10.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*01001','05.25X10.00','05.25X10.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01002' OR Name='10.00X29.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*01002','10.00X29.00','10.00X29.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01003' OR Name='11.00X14.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*01003','11.00X14.00','11.00X14.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2533,7 +3142,7 @@ frmLicenceAgreement.Label2 = "Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01073' OR Name='30.00X40.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*01073','30.00X40.00','30.00X40.00','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01074' OR Name='31.50X41.50') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*01074','31.50X41.50','31.50X41.50','1','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Item Group Master_TYPE-5
-frmLicenceAgreement.Label2 = "Item Group Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Item Group Master Update Going on!!! "
     If Trim(ReadFromFile("Client ID")) = "Publisher" Then
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*05001' OR Name='Activity Book') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*05001','Activity Book','Activity Book','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*05002' OR Name='Box') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*05002','Box','Box','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2561,7 +3170,7 @@ frmLicenceAgreement.Label2 = "Item Group Master Update Going on!!! "
 End If
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*05024' OR Name='Item Group') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*05024','Item Group','Item Group','5','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Binding Type_Type-6
-frmLicenceAgreement.Label2 = "Binding Type Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Binding Type Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*06001' OR Name='Die_Cutting') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*06001','Die_Cutting','Die_Cutting','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*06002' OR Name='Die_Perforation') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*06002','Die_Perforation','Die_Perforation','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*06003' OR Name='Hard Bound') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*06003','Hard Bound','Hard Bound','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2581,7 +3190,7 @@ frmLicenceAgreement.Label2 = "Binding Type Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*06017' OR Name='None') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*06017','None','None','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*06018' OR Name='Perfect Binding') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*06018','Perfect Binding','Perfect Binding','6','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Finishing Type_Type-7
-frmLicenceAgreement.Label2 = "Finish Size Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Finish Size Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07001' OR Name='BOPP Gloss') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07001','BOPP Gloss','BOPP Gloss','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07002' OR Name='BOPP Matt') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07002','BOPP Matt','BOPP Matt','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07003' OR Name='Box Packing') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07003','Box Packing','Box Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2629,7 +3238,7 @@ frmLicenceAgreement.Label2 = "Finish Size Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07045' OR Name='Digital Print_4C') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07045','Digital Print_4C','Digital Print_4C','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 
 'Project Member/Editorial Team Master_Type-8
-frmLicenceAgreement.Label2 = "Project Member/ Editorial Team Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Project Member/ Editorial Team Master Update Going on!!! "
 If Trim(ReadFromFile("Client ID")) = "Publisher" Then
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*08002' OR Name='Author_ABC') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*08002','Author_ABC','Author_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*08003' OR Name='DTP_ABC') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*08003','DTP_ABC','DTP_ABC','8','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2642,35 +3251,35 @@ If Trim(ReadFromFile("Client ID")) = "Publisher" Then
 End If
 
 'Plate Master_Type-9
-frmLicenceAgreement.Label2 = "Plate Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Plate Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*09001' OR Name='CTP_Plates') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*09001','CTP_Plates','CTP_Plates','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*09002' OR Name='Nagative-Cut Pieces') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*09002','Nagative-Cut Pieces','Nagative-Cut Pieces','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*09003' OR Name='Nagative-One Pieces') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*09003','Nagative-One Pieces','Nagative-One Pieces','9','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Size Group Master-10
-frmLicenceAgreement.Label2 = "Size Master Update Going on!!! "
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10022' OR Name='12.00X18.00-Digital') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10022','12.00X18.00-Digital','12.00X18.00-Digital','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10018' OR Name='Extra Large-28''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10018','Extra Large-28''''X40''''-(Card)','Extra Large-28''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10001' OR Name='Extra Large-28''''X40''''-A/P') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10001','Extra Large-28''''X40''''-A/P','Extra Large-28''''X40''''-A/P','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10002' OR Name='Extra Large-28''''X40''''-A/P_SPL') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10002','Extra Large-28''''X40''''-A/P_SPL','Extra Large-28''''X40''''-A/P_SPL','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10003' OR Name='Extra Large-30''''X40''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10003','Extra Large-30''''X40''''','Extra Large-30''''X40''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10004' OR Name='Extra Large-30''''X40''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10004','Extra Large-30''''X40''''-(A/P)','Extra Large-30''''X40''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10005' OR Name='Extra Large-30''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10005','Extra Large-30''''X40''''-(Card)','Extra Large-30''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10006' OR Name='LARGE-23''''X36''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10006','LARGE-23''''X36''''','LARGE-23''''X36''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10007' OR Name='LARGE-23''''X36''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10007','LARGE-23''''X36''''-(A/P)','LARGE-23''''X36''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10008' OR Name='LARGE-23''''X36''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10008','LARGE-23''''X36''''-(Card)','LARGE-23''''X36''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10019' OR Name='Little-11.50''''X18.00''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10019','Little-11.50''''X18.00''''','Little-11.50''''X18.00''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10021' OR Name='Little-11.50''''X18.00''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10021','Little-11.50''''X18.00''''-(A/P)','Little-11.50''''X18.00''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10020' OR Name='Little-11.50''''X18.00''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10020','Little-11.50''''X18.00''''-(Card)','Little-11.50''''X18.00''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10009' OR Name='Medium-20''''X30''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10009','Medium-20''''X30''''','Medium-20''''X30''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10010' OR Name='Medium-20''''X30''''(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10010','Medium-20''''X30''''(A/P)','Medium-20''''X30''''(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10011' OR Name='Medium-20''''X30''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10011','Medium-20''''X30''''(Card)','Medium-20''''X30''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10012' OR Name='Small-19''''X26''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10012','Small-19''''X26''''','Small-19''''X26''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10017' OR Name='Small-19''''X26''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10017','Small-19''''X26''''-(A/P)','Small-19''''X26''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10013' OR Name='Small-19''''X26''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10013','Small-19''''X26''''(Card)','Small-19''''X26''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10014' OR Name='Web-508mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10014','Web-508mm','Web-508mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10015' OR Name='Web-578mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10015','Web-578mm','Web-578mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Size Master Update Going on!!! "
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10022' OR Name='12.00X18.00-Digital') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10022','12.00X18.00-Digital','12.00X18.00-Digital','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10018' OR Name='Extra Large-28''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10018','Extra Large-28''''X40''''-(Card)','Extra Large-28''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10001' OR Name='Extra Large-28''''X40''''-A/P') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10001','Extra Large-28''''X40''''-A/P','Extra Large-28''''X40''''-A/P','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10002' OR Name='Extra Large-28''''X40''''-A/P_SPL') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10002','Extra Large-28''''X40''''-A/P_SPL','Extra Large-28''''X40''''-A/P_SPL','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10003' OR Name='Extra Large-30''''X40''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10003','Extra Large-30''''X40''''','Extra Large-30''''X40''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10004' OR Name='Extra Large-30''''X40''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10004','Extra Large-30''''X40''''-(A/P)','Extra Large-30''''X40''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10005' OR Name='Extra Large-30''''X40''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10005','Extra Large-30''''X40''''-(Card)','Extra Large-30''''X40''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10006' OR Name='LARGE-23''''X36''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10006','LARGE-23''''X36''''','LARGE-23''''X36''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10007' OR Name='LARGE-23''''X36''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10007','LARGE-23''''X36''''-(A/P)','LARGE-23''''X36''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10008' OR Name='LARGE-23''''X36''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10008','LARGE-23''''X36''''-(Card)','LARGE-23''''X36''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10019' OR Name='Little-11.50''''X18.00''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10019','Little-11.50''''X18.00''''','Little-11.50''''X18.00''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10021' OR Name='Little-11.50''''X18.00''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10021','Little-11.50''''X18.00''''-(A/P)','Little-11.50''''X18.00''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10020' OR Name='Little-11.50''''X18.00''''-(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10020','Little-11.50''''X18.00''''-(Card)','Little-11.50''''X18.00''''-(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10009' OR Name='Medium-20''''X30''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10009','Medium-20''''X30''''','Medium-20''''X30''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10010' OR Name='Medium-20''''X30''''(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10010','Medium-20''''X30''''(A/P)','Medium-20''''X30''''(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10011' OR Name='Medium-20''''X30''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10011','Medium-20''''X30''''(Card)','Medium-20''''X30''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10012' OR Name='Small-19''''X26''''') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10012','Small-19''''X26''''','Small-19''''X26''''','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10017' OR Name='Small-19''''X26''''-(A/P)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10017','Small-19''''X26''''-(A/P)','Small-19''''X26''''-(A/P)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10013' OR Name='Small-19''''X26''''(Card)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10013','Small-19''''X26''''(Card)','Small-19''''X26''''(Card)','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10014' OR Name='Web-508mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10014','Web-508mm','Web-508mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+'   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*10015' OR Name='Web-578mm') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*10015','Web-578mm','Web-578mm','10','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Finish Size Master_TYPE-11
-frmLicenceAgreement.Label2 = "Finish Size Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Finish Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11001' OR Name='05.25x10.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11001','05.25x10.00','05.25x10.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11002' OR Name='12.00X18.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11002','12.00X18.00','12.00X18.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11003' OR Name='12.00X23.00') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11003','12.00X23.00','12.00X23.00','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2767,11 +3376,11 @@ frmLicenceAgreement.Label2 = "Finish Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11094' OR Name='05.75X08.25') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11094','05.75X08.25','05.75X08.25','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*11095' OR Name='21.00X29.70') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*11095','21.00X29.70','21.00X29.70','11','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Genral Accounts Groups_TYPE-12
-frmLicenceAgreement.Label2 = "Account Group Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Account Group Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*12002' OR Name='Account Group') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*12002','Account Group','Account Group','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26031')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99996' OR Name='Transporter') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99996','Transporter','Transporter','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99997' OR Name='Packer') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99997','Packer','Transporter','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99998' OR Name='Deliverer') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99998','Deliverer','Deliverer','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99998' OR Name='Street Vendor') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99998','Street Vendor','Street Vendor','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99999' OR Name='Material Centre') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99999','Material Centre','Material Centre','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*99995' OR Name='Sales Executive') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*99995','Sales Executive','Sales Executive','12','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*12001' OR Name='Binders') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*12001','Binders','Binders','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
@@ -2792,7 +3401,7 @@ frmLicenceAgreement.Label2 = "Account Group Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*12017' OR Name='Cons. Supplier') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*12017','Cons. Supplier','Cons. Supplier','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*12018' OR Name='Plate Maker') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*12018','Plate Maker','Plate Maker','12','0','000001',GetDate(),'NULL',NULL,'N','N','*26030')"
 'Departments_TYPE-13
-frmLicenceAgreement.Label2 = "Departments Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Departments Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*13001' OR Name='Editorial Department') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*13001','Editorial Department','Editorial Department','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*13002' OR Name='Production Department') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*13002','Production Department','Production Department','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*13003' OR Name='Sales Department') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*13003','Sales Department','Sales Department','13','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2817,7 +3426,7 @@ frmLicenceAgreement.Label2 = "Departments Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*14008' OR Name='DTP-Operator') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*14008','DTP-Operator','DTP-Operator','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*14009' OR Name='Proof Reader') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*14009','Proof Reader','Proof Reader','14','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Paper Unit Master_TYPE-15
-frmLicenceAgreement.Label2 = "Paper Units Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Paper Units Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15001' OR Name='Gross') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*15001','Gross','Gross','15','144','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002' OR Name='Packet(100)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*15002','Packet(100)','Packet(100)','15','100','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15003' OR Name='Packet(150)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*15003','Packet(150)','Packet(150)','15','150','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2829,13 +3438,13 @@ frmLicenceAgreement.Label2 = "Paper Units Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15009' OR Name='Sheet') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*15009','Sheet','Sheet','15','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15010' OR Name='Packet (250)') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*15010','Packet (250)','Packet (250)','15','250','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Paper Quality Master_TYPE-16
-frmLicenceAgreement.Label2 = "Paper Quality Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Paper Quality Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16001' OR Name='Coated Matt') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*16001','Coated Matt','Coated Matt','16','0.95','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16002' OR Name='Coated Gloss') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*16002','Coated Gloss','Coated Gloss','16','0.9','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16003' OR Name='Uncoated') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*16003','Uncoated','Uncoated','16','1.35','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16004' OR Name='High Bulk') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*16004','High Bulk','High Bulk','16','1.4','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Narration Master_TYPE-17
- frmLicenceAgreement.Label2 = "Narration Master Update Going on!!! "
+ MdiMainMenu.StatusBar1.Panels(2).Text = "Narration Master Update Going on!!! "
   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*17001' OR Name='1. Printing & Finishing Charges of') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*17001','1. Printing & Finishing Charges of','Printing & Finishing Charges of','17','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*17002' OR Name='1. Text Printing Charges of') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*17002','1. Text Printing Charges of','Text Printing Charges of','17','2','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*17003' OR Name='2. Title Printing Charges of') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*17003','2. Title Printing Charges of','Title Printing Charges of','17','3','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2849,7 +3458,7 @@ frmLicenceAgreement.Label2 = "Paper Quality Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*17011' OR Name='10 Lamination Charges') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*17011','10 Lamination Charges','Lamination Charges','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*17012' OR Name='11 Printed Book') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*17012','11 Printed Book','Printed Book','17','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'HSN MASTER_TYPE-18
- frmLicenceAgreement.Label2 = "HSN Master Update Going on!!! "
+ MdiMainMenu.StatusBar1.Panels(2).Text = "HSN Master Update Going on!!! "
   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*18001' OR Name='998812') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*18001','998812','998812','18','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*18002' OR Name='998912') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*18002','998912','998912','18','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*18003' OR Name='4901') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*18003','4901','4901','18','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2869,7 +3478,7 @@ frmLicenceAgreement.Label2 = "Paper Quality Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*20010' OR Name='Per Bundle') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*20010','Per Bundle','Per Bundle','20','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 
 'Machine Master_TYPE-21
- frmLicenceAgreement.Label2 = "Machine Master Update Going on!!! "
+ MdiMainMenu.StatusBar1.Panels(2).Text = "Machine Master Update Going on!!! "
   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*21046' OR Name='Machine To Be Decide') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*21046','Machine To Be Decide','Machine To Be Decide','21','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*21047' OR Name='RYOBI - 4 Col') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*21047','RYOBI - 4 Col','RYOBI - 4 Col','21','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*21048' OR Name='SM 102 28x40') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*21048','SM 102 28x40','SM 102 28x40','21','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2879,7 +3488,7 @@ frmLicenceAgreement.Label2 = "Paper Quality Master Update Going on!!! "
 '?_TYPE-23
 '?_TYPE-24
 'General  Unit MasterTYPE-25
- frmLicenceAgreement.Label2 = "Unit Master Update Going on!!! "
+ MdiMainMenu.StatusBar1.Panels(2).Text = "Unit Master Update Going on!!! "
   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25001' OR Name='Kilogram') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25001','Kilogram','kg.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25002' OR Name='Gram') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25002','Gram','gm.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25003' OR Name='Milligram') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25003','Milligram','mg.','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -2899,7 +3508,7 @@ frmLicenceAgreement.Label2 = "Paper Quality Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25017' OR Name='Dozen') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25017','Dozen','dozen','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*25018' OR Name='Tonn') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*25018','Tonn','tonn','25','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
 'Account Group_TYPE-26
- frmLicenceAgreement.Label2 = "Account Group MAster Update Going on!!! "
+ MdiMainMenu.StatusBar1.Panels(2).Text = "Account Group MAster Update Going on!!! "
   cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*26001' OR Name='Profit & Loss') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*26001','Profit & Loss','Profit & Loss','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*26002' OR Name='Revenue Accounts') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*26002','Revenue Accounts','Revenue Accounts','26','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*26003' OR Name='Stock-in-hand') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*26003','Stock-in-hand','Stock-in-hand','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26008')"
@@ -2935,66 +3544,66 @@ frmLicenceAgreement.Label2 = "Paper Quality Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*26033' OR Name='Unsecured Loans') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*26033','Unsecured Loans','Unsecured Loans','26','0','000001',GetDate(),'NULL',NULL,'N','N','*26022')"
 
 'Finance Master
-frmLicenceAgreement.Label2 = "Account Master Update Going on!!! "
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01001' OR Name='Cash') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26007') Insert Into AccountMaster VALUES ('*01001','Cash','Cash','1001','*26007','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01002' OR Name='Development Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01002','Development Tax','Development Tax','1002','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01003' OR Name='Edu. Cess on TDS') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01003','Edu. Cess on TDS','Edu. Cess on TDS','1003','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01004' OR Name='Excise Duty') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01004','Excise Duty','Excise Duty','1004','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01005' OR Name='KKC on Service Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01005','KKC on Service Tax','KKC on Service Tax','1005','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01006' OR Name='SBC on Service Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01006','SBC on Service Tax','SBC on Service Tax','1006','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01007' OR Name='Service Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01007','Service Tax','Service Tax','1007','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01008' OR Name='SHE Cess on TDS') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01008','SHE Cess on TDS','SHE Cess on TDS','1008','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01009' OR Name='TDS (Commission or Brokerage)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01009','TDS (Commission or Brokerage)','TDS (Commission or Brokerage)','1009','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01010' OR Name='TDS (Contracts to Individuals/HUF)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01010','TDS (Contracts to Individuals/HUF)','TDS (Contracts to Individuals/HUF)','1010','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01011' OR Name='TDS (Contracts to Others)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01011','TDS (Contracts to Others)','TDS (Contracts to Others)','1011','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01012' OR Name='TDS (Contracts to Transporter)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01012','TDS (Contracts to Transporter)','TDS (Contracts to Transporter)','1012','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01013' OR Name='TDS (Interest from a Banking Co)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01013','TDS (Interest from a Banking Co)','TDS (Interest from a Banking Co)','1013','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01014' OR Name='TDS (Interest from a NonBanking Co)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01014','TDS (Interest from a NonBanking Co)','TDS (Interest from a NonBanking Co)','1014','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01015' OR Name='TDS (Professionals Services)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01015','TDS (Professionals Services)','TDS (Professionals Services)','1015','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01016' OR Name='TDS (Rent of Land)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01016','TDS (Rent of Land)','TDS (Rent of Land)','1016','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01017' OR Name='TDS (Rent of Plant & Machinery)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01017','TDS (Rent of Plant & Machinery)','TDS (Rent of Plant & Machinery)','1017','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01018' OR Name='TDS (Salary)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01018','TDS (Salary)','TDS (Salary)','1018','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01019' OR Name='Advertisement & Publicity') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01019','Advertisement & Publicity','Advertisement & Publicity','1019','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01020' OR Name='Bad Debts Written Off') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01020','Bad Debts Written Off','Bad Debts Written Off','1020','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01021' OR Name='Bank Charges') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01021','Bank Charges','Bank Charges','1021','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01022' OR Name='Books & Periodicals') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01022','Books & Periodicals','Books & Periodicals','1022','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01023' OR Name='Charity & Donations') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01023','Charity & Donations','Charity & Donations','1023','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01024' OR Name='Commission on Sales') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01024','Commission on Sales','Commission on Sales','1024','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01025' OR Name='Conveyance Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01025','Conveyance Expenses','Conveyance Expenses','1025','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01026' OR Name='Customer Entertainment Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01026','Customer Entertainment Expenses','Customer Entertainment Expenses','1026','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01027' OR Name='Depreciation A/c') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01027','Depreciation A/c','Depreciation A/c','1027','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01028' OR Name='Freight & Forwarding Charges') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01028','Freight & Forwarding Charges','Freight & Forwarding Charges','1028','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01029' OR Name='Legal Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01029','Legal Expenses','Legal Expenses','1029','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01030' OR Name='Miscellaneous Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01030','Miscellaneous Expenses','Miscellaneous Expenses','1030','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01031' OR Name='Office Maintenance Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01031','Office Maintenance Expenses','Office Maintenance Expenses','1031','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01032' OR Name='Office Rent') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01032','Office Rent','Office Rent','1032','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01033' OR Name='Postal Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01033','Postal Expenses','Postal Expenses','1033','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01034' OR Name='Printing & Stationery') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01034','Printing & Stationery','Printing & Stationery','1034','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01035' OR Name='Rounded Off') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01035','Rounded Off','Rounded Off','1035','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01036' OR Name='Salary') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01036','Salary','Salary','1036','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01037' OR Name='Sales Promotion Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01037','Sales Promotion Expenses','Sales Promotion Expenses','1037','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01038' OR Name='Service Charges Paid') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01038','Service Charges Paid','Service Charges Paid','1038','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01039' OR Name='Staff Welfare Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01039','Staff Welfare Expenses','Staff Welfare Expenses','1039','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01040' OR Name='Telephone Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01040','Telephone Expenses','Telephone Expenses','1040','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01041' OR Name='Travelling Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01041','Travelling Expenses','Travelling Expenses','1041','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01042' OR Name='Water & Electricity Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01042','Water & Electricity Expenses','Water & Electricity Expenses','1042','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01043' OR Name='Capital Equipments') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01043','Capital Equipments','Capital Equipments','1043','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01044' OR Name='Computers') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01044','Computers','Computers','1044','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01045' OR Name='Furniture & Fixture') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01045','Furniture & Fixture','Furniture & Fixture','1045','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01046' OR Name='Office Equipments') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01046','Office Equipments','Office Equipments','1046','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01047' OR Name='Plant & Machinery') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01047','Plant & Machinery','Plant & Machinery','1047','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01048' OR Name='Service Charges Receipts') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26018') Insert Into AccountMaster VALUES ('*01048','Service Charges Receipts','Service Charges Receipts','1048','*26018','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01049' OR Name='Profit & Loss') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26001') Insert Into AccountMaster VALUES ('*01049','Profit & Loss','Profit & Loss','1049','*26001','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01050' OR Name='Salary & Bonus Payable') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26024') Insert Into AccountMaster VALUES ('*01050','Salary & Bonus Payable','Salary & Bonus Payable','1050','*26024','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01051' OR Name='Purchase') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26025') Insert Into AccountMaster VALUES ('*01051','Purchase','Purchase','1051','*26025','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01052' OR Name='Sales') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26027') Insert Into AccountMaster VALUES ('*01052','Sales','Sales','1052','*26027','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01053' OR Name='Earnest Money') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26029') Insert Into AccountMaster VALUES ('*01053','Earnest Money','Earnest Money','1053','*26029','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01054' OR Name='Stock') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26003') Insert Into AccountMaster VALUES ('*01054','Stock','Stock','1054','*26003','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01055' OR Name='Easy Info Solutions International') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26030') Insert Into AccountMaster VALUES ('*01055','Easy Info Solutions International','Easy Info Solutions International','1055','*26030','E-461, Vijay Marg,Jagjeet Nagar','Delhi-110053','','','','+91-987-342-2907','','sales@easyinfosolution.com ','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
-    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01056' OR Name='XXX Bank') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26004') Insert Into AccountMaster VALUES ('*01056','XXX Bank','XXX Bank','1056','*26004','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0) ELSE  Print 'NOT Exist'"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Account Master Update Going on!!! "
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01001' OR Name='Cash') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26007') Insert Into AccountMaster VALUES ('*01001','Cash','Cash','1001','*26007','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01002' OR Name='Development Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01002','Development Tax','Development Tax','1002','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01003' OR Name='Edu. Cess on TDS') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01003','Edu. Cess on TDS','Edu. Cess on TDS','1003','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01004' OR Name='Excise Duty') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01004','Excise Duty','Excise Duty','1004','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01005' OR Name='KKC on Service Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01005','KKC on Service Tax','KKC on Service Tax','1005','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01006' OR Name='SBC on Service Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01006','SBC on Service Tax','SBC on Service Tax','1006','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01007' OR Name='Service Tax') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01007','Service Tax','Service Tax','1007','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01008' OR Name='SHE Cess on TDS') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01008','SHE Cess on TDS','SHE Cess on TDS','1008','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01009' OR Name='TDS (Commission or Brokerage)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01009','TDS (Commission or Brokerage)','TDS (Commission or Brokerage)','1009','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01010' OR Name='TDS (Contracts to Individuals/HUF)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01010','TDS (Contracts to Individuals/HUF)','TDS (Contracts to Individuals/HUF)','1010','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01011' OR Name='TDS (Contracts to Others)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01011','TDS (Contracts to Others)','TDS (Contracts to Others)','1011','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01012' OR Name='TDS (Contracts to Transporter)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01012','TDS (Contracts to Transporter)','TDS (Contracts to Transporter)','1012','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01013' OR Name='TDS (Interest from a Banking Co)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01013','TDS (Interest from a Banking Co)','TDS (Interest from a Banking Co)','1013','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01014' OR Name='TDS (Interest from a NonBanking Co)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01014','TDS (Interest from a NonBanking Co)','TDS (Interest from a NonBanking Co)','1014','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01015' OR Name='TDS (Professionals Services)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01015','TDS (Professionals Services)','TDS (Professionals Services)','1015','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01016' OR Name='TDS (Rent of Land)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01016','TDS (Rent of Land)','TDS (Rent of Land)','1016','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01017' OR Name='TDS (Rent of Plant & Machinery)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01017','TDS (Rent of Plant & Machinery)','TDS (Rent of Plant & Machinery)','1017','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01018' OR Name='TDS (Salary)') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26011') Insert Into AccountMaster VALUES ('*01018','TDS (Salary)','TDS (Salary)','1018','*26011','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01019' OR Name='Advertisement & Publicity') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01019','Advertisement & Publicity','Advertisement & Publicity','1019','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01020' OR Name='Bad Debts Written Off') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01020','Bad Debts Written Off','Bad Debts Written Off','1020','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01021' OR Name='Bank Charges') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01021','Bank Charges','Bank Charges','1021','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01022' OR Name='Books & Periodicals') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01022','Books & Periodicals','Books & Periodicals','1022','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01023' OR Name='Charity & Donations') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01023','Charity & Donations','Charity & Donations','1023','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01024' OR Name='Commission on Sales') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01024','Commission on Sales','Commission on Sales','1024','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01025' OR Name='Conveyance Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01025','Conveyance Expenses','Conveyance Expenses','1025','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01026' OR Name='Customer Entertainment Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01026','Customer Entertainment Expenses','Customer Entertainment Expenses','1026','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01027' OR Name='Depreciation A/c') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01027','Depreciation A/c','Depreciation A/c','1027','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01028' OR Name='Freight & Forwarding Charges') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01028','Freight & Forwarding Charges','Freight & Forwarding Charges','1028','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01029' OR Name='Legal Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01029','Legal Expenses','Legal Expenses','1029','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01030' OR Name='Miscellaneous Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01030','Miscellaneous Expenses','Miscellaneous Expenses','1030','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01031' OR Name='Office Maintenance Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01031','Office Maintenance Expenses','Office Maintenance Expenses','1031','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01032' OR Name='Office Rent') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01032','Office Rent','Office Rent','1032','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01033' OR Name='Postal Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01033','Postal Expenses','Postal Expenses','1033','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01034' OR Name='Printing & Stationery') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01034','Printing & Stationery','Printing & Stationery','1034','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01035' OR Name='Rounded Off') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01035','Rounded Off','Rounded Off','1035','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01036' OR Name='Salary') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01036','Salary','Salary','1036','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01037' OR Name='Sales Promotion Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01037','Sales Promotion Expenses','Sales Promotion Expenses','1037','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01038' OR Name='Service Charges Paid') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01038','Service Charges Paid','Service Charges Paid','1038','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01039' OR Name='Staff Welfare Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01039','Staff Welfare Expenses','Staff Welfare Expenses','1039','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01040' OR Name='Telephone Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01040','Telephone Expenses','Telephone Expenses','1040','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01041' OR Name='Travelling Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01041','Travelling Expenses','Travelling Expenses','1041','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01042' OR Name='Water & Electricity Expenses') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26013') Insert Into AccountMaster VALUES ('*01042','Water & Electricity Expenses','Water & Electricity Expenses','1042','*26013','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01043' OR Name='Capital Equipments') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01043','Capital Equipments','Capital Equipments','1043','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01044' OR Name='Computers') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01044','Computers','Computers','1044','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01045' OR Name='Furniture & Fixture') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01045','Furniture & Fixture','Furniture & Fixture','1045','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01046' OR Name='Office Equipments') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01046','Office Equipments','Office Equipments','1046','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01047' OR Name='Plant & Machinery') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26016') Insert Into AccountMaster VALUES ('*01047','Plant & Machinery','Plant & Machinery','1047','*26016','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01048' OR Name='Service Charges Receipts') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26018') Insert Into AccountMaster VALUES ('*01048','Service Charges Receipts','Service Charges Receipts','1048','*26018','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01049' OR Name='Profit & Loss') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26001') Insert Into AccountMaster VALUES ('*01049','Profit & Loss','Profit & Loss','1049','*26001','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01050' OR Name='Salary & Bonus Payable') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26024') Insert Into AccountMaster VALUES ('*01050','Salary & Bonus Payable','Salary & Bonus Payable','1050','*26024','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01051' OR Name='Purchase') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26025') Insert Into AccountMaster VALUES ('*01051','Purchase','Purchase','1051','*26025','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01052' OR Name='Sales') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26027') Insert Into AccountMaster VALUES ('*01052','Sales','Sales','1052','*26027','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01053' OR Name='Earnest Money') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26029') Insert Into AccountMaster VALUES ('*01053','Earnest Money','Earnest Money','1053','*26029','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01054' OR Name='Stock') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26003') Insert Into AccountMaster VALUES ('*01054','Stock','Stock','1054','*26003','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01055' OR Name='Easy Info Solutions International') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26030') Insert Into AccountMaster VALUES ('*01055','Easy Info Solutions International','Easy Info Solutions International','1055','*26030','E-461, Vijay Marg,Jagjeet Nagar','Delhi-110053','','','','+91-987-342-2907','','sales@easyinfosolution.com ','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
+    cnDatabase.Execute "IF EXISTS (SELECT * FROM AccountMaster WHERE Code='*01056' OR Name='XXX Bank') Print 'Exist' ELSE  IF EXISTS (SELECT CODE FROM GeneralMaster Where Code='*26004') Insert Into AccountMaster VALUES ('*01056','XXX Bank','XXX Bank','1056','*26004','','','','','','','','','1','000001',GetDate(),NULL,NULL,'N','N','',0,'*56000') ELSE  Print 'NOT Exist'"
 
 'Booking Route Master
-frmLicenceAgreement.Label2 = "Booking Route Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Booking Route Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookingRouteMaster' AND COLUMN_NAME = 'Code') Print 'Col_Exist' ELSE CREATE TABLE dbo.BookingRouteMaster (Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,PrintName nvarchar(40) NOT NULL,Rate decimal(12, 2) NOT NULL,Printstatus nvarchar(1) NOT NULL)  ON [PRIMARY] ALTER TABLE dbo.BookingRouteMaster SET (LOCK_ESCALATION = TABLE)"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM BookingRouteMaster WHERE Code='*00001' OR Name='NOIDA-NOIDA') Print 'Exist' ELSE Insert Into BookingRouteMaster VALUES ('*00001','NOIDA-NOIDA','NOIDA-NOIDA','24.5','N')"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM BookingRouteMaster WHERE Code='*00002' OR Name='NOIDA-DELHI') Print 'Exist' ELSE Insert Into BookingRouteMaster VALUES ('*00002','NOIDA-DELHI','NOIDA-DELHI','40','N')"
@@ -3003,7 +3612,7 @@ frmLicenceAgreement.Label2 = "Booking Route Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM BookingRouteMaster WHERE Code='*00005' OR Name='Local-NCR') Print 'Exist' ELSE Insert Into BookingRouteMaster VALUES ('*00005','Local-NCR','Local-NCR','30','N')"
 
 'Element Master
-frmLicenceAgreement.Label2 = "Element Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Element Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00011' OR NAME='Text-1') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00011','Text-1','Text-1','Single Sheet','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00012' OR NAME='Text-2') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00012','Text-2','Text-2','Multi Forms','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00013' OR NAME='Text-3') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00013','Text-3','Text-3','Multi Forms','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
@@ -3035,7 +3644,7 @@ frmLicenceAgreement.Label2 = "Element Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00045' OR NAME='Envelope') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00045','Envelope','Envelope','Single Sheet','2','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
 
 'Finish Size Child
-frmLicenceAgreement.Label2 = "Finish Size Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Finish Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01039') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01017') IF EXISTS (Select Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize As FSIZE From FinishSizeChild Where (Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize)=('*11011*010391616*01017')) Print 'Finish Size Exist' ELSE Insert Into FinishSizeChild VALUES ('*11011','*01039','16','16','*01017') ELSE Print 'Titlt Size Not Exist' Else Print 'Text Size Not Exist'"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01030') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01031') IF EXISTS (Select Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize As FSIZE From FinishSizeChild Where (Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize)=('*11012*010301616*01031')) Print 'Finish Size Exist' ELSE Insert Into FinishSizeChild VALUES ('*11012','*01030','16','16','*01031') ELSE Print 'Titlt Size Not Exist' Else Print 'Text Size Not Exist'"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01064') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01031') IF EXISTS (Select Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize As FSIZE From FinishSizeChild Where (Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize)=('*11012*010643216*01031')) Print 'Finish Size Exist' ELSE Insert Into FinishSizeChild VALUES ('*11012','*01064','32','16','*01031') ELSE Print 'Titlt Size Not Exist' Else Print 'Text Size Not Exist'"
@@ -3103,7 +3712,7 @@ frmLicenceAgreement.Label2 = "Finish Size Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01045') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01047') IF EXISTS (Select Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize As FSIZE From FinishSizeChild Where (Code+[TextSIZE]+convert(nvarchar,[UPS/Form])+convert(nvarchar,[Ups/BdgForm])+TitleSize)=('*11095*0104588*01047')) Print 'Finish Size Exist' ELSE Insert Into FinishSizeChild VALUES ('*11095','*01045','8','8','*01047') ELSE Print 'Titlt Size Not Exist' Else Print 'Text Size Not Exist'"
 
 'SizeGroupChild
-frmLicenceAgreement.Label2 = "Size Group Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Size Group Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01067') IF EXISTS(Select Code+Size AS SGChild From SizeGroupChild Where Code+Size='*10003*01067') Print 'Size Group Code Exist' ELSE Insert Into SizeGroupChild VALUES ('*10003','*01067')  Else Print 'Size NOT Exist' "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01068') IF EXISTS(Select Code+Size AS SGChild From SizeGroupChild Where Code+Size='*10003*01068') Print 'Size Group Code Exist' ELSE Insert Into SizeGroupChild VALUES ('*10003','*01068')  Else Print 'Size NOT Exist' "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01070') IF EXISTS(Select Code+Size AS SGChild From SizeGroupChild Where Code+Size='*10003*01070') Print 'Size Group Code Exist' ELSE Insert Into SizeGroupChild VALUES ('*10003','*01070')  Else Print 'Size NOT Exist' "
@@ -3146,7 +3755,7 @@ frmLicenceAgreement.Label2 = "Size Group Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*01011') IF EXISTS(Select Code+Size AS SGChild From SizeGroupChild Where Code+Size='*10020*01011') Print 'Size Group Code Exist' ELSE Insert Into SizeGroupChild VALUES ('*10020','*01011')  Else Print 'Size NOT Exist' "
 
 'Tax Master
-frmLicenceAgreement.Label2 = "Tax Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Tax Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00001' OR Name='Local GST 12%') Print 'Exist' ELSE Insert Into TaxMaster VALUES ('*00001','Local GST 12%','Local GST 12%','L','6','6',0,'000001',GetDate(),'NULL',NULL,'N','N')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00002' OR Name='IGST 12%') Print 'Exist' ELSE Insert Into TaxMaster VALUES ('*00002','IGST 12%','IGST 12%','I','0','0',12,'000001',GetDate(),'NULL',NULL,'N','N')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00003' OR Name='IGST 5%') Print 'Exist' ELSE Insert Into TaxMaster VALUES ('*00003','IGST 5%','IGST 5%','I','0','0',5,'000001',GetDate(),'NULL',NULL,'N','N')"
@@ -3157,7 +3766,7 @@ frmLicenceAgreement.Label2 = "Tax Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM TaxMaster WHERE Code='*00008' OR Name='IGST NIL') Print 'Exist' ELSE Insert Into TaxMaster VALUES ('*00008','IGST NIL','IGST NIL','I','0','0',0,'000001',GetDate(),'NULL',NULL,'N','N')"
 
 'CompChild
-frmLicenceAgreement.Label2 = "Company Child Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Company Child Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='01') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','01','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/Pur/','/20-21','Purchase')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='02') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','02','1. Please send two copies of invoice.','2. Please notify us immediately if ','you are unable to ship as specified.','3. Enter this order in accordance, with the price,terms, ','delivery method and specification Listed above.','4. All disputes are subject to Our Jurisdiction Only','','" & CompAlias & "'+'/PR/','/20-21','Purchase Return')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='03') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','03','1. All disputes are subject to Our Jurisdiction Only','2. Rejection, if any shall be informed within one week from','the date of receipt in writing giving reason of rejection.','3. Please, Receive Following Goods in Good Condition.','after 7 days of the date of this Bill','','','" & CompAlias & "'+'/SR/','/20-21','Sale Return')"
@@ -3258,53 +3867,54 @@ frmLicenceAgreement.Label2 = "Company Child Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='98') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','98','','','','','','','','','','')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM CompChild WHERE Code='000001' AND VchType='99') Print 'Exist' ELSE Insert Into CompChild VALUES ('000001','99','','','','','','','','','','')"
 'Vch Series Master
-frmLicenceAgreement.Label2 = "Voucher Series Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Voucher Series Master Update Going on!!! "
    cnDatabase.Execute "IF COL_LENGTH('VchSeriesMaster', 'VchName') IS NOT NULL PRINT 'Exists' ELSE Alter Table VchSeriesMaster Add VchName nvarchar(40) NOT NULL CONSTRAINT df_VchName DEFAULT '' "
-   cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'VchSeriesMaster' AND COLUMN_NAME = 'Code') Print 'Col_Exist' ELSE CREATE TABLE dbo.VchSeriesMaster (Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,VchType nvarchar(4) NOT NULL,Prefix nvarchar(20) NULL,Suffix nvarchar(20) NULL,VchNumbering Char(1) NOT NULL,VchName nvarchar(40) NOT NULL CONSTRAINT df_VchName DEFAULT '' )  ON [PRIMARY] ALTER TABLE dbo.VchSeriesMaster SET (LOCK_ESCALATION = TABLE)"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00101' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00101','Main','01PF','" & CompAlias & "'+'/','/Purc','A','Purchase')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00102' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00102','Main','01PU','" & CompAlias & "'+'/','/PrJU','A','Purchase Unit Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00103' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00103','Main','01PC','" & CompAlias & "'+'/','/PrJC','A','Purchase Jobwork Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00104' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00104','Main','01PJ','" & CompAlias & "'+'/','/PrJW','A','Purchase Jobwork')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00201' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00201','Main','02OF','" & CompAlias & "'+'/','/PrRt','A','Purchase Return')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00202' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00202','Main','02OU','" & CompAlias & "'+'/','/PrRtJU','A','Purchase Return Unit Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00203' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00203','Main','02OC','" & CompAlias & "'+'/','/PrRtJC','A','Purchase Return Jobwork Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00204' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00204','Main','02OJ','" & CompAlias & "'+'/','/PrRtJW','A','Purchase Return Jobwork')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00301' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00301','Main','03TF','" & CompAlias & "'+'/','/SlRt','A','Sale Return')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00302' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00302','Main','03TU','" & CompAlias & "'+'/','/SlRtJU','A','Sale Return Unit Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00303' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00303','Main','03TC','" & CompAlias & "'+'/','/SlRtJC','A','Sale Return Jobwork Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00304' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00304','Main','03TJ','" & CompAlias & "'+'/','/SlRtJW','A','Sale Return Jobwork')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00401' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00401','Main','04SF','" & CompAlias & "'+'/','/Sale','A','Sales')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00402' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00402','Main','04SU','" & CompAlias & "'+'/','/SlJU','A','Sales Unit Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00403' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00403','Main','04SC','" & CompAlias & "'+'/','/SlJC','A','Sales Jobwork Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00404' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00404','Main','04SJ','" & CompAlias & "'+'/','/SlJW','A','Sales Jobwork')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00501' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00501','Main','05RF','" & CompAlias & "'+'/','/MtRc','A','Purchase Challan IN')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00502' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00502','Main','05FR','" & CompAlias & "'+'/','/MtRcJW','A','Purchase Challan IN (Jobwork)')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00601' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00601','Main','06IF','" & CompAlias & "'+'/','/PrRtC','A','Purchase Challan Out')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00602' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00602','Main','06FI','" & CompAlias & "'+'/','/PrRtCJW','A','Purchase Challan Out (Jobworj)')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00701' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00701','Main','07RF','" & CompAlias & "'+'/','/SlRtC','A','Sale Challan IN')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00702' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00702','Main','07FR','" & CompAlias & "'+'/','/SlRtCJW','A','Sale Challan IN (Jobwork)')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00801' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00801','Main','08IF','" & CompAlias & "'+'/','/MtIs','A','Sale Challan Out')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00802' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00802','Main','08FI','" & CompAlias & "'+'/','/MtIsJW','A','Sale Challan Out (Jobwork)')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*01701' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*01701','Main','17PO','" & CompAlias & "'+'/','/PO','A','Purchase Order')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*01801' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*01801','Main','18SO','" & CompAlias & "'+'/','/SO','A','Sale Order')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*01901' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*01901','Main','19ST','" & CompAlias & "'+'/','/STrn','A','Stock Tranfer')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02001' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02001','Main','20JR','" & CompAlias & "'+'/','/SJrnl','A','Stock Genral')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02101' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02101','Main','21JR','" & CompAlias & "'+'/','/SJrnl','A','Promotional Sale Challan Out')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02201' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02201','Main','22JR','" & CompAlias & "'+'/','/SJrnl','A','Promotional Purchase Challan Out')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02301' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02301','Main','23PQ','" & CompAlias & "'+'/','/PQ','A','Purchase Quotation')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02302' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02302','Main','23UZ','" & CompAlias & "'+'/','/PQU','A','Purchase Quotation Unit Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02303' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02303','Main','23CZ','" & CompAlias & "'+'/','/PQC','A','Purchase Quotation Jobwork Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02304' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02304','Main','23JZ','" & CompAlias & "'+'/','/PQJ','A','Purchase Quotation Jobwork')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02305' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02305','Main','24SQ','" & CompAlias & "'+'/','/SQ','A','Sales Quotation')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02306' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02306','Main','24UQ','" & CompAlias & "'+'/','/SQU','A','Sales Quotation Unit Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02307' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02307','Main','24CQ','" & CompAlias & "'+'/','/SQC','A','Sales Quotation Jobwork Cost')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02308' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02308','Main','24JQ','" & CompAlias & "'+'/','/SQJ','A','Sales Quotation Jobwork')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05101' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05101','Main','51PI','" & CompAlias & "'+'/','/Pymt','A','Payments')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05201' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05201','Main','52PR','" & CompAlias & "'+'/','/Rcpt','A','Receipts')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05301' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05301','Main','53JE','" & CompAlias & "'+'/','/Jrnl','A','Journal')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05401' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05401','Main','54CE','" & CompAlias & "'+'/','/Cntr','A','Countra')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05501' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05501','Main','55CN','" & CompAlias & "'+'/','/CrNt','A','Credit Note')"
-   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05601' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05601','Main','56DN','" & CompAlias & "'+'/','/DrNt','A','Debit Note')"
+   cnDatabase.Execute "IF COL_LENGTH('VchSeriesMaster', 'FYCode') IS NOT NULL PRINT 'Exists' ELSE Alter Table VchSeriesMaster Add FYCode nvarchar(6) NOT NULL CONSTRAINT df_FYCode DEFAULT '' "
+   cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'VchSeriesMaster' AND COLUMN_NAME = 'Code') Print 'Col_Exist' ELSE CREATE TABLE dbo.VchSeriesMaster (Code nvarchar(6) NOT NULL,Name nvarchar(40) NOT NULL,VchType nvarchar(4) NOT NULL,Prefix nvarchar(20) NULL,Suffix nvarchar(20) NULL,VchNumbering Char(1) NOT NULL,VchName nvarchar(40) NOT NULL CONSTRAINT df_VchName DEFAULT '' ,FYCode nvarchar(6) NOT NULL)  ON [PRIMARY] ALTER TABLE dbo.VchSeriesMaster SET (LOCK_ESCALATION = TABLE)"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00101' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00101','Main','01PF','" & CompAlias & "'+'/','/Purc','A','Purchase','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00102' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00102','Main','01PU','" & CompAlias & "'+'/','/PrJU','A','Purchase Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00103' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00103','Main','01PC','" & CompAlias & "'+'/','/PrJC','A','Purchase Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00104' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00104','Main','01PJ','" & CompAlias & "'+'/','/PrJW','A','Purchase Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00201' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00201','Main','02OF','" & CompAlias & "'+'/','/PrRt','A','Purchase Return','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00202' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00202','Main','02OU','" & CompAlias & "'+'/','/PrRtJU','A','Purchase Return Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00203' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00203','Main','02OC','" & CompAlias & "'+'/','/PrRtJC','A','Purchase Return Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00204' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00204','Main','02OJ','" & CompAlias & "'+'/','/PrRtJW','A','Purchase Return Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00301' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00301','Main','03TF','" & CompAlias & "'+'/','/SlRt','A','Sale Return','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00302' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00302','Main','03TU','" & CompAlias & "'+'/','/SlRtJU','A','Sale Return Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00303' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00303','Main','03TC','" & CompAlias & "'+'/','/SlRtJC','A','Sale Return Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00304' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00304','Main','03TJ','" & CompAlias & "'+'/','/SlRtJW','A','Sale Return Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00401' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00401','Main','04SF','" & CompAlias & "'+'/','/Sale','A','Sales','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00402' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00402','Main','04SU','" & CompAlias & "'+'/','/SlJU','A','Sales Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00403' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00403','Main','04SC','" & CompAlias & "'+'/','/SlJC','A','Sales Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00404' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00404','Main','04SJ','" & CompAlias & "'+'/','/SlJW','A','Sales Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00501' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00501','Main','05RF','" & CompAlias & "'+'/','/MtRc','A','Purchase Challan IN','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00502' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00502','Main','05FR','" & CompAlias & "'+'/','/MtRcJW','A','Purchase Challan IN (Jobwork)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00601' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00601','Main','06IF','" & CompAlias & "'+'/','/PrRtC','A','Purchase Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00602' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00602','Main','06FI','" & CompAlias & "'+'/','/PrRtCJW','A','Purchase Challan Out (Jobworj)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00701' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00701','Main','07RF','" & CompAlias & "'+'/','/SlRtC','A','Sale Challan IN','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00702' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00702','Main','07FR','" & CompAlias & "'+'/','/SlRtCJW','A','Sale Challan IN (Jobwork)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00801' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00801','Main','08IF','" & CompAlias & "'+'/','/MtIs','A','Sale Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*00802' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*00802','Main','08FI','" & CompAlias & "'+'/','/MtIsJW','A','Sale Challan Out (Jobwork)','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*01701' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*01701','Main','17PO','" & CompAlias & "'+'/','/PO','A','Purchase Order','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*01801' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*01801','Main','18SO','" & CompAlias & "'+'/','/SO','A','Sale Order','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*01901' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*01901','Main','19ST','" & CompAlias & "'+'/','/STrn','A','Stock Tranfer','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02001' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02001','Main','20JR','" & CompAlias & "'+'/','/SJrnl','A','Stock Genral','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02101' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02101','Main','21JR','" & CompAlias & "'+'/','/SJrnl','A','Promotional Sale Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02201' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02201','Main','22JR','" & CompAlias & "'+'/','/SJrnl','A','Promotional Purchase Challan Out','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02301' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02301','Main','23PQ','" & CompAlias & "'+'/','/PQ','A','Purchase Quotation','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02302' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02302','Main','23UZ','" & CompAlias & "'+'/','/PQU','A','Purchase Quotation Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02303' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02303','Main','23CZ','" & CompAlias & "'+'/','/PQC','A','Purchase Quotation Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02304' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02304','Main','23JZ','" & CompAlias & "'+'/','/PQJ','A','Purchase Quotation Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02305' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02305','Main','24SQ','" & CompAlias & "'+'/','/SQ','A','Sales Quotation','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02306' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02306','Main','24UQ','" & CompAlias & "'+'/','/SQU','A','Sales Quotation Unit Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02307' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02307','Main','24CQ','" & CompAlias & "'+'/','/SQC','A','Sales Quotation Jobwork Cost','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*02308' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*02308','Main','24JQ','" & CompAlias & "'+'/','/SQJ','A','Sales Quotation Jobwork','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05101' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05101','Main','51PI','" & CompAlias & "'+'/','/Pymt','A','Payments','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05201' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05201','Main','52PR','" & CompAlias & "'+'/','/Rcpt','A','Receipts','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05301' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05301','Main','53JE','" & CompAlias & "'+'/','/Jrnl','A','Journal','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05401' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05401','Main','54CE','" & CompAlias & "'+'/','/Cntr','A','Countra','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05501' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05501','Main','55CN','" & CompAlias & "'+'/','/CrNt','A','Credit Note','" & FYCode & "')"
+   cnDatabase.Execute "IF EXISTS (SELECT *FROM VchSeriesMaster WHERE Code='*05601' AND NAME='Main') Print 'Exist' ELSE Insert Into VchSeriesMaster VALUES ('*05601','Main','56DN','" & CompAlias & "'+'/','/DrNt','A','Debit Note','" & FYCode & "')"
 'Update Paper Unit Code
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Gross' AND TYPE=15) Update PaperMaster Set UOM='*15001' Where UOM=(Select Code From GeneralMaster Where NAME='Gross' AND Type=15) ELSE Print 'UOM NOT Exist' ;    IF EXISTS (Select * From GeneralMaster Where NAME='Gross' AND TYPE=15) Update GeneralMaster Set Code='*15001' Where Code=(Select Code From GeneralMaster Where NAME='Gross' AND Type=15) ELSE Print 'UOM NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Packet(100)' AND TYPE=15) Update PaperMaster Set UOM='*15002' Where UOM=(Select Code From GeneralMaster Where NAME='Packet(100)' AND Type=15) ELSE Print 'UOM NOT Exist' ;    IF EXISTS (Select * From GeneralMaster Where NAME='Packet(100)' AND TYPE=15) Update GeneralMaster Set Code='*15002' Where Code=(Select Code From GeneralMaster Where NAME='Packet(100)' AND Type=15) ELSE Print 'UOM NOT Exist'"
@@ -3322,7 +3932,7 @@ frmLicenceAgreement.Label2 = "Voucher Series Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Uncoated' AND TYPE=16) Update PaperMaster Set Quality='*16003' Where Quality=(Select Code From GeneralMaster Where NAME='Uncoated' AND Type=16) ELSE Print 'Quality NOT Exist' ;    IF EXISTS (Select * From GeneralMaster Where NAME='Uncoated' AND TYPE=16) Update GeneralMaster Set Code='*16003' Where Code=(Select Code From GeneralMaster Where NAME='Uncoated' AND Type=16) ELSE Print 'Quality NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='High Bulk' AND TYPE=16) Update PaperMaster Set Quality='*16004' Where Quality=(Select Code From GeneralMaster Where NAME='High Bulk' AND Type=16) ELSE Print 'Quality NOT Exist' ;    IF EXISTS (Select * From GeneralMaster Where NAME='High Bulk' AND TYPE=16) Update GeneralMaster Set Code='*16004' Where Code=(Select Code From GeneralMaster Where NAME='High Bulk' AND Type=16) ELSE Print 'Quality NOT Exist'"
 'Paper Master
-frmLicenceAgreement.Label2 = "Paper Master Update Going on!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Paper Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM PaperMaster WHERE Code='*00001') Print 'Code Exist' IF EXISTS (SELECT *FROM PaperMaster WHERE NAME='Art Card-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-Gloss') Print 'Paper Master Exist' ELSE IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16002') Insert Into PaperMaster VALUES ('*00001','Art Card-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-Gloss','Art Card-200gsm-20.00X30.00in²-(50.80X76.20cm²)-7.742kg-Gloss','S','B','50.8','76.2','20','30','*15002','200','Art Card','Gloss','7.742','6','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N') ELSE Print 'Quality Code NOT Exist' ELSE Print 'UOM Code NOT Exist'"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM PaperMaster WHERE Code='*00002') Print 'Code Exist' IF EXISTS (SELECT *FROM PaperMaster WHERE NAME='Art Card-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-Gloss') Print 'Paper Master Exist' ELSE IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16002') Insert Into PaperMaster VALUES ('*00002','Art Card-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-Gloss','Art Card-210gsm-20.00X30.00in²-(50.80X76.20cm²)-8.129kg-Gloss','S','B','50.8','76.2','20','30','*15002','210','Art Card','Gloss','8.129','6','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N') ELSE Print 'Quality Code NOT Exist' ELSE Print 'UOM Code NOT Exist'"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM PaperMaster WHERE Code='*00003') Print 'Code Exist' IF EXISTS (SELECT *FROM PaperMaster WHERE NAME='Art Card-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-Gloss') Print 'Paper Master Exist' ELSE IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16002') Insert Into PaperMaster VALUES ('*00003','Art Card-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-Gloss','Art Card-220gsm-20.00X30.00in²-(50.80X76.20cm²)-8.516kg-Gloss','S','B','50.8','76.2','20','30','*15002','220','Art Card','Gloss','8.516','6','64','*16002','0.9','A','000001',GetDate(),'NULL',NULL,'N','N') ELSE Print 'Quality Code NOT Exist' ELSE Print 'UOM Code NOT Exist'"
@@ -3365,10 +3975,10 @@ frmLicenceAgreement.Label2 = "Paper Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM PaperMaster WHERE Code='*00040') Print 'Code Exist' IF EXISTS (SELECT *FROM PaperMaster WHERE NAME='SBS-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-C1S') Print 'Paper Master Exist' ELSE IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16003') Insert Into PaperMaster VALUES ('*00040','SBS-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-C1S','SBS-210gsm-23.00X36.00in²-(58.42X91.44cm²)-11.218kg-C1S','S','B','58.42','91.44','23','36','*15002','210','SBS','C1S','11.218','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N') ELSE Print 'Quality Code NOT Exist' ELSE Print 'UOM Code NOT Exist'"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM PaperMaster WHERE Code='*00041') Print 'Code Exist' IF EXISTS (SELECT *FROM PaperMaster WHERE NAME='SBS-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-C1S') Print 'Paper Master Exist' ELSE IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16003') Insert Into PaperMaster VALUES ('*00041','SBS-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-C1S','SBS-220gsm-23.00X36.00in²-(58.42X91.44cm²)-11.752kg-C1S','S','B','58.42','91.44','23','36','*15002','220','SBS','C1S','11.752','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N') ELSE Print 'Quality Code NOT Exist' ELSE Print 'UOM Code NOT Exist'"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM PaperMaster WHERE Code='*00042') Print 'Code Exist' IF EXISTS (SELECT *FROM PaperMaster WHERE NAME='SBS-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-C1S') Print 'Paper Master Exist' ELSE IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*15002') IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*16003') Insert Into PaperMaster VALUES ('*00042','SBS-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-C1S','SBS-250gsm-23.00X36.00in²-(58.42X91.44cm²)-13.355kg-C1S','S','B','58.42','91.44','23','36','*15002','250','SBS','C1S','13.355','4','64','*16003','1.35','A','000001',GetDate(),'NULL',NULL,'N','N') ELSE Print 'Quality Code NOT Exist' ELSE Print 'UOM Code NOT Exist'"
-frmLicenceAgreement.Label2 = " Update Done!!! "
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _01 ...Done!!! "
 End Function
 Public Function UpdateMinor02()
-'Update VchSeries And AutoNo
+MdiMainMenu.StatusBar1.Panels(2).Text = "Update VchSeries And AutoNo"
    cnDatabase.Execute "UPDATE JobworkBVParent SET VchSeries='*00101',AutoVchNo=REPLICATE(' ',10-LEN(LTRIM(Name)))+LTRIM(Name) WHERE Left(Type,2)='01' AND Right(Type,2)='PF' And VchSeries is null"
    cnDatabase.Execute "UPDATE JobworkBVParent SET VchSeries='*00102',AutoVchNo=REPLICATE(' ',10-LEN(LTRIM(Name)))+LTRIM(Name) WHERE Left(Type,2)='01' AND Right(Type,2)='PU' And VchSeries is null"
    cnDatabase.Execute "UPDATE JobworkBVParent SET VchSeries='*00103',AutoVchNo=REPLICATE(' ',10-LEN(LTRIM(Name)))+LTRIM(Name) WHERE Left(Type,2)='01' AND Right(Type,2)='PC' And VchSeries is null"
@@ -3413,19 +4023,21 @@ Public Function UpdateMinor02()
    cnDatabase.Execute "UPDATE JobworkBVParent SET VchSeries='*05401',AutoVchNo=REPLICATE(' ',10-LEN(LTRIM(Name)))+LTRIM(Name) WHERE Left(Type,2)='54' AND Right(Type,2)='CE' And VchSeries is null"
    cnDatabase.Execute "UPDATE JobworkBVParent SET VchSeries='*05501',AutoVchNo=REPLICATE(' ',10-LEN(LTRIM(Name)))+LTRIM(Name) WHERE Left(Type,2)='55' AND Right(Type,2)='CN' And VchSeries is null"
    cnDatabase.Execute "UPDATE JobworkBVParent SET VchSeries='*05601',AutoVchNo=REPLICATE(' ',10-LEN(LTRIM(Name)))+LTRIM(Name) WHERE Left(Type,2)='56' AND Right(Type,2)='DN' And VchSeries is null"
-''Account Masters
-    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='000000') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('000000','" & Trim(rstCompanyMaster.Fields("Name").Value) & "','" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "','000000','*12002','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0)"
-    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00001') PRINT 'Exists' Else Insert Into AccountMaster VALUES ('*00001','Rate Master','Rate Master','1002','*12002','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0)"
-    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00002') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00002','Main Godown','Main Godown','1003','*99999','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0)"
-    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00003') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00003','Self Transport','Self Transport','1004','*99996','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0)"
-    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00004') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00004','Self Packer','Self Packer','1005','*99997','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0)"
-    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00005') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00005','Direct','Direct','1006','*99998','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0)"
-'Update Material Centre
+MdiMainMenu.StatusBar1.Panels(2).Text = "Accounts Masters Update Going on!!! "
+    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='000000') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('000000','" & Trim(rstCompanyMaster.Fields("Name").Value) & "','" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "','000000','*12002','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'*56000')"
+    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00001') PRINT 'Exists' Else Insert Into AccountMaster VALUES ('*00001','Rate Master','Rate Master','1002','*12002','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'*56000')"
+    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00002') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00002','Main Godown','Main Godown','1003','*99999','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'*56000')"
+    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00003') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00003','Self Transport','Self Transport','1004','*99996','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'*56000')"
+    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00004') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00004','Self Packer','Self Packer','1005','*99997','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'*56000')"
+    cnDatabase.Execute "IF Exists (Select * From AccountMaster Where Code='*00005') PRINT 'Exists' ELSE Insert Into AccountMaster VALUES ('*00005','Direct','Direct','1006','*99998','" & Trim(rstCompanyMaster.Fields("Address1").Value) & "','" & Trim(rstCompanyMaster.Fields("Address2").Value) & "','" & Trim(rstCompanyMaster.Fields("Address3").Value) & "','" & Trim(rstCompanyMaster.Fields("Address4").Value) & "','" & Trim(rstCompanyMaster.Fields("Phone").Value) & "','" & Trim(rstCompanyMaster.Fields("Mobile").Value) & "','" & Trim(rstCompanyMaster.Fields("GSTIN").Value) & "','" & Trim(rstCompanyMaster.Fields("eMail").Value) & "', 1,'000001',GetDate(),Null,Null,'N','N','',0,'*56000')"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Material Centre Update Going on!!! "
     cnDatabase.Execute "IF NOT Exists (Select * From JobworkBVParent WHERE MaterialCentre is null) PRINT 'NOT_Exists' ELSE UPDATE JobworkBVParent SET MaterialCentre='*00002' WHERE MaterialCentre is null"
 'Update JobworkBV Parent Name Field CHARACTER_MAXIMUM_LENGTH
     cnDatabase.Execute "IF (SELECT CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'JobworkBVParent' AND COLUMN_NAME = 'Name')<>'25' Alter Table JobworkBVParent  Alter Column Name nvarchar(25) Else Print 'CHARACTER_MAXIMUM_LENGTH_OK'"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _02 ...Done!!! "
 End Function
 Public Function UpdateMinor03()
+MdiMainMenu.StatusBar1.Panels(2).Text = "ALTER FUNCTION ufnGetPaperStock Update Going on!!! "
 cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetPaperStock](@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE) " & _
 "RETURNS Decimal(12, 3) AS " & _
 "BEGIN " & _
@@ -3448,12 +4060,14 @@ cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetPaperStock](@Account CHAR(6),@Pa
     "FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper " & _
     "RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2; " & _
 "End"
-    'Booking Route Master
+MdiMainMenu.StatusBar1.Panels(2).Text = "Booking Route Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM BookingRouteMaster WHERE Code='*00004' OR Name='Local-Local') Print 'Exist' ELSE Insert Into BookingRouteMaster VALUES ('*00004','Local-Local','Local-Local','20','N')"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM BookingRouteMaster WHERE Code='*00005' OR Name='Local-NCR') Print 'Exist' ELSE Insert Into BookingRouteMaster VALUES ('*00005','Local-NCR','Local-NCR','30','N')"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _03 ...Done!!! "
+
 End Function
 Public Function UpdateMinor04()
-'Quotation VchSeries Update
+MdiMainMenu.StatusBar1.Panels(2).Text = "Quotation VchSeries Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='23ZP') Update VchSeriesMaster Set VchType='23PQ' Where VchType='23ZP' ELSE Print 'VchType NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='23UZ') Update VchSeriesMaster Set VchType='23ZU' Where VchType='23UZ' ELSE Print 'VchType NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='23CZ') Update VchSeriesMaster Set VchType='23ZC' Where VchType='23CZ' ELSE Print 'VchType NOT Exist'"
@@ -3462,7 +4076,7 @@ Public Function UpdateMinor04()
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='24UQ') Update VchSeriesMaster Set VchType='24QU' Where VchType='24UQ' ELSE Print 'VchType NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='24CQ') Update VchSeriesMaster Set VchType='24QC' Where VchType='24CQ' ELSE Print 'VchType NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='24JQ') Update VchSeriesMaster Set VchType='24QJ' Where VchType='24JQ' ELSE Print 'VchType NOT Exist'"
-'Paper Unit Updates
+MdiMainMenu.StatusBar1.Panels(2).Text = "Paper Unit Updates Going on!!! "
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Gross' AND TYPE=15) Update GeneralMaster Set PrintName='Gross'  Where NAME='Gross' AND Type=15 ELSE Print 'UOM NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Packet(100)' AND TYPE=15) Update GeneralMaster Set PrintName='Packet'  Where NAME='Packet(100)' AND Type=15 ELSE Print 'UOM NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Packet(150)' AND TYPE=15) Update GeneralMaster Set PrintName='Packet'  Where NAME='Packet(150)' AND Type=15 ELSE Print 'UOM NOT Exist' ;"
@@ -3473,7 +4087,7 @@ Public Function UpdateMinor04()
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='PACKET' AND TYPE=15) Update GeneralMaster Set PrintName='PACKET'  Where NAME='PACKET' AND Type=15 ELSE Print 'UOM NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Sheet' AND TYPE=15) Update GeneralMaster Set PrintName='Sheet'  Where NAME='Sheet' AND Type=15 ELSE Print 'UOM NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Packet (250)' AND TYPE=15) Update GeneralMaster Set PrintName='Packet'  Where NAME='Packet (250)' AND Type=15 ELSE Print 'UOM NOT Exist' ;"
-'Genral Master
+MdiMainMenu.StatusBar1.Panels(2).Text = "Genral Master Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Account Group' AND TYPE=12) Update AccountMaster Set [Group]='*12002' where [Group] IN (Select Code From GeneralMaster Where NAME='Account Group' AND TYPE=12) ELSE Print 'NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Account Group' AND TYPE=12) Update GeneralMaster Set Code='*12002'  Where NAME='Account Group' AND Type=12 ELSE Print 'NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Debtors' AND TYPE=12) Update AccountMaster Set [Group]='*12019' where [Group] IN (Select Code From GeneralMaster Where NAME='Debtors' AND TYPE=12) ELSE Print 'NOT Exist' ;"
@@ -3484,7 +4098,7 @@ Public Function UpdateMinor04()
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Printers' AND TYPE=12) Update GeneralMaster Set Code='*12021'  Where NAME='Printers' AND Type=12 ELSE Print 'NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Binders' AND TYPE=12) Update AccountMaster Set [Group]='*12001' where [Group] IN (Select Code From GeneralMaster Where NAME='Binders' AND TYPE=12) ELSE Print 'NOT Exist' ;"
    cnDatabase.Execute "IF EXISTS (Select * From GeneralMaster Where NAME='Binders' AND TYPE=12) Update GeneralMaster Set Code='*12001'  Where NAME='Binders' AND Type=12 ELSE Print 'NOT Exist' ;"
-'VchSeriesMaster Prifix Update
+MdiMainMenu.StatusBar1.Panels(2).Text = "Vch Series Master Prifix Update Going on!!! "
    cnDatabase.Execute "Update VchSeriesMaster Set Prefix=(Select Top (1)Alias From CompanyMaster Where Alias<>'')+'/'"
    
     cnDatabase.Execute "Update VchSeriesMaster Set Suffix=(Select Top(1) Suffix From VchSeriesMaster where VchType='01PF' And Suffix<>'') Where VchType='01PF'"
@@ -3586,11 +4200,13 @@ Public Function UpdateMinor04()
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='54CE') Update VchSeriesMaster Set VchName='Countra' Where VchType='54CE' ELSE Print 'VchType NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='55CN') Update VchSeriesMaster Set VchName='Credit Note' Where VchType='55CN' ELSE Print 'VchType NOT Exist'"
    cnDatabase.Execute "IF EXISTS (Select * From VchSeriesMaster Where VchType='56DN') Update VchSeriesMaster Set VchName='Debit Note' Where VchType='56DN' ELSE Print 'VchType NOT Exist'"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _04 ...Done!!! "
+
 End Function
 Public Function UpdateMinor05()
 'Update Bill No  Field Size
    cnDatabase.Execute "IF Exists (Select BillNo From OutsourceItemPOParent)  Alter Table OutsourceItemPOParent Alter Column BILLNO nvarchar(40) Else PRINT 'NOT Exists'"
-'Plate Type
+MdiMainMenu.StatusBar1.Panels(2).Text = "Plate Type Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*24001' OR Name='Deep-etch') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*24001','Deep-etch','Deep-etch','24','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*24002' OR Name='Wipe-on') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*24002','Wipe-on','Wipe-on','24','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*24003' OR Name='PS') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*24003','PS','PS','24','1','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -3598,7 +4214,7 @@ Public Function UpdateMinor05()
 'Update Plate Type Value
    cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Code='*24003' OR Name='PS') Print 'NOT Exist' ELSE Update GeneralMaster Set Value1=1 Where Code='*24003'  AND Type=24"
    cnDatabase.Execute "IF NOT EXISTS (SELECT *FROM GeneralMaster WHERE Code='*24004' OR Name='CTP') Print 'NOT Exist' ELSE Update GeneralMaster Set  Value1=1 Where Code='*24004'  AND Type=24"
-'Update BP-Process
+MdiMainMenu.StatusBar1.Panels(2).Text = "Binding Process Type Update Going on!!! "
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07036' OR Name='BP-Unit Cost') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07036','BP-Unit Cost','BP-Unit Cost','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07037' OR Name='BP-Stitching') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07037','BP-Stitching','BP-Stitching','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07038' OR Name='BP-Binding') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07038','BP-Binding','BP-Binding','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -3606,8 +4222,11 @@ Public Function UpdateMinor05()
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07040' OR Name='BP-Shrink Packing') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07040','BP-Shrink Packing','BP-Shrink Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07041' OR Name='BP-Box Packing') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07041','BP-Box Packing','BP-Box Packing','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07042' OR Name='BP-Cartage') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07042','BP-Cartage','BP-Cartage','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _05 ...Done!!! "
+
 End Function
 Public Function UpdateMinor06()
+MdiMainMenu.StatusBar1.Panels(2).Text = "Size Group Update Going on!!! "
 'Size CalcMode Update
    cnDatabase.Execute "Update GeneralMaster Set Code='*2000'+Right(Code,1) Where Type=20"
    cnDatabase.Execute "Update AccountChild07 Set CalcMode='*2000'+Right(CalcMode,1) Where CalcMode<>''"
@@ -3687,6 +4306,8 @@ Public Function UpdateMinor06()
     cnDatabase.Execute "INSERT INTO dbo.BookChild07 " & _
                                    "Select Code,Element,Operation,Number,'Nos' As OperationCountName,Size,CalcMode,(Select Value1 From GeneralMaster Where Code=CalcMode) As CalcValue,Type From BookChild07T"
     cnDatabase.Execute "DROP TABLE BookChild07T"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _06 ...Done!!! "
+
 End Function
 Public Function UpdateMinor07()
 If MsgBox("Do You Wants to Update '21.10.21 Version'[Re_write BookPoChild06 ] Also !!!" & vbCrLf & "Please Make Sure Before Process !!!", vbQuestion + vbYesNo + vbDefaultButton2, "Confirm Proceed !") = vbYes Then
@@ -3700,7 +4321,7 @@ End If
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00048' OR NAME='FG-4') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00048','FG-4','FG-4','FG','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00049' OR NAME='FG-5') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00049','FG-5','FG-5','FG','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
    cnDatabase.Execute "IF EXISTS (SELECT Code FROM ElementMaster WHERE Code='*00050' OR NAME='FG-6') Print 'Exist' ELSE Insert Into ElementMaster VALUES ('*00050','FG-6','FG-6','FG','8','0','0','0','000001',GetDate(),'NULL',NULL,'N','N')"
-
+MdiMainMenu.StatusBar1.Panels(2).Text = "General Masters Update Going on!!! "
 'Update GeneralMaster Type-7 Operations
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07046' OR Name='BP-Center Pin') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07046','BP-Center Pin','BP-Center Pin','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
    cnDatabase.Execute "IF EXISTS (SELECT *FROM GeneralMaster WHERE Code='*07047' OR Name='BP-CD Pasting') Print 'Exist' ELSE Insert Into GeneralMaster VALUES ('*07047','BP-CD Pasting','BP-Center Pin','7','0','000001',GetDate(),'NULL',NULL,'N','N','NULL')"
@@ -3964,6 +4585,8 @@ End If
     cnDatabase.Execute "IF NOT EXISTS (SELECT Code FROM GeneralMaster WHERE Type=6 And Name='File Binding Cover Outside') Print 'NOT Exist' Else IF EXISTS (Select Code+BinderyProcess from BindingTypeChild Where Code =(SELECT Code FROM GeneralMaster WHERE Type=6 And Name='File Binding Cover Outside'AND BinderyProcess ='*07036')) Print 'Exist' ELSE Insert Into BindingTypeChild VALUES ((SELECT Code FROM GeneralMaster WHERE Type=6 And Name='File Binding Cover Outside'),'*07036')"
    'Update Account Master
    cnDatabase.Execute "Update AccountMaster Set [Group]='*12002' Where [Group] IN (Select [Group] From AccountMaster Where [Group] NOT IN (Select Code From GeneralMaster))"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _07 ...Done!!! "
+
 End Function
 Public Function UpdateMinor08()
    cnDatabase.Execute "ALTER TABLE [JobworkBVParent] ADD [eWayBill] NVARCHAR(40) NULL,[eWayBillDate] [DATETIME] NULL,[ConsigneeName] NVARCHAR(40) NULL,[ConsigneeAddress1] NVARCHAR(40) NULL,[ConsigneeAddress2] NVARCHAR(40) NULL,[ConsigneeAddress3] NVARCHAR(40) NULL,[ConsigneeAddress4] NVARCHAR(40) NULL,[ConsigneeGSTIN] NVARCHAR(40) NULL"
@@ -3972,6 +4595,8 @@ Public Function UpdateMinor08()
    cnDatabase.Execute "ALTER TABLE [JobworkBVParent] ADD CONSTRAINT [FK_JobworkBVParent_AccountMaster_I] FOREIGN KEY ([Party]) REFERENCES [AccountMaster] ([Code]),CONSTRAINT [FK_JobworkBVParent_AccountMaster_II] FOREIGN KEY ([Consignee]) REFERENCES [AccountMaster] ([Code]) ON UPDATE CASCADE"
    cnDatabase.Execute "ALTER TABLE [JobworkBVChild] ALTER COLUMN [Item] NVARCHAR(6) NULL"
    cnDatabase.Execute "UPDATE JobworkBVParent SET RecordStatus='O' WHERE LEFT(Type,2) IN ('05','06','07','08') AND RecordStatus NOT IN ('O','M')"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _08 ...Done!!! "
+
 End Function
 Public Function UpdateMinor09()
 'Update Operation Value1
@@ -3980,6 +4605,8 @@ Public Function UpdateMinor09()
     cnDatabase.Execute "Update GeneralMaster Set Value1=0 Where Type=7  And Name Like ('%Sewing%')"
     cnDatabase.Execute "Update GeneralMaster Set Value1=0 Where Type=7  And Name Like ('%Gathering%')"
     cnDatabase.Execute "Update GeneralMaster Set Value1=0 Where Type=7  And Name Like ('%Stitching%')"
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _09 ...Done!!! "
+
 End Function
 Public Function UpdateMinor10()
     'DropMachine Master
@@ -3989,12 +4616,545 @@ Public Function UpdateMinor10()
     'Machine Master PK_MachineMaster
     cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'MachineMaster' AND CONSTRAINT_NAME='PK_MachineMaster') ALTER TABLE MachineMaster ADD CONSTRAINT PK_MachineMaster PRIMARY KEY CLUSTERED (Code) ELSE Print 'CONSTRAINT_Exist'"
     'Machine Child
-    cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'MachineChild' AND COLUMN_NAME = 'Code') Print 'Col_Exist' ELSE CREATE TABLE dbo.MachineChild(Code char(6) NOT NULL,Qty smallint NOT NULL,Sets decimal(4, 2) NOT NULL,Hours tinyint NOT NULL,Efficiency smallint NOT NULLCONSTRAINT [FK_MachineChild] FOREIGN KEY([Code]) REFERENCES [MachineMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY]"
+    cnDatabase.Execute "IF EXISTS(SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'MachineChild' AND COLUMN_NAME = 'Code') Print 'Col_Exist' ELSE CREATE TABLE dbo.MachineChild(Code char(6) NOT NULL,Qty smallint NOT NULL,Sets decimal(4, 2) NOT NULL,Hours tinyint NOT NULL,Efficiency smallint NOT NULL CONSTRAINT [FK_MachineChild] FOREIGN KEY([Code]) REFERENCES [MachineMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY]"
     'MachineChild FK_MachineChild
     cnDatabase.Execute "IF Not EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'MachineChild' AND CONSTRAINT_NAME='FK_MachineChild') ALTER TABLE MachineChild ADD CONSTRAINT [FK_MachineChild] FOREIGN KEY([Code]) REFERENCES [MachineMaster] ([Code]) ON UPDATE CASCADE ON DELETE CASCADE ELSE Print 'CONSTRAINT_Exist'"
-    
     cnDatabase.Execute "IF EXISTS (SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE  TABLE_NAME = 'BookPOChild0501' AND COLUMN_NAME = 'Code') DROP TABLE BookPOChild0501  Else Print 'Col_NOT_Exist'"
     cnDatabase.Execute "CREATE TABLE dbo.BookPOChild0501(Code nvarchar(15) NOT NULL,Color nvarchar(8) NOT NULL,Machine nvarchar(6) NULL,[Plan] decimal(5, 2) NOT NULL,formsPrinted decimal(5, 2) NOT NULL,platesIssued decimal(5, 2) NOT NULL,paperIssued decimal(12, 2) NOT NULL,SNo int NULL) ON [PRIMARY]"
     cnDatabase.Execute "Insert Into MachineMaster VALUES('*21046','Z-Machine To Be Decide','Z-Machine To Be Decide',0,15,3000,0,0,0,0,'09:00:00','17:30:00',1,'000001','2021-09-21 10:55:08.527','000001','2022-01-13 01:02:44.000','M','N')"
-End Function
+MdiMainMenu.StatusBar1.Panels(2).Text = "Minor_Update _10 ...Done!!! "
 
+End Function
+Public Function ServerSetting()
+    DatabasePath = Trim(ReadFromFile("Database Path"))
+    ServerID = Trim(ReadFromFile("Server ID"))
+    If Decrypted(Trim(ReadFromFile("Server Name")), Decrypt) Then
+        ServerName = Decrypt
+    End If
+    If Decrypted(Trim(ReadFromFile("Server User")), Decrypt) Then
+        ServerUser = Decrypt
+    End If
+    If Decrypted(Trim(ReadFromFile("Server Password")), Decrypt) Then
+        ServerPassword = Decrypt
+    End If
+End Function
+Private Function Decrypted(Encrypt As Variant, Decrypt)
+    Dim e As Long, i As Long, s As Long, n As Long, j As Long, te As Long, ti As Long, ts As Long, tn As Long, K As Long
+    Dim eFlag As Boolean, iFlag As Boolean, sFlag As Boolean, nFlag As Boolean
+    j = 0: e = 0: i = 0: s = 0: n = 0: Decrypt = "": K = 0: eFlag = True: iFlag = False: sFlag = False: nFlag = False
+    
+    K = Len(Trim(Encrypt)) - 1
+    For j = 1 To K
+     If Mid(Trim(Encrypt), j, 1) <> "§" Then
+     Decrypt = Decrypt + Mid(Trim(Encrypt), j, 1)
+     Else
+     If nFlag = True Then n = j: nFlag = False
+     If sFlag = True Then s = j: sFlag = False: nFlag = True
+     If iFlag = True Then i = j: iFlag = False: sFlag = True
+     If eFlag = True Then e = j: eFlag = False: iFlag = True
+     End If
+    Next j
+    Decrypt = ""
+    te = 1: ti = e + 1: ts = i + 1: tn = s + 1:
+    For j = 1 To K
+    te = te + 1
+    If j < ((e - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), te, 1)
+    ti = ti + 1
+    If j < ((i - e - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), ti, 1)
+    ts = ts + 1
+    If j < ((s - i - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), ts, 1)
+    tn = tn + 1
+    If j < ((n - s - 2) * (4)) Then Decrypt = Decrypt + Mid(Trim(Encrypt), tn, 1)
+    j = j + 3
+    Next j
+    Decrypted = True
+End Function
+Public Function CustomSettings()
+On Error Resume Next
+Dim rstCustomList As New ADODB.Recordset
+    If rstCustomList.State = adStateOpen Then rstCustomList.Close
+    rstCustomList.Open "Select * From CustomSettings", cnDatabase, adOpenKeyset, adLockReadOnly
+    Logo = Trim(rstCustomList.Fields("Logo").Value)
+    LogoW = Trim(rstCustomList.Fields("LogoW").Value)
+    LogoH = Trim(rstCustomList.Fields("LogoH").Value)
+    LogoLine = Trim(rstCustomList.Fields("LogoLine").Value)
+    Header = Trim(rstCustomList.Fields("Header").Value)
+    HeaderL = Trim(rstCustomList.Fields("HeaderL").Value)
+    FYFromToFlag = IIf(Trim(rstCustomList.Fields("FYFromTo").Value) = "Y", "True", "False")
+    GSTMethod = Trim(rstCustomList.Fields("GSTMethod").Value)
+    TransportLabel1 = Trim(rstCustomList.Fields("TransportLabel1").Value)
+    rstCustomList.Close
+    FYFromTo = Format(FinancialYearFrom, "YY") + "-" + Format(FinancialYearTo, "YY")
+    Call ServerSetting
+End Function
+Public Function CreateFY()
+    cnDatabase.Execute "IF (SELECT TOP (1) FinancialYearTO From [CompanyMaster] Where Left(Right(FYCODE,4),2)=Left(Right('" & FYCode & "',4),2) ORDER BY FinancialYearTO DESC)>=(Select CAST(CAST(GETDATE() AS DATE) AS DATETIME)) Print 'New FY Created Already' " & _
+                                      "Else " & _
+                                      "Insert Into [CompanyMaster] SELECT Top(1) [Code],[Name],[PrintName],[Address1],[Address2],[Address3],[Address4],[Phone],[Mobile],[Fax],[eMail],[Website],[GSTIN],DATEADD(year, 1,FinancialYearFrom) AS FinancialYearFrom,DATEADD(year, 1,FinancialYearTo) as FinancialYearTo,[CreatedFrom],[MCGroup],[MCPrimary],[MCRepair],[Printstatus],[TitleCombo],[BankName],[AccountNo],[IFSC],[TallyIntegration],[BusyIntegration],Format(FYCode+1,'000000') AS FYCode,[Alias],[SmtpServer],[Port],[UserName],[Password],[State] FROM [dbo].[CompanyMaster] " & _
+                                      "Where Left(Right(FYCODE,4),2)=Left(Right('" & FYCode & "',4),2) ORDER BY FinancialYearTo DESC "
+If Err.Number = 0 Then MsgBox "Financial Year Created", vbInformation
+End Function
+Public Function btnNotes()
+    frmNotes.BalFlag = True
+    frmNotes.Label1.Caption = "Accounts Ledger : Easy Info Solutions International " '& Text2(Val(AccountType) - 1).Text
+    
+    If frmNotes.BalFlag = True Or frmNotes.NotesFlag > 0 Then frmNotes.Show vbModal
+    
+End Function
+Public Function GetFileVersion(ByVal FileName As String) As String
+'Windows API function declarations
+   Dim nDummy As Long
+   Dim sBuffer()         As Byte
+   Dim nBufferLen        As Long
+   Dim lplpBuffer       As Long
+   Dim udtVerBuffer      As VS_FIXEDFILEINFO
+   Dim puLen     As Long
+      
+   nBufferLen = GetFileVersionInfoSize(FileName, nDummy)
+   
+   If nBufferLen > 0 Then
+   
+        ReDim sBuffer(nBufferLen) As Byte
+        Call GetFileVersionInfo(FileName, 0&, nBufferLen, sBuffer(0))
+        Call VerQueryValue(sBuffer(0), "\", lplpBuffer, puLen)
+        Call CopyMemory(udtVerBuffer, ByVal lplpBuffer, Len(udtVerBuffer))
+        
+        GetFileVersion = udtVerBuffer.dwFileVersionMSh & "." & udtVerBuffer.dwFileVersionMSl & "." & udtVerBuffer.dwFileVersionLSh & "." & udtVerBuffer.dwFileVersionLSl
+        FileVersion = GetFileVersion
+    End If
+End Function
+Public Function Update_Running_Version_Data()
+    On Error Resume Next
+        Dim DestinationFileVersion, SourceFileVersion, DestinationFolder, DestinationFile, ClientName
+    If rstEasyPublishVersion.State = 1 Then rstEasyPublishVersion.Close
+    rstEasyPublishVersion.Open "SELECT Alias From CompanyMaster  Where FYCODE='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+    ClientName = Trim(rstEasyPublishVersion.Fields("Alias").Value)
+    If DatabaseType = "MS SQL" Then
+        cnClientAccount.CommandTimeout = 300
+        ConnectionString = "Provider=SQLOLEDB;Password=" & ServerPassword & ";Persist Security Info=True;User ID=sa;Initial Catalog=Company ;Data Source=" & ServerName
+        If cnClientAccount.State = 1 Then cnClientAccount.Close
+        cnClientAccount.Open ConnectionString
+    End If
+
+    DestinationFolder = App.Path
+    DestinationFile = DestinationFolder & "\EasyPublish.exe"
+    If Dir(DestinationFile, vbDirectory) <> "" Then
+        GetFileVersion (DestinationFile)
+        DestinationFileVersion = FileVersion
+    
+    End If
+    If Not CheckEmpty(DestinationFileVersion, False) Then cnClientAccount.Execute "IF EXISTS (Select VersionName From VersionsList Where LTrim(VersionName)='" & LTrim(DestinationFileVersion) & "') Print 'Exist' Else INSERT INTO VersionsList VALUES ('" & LTrim(DestinationFileVersion) & "','" & Format(GetDate(Format((Now), "dd-MM-yyyy"))) & "','','" & ClientName & "')"
+    If rstEasyPublishVersion.State = 1 Then rstEasyPublishVersion.Close
+    rstEasyPublishVersion.Open "Select TOP (1) VersionName,Date,UserDetails,ClientName FROM VersionsList Order By VersionName Desc ", cnClientAccount, adOpenKeyset, adLockReadOnly
+    SourceFileVersion = Trim(rstEasyPublishVersion.Fields("VersionName").Value)
+    DestinationFolder = App.Path
+    DestinationFile = DestinationFolder & "\EasyPublish.exe"
+If Dir(DestinationFile, vbDirectory) <> "" Then
+    GetFileVersion (DestinationFile)
+    DestinationFileVersion = FileVersion
+End If
+
+    If DestinationFileVersion < SourceFileVersion Then
+    
+    If MsgBox(" Latest Version : EasyPublish | Rel " & SourceFileVersion & Chr(13) & " is Now Available !!! " & Chr(13) & " Do you wants to Update Now ?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Proceed !") = vbYes Then Call Update_Open
+    
+    End If
+End Function
+Public Function Update_Open()
+    On Error Resume Next
+    Dim R As Long
+    Dim Foldername As String
+    Foldername = App.Path
+        If Dir(App.Path & "\VersionUpdate.exe", vbDirectory) = "" Then
+                R = ShellExecute(0, "open", "http://www.easyinfosolution.com", 0, 0, 1)
+        Else
+                R = ShellExecute(0, "open", App.Path & "\VersionUpdate.exe", 0, 0, 1)
+                MdiMainMenu.exitFlage = True
+        End If
+End Function
+Public Function GeneralUpdate(ByVal UpdateVersion As Boolean) As Boolean
+   Dim SQL As String
+    On Error GoTo ErrorHandler
+'BookChild06 PRIMARY KEY CLUSTERED
+cnDatabase.BeginTrans
+    cnDatabase.Execute "IF NOT EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME='BookChild06' AND CONSTRAINT_TYPE='PRIMARY KEY') ALTER TABLE BookChild06 ADD CONSTRAINT PK_BookChild06 PRIMARY KEY CLUSTERED (Code,SubItem,Element,TYPE) ELSE Print 'CONSTRAINT_Exist'"
+cnDatabase.CommitTrans
+'***ufnGetItemStock
+cnDatabase.BeginTrans
+    If App.Major = 23 Then Call ufnGetItemStock
+cnDatabase.CommitTrans
+
+'***ufnGetUFGStock
+cnDatabase.BeginTrans
+    If App.Major = 23 Then Call ufnGetUFGStock
+cnDatabase.CommitTrans
+
+    '***ufnGetPaperStock
+cnDatabase.BeginTrans
+    If App.Major = 23 Then Call ufnGetPaperStock
+cnDatabase.CommitTrans
+
+'***MaterialSVParent_MaterialSVChild
+    '***MaterialSVParent
+cnDatabase.BeginTrans
+    Call DROP_CONSTRAINT("MaterialSVChild", "Planning", True)
+    Call DROP_CONSTRAINT("MaterialSVParent", "Type", True)
+    Call Rename_Table("MaterialSVParent", "Type", "Code")
+    
+    SQL = ""
+    SQL = " (Code nvarchar(6) NOT NULL,Name nvarchar(10) NOT NULL,Date datetime NOT NULL,Account nvarchar(6) NOT NULL,ApprovedBy nvarchar(6) NULL,ApprovalDate datetime NULL,Remarks nvarchar(40) NULL,[Type]  nvarchar(1) NOT NULL,CreatedBy nvarchar(6) NOT NULL,CreatedOn datetime NOT NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar(1) NOT NULL,Printstatus nvarchar(1) NOT NULL,FYCode nvarchar(6) NOT NULL DEFAULT ('''') , CONSTRAINT PK_MaterialSVParent PRIMARY KEY CLUSTERED ([Code] ASC) ON [PRIMARY],CONSTRAINT FK_MaterialSVParent_Account FOREIGN KEY(Account) REFERENCES AccountMaster (Code) ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY] "
+    Call Create_Alter_Table("Create Table  ", "MaterialSVParent", SQL, "Type")
+    
+    SQL = ""
+    SQL = "INSERT INTO MaterialSVParent Select Code,Name,Date,Account,ApprovedBy,ApprovalDate,Remarks,''J'' AS TYPE,CreatedBy,CreatedOn,ModifiedBy,ModifiedOn,Recordstatus,Printstatus,FYCode From MaterialSVParentT "
+    Call Insert_Into("MaterialSVParentT", "MaterialSVParent", "Code", SQL)
+    SQL = "Drop Table MaterialSVParentT"
+    Call Excute_SQL("MaterialSVParentT", "Code", SQL)
+cnDatabase.CommitTrans
+    '***MaterialSVChild
+cnDatabase.BeginTrans
+    Call DROP_CONSTRAINT("MaterialSVChild", "Planning", True)
+    Call Rename_Table("MaterialSVChild", "Planning", "Code")
+    SQL = ""
+    SQL = "(Code nvarchar(6) NOT NULL,Category nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,Quantity decimal(12, 3) NOT NULL,Planning decimal(12, 3) NULL,Machine nvarchar(6) NULL,Cutoff decimal(12, 3) NULL,ReelSize decimal(12, 3) NULL,GSM decimal(12, 3) NULL,UOM nvarchar(6) NULL,SNO int NULL CONSTRAINT FK_MaterialSVChild_MaterialSVParent FOREIGN KEY(Code) REFERENCES dbo.MaterialSVParent(Code) ON UPDATE  CASCADE ON DELETE  CASCADE) ON [PRIMARY]"
+    Call Create_Alter_Table("Create Table ", "MaterialSVChild", SQL, "Planning")
+    SQL = ""
+    SQL = "INSERT INTO MaterialSVChild Select Code,Category,Item,Quantity,NULL Planning,NULL Machine,NULL Cutoff,NULL ReelSize,NULL GSM,NULL UOM,NULL SNO From MaterialSVChildT"
+    Call Insert_Into("MaterialSVChildT", "MaterialSVChild", "Code", SQL)
+    SQL = "Drop Table MaterialSVChildT"
+    Call Excute_SQL("MaterialSVChildT", "Code", SQL)
+cnDatabase.CommitTrans
+    '***VchSeriesMaster
+cnDatabase.BeginTrans
+    cnDatabase.Execute "IF COL_LENGTH('VchSeriesMaster', 'FYCode') IS NOT NULL PRINT 'Exists' ELSE Alter Table VchSeriesMaster Add FYCode nvarchar(6) NOT NULL  DEFAULT '" & FYCode & "'"
+    cnDatabase.Execute "Update VchSeriesMaster Set FYCODE = '" & FYCode & "' Where Len(FYCODE)=0"
+    cnDatabase.Execute "Update VchSeriesMaster Set FYCODE = Right(FYCODE,4) Where Len(FYCODE)=6"
+cnDatabase.CommitTrans
+    '***Bookmaster**SalePrice_PurPrice
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [SalePrice] [decimal](12, 2) NOT NULL  DEFAULT (0),[PurPrice] [decimal](12, 2) NOT NULL DEFAULT (0) ,[ItemMarks] nvarchar(6) NULL,[MFCD] nvarchar(6) NULL,[s_no] nvarchar(6) NULL"
+    Call Create_Alter_Table("Alter Table ", "Bookmaster", SQL, "SalePrice")
+cnDatabase.CommitTrans
+    '***Bookmaster**Pur.Date
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [PurDate] [Date] NULL,RoomA [decimal](2, 0) NULL,RoomB [decimal](2, 0) NULL "
+    Call Create_Alter_Table("Alter Table ", "Bookmaster", SQL, "PurDate")
+cnDatabase.CommitTrans
+    '***Accountmaster
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [City] nvarchar(40) NULL,[ContactPer] nvarchar(40) NULL,[Transporter] nvarchar(40) NULL ,[Transporter2] nvarchar(40) NULL,[Transporter3] nvarchar(40) NULL,[Transporter4] nvarchar(40) NULL "
+    Call Create_Alter_Table("Alter Table ", "Accountmaster", SQL, "City")
+    cnDatabase.Execute "Update AccountMaster Set City='' Where City is null"
+cnDatabase.CommitTrans
+    '***VchSeriesMaster
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " Add [StartNo] [decimal](12, 0) NOT NULL  DEFAULT (1),CreatedBy nvarchar(6) NULL,CreatedOn datetime NULL,ModifiedBy nvarchar(6) NULL,ModifiedOn datetime NULL,Recordstatus nvarchar (1),Printstatus nvarchar (1) "
+    Call Create_Alter_Table("Alter Table ", "VchSeriesMaster", SQL, "StartNo")
+cnDatabase.CommitTrans
+    '***ItemPicChild
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = "(Code nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,PicName    nvarchar(25) NOT NULL,PicData   varbinary(MAX) NULL,PicType nvarchar(4) NULL CONSTRAINT FK_ItemPicChild_BookMaster FOREIGN KEY(Item) REFERENCES dbo.BookMaster(Code) ON UPDATE  CASCADE ON DELETE  CASCADE ) ON [PRIMARY]"
+    Call Create_Alter_Table("Create Table ", "ItemPicChild", SQL, "PicName")
+cnDatabase.CommitTrans
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " (Code nvarchar(6) NOT NULL,RefCodeDebitCredit nvarchar(6) NOT NULL,Amount [decimal](12, 2) NOT NULL, CONSTRAINT FK_RefDebitCredit_DebitCreditParent FOREIGN KEY(RefCodeDebitCredit) REFERENCES DebitCreditParent (Code) ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY] "
+    Call Create_Alter_Table("Create Table  ", "RefDebitCredit", SQL, "Code")
+cnDatabase.CommitTrans
+    
+    Screen.MousePointer = vbNormal
+    GeneralUpdate = True
+    Exit Function
+ErrorHandler:
+    GeneralUpdate = False
+    DisplayError (Err.Description)
+    cnDatabase.RollbackTrans
+    Screen.MousePointer = vbNormal
+End Function
+Public Function DROP_CONSTRAINT(ByVal TableName As String, Col_Name As String, ByVal DROPCONSTRAINT As Boolean)
+  cnDatabase.Execute "DECLARE @sql NVARCHAR(MAX), @tableName NVARCHAR(100), @ColName NVARCHAR(100); " & _
+        "SET @tableName = '" & TableName & "' " & _
+        "SET @ColName = '" & Col_Name & "' " & _
+        "SET @sql = ''  " & _
+        "IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName AND COLUMN_NAME = @ColName )  " & _
+        "BEGIN  " & _
+                        "WHILE EXISTS (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @tableName)  " & _
+                    "BEGIN  " & _
+                        "SELECT @sql = 'ALTER TABLE ' + @tableName + ' DROP CONSTRAINT ' + (SELECT TOP 1 CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = @tableName) + ';'; " & _
+                        "EXEC sp_executesql @sql; " & _
+                    "End " & _
+                           "PRINT 'DROPED_CONSTRAINT' " & _
+        "End " & _
+        "Else " & _
+        "BEGIN " & _
+                "Print 'Col_Exist'  " & _
+        "End"
+End Function
+Public Function Create_Alter_Table(ByVal ActionType As String, ByVal Table_Name As String, T_SQL As String, Col_Name As String)
+    cnDatabase.Execute "DECLARE @sql NVARCHAR(MAX), @tableName NVARCHAR(100), @ColName NVARCHAR(100), @Action NVARCHAR(100),@Tsql NVARCHAR(MAX); " & _
+          "SET @tableName = '" & Table_Name & "' " & _
+          "SET @ColName = '" & Col_Name & "' " & _
+          "SET @Tsql = '" & T_SQL & "' " & _
+          "SET @Action = '" & ActionType & "' " & _
+          "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName AND COLUMN_NAME = @ColName) BEGIN  PRINT 'Col_Exist' END " & _
+          "Else " & _
+          "BEGIN " & _
+          "SELECT @sql = @Action +' '+ @tableName + @Tsql+ ';' " & _
+          "EXEC sp_executesql @sql ; " & _
+          "End "
+'          "SELECT @sql = @Action +' '+ @tableName + @Tsql+ ';'; "
+End Function
+Public Function Rename_Table(ByVal Table_Name As String, Col_Name As String, Col2_Name As String)
+  cnDatabase.Execute "DECLARE @sql NVARCHAR(MAX), @tableName NVARCHAR(100), @ColName NVARCHAR(100), @Col2Name NVARCHAR(100); " & _
+        "SET @tableName = '" & Table_Name & "' " & _
+        "SET @ColName = '" & Col_Name & "' " & _
+        "SET @Col2Name = '" & Col2_Name & "' " & _
+        "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName AND COLUMN_NAME = @Col2Name) " & _
+        "BEGIN " & _
+                           "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName AND COLUMN_NAME = @ColName)  " & _
+                    "BEGIN  PRINT 'Col_Exist' END " & _
+                        "Else " & _
+                    "BEGIN " & _
+                        "SELECT @sql = 'EXEC sp_rename' +' '''+ @tableName +''', '''+ @tableName+'T'+'''  ';" & _
+                        "EXEC sp_executesql @sql;" & _
+                    "End " & _
+        "End " & _
+            "Else " & _
+        "BEGIN " & _
+            "Print 'Table_NOT_Exist'  " & _
+        "End "
+End Function
+Public Function Insert_Into(ByVal Table1_Name As String, Table2_Name As String, Col_Name As String, ByVal T_SQL As String)
+  cnDatabase.Execute "DECLARE @sql NVARCHAR(MAX),@Tsql NVARCHAR(MAX), @tableName1 NVARCHAR(100),@tableName2 NVARCHAR(100), @ColName NVARCHAR(100); " & _
+        "SET @tableName1 = '" & Table1_Name & "' " & _
+        "SET @tableName2 = '" & Table2_Name & "' " & _
+        "SET @ColName = '" & Col_Name & "' " & _
+        "SET @TSQL = '" & T_SQL & "' " & _
+        "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName1 AND COLUMN_NAME = @ColName) " & _
+        "BEGIN " & _
+                           "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName2 AND COLUMN_NAME = @ColName)  " & _
+                    "BEGIN  " & _
+                                "SELECT @sql = ' ' + @TSQL +'  ';" & _
+                                "EXEC sp_executesql @sql;" & _
+                    "End " & _
+                            "Else " & _
+                            "BEGIN Print 'Table Not Exist' END " & _
+        "End " & _
+            "Else " & _
+        "BEGIN Print 'Temp_Table_NOT_Exist' End "
+End Function
+Public Function Excute_SQL(ByVal Table1_Name As String, Col_Name As String, ByVal T_SQL As String)
+  cnDatabase.Execute "DECLARE @sql NVARCHAR(MAX),@Tsql NVARCHAR(MAX), @tableName1 NVARCHAR(100), @ColName NVARCHAR(100); " & _
+        "SET @tableName1 = '" & Table1_Name & "' " & _
+        "SET @ColName = '" & Col_Name & "' " & _
+        "SET @TSQL = '" & T_SQL & "' " & _
+        "IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = @tableName1 AND COLUMN_NAME = @ColName) " & _
+                    "BEGIN  " & _
+                                "SELECT @sql = ' ' + @TSQL +'  ';" & _
+                                "EXEC sp_executesql @sql;" & _
+                    "End " & _
+            "Else " & _
+        "BEGIN Print 'Temp_Table_NOT_Exist' End "
+End Function
+Public Function ufnGetItemStock()
+If rstEasyPublishVersion.State = adStateOpen Then rstEasyPublishVersion.Close
+rstEasyPublishVersion.Open "SELECT SPECIFIC_NAME FROM information_schema.routines WHERE routine_type = 'FUNCTION' AND SPECIFIC_NAME = 'ufnGetItemStock' ", cnDatabase, adOpenKeyset, adLockReadOnly
+If rstEasyPublishVersion.RecordCount = 0 Then
+      cnDatabase.Execute "CREATE FUNCTION [dbo].[ufnGetItemStock](@MatCentre CHAR(6),@Item CHAR(6),@VchType CHAR(2),@VchCode CHAR(2),@VchDate DATE) " & _
+                                        "RETURNS INTEGER " & _
+                                        "AS " & _
+                                        "BEGIN " & _
+                                            "DECLARE @CurStk INTEGER; " & _
+                                            "SELECT @CurStk= " & _
+                                            "((SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='3' AND Item=@Item AND Code='000000')+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='05',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='08',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='01',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='03',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND [Date]<=@VchDate AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND [Date]<=@VchDate AND Party=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0) " & _
+                                            ")- " & _
+                                            "(ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='06',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='07',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='02',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='04',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND [Date]<=@VchDate AND Party=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND [Date]<=@VchDate AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0) " & _
+                                            ") " & _
+                                            "RETURN @CurStk; END"
+ElseIf rstEasyPublishVersion.RecordCount <> 0 Then
+      cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetItemStock](@MatCentre CHAR(6),@Item CHAR(6),@VchType CHAR(2),@VchCode CHAR(2),@VchDate DATE) " & _
+                                        "RETURNS INTEGER " & _
+                                        "AS " & _
+                                        "BEGIN " & _
+                                            "DECLARE @CurStk INTEGER; " & _
+                                            "SELECT @CurStk= " & _
+                                            "((SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='3' AND Item=@Item AND Code='000000')+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='05' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='05',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='08' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='08',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='01' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='01',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='03' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='03',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND [Date]<=@VchDate AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(C.Quantity) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND [Date]<=@VchDate AND Party=@MatCentre AND C.Item=@Item AND C.Quantity>0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0) " & _
+                                            ")- " & _
+                                            "(ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='06' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='06',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='07' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='07',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='02' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='02',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='04' AND [Date]<=@VchDate AND P.MaterialCentre=@MatCentre AND C.Item=@Item AND P.Code<>IIF(@VchType='04',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='19' AND [Date]<=@VchDate AND Party=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='19',@VchCode,'XXXXXX')),0)+ " & _
+                                            "ISNULL((SELECT SUM(ABS(C.Quantity)) FROM JobWorkBVParent P INNER JOIN JobWorkBVChild C ON P.Code=C.Code WHERE LEFT(P.Type,2)='20' AND [Date]<=@VchDate AND MaterialCentre=@MatCentre AND C.Item=@Item AND C.Quantity<0 AND P.Code<>IIF(@VchType='20',@VchCode,'XXXXXX')),0) " & _
+                                            ") " & _
+                                            "RETURN @CurStk; END"
+End If
+End Function
+Public Function ufnGetUFGStock()
+If rstEasyPublishVersion.State = adStateOpen Then rstEasyPublishVersion.Close
+rstEasyPublishVersion.Open "SELECT SPECIFIC_NAME FROM information_schema.routines WHERE routine_type = 'FUNCTION' AND SPECIFIC_NAME = 'ufnGetUFGStock' ", cnDatabase, adOpenKeyset, adLockReadOnly
+If rstEasyPublishVersion.RecordCount = 0 Then
+    cnDatabase.Execute "CREATE FUNCTION [dbo].[ufnGetUFGStock] ( @Cat DECIMAL(2,0),@UFGCode CHAR(6),@AccountCode CHAR(6),@VchDate DATE ) " & _
+    " RETURNS DECIMAL(12, 3) AS " & _
+    " BEGIN " & _
+        " DECLARE @UFGStk DECIMAL(12,3); " & _
+        " SELECT @UFGStk = (SELECT UFGStk FROM (SELECT ( " & _
+                        "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category = @Cat AND Item = O.Code AND Code = A.Code) " & _
+                        "+ (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M, MaterialIOChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND Godown = A.Code AND Date <= @VchDate) " & _
+                        "+ (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M, MaterialSVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND Account = A.Code AND I.Quantity >= 0 AND Date <= @VchDate) " & _
+                        "- (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M, MaterialSVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND Account = A.Code AND I.Quantity < 0 AND Date <= @VchDate) " & _
+                        "- (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M, MaterialMVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND AccountFROM = A.Code AND Date <= @VchDate) " & _
+                        "+ (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M, MaterialMVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND AccountTo = A.Code AND Date <= @VchDate) " & _
+                        "- (SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0) FROM BookPOParent M, BookPOChild0801 I WHERE M.Code = I.Code AND LEFT(M.Type,1) <> 'O' AND LEFT(M.Code,1) <> '*' AND Category = @Cat AND Item = O.Code AND I.Vendor = A.Code AND Date <= @VchDate)) AS UFGStk " & _
+                        "FROM BookMaster O, AccountMaster A WHERE A.Code = @AccountCode AND O.Code = @UFGCode ) AS TBL WHERE UFGStk <> 0); " & _
+                        "RETURN @UFGStk; End "
+ElseIf rstEasyPublishVersion.RecordCount <> 0 Then
+    cnDatabase.Execute "Alter FUNCTION [dbo].[ufnGetUFGStock] ( @Cat DECIMAL(2,0),@UFGCode CHAR(6),@AccountCode CHAR(6),@VchDate DATE ) " & _
+    " RETURNS DECIMAL(12, 3) AS " & _
+    " BEGIN " & _
+        " DECLARE @UFGStk DECIMAL(12,3); " & _
+        " SELECT @UFGStk = (SELECT UFGStk FROM (SELECT ( " & _
+                        "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category = @Cat AND Item = O.Code AND Code = A.Code) " & _
+                        "+ (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M, MaterialIOChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND Godown = A.Code AND Date <= @VchDate) " & _
+                        "+ (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M, MaterialSVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND Account = A.Code AND I.Quantity >= 0 AND Date <= @VchDate) " & _
+                        "- (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M, MaterialSVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND Account = A.Code AND I.Quantity < 0 AND Date <= @VchDate) " & _
+                        "- (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M, MaterialMVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND AccountFROM = A.Code AND Date <= @VchDate) " & _
+                        "+ (SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M, MaterialMVChild I WHERE M.Code = I.Code AND Category = @Cat AND Item = O.Code AND AccountTo = A.Code AND Date <= @VchDate) " & _
+                        "- (SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0) FROM BookPOParent M, BookPOChild0801 I WHERE M.Code = I.Code AND LEFT(M.Type,1) <> 'O' AND LEFT(M.Code,1) <> '*' AND Category = @Cat AND Item = O.Code AND I.Vendor = A.Code AND Date <= @VchDate)) AS UFGStk " & _
+                        "FROM BookMaster O, AccountMaster A WHERE A.Code = @AccountCode AND O.Code = @UFGCode ) AS TBL WHERE UFGStk <> 0); " & _
+                        "RETURN @UFGStk; End "
+End If
+End Function
+Public Function ufnGetPaperStock()
+If rstEasyPublishVersion.State = adStateOpen Then rstEasyPublishVersion.Close
+rstEasyPublishVersion.Open "SELECT SPECIFIC_NAME FROM information_schema.routines WHERE routine_type = 'FUNCTION' AND SPECIFIC_NAME = 'ufnGetPaperStock' ", cnDatabase, adOpenKeyset, adLockReadOnly
+
+If rstEasyPublishVersion.RecordCount = 0 Then
+    cnDatabase.Execute "Create FUNCTION [dbo].[ufnGetPaperStock] " & _
+                                      "(@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE) " & _
+                                      "RETURNS Decimal(12, 3) AS " & _
+                                  "BEGIN " & _
+                                      "DECLARE @CurStk DECIMAL(12,3); " & _
+                                      "SELECT @CurStk= " & _
+                                        "(( " & _
+                                      "ISNULL((SELECT SUM(OpBal)*U.Value1 FROM AccountChild0801 Where Category='2' AND Item=I.Code AND Code=@Account),0) " & _
+                                      "+ ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0) " & _
+                                      "+ ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0) " & _
+                                      "+ ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)) " & _
+                                      "- (ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "   ) " & _
+                                      "   )/U.Value1 FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper " & _
+                                  "RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2; " & _
+                                  "End "
+ElseIf rstEasyPublishVersion.RecordCount <> 0 Then
+    cnDatabase.Execute "ALTER FUNCTION [dbo].[ufnGetPaperStock] " & _
+                                      "(@Account CHAR(6),@Paper CHAR(6),@VchType CHAR(2),@VchCode CHAR(6),@VchDate DATE) " & _
+                                      "RETURNS Decimal(12, 3) AS " & _
+                                  "BEGIN " & _
+                                      "DECLARE @CurStk DECIMAL(12,3); " & _
+                                      "SELECT @CurStk= " & _
+                                        "(( " & _
+                                      "   ISNULL((SELECT SUM(OpBal)*U.Value1 FROM AccountChild0801 Where Category='2' AND Item=I.Code AND Code=@Account),0) " & _
+                                      "+ ISNULL((SELECT SUM(OpBalSheets) FROM PaperChild WHERE Code=I.Code AND Account=@Account),0) " & _
+                                      "+ ISNULL((SELECT SUM(QuantitySheets) FROM PaperIOChild WHERE Paper=I.Code AND Account=@Account),0) " & _
+                                      "+ ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity>=0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE [Type]='T' AND Paper=I.Code AND AccountTo=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PARSENAME(Quantity,2)*1)*U.Value1+SUM(PARSENAME(Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity>=0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0)) " & _
+                                      "- (ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE Category='2' AND Item=I.Code AND Quantity<0 AND Account=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='JN',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(QuantitySheets) FROM PaperMVParent P INNER JOIN PaperMVChild C ON P.Code=C.Code WHERE Paper=I.Code AND AccountFrom=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='TR',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PARSENAME(0-Quantity,2)*1)*U.Value1+SUM(PARSENAME(0-Quantity,1)*1) FROM PaperDNParent P INNER JOIN PaperDNChild C ON P.Code=C.Code WHERE P.Account=@Account AND [Date]<=@VchDate AND C.Paper=I.Code AND Quantity<0 AND P.Code<>IIF(@VchType='DN',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild05 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild06 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(PaperConsumptionSheets) FROM BookPOParent P INNER JOIN BookPOChild09 C ON P.Code=C.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND Paper=I.Code AND RAccount=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "+ ISNULL((SELECT SUM(Round(C2.TotalConsumption,0)) FROM (BookPOParent P INNER JOIN BookPOChild08 C1 ON P.Code=C1.Code) INNER JOIN BookPOChild0801 C2 ON C1.Code=C2.Code WHERE LEFT(P.Type,1)<>'O' AND LEFT(P.Code,1)<>'*' AND C2.Category='2' AND C2.Item=I.Code AND BookPrinter=@Account AND [Date]<=@VchDate AND P.Code<>IIF(@VchType='PO',@VchCode,'XXXXXX')),0) " & _
+                                      "   ) " & _
+                                      "   )/U.Value1 FROM PaperMaster I INNER JOIN GeneralMaster U ON I.UOM=U.Code WHERE I.Code=@Paper " & _
+                                  "RETURN PARSENAME(@CurStk,2)*1+(@CurStk-PARSENAME(@CurStk,2)*1)/2; " & _
+                                  "End "
+End If
+End Function
+Public Function Send_email(ByVal smtpserver As String, ByVal smtpserverport As String, ByVal Username As String, ByVal Password As String, ByVal ToEmail As Variant, ByVal Subject As String, ByVal MsgText As String, ByVal TaskComments As String, ByVal AssignBy As String, ByVal CompanyPrintName As String, ByVal CompanyPhone As String, ByVal CompanyEMail As String, ByVal AssignTo As Variant, ByVal ToName As Variant, ByVal AttachmentPath As String)
+    On Error Resume Next
+    ' Create CDO message object
+    Dim objMessage As Object
+    Set objMessage = CreateObject("CDO.Message")
+    
+    ' Configuration for the SMTP server (replace with your email server settings)
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserver") = smtpserver 'smtpout.secureserver.net
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = smtpserverport '465
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2 ' cdoSendUsingPort
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpconnectiontimeout") = 60 'smtp connection timeout
+        
+    ' Enable SSL/TLS encryption
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpusessl") = True
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/smtpauthenticate") = 1 ' cdoBasic
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendusername") = Username 'From email ID
+    objMessage.Configuration.Fields.Item("http://schemas.microsoft.com/cdo/configuration/sendpassword") = Password  'From email ID Passward
+    
+    objMessage.Configuration.Fields.Update
+
+    ' Email settings
+    objMessage.Subject = Subject '"Test Email"
+    objMessage.From = Username '"your_email@example.com"
+    objMessage.To = ToEmail '"recipient@example.com"
+    'objMessage.TextBody = TextBody_SQL
+    objMessage.HTMLBody = "<Font Face='Calibri' Size='3'>" & ToName & ",<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & " <Br><b><I>Task >> " & TaskComments & "<Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & AssignBy & "<Br>" & CompanyPrintName & "<Br>Phone : " & CompanyPhone & "<Br>E-Mail : <a HRef='mailto:" & CompanyEMail & "'>" & CompanyEMail & "</a></Font>"
+    
+    '"This is a test email sent using VB6 and CDO with SSL/TLS encryption."
+    On Error Resume Next
+    objMessage.Send
+    If Err.Number = 0 Then
+        MsgBox "Email Sent To: " & " [ " & AssignTo & " ] " & vbCrLf & vbCrLf & "@ : " & ToEmail, vbInformation, "Email"
+    Else
+        MsgBox "Error sending email: " & Err.Description, vbExclamation
+    End If
+    Set objMessage = Nothing
+End Function
+Public Function AddDate(ByVal OriginalDate As Date, NewDate As Date, AddMonth As Integer)
+    NewDate = DateAdd("m", AddMonth, OriginalDate)
+    ' Display the result
+    'MsgBox "Original Date: " & OriginalDate & vbCrLf & "New Date: " & NewDate
+End Function
+Public Function Get_oVchType(ByVal strInput As String) As String
+If Len(strInput) > 2 Then
+    Get_oVchType = Left(strInput, Len(strInput) - 2)
+End If
+End Function
+Public Function GetNumValue(ByVal inputString As String) As String
+Dim startIndex As Integer
+For startIndex = 1 To Len(inputString)
+    If IsNumeric(Mid(inputString, startIndex, 1)) Then
+  GetNumValue = GetNumValue + Mid(inputString, startIndex, 1)
+    End If
+Next
+End Function

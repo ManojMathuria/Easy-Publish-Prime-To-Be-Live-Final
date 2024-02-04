@@ -12,7 +12,7 @@ Begin VB.Form FrmProjectTracker
    Caption         =   "Project Tracker"
    ClientHeight    =   9120
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   18870
    BeginProperty Font 
       Name            =   "Comic Sans MS"
@@ -27,7 +27,6 @@ Begin VB.Form FrmProjectTracker
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   9120
    ScaleWidth      =   18870
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
@@ -130,11 +129,8 @@ Begin VB.Form FrmProjectTracker
          TabPicture(1)   =   "ProjectTracker.frx":0038
          Tab(1).ControlEnabled=   0   'False
          Tab(1).Control(0)=   "Mh3dFrame3"
-         Tab(1).Control(0).Enabled=   0   'False
          Tab(1).Control(1)=   "Mh3dFrame2"
-         Tab(1).Control(1).Enabled=   0   'False
          Tab(1).Control(2)=   "Mh3dFrame5"
-         Tab(1).Control(2).Enabled=   0   'False
          Tab(1).ControlCount=   3
          Begin VB.PictureBox Picture1 
             Height          =   2670
@@ -580,7 +576,7 @@ Begin VB.Form FrmProjectTracker
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "ProjectTracker.frx":2862
+            Picture         =   "ProjectTracker.frx":2886
             Begin FPSpreadADO.fpSpread fpSpread3 
                Height          =   3225
                Left            =   120
@@ -608,7 +604,7 @@ Begin VB.Form FrmProjectTracker
                MaxRows         =   1000
                OperationMode   =   2
                SelectBlockOptions=   0
-               SpreadDesigner  =   "ProjectTracker.frx":287E
+               SpreadDesigner  =   "ProjectTracker.frx":28A2
             End
             Begin VB.TextBox Text3 
                Appearance      =   0  'Flat
@@ -658,7 +654,7 @@ Begin VB.Form FrmProjectTracker
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "ProjectTracker.frx":3121
+            Picture         =   "ProjectTracker.frx":3169
             Begin VB.CommandButton cmdEnd 
                Enabled         =   0   'False
                BeginProperty Font 
@@ -672,7 +668,7 @@ Begin VB.Form FrmProjectTracker
                EndProperty
                Height          =   375
                Left            =   17880
-               Picture         =   "ProjectTracker.frx":313D
+               Picture         =   "ProjectTracker.frx":3185
                Style           =   1  'Graphical
                TabIndex        =   3
                ToolTipText     =   "End Work"
@@ -692,7 +688,7 @@ Begin VB.Form FrmProjectTracker
                EndProperty
                Height          =   375
                Left            =   17520
-               Picture         =   "ProjectTracker.frx":347F
+               Picture         =   "ProjectTracker.frx":34C7
                Style           =   1  'Graphical
                TabIndex        =   2
                ToolTipText     =   "Pause Work"
@@ -711,7 +707,7 @@ Begin VB.Form FrmProjectTracker
                EndProperty
                Height          =   375
                Left            =   17160
-               Picture         =   "ProjectTracker.frx":37C1
+               Picture         =   "ProjectTracker.frx":3809
                Style           =   1  'Graphical
                TabIndex        =   1
                ToolTipText     =   "Start Work"
@@ -827,8 +823,8 @@ Begin VB.Form FrmProjectTracker
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectTracker.frx":3B03
-               Picture         =   "ProjectTracker.frx":3B1F
+               Picture         =   "ProjectTracker.frx":3B4B
+               Picture         =   "ProjectTracker.frx":3B67
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -855,8 +851,8 @@ Begin VB.Form FrmProjectTracker
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectTracker.frx":3B3B
-               Picture         =   "ProjectTracker.frx":3B57
+               Picture         =   "ProjectTracker.frx":3B83
+               Picture         =   "ProjectTracker.frx":3B9F
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -883,8 +879,8 @@ Begin VB.Form FrmProjectTracker
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectTracker.frx":3B73
-               Picture         =   "ProjectTracker.frx":3B8F
+               Picture         =   "ProjectTracker.frx":3BBB
+               Picture         =   "ProjectTracker.frx":3BD7
             End
             Begin VB.Line Line1 
                X1              =   17060
@@ -923,8 +919,8 @@ Begin VB.Form FrmProjectTracker
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "ProjectTracker.frx":3BAB
-            Picture         =   "ProjectTracker.frx":3BC7
+            Picture         =   "ProjectTracker.frx":3BF3
+            Picture         =   "ProjectTracker.frx":3C0F
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
             Height          =   300
@@ -952,7 +948,7 @@ Begin VB.Form FrmProjectTracker
             NoPrefix        =   0   'False
             FormatString    =   ""
             Caption         =   ""
-            Picture         =   "ProjectTracker.frx":3BE3
+            Picture         =   "ProjectTracker.frx":3C2B
             Begin VB.OptionButton Option7 
                Caption         =   "All"
                Height          =   225
@@ -1034,8 +1030,8 @@ Begin VB.Form FrmProjectTracker
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "ProjectTracker.frx":3BFF
-               Picture         =   "ProjectTracker.frx":3C1B
+               Picture         =   "ProjectTracker.frx":3C47
+               Picture         =   "ProjectTracker.frx":3C63
             End
          End
          Begin Mh3dlblLib.Mh3dLabel CmdExport 
@@ -1061,8 +1057,8 @@ Begin VB.Form FrmProjectTracker
             Caption         =   " &Export "
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectTracker.frx":3C37
-            Picture         =   "ProjectTracker.frx":3C53
+            Picture         =   "ProjectTracker.frx":3C7F
+            Picture         =   "ProjectTracker.frx":3C9B
          End
          Begin Mh3dlblLib.Mh3dLabel CmdPrint 
             Height          =   330
@@ -1087,8 +1083,8 @@ Begin VB.Form FrmProjectTracker
             Caption         =   " &Print"
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectTracker.frx":3C6F
-            Picture         =   "ProjectTracker.frx":3C8B
+            Picture         =   "ProjectTracker.frx":3CB7
+            Picture         =   "ProjectTracker.frx":3CD3
          End
          Begin TDBNumber6Ctl.TDBNumber TDBNumber2 
             Height          =   330
@@ -1099,8 +1095,8 @@ Begin VB.Form FrmProjectTracker
             _Version        =   65536
             _ExtentX        =   2143
             _ExtentY        =   582
-            Calculator      =   "ProjectTracker.frx":3CA7
-            Caption         =   "ProjectTracker.frx":3CC7
+            Calculator      =   "ProjectTracker.frx":3CEF
+            Caption         =   "ProjectTracker.frx":3D0F
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -1110,9 +1106,9 @@ Begin VB.Form FrmProjectTracker
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "ProjectTracker.frx":3D2B
-            Keys            =   "ProjectTracker.frx":3D49
-            Spin            =   "ProjectTracker.frx":3D93
+            DropDown        =   "ProjectTracker.frx":3D73
+            Keys            =   "ProjectTracker.frx":3D91
+            Spin            =   "ProjectTracker.frx":3DDB
             AlignHorizontal =   2
             AlignVertical   =   0
             Appearance      =   1
@@ -1172,8 +1168,8 @@ Begin VB.Form FrmProjectTracker
             Alignment       =   0
             FillColor       =   9164542
             TextColor       =   0
-            Picture         =   "ProjectTracker.frx":3DBB
-            Picture         =   "ProjectTracker.frx":3DD7
+            Picture         =   "ProjectTracker.frx":3E03
+            Picture         =   "ProjectTracker.frx":3E1F
          End
          Begin VB.Label Label1 
             Alignment       =   2  'Center
@@ -1314,6 +1310,7 @@ Private Sub Form_Load()
     On Error GoTo ErrorHandler
     Dim SQL As String
     CenterForm Me
+    Me.Top = 1200
     BusySystemIndicator True
     cnProjectTracker.CursorLocation = adUseClient
     If cnProjectTracker.State = adStateOpen Then cnProjectTracker.Close
@@ -1538,7 +1535,7 @@ Private Sub SSTab1_Click(PreviousTab As Integer)
     End If
     Exit Sub
 DisplayInfo:
-   Text2.Text = UserCode: Text6.Text = UserName: Text7.Text = rstItemList.Fields("Name").Value
+   Text2.Text = UserCode: Text6.Text = Username: Text7.Text = rstItemList.Fields("Name").Value
 End Sub
 Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Dim HiLiteRecord As Boolean
@@ -1966,11 +1963,11 @@ With cdoMsg
     .From = rstCompanyMaster.Fields("UserName").Value
     .Subject = MsgSubject
     .HTMLBody = "<Font Face='Calibri' Size='3'>Dear Sir,<Br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" & MsgText & "<Br><Br><b><I>" & Task & "<Br><b>Task Status: " & TaskComments & "<Br><Br><b>Kindly do acknowledge the receipt of the mail</b>.<Br><Br>Thanks & Regards<Br>" & rstItemList.Fields("AssignTo").Value & "<Br>" & Trim(rstCompanyMaster.Fields("PrintName").Value) & "<Br>Phone : " & Trim(rstCompanyMaster.Fields("Phone").Value) & "<Br>E-Mail : <a HRef='mailto:" & Trim(rstCompanyMaster.Fields("EMail").Value) & "'>" & Trim(rstCompanyMaster.Fields("EMail").Value) & "</a></Font>"
-    If ShotFlag = False Then Call Screen_Shot
-    If Dir(App.Path & "\Screen Shot\Screen Shot.bmp", vbDirectory) <> "" Then
-    .AddAttachment App.Path & "\Screen Shot\Screen Shot.bmp"
-    ShotFlag = True
-    End If
+'    If ShotFlag = False Then Call Screen_Shot
+'    If Dir(App.Path & "\Screen Shot\Screen Shot.bmp", vbDirectory) <> "" Then
+'    .AddAttachment App.Path & "\Screen Shot\Screen Shot.bmp"
+'    ShotFlag = True
+'    End If
     Set .Configuration = cdoConf
 'Status Bar
     MdiMainMenu.StatusBar1.Panels(2).Text = "Sending Email..!!!"

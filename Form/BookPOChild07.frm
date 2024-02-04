@@ -9,7 +9,7 @@ Begin VB.Form FrmBookPOChild07
    Caption         =   "Miscellaneous Operations Order Details"
    ClientHeight    =   7680
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   18810
    BeginProperty Font 
       Name            =   "Arial"
@@ -26,7 +26,6 @@ Begin VB.Form FrmBookPOChild07
    MaxButton       =   0   'False
    ScaleHeight     =   7680
    ScaleWidth      =   18810
-   StartUpPosition =   2  'CenterScreen
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
       Height          =   7470
       Left            =   120
@@ -56,11 +55,41 @@ Begin VB.Form FrmBookPOChild07
       FormatString    =   ""
       Caption         =   ""
       Picture         =   "BookPOChild07.frx":0000
+      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
+         Height          =   330
+         Index           =   2
+         Left            =   11520
+         TabIndex        =   22
+         Top             =   7020
+         Width           =   6960
+         _Version        =   65536
+         _ExtentX        =   12277
+         _ExtentY        =   582
+         _StockProps     =   77
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         TintColor       =   16711935
+         Caption         =   " Ctrl+E->Edit Row  F2->Edit Row  F9->Delete Row  Ctrl+D->Delete Row  Ctrl+S->Save"
+         AutoSize        =   -1  'True
+         FillColor       =   8421504
+         TextColor       =   16777215
+         Picture         =   "BookPOChild07.frx":001C
+         Multiline       =   -1  'True
+         GlobalMem       =   -1  'True
+         Picture         =   "BookPOChild07.frx":0038
+      End
       Begin VB.CommandButton cmdProceed 
          BackColor       =   &H008BD6FE&
          Height          =   330
          Left            =   17760
-         Picture         =   "BookPOChild07.frx":001C
+         Picture         =   "BookPOChild07.frx":0054
          Style           =   1  'Graphical
          TabIndex        =   24
          ToolTipText     =   "Save"
@@ -71,7 +100,7 @@ Begin VB.Form FrmBookPOChild07
          BackColor       =   &H008BD6FE&
          Height          =   330
          Left            =   18120
-         Picture         =   "BookPOChild07.frx":011E
+         Picture         =   "BookPOChild07.frx":0156
          Style           =   1  'Graphical
          TabIndex        =   23
          ToolTipText     =   "Cancel"
@@ -96,7 +125,7 @@ Begin VB.Form FrmBookPOChild07
          MaxLength       =   40
          TabIndex        =   9
          Top             =   7015
-         Width           =   13590
+         Width           =   9750
       End
       Begin VB.TextBox Text5 
          Alignment       =   1  'Right Justify
@@ -209,8 +238,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":0220
-         Picture         =   "BookPOChild07.frx":023C
+         Picture         =   "BookPOChild07.frx":0258
+         Picture         =   "BookPOChild07.frx":0274
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
@@ -237,8 +266,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":0258
-         Picture         =   "BookPOChild07.frx":0274
+         Picture         =   "BookPOChild07.frx":0290
+         Picture         =   "BookPOChild07.frx":02AC
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel19 
          Height          =   330
@@ -265,8 +294,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":0290
-         Picture         =   "BookPOChild07.frx":02AC
+         Picture         =   "BookPOChild07.frx":02C8
+         Picture         =   "BookPOChild07.frx":02E4
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel20 
          Height          =   330
@@ -292,8 +321,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":02C8
-         Picture         =   "BookPOChild07.frx":02E4
+         Picture         =   "BookPOChild07.frx":0300
+         Picture         =   "BookPOChild07.frx":031C
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel23 
          Height          =   330
@@ -319,8 +348,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":0300
-         Picture         =   "BookPOChild07.frx":031C
+         Picture         =   "BookPOChild07.frx":0338
+         Picture         =   "BookPOChild07.frx":0354
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel24 
          Height          =   330
@@ -346,8 +375,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":0338
-         Picture         =   "BookPOChild07.frx":0354
+         Picture         =   "BookPOChild07.frx":0370
+         Picture         =   "BookPOChild07.frx":038C
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel25 
          Height          =   330
@@ -373,8 +402,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":0370
-         Picture         =   "BookPOChild07.frx":038C
+         Picture         =   "BookPOChild07.frx":03A8
+         Picture         =   "BookPOChild07.frx":03C4
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel27 
          Height          =   330
@@ -400,8 +429,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":03A8
-         Picture         =   "BookPOChild07.frx":03C4
+         Picture         =   "BookPOChild07.frx":03E0
+         Picture         =   "BookPOChild07.frx":03FC
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel28 
          Height          =   330
@@ -427,8 +456,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":03E0
-         Picture         =   "BookPOChild07.frx":03FC
+         Picture         =   "BookPOChild07.frx":0418
+         Picture         =   "BookPOChild07.frx":0434
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
@@ -439,8 +468,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "BookPOChild07.frx":0418
-         Caption         =   "BookPOChild07.frx":0530
+         Calendar        =   "BookPOChild07.frx":0450
+         Caption         =   "BookPOChild07.frx":0568
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -450,9 +479,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":059C
-         Keys            =   "BookPOChild07.frx":05BA
-         Spin            =   "BookPOChild07.frx":0618
+         DropDown        =   "BookPOChild07.frx":05D4
+         Keys            =   "BookPOChild07.frx":05F2
+         Spin            =   "BookPOChild07.frx":0650
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -501,8 +530,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "BookPOChild07.frx":0640
-         Caption         =   "BookPOChild07.frx":0758
+         Calendar        =   "BookPOChild07.frx":0678
+         Caption         =   "BookPOChild07.frx":0790
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -512,9 +541,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":07C4
-         Keys            =   "BookPOChild07.frx":07E2
-         Spin            =   "BookPOChild07.frx":0840
+         DropDown        =   "BookPOChild07.frx":07FC
+         Keys            =   "BookPOChild07.frx":081A
+         Spin            =   "BookPOChild07.frx":0878
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -563,8 +592,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2778
          _ExtentY        =   582
-         Calendar        =   "BookPOChild07.frx":0868
-         Caption         =   "BookPOChild07.frx":0980
+         Calendar        =   "BookPOChild07.frx":08A0
+         Caption         =   "BookPOChild07.frx":09B8
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -574,9 +603,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":09EC
-         Keys            =   "BookPOChild07.frx":0A0A
-         Spin            =   "BookPOChild07.frx":0A68
+         DropDown        =   "BookPOChild07.frx":0A24
+         Keys            =   "BookPOChild07.frx":0A42
+         Spin            =   "BookPOChild07.frx":0AA0
          AlignHorizontal =   0
          AlignVertical   =   0
          Appearance      =   0
@@ -625,8 +654,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2090
          _ExtentY        =   582
-         Calculator      =   "BookPOChild07.frx":0A90
-         Caption         =   "BookPOChild07.frx":0AB0
+         Calculator      =   "BookPOChild07.frx":0AC8
+         Caption         =   "BookPOChild07.frx":0AE8
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -636,9 +665,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":0B1C
-         Keys            =   "BookPOChild07.frx":0B3A
-         Spin            =   "BookPOChild07.frx":0B84
+         DropDown        =   "BookPOChild07.frx":0B54
+         Keys            =   "BookPOChild07.frx":0B72
+         Spin            =   "BookPOChild07.frx":0BBC
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -700,7 +729,7 @@ Begin VB.Form FrmBookPOChild07
          MaxRows         =   100
          OperationMode   =   2
          ScrollBars      =   2
-         SpreadDesigner  =   "BookPOChild07.frx":0BAC
+         SpreadDesigner  =   "BookPOChild07.frx":0BE4
       End
       Begin TDBNumber6Ctl.TDBNumber MhRealInput19 
          Height          =   330
@@ -712,8 +741,8 @@ Begin VB.Form FrmBookPOChild07
          _Version        =   65536
          _ExtentX        =   2090
          _ExtentY        =   582
-         Calculator      =   "BookPOChild07.frx":187A
-         Caption         =   "BookPOChild07.frx":189A
+         Calculator      =   "BookPOChild07.frx":19DA
+         Caption         =   "BookPOChild07.frx":19FA
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "Calibri"
             Size            =   9.75
@@ -723,9 +752,9 @@ Begin VB.Form FrmBookPOChild07
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         DropDown        =   "BookPOChild07.frx":1906
-         Keys            =   "BookPOChild07.frx":1924
-         Spin            =   "BookPOChild07.frx":196E
+         DropDown        =   "BookPOChild07.frx":1A66
+         Keys            =   "BookPOChild07.frx":1A84
+         Spin            =   "BookPOChild07.frx":1ACE
          AlignHorizontal =   1
          AlignVertical   =   0
          Appearance      =   0
@@ -785,8 +814,8 @@ Begin VB.Form FrmBookPOChild07
          Alignment       =   0
          FillColor       =   9164542
          TextColor       =   0
-         Picture         =   "BookPOChild07.frx":1996
-         Picture         =   "BookPOChild07.frx":19B2
+         Picture         =   "BookPOChild07.frx":1AF6
+         Picture         =   "BookPOChild07.frx":1B12
          Begin TDBNumber6Ctl.TDBNumber MhRealInput18 
             Height          =   330
             Left            =   14220
@@ -797,8 +826,8 @@ Begin VB.Form FrmBookPOChild07
             _Version        =   65536
             _ExtentX        =   1896
             _ExtentY        =   582
-            Calculator      =   "BookPOChild07.frx":19CE
-            Caption         =   "BookPOChild07.frx":19EE
+            Calculator      =   "BookPOChild07.frx":1B2E
+            Caption         =   "BookPOChild07.frx":1B4E
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                Name            =   "Calibri"
                Size            =   9.75
@@ -808,9 +837,9 @@ Begin VB.Form FrmBookPOChild07
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            DropDown        =   "BookPOChild07.frx":1A5A
-            Keys            =   "BookPOChild07.frx":1A78
-            Spin            =   "BookPOChild07.frx":1AC2
+            DropDown        =   "BookPOChild07.frx":1BBA
+            Keys            =   "BookPOChild07.frx":1BD8
+            Spin            =   "BookPOChild07.frx":1C22
             AlignHorizontal =   1
             AlignVertical   =   0
             Appearance      =   0
@@ -846,36 +875,6 @@ Begin VB.Form FrmBookPOChild07
             MaxValueVT      =   5
             MinValueVT      =   5
          End
-      End
-      Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
-         Height          =   330
-         Index           =   2
-         Left            =   15360
-         TabIndex        =   22
-         Top             =   7020
-         Width           =   3120
-         _Version        =   65536
-         _ExtentX        =   5503
-         _ExtentY        =   582
-         _StockProps     =   77
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         TintColor       =   16711935
-         Caption         =   " Ctrl+D->Delete  Ctrl+S->Save"
-         AutoSize        =   -1  'True
-         FillColor       =   8421504
-         TextColor       =   16777215
-         Picture         =   "BookPOChild07.frx":1AEA
-         Multiline       =   -1  'True
-         GlobalMem       =   -1  'True
-         Picture         =   "BookPOChild07.frx":1B06
       End
       Begin VB.Line Line1 
          X1              =   0
@@ -917,6 +916,7 @@ Dim EditMode As Boolean
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
     BusySystemIndicator True
     ItemCode = FrmBookPrintOrder.rstBookList.Fields("Code").Value
     DisableCloseButton Me
@@ -1104,16 +1104,37 @@ Private Sub CalculateAmount()   'Calculate Amount
     MhRealInput19.Value = TotalAmount
 End Sub
 Private Sub cmdProceed_Click()
+    If CheckMandatoryFields(1, 10) Then Exit Sub 'Item
+    If CheckMandatoryFields(14, 17) Then Exit Sub 'Item
     SaveFields
     FrmBookPrintOrder.Command3.Enabled = False
     Call CloseForm(Me)
 End Sub
+Private Function CheckMandatoryFields(ByVal a, B As Integer) As Boolean
+    Dim i As Integer, x As Integer, cVal As Variant, Header As Variant
+        For i = 1 To fpSpread1.DataRowCnt
+            For x = 1 To 10
+            fpSpread1.SetActiveCell x, i
+            fpSpread1.GetText x, i, cVal
+                If cVal = "" Then CheckMandatoryFields = True: Exit For
+                If cVal = " " Then CheckMandatoryFields = True: Exit For
+            Next
+            If CheckMandatoryFields Then fpSpread1.GetText x, 0, Header: DisplayError "Data Cann't Be Saved due To Field Active Row No.  (#" & Trim(Str(i)) & ") &          Column>>>  " & Header & "  <<< is Mandatory Fields": fpSpread1.SetActiveCell x, i: Exit For
+            For x = 14 To 17
+            fpSpread1.SetActiveCell x, i
+            fpSpread1.GetText x, i, cVal
+                If cVal = "" Then CheckMandatoryFields = True: Exit For
+                If cVal = " " Then CheckMandatoryFields = True: Exit For
+            Next
+            If CheckMandatoryFields Then fpSpread1.GetText x, 0, Header: DisplayError "Data Cann't Be Saved due To Field Row No.  (#" & Trim(Str(i)) & ") Column>>>  " & Header & ") <<< Mandatory Fields ": fpSpread1.SetActiveCell x, i: Exit For
+        Next
+End Function
 Private Sub cmdCancel_Click()
     rstBookPOChild07.CancelUpdate
     Call CloseForm(Me)
 End Sub
 Private Sub fpSpread1_KeyDown(KeyCode As Integer, Shift As Integer)
-    If Shift = vbCtrlMask And KeyCode = vbKeyD Then
+    If (Shift = vbCtrlMask And KeyCode = vbKeyD) Or KeyCode = vbKeyF9 Then
         If UserLevel = "3" Then Call DisplayError("You don't have the rights to delete BOM Item"): Exit Sub
         If MsgBox("Are you sure to delete the Record?", vbYesNo + vbQuestion + vbDefaultButton2, "Confirm Delete !") = vbYes Then
             fpSpread1.DeleteRows fpSpread1.ActiveRow, 1
@@ -1271,10 +1292,10 @@ End Sub
 Private Function FetchOperationRate(ByVal xOperation As String, ByVal xCalcMode As String, ByVal xSize As String, xAreaRange As Double, xSectionRange As Double, xQtyRange As Double) As Double
     On Error GoTo ErrorHandler
     If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-    rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountChild07 WHERE Code = '" & PartyCode & "' AND BinderyProcess='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
     If rstFetchOperationRate.RecordCount = 0 Then
         If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-        rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND Operation='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND " & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " AND AreaRange>=" & xAreaRange & " ORDER BY Range", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstFetchOperationRate.Open "SELECT TOP 1 Rate FROM AccountMaster P INNER JOIN AccountChild07 C ON P.Code=C.Code WHERE [Name] Like '%Rate%'  AND BinderyProcess='" & xOperation & "' AND CalcMode='" & xCalcMode & "' AND (" & IIf(CheckEmpty(xSize, False), "1=1", "[Size]='" & xSize & "'") & " OR AreaRange>=" & xAreaRange & ") ORDER BY AreaRange", cnDatabase, adOpenKeyset, adLockReadOnly
     End If
     If rstFetchOperationRate.RecordCount > 0 Then FetchOperationRate = Val(rstFetchOperationRate.Fields("Rate").Value)
     Exit Function
@@ -1296,7 +1317,7 @@ Private Sub InsertOperation()
                 If rstFetchOperationRate.RecordCount > 0 Then .SetText 1, 1, rstFetchOperationRate.Fields("Name").Value: .SetText 14, 1, rstFetchOperationRate.Fields("Code").Value
                 'Operation,Size
                 If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
-                rstFetchOperationRate.Open "SELECT O.Code As OperationCode,O.Name As OperationName,S.Code As SizeCode,S.Name As SizeName FROM (BookMaster I LEFT JOIN GeneralMaster O ON I.LaminationType=O.Code) LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE I.Code='" & ItemCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
+                rstFetchOperationRate.Open "SELECT I7.Operation As OperationCode,(Select Name From GeneralMaster Where Code=I7.Operation) As OperationName,S.Code As SizeCode,S.Name As SizeName FROM BookMaster I Left Join BookChild07 I7 ON I.Code=I7.Code LEFT JOIN GeneralMaster S ON I.FinishSize=S.Code WHERE I.Code='" & ItemCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
                 If rstFetchOperationRate.RecordCount > 0 Then .SetText 2, 1, rstFetchOperationRate.Fields("OperationName").Value: .SetText 15, 1, rstFetchOperationRate.Fields("OperationCode").Value: .SetText 5, 1, rstFetchOperationRate.Fields("SizeName").Value: .SetText 16, 1, rstFetchOperationRate.Fields("SizeCode").Value: Operation = rstFetchOperationRate.Fields("OperationCode").Value: Size = rstFetchOperationRate.Fields("SizeCode").Value
                 If rstFetchOperationRate.State = adStateOpen Then rstFetchOperationRate.Close
                 'CalcMode
@@ -1317,7 +1338,7 @@ Private Sub InsertOperation()
                 fpSpread1.SetText 4, i, CheckNull(rstOrderList.Fields("OCName").Value)
                 fpSpread1.SetText 5, i, CheckNull(rstOrderList.Fields("SName").Value)
                 fpSpread1.SetText 7, i, CheckNull(rstOrderList.Fields("CName").Value)
-                fpSpread1.SetText 8, i, Val(rstOrderList.Fields("CalcValue").Value)
+                fpSpread1.SetText 8, i, Val(rstOrderList.Fields("CalcVal").Value)
                 fpSpread1.SetText 14, i, rstOrderList.Fields("ECode").Value
                 fpSpread1.SetText 15, i, rstOrderList.Fields("OCode").Value
                 fpSpread1.SetText 16, i, rstOrderList.Fields("SCode").Value

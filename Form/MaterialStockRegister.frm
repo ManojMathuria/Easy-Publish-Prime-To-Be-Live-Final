@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{3AE5AE83-A6DA-101B-9313-00AA00575482}#1.0#0"; "mhfram32.ocx"
 Object = "{A49CE0E0-C0F9-11D2-B0EA-00A024695830}#1.0#0"; "tidate8.ocx"
 Object = "{886939C3-7807-101C-BB03-00AA00575482}#1.0#0"; "mhlabl32.ocx"
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmMaterialStockRegister 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Material Stock Register"
-   ClientHeight    =   6435
+   ClientHeight    =   8235
    ClientLeft      =   150
    ClientTop       =   435
-   ClientWidth     =   7620
+   ClientWidth     =   13620
    BeginProperty Font 
       Name            =   "Comic Sans MS"
       Size            =   8.25
@@ -21,19 +21,18 @@ Begin VB.Form FrmMaterialStockRegister
    EndProperty
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   6435
-   ScaleWidth      =   7620
+   ScaleHeight     =   8235
+   ScaleWidth      =   13620
    Begin MSComctlLib.Toolbar Toolbar1 
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   8
+      TabIndex        =   6
       Top             =   0
-      Width           =   7620
-      _ExtentX        =   13441
+      Width           =   13620
+      _ExtentX        =   24024
       _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -83,14 +82,14 @@ Begin VB.Form FrmMaterialStockRegister
       EndProperty
    End
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   6065
+      Height          =   7860
       Left            =   45
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   345
-      Width           =   7530
+      Width           =   13530
       _Version        =   65536
-      _ExtentX        =   13282
-      _ExtentY        =   10698
+      _ExtentX        =   23865
+      _ExtentY        =   13864
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -122,10 +121,10 @@ Begin VB.Form FrmMaterialStockRegister
             Strikethrough   =   0   'False
          EndProperty
          Height          =   225
-         Left            =   3840
-         TabIndex        =   2
+         Left            =   7080
+         TabIndex        =   1
          Top             =   53
-         Width           =   1335
+         Width           =   1455
       End
       Begin VB.OptionButton Option2 
          Caption         =   "Summarised"
@@ -140,8 +139,8 @@ Begin VB.Form FrmMaterialStockRegister
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   300
-         Left            =   6180
-         TabIndex        =   4
+         Left            =   11100
+         TabIndex        =   3
          Top             =   10
          Width           =   1350
       End
@@ -158,52 +157,20 @@ Begin VB.Form FrmMaterialStockRegister
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   300
-         Left            =   5160
-         TabIndex        =   3
+         Left            =   9120
+         TabIndex        =   2
          Top             =   10
          Value           =   -1  'True
-         Width           =   1065
-      End
-      Begin MSComctlLib.ListView ListView1 
-         Height          =   2875
-         Left            =   0
-         TabIndex        =   5
-         Top             =   320
-         Width           =   3765
-         _ExtentX        =   6641
-         _ExtentY        =   5080
-         View            =   3
-         Arrange         =   1
-         LabelEdit       =   1
-         MultiSelect     =   -1  'True
-         LabelWrap       =   -1  'True
-         HideSelection   =   0   'False
-         FullRowSelect   =   -1  'True
-         GridLines       =   -1  'True
-         _Version        =   393217
-         ForeColor       =   -2147483640
-         BackColor       =   16777215
-         BorderStyle     =   1
-         Appearance      =   0
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "Calibri"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         NumItems        =   0
+         Width           =   1425
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
          Height          =   330
          Left            =   0
-         TabIndex        =   10
+         TabIndex        =   8
          Top             =   0
-         Width           =   855
+         Width           =   1455
          _Version        =   65536
-         _ExtentX        =   1508
+         _ExtentX        =   2566
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -225,12 +192,12 @@ Begin VB.Form FrmMaterialStockRegister
       End
       Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
          Height          =   330
-         Left            =   1920
-         TabIndex        =   11
+         Left            =   3360
+         TabIndex        =   9
          Top             =   0
-         Width           =   765
+         Width           =   1485
          _Version        =   65536
-         _ExtentX        =   1349
+         _ExtentX        =   2619
          _ExtentY        =   582
          _StockProps     =   77
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -251,13 +218,13 @@ Begin VB.Form FrmMaterialStockRegister
          Picture         =   "MaterialStockRegister.frx":07DC
       End
       Begin MSComctlLib.ListView ListView2 
-         Height          =   2880
-         Left            =   3755
-         TabIndex        =   6
-         Top             =   320
-         Width           =   3775
-         _ExtentX        =   6668
-         _ExtentY        =   5080
+         Height          =   3600
+         Left            =   6630
+         TabIndex        =   4
+         Top             =   315
+         Width           =   6900
+         _ExtentX        =   12171
+         _ExtentY        =   6350
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -283,13 +250,13 @@ Begin VB.Form FrmMaterialStockRegister
          NumItems        =   0
       End
       Begin MSComctlLib.ListView ListView3 
-         Height          =   2880
+         Height          =   3960
          Left            =   0
-         TabIndex        =   7
-         Top             =   3180
-         Width           =   7530
-         _ExtentX        =   13282
-         _ExtentY        =   5080
+         TabIndex        =   5
+         Top             =   3900
+         Width           =   13530
+         _ExtentX        =   23865
+         _ExtentY        =   6985
          View            =   3
          Arrange         =   1
          LabelEdit       =   1
@@ -316,12 +283,12 @@ Begin VB.Form FrmMaterialStockRegister
       End
       Begin TDBDate6Ctl.TDBDate MhDateInput1 
          Height          =   330
-         Left            =   840
+         Left            =   1440
          TabIndex        =   0
          Top             =   0
-         Width           =   1095
+         Width           =   1935
          _Version        =   65536
-         _ExtentX        =   1931
+         _ExtentX        =   3413
          _ExtentY        =   582
          Calendar        =   "MaterialStockRegister.frx":07F8
          Caption         =   "MaterialStockRegister.frx":0910
@@ -376,14 +343,46 @@ Begin VB.Form FrmMaterialStockRegister
          Value           =   39849
          CenturyMode     =   0
       End
+      Begin MSComctlLib.ListView ListView1 
+         Height          =   3600
+         Left            =   0
+         TabIndex        =   10
+         Top             =   315
+         Width           =   6645
+         _ExtentX        =   11721
+         _ExtentY        =   6350
+         View            =   3
+         Arrange         =   1
+         LabelEdit       =   1
+         MultiSelect     =   -1  'True
+         LabelWrap       =   -1  'True
+         HideSelection   =   0   'False
+         FullRowSelect   =   -1  'True
+         GridLines       =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   16777215
+         BorderStyle     =   1
+         Appearance      =   0
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Calibri"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   0
+      End
       Begin TDBDate6Ctl.TDBDate MhDateInput2 
          Height          =   330
-         Left            =   2640
-         TabIndex        =   1
+         Left            =   4830
+         TabIndex        =   11
          Top             =   0
-         Width           =   1095
+         Width           =   1815
          _Version        =   65536
-         _ExtentX        =   1931
+         _ExtentX        =   3201
          _ExtentY        =   582
          Calendar        =   "MaterialStockRegister.frx":0A20
          Caption         =   "MaterialStockRegister.frx":0B38
@@ -459,16 +458,16 @@ Private Sub Form_Load()
     CenterForm Me
     BusySystemIndicator True
     If ReportType = "1" Then
-        Me.Caption = "Material Stock Register [Binderwise/Bookwise/Itemwise]"
+        Me.Caption = "Bill of Materials [BOM] Stock Register [Godownwise/Itemwise/BOM Itemwise]"
     Else
-        Me.Caption = "Material Stock Register [Binderwise/Itemwise]"
+        Me.Caption = "Bill of Materials [BOM] Stock Register [Godownwise/Itemwise]"
     End If
-    rstCompanyMaster.Open "Select PrintName From CompanyMaster", cnDatabase, adOpenKeyset, adLockReadOnly
+    rstCompanyMaster.Open "Select PrintName FROM CompanyMaster Where FYCode='" & FYCode & "'", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.Open "Select Name As Col0, Code From AccountMaster Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     rstAccountList.ActiveConnection = Nothing
     Call FillList(ListView3, "List of Godowns...", rstAccountList)
     If ReportType = "1" Then
-        rstBoardList.Open "Select Name,Code From GeneralMaster Where Type = '2' Order by Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstBoardList.Open "Select Name,Code From GeneralMaster Where Type = '5' AND Code='000000' Order by Name", cnDatabase, adOpenKeyset, adLockReadOnly
         rstBoardList.ActiveConnection = Nothing
         Call FillList(ListView1, IIf(ReportType = "1", "List of Boards...", "List of Item Types"), rstBoardList)
         Call BookSelection(True)
@@ -477,22 +476,22 @@ Private Sub Form_Load()
         rstBoardList.Open "Select Name,Code From GeneralMaster Where Type = '0' Order by Name", cnDatabase, adOpenKeyset, adLockOptimistic
         rstBoardList.ActiveConnection = Nothing
         rstBoardList.AddNew
-        rstBoardList.Fields("Name").Value = "Outsource Item"
+        rstBoardList.Fields("Name").Value = "Bill of Materials [BOM]"
         rstBoardList.Fields("Code").Value = "000001"
         rstBoardList.Update
         rstBoardList.AddNew
-        rstBoardList.Fields("Name").Value = "Fresh Book"
+        rstBoardList.Fields("Name").Value = "Bill of Materials [FG]"
         rstBoardList.Fields("Code").Value = "000003"
         rstBoardList.Update
         rstBoardList.AddNew
-        rstBoardList.Fields("Name").Value = "Repair Book"
+        rstBoardList.Fields("Name").Value = "Bill of Materials [UFG] Items"
         rstBoardList.Fields("Code").Value = "000004"
         rstBoardList.Update
         rstBoardList.AddNew
-        rstBoardList.Fields("Name").Value = "Title"
+        rstBoardList.Fields("Name").Value = "Bill of Materials [UFG] Elements"
         rstBoardList.Fields("Code").Value = "000005"
         rstBoardList.Update
-        Call FillList(ListView1, IIf(ReportType = "1", "List of Boards...", "List of Item Types"), rstBoardList)
+        Call FillList(ListView1, IIf(ReportType = "1", "List of Bill of Materials [BOM]...", "List of Bill of Materials [BOM] Types"), rstBoardList)
         ListView1.ListItems(1).Selected = True
         Call BookSelection(False)
         ListView1.MultiSelect = False
@@ -512,7 +511,7 @@ ErrorHandler:
 End Sub
 Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeyReturn Then
-       SendKeys "{TAB}", True
+       Sendkeys "{TAB}", True
        KeyCode = 0
     ElseIf Shift = 0 And KeyCode = vbKeyEscape Then
         Toolbar1_ButtonClick Toolbar1.Buttons.Item(3)
@@ -619,13 +618,15 @@ Private Sub BookSelection(ByVal SelectAll As Boolean)
         rstBookList.Close
     End If
     If ReportType = "1" Then
-        rstBookList.Open "Select Name, Code From BookMaster " & IIf(SelectAll, "'1'", "Where Board In (" & SelectedItems(ListView1, False) & ")") & " Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstBookList.Open "Select Name, Code From BookMaster " & IIf(SelectAll, "", "") & " Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        'rstBookList.Open "Select Name, Code From BookMaster " & IIf(SelectAll, "BookMaster WHERE Board='000000'", "Where [Group] In (" & SelectedItems(ListView1, False) & ")") & " Order By Name", cnDatabase, adOpenKeyset, adLockReadOnly
     Else
-        rstBookList.Open "Select Name, Code FROM " & IIf(Val(ListView1.SelectedItem.SubItems(1)) = 1, "OutsourceItemMaster", IIf(Val(ListView1.SelectedItem.SubItems(1)) = 3, "BookMaster WHERE Board='000000'", IIf(Val(ListView1.SelectedItem.SubItems(1)) = 4, "BookMaster WHERE Type='R'", "BookMaster WHERE Board<>'000000' AND Type='F'"))) & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        rstBookList.Open "Select " & IIf(Val(ListView1.SelectedItem.SubItems(1)) = 1, "Name, Code FROM OutsourceItemMaster", IIf(Val(ListView1.SelectedItem.SubItems(1)) = 3, "Name, Code FROM BookMaster Where Type='F'", IIf(Val(ListView1.SelectedItem.SubItems(1)) = 4, "Name, Code FROM BookMaster WHERE Type='R'", "I.Name+' ['+(select Name From ElementMaster Where Code=Element)+']' AS NAme ,C.Code+Element From BookMaster I INNER JOIN BookChild06 C ON C.Code=I.Code Where I.Type='F'"))) & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
+        'rstBookList.Open "Select Name, Code FROM " & IIf(Val(ListView1.SelectedItem.SubItems(1)) = 1, "OutsourceItemMaster", IIf(Val(ListView1.SelectedItem.SubItems(1)) = 3, "BookMaster WHERE Board='000000'", IIf(Val(ListView1.SelectedItem.SubItems(1)) = 4, "BookMaster WHERE Type='R'", "BookMaster WHERE Board<>'000000' AND Type='F'"))) & " ORDER BY Name", cnDatabase, adOpenKeyset, adLockReadOnly
     End If
     rstBookList.ActiveConnection = Nothing
     ListView2.ListItems.Clear
-    Call FillList(ListView2, "List of Books...", rstBookList)
+    Call FillList(ListView2, "List of [BOM] Items...", rstBookList)
 End Sub
 Private Sub PrintMaterialStockRegister()
     Dim CRXParamDefs As CRAXDRT.ParameterFieldDefinitions
@@ -641,7 +642,7 @@ Private Sub PrintMaterialStockRegister()
     
     On Error Resume Next
     Screen.MousePointer = vbHourglass
-    rptMaterialStockRegister.Text11.SetText "Material Stock Register (" & IIf(Option1.Value, "Detailed", "Summarised") & ")"
+    rptMaterialStockRegister.Text11.SetText "UFG Stock Register (" & IIf(Option1.Value, "Detailed", "Summarised") & ")"
     rptMaterialStockRegister.Text12.SetText Trim(rstCompanyMaster.Fields("PrintName").Value)
     rptMaterialStockRegister.Text13.SetText "From [" + Format(GetDate(MhDateInput1.Text), "dd-mm-yyyy") + "] To [" + Format(GetDate(MhDateInput2.Text), "dd-mm-yyyy") + "]"
     If rstMaterialStockRegister.State = adStateOpen Then
@@ -657,34 +658,34 @@ Private Sub PrintMaterialStockRegister()
         SelectedBoards = SelectedItems(ListView1, False)
         SelectedBooks = SelectedItems(ListView2, False)
         SelectedAccounts = SelectedItems(ListView3, False)
-        OutsourceItemQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category=C.Category AND Item=C.Item AND Code=A.Code)+" & _
-                                                  "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                                  "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                  "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                  "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                                  "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                  "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0))) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category=C.Category AND Item=C.Item AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
-        FreshBookQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category=C.Category AND Item=C.Item AND Code=A.Code)+" & _
-                                           "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                           "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                           "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                           "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                           "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                           "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0))) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category=C.Category AND Item=C.Item AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
-        RepairBookQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category='4' AND Item=O.Code AND Code=A.Code)+" & _
-                                            "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                            "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                            "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                            "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                            "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                            "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0))) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='4' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
-        TitleQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category='5' AND Item=O.Code AND Code=A.Code)+" & _
-                                 "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                 "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                 "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                 "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                 "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                 "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0)))  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='5' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+        OutsourceItemQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category=C.Category AND Item=C.Item AND Code=A.Code)+" & _
+                                                  "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                                  "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                  "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                  "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                                  "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                  "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category=C.Category AND Item=C.Item AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+        FreshBookQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category=C.Category AND Item=C.Item AND Code=A.Code)+" & _
+                                           "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                           "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                           "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                           "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                           "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category=C.Category AND Item=C.Item AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                           "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category=C.Category AND Item=C.Item AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+        RepairBookQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='4' AND Item=O.Code AND Code=A.Code)+" & _
+                                            "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                            "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                            "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                            "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                            "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                            "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='4' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+        TitleQuantity = "(SELECT ISNULL(SUM(OpBal),0,) FROM AccountChild0801 WHERE Category='5' AND Item=O.Code AND Code=A.Code)+" & _
+                                 "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                 "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                 "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                 "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                 "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                 "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0)  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='5' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
         SQL = SQL + "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & OutsourceItemQuantity & " As Quantity,'Board Name : '+Trim(G.PrintName) As BoardName," & _
                             "'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A WHERE B.Code=C.Code AND B.Board=G.Code AND C.Item=O.Code AND C.Category='1' AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") AND (" & OutsourceItemQuantity & ") <> 0 UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND I.Godown=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='1') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
@@ -694,7 +695,7 @@ Private Sub PrintMaterialStockRegister()
                             "Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND M.Account=A.Code AND I.Quantity<0 AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='1') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND M.AccountFrom=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='1') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND M.AccountTo=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='1') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category=C.Category AND I.Item=C.Item) AND M.Binder=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='1') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL "
+                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,OutsourceItemMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category=C.Category AND I.Item=C.Item) AND I.Vendor=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='1') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL "
         SQL = SQL + "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & FreshBookQuantity & " As Quantity,'Board Name : '+Trim(G.PrintName) As BoardName," & _
                             "'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A WHERE B.Code=C.Code AND B.Board=G.Code AND C.Item=O.Code AND C.Category='3' AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") AND (" & FreshBookQuantity & ") <> 0 UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND I.Godown=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='3') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
@@ -704,7 +705,7 @@ Private Sub PrintMaterialStockRegister()
                             "Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND M.Account=A.Code AND I.Quantity<0 AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='3') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND M.AccountFrom=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='3') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category=C.Category AND I.Item=C.Item) AND M.AccountTo=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='3') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category=C.Category AND I.Item=C.Item) AND M.Binder=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='3') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL "
+                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookChild01 C,GeneralMaster G,BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category=C.Category AND I.Item=C.Item) AND I.Vendor=A.Code AND B.Code=C.Code AND B.Board=G.Code AND (C.Item=O.Code AND C.Category='3') AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL "
         SQL = SQL + "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & RepairBookQuantity & " As Quantity,'Board Name : '+Trim(G.PrintName) As BoardName," & _
                             "'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A WHERE O.Type='R' AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") AND (" & RepairBookQuantity & ") <> 0 UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND I.Godown=A.Code AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND O.Type='R' AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
@@ -714,7 +715,7 @@ Private Sub PrintMaterialStockRegister()
                             "Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity<0 AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND O.Type='R' AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.AccountFrom=A.Code AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND O.Type='R' AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.AccountTo=A.Code AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND O.Type='R' AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='4' AND I.Item=O.Code) AND M.Binder=A.Code AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND O.Type='R' AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL "
+                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='4' AND I.Item=O.Code) AND I.Vendor=A.Code AND Left(B.BusyCode,6)=Left(O.BusyCode,6) AND O.Type='R' AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL "
         SQL = SQL + "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & TitleQuantity & " As Quantity,'Board Name : '+Trim(G.PrintName) As BoardName," & _
                             "'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A WHERE B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") AND (" & TitleQuantity & ") <> 0 UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND I.Godown=A.Code AND B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
@@ -724,7 +725,8 @@ Private Sub PrintMaterialStockRegister()
                             "Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity<0 AND B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.AccountFrom=A.Code AND B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                             "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT Trim(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.AccountTo=A.Code AND B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='5' AND I.Item=O.Code) AND M.Binder=A.Code AND B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
+                            "SELECT Trim(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'Board Name : '+Trim(G.PrintName) As BoardName,'Book Name : '+Trim(B.PrintName) As BookName,Trim(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+Trim(A.PrintName) As GodownName FROM BookMaster B,BookMaster O,GeneralMaster G,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='5' AND I.Item=O.Code) AND I.Vendor=A.Code AND B.Code=O.Code AND B.Board=G.Code AND B.Code In (" & SelectedBooks & ") AND G.Code In (" & SelectedBoards & ") AND A.Code In (" & SelectedAccounts & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
+        If DatabaseType = "MS SQL" Then SQL = Replace(SQL, "#", "'")
         rstMaterialStockRegister.Open SQL & "ORDER BY GodownName,BoardName,BookName,ItemType,ItemName,VchDate,VchNo", cnDatabase, adOpenKeyset, adLockReadOnly
     Else
         SelectedBooks = SelectedItems(ListView2, False)
@@ -737,15 +739,15 @@ Private Sub PrintMaterialStockRegister()
                                                       "ISNULL((SELECT SUM(I.Quantity) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#),0)-" & _
                                                       "ISNULL((SELECT SUM(I.Quantity) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#),0)+" & _
                                                       "ISNULL((SELECT SUM(I.Quantity) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#),0)-" & _
-                                                      "ISNULL((SELECT SUM(Round(I.TotalConsumption,0)) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='1' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#),0)"
+                                                      "ISNULL((SELECT SUM(Round(I.TotalConsumption,0)) FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='1' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#),0)"
         Else
-            OutsourceItemQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category='1' AND Item=O.Code AND Code=A.Code)+" & _
-                                                      "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                                      "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                      "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                      "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                                      "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                      "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0)))  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='1' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+            OutsourceItemQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='1' AND Item=O.Code AND Code=A.Code)+" & _
+                                                      "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                                      "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                      "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                      "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                                      "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='1' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                      "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0)  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='1' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
         End If
      If DatabaseType = "MS SQL" Then OutsourceItemQuantity = Replace(OutsourceItemQuantity, "#", "'")
             SQL = "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & OutsourceItemQuantity & " As Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM OutsourceItemMaster O,AccountMaster A WHERE A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") AND (" & OutsourceItemQuantity & ") <> 0 UNION ALL " & _
@@ -754,52 +756,52 @@ Private Sub PrintMaterialStockRegister()
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SR' As VchType,'Stock Journal (Consumed)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM OutsourceItemMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='1' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity<0 AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM OutsourceItemMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='1' AND I.Item=O.Code) AND M.AccountFrom=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM OutsourceItemMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='1' AND I.Item=O.Code) AND M.AccountTo=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM OutsourceItemMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='1' AND I.Item=O.Code) AND M.Binder=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
+                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed :'+(Select Name From Bookmaster Where Code=(Select Book From BookPOParent Where Code= I.code)) As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (BOM)' As ItemName,'1' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM OutsourceItemMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='1' AND I.Item=O.Code) AND I.Vendor=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
         ElseIf Val(ListView1.SelectedItem.SubItems(1)) = 3 Then
-            FreshBookQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category='3' AND Item=O.Code AND Code=A.Code)+" & _
-                                               "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                               "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                               "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                               "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                               "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                               "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0)))  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='3' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+            FreshBookQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='3' AND Item=O.Code AND Code=A.Code)+" & _
+                                               "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                               "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                               "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                               "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                               "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='3' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                               "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0)  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='3' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
             SQL = "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & FreshBookQuantity & " As Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A WHERE A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") AND (" & FreshBookQuantity & ") <> 0 UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category='3' AND I.Item=O.Code) AND I.Godown=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SI' As VchType,'Stock Journal (Generated)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='3' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity>=0 AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SR' As VchType,'Stock Journal (Consumed)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='3' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity<0 AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='3' AND I.Item=O.Code) AND M.AccountFrom=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='3' AND I.Item=O.Code) AND M.AccountTo=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='3' AND I.Item=O.Code) AND M.Binder=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
+                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed :'+(Select Name From Bookmaster Where Code=(Select Book From BookPOParent Where Code= I.code)) As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Fresh Book)' As ItemName,'3' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='3' AND I.Item=O.Code) AND I.Vendor=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
         ElseIf Val(ListView1.SelectedItem.SubItems(1)) = 4 Then
-            RepairBookQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category='4' AND Item=O.Code AND Code=A.Code)+" & _
-                                                "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                                "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                                "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                                "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0)))  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='4' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+            RepairBookQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='4' AND Item=O.Code AND Code=A.Code)+" & _
+                                                "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                                "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                                "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='4' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                                "(SELECT ISNULL(SUM(Round(I.TotalConsumption,0)),0)  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='4' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
             SQL = "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & RepairBookQuantity & " As Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A WHERE O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") AND (" & RepairBookQuantity & ") <> 0 UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND I.Godown=A.Code AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SI' As VchType,'Stock Journal (Generated)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity>=0 AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SR' As VchType,'Stock Journal (Consumed)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity<0 AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.AccountFrom=A.Code AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='4' AND I.Item=O.Code) AND M.AccountTo=A.Code AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='4' AND I.Item=O.Code) AND M.Binder=A.Code AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
+                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed :'+(Select Name From Bookmaster Where Code=(Select Book From BookPOParent Where Code= I.code)) As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Repair Book)' As ItemName,'4' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='4' AND I.Item=O.Code) AND I.Vendor=A.Code AND O.Type='R' AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
         ElseIf Val(ListView1.SelectedItem.SubItems(1)) = 5 Then
-            TitleQuantity = "(SELECT IIF(ISNULL(SUM(OpBal)),0,SUM(OpBal)) FROM AccountChild0801 WHERE Category='5' AND Item=O.Code AND Code=A.Code)+" & _
-                                     "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                     "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                     "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                     "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
-                                     "(SELECT IIF(ISNULL(SUM(I.Quantity)),0,SUM(I.Quantity)) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
-                                     "(SELECT IIF(ISNULL(SUM(Round(I.TotalConsumption,0))),0,SUM(Round(I.TotalConsumption,0)))  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='5' AND Item=O.Code AND Binder=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
+            TitleQuantity = "(SELECT ISNULL(SUM(OpBal),0) FROM AccountChild0801 WHERE Category='5' AND Item=O.Code AND Code=A.Code)+" & _
+                                     "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Godown=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                     "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity>=0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                     "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND Account=A.Code AND I.Quantity<0 AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                     "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountFROM=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)+" & _
+                                     "(SELECT ISNULL(SUM(I.Quantity),0) FROM MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND Category='5' AND Item=O.Code AND AccountTo=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)-" & _
+                                     "(SELECT SNULL(SUM(Round(I.TotalConsumption,0)),0))  FROM BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND Category='5' AND Item=O.Code AND I.Vendor=A.Code AND Date<#" & GetDate(MhDateInput1.Text) & "#)"
             SQL = "SELECT '' As VchNo,#" & CDate(GetDate(MhDateInput1.Text)) - 1 & "# As VchDate,'OB' As VchType,'Opening Balance' As Particulars," & TitleQuantity & " As Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A WHERE A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") AND (" & TitleQuantity & ") <> 0 UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.Source)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialIOParent M,MaterialIOChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND I.Godown=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SI' As VchType,'Stock Journal (Generated)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity>=0 AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'SR' As VchType,'Stock Journal (Consumed)' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialSVParent M,MaterialSVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.Account=A.Code AND I.Quantity<0 AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MO' As VchType,'Material Out (To : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountTo)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.AccountFrom=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
                       "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'MI' As VchType,'Material In (From : '+(SELECT LTRIM(PrintName) From AccountMaster Where Code=M.AccountFrom)+')' As Particulars,I.Quantity,'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,MaterialMVParent M,MaterialMVChild I WHERE M.Code=I.Code AND (I.Category='5' AND I.Item=O.Code) AND M.AccountTo=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# UNION ALL " & _
-                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed' As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='5' AND I.Item=O.Code) AND M.Binder=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
+                      "SELECT LTRIM(M.Name) As VchNo,M.Date As VchDate,'PC' As VchType,'Material Consumed :'+(Select Name From Bookmaster Where Code=(Select Book From BookPOParent Where Code= I.code)) As Particulars,Round(I.TotalConsumption,0),'' As BoardName,'' As BookName,LTRIM(O.PrintName)+' (Title)' As ItemName,'5' As ItemType,'Godown Name : '+LTRIM(A.PrintName) As GodownName FROM BookMaster O,AccountMaster A,BookPOParent M,BookPOChild0801 I WHERE M.Code=I.Code AND LEFT(M.Type,1)<>'O' AND LEFT(M.Code,1)<>'*' AND (I.Category='5' AND I.Item=O.Code) AND I.Vendor=A.Code AND A.Code In (" & SelectedAccounts & ") AND O.Code In (" & SelectedBooks & ") And M.Date>=#" & GetDate(MhDateInput1.Text) & "# And M.Date<=#" & GetDate(MhDateInput2.Text) & "# "
         End If
         If DatabaseType = "MS SQL" Then SQL = Replace(SQL, "#", "'")
         rstMaterialStockRegister.Open SQL & "ORDER BY GodownName,ItemType,ItemName,VchDate,VchNo", cnDatabase, adOpenKeyset, adLockReadOnly

@@ -26,7 +26,6 @@ Begin VB.Form FrmStockJournal
    LinkTopic       =   "Form2"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
-   MDIChild        =   -1  'True
    ScaleHeight     =   10965.03
    ScaleMode       =   0  'User
    ScaleWidth      =   15675
@@ -274,7 +273,6 @@ Begin VB.Form FrmStockJournal
                _ExtentY        =   5212
                _StockProps     =   64
                EditEnterAction =   5
-               EditModePermanent=   -1  'True
                EditModeReplace =   -1  'True
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
@@ -286,7 +284,7 @@ Begin VB.Form FrmStockJournal
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   4227327
-               MaxCols         =   5
+               MaxCols         =   6
                MaxRows         =   100
                OperationMode   =   2
                SpreadDesigner  =   "StockJournal.frx":0070
@@ -377,8 +375,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0621
-               Picture         =   "StockJournal.frx":063D
+               Picture         =   "StockJournal.frx":06F0
+               Picture         =   "StockJournal.frx":070C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
@@ -405,8 +403,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0659
-               Picture         =   "StockJournal.frx":0675
+               Picture         =   "StockJournal.frx":0728
+               Picture         =   "StockJournal.frx":0744
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
@@ -432,8 +430,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0691
-               Picture         =   "StockJournal.frx":06AD
+               Picture         =   "StockJournal.frx":0760
+               Picture         =   "StockJournal.frx":077C
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
@@ -459,8 +457,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":06C9
-               Picture         =   "StockJournal.frx":06E5
+               Picture         =   "StockJournal.frx":0798
+               Picture         =   "StockJournal.frx":07B4
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
@@ -471,8 +469,8 @@ Begin VB.Form FrmStockJournal
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournal.frx":0701
-               Caption         =   "StockJournal.frx":0819
+               Calendar        =   "StockJournal.frx":07D0
+               Caption         =   "StockJournal.frx":08E8
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -482,9 +480,9 @@ Begin VB.Form FrmStockJournal
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournal.frx":0885
-               Keys            =   "StockJournal.frx":08A3
-               Spin            =   "StockJournal.frx":0901
+               DropDown        =   "StockJournal.frx":0954
+               Keys            =   "StockJournal.frx":0972
+               Spin            =   "StockJournal.frx":09D0
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -551,7 +549,6 @@ Begin VB.Form FrmStockJournal
                _ExtentY        =   5212
                _StockProps     =   64
                EditEnterAction =   5
-               EditModePermanent=   -1  'True
                EditModeReplace =   -1  'True
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
@@ -563,10 +560,10 @@ Begin VB.Form FrmStockJournal
                   Strikethrough   =   0   'False
                EndProperty
                GridColor       =   4227327
-               MaxCols         =   5
+               MaxCols         =   6
                MaxRows         =   100
                OperationMode   =   2
-               SpreadDesigner  =   "StockJournal.frx":0929
+               SpreadDesigner  =   "StockJournal.frx":09F8
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
@@ -592,8 +589,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0EF0
-               Picture         =   "StockJournal.frx":0F0C
+               Picture         =   "StockJournal.frx":109F
+               Picture         =   "StockJournal.frx":10BB
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   330
@@ -619,8 +616,8 @@ Begin VB.Form FrmStockJournal
                Alignment       =   0
                FillColor       =   9164542
                TextColor       =   0
-               Picture         =   "StockJournal.frx":0F28
-               Picture         =   "StockJournal.frx":0F44
+               Picture         =   "StockJournal.frx":10D7
+               Picture         =   "StockJournal.frx":10F3
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput2 
                Height          =   330
@@ -631,8 +628,8 @@ Begin VB.Form FrmStockJournal
                _Version        =   65536
                _ExtentX        =   2778
                _ExtentY        =   582
-               Calendar        =   "StockJournal.frx":0F60
-               Caption         =   "StockJournal.frx":1078
+               Calendar        =   "StockJournal.frx":110F
+               Caption         =   "StockJournal.frx":1227
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
                   Name            =   "Calibri"
                   Size            =   9.75
@@ -642,9 +639,9 @@ Begin VB.Form FrmStockJournal
                   Italic          =   0   'False
                   Strikethrough   =   0   'False
                EndProperty
-               DropDown        =   "StockJournal.frx":10E4
-               Keys            =   "StockJournal.frx":1102
-               Spin            =   "StockJournal.frx":1160
+               DropDown        =   "StockJournal.frx":1293
+               Keys            =   "StockJournal.frx":12B1
+               Spin            =   "StockJournal.frx":130F
                AlignHorizontal =   0
                AlignVertical   =   0
                Appearance      =   0
@@ -728,8 +725,8 @@ Begin VB.Form FrmStockJournal
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "StockJournal.frx":1188
-            Picture         =   "StockJournal.frx":11A4
+            Picture         =   "StockJournal.frx":1337
+            Picture         =   "StockJournal.frx":1353
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -850,23 +847,27 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim cnMaterialStockAdjustment As New ADODB.Connection
 Dim rstMaterialSVList As New ADODB.Recordset, rstMaterialSVParent As New ADODB.Recordset, rstMaterialSVChild As ADODB.Recordset
-Dim rstCompanyMaster As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstUserList As New ADODB.Recordset, rstOutsourceItemList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstFreshBookList As New ADODB.Recordset, rstTitleList As New ADODB.Recordset, rstRepairBookList As New ADODB.Recordset
-Dim AccountCode As String, ApproverCode As String, BOM As String, Paper As String, FG As String, UFG As String, Title As String
+Dim rstCompanyMaster As New ADODB.Recordset, rstAccountList As New ADODB.Recordset, rstUserList As New ADODB.Recordset, rstOutsourceItemList As New ADODB.Recordset, rstPaperList As New ADODB.Recordset, rstFreshBookList As New ADODB.Recordset, rstTitleList As New ADODB.Recordset, rstRepairBookList As New ADODB.Recordset, rstElementList As New ADODB.Recordset
+Dim AccountCode As String, ApproverCode As String, BOM As String, Paper As String, FG As String, UFG As String, Title As String, Element As String
 Dim EditMode As Boolean, SortOrder As String, PrevStr As String, dblBookMark As Double, blnRecordExist As Boolean, OutputTo As String
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
     If Dir(App.Path & "\Icon\ICON.ICO", vbDirectory) <> "" Then Me.Icon = LoadPicture(App.Path & "\Icon\ICON.ICO")
     CenterForm Me
+'    Me.Left = (MdiMainMenu.ScaleWidth - Me.Width) \ 2
+ '   Me.Top = (MdiMainMenu.ScaleHeight - Me.Height) \ 2 + 1000
+    WheelHook DataGrid1
     BusySystemIndicator True
     cnMaterialStockAdjustment.CursorLocation = adUseClient
     cnMaterialStockAdjustment.Open cnDatabase.ConnectionString
-    rstCompanyMaster.Open "SELECT PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website From CompanyMaster", cnMaterialStockAdjustment, adOpenKeyset, adLockReadOnly
-    rstOutsourceItemList.Open "Select M.Name,'1'+M.Code As NCode,U.Name As UOMName From OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code Order By M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    rstPaperList.Open "SELECT LTRIM(M.Name)+' (UOM : '+LTRIM(C.Name)+')' As Name,'2'+M.Code As NCode,LTRIM(C.Name) AS UOMName FROM PaperMaster M INNER JOIN GeneralMaster C ON M.UOM=C.Code ORDER BY M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    rstFreshBookList.Open "Select Name,Board,'3'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='F' Order By Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    rstTitleList.Open "Select Name,Board,'5'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='F' Order By Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    rstRepairBookList.Open "Select Name,'4'+Code As NCode,'Piece' AS UOMName From BookMaster Where Type='R' Order By Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    rstMaterialSVList.Open "SELECT T.Code,T.Name,T.Date,M.Name As AccountName FROM MaterialSVParent T INNER JOIN AccountMaster M ON T.Account = M.Code WHERE FYCode='" & FYCode & "' ORDER BY T.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstCompanyMaster.Open "SELECT PrintName, Address1, Address2, Address3, Address4, Phone, Fax, EMail, Website FROM CompanyMaster WHERE FYCode='" & FYCode & "'", cnMaterialStockAdjustment, adOpenKeyset, adLockReadOnly
+    rstOutsourceItemList.Open "Select M.Name,'1'+M.Code As NCode,C.Name As UOMName,C.Code As UOMCode From OutsourceItemMaster M Left JOIN GeneralMaster C ON C.Code=M.UOM Order By M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstPaperList.Open "SELECT LTRIM(M.Name)+' (UOM : '+LTRIM(C.Name)+')' As Name,'2'+M.Code As NCode,LTRIM(C.Name) AS UOMName,C.Code As UOMCode FROM PaperMaster M Left JOIN GeneralMaster C ON C.Code=M.UOM ORDER BY M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstFreshBookList.Open "Select M.Name As Name,[Group],'3'+M.Code As NCode,LTRIM(C.Name) AS UOMName,C.Code As UOMCode From BookMaster M Left JOIN GeneralMaster C ON C.Code=M.IntegrationUnit Where M.Type='F' ORDER BY M.Name ", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstTitleList.Open "Select M.Name As Name,[Group],'5'+M.Code As NCode,LTRIM(C.Name) AS UOMName,C.Code As UOMCode From BookMaster M Left JOIN GeneralMaster C ON C.Code=M.IntegrationUnit Where M.Type='F' ORDER BY M.Name ", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstRepairBookList.Open "Select M.Name As Name,[Group],'4'+M.Code As NCode,LTRIM(C.Name) AS UOMName,C.Code As UOMCode From BookMaster M Left JOIN GeneralMaster C ON C.Code=M.IntegrationUnit Where M.Type='R' ORDER BY M.Name ", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstElementList.Open "Select M.Name,'6'+M.Code As NCode,C.Name As UOMName,C.Code As UOMCode From ElementMaster M Left JOIN GeneralMaster C ON C.Code='*25011' Order By M.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstMaterialSVList.Open "SELECT T.Code,T.Name,T.Date,M.Name As AccountName FROM MaterialSVParent T INNER JOIN AccountMaster M ON T.Account = M.Code WHERE Type='J' AND  FYCode='" & FYCode & "' ORDER BY T.Name", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     rstMaterialSVParent.CursorLocation = adUseClient
     Set rstMaterialSVChild = New ADODB.Recordset
     rstMaterialSVList.Filter = adFilterNone
@@ -875,9 +876,9 @@ Private Sub Form_Load()
     BusySystemIndicator False
     SSTab1.Tab = 0
     If FrmStockLedger.dSortBy = True Then
-    SortOrder = "Code"
+        SortOrder = "Code"
     Else
-    SortOrder = "Name"
+        SortOrder = "Name"
     End If
     If Not (rstMaterialSVList.EOF Or rstMaterialSVList.BOF) Then
         With DataGrid1.SelBookmarks
@@ -893,6 +894,7 @@ Private Sub Form_Load()
     rstFreshBookList.ActiveConnection = Nothing
     rstTitleList.ActiveConnection = Nothing
     rstRepairBookList.ActiveConnection = Nothing
+    rstElementList.ActiveConnection = Nothing
     Call RefreshDropDownList("A")
     fpSpread1.Col = 4
     fpSpread1.ColHidden = True
@@ -996,6 +998,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstFreshBookList)
     Call CloseRecordset(rstTitleList)
     Call CloseRecordset(rstRepairBookList)
+    Call CloseRecordset(rstElementList)
     Call CloseConnection(cnMaterialStockAdjustment)
     ShowProgressInStatusBar False
     DisableChildMenu
@@ -1118,7 +1121,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         rstMaterialSVParent.Open "Select * From MaterialSVParent Where Code = ''", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
         ClearFields
         If AddRecord(rstMaterialSVParent) Then
-            Text2.Text = GenerateCode(cnMaterialStockAdjustment, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,Name))", "VAL(Name))") & "  FROM MaterialSVParent WHERE FYCode='" & FYCode & "'", 10, Space(1))
+            Text2.Text = GenerateCode(cnMaterialStockAdjustment, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,Name))", "VAL(Name))") & "  FROM MaterialSVParent WHERE Type='J' AND FYCode='" & FYCode & "'", 10, Space(1))
             MhDateInput1.Text = Format(Date, "dd-MM-yyyy")
             Call SetButtons(False)
             SSTab1.Tab = 1
@@ -1353,7 +1356,7 @@ Private Sub Text2_Validate(Cancel As Boolean)
     If rstMaterialSVParent.EOF Or rstMaterialSVParent.BOF Then Exit Sub
     If CheckEmpty(Text2, True) Then
         Cancel = True
-    ElseIf CheckDuplicate(cnMaterialStockAdjustment, "MaterialSVParent", "Code", "[Name]", Trim(Text2.Text), rstMaterialSVParent.Fields("Code").Value, False, FYCode) Then
+    ElseIf CheckDuplicate(cnMaterialStockAdjustment, "MaterialSVParent", "Code", "[Name]+[Type]", Trim(Text2.Text), rstMaterialSVParent.Fields("Code").Value, False, FYCode) Then
         Cancel = True
     End If
 End Sub
@@ -1495,6 +1498,7 @@ Private Sub SaveFields()
     rstMaterialSVParent.Fields("ApprovedBy").Value = ApproverCode
     If Not MhDateInput2.ValueIsNull Then rstMaterialSVParent.Fields("ApprovalDate").Value = GetDate(MhDateInput2.Text) Else rstMaterialSVParent.Fields("ApprovalDate").Value = Null
     rstMaterialSVParent.Fields("Remarks").Value = Trim(Text4.Text)
+    rstMaterialSVParent.Fields("Type").Value = "J"
     rstMaterialSVParent.Fields("FYCode").Value = FYCode
     rstMaterialSVParent.Fields("PrintStatus").Value = "N"
 End Sub
@@ -1526,7 +1530,7 @@ Private Function CheckMandatoryFields() As Boolean
     ElseIf Not CheckExists(Text3, "Col0", rstAccountList, AccountCode) Then
         Text3.SetFocus
         CheckMandatoryFields = True
-    ElseIf CheckDuplicate(cnMaterialStockAdjustment, "MaterialSVParent", "Code", "[Name]", Trim(Text2.Text), rstMaterialSVParent.Fields("Code").Value, False, FYCode) Then
+    ElseIf CheckDuplicate(cnMaterialStockAdjustment, "MaterialSVParent", "Code", "[Name]+[Type]", Trim(Text2.Text), rstMaterialSVParent.Fields("Code").Value, False, FYCode) Then
         Text2.SetFocus
         CheckMandatoryFields = True
     ElseIf CheckItem("1") Then
@@ -1569,106 +1573,158 @@ Private Sub fpSpread2_KeyDown(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 Private Sub fpSpread1_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewCol As Long, ByVal NewRow As Long, Cancel As Boolean)
-    Dim ActiveCellVal As Variant, Category As Variant, Item As Variant
-    
-    fpSpread1.GetText Col, Row, ActiveCellVal
+    Dim ActiveCellVal As Variant, Category As Variant
+With fpSpread1
+    .GetText Col, Row, ActiveCellVal
     If ActiveCellVal = "" Then
         Cancel = True
         Exit Sub
     End If
-    fpSpread1.GetText 1, Row, Category
+    .GetText 1, Row, Category
     If Col = 1 Then
-        fpSpread1.Col = 2
-        fpSpread1.TypeComboBoxList = IIf(Category = "BOM", BOM, IIf(Category = "Paper", Paper, IIf(Category = "UFG", UFG, IIf(Category = "FG", FG, Title))))
+        .Col = 2
+        .TypeComboBoxList = IIf(Category = "BOM", BOM, IIf(Category = "Paper", Paper, IIf(Category = "UFG", UFG, IIf(Category = "FG", FG, IIf(Category = "Element", Element, Title)))))
     ElseIf Col = 2 Then
         If Category = "BOM" Then
-           If rstOutsourceItemList.RecordCount > 0 Then rstOutsourceItemList.MoveFirst
-           rstOutsourceItemList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstOutsourceItemList.EOF Then
-                fpSpread1.SetText 4, Row, rstOutsourceItemList.Fields("NCode").Value
-                fpSpread1.SetText 6, Row, rstOutsourceItemList.Fields("UOMName").Value
+    With rstOutsourceItemList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread1.SetText 4, Row, .Fields("NCode").Value
+                fpSpread1.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread1.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         ElseIf Category = "Paper" Then
-           If rstPaperList.RecordCount > 0 Then rstPaperList.MoveFirst
-           rstPaperList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstPaperList.EOF Then
-                fpSpread1.SetText 4, Row, rstPaperList.Fields("NCode").Value
-                fpSpread1.SetText 6, Row, rstPaperList.Fields("UOMName").Value
+    With rstPaperList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread1.SetText 4, Row, .Fields("NCode").Value
+                fpSpread1.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread1.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         ElseIf Category = "FG" Then
-           If rstFreshBookList.RecordCount > 0 Then rstFreshBookList.MoveFirst
-           rstFreshBookList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstFreshBookList.EOF Then
-                fpSpread1.SetText 4, Row, rstFreshBookList.Fields("NCode").Value
-                fpSpread1.SetText 6, Row, rstFreshBookList.Fields("UOMName").Value
+    With rstFreshBookList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread1.SetText 4, Row, .Fields("NCode").Value
+                fpSpread1.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread1.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         ElseIf Category = "UFG" Then
-           If rstRepairBookList.RecordCount > 0 Then rstRepairBookList.MoveFirst
-           rstRepairBookList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstRepairBookList.EOF Then
-                fpSpread1.SetText 4, Row, rstRepairBookList.Fields("NCode").Value
-                fpSpread1.SetText 6, Row, rstRepairBookList.Fields("UOMName").Value
+    With rstRepairBookList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread1.SetText 4, Row, .Fields("NCode").Value
+                fpSpread1.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread1.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
+        ElseIf Category = "Element" Then
+    With rstElementList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread1.SetText 4, Row, .Fields("NCode").Value
+                fpSpread1.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread1.SetText 6, Row, .Fields("UOMCode").Value
+           End If
+    End With
         Else
-           If rstTitleList.RecordCount > 0 Then rstTitleList.MoveFirst
-           rstTitleList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstTitleList.EOF Then
-                fpSpread1.SetText 4, Row, rstTitleList.Fields("NCode").Value
-                fpSpread1.SetText 6, Row, rstTitleList.Fields("UOMName").Value
+    With rstTitleList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread1.SetText 4, Row, .Fields("NCode").Value
+                fpSpread1.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread1.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         End If
     End If
+End With
 End Sub
 Private Sub fpSpread2_LeaveCell(ByVal Col As Long, ByVal Row As Long, ByVal NewCol As Long, ByVal NewRow As Long, Cancel As Boolean)
     Dim ActiveCellVal As Variant, Category As Variant, Item As Variant
-    
-    fpSpread2.GetText Col, Row, ActiveCellVal
+With fpSpread2
+    .GetText Col, Row, ActiveCellVal
     If ActiveCellVal = "" Then
         Cancel = True
         Exit Sub
     End If
-    fpSpread2.GetText 1, Row, Category
+    .GetText 1, Row, Category
     If Col = 1 Then
-        fpSpread2.Col = 2
-        fpSpread2.TypeComboBoxList = IIf(Category = "BOM", BOM, IIf(Category = "Paper", Paper, IIf(Category = "UFG", UFG, IIf(Category = "FG", FG, Title))))
+        .Col = 2
+        .TypeComboBoxList = IIf(Category = "BOM", BOM, IIf(Category = "Paper", Paper, IIf(Category = "UFG", UFG, IIf(Category = "FG", FG, IIf(Category = "Element", Element, Title)))))
     ElseIf Col = 2 Then
         If Category = "BOM" Then
-           If rstOutsourceItemList.RecordCount > 0 Then rstOutsourceItemList.MoveFirst
-           rstOutsourceItemList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstOutsourceItemList.EOF Then
-                fpSpread2.SetText 4, Row, rstOutsourceItemList.Fields("NCode").Value
-                fpSpread2.SetText 6, Row, rstOutsourceItemList.Fields("UOMName").Value
+    With rstOutsourceItemList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread2.SetText 4, Row, .Fields("NCode").Value
+                fpSpread2.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread2.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         ElseIf Category = "Paper" Then
-           If rstPaperList.RecordCount > 0 Then rstPaperList.MoveFirst
-           rstPaperList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstPaperList.EOF Then
-                fpSpread2.SetText 4, Row, rstPaperList.Fields("NCode").Value
-                fpSpread2.SetText 6, Row, rstPaperList.Fields("UOMName").Value
+    With rstPaperList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread2.SetText 4, Row, .Fields("NCode").Value
+                fpSpread2.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread2.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         ElseIf Category = "FG" Then
-           If rstFreshBookList.RecordCount > 0 Then rstFreshBookList.MoveFirst
-           rstFreshBookList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstFreshBookList.EOF Then
-                fpSpread2.SetText 4, Row, rstFreshBookList.Fields("NCode").Value
-                fpSpread2.SetText 6, Row, rstFreshBookList.Fields("UOMName").Value
-            End If
+    With rstFreshBookList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread2.SetText 4, Row, .Fields("NCode").Value
+                fpSpread2.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread2.SetText 6, Row, .Fields("UOMCode").Value
+           End If
+    End With
         ElseIf Category = "UFG" Then
-           If rstRepairBookList.RecordCount > 0 Then rstRepairBookList.MoveFirst
-           rstRepairBookList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstRepairBookList.EOF Then
-                fpSpread2.SetText 4, Row, rstRepairBookList.Fields("NCode").Value
-                fpSpread2.SetText 6, Row, rstRepairBookList.Fields("UOMName").Value
+    With rstRepairBookList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread2.SetText 4, Row, .Fields("NCode").Value
+                fpSpread2.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread2.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
+        ElseIf Category = "Element" Then
+    With rstElementList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread2.SetText 4, Row, .Fields("NCode").Value
+                fpSpread2.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread2.SetText 6, Row, .Fields("UOMCode").Value
+           End If
+    End With
         Else
-           If rstTitleList.RecordCount > 0 Then rstTitleList.MoveFirst
-           rstTitleList.Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
-           If Not rstTitleList.EOF Then
-                fpSpread2.SetText 4, Row, rstTitleList.Fields("NCode").Value
-                fpSpread2.SetText 6, Row, rstTitleList.Fields("UOMName").Value
+    With rstTitleList
+           If .RecordCount > 0 Then .MoveFirst
+           .Find "[Name]='" & FixQuote(ActiveCellVal) & "'"
+           If Not .EOF Then
+                fpSpread2.SetText 4, Row, .Fields("NCode").Value
+                fpSpread2.SetText 5, Row, .Fields("UOMName").Value
+                fpSpread2.SetText 6, Row, .Fields("UOMCode").Value
            End If
+    End With
         End If
     End If
+End With
 End Sub
 Private Sub fpSpread1_EditMode(ByVal Col As Long, ByVal Row As Long, ByVal Mode As Integer, ByVal ChangeMade As Boolean)
     EditMode = IIf(Mode = 1, True, False)
@@ -1692,6 +1748,8 @@ Private Function CheckItem(ByVal xNumber As String) As Boolean
                 If Left(Item01, 1) <> "3" Then CheckItem = True
             ElseIf Category01 = "UFG" Then
                 If Left(Item01, 1) <> "4" Then CheckItem = True
+            ElseIf Category01 = "Element" Then
+                If Left(Item01, 1) <> "6" Then CheckItem = True
             Else
                 If Left(Item01, 1) <> "5" Then CheckItem = True
             End If
@@ -1710,6 +1768,8 @@ Private Function CheckItem(ByVal xNumber As String) As Boolean
                 If Left(Item01, 1) <> "3" Then CheckItem = True
             ElseIf Category01 = "UFG" Then
                 If Left(Item01, 1) <> "4" Then CheckItem = True
+            ElseIf Category01 = "Element" Then
+                If Left(Item01, 1) <> "6" Then CheckItem = True
             Else
                 If Left(Item01, 1) <> "5" Then CheckItem = True
             End If
@@ -1741,47 +1801,42 @@ Private Sub LoadMaterialList(ByVal strOrderCode As String)
     Dim i As Integer
     On Error GoTo ErrorHandler
     If rstMaterialSVChild.State = adStateOpen Then rstMaterialSVChild.Close
-    If DatabaseType = "MS SQL" Then
-        'rstMaterialSVChild.Open "SELECT T.Category,T.Category+T.Item As ItemCode,CASE WHEN Category='1' THEN (SELECT Name FROM OutsourceItemMaster WHERE Code=T.Item) WHEN Category='2' THEN (SELECT LTRIM(M.Name)+' (UOM : '+LTRIM(C.Name)+')' As Name FROM PaperMaster M INNER JOIN GeneralMaster C ON M.UOM=C.Code WHERE M.Code=T.Item) ELSE (SELECT Name FROM BookMaster WHERE Code=T.Item) END AS ItemName,ABS(T.Quantity) As Qty,'Piece' As UOMName From MaterialSVChild T Where T.Code = '" & strOrderCode & "' And Quantity > 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-        rstMaterialSVChild.Open "SELECT C.Category,C.Category+C.Item As ItemCode,IIF(Category='1',(SELECT Name FROM OutsourceItemMaster WHERE Code=C.Item),IIF(Category='2',(SELECT LTRIM(M1.Name)+' (UOM : '+LTRIM(M2.Name)+')' As Name FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),(SELECT Name FROM BookMaster WHERE Code=C.Item))) As ItemName,ABS(C.Quantity) As Qty,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),'Piece')) As UOMName From MaterialSVChild C Where C.Code = '" & strOrderCode & "' And Quantity > 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    Else
-        rstMaterialSVChild.Open "SELECT C.Category,C.Category+C.Item As ItemCode,IIF(Category='1',(SELECT Name FROM OutsourceItemMaster WHERE Code=C.Item),IIF(Category='2',(SELECT TRIM(M1.Name)+' (UOM : '+LTRIM(M2.Name)+')' As Name FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),(SELECT Name FROM BookMaster WHERE Code=C.Item))) As ItemName,ABS(C.Quantity) As Qty,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT TRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),'Piece')) As UOMName From MaterialSVChild C Where C.Code = '" & strOrderCode & "' And Quantity > 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    End If
+        rstMaterialSVChild.Open "SELECT C.Category,C.Category+C.Item As ItemCode,IIF(Category='1',(SELECT LTRIM(Name) FROM OutsourceItemMaster M1 WHERE Code=C.Item),IIF(Category='2',(SELECT LTRIM(M1.Name)+' (UOM : '+LTRIM(M2.Name)+')' FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT LTRIM(M1.Name) FROM ElementMaster M1 WHERE M1.Code=C.Item),(SELECT Name FROM BookMaster M1 WHERE Code=C.Item)))) As ItemName,IIF(Category='1',(SELECT LTRIM(M2.Name) FROM OutsourceItemMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT LTRIM(M2.Name) FROM ElementMaster M1 INNER JOIN GeneralMaster M2 ON '*25011'=M2.Code WHERE M1.Code=C.Item),(SELECT LTRIM(M2.Name) FROM BookMaster M1 INNER JOIN GeneralMaster M2 ON M1.IntegrationUnit=M2.Code WHERE M1.Code=C.Item)))) As UOMName," & _
+                                                 "IIF(Category='1',(SELECT LTRIM(M2.Code) FROM OutsourceItemMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Code) FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT LTRIM(M2.Code) FROM ElementMaster M1 INNER JOIN GeneralMaster M2 ON '*25011'=M2.Code WHERE M1.Code=C.Item),(SELECT LTRIM(M2.Code) FROM BookMaster M1 INNER JOIN GeneralMaster M2 ON M1.IntegrationUnit=M2.Code WHERE M1.Code=C.Item)))) As UOMCode,ABS(C.Quantity) As Qty From MaterialSVChild C Where C.Code = '" & strOrderCode & "' And Quantity >= 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     rstMaterialSVChild.ActiveConnection = Nothing
     If rstMaterialSVChild.RecordCount > 0 Then rstMaterialSVChild.MoveFirst
     i = 0
     Do While Not rstMaterialSVChild.EOF
         i = i + 1
         With fpSpread1
-            .SetText 1, i, IIf(rstMaterialSVChild.Fields("Category").Value = "1", "BOM", IIf(rstMaterialSVChild.Fields("Category").Value = "2", "Paper", IIf(rstMaterialSVChild.Fields("Category").Value = "3", "FG", IIf(rstMaterialSVChild.Fields("Category").Value = "4", "UFG", "Title"))))
+            .SetText 1, i, IIf(rstMaterialSVChild.Fields("Category").Value = "1", "BOM", IIf(rstMaterialSVChild.Fields("Category").Value = "2", "Paper", IIf(rstMaterialSVChild.Fields("Category").Value = "3", "FG", IIf(rstMaterialSVChild.Fields("Category").Value = "4", "UFG", IIf(rstMaterialSVChild.Fields("Category").Value = "5", "Title", "Element")))))
             .Col = 2
-            .TypeComboBoxList = IIf(rstMaterialSVChild.Fields("Category").Value = "1", BOM, IIf(rstMaterialSVChild.Fields("Category").Value = "2", Paper, IIf(rstMaterialSVChild.Fields("Category").Value = "4", UFG, IIf(rstMaterialSVChild.Fields("Category").Value = "3", FG, Title))))
+            .TypeComboBoxList = IIf(rstMaterialSVChild.Fields("Category").Value = "1", BOM, IIf(rstMaterialSVChild.Fields("Category").Value = "2", Paper, IIf(rstMaterialSVChild.Fields("Category").Value = "4", UFG, IIf(rstMaterialSVChild.Fields("Category").Value = "3", FG, IIf(rstMaterialSVChild.Fields("Category").Value = "5", Title, Element)))))
             .SetText 2, i, rstMaterialSVChild.Fields("ItemName").Value
             .SetText 3, i, Val(rstMaterialSVChild.Fields("Qty").Value)
             .SetText 4, i, rstMaterialSVChild.Fields("ItemCode").Value
-            .SetText 6, i, rstMaterialSVChild.Fields("UOMName").Value
+            .SetText 5, i, rstMaterialSVChild.Fields("UOMName").Value
+            .SetText 6, i, rstMaterialSVChild.Fields("UOMCode").Value
         End With
         rstMaterialSVChild.MoveNext
     Loop
     If rstMaterialSVChild.State = adStateOpen Then rstMaterialSVChild.Close
-    If DatabaseType = "MS SQL" Then
-        rstMaterialSVChild.Open "SELECT C.Category,C.Category+C.Item As ItemCode,IIF(Category='1',(SELECT Name FROM OutsourceItemMaster WHERE Code=C.Item),IIF(Category='2',(SELECT LTRIM(M1.Name)+' (UOM : '+LTRIM(M2.Name)+')' As Name FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),(SELECT Name FROM BookMaster WHERE Code=C.Item))) As ItemName,ABS(C.Quantity) As Qty,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),'Piece')) As UOMName From MaterialSVChild C Where C.Code = '" & strOrderCode & "' And Quantity < 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    Else
-        rstMaterialSVChild.Open "SELECT C.Category,C.Category+C.Item As ItemCode,IIF(Category='1',(SELECT Name FROM OutsourceItemMaster WHERE Code=C.Item),IIF(Category='2',(SELECT TRIM(M1.Name)+' (UOM : '+LTRIM(M2.Name)+')' As Name FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),(SELECT Name FROM BookMaster WHERE Code=C.Item))) As ItemName,ABS(C.Quantity) As Qty,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT TRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),'Piece')) As UOMName From MaterialSVChild C Where C.Code = '" & strOrderCode & "' And Quantity < 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
-    End If
+        rstMaterialSVChild.Open "SELECT C.Category,C.Category+C.Item As ItemCode,IIF(Category='1',(SELECT LTRIM(Name) FROM OutsourceItemMaster M1 WHERE Code=C.Item),IIF(Category='2',(SELECT LTRIM(M1.Name)+' (UOM : '+LTRIM(M2.Name)+')'  FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT LTRIM(M1.Name) FROM ElementMaster M1 WHERE M1.Code=C.Item),(SELECT Name FROM BookMaster M1 WHERE Code=C.Item)))) As ItemName,IIF(Category='1',(SELECT LTRIM(M2.Name) FROM OutsourceItemMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT LTRIM(M2.Name) FROM ElementMaster M1 INNER JOIN GeneralMaster M2 ON '*25011'=M2.Code WHERE M1.Code=C.Item),(SELECT LTRIM(M2.Name) FROM BookMaster M1 INNER JOIN GeneralMaster M2 ON M1.IntegrationUnit=M2.Code WHERE M1.Code=C.Item)))) As UOMName," & _
+                                                 "IIF(Category='1',(SELECT LTRIM(M2.Code) FROM OutsourceItemMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Code) FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT LTRIM(M2.Code) FROM ElementMaster M1 INNER JOIN GeneralMaster M2 ON '*25011'=M2.Code WHERE M1.Code=C.Item),(SELECT LTRIM(M2.Code) FROM BookMaster M1 INNER JOIN GeneralMaster M2 ON M1.IntegrationUnit=M2.Code WHERE M1.Code=C.Item)))) As UOMCode,ABS(C.Quantity) As Qty From MaterialSVChild C Where C.Code = '" & strOrderCode & "' And Quantity < 0 Order By Category", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     rstMaterialSVChild.ActiveConnection = Nothing
     If rstMaterialSVChild.RecordCount > 0 Then rstMaterialSVChild.MoveFirst
     i = 0
     Do While Not rstMaterialSVChild.EOF
         i = i + 1
         With fpSpread2
-            .SetText 1, i, IIf(rstMaterialSVChild.Fields("Category").Value = "1", "BOM", IIf(rstMaterialSVChild.Fields("Category").Value = "2", "Paper", IIf(rstMaterialSVChild.Fields("Category").Value = "3", "FG", IIf(rstMaterialSVChild.Fields("Category").Value = "4", "UFG", "Title"))))
+            .SetText 1, i, IIf(rstMaterialSVChild.Fields("Category").Value = "1", "BOM", IIf(rstMaterialSVChild.Fields("Category").Value = "2", "Paper", IIf(rstMaterialSVChild.Fields("Category").Value = "3", "FG", IIf(rstMaterialSVChild.Fields("Category").Value = "4", "UFG", IIf(rstMaterialSVChild.Fields("Category").Value = "5", "Title", "Element")))))
             .Col = 2
-            .TypeComboBoxList = IIf(rstMaterialSVChild.Fields("Category").Value = "1", BOM, IIf(rstMaterialSVChild.Fields("Category").Value = "2", Paper, IIf(rstMaterialSVChild.Fields("Category").Value = "4", UFG, IIf(rstMaterialSVChild.Fields("Category").Value = "3", FG, Title))))
+            .TypeComboBoxList = IIf(rstMaterialSVChild.Fields("Category").Value = "1", BOM, IIf(rstMaterialSVChild.Fields("Category").Value = "2", Paper, IIf(rstMaterialSVChild.Fields("Category").Value = "4", UFG, IIf(rstMaterialSVChild.Fields("Category").Value = "3", FG, IIf(rstMaterialSVChild.Fields("Category").Value = "5", Title, Element)))))
             .SetText 2, i, rstMaterialSVChild.Fields("ItemName").Value
             .SetText 3, i, Val(rstMaterialSVChild.Fields("Qty").Value)
             .SetText 4, i, rstMaterialSVChild.Fields("ItemCode").Value
-            .SetText 6, i, rstMaterialSVChild.Fields("UOMName").Value
+            .SetText 5, i, rstMaterialSVChild.Fields("UOMName").Value
+            .SetText 6, i, rstMaterialSVChild.Fields("UOMCode").Value
         End With
         rstMaterialSVChild.MoveNext
     Loop
@@ -1791,6 +1846,7 @@ ErrorHandler:
 End Sub
 Private Function UpdateMaterialList(ByVal ActionType As String) As Boolean
     Dim CellVal(1 To 3) As Variant
+    Dim UOM As Variant
     On Error GoTo ErrorHandler
 
     UpdateMaterialList = True
@@ -1802,15 +1858,17 @@ Private Function UpdateMaterialList(ByVal ActionType As String) As Boolean
             .GetText 1, .ActiveRow, CellVal(1)
             .GetText 3, .ActiveRow, CellVal(2)
             .GetText 4, .ActiveRow, CellVal(3)
+            .GetText 6, .ActiveRow, UOM
         End With
-        cnMaterialStockAdjustment.Execute "Insert Into MaterialSVChild Values ('" & rstMaterialSVParent.Fields("Code").Value & "','" & IIf(CellVal(1) = "BOM", "1", IIf(CellVal(1) = "Paper", "2", IIf(CellVal(1) = "FG", "3", IIf(CellVal(1) = "UFG", "4", "5")))) & "','" & Right(CellVal(3), 6) & "'," & Val(CellVal(2)) & ")"
+        cnMaterialStockAdjustment.Execute "Insert Into MaterialSVChild Values ('" & rstMaterialSVParent.Fields("Code").Value & "','" & IIf(CellVal(1) = "BOM", "1", IIf(CellVal(1) = "Paper", "2", IIf(CellVal(1) = "FG", "3", IIf(CellVal(1) = "UFG", "4", IIf(CellVal(1) = "FG", "3", IIf(CellVal(1) = "Element", "6", "5")))))) & "','" & Right(CellVal(3), 6) & "'," & Val(CellVal(2)) & ",Null,Null,Null,Null,Null,'" & UOM & "',Null)"
     Else
         With fpSpread2
             .GetText 1, .ActiveRow, CellVal(1)
             .GetText 3, .ActiveRow, CellVal(2)
             .GetText 4, .ActiveRow, CellVal(3)
+            .GetText 6, .ActiveRow, UOM
         End With
-        cnMaterialStockAdjustment.Execute "Insert Into MaterialSVChild Values ('" & rstMaterialSVParent.Fields("Code").Value & "','" & IIf(CellVal(1) = "BOM", "1", IIf(CellVal(1) = "Paper", "2", IIf(CellVal(1) = "FG", "3", IIf(CellVal(1) = "UFG", "4", "5")))) & "','" & Right(CellVal(3), 6) & "'," & 0 - Val(CellVal(2)) & ")"
+        cnMaterialStockAdjustment.Execute "Insert Into MaterialSVChild Values ('" & rstMaterialSVParent.Fields("Code").Value & "','" & IIf(CellVal(1) = "BOM", "1", IIf(CellVal(1) = "Paper", "2", IIf(CellVal(1) = "FG", "3", IIf(CellVal(1) = "UFG", "4", IIf(CellVal(1) = "FG", "3", IIf(CellVal(1) = "Element", "6", "5")))))) & "','" & Right(CellVal(3), 6) & "'," & 0 - Val(CellVal(2)) & ",Null,Null,Null,Null,Null,'" & UOM & "',Null)"
     End If
     Exit Function
 ErrorHandler:
@@ -1818,49 +1876,71 @@ ErrorHandler:
 End Function
 Private Sub RefreshDropDownList(ByVal xType As String)
     If xType = "R" Then
+        
         rstOutsourceItemList.ActiveConnection = cnMaterialStockAdjustment
         Do While Not RefreshRecord(rstOutsourceItemList)
         Loop
         rstOutsourceItemList.ActiveConnection = Nothing
+        
         rstPaperList.ActiveConnection = cnMaterialStockAdjustment
         Do While Not RefreshRecord(rstPaperList)
         Loop
         rstPaperList.ActiveConnection = Nothing
+        
         rstFreshBookList.ActiveConnection = cnMaterialStockAdjustment
         Do While Not RefreshRecord(rstFreshBookList)
         Loop
         rstFreshBookList.ActiveConnection = Nothing
+        
         rstTitleList.ActiveConnection = cnMaterialStockAdjustment
         Do While Not RefreshRecord(rstTitleList)
         Loop
         rstTitleList.ActiveConnection = Nothing
+        
         rstRepairBookList.ActiveConnection = cnMaterialStockAdjustment
         Do While Not RefreshRecord(rstRepairBookList)
         Loop
         rstRepairBookList.ActiveConnection = Nothing
-        BOM = "": Paper = "": FG = "": UFG = "": Title = ""
+        
+        rstElementList.ActiveConnection = cnMaterialStockAdjustment
+        Do While Not RefreshRecord(rstElementList)
+        Loop
+        rstElementList.ActiveConnection = Nothing
+        
+        BOM = "": Paper = "": FG = "": UFG = "": Title = "": Element = ""
     End If
+    
     Do While Not rstOutsourceItemList.EOF
         BOM = IIf(CheckEmpty(BOM, False), "", BOM + Chr$(9)) + rstOutsourceItemList.Fields("Name").Value
         rstOutsourceItemList.MoveNext
     Loop
+    
     Do While Not rstPaperList.EOF
         Paper = IIf(CheckEmpty(Paper, False), "", Paper + Chr$(9)) + rstPaperList.Fields("Name").Value
         rstPaperList.MoveNext
     Loop
+    
     Do While Not rstFreshBookList.EOF
         FG = IIf(CheckEmpty(FG, False), "", FG + Chr$(9)) + rstFreshBookList.Fields("Name").Value
         rstFreshBookList.MoveNext
     Loop
+    
     Do While Not rstTitleList.EOF
         Title = IIf(CheckEmpty(Title, False), "", Title + Chr$(9)) + rstTitleList.Fields("Name").Value
         rstTitleList.MoveNext
+    
     Loop
     rstTitleList.Filter = adFilterNone
     Do While Not rstRepairBookList.EOF
         UFG = IIf(CheckEmpty(UFG, False), "", UFG + Chr$(9)) + rstRepairBookList.Fields("Name").Value
         rstRepairBookList.MoveNext
+    
     Loop
+    Do While Not rstElementList.EOF
+        Element = IIf(CheckEmpty(UFG, False), "", Element + Chr$(9)) + rstElementList.Fields("Name").Value
+        rstElementList.MoveNext
+    Loop
+
 End Sub
 Private Sub PrintMaterialStockAdjustment()
     On Error Resume Next
@@ -1879,11 +1959,13 @@ Private Sub PrintMaterialStockAdjustment()
     End If
     If rstMaterialSVChild.State = adStateOpen Then rstMaterialSVChild.Close
     If DatabaseType = "MS SQL" Then
-        rstMaterialSVChild.Open "SELECT LTRIM(Name) As VchNo,[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Account) As Godown,Category,CASE WHEN Category='1' THEN (SELECT LTRIM(PrintName) FROM OutsourceItemMaster WHERE Code=C.Item) WHEN Category='2' THEN (SELECT LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M2.PrintName)+'='+LTRIM(M2.Value1)+')' FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item) ELSE (SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item) END As ItemName,CASE WHEN Quantity>=0 THEN 'Items Generated' ELSE 'Items Consumed' END As ItemType,Quantity,Remarks,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),'Piece')) As UOMName, " & _
-        "IIF(Category='1','BOM',IIF(Category='2','Paper',IIF(Category='3','FG',IIF(Category='4','UFG',('Title'))))) As CategoryName FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE P.Code='" & rstMaterialSVList.Fields("Code").Value & "' ", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+    rstMaterialSVChild.Open "SELECT LTRIM(Name) As VchNo,[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Account) As Godown,Category,CASE WHEN Category='1' THEN (SELECT LTRIM(PrintName) FROM OutsourceItemMaster WHERE Code=C.Item) WHEN Category='2' THEN (SELECT LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M2.PrintName)+'='+LTRIM(M2.Value1)+')' FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item) WHEN Category='6' THEN (SELECT LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M2.PrintName)+'='+LTRIM(M2.Value1)+')' FROM ElementMaster M1 LEFT JOIN GeneralMaster M2 ON '*25011'=M2.Code WHERE M1.Code=C.Item) ELSE (SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item) END As ItemName," & _
+    "CASE WHEN Quantity>=0 THEN 'Items Generated' ELSE 'Items Consumed' END As ItemType,Quantity,Remarks,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),IIF(Category='6',(SELECT U.Name FROM ElementMaster M INNER JOIN GeneralMaster U ON '*25011'=U.Code WHERE M.Code=C.Item), " & _
+    "(SELECT U.Name FROM BookMaster M INNER JOIN GeneralMaster U ON M.IntegrationUnit=U.Code WHERE M.Code=C.Item)))) As UOMName, " & _
+        "IIF(Category='1','BOM',IIF(Category='2','Paper',IIF(Category='3','FG',IIF(Category='4','UFG',IIF(Category='6','Element',('Title')))))) As CategoryName FROM MaterialSVParent P INNER JOIN MaterialSVChild C ON P.Code=C.Code WHERE P.Code='" & rstMaterialSVList.Fields("Code").Value & "' ", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     Else
         rstMaterialSVChild.Open "SELECT LTRIM(Name) As VchNo,[Date] As VchDate,(SELECT LTRIM(PrintName) FROM AccountMaster WHERE Code=P.Account) As Godown,Category,IIF(Category='1',(SELECT LTRIM(PrintName) FROM OutsourceItemMaster WHERE Code=C.Item),IIF(Category='2',(SELECT LTRIM(M1.PrintName)+' (UOM : '+LTRIM(M2.PrintName)+'='+LTRIM(M2.Value1)+')' FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),(SELECT LTRIM(PrintName) FROM BookMaster WHERE Code=C.Item))) As ItemName,IIF(Quantity>=0,'Items Generated','Items Consumed') As ItemType,Quantity,Remarks,IIF(Category='1',(SELECT U.Name FROM OutsourceItemMaster M INNER JOIN GeneralMaster U ON M.UOM=U.Code WHERE M.Code=C.Item),IIF(Category='2',(SELECT LTRIM(M2.Name) As UOMName FROM PaperMaster M1 INNER JOIN GeneralMaster M2 ON M1.UOM=M2.Code WHERE M1.Code=C.Item),'Piece')) As UOMName, " & _
-        "IIF(Category='1','BOM',IIF(Category='2','Paper',IIF(Category='3','FG',IIF(Category='4','UFG',('Title'))))) As CategoryName FROM MaterialSVParent P Left Join MaterialSVChild C On (P.Code=C.Code And P.Code='" & rstMaterialSVList.Fields("Code").Value & "' )", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
+        "IIF(Category='1','BOM',IIF(Category='2','Paper',IIF(Category='3','FG',IIF(Category='4','UFG',IIF(Category='6','Element',('Title')))))) As CategoryName FROM MaterialSVParent P Left Join MaterialSVChild C On (P.Code=C.Code And P.Code='" & rstMaterialSVList.Fields("Code").Value & "' )", cnMaterialStockAdjustment, adOpenKeyset, adLockOptimistic
     End If
     rptStockJournal.Text27.SetText "for " & Trim(rstMaterialSVChild.Fields("Godown").Value)
     rptStockJournal.Text9.SetText "for " & Trim(rstCompanyMaster.Fields("PrintName").Value)

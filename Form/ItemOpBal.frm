@@ -7,7 +7,7 @@ Begin VB.Form FrmItemOpBal
    Caption         =   "Material Centrewise Item Opening Bal"
    ClientHeight    =   7980
    ClientLeft      =   45
-   ClientTop       =   330
+   ClientTop       =   390
    ClientWidth     =   8430
    BeginProperty Font 
       Name            =   "Arial"
@@ -24,7 +24,6 @@ Begin VB.Form FrmItemOpBal
    MaxButton       =   0   'False
    ScaleHeight     =   7980
    ScaleWidth      =   8430
-   StartUpPosition =   2  'CenterScreen
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
       Height          =   7775
       Left            =   120

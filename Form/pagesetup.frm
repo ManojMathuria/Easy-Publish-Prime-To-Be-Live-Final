@@ -243,7 +243,7 @@ Private Sub Command2_Click(Index As Integer)
         frmPageSetup.fpSpread1.PrintMarginRight = CDbl(pagemargin(1).Text) * 1440
         'Change the page orientation
         'Portrait
-        If porientation(0).value = True Then
+        If porientation(0).Value = True Then
             frmPageSetup.fpSpread1.PrintOrientation = PrintOrientationPortrait
         'Landscape
         Else
