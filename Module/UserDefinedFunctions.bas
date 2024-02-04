@@ -454,6 +454,21 @@ Public Sub CloseForm(ByRef xForm As Form)
     Exit Sub
 ErrorHandler:
 End Sub
+Public Function GetValue(ByVal xConnection As ADODB.Connection, ByVal strSQL As String) As Variant
+    On Error GoTo ErrorHandler
+    Dim rstGetValue As New ADODB.Recordset
+    Dim xCode As String
+    rstGetValue.Open strSQL, xConnection, adOpenKeyset, adLockReadOnly
+    If IsNull(rstGetValue.Fields(0).Value) Then xCode = "" Else xCode = rstGetValue.Fields(0).Value
+    GetValue = xCode
+    rstGetValue.Close
+    Set rstGetValue = Nothing
+    Exit Function
+ErrorHandler:
+    If rstGetValue.State = adStateOpen Then rstGetValue.Close
+    Set rstGetValue = Nothing
+    GetValue = Null
+End Function
 Public Function GenerateCode(ByVal xConnection As ADODB.Connection, ByVal strSQL As String, intLen, ByVal strFillChar As String) As Variant
     On Error GoTo ErrorHandler
     Dim rstGenerateCode As New ADODB.Recordset
@@ -1103,7 +1118,7 @@ Public Sub Sendkeys(Text As Variant, Optional Wait As Boolean = False)
    Dim WshShell As Object
    Set WshShell = CreateObject("wscript.shell")
    WshShell.Sendkeys CStr(Text), Wait
-                                        Set WshShell = Nothing
+                                            Set WshShell = Nothing
 End Sub
 Public Sub RetrievePic(ByVal PicData As Variant, ByVal imgFile As String, ByVal srmPicMgr As ADODB.Stream)
     With srmPicMgr
@@ -4846,6 +4861,12 @@ cnDatabase.BeginTrans
     SQL = "(Code nvarchar(6) NOT NULL,Item nvarchar(6) NOT NULL,PicName    nvarchar(25) NOT NULL,PicData   varbinary(MAX) NULL,PicType nvarchar(4) NULL CONSTRAINT FK_ItemPicChild_BookMaster FOREIGN KEY(Item) REFERENCES dbo.BookMaster(Code) ON UPDATE  CASCADE ON DELETE  CASCADE ) ON [PRIMARY]"
     Call Create_Alter_Table("Create Table ", "ItemPicChild", SQL, "PicName")
 cnDatabase.CommitTrans
+cnDatabase.BeginTrans
+    SQL = ""
+    SQL = " (Code nvarchar(6) NOT NULL,RefCodeDebitCredit nvarchar(6) NOT NULL,Amount [decimal](12, 2) NOT NULL, CONSTRAINT FK_RefDebitCredit_DebitCreditParent FOREIGN KEY(RefCodeDebitCredit) REFERENCES DebitCreditParent (Code) ON UPDATE CASCADE ON DELETE CASCADE) ON [PRIMARY] "
+    Call Create_Alter_Table("Create Table  ", "RefDebitCredit", SQL, "Code")
+cnDatabase.CommitTrans
+    
     Screen.MousePointer = vbNormal
     GeneralUpdate = True
     Exit Function

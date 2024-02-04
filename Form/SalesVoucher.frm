@@ -11,7 +11,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmSalesVoucher 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Sales Voucher"
-   ClientHeight    =   9075
+   ClientHeight    =   9315
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   14940
@@ -27,21 +27,20 @@ Begin VB.Form frmSalesVoucher
    Icon            =   "SalesVoucher.frx":0000
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form2"
-   LockControls    =   -1  'True
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
-   ScaleHeight     =   9075
+   ScaleHeight     =   9315
    ScaleWidth      =   14940
    Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame1 
-      Height          =   9060
+      Height          =   9300
       Left            =   15
-      TabIndex        =   22
+      TabIndex        =   23
       TabStop         =   0   'False
       Top             =   0
       Width           =   14910
       _Version        =   65536
       _ExtentX        =   26300
-      _ExtentY        =   15981
+      _ExtentY        =   16404
       _StockProps     =   77
       TintColor       =   16711935
       Alignment       =   0
@@ -62,14 +61,14 @@ Begin VB.Form frmSalesVoucher
       Caption         =   ""
       Picture         =   "SalesVoucher.frx":000C
       Begin TabDlg.SSTab SSTab1 
-         Height          =   8835
+         Height          =   9075
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   25
          TabStop         =   0   'False
          Top             =   120
          Width           =   14685
          _ExtentX        =   25903
-         _ExtentY        =   15584
+         _ExtentY        =   16007
          _Version        =   393216
          Style           =   1
          Tabs            =   2
@@ -99,8 +98,8 @@ Begin VB.Form frmSalesVoucher
          TabCaption(1)   =   "&Details"
          TabPicture(1)   =   "SalesVoucher.frx":0044
          Tab(1).ControlEnabled=   0   'False
-         Tab(1).Control(0)=   "Mh3dFrame2"
-         Tab(1).Control(1)=   "Mh3dLabel1(1)"
+         Tab(1).Control(0)=   "Mh3dLabel1(1)"
+         Tab(1).Control(1)=   "Mh3dFrame2"
          Tab(1).ControlCount=   2
          Begin VB.TextBox Text1 
             Appearance      =   0  'Flat
@@ -117,19 +116,19 @@ Begin VB.Form frmSalesVoucher
             Height          =   330
             Left            =   720
             MaxLength       =   40
-            TabIndex        =   26
-            Top             =   8310
+            TabIndex        =   27
+            Top             =   8550
             Width           =   8820
          End
          Begin MSDataGridLib.DataGrid DataGrid1 
-            Height          =   7785
+            Height          =   8025
             Left            =   120
-            TabIndex        =   25
+            TabIndex        =   26
             TabStop         =   0   'False
             Top             =   450
             Width           =   14460
             _ExtentX        =   25506
-            _ExtentY        =   13732
+            _ExtentY        =   14155
             _Version        =   393216
             AllowUpdate     =   0   'False
             Appearance      =   0
@@ -293,15 +292,15 @@ Begin VB.Form frmSalesVoucher
             EndProperty
          End
          Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame2 
-            Height          =   8175
+            Height          =   8535
             Left            =   -74880
-            TabIndex        =   28
+            TabIndex        =   29
             TabStop         =   0   'False
             Top             =   480
             Width           =   14460
             _Version        =   65536
             _ExtentX        =   25506
-            _ExtentY        =   14420
+            _ExtentY        =   15055
             _StockProps     =   77
             Enabled         =   0   'False
             TintColor       =   16711935
@@ -336,7 +335,7 @@ Begin VB.Form frmSalesVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   12360
+               Left            =   12600
                MaxLength       =   25
                TabIndex        =   3
                Top             =   105
@@ -358,7 +357,7 @@ Begin VB.Form frmSalesVoucher
                Height          =   330
                Left            =   11055
                MaxLength       =   40
-               TabIndex        =   48
+               TabIndex        =   49
                Top             =   630
                Width           =   3300
             End
@@ -397,12 +396,12 @@ Begin VB.Form frmSalesVoucher
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   330
-               Left            =   6300
+               Left            =   5820
                Locked          =   -1  'True
                MaxLength       =   40
                TabIndex        =   5
                Top             =   630
-               Width           =   3090
+               Width           =   3930
             End
             Begin VB.TextBox Text5 
                Appearance      =   0  'Flat
@@ -428,7 +427,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel4 
                Height          =   285
                Left            =   120
-               TabIndex        =   32
+               TabIndex        =   33
                Top             =   6330
                Width           =   14235
                _Version        =   65536
@@ -505,7 +504,7 @@ Begin VB.Form frmSalesVoucher
                   ReadOnly        =   1
                   Separator       =   ""
                   ShowContextMenu =   1
-                  ValueVT         =   200015877
+                  ValueVT         =   210108421
                   Value           =   0
                   MaxValueVT      =   5
                   MinValueVT      =   5
@@ -588,7 +587,7 @@ Begin VB.Form frmSalesVoucher
                MaxLength       =   25
                TabIndex        =   1
                Top             =   105
-               Width           =   2490
+               Width           =   3690
             End
             Begin VB.TextBox Text4 
                Appearance      =   0  'Flat
@@ -634,7 +633,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel5 
                Height          =   330
                Left            =   3420
-               TabIndex        =   29
+               TabIndex        =   30
                Top             =   105
                Width           =   1215
                _Version        =   65536
@@ -661,7 +660,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel3 
                Height          =   330
                Left            =   120
-               TabIndex        =   30
+               TabIndex        =   31
                Top             =   630
                Width           =   1095
                _Version        =   65536
@@ -688,7 +687,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel11 
                Height          =   330
                Left            =   9735
-               TabIndex        =   31
+               TabIndex        =   32
                Top             =   945
                Width           =   1335
                _Version        =   65536
@@ -714,12 +713,12 @@ Begin VB.Form frmSalesVoucher
             End
             Begin TDBDate6Ctl.TDBDate MhDateInput1 
                Height          =   330
-               Left            =   8535
+               Left            =   9735
                TabIndex        =   2
                Top             =   105
-               Width           =   1335
+               Width           =   1215
                _Version        =   65536
-               _ExtentX        =   2355
+               _ExtentX        =   2143
                _ExtentY        =   582
                Calendar        =   "SalesVoucher.frx":0394
                Caption         =   "SalesVoucher.frx":04AC
@@ -777,8 +776,8 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
                Height          =   330
                Index           =   0
-               Left            =   7215
-               TabIndex        =   33
+               Left            =   8415
+               TabIndex        =   34
                Top             =   105
                Width           =   1335
                _Version        =   65536
@@ -805,7 +804,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel2 
                Height          =   330
                Left            =   120
-               TabIndex        =   34
+               TabIndex        =   35
                Top             =   945
                Width           =   1095
                _Version        =   65536
@@ -874,7 +873,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -942,7 +941,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1782710277
+               ValueVT         =   1796407301
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -950,7 +949,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel35 
                Height          =   645
                Left            =   11985
-               TabIndex        =   35
+               TabIndex        =   36
                Top             =   6810
                Width           =   1215
                _Version        =   65536
@@ -1019,7 +1018,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -1078,7 +1077,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -1095,7 +1094,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel37 
                Height          =   650
                Left            =   120
-               TabIndex        =   36
+               TabIndex        =   37
                Top             =   6810
                Width           =   1095
                _Version        =   65536
@@ -1122,7 +1121,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel38 
                Height          =   330
                Left            =   9270
-               TabIndex        =   37
+               TabIndex        =   38
                Top             =   7125
                Width           =   975
                _Version        =   65536
@@ -1191,7 +1190,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -1200,7 +1199,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   -1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   1796407301
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1259,7 +1258,7 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   1
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   1782710277
+               ValueVT         =   5
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
@@ -1308,7 +1307,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -1325,7 +1324,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel7 
                Height          =   645
                Left            =   4635
-               TabIndex        =   38
+               TabIndex        =   39
                Top             =   6810
                Width           =   1095
                _Version        =   65536
@@ -1352,7 +1351,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel8 
                Height          =   645
                Left            =   2280
-               TabIndex        =   39
+               TabIndex        =   40
                Top             =   6810
                Width           =   975
                _Version        =   65536
@@ -1420,7 +1419,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -1437,7 +1436,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel9 
                Height          =   330
                Left            =   9270
-               TabIndex        =   40
+               TabIndex        =   41
                Top             =   6810
                Width           =   975
                _Version        =   65536
@@ -1506,7 +1505,7 @@ Begin VB.Form frmSalesVoucher
                MarginRight     =   1
                MarginTop       =   1
                MaxValue        =   9999999999.99
-               MinValue        =   0
+               MinValue        =   -9999999999.99
                MousePointer    =   0
                MoveOnLRKey     =   0
                NegativeColor   =   255
@@ -1523,7 +1522,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel10 
                Height          =   645
                Left            =   6795
-               TabIndex        =   41
+               TabIndex        =   42
                Top             =   6810
                Width           =   1215
                _Version        =   65536
@@ -1600,15 +1599,15 @@ Begin VB.Form frmSalesVoucher
                ReadOnly        =   0
                Separator       =   ""
                ShowContextMenu =   1
-               ValueVT         =   5
+               ValueVT         =   1796407301
                Value           =   0
                MaxValueVT      =   5
                MinValueVT      =   5
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel12 
                Height          =   330
-               Left            =   5100
-               TabIndex        =   42
+               Left            =   4620
+               TabIndex        =   43
                Top             =   630
                Width           =   1215
                _Version        =   65536
@@ -1634,8 +1633,8 @@ Begin VB.Form frmSalesVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel14 
                Height          =   330
-               Left            =   5100
-               TabIndex        =   43
+               Left            =   4620
+               TabIndex        =   44
                Top             =   945
                Width           =   1215
                _Version        =   65536
@@ -1662,7 +1661,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel6 
                Height          =   330
                Left            =   9735
-               TabIndex        =   44
+               TabIndex        =   45
                Top             =   630
                Width           =   1335
                _Version        =   65536
@@ -1716,7 +1715,7 @@ Begin VB.Form frmSalesVoucher
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel13 
                Height          =   330
                Left            =   120
-               TabIndex        =   45
+               TabIndex        =   46
                Top             =   105
                Width           =   1095
                _Version        =   65536
@@ -1742,12 +1741,12 @@ Begin VB.Form frmSalesVoucher
             End
             Begin Mh3dlblLib.Mh3dLabel Mh3dLabel15 
                Height          =   330
-               Left            =   10920
-               TabIndex        =   47
+               Left            =   11040
+               TabIndex        =   48
                Top             =   105
-               Width           =   1455
+               Width           =   1575
                _Version        =   65536
-               _ExtentX        =   2566
+               _ExtentX        =   2778
                _ExtentY        =   582
                _StockProps     =   77
                BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1768,15 +1767,15 @@ Begin VB.Form frmSalesVoucher
                Picture         =   "SalesVoucher.frx":2302
             End
             Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame5 
-               Height          =   525
-               Left            =   120
-               TabIndex        =   49
+               Height          =   975
+               Left            =   0
+               TabIndex        =   50
                TabStop         =   0   'False
                Top             =   7560
-               Width           =   14220
+               Width           =   14460
                _Version        =   65536
-               _ExtentX        =   25082
-               _ExtentY        =   926
+               _ExtentX        =   25506
+               _ExtentY        =   1720
                _StockProps     =   77
                TintColor       =   16711935
                Alignment       =   0
@@ -1809,7 +1808,7 @@ Begin VB.Form frmSalesVoucher
                   EndProperty
                   Height          =   330
                   Left            =   120
-                  TabIndex        =   51
+                  TabIndex        =   52
                   Top             =   105
                   Width           =   1455
                End
@@ -1830,7 +1829,7 @@ Begin VB.Form frmSalesVoucher
                   Left            =   1560
                   MaxLength       =   40
                   MultiLine       =   -1  'True
-                  TabIndex        =   50
+                  TabIndex        =   51
                   ToolTipText     =   "Open Notes"
                   Top             =   105
                   Visible         =   0   'False
@@ -1838,12 +1837,12 @@ Begin VB.Form frmSalesVoucher
                End
                Begin Mh3dlblLib.Mh3dLabel Mh3dLabel16 
                   Height          =   330
-                  Left            =   11400
-                  TabIndex        =   52
+                  Left            =   8670
+                  TabIndex        =   53
                   Top             =   105
-                  Width           =   1695
+                  Width           =   1575
                   _Version        =   65536
-                  _ExtentX        =   2990
+                  _ExtentX        =   2778
                   _ExtentY        =   582
                   _StockProps     =   77
                   BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1863,15 +1862,185 @@ Begin VB.Form frmSalesVoucher
                   Picture         =   "SalesVoucher.frx":233A
                   Picture         =   "SalesVoucher.frx":2356
                End
+               Begin Mh3dlblLib.Mh3dLabel Mh3dLabel17 
+                  Height          =   330
+                  Left            =   11055
+                  TabIndex        =   57
+                  Top             =   420
+                  Width           =   2175
+                  _Version        =   65536
+                  _ExtentX        =   3836
+                  _ExtentY        =   582
+                  _StockProps     =   77
+                  BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                     Name            =   "Calibri"
+                     Size            =   9.75
+                     Charset         =   0
+                     Weight          =   400
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  TintColor       =   16711935
+                  Caption         =   " Cash Reciept Amount"
+                  Alignment       =   0
+                  FillColor       =   9164542
+                  TextColor       =   0
+                  Picture         =   "SalesVoucher.frx":2372
+                  Picture         =   "SalesVoucher.frx":238E
+               End
+               Begin TDBNumber6Ctl.TDBNumber MhRealInput13 
+                  Height          =   330
+                  Left            =   13200
+                  TabIndex        =   22
+                  Top             =   420
+                  Width           =   1170
+                  _Version        =   65536
+                  _ExtentX        =   2064
+                  _ExtentY        =   582
+                  Calculator      =   "SalesVoucher.frx":23AA
+                  Caption         =   "SalesVoucher.frx":23CA
+                  BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                     Name            =   "Calibri"
+                     Size            =   9.75
+                     Charset         =   0
+                     Weight          =   400
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  DropDown        =   "SalesVoucher.frx":2436
+                  Keys            =   "SalesVoucher.frx":2454
+                  Spin            =   "SalesVoucher.frx":249E
+                  AlignHorizontal =   1
+                  AlignVertical   =   2
+                  Appearance      =   0
+                  BackColor       =   16777215
+                  BorderStyle     =   1
+                  BtnPositioning  =   0
+                  ClipMode        =   0
+                  ClearAction     =   0
+                  DecimalPoint    =   "."
+                  DisplayFormat   =   "#########0.00"
+                  EditMode        =   1
+                  Enabled         =   -1
+                  ErrorBeep       =   0
+                  ForeColor       =   0
+                  Format          =   "#########0.00"
+                  HighlightText   =   0
+                  MarginBottom    =   1
+                  MarginLeft      =   1
+                  MarginRight     =   1
+                  MarginTop       =   1
+                  MaxValue        =   9999999999.99
+                  MinValue        =   -9999999999.99
+                  MousePointer    =   0
+                  MoveOnLRKey     =   0
+                  NegativeColor   =   255
+                  OLEDragMode     =   0
+                  OLEDropMode     =   0
+                  ReadOnly        =   0
+                  Separator       =   ""
+                  ShowContextMenu =   1
+                  ValueVT         =   5
+                  Value           =   0
+                  MaxValueVT      =   5
+                  MinValueVT      =   5
+               End
+               Begin Mh3dlblLib.Mh3dLabel Mh3dLabel18 
+                  Height          =   330
+                  Left            =   11040
+                  TabIndex        =   58
+                  Top             =   105
+                  Width           =   2175
+                  _Version        =   65536
+                  _ExtentX        =   3836
+                  _ExtentY        =   582
+                  _StockProps     =   77
+                  BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                     Name            =   "Calibri"
+                     Size            =   9.75
+                     Charset         =   0
+                     Weight          =   400
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  TintColor       =   16711935
+                  Caption         =   " Outstanding Balance"
+                  Alignment       =   0
+                  FillColor       =   9164542
+                  TextColor       =   0
+                  Picture         =   "SalesVoucher.frx":24C6
+                  Picture         =   "SalesVoucher.frx":24E2
+               End
+               Begin TDBNumber6Ctl.TDBNumber MhRealInput14 
+                  Height          =   330
+                  Left            =   13185
+                  TabIndex        =   59
+                  Top             =   105
+                  Width           =   1170
+                  _Version        =   65536
+                  _ExtentX        =   2064
+                  _ExtentY        =   582
+                  Calculator      =   "SalesVoucher.frx":24FE
+                  Caption         =   "SalesVoucher.frx":251E
+                  BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+                     Name            =   "Calibri"
+                     Size            =   9.75
+                     Charset         =   0
+                     Weight          =   400
+                     Underline       =   0   'False
+                     Italic          =   0   'False
+                     Strikethrough   =   0   'False
+                  EndProperty
+                  DropDown        =   "SalesVoucher.frx":258A
+                  Keys            =   "SalesVoucher.frx":25A8
+                  Spin            =   "SalesVoucher.frx":25F2
+                  AlignHorizontal =   1
+                  AlignVertical   =   2
+                  Appearance      =   0
+                  BackColor       =   16777215
+                  BorderStyle     =   1
+                  BtnPositioning  =   0
+                  ClipMode        =   0
+                  ClearAction     =   0
+                  DecimalPoint    =   "."
+                  DisplayFormat   =   "#########0.00"
+                  EditMode        =   1
+                  Enabled         =   -1
+                  ErrorBeep       =   0
+                  ForeColor       =   0
+                  Format          =   "#########0.00"
+                  HighlightText   =   0
+                  MarginBottom    =   1
+                  MarginLeft      =   1
+                  MarginRight     =   1
+                  MarginTop       =   1
+                  MaxValue        =   9999999999.99
+                  MinValue        =   -9999999999.99
+                  MousePointer    =   0
+                  MoveOnLRKey     =   0
+                  NegativeColor   =   255
+                  OLEDragMode     =   0
+                  OLEDropMode     =   0
+                  ReadOnly        =   -1
+                  Separator       =   ""
+                  ShowContextMenu =   1
+                  ValueVT         =   1781792773
+                  Value           =   0
+                  MaxValueVT      =   5
+                  MinValueVT      =   5
+               End
                Begin Mh3dfrmLibCtl.Mh3dFrame Mh3dFrame4 
                   Height          =   330
-                  Left            =   13080
-                  TabIndex        =   53
+                  Left            =   10230
+                  TabIndex        =   54
                   TabStop         =   0   'False
                   Top             =   105
-                  Width           =   1050
+                  Width           =   820
                   _Version        =   65536
-                  _ExtentX        =   1852
+                  _ExtentX        =   1446
                   _ExtentY        =   582
                   _StockProps     =   77
                   TintColor       =   16711935
@@ -1891,7 +2060,7 @@ Begin VB.Form frmSalesVoucher
                   NoPrefix        =   0   'False
                   FormatString    =   ""
                   Caption         =   ""
-                  Picture         =   "SalesVoucher.frx":2372
+                  Picture         =   "SalesVoucher.frx":261A
                   Begin VB.CheckBox chkIntegrate 
                      BackColor       =   &H00FFFFFF&
                      BeginProperty Font 
@@ -1904,8 +2073,8 @@ Begin VB.Form frmSalesVoucher
                         Strikethrough   =   0   'False
                      EndProperty
                      Height          =   225
-                     Left            =   465
-                     TabIndex        =   54
+                     Left            =   345
+                     TabIndex        =   55
                      Top             =   60
                      Width           =   180
                   End
@@ -1913,15 +2082,15 @@ Begin VB.Form frmSalesVoucher
             End
             Begin MSForms.ComboBox cmbBillType 
                Height          =   330
-               Left            =   6300
+               Left            =   5820
                TabIndex        =   7
                Top             =   945
-               Width           =   3090
+               Width           =   3930
                VariousPropertyBits=   545282075
                BackColor       =   16777215
                BorderStyle     =   1
                DisplayStyle    =   7
-               Size            =   "5450;582"
+               Size            =   "6932;582"
                ListWidth       =   4056
                MatchEntry      =   0
                ShowDropButtonWhen=   1
@@ -1954,8 +2123,8 @@ Begin VB.Form frmSalesVoucher
             Height          =   330
             Index           =   2
             Left            =   9525
-            TabIndex        =   46
-            Top             =   8310
+            TabIndex        =   47
+            Top             =   8550
             Width           =   5055
             _Version        =   65536
             _ExtentX        =   8916
@@ -1975,14 +2144,14 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":238E
-            Picture         =   "SalesVoucher.frx":23AA
+            Picture         =   "SalesVoucher.frx":2636
+            Picture         =   "SalesVoucher.frx":2652
          End
          Begin Mh3dlblLib.Mh3dLabel Mh3dLabel1 
             Height          =   330
             Index           =   1
             Left            =   -67320
-            TabIndex        =   55
+            TabIndex        =   56
             Top             =   0
             Width           =   5895
             _Version        =   65536
@@ -2003,8 +2172,8 @@ Begin VB.Form frmSalesVoucher
             Alignment       =   0
             FillColor       =   8421504
             TextColor       =   16777215
-            Picture         =   "SalesVoucher.frx":23C6
-            Picture         =   "SalesVoucher.frx":23E2
+            Picture         =   "SalesVoucher.frx":266E
+            Picture         =   "SalesVoucher.frx":268A
          End
          Begin VB.Label Label1 
             Appearance      =   0  'Flat
@@ -2023,8 +2192,8 @@ Begin VB.Form frmSalesVoucher
             ForeColor       =   &H00000000&
             Height          =   330
             Left            =   120
-            TabIndex        =   27
-            Top             =   8310
+            TabIndex        =   28
+            Top             =   8550
             Width           =   615
          End
       End
@@ -2033,7 +2202,7 @@ Begin VB.Form frmSalesVoucher
       Align           =   1  'Align Top
       Height          =   330
       Left            =   0
-      TabIndex        =   23
+      TabIndex        =   24
       Top             =   0
       Width           =   14940
       _ExtentX        =   26353
@@ -2126,10 +2295,10 @@ Public VchType As String, oVchType As String 'SF-Sales Voucher PF-Purchase Vouch
 Public PtgType As String 'IIf(PtgType = 1, "Sales Invoice", IIf(PtgType = 2, "Tax Invoice", IIf(PtgType = 3, "Speciman Challan", "Delivery Challan")))
 Dim cnSalesVoucher As New ADODB.Connection, cnTally As New ADODB.Connection
 Dim rstCompanyMaster As New ADODB.Recordset, rstTransportList As New ADODB.Recordset
-Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset
+Dim rstPartyList As New ADODB.Recordset, rstMaterialCentreList As New ADODB.Recordset, rstTaxList As New ADODB.Recordset, rstItemList As New ADODB.Recordset, rstHSNCodeList As New ADODB.Recordset, rstVchSeriesList As New ADODB.Recordset, rstSalesTypeList As New ADODB.Recordset, rstFinanceVoucherParent As New ADODB.Recordset
 Dim rstSalesVoucherList As New ADODB.Recordset, rstSalesVoucherParent As New ADODB.Recordset, rstSalesVoucherChild As New ADODB.Recordset, rstOrderList As New ADODB.Recordset
 Dim PartyCode As String, PartyStateCode As String, ConsigneeCode As String, MaterialCentreCode As String, TaxCode As String, VchPrefix As String, VchNumbering As String, VchSeriesCode As String, oVchSeriesCode As String, oVchNo As String, AutoVchNo As String, oAutoVchNo As String, StartNo As String, oVchDate As Date, SalesTypeCode As String
-Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, EditMode As Boolean, VchSeries As String
+Dim SortOrder, PrevStr, dblBookMark As Double, blnRecordExist As Boolean, oblnRecordExist As Boolean, EditMode As Boolean, VchSeries As String
 Dim frmSalesTptDetails As New FrmDespatchDetails
 Private Sub Form_Load()
     On Error GoTo ErrorHandler
@@ -2276,6 +2445,7 @@ Private Sub Form_Unload(Cancel As Integer)
     Call CloseRecordset(rstItemList)
     Call CloseRecordset(rstVchSeriesList)
     Call CloseRecordset(rstOrderList)
+    Call CloseRecordset(rstFinanceVoucherParent)
     Call CloseConnection(cnSalesVoucher)
     Call CloseConnection(cnTally)
     Call CloseForm(frmSalesTptDetails)
@@ -2391,6 +2561,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
                 SSTab1.Tab = 1
                 Text6.SetFocus
                 blnRecordExist = False
+                oblnRecordExist = False
                 cnSalesVoucher.BeginTrans
             End If
         ElseIf Button.Index = 2 Then
@@ -2435,6 +2606,7 @@ Public Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             frmSalesTptDetails.Show vbModal
             If MsgBox("Are you sure to save the voucher?", vbYesNo + vbQuestion + vbDefaultButton1, "Confirm Save !") = vbNo Then Exit Sub
             SaveFields
+            UpdateFinance_Vch
             UpdateFlag = 0
             If UpdateRecord(rstSalesVoucherParent) Then
                 If UpdateItemList("D", 0, 0) Then
@@ -2766,7 +2938,7 @@ Private Sub Text3_KeyDown(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 Private Sub Text3_Validate(Cancel As Boolean)
-    If CheckEmpty(Text3.Text, False) Then Cancel = True
+    'If CheckEmpty(Text3.Text, False) Then Cancel = True
     If CheckEmpty(Text8.Text, False) Then Text8.Text = Text3.Text: ConsigneeCode = PartyCode
 End Sub
 Private Sub Text7_KeyDown(KeyCode As Integer, Shift As Integer)
@@ -2785,7 +2957,7 @@ Private Sub Text7_KeyDown(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 Private Sub Text7_Validate(Cancel As Boolean)
-    If CheckEmpty(Text7.Text, False) Then Cancel = True
+'    If CheckEmpty(Text7.Text, False) Then Cancel = True
 End Sub
 Private Sub Text8_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
@@ -2803,7 +2975,7 @@ Private Sub Text8_KeyDown(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 Private Sub Text8_Validate(Cancel As Boolean)
-    If CheckEmpty(Text8.Text, False) Then Cancel = True
+'    If CheckEmpty(Text8.Text, False) Then Cancel = True
 End Sub
 Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     If KeyCode = vbKeySpace Then
@@ -2833,7 +3005,7 @@ Private Sub Text5_KeyDown(KeyCode As Integer, Shift As Integer)
     End If
 End Sub
 Private Sub Text5_Validate(Cancel As Boolean)
-    If CheckEmpty(Text5.Text, False) Then Cancel = True
+'    If CheckEmpty(Text5.Text, False) Then Cancel = True
 End Sub
 Private Sub cmbBillType_Click()
     '01-Purchase 02-Purchase Return 03-Sales Return 04-Sales
@@ -2857,8 +3029,24 @@ End Sub
 Private Sub FindRecord()
     With rstSalesVoucherParent
         If .State = adStateOpen Then .Close
-        .Open "SELECT *, (Select State From AccountMaster Where Code=Party) AS State FROM JobworkBVParent WHERE Code='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "'", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+        .Open "SELECT *, (Select State From AccountMaster Where Code=P.Party) AS State, " & _
+                   "(Select Sum(Amount) Balance From " & _
+                   "(Select Sum(Amount*-1) As Amount from JobworkBVParent Where Left(Type,2)='01' AND Party=P.Party " & _
+                   "Union All " & _
+                   "Select Sum(Amount) As Amount from JobworkBVParent Where Left(Type,2)='02' AND Party=P.Party " & _
+                   "Union All " & _
+                   "Select Sum(Amount*-1) As Amount from JobworkBVParent Where Left(Type,2)='03' AND Party=P.Party " & _
+                   "Union All " & _
+                   "Select Sum(Amount) As Amount from JobworkBVParent Where Left(Type,2)='04' AND Party=P.Party " & _
+                   "Union All " & _
+                   "Select Sum(Credit-Debit) As Amount From DebitCreditChild Where Account=P.Party) TBL) As Bal " & _
+                   "FROM JobworkBVParent P WHERE Code='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "'", cnSalesVoucher, adOpenKeyset, adLockOptimistic
         If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
+    End With
+    With rstFinanceVoucherParent
+        If .State = adStateOpen Then .Close
+        .Open "SELECT * FROM DebitCreditParent WHERE Code=(Select RefCodeDebitCredit From RefDebitCredit Where code ='" & FixQuote(rstSalesVoucherList.Fields("Code").Value) & "')", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+'        If .RecordCount = 0 Then Call DisplayError("This Record has been deleted by Another User ! Click Ok To Refresh the Recordset"): Toolbar1_ButtonClick Toolbar1.Buttons.Item(6)
     End With
 End Sub
 Private Sub ClearFields()
@@ -2885,6 +3073,8 @@ Private Sub ClearFields()
     MhRealInput8.Value = 0
     MhRealInput10.Value = 0
     MhRealInput11.Value = 0
+    MhRealInput13.Value = 0
+    MhRealInput14.Value = 0
     chkIntegrate.Value = 0
     PartyStateCode = ""
     PartyCode = "": ConsigneeCode = "": MaterialCentreCode = "": TaxCode = "": VchSeriesCode = "": oVchSeriesCode = "": oVchNo = "": AutoVchNo = ""
@@ -2940,6 +3130,8 @@ Private Sub LoadFields()
             MhRealInput8.Value = Val(.Fields("IGST").Value)
         End If
         MhRealInput11.Value = Val(.Fields("Amount").Value)
+        If rstFinanceVoucherParent.RecordCount > 0 Then MhRealInput13.Value = Val(rstFinanceVoucherParent.Fields("Debit").Value)
+        MhRealInput14.Value = Val(.Fields("Bal").Value)
         chkIntegrate.Value = IIf(.Fields("IntegrationStatus").Value = "True", 1, 0)
         txtNotes.Text = .Fields("Notes").Value
         frmSalesTptDetails.Text1.Text = CheckNull(.Fields("Transport").Value): frmSalesTptDetails.Text2.Text = CheckNull(.Fields("GRNo").Value): frmSalesTptDetails.Text3.Text = CheckNull(.Fields("VehicleNo").Value): frmSalesTptDetails.Text4.Text = CheckNull(.Fields("Station").Value): frmSalesTptDetails.Text5.Text = CheckNull(.Fields("eWayBill").Value): If Not IsNull(.Fields("GRDate").Value) Then frmSalesTptDetails.MhDateInput1.Value = .Fields("GRDate").Value: If Not IsNull(.Fields("eWayBill").Value) Then frmSalesTptDetails.MhDateInput2.Value = .Fields("eWayBillDate").Value
@@ -2962,6 +3154,7 @@ Private Sub EditRecord()
     If fpSpread1.DataRowCnt > 0 Then cmbBillType.Enabled = False
     Text6.SetFocus
     blnRecordExist = True
+    oblnRecordExist = True
     cnSalesVoucher.BeginTrans
     Exit Sub
 ErrorHandler:
@@ -4084,4 +4277,78 @@ Private Sub DelOldVch(ByVal dspMsg As Boolean)
 End Sub
 Private Sub UpdateIntegration()
 cnSalesVoucher.Execute "Update JobworkBVParent Set IntegrationStatus='True' WHERE Code='" & rstSalesVoucherList.Fields("Code").Value & "' AND RIGHT(Type,2)='" & VchType & "' AND FYCode='" & FYCode & "'"
+End Sub
+Private Sub UpdateFinance_Vch()
+Dim oVchType, Code, VchName, VchSeriesCode, RefCode, AccountCode As String, RefVal As Double
+Dim pAutoVchNo, ShortNarration As String
+
+If MhRealInput13 = 0 Then Exit Sub Else RefVal = MhRealInput13.Value
+
+If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
+rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code,StartNo FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "'  ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+rstVchSeriesList.ActiveConnection = Nothing
+            
+            oVchType = IIf(VchType = "SF", "PR", IIf(VchType = "PF", "PI", IIf(VchType = "TF", "PI", "PR")))
+            AccountCode = GetValue(cnSalesVoucher, "SELECT TOP(1) Code FROM AccountMaster Where Name Like '%Cash%' ")
+    With rstFinanceVoucherParent
+    If .State = 0 Then rstFinanceVoucherParent.Open "SELECT * FROM DebitCreditParent WHERE Code=''", cnSalesVoucher, adOpenKeyset, adLockOptimistic
+    If .EOF Or .BOF Then
+        oblnRecordExist = False
+        If AddRecord(rstFinanceVoucherParent) Then
+            MhRealInput13.SetFocus
+            Call SetButtons(False)
+        End If
+    End If
+    If Not oblnRecordExist Then
+            If .EOF Or .BOF Then Exit Sub
+            .Fields("Code").Value = GenerateCode(cnSalesVoucher, "SELECT MAX(Code) FROM DebitCreditParent", 6, "0")
+            .Fields("CreatedBy").Value = UserCode
+            .Fields("CreatedOn").Value = Now()
+            .Fields("Recordstatus").Value = "N"
+            VchSeriesCode = GetValue(cnSalesVoucher, "SELECT Top(1) Code FROM VchSeriesMaster where Right(VchType,2)= '" & oVchType & "' ")
+            rstVchSeriesList.MoveFirst
+            rstVchSeriesList.Find "[Code] = '" & VchSeriesCode & "'"
+            .Fields("VchSeries").Value = VchSeriesCode
+            pAutoVchNo = GenerateCode(cnSalesVoucher, "SELECT MAX(" & IIf(DatabaseType = "MS SQL", "CONVERT(INT,AutoVchNo))", "VAL(AutoVchNo))") & "  FROM  DebitCreditParent WHERE RIGHT(Type,2)='" & VchType & "' AND VchSeries='" & VchSeriesCode & "' AND FYCode='" & FYCode & "'", 10, Space(1))
+            VchName = Trim(rstVchSeriesList.Fields("Prefix").Value) + Trim(pAutoVchNo) + Trim(rstVchSeriesList.Fields("Suffix").Value)
+    Else
+            .Fields("ModifiedBy").Value = UserCode
+            .Fields("ModifiedOn").Value = Now()
+            .Fields("Recordstatus").Value = "M"
+            VchSeriesCode = .Fields("VchSeries").Value
+            pAutoVchNo = .Fields("AutoVchNo").Value
+            VchName = .Fields("Name").Value
+    End If
+        .Fields("VchSeries").Value = VchSeriesCode
+        .Fields("AutoVchNo").Value = Pad(Trim(pAutoVchNo), Space(1), 10, "L")
+        .Fields("Name").Value = Pad(Trim(VchName), Space(1), 15, "L")
+        .Fields("Date").Value = GetDate(MhDateInput1.Text)
+        .Fields("LongNarration").Value = Trim(Text4.Text)
+        .Fields("Debit").Value = MhRealInput13.Value
+        .Fields("Credit").Value = MhRealInput13.Value
+        .Fields("Type").Value = "52" + "01" + oVchType
+        .Fields("FYCode").Value = FYCode
+        .Fields("RecordStatus").Value = "N"
+        .Fields("Notes").Value = txtNotes.Text
+        .Update
+    End With
+        ShortNarration = IIf(oVchType = "PR", "Receipt Against Bill No. :" & VchName, "Receipt Against Bill No. :" & VchName)
+'Clear Old Record
+        cnSalesVoucher.Execute "DELETE FROM DebitCreditRef WHERE VchCode='" & rstFinanceVoucherParent.Fields("Code").Value & "'"
+        cnSalesVoucher.Execute "DELETE FROM DebitCreditChild WHERE Code='" & rstFinanceVoucherParent.Fields("Code").Value & "'"
+        cnSalesVoucher.Execute "DELETE FROM RefDebitCredit WHERE RefCodeDebitCredit='" & rstFinanceVoucherParent.Fields("Code").Value & "'"
+        
+        If CheckEmpty(RefCode, False) Then RefCode = GenerateCode(cnSalesVoucher, "SELECT MAX(RefCode) FROM DebitCreditRef", 6, "0")
+'Insert Into DebitCreditChild
+            cnSalesVoucher.Execute "INSERT INTO DebitCreditChild VALUES ('" & rstFinanceVoucherParent.Fields("Code").Value & "','D','','" & rstFinanceVoucherParent.Fields("Type").Value & "','" & PartyCode & "'," & Val(rstFinanceVoucherParent.Fields("Debit").Value) & ",0,'" & ShortNarration & "',1,'" & RefCode & "')"
+            cnSalesVoucher.Execute "INSERT INTO DebitCreditChild VALUES ('" & rstFinanceVoucherParent.Fields("Code").Value & "','C','','" & rstFinanceVoucherParent.Fields("Type").Value & "','" & AccountCode & "',0," & Val(rstFinanceVoucherParent.Fields("Credit").Value) & ",'" & ShortNarration & "',2,'" & RefCode & "')"
+'Insert Into DebitCreditRef
+            cnSalesVoucher.Execute "INSERT INTO DebitCreditRef VALUES ('" & RefCode & "',1,'" & rstFinanceVoucherParent.Fields("Type").Value & "','" & rstFinanceVoucherParent.Fields("Code").Value & "','" & rstFinanceVoucherParent.Fields("Name").Value & "','" & Format(GetDate(MhDateInput1.Text), "mm-dd-yyyy") & "','" & PartyCode & "'," & Val(rstFinanceVoucherParent.Fields("Debit").Value) & "," & Val(0) & ",'D')"
+            cnSalesVoucher.Execute "INSERT INTO DebitCreditRef VALUES ('" & RefCode & "',1,'" & rstFinanceVoucherParent.Fields("Type").Value & "','" & rstFinanceVoucherParent.Fields("Code").Value & "','" & rstFinanceVoucherParent.Fields("Name").Value & "','" & Format(GetDate(MhDateInput1.Text), "mm-dd-yyyy") & "','" & AccountCode & "'," & Val(0) & "," & Val(rstFinanceVoucherParent.Fields("Credit").Value) & ",'C')"
+ 'Insert RefCodeDebitCredit
+            cnSalesVoucher.Execute "INSERT INTO RefDebitCredit VALUES ('" & rstSalesVoucherParent.Fields("Code").Value & "','" & rstFinanceVoucherParent.Fields("Code").Value & "'," & Val(rstFinanceVoucherParent.Fields("Debit").Value) & ")"
+'Re-Load VchSeries
+            If rstVchSeriesList.State = adStateOpen Then rstVchSeriesList.Close
+            rstVchSeriesList.Open "SELECT Name As Col0,Prefix,Suffix,VchNumbering,Code,StartNo FROM VchSeriesMaster WHERE Left(FYCode,2)='" & Left(FYCode, 2) & "' AND VchType='" & IIf(VchType = "SF", "04", IIf(VchType = "PF", "01", IIf(VchType = "TF", "03", "02"))) & VchType & "' ORDER BY Name", cnSalesVoucher, adOpenKeyset, adLockReadOnly
+            rstVchSeriesList.ActiveConnection = Nothing
 End Sub
