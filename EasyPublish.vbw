@@ -144,4 +144,4 @@ rptAccountsLedger = 208, 208, 1032, 690, C, 78, 78, 1107, 799, C
 FrmOutsourceItemMaster = 104, 104, 1005, 461, C, 78, 78, 889, 528, C
 FrmQuery = 104, 104, 983, 586, C, 26, 26, 905, 508, C
 rptCorrectionList = 0, 0, 0, 0, C, 130, 130, 1488, 683, C
-FrmAccountMaster = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+FrmAccountMaster = 26, 26, 897, 508, Z, 0, 0, 871, 482, C
